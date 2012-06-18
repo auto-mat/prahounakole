@@ -1,0 +1,49 @@
+{% load url from future %}
+{% load thumbnail %}
+<div>
+<div class="trc">
+   {% if poi.url %}<h4><a href="{{ poi.url|escape }}" title="{{ poi.url|escape }}"  target="_blank">{{ poi }}</a></h4>
+   {% else %}<h4>{{ poi }}</h4>
+   {% endif %}
+</div>
+
+<div class="rc">
+{% if poi.foto_thumb %}
+  {% thumbnail poi.foto_thumb "250x250" as foto %}
+    <a href="{{ poi.foto_thumb.url }}" title="Podrobné informace o místě" target="_blank">
+    <img src="{{ foto.url }}" title="{{ poi }}" width="{{ foto.width }}" height="{{ foto.height }}" class="foto_thumb"/></a>
+{% endif %}
+
+{% if poi.desc %}
+    <p>{{ poi.desc|safe }}</p>
+{% else %}
+    <p>{{ poi.znacka }}</p>
+{% endif %}
+{% if poi.address %}
+    <p>Adresa:<br>{{ poi.address|safe }}</p>
+{% endif %}
+
+{% if poi.url %}
+    <p><a target="_blank" href="{{ poi.url|escape }}" title="{{ poi.url|escape }}">{{ poi.url|escape|truncatewords:4 }}</a></p>
+{% else %}
+  {% if poi.znacka.url %}
+    <p><a target="_blank" href="{{ poi.znacka.url|escape }}" title="{{ poi.znacka.url|escape }}">{{ poi.znacka.url|escape|truncatewords:4 }}</a></p>
+  {% endif %}
+{% endif %}
+</div>
+<p class="addinfo">
+    {% if perms.cyklomapa.poi_change %}
+    <a href="{% url 'admin:cyklomapa_poi_change' poi.id %}">upravit</a>,
+    {% endif %}
+    {% comment %}
+    <a href="#detail={{ poi.id }}" title="Podrobné informace o místě">detail místa</a>,
+    {% endcomment %}
+    <a href="javascript:void(0);" onclick="ZoomToLonLat(this, {{ poi.geom.x }}, {{ poi.geom.y }}, 15);"
+      title="Najet v mapě na místo" >na střed</a>,
+    {% comment %}
+    <a href="#doplnit={{ poi.id }}" title="Doplnit informace o místě, opravit chybu">doplň-oprav</a>
+    {% endcomment %}
+    <a href="{% url 'cyklomapa.views.mapa_view' poi.id %}" target="_top" title="Odkaz na místo">permalink</a>,
+    <a href="http://maps.google.com/?q={{ poi|urlencode }}@{{ poi.geom.y }},{{ poi.geom.x }}&amp;z=18&amp;t=h" target="pnk_gmap" title="Zobrazit v Google Maps"><img src="{{ MEDIA_URL }}google.ico" /></a>
+</p>
+</div>

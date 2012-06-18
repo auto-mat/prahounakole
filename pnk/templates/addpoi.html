@@ -1,0 +1,86 @@
+{% load url from future %}
+<html>
+  <head>
+   <link rel="stylesheet" href="{{ MEDIA_URL }}css/prahounakole.css" type="text/css" />
+   
+   <title>Doplneni</title>
+  </head>
+  <body class="static">
+  <div class="content_left">
+   {% if poi %}
+
+       <h2>Doplnění informací o místě:<br>{{ poi }}</h2>
+
+       <div class="vkladani_aktual" >
+       <h4>Aktuální stav:</h4>
+       
+       <p style="font-weight:bold;"><img src="{{ poi.znacka.default_icon.url }}" title="{{ poi.znacka }}" class="poi_znacka"> {{ poi.znacka }}</p>
+
+       <p class="titulek">Vlastnosti:</p>
+       <ul class="misto_vlastnosti">
+       {% for vl in poi.vlastnosti.all %}
+            <li><img src="{{ vl.default_icon.url }}" title="{{ vl.desc }}">{{  vl.nazev }}</li>
+       {% endfor %}
+       </ul>    
+  
+       {% if poi.address %}
+       <p class="titulek">Adresa:</p>
+       <p>{{ poi.address|safe }}</p>
+       {% endif %}
+   
+       {% if poi.url %}
+       <p class="titulek">Odkaz:</p>
+       <p><a href="{{ poi.url|safe }}" title="{{ poi.url|safe }}">{{ poi.url|safe }}</a></p>
+       {% endif %}
+   
+       {% if poi.desc %}
+       <p class="titulek">Popis:</p>
+       <p>{{ poi.desc|safe }}</p>
+       {% endif %}
+    
+       {% if poi.desc_extra %}
+       <p>{{ poi.desc_extra|safe }}</p>
+       {% endif %}
+
+       {% if poi.foto_thumb %}
+            <img src="{{ MEDIA_URL }}{{ poi.foto_thumb }}" title="{{ poi }}" class="foto_thumb_edit">
+       {% else %}	    
+            <div class="foto_thumb_edit" style="display:none;"></div>
+       {% endif %}
+       
+       </div>
+
+   
+   
+   {% else %}
+       <div class="left">
+       <h2>Navrhuji nové místo</h2>
+       <p>Rád bych do mapy doplnil(a) následující místo...</p>
+   {% endif %}
+
+
+  {% if poi %}
+  <div class="formt" style="width:250px; text-align:left;">
+<form action="{% url 'cyklomapa.views.addpoi_view' poi.id %}" method="post">
+   {% else %}
+<form action="{% url 'cyklomapa.views.addpoi_view' %}" method="post">
+   {% endif %}
+    {% for field in form %}
+        <div class="fieldWrapper">
+            {{ field.errors }}
+            {{ field.label_tag }}:<br/>
+            {{ field }}
+        </div>
+    {% endfor %}
+<input type="submit" value="Odeslat" />
+</form>
+</div>
+
+{{ static_vkladani.content|safe }}
+
+</div>
+</div>
+
+</body>
+</html>
+

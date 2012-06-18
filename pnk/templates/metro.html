@@ -1,0 +1,38 @@
+<html>
+<head>
+<link rel="stylesheet" href="http://www.prahounakole.cz/wp-content/themes/pnk1/style.css" type="text/css" media="screen" />
+</head>
+<body style="background-color:white;">
+<h2>Přístupnost stanic metra pro cyklisty.</h2>
+
+<p>Pro zobrazení stanice na mapě klikněte na logo metra.</p>
+<p>Přístupnost stanic metra pro cyklisty je hodnocena v šesti kategoriích:</p>
+
+<table style="align:center;">
+<tr><td><img src="5h.gif" border="0" alt="*****"></td><td>Plně bezbariérová stanice - přístup rampami</td></tr>
+<tr><td><img src="4h.gif" border="0" alt="****"></td><td>Pohodlně přístupná stanice (přístup eskalátory, bez pevných schodišť)</td></tr>
+
+<tr><td><img src="3h.gif" border="0" alt="***"></td><td>Přístupná stanice (prověřený výtah, více eskalátorů)</td></tr>
+
+<tr><td><img src="2h.gif" border="0" alt="**"></td><td>Obtížně přístupná stanice (nutné jedno kratší schodiště)</td></tr>
+<tr><td><img src="1h.gif" border="0" alt="*"></td><td>Takřka nepřístupná stanice (delší schodiště, několikeré schody, jiné problémy)</td></tr>
+<tr><td><img src="0h.gif" border="0" alt="0"></td><td>Pro cyklisty zcela nepřístupná stanice.</td></tr>
+</table>
+
+<p>Upozornění: Používání výtahů není cyklistům prozatím dovoleno, je proto třeba být ohleduplný.</p>    
+
+
+<h3>Seznam stanic:</h3>
+<table>
+{% for u in poi %}
+  <tr>
+    <td>
+      <a href="http://mapa.prahounakole.cz/misto/{{ u.id }}" target="_top" title="{{ u.desc|safe }}"><img src="{{ u.znacka.default_icon.url }}"></a>
+      <b>{{ u }}</b>
+    </td>
+    <td>{{ u.desc|safe }}</td>
+  </tr>
+{% endfor %}
+</table>
+</body>
+</html>

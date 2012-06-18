@@ -1,0 +1,104 @@
+{% load static %}
+{% load url from future %}
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <link rel="shortcut icon" type="image/x-icon" href="{% static "images/favicon.ico" %}" />
+  <link rel="stylesheet" href="{% static "css/openlayers.css" %}" type="text/css" /> 
+  <link rel="stylesheet" href="{% static "css/prahounakole.css" %}" type="text/css" />
+  <link rel="stylesheet" href="{% static "css/google.css" %}" type="text/css" />
+								    
+  <link rel="stylesheet" href="{% static "css/print.css" %}" type="text/css" media="print" />
+  {% if mobilni %}
+   <link rel="stylesheet" href="{% static "css/mobile.css" %}" type="text/css" />
+  {% endif %}
+   <script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.8&amp;sensor=false"></script>
+   <script type="text/javascript" src="{% static "js/OpenLayers213v.js" %}"></script>
+   <script type="text/javascript" src="{% static "js/OpenStreetMap.js" %}"></script>
+   <script type="text/javascript" src="{% static "js/cs-CZ.js" %}"></script>
+   <script type="text/javascript" src="http://cdn.jquerytools.org/1.2.5/full/jquery.tools.min.js"></script>
+   <script type="text/javascript" src="{% static "js/jquery.ba-hashchange.min.js" %}"></script>
+  {% if mobilni %}
+   <script type="text/javascript" src="{% static "js/mapa-mobilni.js" %}"></script>
+  {% else %}
+   <script type="text/javascript" src="{% static "js/mapa.js" %}"></script>
+  {% endif %}
+
+    <title>Prahou na kole - mapa</title>
+
+<script type="text/javascript">
+
+    var mapconfig = {};
+    mapconfig['root_url'] = "{{ root_url }}";
+    mapconfig['vrstvy'] = [];
+    {% for v in vrstvy %}
+        mapconfig['vrstvy'].push(["{{v.nazev}}", "{% url 'cyklomapa.views.kml_view' v.slug %}"]);
+    {% endfor %} 
+    {% if center_poi %}
+        mapconfig['zoom'] = 15;
+        mapconfig['lon'] = {{ center_poi.geom.x }};
+        mapconfig['lat'] = {{ center_poi.geom.y }};
+        mapconfig['center_feature'] = {{ center_poi.id }};
+    {% else %}
+        mapconfig['zoom'] = 13;
+        mapconfig['lon'] = 14.4211;
+        mapconfig['lat'] = 50.08741;
+    {% endif %}
+    
+    {% if minimize_layerswitcher %}
+        mapconfig['minimize_layerswitcher'] = true
+    {% endif %}
+    {% if mobilni %}
+        mapconfig['mobilni'] = true;
+    {% else %}
+        mapconfig['mobilni'] = false;
+    {% endif %}
+
+</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-22281359-2']);
+  _gaq.push(['_trackPageview']);
+      
+  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+  })();
+
+   
+</script>
+
+     </head>
+  <body onload="init(mapconfig)">
+     {% if not nomenu %}
+     <div id="head">
+           <div id="titulka">
+             <a href="http://prahounakole.cz" target="_self" title="Home / přehledka">Prahou na kole</a>
+           </div>
+           <div class="menu" id="menu">
+     <a target="_blank" href="http://www.prahounakole.cz/mapa/pouzivani/legenda/" title="Legenda online mapy">Legenda</a>
+     <a href="javascript:print()" title="Tisk mapy">Tisk</a>
+     <a target="_blank" href="http://prahounakole.cz/category/mapa/" title="Novinky v online mapě, cyklotrasách a cyklostezkách">Novinky</a> 
+     <a target="_blank" href="http://www.prahounakole.cz/mapa/pridavani-do-mapy/">Doplnění mapy</a>
+     <a target="_blank" href="http://www.prahounakole.cz/mapa/vystupy-z-mapy/greenway/" title="Greenway Praha - Wien">Greenway</a>
+	/
+           </div>
+
+           <div class="menu" id="menu2">
+     <a class="small" target="_blank" href="http://www.zelenamapa.cz/" title="Zelená  mapa Auto*Matu">Zelená mapa</a>
+     <a class="small" target="_blank"
+href="http://mtbmap.cz/?zoom=11&amp;lat=50.0864&amp;lon=14.40193&amp;layers=FBF00" title="MTB mapa Martina Tesaře">MTB mapa</a>
+           </div>
+      </div>    
+     {% endif %}
+
+      <div id="core">
+        <div id="map" {% if nomenu %}class="fullscreen"{% endif %}></div>
+      </div>
+  </body>
+</html>

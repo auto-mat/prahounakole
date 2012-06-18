@@ -1,0 +1,51 @@
+#left {
+  display: none;
+}
+
+#greeting {
+  display: none;
+}
+
+#tabnav {
+  display: none;
+}
+
+#sidebar {
+  display: none;
+}
+
+.olControlPermalink {
+  display: none;
+}
+
+.olControlPanZoom {
+  display: none;
+}
+
+#bottom {
+   display: none;
+}
+
+#head {
+   display: none;
+}
+
+.olControlPanZoomBar {
+  display: none;
+}
+
+.olControlLayerSwitcher {
+  display: none;
+}
+
+.olControlAttribution {
+  bottom: 0px;
+}
+
+#map {
+  border: 1px solid black;
+  bottom: 0px;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+}

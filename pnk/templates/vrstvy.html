@@ -1,0 +1,28 @@
+<html>
+  <head>
+   <link rel="stylesheet" href="{{ MEDIA_URL }}css/prahounakole.css" type="text/css" />
+   
+   <title>Vrstvy</title>
+  </head>
+  <body>
+  <div class="page" style="text-align:center;">
+       <div class="content_left" >
+
+       {{ static_vrstvy.content|safe }}
+
+       <dl class="desc_vlastnosti">
+       {% for v in vrstvy %}
+       
+       <dt><b>{{v.nazev}}</b></dt>
+       <dd>{{v.desc|safe}}<dd>
+       
+       {% endfor %}
+       </dl>
+       
+       
+
+       </div>
+</div>
+
+  </body>
+</html>

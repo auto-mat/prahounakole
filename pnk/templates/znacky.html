@@ -1,0 +1,30 @@
+<html>
+  <head>
+   <link rel="stylesheet" href="{{ MEDIA_URL }}css/prahounakole.css" type="text/css" />
+   
+   <title>Znacky</title>
+  </head>
+  <body>
+  <div class="page" style="text-align:center;">
+       <div class="content_left" >
+
+       {{ static_znacky.content|safe }}
+       
+       {% for v in vrstvy %}
+        <h4>&nbsp;<br>{{ v }}:</h4>
+	
+        <dl class="desc_vlastnosti">
+          {% for z in znacky %}
+	     {% if z.vrstva = v  %}
+	     <dt><img src="{{z.default_icon.url}}"></img> <b>{{z.nazev}}</b></dt>
+	     <dd>{{z.desc|safe}}<dd>
+	     {% endif %}
+	  {% endfor %}
+       
+       </dl>
+       {% endfor %}
+       </div>
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,56 @@
+{% load url from future %}
+<html>
+  <head>
+   <link rel="stylesheet" href="{{ STATIC_URL }}css/prahounakole.css" type="text/css" />
+   
+   <title>{{ poi }}</title>
+  </head>
+  <body>
+  <div class="page" style="text-align:center;">
+       <div class="content" style="max-width:500px; text-align:left;">
+
+       <h2>{{ poi }}</h2>
+       {% if poi.foto_thumb %}
+            <a href="{{ MEDIA_URL }}{{ poi.foto_thumb }}"><img src="{{ MEDIA_URL }}{{ poi.foto_thumb }}" title="{{ poi }}" class="foto_thumb_misto"/></a>
+       {% else %}	    
+            <div class="foto_thumb_misto"></div>
+       {% endif %}
+
+
+       <p class="poi_type"><img src="{{ poi.znacka.default_icon.url }}" title="{{ poi.znacka }}" class="poi_znacka"> {{ poi.znacka }}</p>
+
+       {% if poi.url %}
+       <p><span class="titulek">Webové stránky:</span><br><a href="{{ poi.url|safe }}" title="{{ poi.url|safe }}" target="_blank">{{ poi.url|safe }}</a></p>
+       {% endif %}
+   
+       {% if poi.desc %}
+       <p><span class="titulek">Popis:</span><br>{{ poi.desc|safe }}</p>
+       {% endif %}
+    
+       {% if poi.desc_extra %}
+       {{ poi.desc_extra|safe }}
+       {% endif %}
+
+       <!--<img style="float:none; width:640px; height:480px;" src="" alt="Sablona - picture 2 (muze a nemusi byt)">
+
+       <img style="float:none; width:640px; height:480px;" src="" alt="Sablona - picture 3 (muze a nemusi byt)">-->
+
+
+
+       <p><a href="{% url 'cyklomapa.views.addpoi_view' poi.id %}" title="Doplnit informace o objektu">upravit</a> |
+       <a href="{% url 'cyklomapa.views.mapa_view' poi.id %}" target="_top" title="Ukázat v mapě">zobrazit v mapě</a></p>
+
+       <hr>
+       
+       <!--
+       <h4>HTML pro zobrazení odkazu na mapu Prahou na kole</h4>
+       
+       <p>Permalink na místo: <a href="http://zelenamapa.cz{% url cyklomapa.views.mapa_view poi.id %}" target="_top">http://zelenamapa.cz{% url cyklomapa.views.mapa_view poi.id %}</a></p>
+       -->
+       
+
+     </div>
+</div>
+
+  </body>
+</html>
