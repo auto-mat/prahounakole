@@ -1,6 +1,6 @@
 Sorry, no english info at moment. Please contact redakce@prahounakole.cz with any questions.
 
-Map Prahou na kole
+Mapa Prahou na kole
 ============
 
 Django aplikace cyklistická mapa Prahou na kole http://mapa.prahounakole.cz
@@ -15,3 +15,5 @@ Ke zprovoznění je zapotřebí následující
 * Django 1.4
 * Postgres 8.4 + postgis 1.5
 * easy thubnails (http://pypi.python.org/pypi/easy-thumbnails/1.0.3)
+
+Vzorová konfigurace je v pnk/sample_settings.py, stačí přejmenovat na settings.py a doplnit přístup k DB a SECRET_KEY.
