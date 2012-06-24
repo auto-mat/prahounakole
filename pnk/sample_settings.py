@@ -100,3 +100,5 @@ INSTALLED_APPS = (
     'cyklomapa',
     'easy_thumbnails',
 )
+
+PROXY_DOMAIN = 'www.cyclestreets.net'
