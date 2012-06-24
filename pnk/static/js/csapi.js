@@ -47,7 +47,6 @@ var CSApi = {
       itinerarypoints = itinerarypoints.substring(0, itinerarypoints.length - 1);
       url =  this.baseUrl + '/api/journey.xml?key=' + this.apiKey + '&useDom=1&itinerarypoints=' + itinerarypoints + '&plan=' + plan;
     }
-    console.log(url);
     $.ajax({
       url: url,
       dataType: "text",

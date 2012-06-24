@@ -207,7 +207,6 @@
             CSApi.journey(null, waypoints, 'balanced', addPlannedJourney);
         }
         function addPlannedJourney(features) {
-            console.log(features);
             journeyLayer.addFeatures(features);
             map.zoomToExtent(journeyLayer.getDataExtent());
         }
