@@ -1,7 +1,12 @@
         var map, base_layer, kml, filter_rule, nofilter_rule, zoomFilter;
         var vectors = [];
-        var searchLayer
+        var searchLayer;
         var searchLayerIdx;
+        var journeyLayer, markerLayer, startMarker, endMarker;
+        var waypoints = [];
+        var startFeature = null;
+        var endFeature = null;
+        var draggedFeature = null;
         var lastSelectedFeature;
         var criteria = {};
         var criteriaCnt = 0;
@@ -134,8 +139,108 @@
 
             //$(window).hashchange(onHashChange);
             //$(window).hashchange();
+
+            // integrace CycleStreets
+            setupRouting();
         } // init
 
+        function setupRouting() {
+            CSApi.init(map, 'ad9beeeff0afb15e');
+
+            markerLayer = new OpenLayers.Layer.Vector("Start/cil", {
+                 styleMap: new OpenLayers.StyleMap({
+                     //externalGraphic: "/static/img/route-start.png",
+                     externalGraphic: "${icon}",
+                     pointRadius: 15
+                })
+            });
+            map.addLayer(markerLayer);
+            drag = new OpenLayers.Control.DragFeature(markerLayer, {
+                onComplete: onDragComplete
+            });
+            map.addControl(drag);
+            drag.activate();
+            startMarker = new OpenLayers.Feature.Vector(
+                    new OpenLayers.Geometry.Point(
+                          map.getCenter().lon,
+                          map.getCenter().lat
+                    ),
+                    { icon: "/static/img/route-start.png" }
+            );
+
+            //var lonlat = startMarker.geometry.clone();
+            //waypoints[0] = lonlat.transform(map.getProjectionObject(), EPSG4326);
+            endMarker = new OpenLayers.Feature.Vector(
+                    new OpenLayers.Geometry.Point(
+                        1608999.3765555094,
+                        6460357.3778253645
+                    ),
+                    { icon: "/static/img/route-stop.png" }
+            );
+            //lonlat = endMarker.geometry.clone();
+            //waypoints[1] = lonlat.transform(map.getProjectionObject(), EPSG4326);
+            markerLayer.addFeatures([startMarker, endMarker]);
+            $('#jpStartStreetSearch').autocomplete(search_options);
+            $('#jpFinishStreetSearch').autocomplete(search_options);
+            addRouteLayer();
+            toggleGoButton();
+            $('#jpPlanButton').click(planJourney);
+        }
+        function onDragComplete(feature, pixel) {
+            if (feature == startMarker) {
+                var lonlat = startMarker.geometry.clone();
+                waypoints[0] = lonlat.transform(map.getProjectionObject(), EPSG4326);
+            }
+            if (feature == endMarker) {
+                lonlat = endMarker.geometry.clone();
+                waypoints[1] = lonlat.transform(map.getProjectionObject(), EPSG4326);
+            }
+            toggleGoButton();
+        };
+        function toggleGoButton() {
+            if (waypoints.length > 1) {
+                $('#jpPlans').show();
+            }
+        }
+        function planJourney() {
+            //CSApi.journey(2473403, waypoints, 'balanced', addPlannedJourney);
+            CSApi.journey(null, waypoints, 'balanced', addPlannedJourney);
+        }
+        function addPlannedJourney(features) {
+            console.log(features);
+            journeyLayer.addFeatures(features);
+        }
+        function addRouteLayer() {
+                   // create a styleMap with a custom default symbolizer
+                   var styleMap = new OpenLayers.StyleMap({
+                                
+                                "default": new OpenLayers.Style({
+                                      strokeOpacity: 0.42,
+                                      // strokeDashstyle: "dashdot",
+                                      strokeWidth: 9,
+                                      strokeColor: "yellow"
+                                }),
+                                "select": new OpenLayers.Style({
+                                      strokeOpacity: 0.42,
+                                      strokeWidth: 16
+                                })
+                         });
+                   
+                   // create a lookup table with different symbolizers
+                   var lookup = {
+                   route: {
+                     strokeColor: "\$\{routeColor\}"
+                   }
+                   };
+                   
+                   // Add a rule from the above lookup table, with the keys mapped to the "type" property of the features, for the "default" intent.
+                   //  styleMap.addUniqueValueRules("default", "type", lookup);
+
+                journeyLayer = new OpenLayers.Layer.Vector("Trasa", {
+                        styleMap: styleMap,
+                });
+                map.addLayer(journeyLayer);
+        }
         function onHashChange() {
             // zatim se nepouziva
         };

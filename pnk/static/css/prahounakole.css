@@ -138,7 +138,6 @@ dt{font-weight:bold;}
 .foto_segment { border:none; width:100%; margin-bottom: 14px }
 		 
 /* END Popup */
-        
 
 div.olControlZoom a {
     display: block;
@@ -167,4 +166,20 @@ a.olControlZoomIn {
 }
 a.olControlZoomOut {
     border-radius: 0 0 4px 4px;
+}
+
+#panel {
+  float: left;
+  width: 250px;
+  padding: 10px;
+}
+div .jpSearch {
+  width: 100%;
+  margin-bottom: 5px;
+}
+.jpSearch img {
+  float: left;
+}
+#map {
+  left: 250px;
 }

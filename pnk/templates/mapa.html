@@ -20,6 +20,10 @@
    <script type="text/javascript" src="{% static "js/cs-CZ.js" %}"></script>
    <script type="text/javascript" src="http://cdn.jquerytools.org/1.2.5/full/jquery.tools.min.js"></script>
    <script type="text/javascript" src="{% static "js/jquery.ba-hashchange.min.js" %}"></script>
+   <script src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js" type="text/javascript"></script>
+   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/themes/base/jquery-ui.css" type="text/css" />
+   <script type="text/javascript" src="{% static "js/search.js" %}"></script>
+   <script type="text/javascript" src="{% static "js/csapi.js" %}"></script>
   {% if mobilni %}
    <script type="text/javascript" src="{% static "js/mapa-mobilni.js" %}"></script>
   {% else %}
@@ -33,7 +37,7 @@
     var mapconfig = {};
     mapconfig['root_url'] = "{{ root_url }}";
     mapconfig['vrstvy'] = [];
-    {% for v in vrstvy %}
+    {% for v in vrstvyX %}
         mapconfig['vrstvy'].push(["{{v.nazev}}", "{% url 'cyklomapa.views.kml_view' v.slug %}"]);
     {% endfor %} 
     {% if center_poi %}
@@ -98,6 +102,23 @@ href="http://mtbmap.cz/?zoom=11&amp;lat=50.0864&amp;lon=14.40193&amp;layers=FBF0
      {% endif %}
 
       <div id="core">
+        <div id="panel">
+           <div id="jpStart" class="jpSearch">
+             <img src="{% static "img/route-start.png" %}">
+             <form id="streetSearchStart" action="#">
+               <input id="jpStartStreetSearch" type="text" name="street_search_address" value="" />
+             </form>
+           </div>
+           <div id="jpFinish" class="jpSearch">
+             <img src="{% static "img/route-stop.png" %}">
+             <form id="streetSearchFinish" action="#">
+               <input id="jpFinishStreetSearch" type="text" name="street_search_address" value="" />
+             </form>
+           </div>
+           <div id="jpPlans" class="" style="display:none">
+              <p class="routedetail"><a id="jpPlanButton" rel="nofollow" href="#">Hledat</a></p>
+           </div>
+        </div>
         <div id="map" {% if nomenu %}class="fullscreen"{% endif %}></div>
       </div>
   </body>
