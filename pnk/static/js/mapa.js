@@ -209,6 +209,7 @@
         function addPlannedJourney(features) {
             console.log(features);
             journeyLayer.addFeatures(features);
+            map.zoomToExtent(journeyLayer.getDataExtent());
         }
         function addRouteLayer() {
                    // create a styleMap with a custom default symbolizer
