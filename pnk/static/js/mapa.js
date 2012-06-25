@@ -201,7 +201,7 @@
         };
         function toggleGoButton() {
             if (waypoints.length > 1) {
-                $('#jpPlans').show();
+                $('#jpPlanButtonDiv').show();
             }
         };
         function updateStartLabel(features) {
@@ -215,12 +215,21 @@
             } 
         };
         function planJourney() {
-            //CSApi.journey(2473403, waypoints, 'balanced', addPlannedJourney);
-            CSApi.journey(null, waypoints, 'balanced', addPlannedJourney);
+            //CSApi.journey(2473403, waypoints, 'balanced', addPlannedJourney, { select: true });
+            //CSApi.journey(2473403, waypoints, 'fastest', addPlannedJourney,  { select: false });
+            //CSApi.journey(2473403, waypoints, 'quietest', addPlannedJourney, { select: false });
+            CSApi.journey(null, waypoints, 'balanced', addPlannedJourney, { select: true });
+            CSApi.journey(null, waypoints, 'fastest', addPlannedJourney,  { select: false });
+            CSApi.journey(null, waypoints, 'quietest', addPlannedJourney, { select: false });
         }
-        function addPlannedJourney(features) {
-            journeyLayer.addFeatures(features);
-            map.zoomToExtent(journeyLayer.getDataExtent());
+        function addPlannedJourney(features, options) {
+            CSApi.routeInfo(features);
+            if (options.select) {
+                $('#balanced').addClass('selected');
+                journeyLayer.addFeatures(features);
+                map.zoomToExtent(journeyLayer.getDataExtent());
+            }
+            $('#jpPlanTypeSelector').show();
         }
         function addRouteLayer() {
                    // create a styleMap with a custom default symbolizer

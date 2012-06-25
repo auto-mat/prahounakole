@@ -4,9 +4,17 @@ var CSApi = {
   //baseUrl: 'http://praha.cyclestreets.net',
   baseUrl: '',
 
+  routeFeatures: {},
+
   // Rounds numbers to 6 figures to make them more readable
   r6: function (x) {
     return Math.round(1000000 * x) / 1000000;
+  },
+  
+  planNames: {
+    'balanced': 'Optimální',
+    'fastest' : 'Rychlá',
+    'quietest': 'Klidná'
   },
 
   init: function (map, apiKey) {
@@ -34,7 +42,7 @@ var CSApi = {
     });
   },
 
-  journey: function (itinerary, waypoints, plan, callback) {
+  journey: function (itinerary, waypoints, plan, callback, options) {
     var url;
     if (itinerary) {
       url =  this.baseUrl + '/api/journey.xml?key=' + this.apiKey + '&useDom=1&itinerary=' + itinerary + '&plan=' + plan;
@@ -52,8 +60,69 @@ var CSApi = {
       dataType: "text",
       success: function (data) {
         var features = CSApi.formatGML.read(data);
-        callback(features);
+        var route = CSApi.getFeature(features, 'route');
+        CSApi.routeFeatures[route.attributes.plan] = features;
+        if (route.attributes.plan == 'balanced') {
+            CSApi.journey(route.attributes.itinerary, null, 'fastest', callback);
+            CSApi.journey(route.attributes.itinerary, null, 'quietest', callback);
+        }
+        callback(features, options);
       }
     });
-  }
+  },
+
+  routeInfo: function (features) {
+    var route = this.getFeature(features, 'route');
+    var km = Math.round(route.attributes.length / 100) / 10.0;
+    var timeStr = CSApi.secondsToTime(route.attributes.time);
+    map.zoomToExtent(journeyLayer.getDataExtent());
+    var html = this.planNames[route.attributes.plan] + '<br>' + km + ' km<br>' + timeStr + '<br>';
+    switch (route.attributes.plan) {
+      case 'balanced':
+        $('#balanced').html(html);
+        break;
+      case 'fastest':
+        $('#fastest').html(html);
+        break;
+      case 'quietest':
+        $('#quietest').html(html);
+        break;
+    }
+  },
+
+ // Seeks the first feature with the requested featureType.
+ getFeature: function (features, featureType) {
+    var feature = false;
+    for (var i=0; i < features.length; i++) {
+      feature = features[i];
+      if (feature.attributes.type == featureType) {break;}
+      feature = false;
+    }
+    return feature;
+  },
+
+  secondsToTime: function (secs) {
+    var hours = Math.floor(secs / (60 * 60));
+    
+    var divisor_for_minutes = secs % (60 * 60);
+    var minutes = Math.floor(divisor_for_minutes / 60);
+    
+    var divisor_for_seconds = divisor_for_minutes % 60;
+    var seconds = Math.ceil(divisor_for_seconds);
+    
+    var obj = {
+        "h": hours,
+        "m": minutes,
+        "s": seconds
+    };
+    
+    var timeStr;
+    if (obj.h > 0) {
+        timeStr = obj.h + ':' + obj.m + ' hod.';
+    } else {
+        timeStr = obj.m + ' minut';
+    }
+    return timeStr;
+}
+
 };

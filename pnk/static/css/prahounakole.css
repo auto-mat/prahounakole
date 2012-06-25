@@ -192,6 +192,45 @@ div .jpSearch {
 .jpSearch input {
   width: 215px;
 }
+#jpPlans {
+  clear: both;
+  width: 100%;
+  height: 20px;
+  margin-top: -10px;
+}
+#jpPlanButtonDiv {
+  display: none;
+  float: right;
+  font-size: 18px;
+}
+div .jpPlanType {
+  float: left;
+  width: 70px;
+  height: 50px;
+  margin: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 3px;
+}
+#jpPlanTypeSelector {
+  clear: both;
+  display: none;
+}
+#jpPlanTypeSelector .selected {
+  font-weight: bold;
+}
+#jpPlanTypeSelector div:hover {
+  /*background-color: #EBF2FC;*/
+  background-color: #f0f0f0;
+}
+#balanced {
+  border-bottom-color: yellow;
+}
+#quietest {
+  border-bottom-color: green;
+}
+#fastest {
+  border-bottom-color: red;
+}
 #map {
   left: 270px;
 }

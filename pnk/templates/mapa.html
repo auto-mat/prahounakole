@@ -104,11 +104,11 @@ href="http://mtbmap.cz/?zoom=11&amp;lat=50.0864&amp;lon=14.40193&amp;layers=FBF0
       <div id="core">
         <div id="panel">
            <div id="panel-header">
-             <img src="{% static "img/cs_logo.png" %}" />
+             <img src="{% static "img/cs_logo.png" %}" width="40" height="40" />
              Vyhledávání tras Vám poskytujeme ve spolupráci se <a href="http://www.cyclestreets.net">CycleStreets.net</a>
            </div>
            <div id="jpStart" class="jpSearch">
-             <img src="{% static "img/route-start.png" %}">
+             <img src="{% static "img/route-start.png" %}" />
              <form id="streetSearchStart" action="#">
                <input id="jpStartStreetSearch" type="text" name="street_search_address" value="" />
              </form>
@@ -119,8 +119,16 @@ href="http://mtbmap.cz/?zoom=11&amp;lat=50.0864&amp;lon=14.40193&amp;layers=FBF0
                <input id="jpFinishStreetSearch" type="text" name="street_search_address" value="" />
              </form>
            </div>
-           <div id="jpPlans" class="" style="display:none">
-              <p class="routedetail"><a id="jpPlanButton" rel="nofollow" href="#">Hledat</a></p>
+           <div id="jpPlans">
+              <div id="jpPlanButtonDiv"><a id="jpPlanButton" rel="nofollow" href="#">Hledat</a></div>
+           </div>
+           <div id="jpPlanTypeSelector">
+             <div id="balanced" class="jpPlanType">
+             </div>
+             <div id="fastest" class="jpPlanType">
+             </div>
+             <div id="quietest" class="jpPlanType">
+             </div>
            </div>
         </div>
         <div id="map" {% if nomenu %}class="fullscreen"{% endif %}></div>
