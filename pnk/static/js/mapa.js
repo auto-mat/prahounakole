@@ -190,10 +190,12 @@
             if (feature == startMarker) {
                 var lonlat = startMarker.geometry.clone();
                 waypoints[0] = lonlat.transform(map.getProjectionObject(), EPSG4326);
+                CSApi.nearestPoint(startMarker, updateStartLabel);
             }
             if (feature == endMarker) {
                 lonlat = endMarker.geometry.clone();
                 waypoints[1] = lonlat.transform(map.getProjectionObject(), EPSG4326);
+                CSApi.nearestPoint(endMarker, updateEndLabel);
             }
             toggleGoButton();
         };
@@ -201,7 +203,17 @@
             if (waypoints.length > 1) {
                 $('#jpPlans').show();
             }
-        }
+        };
+        function updateStartLabel(features) {
+            if (features && features.length > 0) {
+                $('#jpStartStreetSearch').val(features[0].attributes.name);
+            } 
+        };
+        function updateEndLabel(features) {
+            if (features && features.length > 0) {
+                $('#jpFinishStreetSearch').val(features[0].attributes.name);
+            } 
+        };
         function planJourney() {
             //CSApi.journey(2473403, waypoints, 'balanced', addPlannedJourney);
             CSApi.journey(null, waypoints, 'balanced', addPlannedJourney);
