@@ -224,7 +224,7 @@
         }
         function addPlannedJourney(features, options) {
             CSApi.routeInfo(features);
-            if (options.select) {
+            if (options && options.select) {
                 $('#balanced').addClass('selected');
                 journeyLayer.addFeatures(features);
                 map.zoomToExtent(journeyLayer.getDataExtent());
