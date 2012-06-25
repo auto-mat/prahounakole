@@ -173,13 +173,25 @@ a.olControlZoomOut {
   width: 250px;
   padding: 10px;
 }
+#panel-header {
+  height: 48px;
+  margin-bottom: 20px;
+}
+#panel-header img {
+  float: left;
+  margin-right: 5px;
+}
 div .jpSearch {
   width: 100%;
   margin-bottom: 5px;
 }
 .jpSearch img {
   float: left;
+  margin-right: 5px;
+}
+.jpSearch input {
+  width: 215px;
 }
 #map {
-  left: 250px;
+  left: 270px;
 }
