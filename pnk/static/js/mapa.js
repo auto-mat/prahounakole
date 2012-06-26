@@ -229,35 +229,40 @@
             $('#jpPlanTypeSelector').show();
         }
         function addRouteLayer() {
-                   // create a styleMap with a custom default symbolizer
-                   var styleMap = new OpenLayers.StyleMap({
-                                
-                                "default": new OpenLayers.Style({
-                                      strokeOpacity: 0.42,
-                                      // strokeDashstyle: "dashdot",
-                                      strokeWidth: 9,
-                                      strokeColor: "yellow"
-                                }),
-                                "select": new OpenLayers.Style({
-                                      strokeOpacity: 0.42,
-                                      strokeWidth: 16
-                                })
-                         });
+            // create a styleMap with a custom default symbolizer
+            var styleMap = new OpenLayers.StyleMap({
+                "default": new OpenLayers.Style({
+                    strokeOpacity: 0.42,
+                    // strokeDashstyle: "dashdot",
+                    strokeWidth: 9,
+                    strokeColor: "yellow"
+                }),
+                "select": new OpenLayers.Style({
+                    strokeOpacity: 0.42,
+                    strokeWidth: 16
+                })
+            });
                    
-                   // create a lookup table with different symbolizers
-                   var lookup = {
-                   route: {
-                     strokeColor: "\$\{routeColor\}"
-                   }
-                   };
+            // create a lookup table with different symbolizers
+            var lookup = {
+                'balanced': {
+                     strokeColor: "yellow",
+                },
+                'fastest': {
+                     strokeColor: "red",
+                },
+                'quietest': {
+                     strokeColor: "green",
+                }
+            };
                    
-                   // Add a rule from the above lookup table, with the keys mapped to the "type" property of the features, for the "default" intent.
-                   //  styleMap.addUniqueValueRules("default", "type", lookup);
+            // Add a rule from the above lookup table, with the keys mapped to the "type" property of the features, for the "default" intent.
+            styleMap.addUniqueValueRules("default", "plan", lookup);
 
-                journeyLayer = new OpenLayers.Layer.Vector("Trasa", {
-                        styleMap: styleMap,
-                });
-                map.addLayer(journeyLayer);
+            journeyLayer = new OpenLayers.Layer.Vector("Trasa", {
+                styleMap: styleMap,
+            });
+            map.addLayer(journeyLayer);
         }
         function selectPlan() {
             var plan = this.id;
