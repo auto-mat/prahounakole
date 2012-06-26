@@ -224,9 +224,7 @@
         function addPlannedJourney(features, options) {
             CSApi.routeInfo(features);
             if (options && options.select) {
-                $('#balanced').addClass('selected');
-                journeyLayer.addFeatures(features);
-                map.zoomToExtent(journeyLayer.getDataExtent());
+                $('#balanced').click();
             }
             $('#jpPlanTypeSelector').show();
         }
@@ -268,8 +266,10 @@
             }
             journeyLayer.removeAllFeatures();
             journeyLayer.addFeatures(CSApi.routeFeatures[plan]);
+            map.zoomToExtent(journeyLayer.getDataExtent());
             $('.selected').removeClass('selected');
             $('#' + plan).addClass('selected');
+            $('#jpInstructions').html(CSApi.getRouteInstructions(plan));
         }
         function previewPlanIn() {
             var plan = this.id;

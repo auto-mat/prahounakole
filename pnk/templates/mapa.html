@@ -107,28 +107,30 @@ href="http://mtbmap.cz/?zoom=11&amp;lat=50.0864&amp;lon=14.40193&amp;layers=FBF0
              <img src="{% static "img/cs_logo.png" %}" width="40" height="40" />
              Vyhledávání tras Vám poskytujeme ve spolupráci se <a href="http://www.cyclestreets.net">CycleStreets.net</a>
            </div>
-           <div id="jpStart" class="jpSearch">
+           <div id="jpStart" class="jpSearch cleaner">
              <img src="{% static "img/route-start.png" %}" />
              <form id="streetSearchStart" action="#">
                <input id="jpStartStreetSearch" type="text" name="street_search_address" value="" />
              </form>
            </div>
-           <div id="jpFinish" class="jpSearch">
+           <div id="jpFinish" class="jpSearch cleaner">
              <img src="{% static "img/route-stop.png" %}">
              <form id="streetSearchFinish" action="#">
                <input id="jpFinishStreetSearch" type="text" name="street_search_address" value="" />
              </form>
            </div>
-           <div id="jpPlans">
+           <div id="jpPlans" class="cleaner">
               <div id="jpPlanButtonDiv"><a id="jpPlanButton" rel="nofollow" href="#">Hledat</a></div>
            </div>
-           <div id="jpPlanTypeSelector">
+           <div id="jpPlanTypeSelector" class="cleaner">
              <div id="balanced" class="jpPlanType">
              </div>
              <div id="fastest" class="jpPlanType">
              </div>
              <div id="quietest" class="jpPlanType">
              </div>
+           </div>
+           <div id="jpInstructions" class="cleaner">
            </div>
         </div>
         <div id="map" {% if nomenu %}class="fullscreen"{% endif %}></div>

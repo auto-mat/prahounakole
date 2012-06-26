@@ -101,6 +101,25 @@ var CSApi = {
     return feature;
   },
 
+  getRouteInstructions: function (plan) {
+    var output = $('<table></table>');
+    var features = this.routeFeatures[plan];
+    for (var i=0; i < features.length; i++) {
+      feature = features[i];
+      var tr = $('<tr></tr>')
+      if (feature.attributes.type == 'segment') {
+        if (feature.attributes.turn) {
+          tr.append('<td>' + feature.attributes.turn + '</td>');
+        } else {
+          tr.append('<td></td>');
+        }
+        tr.append('<td>'+ feature.attributes.name + '</td>');
+        output.append(tr);
+      }
+    }
+    return output;
+  },
+
   secondsToTime: function (secs) {
     var hours = Math.floor(secs / (60 * 60));
     

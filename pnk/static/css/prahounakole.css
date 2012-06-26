@@ -55,17 +55,6 @@ body {
 .menu a { color: #000000; padding: 5px 10px; text-decoration: none; }
 .menu a:hover { text-decoration: underline; }
 
-/* CycleStreets JourneyPlanner */
-#jpStart,
-#jpFinish,
-#jpPlans {
-        float: left;
-}
-#jpStart.inactive,
-#jpFinish.inactive {
-        display: none;
-}
-
 #bottom { height:50px; left:2px; right:2px; bottom:0px; border: 0px; padding: 0px; position: absolute; }
 #bottom a img { max-height:50px; }
 
@@ -168,10 +157,14 @@ a.olControlZoomOut {
     border-radius: 0 0 4px 4px;
 }
 
+.cleaner {
+  clear: both
+}
 #panel {
   float: left;
-  width: 250px;
-  padding: 10px;
+  width: 260px;
+  padding-left: 10px;
+  overflow: auto;
 }
 #panel-header {
   height: 48px;
@@ -212,8 +205,8 @@ div .jpPlanType {
   border-bottom-width: 3px;
 }
 #jpPlanTypeSelector {
-  clear: both;
   display: none;
+  height: 60px;
 }
 #jpPlanTypeSelector .selected {
   font-weight: bold;
