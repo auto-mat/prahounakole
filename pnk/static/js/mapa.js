@@ -3,6 +3,7 @@
         var searchLayer;
         var searchLayerIdx;
         var journeyLayer, markerLayer, startMarker, endMarker;
+        var previewedRoute;
         var waypoints = [];
         var startFeature = null;
         var endFeature = null;
@@ -185,6 +186,8 @@
             addRouteLayer();
             toggleGoButton();
             $('#jpPlanButton').click(planJourney);
+            $('.jpPlanType').click(selectPlan);
+            $('.jpPlanType').hover(previewPlanIn, previewPlanOut);
         }
         function onDragComplete(feature, pixel) {
             if (feature == startMarker) {
@@ -216,11 +219,7 @@
         };
         function planJourney() {
             //CSApi.journey(2473403, waypoints, 'balanced', addPlannedJourney, { select: true });
-            //CSApi.journey(2473403, waypoints, 'fastest', addPlannedJourney,  { select: false });
-            //CSApi.journey(2473403, waypoints, 'quietest', addPlannedJourney, { select: false });
             CSApi.journey(null, waypoints, 'balanced', addPlannedJourney, { select: true });
-            CSApi.journey(null, waypoints, 'fastest', addPlannedJourney,  { select: false });
-            CSApi.journey(null, waypoints, 'quietest', addPlannedJourney, { select: false });
         }
         function addPlannedJourney(features, options) {
             CSApi.routeInfo(features);
@@ -261,6 +260,37 @@
                         styleMap: styleMap,
                 });
                 map.addLayer(journeyLayer);
+        }
+        function selectPlan() {
+            var plan = this.id;
+            if (! CSApi.routeFeatures || ! CSApi.routeFeatures[plan]) {
+                return false;
+            }
+            journeyLayer.removeAllFeatures();
+            journeyLayer.addFeatures(CSApi.routeFeatures[plan]);
+            $('.selected').removeClass('selected');
+            $('#' + plan).addClass('selected');
+        }
+        function previewPlanIn() {
+            var plan = this.id;
+            if (! CSApi.routeFeatures || ! CSApi.routeFeatures[plan]) {
+                return false;
+            }
+            if ($(this).hasClass('selected')) {
+                return false;
+            }
+            previewedRoute = CSApi.routeFeatures[plan];
+            journeyLayer.addFeatures(previewedRoute);
+        }
+        function previewPlanOut() {
+            if (!previewedRoute) {
+                return false 
+            };
+            if ($(this).hasClass('selected')) {
+                return false;
+            }
+            journeyLayer.removeFeatures(previewedRoute);
+            previewedRoute = null;
         }
         function onHashChange() {
             // zatim se nepouziva

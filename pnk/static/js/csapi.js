@@ -123,6 +123,5 @@ var CSApi = {
         timeStr = obj.m + ' minut';
     }
     return timeStr;
-}
-
+  }
 };
