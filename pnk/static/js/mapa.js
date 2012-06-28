@@ -55,13 +55,10 @@
                     new OpenLayers.Control.ArgParser(),
                     new OpenLayers.Control.Attribution(),
                     new OpenLayers.Control.LayerSwitcher({roundedCornerColor:'#cb541c', ascending:0}),
-                    //new OpenLayers.Control.LayerSwitcher(),
                     new OpenLayers.Control.Navigation(),
                     new OpenLayers.Control.Permalink(),
                     new OpenLayers.Control.ScaleLine({maxWidth: 300}),
-                    new OpenLayers.Control.PanZoom()
-                    //  new OpenLayers.Control.PanZoomBar(),
-                    //  new OpenLayers.Control.MousePosition() 
+                    new OpenLayers.Control.Zoom()
                 ],
                 maxExtent: bounds.clone(),
                 restrictedExtent: bounds.clone(),
