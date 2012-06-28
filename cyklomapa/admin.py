@@ -89,13 +89,8 @@ class UpresneniAdmin(admin.ModelAdmin):
     list_filter = ('status',)
     list_display = ('misto', 'email', 'status', 'desc',)
 
-class StaticAdmin(admin.ModelAdmin):
-    model = Staticpage
-    
-    
 admin.site.register(Poi   , PoiAdmin   )
 admin.site.register(Vrstva, VrstvaAdmin)
 admin.site.register(Znacka, ZnackaAdmin)
 admin.site.register(Status, admin.ModelAdmin)
 admin.site.register(Upresneni, UpresneniAdmin)
-admin.site.register(Staticpage, StaticAdmin)

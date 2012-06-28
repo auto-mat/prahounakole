@@ -138,19 +138,3 @@ class Upresneni(models.Model):
         verbose_name_plural = u"upřesnění"
     def __unicode__(self):
         return u"%s - %s" % (self.misto, self.email)
-    
-class Staticpage(models.Model):
-    """
-    Tabulka statickeho obsahu webu, jednoduchy CMS
-
-    Pouziva se pouze v Zelene mape, v PNK zatim neaktivni
-    """
-
-    slug    = models.SlugField(unique=True, verbose_name="Slug")  # extenze v URL
-    head    = models.TextField(verbose_name=u"Header section (additional css, js, etc.)",null=True, blank=True)
-    title   = models.CharField(verbose_name=u"Titulek straky",max_length=255, null=True, blank=True)
-    short   = models.TextField(verbose_name=u"Zkraceny html obsah (nahled)",null=True)
-    content = models.TextField(verbose_name=u"Html obsah",null=True)
-    
-    def __unicode__(self):
-        return self.title
