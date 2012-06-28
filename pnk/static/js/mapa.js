@@ -23,7 +23,7 @@
        }
 
         function init(mapconfig) {
-            //OpenLayers.ImgPath = "/media/js/img/";
+            OpenLayers.ImgPath = "/static/css/img/";
             OpenLayers.Lang.setCode("cs-CZ");
             mainFilter = new OpenLayers.Filter.Logical({
                 //type: OpenLayers.Filter.Logical.OR // not good
