@@ -132,75 +132,13 @@
             // pokud byl zoomlevel nastaven z url, musime aktualizovat filter
             zoomFilter.value = map.getZoom();
 
-            $.tools.overlay.addEffect('namiste',
-                // vlastni overlay efekt, ktery narozdil od 'default'
-                // nepridava k pozici scrollTop, cili neni zarovnany vuci oknu, ale cele strance
-                function(pos, onLoad) {
-                    var conf = this.getConf();
-                    pos.position = 'absolute';
-                    this.getOverlay().css(pos).fadeIn(conf.speed, onLoad); 
-                    }, function(onClose) {
-                        this.getOverlay().fadeOut(this.getConf().closeSpeed, onClose);                  
-                    }
-            );
-
-	    var offset = $('#core').offset();
-            // XXX V PNK se nepouziva, pozustatek Zelene mapy
-            $('#overlay_left').overlay({
-                effect: 'namiste',
-	        top: 0,
-	        left: offset.left,
-	        fixed: false,
- 	        oneInstance: false, 
-	        closeOnClick: false,
-                onClose: onLeftOverlayClosed
-	    });
-            $(window).hashchange(onHashChange);
-            $(window).hashchange();
+            //$(window).hashchange(onHashChange);
+            //$(window).hashchange();
         } // init
 
         function onHashChange() {
-                var hash = location.hash;
-                hash = hash.replace(/^#/, '');
-                if (hash == '') {
-                        //$('#overlay_left').overlay().close();
-                        return;
-                }
-                if (hash == 'doplnit') {
-                        OverlayLeft(this, mapconfig.root_url + '/doplnit/');
-                        return;
-                }
-                if (hash == 'vlastnosti') {
-                        OverlayLeft(this, mapconfig.root_url + '/vlastnosti/');
-                        return;
-                }
-                var parts = hash.split('@');
-                var args = {};
-                for (var i=0; i < parts.length; i++) {
-                        var a = parts[i].split('=');
-                        args[a[0]] = a[1];
-                }
-                /*
-                // toto jeste nefunguje
-                if (args['misto']) {
-                    var poi = getPoi(args['misto']);
-                };
-                */
-                
-                if (args['detail']) {
-                        OverlayLeft(this, mapconfig.root_url + '/detail/' + args['detail']);
-                };
-                if (args['clanek']) {
-                        OverlayLeft(this, mapconfig.root_url + '/clanky/' + args['clanek']);
-                };
-                if (args['doplnit']) {
-                        OverlayLeft(this, mapconfig.root_url + '/doplnit/' + args['doplnit']);
-                };
+            // zatim se nepouziva
         };
-
-        function onLeftOverlayClosed() {
-               location.hash = ''; 
-        }
 
         function getPoi(id) {
             var feat;
@@ -298,165 +236,11 @@
                 removePopup(feature.popup)
         };
 
-        function toggleFilter(obj) {
-            str = obj.getAttribute('id');
-            if (criteria[str]) {
-                unsetFilter(str);
-                obj.className='inactive';
-            } else {
-                setFilter(str);
-                obj.className='active';
-            }
-            // Filtr podle zoom levelu plati jen kdyz neni aktivni
-            // zadny filtr dle vlastnosti.
-            if (criteriaCnt == 0) {
-                zoomFilter.value = map.getZoom();
-            } else {
-                zoomFilter.value = 999;
-            };
-            for (var i in vectors)
-                vectors[i].redraw();
-        };
-
-        function setFilter(str) {
-            var filter = new OpenLayers.Filter.Comparison({
-                type: OpenLayers.Filter.Comparison.LIKE,
-                property: "tag",
-                value: str
-            });
-            criteria[str] = filter;
-            mainFilter.filters.push(filter);
-            criteriaCnt += 1;
-            _gaq.push(['_trackEvent', 'Filtry', str, '', criteriaCnt]);
-        };
-
-        function unsetFilter(str) {
-            var filter = criteria[str];
-            filter.destroy();
-            delete criteria[str];
-            criteriaCnt -= 1;
-            mainFilter.filters.splice(1, mainFilter.filters.length);
-            for (var i in criteria)
-                mainFilter.filters.push(criteria[i])
-        };
-
-        function toggleFiltry_add(obj) 
-        {
-           var e = document.getElementById('filtry_add');
-	          if(e.style.display == 'block') {
-		     e.style.display = 'none';
-		     obj.innerHTML = 'Další filtry...'; 
-		  }
-	          else {
-	               e.style.display = 'block';
-	               obj.innerHTML = 'Méně filtrů...';
-		  }
-	}
-
-   
-        function doSearch(obj) {
-                /* tady bychom meli vypnout submit, aby neslo pustit hledani znova */
-                var searchField = document.getElementById('search_input');
-                if (! searchField.value || (searchField.value.length < 3)) {
-                    alert("Zadejte prosím alespoň 3 znaky");
-                    return false;
-                }
-                if (searchLayer) {
-                    destroySearchLayer();
-                } 
-                searchLayerIdx = addMapLayer("Hledání", mapconfig.root_url + '/search/' + encodeURIComponent(searchField.value) + '/', vectors);
-                searchLayer = vectors[searchLayerIdx];
-                searchLayer.styleMap.styles["default"].addRules([nofilter_rule]);;
-                for (var i in vectors) {
-                        if (i != searchLayerIdx)
-                                vectors[i].setVisibility(false);
-                }
-                selectControl.setLayer(vectors);
-                searchLayer.redraw();
-                searchLayer.events.on({
-                    "loadend": function() {
-                        var features = searchLayer.features;
-                        var sr_div = $('#sr_inner');
-                        sr_div.html('');
-                        for (var i in features) {
-                            var content = $('<a class="result_item" onmouseover="hoverResult(' 
-					    + features[i].fid + ')" href="#detail=' + features[i].fid + '"></a>');
-                            content.html('<img class="sr_img" src="' 
-					  + features[i].attributes.ikona + '" />' + features[i].attributes.name);
-			    content.appendTo(sr_div);
-                            sr_div.append('<br />');
-                        }
-		        var sr_height = $('.filtry').height() - 25;
-		        $('#sr_inner').height(sr_height);
-		       
-                        var offset = $('.filtry').offset();
-                        $('#search_results').overlay({
-                            effect: 'namiste',
-                            top: offset.top,
-                            left: offset.left,
-                            fixed: false,
-                            closeOnClick: false,
-			    oneInstance: false, 
-                            onClose: searchClosed
-                        });
-		       $('#search_results').overlay().load();
-		       $('#search_results').css('left', offset.left);
-                        map.zoomToExtent(searchLayer.getDataExtent()); 
-                    }
-                }); 
-        };
-
         function hoverResult(id) {
             var feature = searchLayer.getFeatureByFid(id);
             selectControl.unselectAll();
             selectControl.select(feature);
         }
-
-        function destroySearchLayer() {
-            selectControl.deactivate();
-            vectors.splice(searchLayerIdx, 1);
-            searchLayer.destroy();
-            selectControl.setLayer(vectors);
-            selectControl.activate();
-            searchLayer = null;
-        }
-
-        function searchClosed(e) {
-	   /*var sr = document.getElementById('search_results'); 
-	   sr.style.display = 'none';*/
-	   destroySearchLayer();
-	   for (var i in vectors)
-                vectors[i].setVisibility(true);
-         }
-
-        // Popup (version 1) - OBSOLETE!!!!
-	function OverlayLeft_old(obj, pageURL)
-        {
-	   var title = pageURL;
-	   var w = 550;
-	   var h = 700;
-	   var left = (screen.width/2)-(w/2);
-	   var top = (screen.height/2)-(h/2);
-	   var targetWin = window.open (pageURL, title, 
-	       'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbar-y=yes, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
-	};
-
-        // Popup verison 2 - new style
-        function OverlayLeft(obj, pageURL)
-        {
-	   var overlay_left = $('#overlay_left');
-           var iframe = $('#left_iframe');
-           iframe.html('<iframe id="overlay_src" class="overlay_iframe"  scrolling="auto" frameborder="0" src="'+ pageURL +'">');
-           overlay_left.overlay().load();
-	   window.scrollTo(0,0);
-	   var offset = $('#core').offset();
-	   //overlay_left.css('left', offset.left);
-	   // Nezdarily pokus o zmenu vysku scrollu
-	   // var f = document.getElementById("overlay_src");
-	   // alert(f);
-	   // f.style.height = f.contentWindow.document.body.scrollHeight + "px";
-	}
-
 
         function ZoomToLonLat( obj, lon, lat, zoom) {
 	   lonlat = new OpenLayers.LonLat(lon,lat);
@@ -470,5 +254,3 @@
 	      map.pan(-130,0);
 	   }
 	};
-        
-
