@@ -55,23 +55,6 @@ body {
 .menu a { color: #000000; padding: 5px 10px; text-decoration: none; }
 .menu a:hover { text-decoration: underline; }
 
-/* CycleStreets JourneyPlanner */
-#jpStart,
-#jpFinish,
-#jpPlans {
-        float: left;
-}
-#jpStart.inactive,
-#jpFinish.inactive {
-        display: none;
-}
-
-#bottom { height:50px; left:2px; right:2px; bottom:0px; border: 0px; padding: 0px; position: absolute; }
-#bottom a img { max-height:50px; }
-
-#leve_odkazy { float:left; width:60%; clear:none;}
-#ShoCart_text { float:right; width:39%;  clear:none; }
-
 body{font-size:11px;margin-bottom:0px;margin-left:0px;margin-top:0px;padding:0;font-family:Arial,Helvetica, sans-serif; }
 div{padding:0;margin:0;}
 a{text-decoration:none;}
@@ -86,40 +69,14 @@ li{margin:0 0 8px 0;padding:0;list-style:none;}
 td{font-size:10px;}
 dt{font-weight:bold;}
 
-/* Overlay left */
-
-#overlay_left {
-  display:none;
-  width:520px;
-  height: 4000px;
-/*  top:0 !important; */
-  z-index: 9999;
-  border:none;
-  padding-right:65px;
-  background: url(/images/overlay-shadow.png) repeat-y right;
-}
-.overlay_iframe {
-  background-color: white;
-  margin-top: 10px;
-  width:100%;
-  height:3920px;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  border:none;
-}              
-#overlay_left .close { margin-right:45px; margin-top:10px; }
-
 .small { font-size: 80%; }
 
-
-/* Open Layers - */
-
+/* prebarveni layerswitcheru na bilo */
 .layersDiv {
   background-color: white !important;
   color: black;
   opacity: 0.95;
 }
-
 
 /* Popup */
 .trc { margin-left: 15px; padding-right:20px;}
@@ -137,9 +94,7 @@ dt{font-weight:bold;}
 .foto_thumb { border:none; margin-top:4px; }
 .foto_segment { border:none; width:100%; margin-bottom: 14px }
 		 
-/* END Popup */
-        
-
+/* prebarveni zoom controlu */
 div.olControlZoom a {
     display: block;
     margin: 1px;
