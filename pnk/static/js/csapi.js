@@ -104,6 +104,9 @@ var CSApi = {
   getRouteInstructions: function (plan) {
     var output = $('<table></table>');
     var features = this.routeFeatures[plan];
+    // only for debugging
+    var route = this.getFeature(features, 'route');
+    output.prepend('<a href="http://praha.cyclestreets.net/journey/' + route.attributes.itinerary + '/">Inspect on CycleStreets</a>');
     for (var i=0; i < features.length; i++) {
       feature = features[i];
       var tr = $('<tr></tr>')
