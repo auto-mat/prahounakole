@@ -161,9 +161,11 @@ a.olControlZoomOut {
   clear: both
 }
 #panel {
-  float: left;
+  position: absolute;
+  top: 55px;
+  bottom: 0px;
   width: 260px;
-  padding-left: 10px;
+  padding: 10px;
   overflow: auto;
 }
 #panel-header {
