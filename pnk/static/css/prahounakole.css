@@ -114,7 +114,11 @@ dt{font-weight:bold;}
 
 /* Open Layers - */
 
-.layersDiv { background-color:#cb541c !important;  }
+.layersDiv {
+  background-color: white !important;
+  color: black;
+  opacity: 0.95;
+}
 
 
 /* Popup */
