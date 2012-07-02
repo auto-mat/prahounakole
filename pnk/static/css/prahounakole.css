@@ -170,7 +170,6 @@ a.olControlZoomOut {
 }
 #panel-header {
   height: 48px;
-  margin-bottom: 20px;
 }
 #panel-header img {
   float: left;
@@ -186,6 +185,9 @@ div .jpSearch {
 }
 .jpSearch input {
   width: 215px;
+}
+#jpStart {
+  margin-top: 20px;
 }
 #jpPlans {
   clear: both;
