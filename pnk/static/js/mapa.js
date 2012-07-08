@@ -327,6 +327,7 @@
                         args[a[0]] = a[1];
                 }
                 if (args['trasa']) {
+                        selectedPlan = null;
                         CSApi.journey(args['trasa'], null, args['plan'], addPlannedJourney, { select: true });
                 }
         };
