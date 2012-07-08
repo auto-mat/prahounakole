@@ -11,6 +11,7 @@
         var lastSelectedFeature;
         var criteria = {};
         var criteriaCnt = 0;
+        var selectedPlan;
 
         var bounds = new OpenLayers.Bounds(14.018,49.762,14.897,50.318);
 
@@ -138,11 +139,11 @@
             // pokud byl zoomlevel nastaven z url, musime aktualizovat filter
             zoomFilter.value = map.getZoom();
 
-            //$(window).hashchange(onHashChange);
-            //$(window).hashchange();
-
             // integrace CycleStreets
             setupRouting();
+
+            $(window).hashchange(onHashChange);
+            $(window).hashchange();
         } // init
 
         function setupRouting() {
@@ -190,8 +191,9 @@
             $('.jpPlanType').hover(previewPlanIn, previewPlanOut);
         }
         function onDragComplete(feature, pixel) {
+            var lonlat;
             if (feature == startMarker) {
-                var lonlat = startMarker.geometry.clone();
+                lonlat = startMarker.geometry.clone();
                 waypoints[0] = lonlat.transform(map.getProjectionObject(), EPSG4326);
                 CSApi.nearestPoint(startMarker, updateStartLabel);
             }
@@ -217,14 +219,28 @@
                 $('#jpFinishStreetSearch').val(features[0].attributes.name);
             } 
         };
+        // move the start and finish markers according to the route
+        // this is necessary if route was loaded directly by ID in URL hash
+        function updateMarkersAndLabels(route) {
+            var startfinish = CSApi.getStartAndFinish(route);
+            $('#jpStartStreetSearch').val(startfinish.start_label);
+            $('#jpFinishStreetSearch').val(startfinish.finish_label);
+            var lonlat = startfinish.start.clone().transform(EPSG4326, map.getProjectionObject());
+            movePointToLonLat(startMarker.geometry, lonlat);
+            lonlat = startfinish.finish.clone().transform(EPSG4326, map.getProjectionObject());
+            movePointToLonLat(endMarker.geometry, lonlat);
+            markerLayer.redraw();
+        };
         function planJourney() {
             //CSApi.journey(2473403, waypoints, 'balanced', addPlannedJourney, { select: true });
             CSApi.journey(null, waypoints, 'balanced', addPlannedJourney, { select: true });
-        }
-        function addPlannedJourney(features, options) {
-            CSApi.routeInfo(features);
+        };
+        // callback to process route returned by server
+        function addPlannedJourney(route, options) {
+            CSApi.routeInfo(route);
             if (options && options.select) {
                 $('#balanced').click();
+                updateMarkersAndLabels(route);
             }
             $('#jpPlanTypeSelector').show();
         }
@@ -266,6 +282,9 @@
         }
         function selectPlan() {
             var plan = this.id;
+            if (plan == selectedPlan) {
+                return true;
+            }
             if (! CSApi.routeFeatures || ! CSApi.routeFeatures[plan]) {
                 return false;
             }
@@ -274,6 +293,7 @@
             map.zoomToExtent(journeyLayer.getDataExtent());
             $('.selected').removeClass('selected');
             $('#' + plan).addClass('selected');
+            selectedPlan = plan;
             $('#jpInstructions').html(CSApi.getRouteInstructions(plan));
         }
         function previewPlanIn() {
@@ -298,7 +318,17 @@
             previewedRoute = null;
         }
         function onHashChange() {
-            // zatim se nepouziva
+                var hash = location.hash;
+                hash = hash.replace(/^#/, '');
+                var parts = hash.split('@');
+                var args = {};
+                for (var i=0; i < parts.length; i++) {
+                        var a = parts[i].split('=');
+                        args[a[0]] = a[1];
+                }
+                if (args['trasa']) {
+                        CSApi.journey(args['trasa'], null, args['plan'], addPlannedJourney, { select: true });
+                }
         };
 
         function getPoi(id) {
@@ -415,3 +445,8 @@
 	      map.pan(-130,0);
 	   }
 	};
+
+        // utility funciton to move OpenLayers point
+        function movePointToLonLat(point, ll) {
+            point.move(ll.lon - point.x, ll.lat - point.y);
+        } 

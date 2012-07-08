@@ -4,7 +4,11 @@ var CSApi = {
   //baseUrl: 'http://praha.cyclestreets.net',
   baseUrl: '',
 
+  // dict of GML returned from CS server indexed by plan name
   routeFeatures: {},
+  
+  // CS itinerary ID of current route
+  itinerary: null,
 
   // Rounds numbers to 6 figures to make them more readable
   r6: function (x) {
@@ -44,6 +48,12 @@ var CSApi = {
 
   journey: function (itinerary, waypoints, plan, callback, options) {
     var url;
+    if (!plan) {
+      plan = 'balanced';
+    }
+//    if (itinerary && this.itinerary == itinerary) {
+//      callback(this.routeFeatures[plan], options);
+//    }
     if (itinerary) {
       url =  this.baseUrl + '/api/journey.xml?key=' + this.apiKey + '&useDom=1&itinerary=' + itinerary + '&plan=' + plan;
     } else {
@@ -62,6 +72,8 @@ var CSApi = {
         var features = CSApi.formatGML.read(data);
         var route = CSApi.getFeature(features, 'route');
         CSApi.routeFeatures[route.attributes.plan] = features;
+        CSApi.itinerary = route.attributes.itinerary;
+        location.hash = 'trasa=' + CSApi.itinerary;
         if (route.attributes.plan == 'balanced') {
             CSApi.journey(route.attributes.itinerary, null, 'fastest', callback);
             CSApi.journey(route.attributes.itinerary, null, 'quietest', callback);
@@ -121,6 +133,18 @@ var CSApi = {
       }
     }
     return output;
+  },
+
+  getStartAndFinish: function (features) {
+    var route = this.getFeature(features, 'route');
+    var start = new OpenLayers.LonLat(route.attributes.start_longitude, route.attributes.start_latitude)
+    var finish = new OpenLayers.LonLat(route.attributes.finish_longitude, route.attributes.finish_latitude)
+    return {
+        'start': start,
+        'finish': finish,
+        'start_label': route.attributes.start,
+        'finish_label': route.attributes.finish
+    };
   },
 
   secondsToTime: function (secs) {
