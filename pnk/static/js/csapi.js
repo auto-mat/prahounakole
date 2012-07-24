@@ -114,25 +114,28 @@ var CSApi = {
   },
 
   getRouteInstructions: function (plan) {
-    var output = $('<table></table>');
     var features = this.routeFeatures[plan];
-    // only for debugging
     var route = this.getFeature(features, 'route');
-    output.prepend('<a href="http://praha.cyclestreets.net/journey/' + route.attributes.itinerary + '/">Inspect on CycleStreets</a>');
+    var output = $('<table></table>');
+    var totalDst = 0;
     for (var i=0; i < features.length; i++) {
       feature = features[i];
-      var tr = $('<tr></tr>')
+      var item = $('<tr></tr>');
       if (feature.attributes.type == 'segment') {
         if (feature.attributes.turn) {
-          tr.append('<td>' + feature.attributes.turn + '</td>');
+          item.append('<td class="turn"><img src="static/img/' + feature.attributes.turn.replace(' ','_') + '.png"></td>');
         } else {
-          tr.append('<td></td>');
-        }
-        tr.append('<td>'+ feature.attributes.name + '</td>');
-        output.append(tr);
+          item.append('<td class="turn"></td>');
+        };
+        item.append('<td>'+ feature.attributes.name + '</td>');
+        totalDst += parseInt(feature.attributes.distance);
+        item.append('<td class="distance">'+ this.distanceHumanize(totalDst) + '</td>');
+        output.append(item);
       }
     }
-    return output;
+    // only for debugging
+    var dbg = '<a href="http://praha.cyclestreets.net/journey/' + route.attributes.itinerary + '/">Inspect on CycleStreets</a>';
+    return output.before(dbg);
   },
 
   getStartAndFinish: function (features) {
@@ -169,5 +172,15 @@ var CSApi = {
         timeStr = obj.m + ' minut';
     }
     return timeStr;
+  },
+
+  distanceHumanize: function (dist) {
+    if (dist < 1000) {
+      // do 1km v desitkach metru
+      return Math.round(dist /10) * 10 + '&nbsp;m';
+    } else {
+      // vsechno nad v desetinach km
+      return (Math.round(dist / 100) / 10) + '&nbsp;km';
+    }
   }
 };
