@@ -41,7 +41,7 @@ search_options = {
                 markerLayer.addFeatures(marker);
             };
             markerLayer.redraw();
-            onDragComplete(marker, null);
+            setWaypoint(marker);
         },
         open: function () {
             $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top");

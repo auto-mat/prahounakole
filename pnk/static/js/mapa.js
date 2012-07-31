@@ -190,19 +190,28 @@
             $('.jpPlanType').click(selectPlan);
             $('.jpPlanType').hover(previewPlanIn, previewPlanOut);
         }
-        function onDragComplete(feature, pixel) {
+        function setWaypoint(feature) {
+            // called either on selection of result from search box
+            // or in dragging of marker
             var lonlat;
             if (feature == startMarker) {
                 lonlat = startMarker.geometry.clone();
                 waypoints[0] = lonlat.transform(map.getProjectionObject(), EPSG4326);
-                CSApi.nearestPoint(startMarker, updateStartLabel);
             }
             if (feature == endMarker) {
                 lonlat = endMarker.geometry.clone();
                 waypoints[1] = lonlat.transform(map.getProjectionObject(), EPSG4326);
-                CSApi.nearestPoint(endMarker, updateEndLabel);
             }
             toggleGoButton();
+        };
+        function onDragComplete(feature, pixel) {
+            if (feature == startMarker) {
+                CSApi.nearestPoint(startMarker, updateStartLabel);
+            }
+            if (feature == endMarker) {
+                CSApi.nearestPoint(endMarker, updateEndLabel);
+            }
+            setWaypoint(feature, pixel);
         };
         function toggleGoButton() {
             if (waypoints.length > 1) {
