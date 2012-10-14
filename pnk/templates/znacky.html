@@ -6,11 +6,11 @@
   </head>
   <body>
   <div class="page" style="text-align:center;">
-       <div class="content_left" >
+       <div class="content_left" style="text-align:left;" >
 
        {{ static_znacky.content|safe }}
        
-       {% for v in vrstvy %}
+       {% for v in vrstvy reversed %}
         <h4>&nbsp;<br>{{ v }}:</h4>
 	
         <dl class="desc_vlastnosti">
