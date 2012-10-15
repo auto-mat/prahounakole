@@ -5,7 +5,9 @@
    <title>Znacky</title>
   </head>
   <body style="background-color:#F9F9F9; margin:5px;">
-       <h2>Znacky v cyklomape podle vrstev</h2>
+       <h2>Prahou na kole - legenda</h2>
+       
+       <div style="width:100%; text-align:center;"><img src="http://prahounakole.cz/wp-content/pnk/uploads/2011/10/legenda.png"></div>
 
        {{ static_znacky.content|safe }}
        
@@ -15,7 +17,7 @@
         <dl class="desc_vlastnosti">
           {% for z in znacky %}
 	     {% if z.vrstva = v  %}
-	     <dt><img src="{{z.default_icon.url}}"></img> <b>{{z.nazev}}</b></dt>
+	     <dt><a name="{{z.slug}}"></a><img src="{{z.default_icon.url}}"></img> <b>{{z.nazev}}</b></dt>
 	     <dd>{{z.desc|safe}}<dd>
 	     {% endif %}
 	  {% endfor %}
