@@ -333,6 +333,11 @@
         function onHashChange() {
                 var hash = location.hash;
                 hash = hash.replace(/^#/, '');
+                if (hash == 'hledani') {
+                        console.log('hledani');
+                        $('.panel').hide();
+                        $('#hledani').show();
+                };
                 var parts = hash.split('@');
                 var args = {};
                 for (var i=0; i < parts.length; i++) {
@@ -340,9 +345,11 @@
                         args[a[0]] = a[1];
                 }
                 if (args['trasa']) {
+                        $('.panel').hide();
+                        $('#hledani').show();
                         selectedPlan = null;
                         CSApi.journey(args['trasa'], null, args['plan'], addPlannedJourney, { select: true });
-                }
+                };
         };
 
         function getPoi(id) {

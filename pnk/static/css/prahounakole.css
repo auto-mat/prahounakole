@@ -168,6 +168,12 @@ a.olControlZoomOut {
   padding: 10px;
   overflow: auto;
 }
+.panel {
+  display: none;
+}
+#panel #uvod {
+  display: block;
+}
 #panel-header {
   height: 48px;
 }
