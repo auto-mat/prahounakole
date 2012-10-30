@@ -196,9 +196,14 @@ div .jpSearch {
   margin-top: -10px;
 }
 #jpPlanButtonDiv {
-  display: none;
   float: right;
   font-size: 18px;
+}
+#jpPlanButton {
+  display: none;
+}
+#jpPlanMessage {
+  display: none;
 }
 div .jpPlanType {
   float: left;

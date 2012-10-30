@@ -215,7 +215,7 @@
         };
         function toggleGoButton() {
             if (waypoints.length > 1) {
-                $('#jpPlanButtonDiv').show();
+                $('#jpPlanButton').show();
             }
         };
         function updateStartLabel(features) {
@@ -242,6 +242,8 @@
         };
         function planJourney() {
             //CSApi.journey(2473403, waypoints, 'balanced', addPlannedJourney, { select: true });
+            $('#jpPlanButton').hide();
+            $('#jpPlanMessage').show();     
             CSApi.journey(null, waypoints, 'balanced', addPlannedJourney, { select: true });
         };
         // callback to process route returned by server
@@ -252,6 +254,8 @@
                 updateMarkersAndLabels(route);
             }
             $('#jpPlanTypeSelector').show();
+            $('#jpPlanButton').show();
+            $('#jpPlanMessage').hide();
         }
         function addRouteLayer() {
             // create a styleMap with a custom default symbolizer
