@@ -34,7 +34,7 @@
     mapconfig['root_url'] = "{{ root_url }}";
     mapconfig['vrstvy'] = [];
     {% for v in vrstvy %}
-        mapconfig['vrstvy'].push(["{{v.nazev}}", "{% url 'cyklomapa.views.kml_view' v.slug %}"]);
+       mapconfig['vrstvy'].push(["{{v.nazev}}", "{% url 'cyklomapa.views.kml_view' v.slug %}", "{{v.enabled}}"]);
     {% endfor %} 
     {% if center_poi %}
         mapconfig['zoom'] = 15;

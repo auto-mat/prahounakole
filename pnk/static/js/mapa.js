@@ -98,7 +98,7 @@
 
             kmlvrstvy = mapconfig.vrstvy
             for (i in kmlvrstvy) {
-                addMapLayer(kmlvrstvy[i][0], mapconfig.root_url + kmlvrstvy[i][1], vectors);
+                addMapLayer(kmlvrstvy[i][0], mapconfig.root_url + kmlvrstvy[i][1], vectors, kmlvrstvy[i][2] == 'True');
             };
 
             selectControl = new OpenLayers.Control.SelectFeature(
@@ -162,7 +162,7 @@
             }
         };
 
-        function addMapLayer(nazev, url, layers) {
+        function addMapLayer(nazev, url, layers, enabled) {
             kml = new OpenLayers.Layer.Vector(nazev, {
                     projection: EPSG4326,
                     strategies: [new OpenLayers.Strategy.Fixed()],
@@ -173,6 +173,7 @@
                             extractAttributes: true})
                     })
             });
+            kml.setVisibility(enabled);
             kml.styleMap.styles["default"].addRules([filter_rule]);
             kml.styleMap.styles["default"].defaultStyle.cursor = 'pointer';
             kml.events.register('loadend', kml, onLoadEnd);
