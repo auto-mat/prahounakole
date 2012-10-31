@@ -1,4 +1,5 @@
         var map, base_layer, kml, filter_rule, nofilter_rule, zoomFilter;
+        var appMode = ''; // pnkmap nebo routing
         var vectors = [];
         var searchLayer;
         var searchLayerIdx;
@@ -103,24 +104,6 @@
             layerGoogle.mapObject.setTilt(0);
 
 
-            kmlvrstvy = mapconfig.vrstvy
-            for (i in kmlvrstvy) {
-                addMapLayer(kmlvrstvy[i][0], mapconfig.root_url + kmlvrstvy[i][1], vectors);
-            };
-
-            selectControl = new OpenLayers.Control.SelectFeature(
-                vectors, {
-                    toggle: true,
-                    clickout: true,
-                    multiple: false,
-                    onUnselect: onFeatureUnselect,
-                    onSelect: onFeatureSelect
-                }
-            );
-
-            map.addControl(selectControl);
-            selectControl.activate();
-
             // zabranime odzoomovani na nizsi level nez 11 
             map.isValidZoomLevel = function(zoomLevel) {
                 var valid = ( (zoomLevel != null) &&
@@ -139,14 +122,55 @@
             // pokud byl zoomlevel nastaven z url, musime aktualizovat filter
             zoomFilter.value = map.getZoom();
 
-            // integrace CycleStreets
-            setupRouting();
-
             $(window).hashchange(onHashChange);
             $(window).hashchange();
         } // init
 
+        function setupPnkMap() {
+            console.log('setupPnkMap: ' + appMode);
+            if (appMode == 'pnkmap') {
+                // uz jsme v rezimu routing, neni co delat
+                return;
+            };
+            if (appMode == 'routing') {
+                destroyRouting();
+            };
+
+            kmlvrstvy = mapconfig.vrstvy
+            for (i in kmlvrstvy) {
+                addPoiLayer(kmlvrstvy[i][0], mapconfig.root_url + kmlvrstvy[i][1], vectors);
+            };
+
+            selectControl = new OpenLayers.Control.SelectFeature(
+                vectors, {
+                    toggle: true,
+                    clickout: true,
+                    multiple: false,
+                    onUnselect: onFeatureUnselect,
+                    onSelect: onFeatureSelect
+                }
+            );
+
+            map.addControl(selectControl);
+            selectControl.activate();
+            appMode = 'pnkmap';
+        };
+        function destroyPnkMap() {
+            map.removeControl(selectControl);
+            selectControl.destroy();
+            removePoiLayers();
+        };
+
         function setupRouting() {
+            console.log('setupRouting: ' + appMode);
+            if (appMode == 'routing') {
+                // uz jsme v rezimu routing, neni co delat
+                return;
+            };
+            if (appMode == 'pnkmap') {
+                destroyPnkMap();
+            };
+
             CSApi.init(map, 'ad9beeeff0afb15e');
 
             markerLayer = new OpenLayers.Layer.Vector("Start/cil", {
@@ -189,6 +213,20 @@
             $('#jpPlanButton').click(planJourney);
             $('.jpPlanType').click(selectPlan);
             $('.jpPlanType').hover(previewPlanIn, previewPlanOut);
+            appMode = 'routing';
+        }
+        function destroyRouting() {
+            console.log('destroyRouting: ' + appMode);
+            if (appMode != 'routing') {
+                // mapa neni v routing modu, nemame co delat
+                return;
+            };
+            drag.destroy(); 
+            markerLayer.destroy();
+            if (journeyLayer) {
+                journeyLayer.destroy();
+            };
+            appMode = 'normal';
         }
         function setWaypoint(feature) {
             // called either on selection of result from search box
@@ -333,19 +371,25 @@
         function onHashChange() {
                 var hash = location.hash;
                 hash = hash.replace(/^#/, '');
-                if (hash == 'hledani') {
-                        console.log('hledani');
-                        $('.panel').hide();
-                        $('#hledani').show();
-                };
                 var parts = hash.split('@');
                 var args = {};
                 for (var i=0; i < parts.length; i++) {
                         var a = parts[i].split('=');
                         args[a[0]] = a[1];
                 }
+                if (hash == '') {
+                        $('.panel').hide();
+                        setupPnkMap();
+                        $('#uvod').show();
+                };
+                if (hash == 'hledani') {
+                        $('.panel').hide();
+                        setupRouting();
+                        $('#hledani').show();
+                };
                 if (args['trasa']) {
                         $('.panel').hide();
+                        setupRouting();
                         $('#hledani').show();
                         selectedPlan = null;
                         CSApi.journey(args['trasa'], null, args['plan'], addPlannedJourney, { select: true });
@@ -374,7 +418,7 @@
             }
         };
 
-        function addMapLayer(nazev, url, layers) {
+        function addPoiLayer(nazev, url, layers) {
             kml = new OpenLayers.Layer.Vector(nazev, {
                     projection: EPSG4326,
                     strategies: [new OpenLayers.Strategy.Fixed()],
@@ -391,6 +435,12 @@
             map.addLayer(kml);
             var len = layers.push(kml);
             return (len - 1);
+        };
+
+        function removePoiLayers() {
+            while((l=vectors.pop()) != null){
+                l.destroy();
+            }
         }
 
         function removePopup(popup) {
