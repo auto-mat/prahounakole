@@ -127,7 +127,6 @@
         } // init
 
         function setupPnkMap() {
-            console.log('setupPnkMap: ' + appMode);
             if (appMode == 'pnkmap') {
                 // uz jsme v rezimu routing, neni co delat
                 return;
@@ -154,6 +153,8 @@
             map.addControl(selectControl);
             selectControl.activate();
             appMode = 'pnkmap';
+            $('.panel').hide();
+            $('#uvod').show();
         };
         function destroyPnkMap() {
             map.removeControl(selectControl);
@@ -162,7 +163,6 @@
         };
 
         function setupRouting() {
-            console.log('setupRouting: ' + appMode);
             if (appMode == 'routing') {
                 // uz jsme v rezimu routing, neni co delat
                 return;
@@ -206,6 +206,14 @@
             //lonlat = endMarker.geometry.clone();
             //waypoints[1] = lonlat.transform(map.getProjectionObject(), EPSG4326);
             markerLayer.addFeatures([startMarker, endMarker]);
+            // zabranime odeslani formu, kdyz uzivatel zmackne enter v okamziku,
+            // kdy neni vybrana polozka autocompletu 
+            $(".jpSearch").keypress(function(e) {
+                var code = (e.keyCode ? e.keyCode : e.which);
+                if(code == 13) { //Enter keycode
+                        return false;
+                }
+            });
             $('#jpStartStreetSearch').autocomplete(search_options);
             $('#jpFinishStreetSearch').autocomplete(search_options);
             addRouteLayer();
@@ -214,9 +222,11 @@
             $('.jpPlanType').click(selectPlan);
             $('.jpPlanType').hover(previewPlanIn, previewPlanOut);
             appMode = 'routing';
+            $('.panel').hide();
+            $('#hledani').show();
+            $('#jpStartStreetSearch').focus();
         }
         function destroyRouting() {
-            console.log('destroyRouting: ' + appMode);
             if (appMode != 'routing') {
                 // mapa neni v routing modu, nemame co delat
                 return;
@@ -227,6 +237,14 @@
                 journeyLayer.destroy();
             };
             appMode = 'normal';
+        }
+        function initRoutingPanel() {
+            $('#jpInstructions').hide();
+            $('#jpPlanTypeSelector').hide();
+            waypoints = [];
+            startFeature = null;
+            endFeature = null;
+            toggleGoButton();
         }
         function setWaypoint(feature) {
             // called either on selection of result from search box
@@ -279,9 +297,8 @@
             markerLayer.redraw();
         };
         function planJourney() {
-            //CSApi.journey(2473403, waypoints, 'balanced', addPlannedJourney, { select: true });
             $('#jpPlanButton').hide();
-            $('#jpPlanMessage').show();     
+            $('#jpPlanMessage').show();
             CSApi.journey(null, waypoints, 'balanced', addPlannedJourney, { select: true });
         };
         // callback to process route returned by server
@@ -345,7 +362,7 @@
             $('.selected').removeClass('selected');
             $('#' + plan).addClass('selected');
             selectedPlan = plan;
-            $('#jpInstructions').html(CSApi.getRouteInstructions(plan));
+            $('#jpInstructions').html(CSApi.getRouteInstructions(plan)).show();
         }
         function previewPlanIn() {
             var plan = this.id;
@@ -378,19 +395,14 @@
                         args[a[0]] = a[1];
                 }
                 if (hash == '') {
-                        $('.panel').hide();
                         setupPnkMap();
-                        $('#uvod').show();
                 };
                 if (hash == 'hledani') {
-                        $('.panel').hide();
                         setupRouting();
-                        $('#hledani').show();
+                        initRoutingPanel();
                 };
                 if (args['trasa']) {
-                        $('.panel').hide();
                         setupRouting();
-                        $('#hledani').show();
                         selectedPlan = null;
                         CSApi.journey(args['trasa'], null, args['plan'], addPlannedJourney, { select: true });
                 };
