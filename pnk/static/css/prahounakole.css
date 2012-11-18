@@ -201,11 +201,10 @@ div .jpSearch {
   height: 20px;
   margin-top: -10px;
 }
-#jpPlanButtonDiv {
+#jpPlanButton {
   float: right;
   font-size: 18px;
-}
-#jpPlanButton {
+  cursor: pointer;
   display: none;
 }
 #jpPlanMessage {
