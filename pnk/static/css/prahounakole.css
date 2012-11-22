@@ -160,6 +160,9 @@ a.olControlZoomOut {
 .cleaner {
   clear: both
 }
+.pull-right {
+  float: right;
+}
 #panel {
   position: absolute;
   top: 55px;
@@ -177,7 +180,7 @@ a.olControlZoomOut {
 #panel-header {
   height: 48px;
 }
-#panel-header img {
+#panel-header #cs-logo {
   float: left;
   margin-right: 5px;
 }
