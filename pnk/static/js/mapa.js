@@ -13,13 +13,11 @@
 
         bounds.transform(EPSG4326, EPSG900913)
 
-function testPanZoom() {
-    console.log("test func");
+function defaultPanZoom() {
     var newPanZoom = new OpenLayers.Control.PanZoom();
 
     OpenLayers.Util.extend(newPanZoom, {
            onButtonClick: function(evt) {
-               console.log("test button click");
                var btn = evt.buttonElement;
                switch (btn.action) {
                    case "panup": 
@@ -94,7 +92,7 @@ function testPanZoom() {
                     new OpenLayers.Control.Navigation(),
                     new OpenLayers.Control.Permalink(),
                     new OpenLayers.Control.ScaleLine({maxWidth: 300}),
-                    testPanZoom()
+                    defaultPanZoom()
                     //  new OpenLayers.Control.PanZoomBar(),
                     //  new OpenLayers.Control.MousePosition() 
                 ],
