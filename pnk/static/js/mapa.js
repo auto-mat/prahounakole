@@ -244,6 +244,9 @@
             waypoints = [];
             startFeature = null;
             endFeature = null;
+            $('#jpStartStreetSearch').val('');
+            $('#jpFinishStreetSearch').val('');
+            $('#jpStartStreetSearch').focus();
             toggleGoButton();
         }
         function setWaypoint(feature) {
