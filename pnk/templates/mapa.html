@@ -36,15 +36,18 @@
     {% for v in vrstvy %}
        mapconfig['vrstvy'].push(["{{v.nazev}}", "{% url 'cyklomapa.views.kml_view' v.slug %}", "{{v.enabled}}"]);
     {% endfor %} 
+     mapconfig['basezoom'] = 13;
+     mapconfig['baselon'] = 14.4211;
+     mapconfig['baselat'] = 50.08741;
     {% if center_poi %}
         mapconfig['zoom'] = 15;
         mapconfig['lon'] = {{ center_poi.geom.x }};
         mapconfig['lat'] = {{ center_poi.geom.y }};
         mapconfig['center_feature'] = {{ center_poi.id }};
     {% else %}
-        mapconfig['zoom'] = 13;
-        mapconfig['lon'] = 14.4211;
-        mapconfig['lat'] = 50.08741;
+        mapconfig['zoom'] = mapconfig['basezoom'];
+        mapconfig['lon'] = mapconfig['baselon'];
+        mapconfig['lat'] = mapconfig['baselat'];
     {% endif %}
     
     {% if minimize_layerswitcher %}

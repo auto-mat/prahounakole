@@ -13,6 +13,42 @@
 
         bounds.transform(EPSG4326, EPSG900913)
 
+function testPanZoom() {
+    console.log("test func");
+    var newPanZoom = new OpenLayers.Control.PanZoom();
+
+    OpenLayers.Util.extend(newPanZoom, {
+           onButtonClick: function(evt) {
+               console.log("test button click");
+               var btn = evt.buttonElement;
+               switch (btn.action) {
+                   case "panup": 
+                       this.map.pan(0, -this.getSlideFactor("h"));
+                       break;
+                   case "pandown": 
+                       this.map.pan(0, this.getSlideFactor("h"));
+                       break;
+                   case "panleft": 
+                       this.map.pan(-this.getSlideFactor("w"), 0);
+                       break;
+                   case "panright": 
+                       this.map.pan(this.getSlideFactor("w"), 0);
+                       break;
+                   case "zoomin": 
+                       this.map.zoomIn(); 
+                       break;
+                   case "zoomout": 
+                       this.map.zoomOut(); 
+                       break;
+                   case "zoomworld": 
+                       map.setCenter(new OpenLayers.LonLat(mapconfig.baselon, mapconfig.baselat).transform(EPSG4326, map.getProjectionObject()), mapconfig.basezoom);
+                       break;
+                   }
+           }
+       });
+       return newPanZoom;
+      }
+
        function getTileURL(bounds)
        {
          var res = this.map.getResolution();
@@ -58,7 +94,9 @@
                     new OpenLayers.Control.Navigation(),
                     new OpenLayers.Control.Permalink(),
                     new OpenLayers.Control.ScaleLine({maxWidth: 300}),
-                    new OpenLayers.Control.Zoom()
+                    testPanZoom()
+                    //  new OpenLayers.Control.PanZoomBar(),
+                    //  new OpenLayers.Control.MousePosition() 
                 ],
                 maxExtent: bounds.clone(),
                 restrictedExtent: bounds.clone(),
@@ -67,6 +105,7 @@
 		// fallThrough : false,
                 theme: null
             };
+
             map = new OpenLayers.Map('map', options);
 
 	   var ls = map.getControlsByClass('OpenLayers.Control.LayerSwitcher')[0];
