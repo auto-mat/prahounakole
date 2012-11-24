@@ -13,6 +13,7 @@
         var criteria = {};
         var criteriaCnt = 0;
         var selectedPlan;
+        var _ignoreHashChange = false;  // umozni jednorazove ignorovani zmeny hashe
 
         var bounds = new OpenLayers.Bounds(14.018,49.762,14.897,50.318);
 
@@ -305,9 +306,13 @@
             CSApi.journey(null, waypoints, 'balanced', addPlannedJourney, { select: true });
         };
         // callback to process route returned by server
-        function addPlannedJourney(route, options) {
+        function addPlannedJourney(itinerary, route, options) {
             CSApi.routeInfo(route);
             if (options && options.select) {
+                CSApi.journey(itinerary, null, 'fastest', addPlannedJourney);
+                CSApi.journey(itinerary, null, 'quietest', addPlannedJourney);
+                _ignoreHashChange = true;
+                location.hash = 'trasa=' + itinerary;
                 $('#balanced').click();
                 updateMarkersAndLabels(route);
             }
@@ -389,6 +394,10 @@
             previewedRoute = null;
         }
         function onHashChange() {
+                if (_ignoreHashChange) {
+                        _ignoreHashChange = false;
+                        return;
+                };
                 var hash = location.hash;
                 hash = hash.replace(/^#/, '');
                 var parts = hash.split('@');

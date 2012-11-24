@@ -51,9 +51,6 @@ var CSApi = {
     if (!plan) {
       plan = 'balanced';
     }
-//    if (itinerary && this.itinerary == itinerary) {
-//      callback(this.routeFeatures[plan], options);
-//    }
     if (itinerary) {
       url =  this.baseUrl + '/api/journey.xml?key=' + this.apiKey + '&useDom=1&itinerary=' + itinerary + '&plan=' + plan;
     } else {
@@ -73,12 +70,7 @@ var CSApi = {
         var route = CSApi.getFeature(features, 'route');
         CSApi.routeFeatures[route.attributes.plan] = features;
         CSApi.itinerary = route.attributes.itinerary;
-        location.hash = 'trasa=' + CSApi.itinerary;
-        if (route.attributes.plan == 'balanced') {
-            CSApi.journey(route.attributes.itinerary, null, 'fastest', callback);
-            CSApi.journey(route.attributes.itinerary, null, 'quietest', callback);
-        }
-        callback(features, options);
+        callback(route.attributes.itinerary, features, options);
       }
     });
   },
