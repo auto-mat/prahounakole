@@ -12,8 +12,8 @@
         var lastSelectedFeature;
         var criteria = {};
         var criteriaCnt = 0;
+        var selectedItinerary = null;
         var selectedPlan;
-        var _ignoreHashChange = false;  // umozni jednorazove ignorovani zmeny hashe
 
         var bounds = new OpenLayers.Bounds(14.018,49.762,14.897,50.318);
 
@@ -243,6 +243,7 @@
             $('#jpInstructions').hide();
             $('#jpPlanTypeSelector').hide();
             waypoints = [];
+            selectedItinerary = null;
             startFeature = null;
             endFeature = null;
             $('#jpStartStreetSearch').val('');
@@ -309,9 +310,9 @@
         function addPlannedJourney(itinerary, route, options) {
             CSApi.routeInfo(route);
             if (options && options.select) {
+                selectedItinerary = itinerary;
                 CSApi.journey(itinerary, null, 'fastest', addPlannedJourney);
                 CSApi.journey(itinerary, null, 'quietest', addPlannedJourney);
-                _ignoreHashChange = true;
                 location.hash = 'trasa=' + itinerary;
                 $('#balanced').click();
                 updateMarkersAndLabels(route);
@@ -394,10 +395,6 @@
             previewedRoute = null;
         }
         function onHashChange() {
-                if (_ignoreHashChange) {
-                        _ignoreHashChange = false;
-                        return;
-                };
                 var hash = location.hash;
                 hash = hash.replace(/^#/, '');
                 var parts = hash.split('@');
@@ -415,6 +412,10 @@
                 };
                 if (args['trasa']) {
                         setupRouting();
+                        if (selectedItinerary == args['trasa']) {
+                                //console.log('trasa uz je nactena');
+                                return;
+                        }
                         selectedPlan = null;
                         CSApi.journey(args['trasa'], null, args['plan'], addPlannedJourney, { select: true });
                 };
