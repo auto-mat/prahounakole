@@ -138,7 +138,7 @@
 
             kmlvrstvy = mapconfig.vrstvy
             for (i in kmlvrstvy) {
-                addPoiLayer(kmlvrstvy[i][0], mapconfig.root_url + kmlvrstvy[i][1], vectors);
+                addPoiLayer(kmlvrstvy[i][0], mapconfig.root_url + kmlvrstvy[i][1]);
             };
 
             selectControl = new OpenLayers.Control.SelectFeature(
@@ -443,7 +443,13 @@
             }
         };
 
-        function addPoiLayer(nazev, url, layers) {
+        function addPoiLayer(nazev, url) {
+            for (var i=0; i < vectors.length; i++) {
+                if (vectors[i].name == nazev) {
+                    map.addLayer(vectors[i]);
+                    return;
+                }
+            }
             kml = new OpenLayers.Layer.Vector(nazev, {
                     projection: EPSG4326,
                     strategies: [new OpenLayers.Strategy.Fixed()],
@@ -457,14 +463,13 @@
             kml.styleMap.styles["default"].addRules([filter_rule]);
             kml.styleMap.styles["default"].defaultStyle.cursor = 'pointer';
             kml.events.register('loadend', kml, onLoadEnd);
+            vectors.push(kml);
             map.addLayer(kml);
-            var len = layers.push(kml);
-            return (len - 1);
         };
 
         function removePoiLayers() {
-            while((l=vectors.pop()) != null){
-                l.destroy();
+            for (var i=0; i < vectors.length; i++) {
+                map.removeLayer(vectors[i]);
             }
         }
 
