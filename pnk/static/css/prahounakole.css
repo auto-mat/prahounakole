@@ -75,40 +75,14 @@ li{margin:0 0 8px 0;padding:0;list-style:none;}
 td{font-size:10px;}
 dt{font-weight:bold;}
 
-/* Overlay left */
-
-#overlay_left {
-  display:none;
-  width:520px;
-  height: 4000px;
-/*  top:0 !important; */
-  z-index: 9999;
-  border:none;
-  padding-right:65px;
-  background: url(/images/overlay-shadow.png) repeat-y right;
-}
-.overlay_iframe {
-  background-color: white;
-  margin-top: 10px;
-  width:100%;
-  height:3920px;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  border:none;
-}              
-#overlay_left .close { margin-right:45px; margin-top:10px; }
-
 .small { font-size: 80%; }
 
-
-/* Open Layers - */
-
+/* prebarveni layerswitcheru na bilo */
 .layersDiv {
   background-color: white !important;
   color: black;
   opacity: 0.95;
 }
-
 
 /* Popup */
 .trc { margin-left: 15px; padding-right:20px;}
@@ -128,6 +102,7 @@ dt{font-weight:bold;}
 		 
 /* END Popup */
 
+/* prebarveni zoom controlu */
 div.olControlZoom a {
     display: block;
     margin: 1px;
@@ -141,13 +116,13 @@ div.olControlZoom a {
     height: 22px;
     width: 22px;
     line-height: 19px;
-    background: #666666; /* fallback for IE - IE6 requires background shorthand*/
-    background: rgba(0, 0, 0, 0.3);
+    background: #800000; /* fallback for IE - IE6 requires background shorthand*/
+    background: rgba(128, 0, 0, 0.7);
     filter: alpha(opacity=60);
 }
 div.olControlZoom a:hover {
-    background: #444444; /* fallback for IE */
-    background: rgba(0, 0, 0, 0.5);
+    background: #800000; /* fallback for IE */
+    background: rgba(128, 0, 0, 1);
     filter: alpha(opacity=80);
 }
 a.olControlZoomIn {

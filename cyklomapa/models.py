@@ -25,6 +25,7 @@ class Vrstva(models.Model):
     status  = models.ForeignKey(Status)              # zobrazovaci status
     order   = models.PositiveIntegerField()
     remark  = models.TextField(null=True, blank=True) # Interni informace o objektu, ktere se nebudou zobrazovat!
+    enabled = models.BooleanField()                                 # Vrstva je defaultně zobrazená
 
     class Meta:
         verbose_name_plural = "vrstvy"

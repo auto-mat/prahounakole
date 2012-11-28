@@ -105,3 +105,11 @@ def metro_view(request):
     poi = Poi.objects.filter(status__show=True, znacka__slug__in=['metro_a', 'metro_b', 'metro_c']).order_by('znacka__slug', 'id')
     return render_to_response('metro.html',
         context_instance=RequestContext(request, { 'poi': poi }))
+
+# View pro podrobny vypis vrstev
+@cache_page(24 * 60 * 60) # cachujeme view v memcached s platnosti 24h
+def znacky_view(request):
+    vrstvy = Vrstva.objects.filter(status__show=True)
+    znacky = Znacka.objects.filter(status__show=True)
+    return render_to_response('znacky.html',
+        context_instance=RequestContext(request, { 'vrstvy': vrstvy, 'znacky': znacky }))
