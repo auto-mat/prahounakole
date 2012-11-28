@@ -17,6 +17,5 @@ urlpatterns = patterns('',
     (r'^uzavirky/feed/$', UzavirkyFeed()),
     (r'^metro/$', metro_view),
     (r'^znacky/$', znacky_view),
-    (r'^detail/(\d+)/', detail_view),
     (r'^admin/', include(admin.site.urls)),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
