@@ -1,5 +1,9 @@
         var map, base_layer, kml, filter_rule, nofilter_rule, zoomFilter;
         var appMode = ''; // pnkmap nebo routing
+        // jakou cast zadani prave resime - slouzi hlavne pro obsluhu kurzoru
+        // * start, stop - vychozi a cilovy bod
+        // * go - muzeme spustit vyhledavani
+        var routingState = 'start';
         var vectors = [];
         var searchLayer;
         var searchLayerIdx;
@@ -243,7 +247,7 @@ function defaultPanZoom() {
             );
             //lonlat = endMarker.geometry.clone();
             //waypoints[1] = lonlat.transform(map.getProjectionObject(), EPSG4326);
-            markerLayer.addFeatures([startMarker, endMarker]);
+            //markerLayer.addFeatures([startMarker, endMarker]);
             // zabranime odeslani formu, kdyz uzivatel zmackne enter v okamziku,
             // kdy neni vybrana polozka autocompletu 
             $(".jpSearch").keypress(function(e) {
@@ -255,7 +259,8 @@ function defaultPanZoom() {
             $('#jpStartStreetSearch').autocomplete(search_options);
             $('#jpFinishStreetSearch').autocomplete(search_options);
             addRouteLayer();
-            toggleGoButton();
+            toggleButtons();
+            map.events.register("click", map, onMapClick);
             $('#jpPlanButton').click(planJourney);
             $('.jpPlanType').click(selectPlan);
             $('.jpPlanType').hover(previewPlanIn, previewPlanOut);
@@ -286,7 +291,7 @@ function defaultPanZoom() {
             $('#jpStartStreetSearch').val('');
             $('#jpFinishStreetSearch').val('');
             $('#jpStartStreetSearch').focus();
-            toggleGoButton();
+            toggleButtons();
         }
         function setWaypoint(feature) {
             // called either on selection of result from search box
@@ -300,20 +305,49 @@ function defaultPanZoom() {
                 lonlat = endMarker.geometry.clone();
                 waypoints[1] = lonlat.transform(map.getProjectionObject(), EPSG4326);
             }
-            toggleGoButton();
+            toggleButtons();
         };
-        function onDragComplete(feature, pixel) {
+        function onDragComplete(feature) {
             if (feature == startMarker) {
                 CSApi.nearestPoint(startMarker, updateStartLabel);
             }
             if (feature == endMarker) {
                 CSApi.nearestPoint(endMarker, updateEndLabel);
             }
-            setWaypoint(feature, pixel);
+            setWaypoint(feature);
         };
-        function toggleGoButton() {
-            if (waypoints.length > 1) {
-                $('#jpPlanButton').show();
+        function onMapClick(e) {
+            if (routingState == 'start')
+                marker = startMarker;
+            else if (routingState == 'stop')
+                marker = endMarker;
+            else
+                return;
+            var position = map.getLonLatFromPixel(e.xy);
+            movePointToLonLat(marker.geometry, position)
+            if (!marker.layer) {
+                markerLayer.addFeatures(marker);
+            };
+            markerLayer.redraw();
+            onDragComplete(marker, position);
+            // po umisteni cile muzeme rovnou vyhledat
+            if (marker == endMarker)
+                $('#jpPlanButton').click();
+        };
+        function toggleButtons() {
+            switch (waypoints.length) {
+                case 0:
+                    $('.olMap').css("cursor", "url('/static/img/route-start.png'), auto"); 
+                    routingState = 'start';
+                    break;
+                case 1:
+                    $('.olMap').css("cursor", "url('/static/img/route-stop.png'), auto");
+                    routingState = 'stop';
+                    break;
+                default:
+                    $('.olMap').css("cursor", "auto");
+                    routingState = 'go';
+                    $('#jpPlanButton').show();
             }
         };
         function updateStartLabel(features) {
