@@ -6,7 +6,7 @@ search_options = {
                   dataType: "json",
                   data: {
                       format: "json",
-                      viewbox: "14.3081641,50.2,14.5718359,49.9355541",
+                      viewbox: "14.018,50.318,14.897,49.762",
                       bounded: 1,
                       q: request.term
                   },
