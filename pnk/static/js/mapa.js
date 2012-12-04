@@ -288,6 +288,10 @@ function defaultPanZoom() {
             selectedItinerary = null;
             startFeature = null;
             endFeature = null;
+            markerLayer.destroyFeatures();
+            if (journeyLayer) {
+                journeyLayer.destroyFeatures();
+            };
             $('#jpStartStreetSearch').val('');
             $('#jpFinishStreetSearch').val('');
             $('#jpStartStreetSearch').focus();
