@@ -283,7 +283,7 @@ function defaultPanZoom() {
             selectedItinerary = null;
             startFeature = null;
             endFeature = null;
-            markerLayer.destroyFeatures();
+            markerLayer.removeFeatures();
             if (journeyLayer) {
                 journeyLayer.destroyFeatures();
             };
@@ -316,12 +316,17 @@ function defaultPanZoom() {
             setWaypoint(feature);
         };
         function onMapClick(e) {
-            if (routingState == 'start')
-                marker = startMarker;
-            else if (routingState == 'stop')
-                marker = endMarker;
-            else
-                return;
+            switch (routingState) {
+                case 'start':
+                    marker = startMarker;
+                    $('#jpFinishStreetSearch').focus();
+                    break;
+                case 'stop':
+                    marker = endMarker;
+                    break;
+                default:
+                    return;
+            };
             var position = map.getLonLatFromPixel(e.xy);
             movePointToLonLat(marker.geometry, position)
             if (!marker.layer) {
