@@ -39,7 +39,7 @@ search_options = {
             map.setCenter(lonlat, 16);
             curpos = marker.geometry;
             marker.geometry.move(lonlat.lon - curpos.x, lonlat.lat - curpos.y);
-            if (! startMarker.layer) {
+            if (!marker.layer) {
                 markerLayer.addFeatures(marker);
             };
             markerLayer.redraw();
