@@ -220,7 +220,8 @@ function defaultPanZoom() {
                      externalGraphic: "${icon}",
                      pointRadius: 15,
                      graphicYOffset: -30 // melo by byt 34, ale ikona je resizovana na 30
-                })
+                }),
+                displayInLayerSwitcher: false
             });
             map.addLayer(markerLayer);
             drag = new OpenLayers.Control.DragFeature(markerLayer, {
@@ -429,6 +430,7 @@ function defaultPanZoom() {
 
             journeyLayer = new OpenLayers.Layer.Vector("Trasa", {
                 styleMap: styleMap,
+                displayInLayerSwitcher: false
             });
             map.addLayer(journeyLayer);
         }
