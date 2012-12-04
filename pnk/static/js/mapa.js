@@ -217,7 +217,6 @@ function defaultPanZoom() {
 
             markerLayer = new OpenLayers.Layer.Vector("Start/cil", {
                  styleMap: new OpenLayers.StyleMap({
-                     //externalGraphic: "/static/img/route-start.png",
                      externalGraphic: "${icon}",
                      pointRadius: 15,
                      graphicYOffset: -30 // melo by byt 34, ale ikona je resizovana na 30
@@ -236,9 +235,6 @@ function defaultPanZoom() {
                     ),
                     { icon: "/static/img/route-start.png" }
             );
-
-            //var lonlat = startMarker.geometry.clone();
-            //waypoints[0] = lonlat.transform(map.getProjectionObject(), EPSG4326);
             endMarker = new OpenLayers.Feature.Vector(
                     new OpenLayers.Geometry.Point(
                         1608999.3765555094,
@@ -246,9 +242,7 @@ function defaultPanZoom() {
                     ),
                     { icon: "/static/img/route-stop.png" }
             );
-            //lonlat = endMarker.geometry.clone();
-            //waypoints[1] = lonlat.transform(map.getProjectionObject(), EPSG4326);
-            //markerLayer.addFeatures([startMarker, endMarker]);
+
             // zabranime odeslani formu, kdyz uzivatel zmackne enter v okamziku,
             // kdy neni vybrana polozka autocompletu 
             $(".jpSearch").keypress(function(e) {
@@ -489,7 +483,6 @@ function defaultPanZoom() {
                 if (args['trasa']) {
                         setupRouting();
                         if (selectedItinerary == args['trasa']) {
-                                //console.log('trasa uz je nactena');
                                 return;
                         }
                         selectedPlan = null;
