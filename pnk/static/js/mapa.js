@@ -284,7 +284,7 @@ function defaultPanZoom() {
             selectedItinerary = null;
             startFeature = null;
             endFeature = null;
-            markerLayer.removeFeatures();
+            markerLayer.removeAllFeatures();
             if (journeyLayer) {
                 journeyLayer.destroyFeatures();
             };
@@ -386,7 +386,6 @@ function defaultPanZoom() {
         function addPlannedJourney(itinerary, route, options) {
             CSApi.routeInfo(route);
             if (options && options.select) {
-                selectedItinerary = itinerary;
                 CSApi.journey(itinerary, null, 'fastest', addPlannedJourney);
                 CSApi.journey(itinerary, null, 'quietest', addPlannedJourney);
                 location.hash = 'trasa=' + itinerary;
