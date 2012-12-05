@@ -1,13 +1,18 @@
 {% load static %}
 <div id="hledani" class="panel">
     <div id="panel-header">
-        <a href="#"><img src="{% static "img/close.gif" %}" class="pull-right" /></a>
-        <img id="cs-logo" src="{% static "img/cs_logo.png" %}" width="40" height="40" />
-        Vyhledávání tras Vám poskytujeme ve spolupráci se <a href="http://www.cyclestreets.net">CycleStreets.net</a>
+        <div id="panel-tools" class="pull-right">
+           <a href="#hledani">Nové hledání</a> |
+           <a href="#">Zrušit hledání <img src="{% static "img/close.gif" %}" /></a>
+        </div>
+        <div id="cyclestreets-attribution" class="cleaner">
+          <img id="cs-logo" src="{% static "img/cs_logo.png" %}" width="40" height="40" />
+          Vyhledávání tras Vám poskytujeme ve spolupráci se <a href="http://www.cyclestreets.net">CycleStreets.net</a>
+        </div>
     </div>
 
     <div class="cleaner">
-        <b>Vyhledávání tras je ve vývoji. Podoba a funkčnost se bude dále měnit. Nepřebíráme zodpovědnost za nekorektní vedení nalezených tras.</b>
+        <b>Vyhledávání tras je v ověřovacím provozu. Při jízdě po městě dbejte své osobní bezpečnosti a pravidel silničního provozu. Nepřebíráme zodpovědnost za nekorektní vedení nalezených tras.</b>
     </div>
 
     <form id="jpForm">

@@ -132,6 +132,14 @@ a.olControlZoomOut {
     border-radius: 0 0 4px 4px;
 }
 
+.btn {
+  color: black;
+  background-color: white;
+  border: 1px solid black;
+  text-decoration: bold;
+  padding: 3px;
+}
+
 .cleaner {
   clear: both
 }
