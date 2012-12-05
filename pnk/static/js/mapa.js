@@ -387,6 +387,7 @@ function defaultPanZoom() {
             $('#jpPlanButton').hide();
             $('#jpPlanMessage').show();
             CSApi.journey(null, waypoints, 'balanced', addPlannedJourney, { select: true });
+            return false;
         };
         // callback to process route returned by server
         function addPlannedJourney(itinerary, route, options) {

@@ -10,24 +10,22 @@
         <b>Vyhledávání tras je ve vývoji. Podoba a funkčnost se bude dále měnit. Nepřebíráme zodpovědnost za nekorektní vedení nalezených tras.</b>
     </div>
 
+    <form id="jpForm">
     <div id="jpStart" class="jpSearch cleaner">
         <img src="{% static "img/route-start.png" %}" />
-             <form id="streetSearchStart" action="#">
                <input id="jpStartStreetSearch" type="text" name="street_search_address" value="" />
-             </form>
     </div>
 
     <div id="jpFinish" class="jpSearch cleaner">
         <img src="{% static "img/route-stop.png" %}">
-        <form id="streetSearchFinish" action="#">
         <input id="jpFinishStreetSearch" type="text" name="street_search_address" value="" />
-        </form>
     </div>
 
     <div id="jpPlans" class="cleaner">
         <div id="jpPlanMessage">Čekání na server</div>
-        <div id="jpPlanButton">Hledat</div>
+        <input id="jpPlanButton" type=submit title="Hledat" value="" />
     </div>
+    </form>
 
     <div id="jpPlanTypeSelector" class="cleaner">
         <div id="balanced" class="jpPlanType"></div>

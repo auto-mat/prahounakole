@@ -31,10 +31,8 @@ search_options = {
             );
             if (e.target.id == "jpStartStreetSearch") {
                 marker = startMarker;
-                $('#jpFinishStreetSearch').focus();
             } else {
                 marker = endMarker;
-                //$('#jpPlanButton').click();
             };
             map.setCenter(lonlat, 16);
             curpos = marker.geometry;
