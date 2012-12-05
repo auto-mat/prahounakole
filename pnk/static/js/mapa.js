@@ -275,6 +275,8 @@ function defaultPanZoom() {
             if (journeyLayer) {
                 journeyLayer.destroy();
             };
+            map.events.unregister("click", map, onMapClick);
+            $('.olMap').css("cursor", "auto");
             appMode = 'normal';
         }
         function initRoutingPanel() {
@@ -294,8 +296,8 @@ function defaultPanZoom() {
             toggleButtons();
         }
         function setWaypoint(feature) {
-            // called either on selection of result from search box
-            // or in dragging of marker
+            // called either on selection of result from search box,
+            // mouse click or dragging of a marker
             var lonlat;
             if (feature == startMarker) {
                 lonlat = startMarker.geometry.clone();
@@ -317,6 +319,7 @@ function defaultPanZoom() {
             setWaypoint(feature);
         };
         function onMapClick(e) {
+            var marker;
             switch (routingState) {
                 case 'start':
                     marker = startMarker;
@@ -336,8 +339,9 @@ function defaultPanZoom() {
             markerLayer.redraw();
             onDragComplete(marker, position);
             // po umisteni cile muzeme rovnou vyhledat
-            if (marker == endMarker)
+            if (marker == endMarker) {
                 $('#jpPlanButton').click();
+            };
         };
         function toggleButtons() {
             switch (waypoints.length) {
