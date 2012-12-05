@@ -327,6 +327,8 @@ function defaultPanZoom() {
                     break;
                 case 'stop':
                     marker = endMarker;
+                    // odebereme focus, jinak po chvili vybehne autocomplete
+                    $('#jpFinishStreetSearch').blur();
                     break;
                 default:
                     return;
