@@ -307,6 +307,10 @@ function defaultPanZoom() {
                 lonlat = endMarker.geometry.clone();
                 waypoints[1] = lonlat.transform(map.getProjectionObject(), EPSG4326);
             }
+            if (!feature.layer) {
+                markerLayer.addFeatures(feature);
+            }
+            markerLayer.redraw();
             toggleButtons();
         };
         function onDragComplete(feature) {
@@ -357,8 +361,10 @@ function defaultPanZoom() {
                     break;
                 default:
                     $('.olMap').css("cursor", "auto");
-                    routingState = 'go';
+                    // odebereme focus, jinak po chvili vybehne autocomplete
+                    $('#jpFinishStreetSearch').blur();
                     $('#jpPlanButton').show();
+                    routingState = 'go';
             }
         };
         function updateStartLabel(features) {
@@ -379,8 +385,10 @@ function defaultPanZoom() {
             $('#jpFinishStreetSearch').val(startfinish.finish_label);
             var lonlat = startfinish.start.clone().transform(EPSG4326, map.getProjectionObject());
             movePointToLonLat(startMarker.geometry, lonlat);
+            setWaypoint(startMarker);
             lonlat = startfinish.finish.clone().transform(EPSG4326, map.getProjectionObject());
             movePointToLonLat(endMarker.geometry, lonlat);
+            setWaypoint(endMarker);
             markerLayer.redraw();
         };
         function planJourney() {
