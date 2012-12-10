@@ -506,6 +506,8 @@ function defaultPanZoom() {
                         if (selectedItinerary == args['trasa']) {
                                 return;
                         }
+                        // odebereme focus nastaveny v setupRouting, jinak po chvili vybehne autocomplete
+                        $('.ui-autocomplete-input').blur();
                         selectedPlan = null;
                         CSApi.journey(args['trasa'], null, args['plan'], addPlannedJourney, { select: true });
                 };
