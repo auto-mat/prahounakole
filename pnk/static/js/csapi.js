@@ -120,14 +120,22 @@ var CSApi = {
           item.append('<td class="turn"></td>');
         };
         item.append('<td>'+ feature.attributes.name + '</td>');
+        if (feature.attributes.walk && feature.attributes.walk == 1) {
+          item.append('<td class="walk"><b>W</b></td>');
+        } else {
+          item.append('<td class="walk"></td>');
+        }
         totalDst += parseInt(feature.attributes.distance);
         item.append('<td class="distance">'+ this.distanceHumanize(totalDst) + '</td>');
         output.append(item);
       }
     }
     // only for debugging
-    var dbg = '<a href="http://praha.cyclestreets.net/journey/' + route.attributes.itinerary + '/">Inspect on CycleStreets</a>';
-    return output.before(dbg);
+    var notice = '';
+    if (route.attributes.walk && route.attributes.walk == 1) {
+      notice += '<b>Nalezená trasa obsahuje pěší úseky!</b>';
+    };
+    return output.before(notice);
   },
 
   getStartAndFinish: function (features) {
