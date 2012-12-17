@@ -95,7 +95,6 @@ var SimpleLayerSwitcher = OpenLayers.Class(OpenLayers.Control, {
                 var layerElem = document.createElement('a');
                 layerElem.id = this.id + '_input_' + layer.name;
                 layerElem.innerHTML = layer.name;
-                layerElem.href = '#';
 
                 OpenLayers.Element.addClass(layerElem, 'basey');
                 OpenLayers.Element.addClass(layerElem,
