@@ -1,12 +1,11 @@
-        var map, layer_osm, kml, filter_rule, nofilter_rule, zoomFilter;
+        var map, layer_osm, layerPNK, layerPNK_BW,  kml, filter_rule, nofilter_rule, zoomFilter;
+        var simpleSwitcher, layerSwitcher;
         var appMode = ''; // pnkmap nebo routing
         // jakou cast zadani prave resime - slouzi hlavne pro obsluhu kurzoru
         // * start, stop - vychozi a cilovy bod
         // * go - muzeme spustit vyhledavani
         var routingState = 'start';
         var vectors = [];
-        var searchLayer;
-        var searchLayerIdx;
         var journeyLayer, markerLayer, startMarker, endMarker;
         var previewedRoute;
         var waypoints = [];
@@ -97,12 +96,14 @@ function defaultPanZoom() {
             });
             mainFilter.filters.push(zoomFilter);
 
+            simpleSwitcher = new SimpleLayerSwitcher();
+            layerSwitcher = new OpenLayers.Control.LayerSwitcher({roundedCornerColor:'#cb541c', ascending:0});
             var options = { 
                 controls: [
                     new OpenLayers.Control.ArgParser(),
                     new OpenLayers.Control.Attribution(),
-                    new OpenLayers.Control.LayerSwitcher({roundedCornerColor:'#cb541c', ascending:0}),
-                    new SimpleLayerSwitcher(),
+                    layerSwitcher,
+                    simpleSwitcher,
                     new OpenLayers.Control.Navigation(),
                     new OpenLayers.Control.Permalink(),
                     new OpenLayers.Control.ScaleLine({maxWidth: 300}),
@@ -121,11 +122,10 @@ function defaultPanZoom() {
 
             map = new OpenLayers.Map('map', options);
 
-	   var ls = map.getControlsByClass('OpenLayers.Control.LayerSwitcher')[0];
-           if (mapconfig.minimize_layerswitcher)
-	       ls.minimizeControl();
-           else
-	       ls.maximizeControl();
+            if (mapconfig.minimize_layerswitcher)
+	        layerSwitcher.minimizeControl();
+            else
+	        layerSwitcher.maximizeControl();
 
             layer_osm = new OpenLayers.Layer.OSM.Mapnik("OpenStreetMap", { 
                 displayOutsideMaxExtent: false,
@@ -135,7 +135,7 @@ function defaultPanZoom() {
             var layerCycle  = new OpenLayers.Layer.OSM.CycleMap("Cycle map", {
                 displayInLayerSwitcher: false
             });
-            var layerOPNKM = new OpenLayers.Layer.OSM(
+            layerPNK = new OpenLayers.Layer.OSM(
                 "Prahou na kole",
                 "http://tiles.prahounakole.cz/", {
                 displayInLayerSwitcher: false,
@@ -145,7 +145,7 @@ function defaultPanZoom() {
                 tileOptions : {crossOriginKeyword: null} 
             });
             // tlumena verze mapy pro vyhledavac
-            var layerPNK_BW = new OpenLayers.Layer.OSM(
+            layerPNK_BW = new OpenLayers.Layer.OSM(
                 "Vyhledávač PNK",
                 "http://tilesbw.prahounakole.cz/", {
                 displayInLayerSwitcher: false,
@@ -161,7 +161,7 @@ function defaultPanZoom() {
                 numZoomLevels: 22
             });
 
-            map.addLayers([layerOPNKM, layerPNK_BW, layer_osm, layerCycle, layerGoogle]);
+            map.addLayers([layerPNK, layerPNK_BW, layer_osm, layerCycle, layerGoogle]);
             layerGoogle.mapObject.setTilt(0);
 
 
@@ -196,6 +196,8 @@ function defaultPanZoom() {
                 destroyRouting();
             };
 
+            map.setBaseLayer(layerPNK);
+            $('.olControlLayerSwitcher').show();
             kmlvrstvy = mapconfig.vrstvy
             for (i in kmlvrstvy) {
                 addPoiLayer(kmlvrstvy[i][0], mapconfig.root_url + kmlvrstvy[i][1], kmlvrstvy[i][2] == 'True');
@@ -232,6 +234,8 @@ function defaultPanZoom() {
                 destroyPnkMap();
             };
 
+            map.setBaseLayer(layerPNK_BW);
+            $('.olControlLayerSwitcher').hide(); // jinak zustane po LS prouzek zpusobeny marginem
             CSApi.init(map, 'ad9beeeff0afb15e');
 
             markerLayer = new OpenLayers.Layer.Vector("Start/cil", {
@@ -639,12 +643,6 @@ function defaultPanZoom() {
             if (feature.popup)
                 removePopup(feature.popup)
         };
-
-        function hoverResult(id) {
-            var feature = searchLayer.getFeatureByFid(id);
-            selectControl.unselectAll();
-            selectControl.select(feature);
-        }
 
         function ZoomToLonLat( obj, lon, lat, zoom) {
 	   lonlat = new OpenLayers.LonLat(lon,lat);

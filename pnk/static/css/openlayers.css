@@ -303,7 +303,7 @@ div.olControlSaveFeaturesItemInactive {
  */
 .olControlLayerSwitcher {
     position: absolute;
-    top: 25px;
+    top: 10px;
     right: 0;
     width: 20em;
     font-family: sans-serif;
