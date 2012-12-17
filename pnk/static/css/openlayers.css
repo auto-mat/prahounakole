@@ -219,8 +219,8 @@ div.olControlSaveFeaturesItemInactive {
 }
 
 .olControlZoomPanel {
-    top: 71px;
-    left: 14px;
+    top: 10px;
+    left: 20px;
 }
 
 .olControlZoomPanel div {
@@ -431,8 +431,8 @@ span.olGoogleAttribution.hybrid a, span.olGoogleAttribution.satellite a {
 
 div.olControlZoom {
     position: absolute;
-    top: 8px;
-    left: 8px;
+    top: 10px;
+    left: 20px;
     background: rgba(255,255,255,0.4);
     border-radius: 4px;
     padding: 2px;

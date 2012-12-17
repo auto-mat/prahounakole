@@ -27,7 +27,7 @@
         bounds.transform(EPSG4326, EPSG900913)
 
 function defaultPanZoom() {
-    var newPanZoom = new OpenLayers.Control.PanZoom();
+    var newPanZoom = new OpenLayers.Control.ZoomPanel();
 
     OpenLayers.Util.extend(newPanZoom, {
            onButtonClick: function(evt) {
@@ -102,10 +102,12 @@ function defaultPanZoom() {
                     new OpenLayers.Control.ArgParser(),
                     new OpenLayers.Control.Attribution(),
                     new OpenLayers.Control.LayerSwitcher({roundedCornerColor:'#cb541c', ascending:0}),
+                    new SimpleLayerSwitcher(),
                     new OpenLayers.Control.Navigation(),
                     new OpenLayers.Control.Permalink(),
                     new OpenLayers.Control.ScaleLine({maxWidth: 300}),
-                    defaultPanZoom()
+                    new OpenLayers.Control.ZoomPanel()
+                    //defaultPanZoom()
                     //  new OpenLayers.Control.PanZoomBar(),
                     //  new OpenLayers.Control.MousePosition() 
                 ],
@@ -127,26 +129,37 @@ function defaultPanZoom() {
 
             layer_osm = new OpenLayers.Layer.OSM.Mapnik("OpenStreetMap", { 
                 displayOutsideMaxExtent: false,
-                displayInLayerSwitcher: true
+                displayInLayerSwitcher: false
             });
 
-            //var layerTah    = new OpenLayers.Layer.OSM.Osmarender("Osmarender");
-            var layerCycle  = new OpenLayers.Layer.OSM.CycleMap("Cycle map");
+            var layerCycle  = new OpenLayers.Layer.OSM.CycleMap("Cycle map", {
+                displayInLayerSwitcher: false
+            });
             var layerOPNKM = new OpenLayers.Layer.OSM(
-                        "Prahou na kole",
-                        "http://tiles.prahounakole.cz/",
-                        { type: 'png', numZoomLevels: 19, getURL: getTileURL, tileOptions : {crossOriginKeyword: null} }
-            );
+                "Prahou na kole",
+                "http://tiles.prahounakole.cz/", {
+                displayInLayerSwitcher: false,
+                type: 'png',
+                numZoomLevels: 19,
+                getURL: getTileURL,
+                tileOptions : {crossOriginKeyword: null} 
+            });
             // tlumena verze mapy pro vyhledavac
             var layerPNK_BW = new OpenLayers.Layer.OSM(
-                        "Vyhledávač PNK",
-                        "http://tilesbw.prahounakole.cz/",
-                        { type: 'png', numZoomLevels: 19, getURL: getTileURL, tileOptions : {crossOriginKeyword: null} }
-            );
+                "Vyhledávač PNK",
+                "http://tilesbw.prahounakole.cz/", {
+                displayInLayerSwitcher: false,
+                type: 'png',
+                numZoomLevels: 19,
+                getURL: getTileURL,
+                tileOptions : {crossOriginKeyword: null}
+            });
             var layerGoogle = new OpenLayers.Layer.Google(
-                "Satelitní mapa Google",
-                {type: google.maps.MapTypeId.SATELLITE, numZoomLevels: 22}
-            );
+                "Satelitní mapa Google", {
+                displayInLayerSwitcher: false,
+                type: google.maps.MapTypeId.SATELLITE,
+                numZoomLevels: 22
+            });
 
             map.addLayers([layerOPNKM, layerPNK_BW, layer_osm, layerCycle, layerGoogle]);
             layerGoogle.mapObject.setTilt(0);
