@@ -8,6 +8,7 @@
   border:1px solid #ccc;
   min-width:150px;
   background: #fff;
+  cursor: pointer;
 }
 
 .SimpleLayerSwitcher a.basey {
