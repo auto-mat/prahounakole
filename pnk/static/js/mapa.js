@@ -1,4 +1,4 @@
-        var map, base_layer, kml, filter_rule, nofilter_rule, zoomFilter;
+        var map, layer_osm, kml, filter_rule, nofilter_rule, zoomFilter;
         var appMode = ''; // pnkmap nebo routing
         // jakou cast zadani prave resime - slouzi hlavne pro obsluhu kurzoru
         // * start, stop - vychozi a cilovy bod
@@ -125,7 +125,7 @@ function defaultPanZoom() {
            else
 	       ls.maximizeControl();
 
-            base_layer = new OpenLayers.Layer.OSM.Mapnik("OpenStreetMap", { 
+            layer_osm = new OpenLayers.Layer.OSM.Mapnik("OpenStreetMap", { 
                 displayOutsideMaxExtent: false,
                 displayInLayerSwitcher: true
             });
@@ -137,12 +137,18 @@ function defaultPanZoom() {
                         "http://tiles.prahounakole.cz/",
                         { type: 'png', numZoomLevels: 19, getURL: getTileURL, tileOptions : {crossOriginKeyword: null} }
             );
+            // tlumena verze mapy pro vyhledavac
+            var layerPNK_BW = new OpenLayers.Layer.OSM(
+                        "Vyhledávač PNK",
+                        "http://tilesbw.prahounakole.cz/",
+                        { type: 'png', numZoomLevels: 19, getURL: getTileURL, tileOptions : {crossOriginKeyword: null} }
+            );
             var layerGoogle = new OpenLayers.Layer.Google(
                 "Satelitní mapa Google",
                 {type: google.maps.MapTypeId.SATELLITE, numZoomLevels: 22}
             );
 
-            map.addLayers([layerOPNKM, base_layer, layerCycle, layerGoogle]);
+            map.addLayers([layerOPNKM, layerPNK_BW, layer_osm, layerCycle, layerGoogle]);
             layerGoogle.mapObject.setTilt(0);
 
 
