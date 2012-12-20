@@ -80,7 +80,7 @@ var CSApi = {
     var km = Math.round(route.attributes.length / 100) / 10.0;
     var timeStr = CSApi.secondsToTime(route.attributes.time);
     map.zoomToExtent(journeyLayer.getDataExtent());
-    var html = this.planNames[route.attributes.plan] + '<br>' + km + ' km<br>' + timeStr + '<br>';
+    var html =  km + ' km / ' + timeStr;
     switch (route.attributes.plan) {
       case 'balanced':
         $('#balanced').html(html);
@@ -108,7 +108,7 @@ var CSApi = {
   getRouteInstructions: function (plan) {
     var features = this.routeFeatures[plan];
     var route = this.getFeature(features, 'route');
-    var output = $('<table></table>');
+    var output = $('<table class="instructions"></table>');
     var totalDst = 0;
     for (var i=0; i < features.length; i++) {
       feature = features[i];
@@ -121,12 +121,21 @@ var CSApi = {
         };
         item.append('<td>'+ feature.attributes.name + '</td>');
         if (feature.attributes.walk && feature.attributes.walk == 1) {
-          item.append('<td class="walk"><b>W</b></td>');
+          item.append('<td><i class="walk"></i></td>');
         } else {
-          item.append('<td class="walk"></td>');
+          if (feature.attributes.provisionName && feature.attributes.provisionName == 'steps') {
+            item.append('<td><i class="stairs"></i></td>');
+          } else {
+            item.append('<td></td>');
+          }
         }
+
         totalDst += parseInt(feature.attributes.distance);
-        item.append('<td class="distance">'+ this.distanceHumanize(totalDst) + '</td>');
+        item.append('<td class="distance"><span class="dist">' +
+                         this.distanceHumanize(totalDst) +
+                    '</span><span class="leng">' + 
+                        this.distanceHumanize(feature.attributes.distance) +
+                    '</span></td>');
         output.append(item);
       }
     }
@@ -167,9 +176,9 @@ var CSApi = {
     
     var timeStr;
     if (obj.h > 0) {
-        timeStr = obj.h + ':' + obj.m + ' hod.';
+        timeStr = obj.h + ':' + obj.m + ' hod';
     } else {
-        timeStr = obj.m + ' minut';
+        timeStr = obj.m + ' min';
     }
     return timeStr;
   },

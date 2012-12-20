@@ -1,10 +1,12 @@
 {% load static %}
 <div id="hledani" class="panel">
+{% comment %}
     <div id="panel-header">
         <div id="panel-tools" class="pull-right">
            <a href="#hledani">Nové hledání</a> |
            <a href="#">Zrušit hledání <img src="{% static "img/close.gif" %}" /></a>
         </div>
+
         <div id="cyclestreets-attribution" class="cleaner">
           <img id="cs-logo" src="{% static "img/cs_logo.png" %}" width="40" height="40" />
           Vyhledávání tras Vám poskytujeme ve spolupráci se <a href="http://www.cyclestreets.net">CycleStreets.net</a>
@@ -14,29 +16,51 @@
     <div class="cleaner">
         <b>Vyhledávání tras je v ověřovacím provozu. Při jízdě po městě dbejte své osobní bezpečnosti a pravidel silničního provozu. Nepřebíráme zodpovědnost za nekorektní vedení nalezených tras.</b>
     </div>
+{% endcomment %}
+    <div class="submenu wide_stretch">
+        <ul>
+            <li>
+                <a href="#">mapa</a>
+            </li>
+            <li>
+                <a href="#hledani" class="active">hledání trasy</a>
+            </li>
+            <li>
+                <a href="">???</a>
+            </li>
+        </ul>
+    </div> 
 
-    <form id="jpForm">
-    <div id="jpStart" class="jpSearch cleaner">
-        <img src="{% static "img/route-start.png" %}" />
-               <input id="jpStartStreetSearch" type="text" name="street_search_address" value="" />
-    </div>
-
-    <div id="jpFinish" class="jpSearch cleaner">
-        <img src="{% static "img/route-stop.png" %}">
-        <input id="jpFinishStreetSearch" type="text" name="street_search_address" value="" />
-    </div>
-
-    <div id="jpPlans" class="cleaner">
-        <div id="jpPlanMessage">Čekání na server</div>
-        <input id="jpPlanButton" type=submit title="Hledat" value="" />
-    </div>
+    <form id="jpForm" class="search wide_stretch">
+        <i class="point_A"></i> 
+        <input id="jpStartStreetSearch" class="jpSearch input_A right_arrowed" type="text" name="street_search_address" value="" />
+        <br />
+        <input id="jpFinishStreetSearch" class="jpSearch input_B right_arrowed" type="text" name="street_search_address" value="" />
+        <i class="point_B"></i> 
+        <input id="jpPlanButton" class="search_submit send_arrow" type=submit title="Hledat" value="" />
     </form>
+        <div id="jpPlanMessage">Čekání na server</div>
 
+    <div id="jpPlanTypeSelector" class="chart wide_stretch loaded">
+        <div class="in_chart">
+            <div id="needle" class="hard_way"></div>
+            <div class="wide_stretch centred margin_b_05">
+                <span id="balanced" class="jpPlanType way_2">35km/20min</span>
+            </div>
+            <div class="wide_stretch">
+                <span id="quietest" class="jpPlanType align-left way_1">45km/25min</span>
+                <span id="fastest" class="jpPlanType align-right way_3">5km/50min</span>
+            </div>
+        </div>
+    </div> 
+
+{% comment %}
     <div id="jpPlanTypeSelector" class="cleaner">
         <div id="balanced" class="jpPlanType"></div>
         <div id="fastest" class="jpPlanType"></div>
         <div id="quietest" class="jpPlanType"></div>
     </div>
+{% endcomment %}
 
     <div id="jpInstructions" class="cleaner"></div>
 </div>

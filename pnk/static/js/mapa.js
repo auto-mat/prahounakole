@@ -483,7 +483,7 @@ function defaultPanZoom() {
             journeyLayer.addFeatures(CSApi.routeFeatures[plan]);
             map.zoomToExtent(journeyLayer.getDataExtent());
             $('.selected').removeClass('selected');
-            $('#' + plan).addClass('selected');
+            $('#needle').attr('class', plan);
             selectedPlan = plan;
             $('#jpInstructions').html(CSApi.getRouteInstructions(plan)).show();
         }
