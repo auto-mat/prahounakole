@@ -242,7 +242,10 @@ function defaultPanZoom() {
                  styleMap: new OpenLayers.StyleMap({
                      externalGraphic: "${icon}",
                      pointRadius: 15,
-                     graphicYOffset: -30 // melo by byt 34, ale ikona je resizovana na 30
+                     graphicWidth: 34,
+                     graphicHeight: 42,
+                     graphicXOffset: -17,
+                     graphicYOffset: -42
                 }),
                 displayInLayerSwitcher: false
             });
@@ -375,11 +378,11 @@ function defaultPanZoom() {
         function toggleButtons() {
             switch (waypoints.length) {
                 case 0:
-                    $('.olMap').css("cursor", "url('/static/img/route-start.png') 10 34, auto"); 
+                    $('.olMap').css("cursor", "url('/static/img/route-start.png') 17 42, auto"); 
                     routingState = 'start';
                     break;
                 case 1:
-                    $('.olMap').css("cursor", "url('/static/img/route-stop.png') 10 34, auto");
+                    $('.olMap').css("cursor", "url('/static/img/route-stop.png') 17 42, auto");
                     routingState = 'stop';
                     break;
                 default:
