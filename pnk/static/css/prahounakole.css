@@ -183,11 +183,13 @@ a.olControlZoomOut {
 
 .panel {font-size:13px;line-height:1.4em;font-family:Georgia;}
 .panel td {font-size:13px;}
+.panel a {text-decoration:none;color:#333;}
+.panel a:hover, a.active{border-bottom:1px solid #333;color:#000}
 
 .submenu{margin:1em 0 2em 0;}
-.submenu a {width:33%}
+.submenu a {width:25%}
 .submenu ul, .submenu li{padding:0;margin:0;}
-.submenu li{width:32%;display:inline-block;text-align:center;}
+.submenu li{width:24%;display:inline-block;text-align:center;}
 
 .jpPlanType {color:#333;}
 .jpPlanType:hover {border-bottom:1px solid #333;color:#000;} 
