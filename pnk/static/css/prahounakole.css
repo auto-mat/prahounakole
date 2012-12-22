@@ -2,7 +2,7 @@
         top:50px;
 	z-index:-1;
 	bottom: 0px;
-        left:0px;
+        left:312px;
         right:0px;
         border: 0px;
         padding: 0px;
@@ -153,8 +153,9 @@ a.olControlZoomOut {
   top: 55px;
   bottom: 50px;
   width: 260px;
-  padding: 10px;
-  overflow: auto;
+  padding: 0 26px;
+  border-right: 2px solid #000;
+  overflow-y: auto;
 }
 .panel {
   display: none;
@@ -184,9 +185,6 @@ a.olControlZoomOut {
 }
 #jpPlanTypeSelector {
   display: none;
-}
-#map {
-  left: 270px;
 }
 
 .panel {font-size:13px;line-height:1.4em;font-family:Georgia;}
