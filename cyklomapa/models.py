@@ -110,6 +110,8 @@ class Legenda(models.Model):
     slug    = models.SlugField(unique=True, verbose_name=u"název v URL")
     popis    = models.TextField(null=True, blank=True)
     obrazek = models.ImageField(upload_to='ikony')
+    class Meta:
+        verbose_name_plural = u"legenda"
     def __unicode__(self):
         return self.nazev
 
