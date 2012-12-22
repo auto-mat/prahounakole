@@ -78,6 +78,7 @@ class VrstvaAdmin(admin.ModelAdmin):
 
 class ZnackaAdmin(admin.ModelAdmin):
     list_display = ('nazev', 'vrstva', 'minzoom', 'status')
+    list_filter = ('vrstva','status',)
     search_fields = ('nazev',)
     
 class UpresneniAdmin(admin.ModelAdmin):
