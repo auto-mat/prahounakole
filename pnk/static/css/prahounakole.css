@@ -186,6 +186,10 @@ a.olControlZoomOut {
 #jpPlanTypeSelector {
   display: none;
 }
+#jpForm {
+  float:left;
+  min-height:147px;
+}
 
 .panel {font-size:13px;line-height:1.4em;font-family:Georgia;}
 .panel td {font-size:13px;}
