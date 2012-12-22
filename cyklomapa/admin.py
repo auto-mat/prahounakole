@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # admin.py
 
 # This file controls the look and feel of the models within the Admin App
@@ -56,7 +57,6 @@ class PoiAdmin(OSMGeoAdmin):
     #scale_text = True
     #layerswitcher = True
     scrollable = False
-    #admin_media_prefix = settings.ADMIN_MEDIA_PREFIX
     map_width = 700
     map_height = 500
     map_srid = 900913
@@ -76,9 +76,6 @@ class VrstvaAdmin(admin.ModelAdmin):
     list_display = ['nazev', 'status', 'order']
     inlines = [ZnackaInline]
 
-class MapaAdmin(admin.ModelAdmin):
-    prepopulated_fields = {'slug': ('nazev',) } # slug se automaticky vytvari z nazvu
-
 class ZnackaAdmin(admin.ModelAdmin):
     list_display = ('nazev', 'vrstva', 'minzoom', 'status')
     search_fields = ('nazev',)
@@ -89,8 +86,16 @@ class UpresneniAdmin(admin.ModelAdmin):
     list_filter = ('status',)
     list_display = ('misto', 'email', 'status', 'desc',)
 
+class LegendaAdmin(admin.ModelAdmin):
+    list_display = ('nazev', 'obrazek_img', 'popis',)
+    def obrazek_img(self, obj):
+        return u'<img src=%s>' % obj.obrazek.url
+    obrazek_img.allow_tags = True
+    obrazek_img.short_description = u"obrázek"
+
 admin.site.register(Poi   , PoiAdmin   )
 admin.site.register(Vrstva, VrstvaAdmin)
 admin.site.register(Znacka, ZnackaAdmin)
 admin.site.register(Status, admin.ModelAdmin)
 admin.site.register(Upresneni, UpresneniAdmin)
+admin.site.register(Legenda, LegendaAdmin)

@@ -35,16 +35,10 @@ function toggle(obj) {
   <div id="panel-hidden">
   <p id="hidden-header" onClick="toggle('panel-hidden')">Základní značky v cyklomapě</p>
   <p class="desc_vlastnosti">
-          {% for z in znacky %}
-             {% if z.vrstva.slug = 'legenda'  %}
-             <img src="{{z.default_icon.url}}"> &nbsp; {{z.nazev}}<br/>
-             {% endif %}
-          {% endfor %}
-
+  {% for l in legenda %}
+      <img src="{{ l.obrazek.url }}"> &nbsp; {{ l.nazev }}<br/>
+  {% endfor %}
   </p>
-
-
-  <!--<img src="{% static "img/legenda.png" %}">-->
   </div>
 
 

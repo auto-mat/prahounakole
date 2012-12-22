@@ -104,9 +104,18 @@ class Poi(models.Model):
     def get_absolute_url(self):
         return "/misto/%i/" % self.id
 
+class Legenda(models.Model):
+    "prvky legendy mapoveho podkladu"
+    nazev   = models.CharField(unique=True, max_length=255)
+    slug    = models.SlugField(unique=True, verbose_name=u"název v URL")
+    popis    = models.TextField(null=True, blank=True)
+    obrazek = models.ImageField(upload_to='ikony')
+    def __unicode__(self):
+        return self.nazev
+
 from django.db.models.signals import post_save
 def invalidate_cache(sender, instance, **kwargs):
-    if sender in [Status, Vrstva, Znacka, Poi]:
+    if sender in [Status, Vrstva, Znacka, Poi, Legenda]:
         cache.clear()
 post_save.connect(invalidate_cache)
     

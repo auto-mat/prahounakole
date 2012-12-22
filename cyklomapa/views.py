@@ -21,7 +21,6 @@ from cyklomapa.models import *
 #@cache_page(24 * 60 * 60) # cachujeme view v memcached s platnosti 24h
 def mapa_view(request, poi_id=None):
     vrstvy = Vrstva.objects.filter(status__show=True)
-    znacky = Znacka.objects.filter(status__show=True)
     # volitelne poi_id zadane mape jako bod, na ktery se ma zazoomovat
     center_poi = None
     if poi_id:
@@ -49,7 +48,7 @@ def mapa_view(request, poi_id=None):
     context = RequestContext(request, {
         'root_url': ROOT_URL,
         'vrstvy': vrstvy,
-        'znacky': znacky,
+        'legenda': Legenda.objects.all(),
         'center_poi' : center_poi,
         'nomenu': nomenu,
         'minimize_layerswitcher': minimize_layerswitcher,
@@ -112,5 +111,6 @@ def metro_view(request):
 def znacky_view(request):
     vrstvy = Vrstva.objects.filter(status__show=True)
     znacky = Znacka.objects.filter(status__show=True)
+    legenda = Legenda.objects.all()
     return render_to_response('znacky.html',
-        context_instance=RequestContext(request, { 'vrstvy': vrstvy, 'znacky': znacky }))
+        context_instance=RequestContext(request, { 'vrstvy': vrstvy, 'znacky': znacky, 'legenda': legenda }))
