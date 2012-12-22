@@ -1,14 +1,64 @@
 {% load static %}
 <div id="uvod" class="panel">
-Vítejte v cyklomapě Prahou na kole. Jsme tu pro vás už od r. 2006
 
-<br><br>
+    <div class="submenu wide_stretch">
+        <ul>
+            <li>
+                <a href="/#hledani" title="Vyhledání trasy pro cestu na kole">Najít trasu</a>
+            </li>
+            <li>
+                <a href="/?layers=0000BFFFFFFTFT" title="Dlouhodobé uzavírky, zimní údržba">Mapa uzavírek</a>
+            </li>
+            <li>
+                <a href="/?layers=0000BFFFFFFFTT" title="Místa, která čekají na úpravu, nebo byla upravena svépomocí">Cykloopatření</a>
+            </li>
+            <li>
+                <a onclick="toggle('panel-hidden')" title="Zobrazí základní legendu mapy přímo v panelu">Základní legenda</a>
+            </li>
+        </ul>
+    </div> 
 
-<a class="btn" href="#hledani">VYHLEDAT TRASU</a>
+<script type="text/javascript" >
+function toggle(obj) {
+	var el = document.getElementById(obj);
+	if ( el.style.display != 'none' &  el.style.display != '' ) {
+		el.style.display = 'none';
+	}
+	else {
+		el.style.display = 'block';
+	}
+}
 
-<br><br>
- 
-<p>
-Základní značky v cyklomapě:<br>
-<img src="{% static "img/legenda.png" %}">
+</script>
+
+<div class="panel-content">
+  <div id="panel-hidden">
+  <p id="hidden-header" onClick="toggle('panel-hidden')">Základní značky v cyklomapě</p>
+  <img src="{% static "img/legenda.png" %}">
+  </div>
+
+
+  <div id="panel-hidden2">
+  <h3><br /><a href="/#hledani" title="Vyhledání trasy pro cestu na kole">Zkuste náš nový vyhledávač tras!</a></h3>
+  <p>Po měsících vývoje vám představujeme unikátní možnost vyhledat si trasu pro jízdu na kole v Praze a blízkém okolí.</p>
+  <p>Co bereme v potaz:</p>
+  <ul>
+	<li>značené a doporučené cyklotrasy,</li>
+	<li>cyklostezky, cyklopruhy,</li>
+	<li>třídu komunikace, ze které odvozuje provoz,</li>
+	<li>cykloobousměrky,</li>
+	<li>omezení vjezdu a vstupu,</li>
+	<li>kopce,</li>
+	<li>nezpevněný povrch,</li>
+	<li>tramvajové koleje,</li>
+	<li>dlažbu (na vozových  cestách).</li>
+  </ul>
+  <p><a href="/#hledani" title="Vyhledání trasy pro cestu na kole">Pokračujte zde</a></p>
+  <p><a href="http://prahounakole.cz/kudy-po-praze/mapa/vyhledavac/" target="_blank">Návod pro vyhledávání</a></p>
+  </div>
+
 </div>
+
+
+</div>
+

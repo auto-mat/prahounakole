@@ -48,6 +48,7 @@ body {
 	text-decoration: none;
 
  }
+
 .menu { float: left; max-height: 30px; margin-left:1px; 
         margin-top:2px; padding: 7px; 
         font-size: 14px; 
@@ -72,6 +73,7 @@ h3{font-size:14px;}
 h4{font-size:12px;margin-top:2px;}
 ol{margin:0 0 10px 0;padding:0;list-style:none;}
 li{margin:0 0 8px 0;padding:0;list-style:none;}
+.panel li{margin:0 0 8px 0;padding:0;list-style:circle;}
 td{font-size:10px;}
 dt{font-weight:bold;}
 
@@ -149,7 +151,7 @@ a.olControlZoomOut {
 #panel {
   position: absolute;
   top: 55px;
-  bottom: 0px;
+  bottom: 50px;
   width: 260px;
   padding: 10px;
   overflow: auto;
@@ -167,6 +169,12 @@ a.olControlZoomOut {
   float: left;
   margin-right: 5px;
 }
+.panel-content {
+  margin-right: 5px;
+  font-family: Georgia, Serif;
+  font-size: 11px;
+}
+
 #jpPlanButton {
   display: none;
   cursor: pointer;
@@ -186,10 +194,20 @@ a.olControlZoomOut {
 .panel a {text-decoration:none;color:#333;}
 .panel a:hover, a.active{border-bottom:1px solid #333;color:#000}
 
-.submenu{margin:1em 0 2em 0;}
+.submenu{padding:0 0 1em 0; margin:0 0 1em 0; font-size:11px; border-bottom:solid 1px #CCC;}
 .submenu a {width:25%}
 .submenu ul, .submenu li{padding:0;margin:0;}
-.submenu li{width:24%;display:inline-block;text-align:center;}
+.submenu li{width:45%;display:inline-block;text-align:center; border:solid 0px #CCC; margin:1px; padding:1px; }
+
+#panel-credits {
+  position: absolute;
+  bottom: 0px;
+  width: 260px;
+  height: 50px;
+  padding: 10px;
+  overflow: hidden;
+}
+#panel-hidden {display:none;}
 
 .jpPlanType {color:#333;}
 .jpPlanType:hover {border-bottom:1px solid #333;color:#000;} 
