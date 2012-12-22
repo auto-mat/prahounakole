@@ -99,6 +99,7 @@ INSTALLED_APPS = (
     'django.contrib.gis',
     'cyklomapa',
     'easy_thumbnails',
+    'south',
 )
 
 PROXY_DOMAIN = 'www.cyclestreets.net'
