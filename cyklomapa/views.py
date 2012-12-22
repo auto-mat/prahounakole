@@ -17,11 +17,11 @@ from django.db.models import Q
 
 from cyklomapa.models import *
 
-@gzip_page
+@gzip_page 
 #@cache_page(24 * 60 * 60) # cachujeme view v memcached s platnosti 24h
 def mapa_view(request, poi_id=None):
     vrstvy = Vrstva.objects.filter(status__show=True)
-
+    znacky = Znacka.objects.filter(status__show=True)
     # volitelne poi_id zadane mape jako bod, na ktery se ma zazoomovat
     center_poi = None
     if poi_id:
@@ -49,6 +49,7 @@ def mapa_view(request, poi_id=None):
     context = RequestContext(request, {
         'root_url': ROOT_URL,
         'vrstvy': vrstvy,
+        'znacky': znacky,
         'center_poi' : center_poi,
         'nomenu': nomenu,
         'minimize_layerswitcher': minimize_layerswitcher,

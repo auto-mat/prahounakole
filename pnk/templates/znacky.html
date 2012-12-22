@@ -7,7 +7,21 @@
   <body style="background-color:#F9F9F9; margin:5px;">
        <h2>Prahou na kole - legenda</h2>
        
-       <div style="width:100%; text-align:center;"><img src="http://prahounakole.cz/wp-content/pnk/uploads/2011/10/legenda.png"></div>
+       <!--<div style="width:100%; text-align:center;"><img src="http://prahounakole.cz/wp-content/pnk/uploads/2011/10/legenda.png"></div>-->
+
+       <h4>&nbsp;<br>Podklad mapy:</h4>
+
+        <dl class="desc_vlastnosti">
+          {% for z in znacky %}
+             {% if z.vrstva.slug = 'legenda'  %}
+             <dt><a name="{{z.slug}}"></a><img src="{{z.default_icon.url}}"></img> <b>{{z.nazev}}</b></dt>
+             <dd>{{z.desc|safe}}<dd>
+             {% endif %}
+          {% endfor %}
+
+       </dl>
+
+
 
        {{ static_znacky.content|safe }}
        
