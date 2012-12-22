@@ -35,9 +35,11 @@ function toggle(obj) {
   <div id="panel-hidden">
   <p id="hidden-header" onClick="toggle('panel-hidden')">Základní značky v cyklomapě</p>
   <p class="desc_vlastnosti">
+  {% cache 3600 legenda %}
   {% for l in legenda %}
       <img src="{{ l.obrazek.url }}"> &nbsp; {{ l.nazev }}<br/>
   {% endfor %}
+  {% endcache %}
   </p>
   </div>
 
