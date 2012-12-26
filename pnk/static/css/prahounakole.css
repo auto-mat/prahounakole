@@ -251,9 +251,9 @@ table.instructions .distance{text-align:right}
 i.walk{width:10px;height:16px;background:url(../img/mapa_input_sprites.png) no-repeat 0px 0px;display:block;}
 i.stairs{width:11px;height:16px;background:url(../img/mapa_input_sprites.png) no-repeat -12px -3px;display:block;}
 
-td.distance .leng{display:none}
-td.distance:hover .leng{display:block}
-td.distance:hover .dist{display:none}  
+td.distance .dist{display:none}
+td.distance:hover .dist{display:block}
+td.distance:hover .leng{display:none}  
 /* helpers */
 .wide_stretch{width:100%}
 *{-moz-transition:  opacity 0.2s linear;
