@@ -280,7 +280,7 @@ function defaultPanZoom() {
             });
             $('#jpStartStreetSearch').autocomplete(search_options);
             $('#jpFinishStreetSearch').autocomplete(search_options);
-            addRouteLayer();
+            addJourneyLayer();
             toggleButtons();
             map.events.register("click", map, onMapClick);
             $('#jpPlanButton').click(planJourney);
@@ -437,7 +437,7 @@ function defaultPanZoom() {
             $('#jpPlanButton').show();
             $('#jpPlanMessage').hide();
         }
-        function addRouteLayer() {
+        function addJourneyLayer() {
             // create a styleMap with a custom default symbolizer
             var styleMap = new OpenLayers.StyleMap({
                 "default": new OpenLayers.Style({
