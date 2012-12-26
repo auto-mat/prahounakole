@@ -23,7 +23,7 @@
         var EPSG4326 = new OpenLayers.Projection("EPSG:4326");
         var EPSG900913 = new OpenLayers.Projection("EPSG:900913"); 
 
-        bounds.transform(EPSG4326, EPSG900913)
+        bounds.transform(EPSG4326, EPSG900913);
 
 function defaultPanZoom() {
     var newPanZoom = new OpenLayers.Control.ZoomPanel();
@@ -122,10 +122,11 @@ function defaultPanZoom() {
 
             map = new OpenLayers.Map('map', options);
 
-            if (mapconfig.minimize_layerswitcher)
-	        layerSwitcher.minimizeControl();
-            else
+            if (mapconfig.minimize_layerswitcher) {
+                layerSwitcher.minimizeControl();
+            } else {
 	        layerSwitcher.maximizeControl();
+            };
 
             layer_osm = new OpenLayers.Layer.OSM.Mapnik("OpenStreetMap", { 
                 displayOutsideMaxExtent: false,
@@ -176,7 +177,7 @@ function defaultPanZoom() {
                     zoomFilter.value = zoomLevel;
                 }
                 return valid;
-            }
+            };
             if (!map.getCenter()) {
                 map.setCenter(new OpenLayers.LonLat(mapconfig.lon, mapconfig.lat).transform(EPSG4326, map.getProjectionObject()), mapconfig.zoom);
             }
@@ -198,7 +199,7 @@ function defaultPanZoom() {
 
             map.setBaseLayer(layerPNK);
             $('.olControlLayerSwitcher').show();
-            kmlvrstvy = mapconfig.vrstvy
+            kmlvrstvy = mapconfig.vrstvy;
             for (i in kmlvrstvy) {
                 addPoiLayer(kmlvrstvy[i][0], mapconfig.root_url + kmlvrstvy[i][1], kmlvrstvy[i][2] == 'True');
             };
@@ -364,7 +365,7 @@ function defaultPanZoom() {
                     return;
             };
             var position = map.getLonLatFromPixel(e.xy);
-            movePointToLonLat(marker.geometry, position)
+            movePointToLonLat(marker.geometry, position);
             if (!marker.layer) {
                 markerLayer.addFeatures(marker);
             };
