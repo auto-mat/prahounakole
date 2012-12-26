@@ -182,6 +182,8 @@ a.olControlZoomOut {
 }
 #jpPlanMessage {
   display: none;
+  float: left;
+  margin-top: 5px;
 }
 #jpPlanTypeSelector {
   display: none;
