@@ -151,7 +151,7 @@ a.olControlZoomOut {
 #panel {
   position: absolute;
   top: 55px;
-  bottom: 50px;
+  bottom: 0px;
   width: 260px;
   padding: 0 26px;
   border-right: 2px solid #000;
@@ -167,9 +167,10 @@ a.olControlZoomOut {
 #panel-header {
   height: 48px;
 }
-#panel-header #cs-logo {
-  float: left;
+#hledani #cs-logo {
+  float:left;
   margin-right: 5px;
+  margin-top: 15px;
 }
 .panel-content {
   margin-right: 5px;
@@ -190,7 +191,7 @@ a.olControlZoomOut {
   display: none;
 }
 #jpForm {
-  float:left;
+  /* float:left; */
   min-height:147px;
 }
 
@@ -204,6 +205,7 @@ a.olControlZoomOut {
 .submenu ul, .submenu li{padding:0;margin:0;}
 .submenu li{width:45%;display:inline-block;text-align:center; border:solid 0px #CCC; margin:1px; padding:1px; }
 
+/* obsolete
 #panel-credits {
   position: absolute;
   bottom: 0px;
@@ -212,7 +214,14 @@ a.olControlZoomOut {
   padding: 10px;
   overflow: hidden;
 }
+*/
 #panel-hidden {display:none;}
+
+#cyclestreets-attribution {
+  margin-top:40px;
+  border-top:1px solid #CCCCCC;
+  font-size:11px;
+}
 
 .jpPlanType {color:#333;}
 .jpPlanType:hover {border-bottom:1px solid #333;color:#000;} 
@@ -242,7 +251,7 @@ i.point_B{background:url(../img/mapa_input_sprites.png) no-repeat 0px -130px;mar
 #needle.quietest{position:absolute;z-index:2;top:51px;left:81px;width:50px;height:47px;background:url(../img/mapa_input_sprites.png) no-repeat 0px -535px;display:block;}
 #needle.fastest{position:absolute;z-index:2;top:51px;left:116px;width:50px;height:47px;background:url(../img/mapa_input_sprites.png) no-repeat -57px -535px;display:block;}
 
-table.instructions{float:left;margin:1em 0 0 0;border-collapse: collapse;border-spacing: 0;}
+table.instructions{float:none;margin:1em 0 0 0;border-collapse: collapse;border-spacing: 0; width:100%}
 table.instructions tr:hover{background:#DEDEDE;}
 table.instructions tr td:first-child { border-top-left-radius: 4px; -webkit-border-top-left-radius: 4px; -moz-border-top-left-radius: 4px;border-bottom-left-radius: 4px; -webkit-border-bottom-left-radius: 4px; -moz-border-bottom-left-radius: 4px;}
 table.instructions tr td:last-child { border-top-right-radius: 4px; -webkit-border-top-right-radius: 4px; -moz-border-top-right-radius: 4px;border-bottom-right-radius: 4px; -webkit-border-bottom-right-radius: 4px; -moz-border-bottom-right-radius: 4px; }
