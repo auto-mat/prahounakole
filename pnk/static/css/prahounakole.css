@@ -215,9 +215,10 @@ a.olControlZoomOut {
   overflow: hidden;
 }
 */
+
 #panel-hidden {display:none;}
 
-#cyclestreets-attribution {
+#cyclestreets-attribution, #panel-credits {
   margin-top:40px;
   border-top:1px solid #CCCCCC;
   font-size:11px;
