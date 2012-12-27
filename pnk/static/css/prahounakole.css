@@ -1,25 +1,26 @@
-#map {
-        top:50px;
-	z-index:-1;
-	bottom: 0px;
-        left:312px;
-        right:0px;
-        border: 0px;
-        padding: 0px;
-        position: absolute;
-     }
-div#map.fullscreen {
-        top: 0px;
-        bottom: 0px;
-}
 body {
-        border: 0px;
-        margin: 0px;
-        padding: 0px;
-        height: 100%;
-	overflow: hidden;
-     }
-
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    overflow: hidden;
+    font-size:11px;
+    font-family:Arial,Helvetica, sans-serif;
+}
+#map {
+    top:50px;
+    z-index:-1;
+    bottom: 0px;
+    left:312px;
+    right:0px;
+    border: 0px;
+    padding: 0px;
+    position: absolute;
+}
+div#map.fullscreen {
+    top: 0px;
+    bottom: 0px;
+}
 .smallmap {
     width: 512px;
     height: 512px;
@@ -28,31 +29,32 @@ body {
 #tags {
     display: none;
 }
-
-
-#head { min-width: 1000px; 
-	height: 53px;
-	padding-top: 8px;
-	padding-left: 8px;
-	background: url('bottom_waves.png') repeat-x 0 43px;
-	font-family: Georgia, Serif;
+#head {
+    min-width: 1000px; 
+    height: 53px;
+    padding-top: 8px;
+    padding-left: 8px;
+    background: url('bottom_waves.png') repeat-x 0 43px;
+    font-family: Georgia, Serif;
 }
 #titulka a{
-	float:left; 
-	width:285px; 
-	background: url('prazak-ico.png') no-repeat 240px 0;
-	color: #800000;
-	font-weight: bold;
-	font-size: 29px;
-	line-height: 40px;
-	text-decoration: none;
-
- }
-
-.menu { float: left; max-height: 30px; margin-left:1px; 
-        margin-top:2px; padding: 7px; 
-        font-size: 14px; 
-	}
+    float:left; 
+    width:285px; 
+    background: url('prazak-ico.png') no-repeat 240px 0;
+    color: #800000;
+    font-weight: bold;
+    font-size: 29px;
+    line-height: 40px;
+    text-decoration: none;
+}
+.menu {
+    float: left;
+    max-height: 30px;
+    margin-left:1px; 
+    margin-top:2px;
+    padding: 7px; 
+    font-size: 14px; 
+}
 .menu a { color: #000000; padding: 5px 10px; text-decoration: none; }
 .menu a:hover { text-decoration: underline; }
 
@@ -60,9 +62,7 @@ body {
 #bottom a img { max-height:50px; }
 
 #leve_odkazy { float:left; width:60%; clear:none;}
-#ShoCart_text { float:right; width:39%;  clear:none; }
 
-body{font-size:11px;margin-bottom:0px;margin-left:0px;margin-top:0px;padding:0;font-family:Arial,Helvetica, sans-serif; }
 div{padding:0;margin:0;}
 a{text-decoration:none;}
 a:hover{text-decoration:underline;}
@@ -104,49 +104,8 @@ dt{font-weight:bold;}
 		 
 /* END Popup */
 
-/* prebarveni zoom controlu */
-div.olControlZoom a {
-    display: block;
-    margin: 1px;
-    padding: 0;
-    color: white;
-    font-size: 18px;
-    font-family: 'Lucida Grande', Verdana, Geneva, Lucida, Arial, Helvetica, sans-serif;    
-    font-weight: bold;
-    text-decoration: none;
-    text-align: center;
-    height: 22px;
-    width: 22px;
-    line-height: 19px;
-    background: #800000; /* fallback for IE - IE6 requires background shorthand*/
-    background: rgba(128, 0, 0, 0.7);
-    filter: alpha(opacity=60);
-}
-div.olControlZoom a:hover {
-    background: #800000; /* fallback for IE */
-    background: rgba(128, 0, 0, 1);
-    filter: alpha(opacity=80);
-}
-a.olControlZoomIn {
-    border-radius: 4px 4px 0 0;
-}
-a.olControlZoomOut {
-    border-radius: 0 0 4px 4px;
-}
-
-.btn {
-  color: black;
-  background-color: white;
-  border: 1px solid black;
-  text-decoration: bold;
-  padding: 3px;
-}
-
 .cleaner {
   clear: both
-}
-.pull-right {
-  float: right;
 }
 #panel {
   position: absolute;
@@ -204,17 +163,6 @@ a.olControlZoomOut {
 .submenu a {width:25%}
 .submenu ul, .submenu li{padding:0;margin:0;}
 .submenu li{width:45%;display:inline-block;text-align:center; border:solid 0px #CCC; margin:1px; padding:1px; }
-
-/* obsolete
-#panel-credits {
-  position: absolute;
-  bottom: 0px;
-  width: 260px;
-  height: 50px;
-  padding: 10px;
-  overflow: hidden;
-}
-*/
 
 #panel-hidden {display:none;}
 
@@ -308,4 +256,3 @@ transition:  all 0.2s linear;}
 .align-right{float:right;clear:none;}
 .centred{text-align:center;}
 .margin_b_05{margin-bottom:0.5em;}
-  

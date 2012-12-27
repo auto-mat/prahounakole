@@ -1,30 +1,10 @@
 {% load static %}
 <div id="hledani" class="panel">
-{% comment %}
-    <div id="panel-header">
-        <div id="panel-tools" class="pull-right">
-           <a href="#hledani">Nové hledání</a> |
-           <a href="#">Zrušit hledání <img src="{% static "img/close.gif" %}" /></a>
-        </div>
-
-        <div id="cyclestreets-attribution" class="cleaner">
-          <img id="cs-logo" src="{% static "img/cs_logo.png" %}" width="40" height="40" />
-          Vyhledávání tras Vám poskytujeme ve spolupráci se <a href="http://www.cyclestreets.net">CycleStreets.net</a>
-        </div>
-    </div>
-
-    <div class="cleaner">
-        <b>Vyhledávání tras je v ověřovacím provozu. Při jízdě po městě dbejte své osobní bezpečnosti a pravidel silničního provozu. Nepřebíráme zodpovědnost za nekorektní vedení nalezených tras.</b>
-    </div>
-{% endcomment %}
     <div class="submenu wide_stretch">
         <ul>
             <li>
                 <a href="/#" title="Základní cyklomapa Prahou na kole">Standardní mapa</a>
             </li>
-            <!--<li>
-                <a href="/#hledani"  title="Vyhledání trasy pro cestu na kole" class="active">Najít trasu</a>
-            </li>-->
             <li>
                 <a href="/?layers=0000BFFFFFFTFT" title="Dlouhodobé uzavírky, zimní údržba">Mapa uzavírek</a>
             </li>
@@ -60,22 +40,10 @@
         </div>
     </div> 
 
-
-{% comment %}
-    <div id="jpPlanTypeSelector" class="cleaner">
-        <div id="balanced" class="jpPlanType"></div>
-        <div id="fastest" class="jpPlanType"></div>
-        <div id="quietest" class="jpPlanType"></div>
-    </div>
-{% endcomment %}
-
     <div id="jpInstructions" class="cleaner wide_stretch"></div>
 
     <div id="cyclestreets-attribution" class="wide_stretch">
       <img id="cs-logo" src="{% static "img/cs_logo.png" %}" width="40" height="40" />
       <p>Vyhledávání tras Vám poskytujeme ve spolupráci s&nbsp;<a href="http://www.cyclestreets.net">CycleStreets.net</a></p>
     </div>
-
-
-
 </div>
