@@ -20,7 +20,7 @@ urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-if settings.API_PROXY:
+if settings.ENABLE_API_PROXY:
    urlpatterns += patterns('',
       (r'^(?P<url>api/.*)$', 'httpproxy.views.proxy'),
    )
