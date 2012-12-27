@@ -139,12 +139,7 @@ var CSApi = {
         output.append(item);
       }
     }
-    // only for debugging
-    var notice = '';
-    if (route.attributes.walk && route.attributes.walk == 1) {
-      notice += '<b>Nalezená trasa obsahuje pěší úseky!</b>';
-    };
-    return output.before(notice);
+    return(output);
   },
 
   getStartAndFinish: function (features) {
