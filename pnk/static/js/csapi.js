@@ -158,7 +158,7 @@ var CSApi = {
     // hack pro realistictejsi casy, dokud cyclestreets
     // nezohledni nase pripominky ohledne rychlosti na highway=track
     // a dalsi pesimisticke rychlosti
-    secs = 0.7 * secs;
+    secs = 0.8 * secs;
 
     var hours = Math.floor(secs / (60 * 60));
     
