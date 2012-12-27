@@ -155,6 +155,11 @@ var CSApi = {
   },
 
   secondsToTime: function (secs) {
+    // hack pro realistictejsi casy, dokud cyclestreets
+    // nezohledni nase pripominky ohledne rychlosti na highway=track
+    // a dalsi pesimisticke rychlosti
+    secs = 0.7 * secs;
+
     var hours = Math.floor(secs / (60 * 60));
     
     var divisor_for_minutes = secs % (60 * 60);
