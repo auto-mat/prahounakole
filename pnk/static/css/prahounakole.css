@@ -243,6 +243,7 @@ i.point_B.dirty{background:url(../img/mapa_input_sprites.png) no-repeat -40px -1
 i.point_B{background:url(../img/mapa_input_sprites.png) no-repeat 0px -130px;margin-top:0.3em;}
 .input_A, .input_B{width:178px;} 
 
+
 .chart{float:left;height:90px;border-bottom:2px solid #000;background:url(../img/mapa_input_sprites.png) no-repeat 68px -319px;}
 .chart.loaded{background:url(../img/mapa_input_sprites.png) no-repeat 68px -438px;}
 .in_chart{position:relative;}
@@ -261,6 +262,26 @@ table.instructions .distance{text-align:right}
 
 i.walk{width:10px;height:16px;background:url(../img/mapa_input_sprites.png) no-repeat 0px 0px;display:block;}
 i.stairs{width:11px;height:16px;background:url(../img/mapa_input_sprites.png) no-repeat -12px -3px;display:block;}
+
+td.turn {width:20px;}
+td.turn i {display:block; width:15px; height:15px}
+.straight_on            {background:url(../img/sipky_sprite.png) no-repeat 0px 0px;}
+.turn_right             {background:url(../img/sipky_sprite.png) no-repeat 0px -15px;}
+.turn_left              {background:url(../img/sipky_sprite.png) no-repeat 0px -30px;}
+.bear_right             {background:url(../img/sipky_sprite.png) no-repeat 0px -45px;}
+.bear_left              {background:url(../img/sipky_sprite.png) no-repeat 0px -60px;}
+.sharp_right            {background:url(../img/sipky_sprite.png) no-repeat 0px -75px;}
+.sharp_left             {background:url(../img/sipky_sprite.png) no-repeat 0px -90px;}
+.double_back            {background:url(../img/sipky_sprite.png) no-repeat 0px -135px;}
+.unknown                {background:url(../img/sipky_sprite.png) no-repeat 0px -150px;}
+.join_roundabout        {background:url(../img/sipky_sprite.png) no-repeat 0px -165px;}
+.first_exit             {background:url(../img/sipky_sprite.png) no-repeat 0px -180x;}
+.second_exit            {background:url(../img/sipky_sprite.png) no-repeat 0px -195px;}
+.third_exit             {background:url(../img/sipky_sprite.png) no-repeat 0px -210px;}
+.fourth_exit            {background:url(../img/sipky_sprite.png) no-repeat 0px -225px;}
+.fifth_exit             {background:url(../img/sipky_sprite.png) no-repeat 0px -240px;}
+.sixth_exit             {background:url(../img/sipky_sprite.png) no-repeat 0px -255px;}
+.seventh_or_more_exit   {background:url(../img/sipky_sprite.png) no-repeat 0px -270px;}
 
 td.distance .dist{display:none}
 td.distance:hover .dist{display:block}

@@ -115,7 +115,7 @@ var CSApi = {
       var item = $('<tr></tr>');
       if (feature.attributes.type == 'segment') {
         if (feature.attributes.turn) {
-          item.append('<td class="turn"><img src="static/img/' + feature.attributes.turn.replace(' ','_') + '.png"></td>');
+          item.append('<td class="turn"><i class="' + feature.attributes.turn.replace(' ','_') + '"></i></td>');
         } else {
           item.append('<td class="turn"></td>');
         };
