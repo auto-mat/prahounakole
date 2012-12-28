@@ -164,18 +164,16 @@ var CSApi = {
     
     var divisor_for_minutes = secs % (60 * 60);
     var minutes = Math.floor(divisor_for_minutes / 60);
-    var m;
-    if (minutes > 9) {
-        m = '' + minutes;
-    } else {
-        m = '0' + minutes;
-    }
         
     var timeStr;
     if (hours > 0) {
-        timeStr = hours + ':' + m + ' hod';
+        if (minutes > 9) {
+            timeStr = hours + ':' + minutes + ' hod';
+        } else {
+            timeStr = hours + ':0' + minutes + ' hod';
+        }
     } else {
-        timeStr = m + ' min';
+        timeStr = minutes + ' min';
     }
     return timeStr;
   },
