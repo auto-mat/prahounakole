@@ -291,7 +291,26 @@ function defaultPanZoom() {
             $('.panel').hide();
             $('#hledani').show();
             $('#jpStartStreetSearch').focus();
-        }
+            $('#jpFeedbackForm').dialog({
+                autoOpen: false,
+                modal: true,
+                buttons: {
+                    //"Poslat": function() {
+                    //},
+                    "Zrušit": function() { $(this).dialog("close"); }
+                },
+                title: "Připomínka k nalezené trase",
+                width: "350px"
+            });
+            $('#jpFeedbackButton')
+                .click(function() {
+                    //$('#jpFeedbackForm #trasa').val(CSApi.itinerary);
+                    //$('#jpFeedbackForm #varianta').val(selectedPlan);
+                    $('#jpFeedbackMailto').attr('href',
+                         'mailto:redakce@prahounakole.cz?subject=Připomínka k trase ' + CSApi.itinerary + ', varianta ' + selectedPlan);
+                    $('#jpFeedbackForm').dialog("open");
+                });
+        };
         function destroyRouting() {
             if (appMode != 'routing') {
                 // mapa neni v routing modu, nemame co delat
@@ -307,7 +326,7 @@ function defaultPanZoom() {
             appMode = 'normal';
         }
         function initRoutingPanel() {
-            $('#jpInstructions').hide();
+            $('#jpDetails').hide();
             $('#jpPlanTypeSelector').hide();
             waypoints = [];
             selectedItinerary = null;
@@ -490,7 +509,9 @@ function defaultPanZoom() {
             $('#' + plan).addClass('selected');
             $('#needle').attr('class', plan);
             selectedPlan = plan;
-            $('#jpInstructions').html(CSApi.getRouteInstructions(plan)).show();
+            $('#jpInstructions').html(CSApi.getRouteInstructions(plan));
+            $('#jpDetails').show();
+            $('#gpxLink').attr('href', CSApi.gpxLink(plan));
         }
         function previewPlanIn() {
             var plan = this.id;

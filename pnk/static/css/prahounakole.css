@@ -149,6 +149,9 @@ dt{font-weight:bold;}
 #jpPlanTypeSelector {
   display: none;
 }
+#jpDetails {
+  display: none;
+}
 #jpForm {
   /* float:left; */
   min-height:147px;
@@ -163,6 +166,11 @@ dt{font-weight:bold;}
 .submenu a {width:25%}
 .submenu ul, .submenu li{padding:0;margin:0;}
 .submenu li{width:45%;display:inline-block;text-align:center; border:solid 0px #CCC; margin:1px; padding:1px; }
+
+.jpTools{padding:0 0 1em 0; margin:1em 0 1em 0; font-size:11px; border-bottom: none;}
+.jpTools a {width:25%}
+.jpTools ul, .jpTools li{padding:0;margin:0;}
+.jpTools li{width:45%;display:inline-block;text-align:center; border:solid 0px #CCC; margin:1px; padding:1px; }
 
 #panel-hidden {display:none;}
 

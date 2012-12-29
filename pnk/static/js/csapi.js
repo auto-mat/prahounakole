@@ -154,6 +154,10 @@ var CSApi = {
     };
   },
 
+  gpxLink: function (plan) {
+    return 'http://praha.cyclestreets.net/journey/' + CSApi.itinerary + '/cyclestreets' + CSApi.itinerary + plan + '.gpx';
+  },
+
   secondsToTime: function (secs) {
     // hack pro realistictejsi casy, dokud cyclestreets
     // nezohledni nase pripominky ohledne rychlosti na highway=track
