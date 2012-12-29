@@ -120,11 +120,11 @@ var CSApi = {
           item.append('<td class="turn"></td>');
         };
         item.append('<td>'+ feature.attributes.name + '</td>');
-        if (feature.attributes.walk && feature.attributes.walk == 1) {
-          item.append('<td><i class="walk"></i></td>');
+        if (feature.attributes.provisionName && feature.attributes.provisionName == 'Steps') {
+          item.append('<td><i class="stairs"></i></td>');
         } else {
-          if (feature.attributes.provisionName && feature.attributes.provisionName == 'steps') {
-            item.append('<td><i class="stairs"></i></td>');
+          if (feature.attributes.walk && feature.attributes.walk == 1) {
+            item.append('<td><i class="walk"></i></td>');
           } else {
             item.append('<td></td>');
           }
