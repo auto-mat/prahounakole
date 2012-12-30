@@ -113,6 +113,7 @@ var CSApi = {
     for (var i=0; i < features.length; i++) {
       feature = features[i];
       var item = $('<tr></tr>');
+      item.attr('data-fid', feature.id);
       if (feature.attributes.type == 'segment') {
         if (feature.attributes.turn) {
           item.append('<td class="turn"><i class="' + feature.attributes.turn.replace(' ','_') + '"></i></td>');
