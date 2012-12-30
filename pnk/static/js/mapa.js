@@ -497,6 +497,8 @@ function defaultPanZoom() {
         function selectPlan() {
             var plan = this.id;
             if (plan == selectedPlan) {
+                // kliknuti na selector planu zazoomuje zpet na celou trasu
+                map.zoomToExtent(journeyLayer.getDataExtent());
                 return true;
             }
             if (! CSApi.routeFeatures || ! CSApi.routeFeatures[plan]) {
@@ -510,6 +512,7 @@ function defaultPanZoom() {
             $('#needle').attr('class', plan);
             selectedPlan = plan;
             $('#jpInstructions').html(CSApi.getRouteInstructions(plan));
+            $('#jpInstructions').find('tr').click(zoomToSegment);
             $('#jpDetails').show();
             $('#gpxLink').attr('href', CSApi.gpxLink(plan));
         }
@@ -534,32 +537,50 @@ function defaultPanZoom() {
             journeyLayer.removeFeatures(previewedRoute);
             previewedRoute = null;
         }
+        function parseHash() {
+           var hash = location.hash;
+           hash = hash.replace(/^#/, '');
+           var parts = hash.split('@');
+           var args = {};
+           for (var i=0; i < parts.length; i++) {
+               var a = parts[i].split('=');
+               args[a[0]] = a[1];
+           }
+           return args;
+        }
         function onHashChange() {
-                var hash = location.hash;
-                hash = hash.replace(/^#/, '');
-                var parts = hash.split('@');
-                var args = {};
-                for (var i=0; i < parts.length; i++) {
-                        var a = parts[i].split('=');
-                        args[a[0]] = a[1];
+            var hash = location.hash;
+            hash = hash.replace(/^#/, '');
+            var args = parseHash();
+            if (hash == '') {
+                setupPnkMap();
+            };
+            if (hash == 'hledani') {
+                setupRouting();
+                initRoutingPanel();
+            };
+            if (args['trasa']) {
+                setupRouting();
+                if (selectedItinerary == args['trasa']) {
+                    return;
                 }
-                if (hash == '') {
-                        setupPnkMap();
-                };
-                if (hash == 'hledani') {
-                        setupRouting();
-                        initRoutingPanel();
-                };
-                if (args['trasa']) {
-                        setupRouting();
-                        if (selectedItinerary == args['trasa']) {
-                                return;
-                        }
-                        // odebereme focus nastaveny v setupRouting, jinak po chvili vybehne autocomplete
-                        $('.ui-autocomplete-input').blur();
-                        selectedPlan = null;
-                        CSApi.journey(args['trasa'], null, args['plan'], addPlannedJourney, { select: true });
-                };
+                // odebereme focus nastaveny v setupRouting, jinak po chvili vybehne autocomplete
+                $('.ui-autocomplete-input').blur();
+                selectedPlan = null;
+                CSApi.journey(args['trasa'], null, args['plan'], addPlannedJourney, { select: true });
+            };
+        };
+        function setHashParameter(param, value) {
+            args = parseHash();
+            args[param] = value;
+            var newhash = '';
+            for (i in args) {
+                newhash += '@' + i + '=' + args[i];
+            }
+            if (newhash != '') {
+                newhash = newhash.substr(1);
+            }
+            location.hash = newhash;
         };
 
         function getPoi(id) {
@@ -668,6 +689,12 @@ function defaultPanZoom() {
         function onFeatureUnselect(feature) {
             if (feature.popup)
                 removePopup(feature.popup)
+        };
+
+        function zoomToSegment() {
+            feature = journeyLayer.getFeatureById($(this).attr('data-fid'));
+            map.zoomToExtent(feature.geometry.getBounds(), closest=true);
+            //setHashParameter('rnd', feature.id.split('_')[1]);
         };
 
         function ZoomToLonLat( obj, lon, lat, zoom) {
