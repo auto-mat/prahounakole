@@ -183,8 +183,8 @@ dt{font-weight:bold;}
 .jpPlanType {color:#333;}
 .jpPlanType:hover {border-bottom:1px solid #333;color:#000;} 
 .panel input{border:1px solid #ccc;padding:0.5em 0.2em;}
-.panel input.right_arrowed{border-top:1px;border-left:1px;border-bottom:1px;border-right:15px;border-image:url(../img/grey_border.png) 30% stretch;border-style:solid;}
-.panel input.right_arrowed:hover, input.right_arrowed:focus{border-top:1px;border-left:1px;border-bottom:1px;border-right:15px;border-image:url(../img/grey_border_.png) 30% stretch;outline:none;border-style:solid;}
+.panel input.right_arrowed{border-top:1px;border-left:1px;border-bottom:1px;border-right:15px;-o-border-image:url(../img/grey_border.png) 30% stretch;border-image:url(../img/grey_border.png) 30% stretch;border-style:solid;}
+.panel input.right_arrowed:hover, input.right_arrowed:focus{border-top:1px;border-left:1px;border-bottom:1px;border-right:15px;-o-border-image:url(../img/grey_border_.png) 30% stretch;border-image:url(../img/grey_border_.png) 30% stretch;outline:none;border-style:solid;}
 .panel input.input_search{width:172px;margin-right:6px;}
 .panel input.search_submit {
   float:right;margin:1em -0.45em 0 0;width:59px;height:59px;border:0;
