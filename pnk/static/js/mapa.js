@@ -29,28 +29,16 @@ function defaultPanZoom() {
     var newPanZoom = new OpenLayers.Control.ZoomPanel();
 
     OpenLayers.Util.extend(newPanZoom, {
-           onButtonClick: function(evt) {
-               var btn = evt.buttonElement;
-               switch (btn.action) {
-                   case "panup": 
-                       this.map.pan(0, -this.getSlideFactor("h"));
-                       break;
-                   case "pandown": 
-                       this.map.pan(0, this.getSlideFactor("h"));
-                       break;
-                   case "panleft": 
-                       this.map.pan(-this.getSlideFactor("w"), 0);
-                       break;
-                   case "panright": 
-                       this.map.pan(this.getSlideFactor("w"), 0);
-                       break;
-                   case "zoomin": 
+           activateControl: function(evt) {
+               console.log("test button click " + evt.displayClass);
+               switch (evt.displayClass) {
+                   case "olControlZoomIn": 
                        this.map.zoomIn(); 
                        break;
-                   case "zoomout": 
+                   case "olControlZoomOut": 
                        this.map.zoomOut(); 
                        break;
-                   case "zoomworld": 
+                   case "olControlZoomToMaxExtent": 
                        map.setCenter(new OpenLayers.LonLat(mapconfig.baselon, mapconfig.baselat).transform(EPSG4326, map.getProjectionObject()), mapconfig.basezoom);
                        break;
                    }
@@ -107,10 +95,7 @@ function defaultPanZoom() {
                     new OpenLayers.Control.Navigation(),
                     new OpenLayers.Control.Permalink(),
                     new OpenLayers.Control.ScaleLine({maxWidth: 300}),
-                    new OpenLayers.Control.ZoomPanel()
-                    //defaultPanZoom()
-                    //  new OpenLayers.Control.PanZoomBar(),
-                    //  new OpenLayers.Control.MousePosition() 
+                    defaultPanZoom()
                 ],
                 maxExtent: bounds.clone(),
                 restrictedExtent: bounds.clone(),
