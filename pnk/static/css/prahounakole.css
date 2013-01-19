@@ -136,6 +136,9 @@ dt{font-weight:bold;}
   font-family: Georgia, Serif;
   font-size: 11px;
 }
+.panel a, #jpFeedbackForm a {
+  border-bottom: 1px solid #B1B1B1;
+}
 
 #jpPlanButton {
   display: none;
@@ -162,7 +165,7 @@ dt{font-weight:bold;}
 .panel a {text-decoration:none;color:#333;}
 .panel a:hover, a.active{border-bottom:1px solid #333;color:#000}
 
-.submenu{padding:0 0 1em 0; margin:1em 0 1em 0; font-size:11px; border-bottom:solid 1px #CCC;}
+.submenu {padding:0 0 1em 0; margin:1em 0 2em 0; font-size:11px; border-bottom:solid 2px black;}
 .submenu a {width:25%}
 .submenu ul, .submenu li{padding:0;margin:0;}
 .submenu li{width:45%;display:inline-block;text-align:center; border:solid 0px #CCC; margin:1px; padding:1px; }
