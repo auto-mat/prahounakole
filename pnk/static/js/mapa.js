@@ -17,6 +17,7 @@
         var criteriaCnt = 0;
         var selectedItinerary = null;
         var selectedPlan;
+        var ignoreHashChange = false;
 
         var bounds = new OpenLayers.Bounds(14.018,49.762,14.897,50.318);
 
@@ -30,7 +31,6 @@ function defaultPanZoom() {
 
     OpenLayers.Util.extend(newPanZoom, {
            activateControl: function(evt) {
-               console.log("test button click " + evt.displayClass);
                switch (evt.displayClass) {
                    case "olControlZoomIn": 
                        this.map.zoomIn(); 
@@ -242,17 +242,11 @@ function defaultPanZoom() {
             map.addControl(drag);
             drag.activate();
             startMarker = new OpenLayers.Feature.Vector(
-                    new OpenLayers.Geometry.Point(
-                          map.getCenter().lon,
-                          map.getCenter().lat
-                    ),
+                    new OpenLayers.Geometry.Point(0,0),
                     { icon: "/static/img/route-start.png" }
             );
             endMarker = new OpenLayers.Feature.Vector(
-                    new OpenLayers.Geometry.Point(
-                        1608999.3765555094,
-                        6460357.3778253645
-                    ),
+                    new OpenLayers.Geometry.Point(0,0),
                     { icon: "/static/img/route-stop.png" }
             );
 
@@ -425,17 +419,20 @@ function defaultPanZoom() {
         function planJourney() {
             $('#jpPlanButton').hide();
             $('#jpPlanMessage').show();
-            CSApi.journey(null, waypoints, 'balanced', addPlannedJourney, { select: true });
+            selectedPlan = null;
+            CSApi.journey(null, waypoints, 'balanced', addPlannedJourney, { select: 'balanced' });
             return false;
         };
         // callback to process route returned by server
-        function addPlannedJourney(itinerary, route, options) {
+        function addPlannedJourney(itinerary, plan, route, options) {
             CSApi.routeInfo(route);
-            if (options && options.select) {
-                CSApi.journey(itinerary, null, 'fastest', addPlannedJourney);
-                CSApi.journey(itinerary, null, 'quietest', addPlannedJourney);
-                location.hash = 'trasa=' + itinerary;
-                $('#balanced').click();
+            if (plan == 'balanced') {
+                CSApi.journey(itinerary, null, 'fastest', addPlannedJourney, options);
+                CSApi.journey(itinerary, null, 'quietest', addPlannedJourney, options);
+            }
+            if (options && options.select && options.select == plan) {
+                setHashParameter('trasa', itinerary, false);
+                $('#' + plan).click();
                 updateMarkersAndLabels(route);
             }
             $('#jpPlanTypeSelector').show();
@@ -500,6 +497,7 @@ function defaultPanZoom() {
             $('#jpInstructions').find('tr').click(zoomToSegment);
             $('#jpDetails').show();
             $('#gpxLink').attr('href', CSApi.gpxLink(plan));
+            setHashParameter('plan', plan, false);
         }
         function previewPlanIn() {
             var plan = this.id;
@@ -534,6 +532,10 @@ function defaultPanZoom() {
            return args;
         }
         function onHashChange() {
+            if (ignoreHashChange) {
+                ignoreHashChange = false;
+                return;
+            }
             var hash = location.hash;
             hash = hash.replace(/^#/, '');
             var args = parseHash();
@@ -552,10 +554,12 @@ function defaultPanZoom() {
                 // odebereme focus nastaveny v setupRouting, jinak po chvili vybehne autocomplete
                 $('.ui-autocomplete-input').blur();
                 selectedPlan = null;
-                CSApi.journey(args['trasa'], null, args['plan'], addPlannedJourney, { select: true });
+                CSApi.journey(args['trasa'], null, 'balanced', addPlannedJourney, { select: args['plan'] });
             };
         };
-        function setHashParameter(param, value) {
+        // encode the param into hash url
+        // if trigger=True, fires the hashchange event
+        function setHashParameter(param, value, trigger) {
             args = parseHash();
             args[param] = value;
             var newhash = '';
@@ -564,6 +568,9 @@ function defaultPanZoom() {
             }
             if (newhash != '') {
                 newhash = newhash.substr(1);
+            }
+            if (!trigger && (location.hash.replace(/^#/, '') != newhash)) {
+                ignoreHashChange = true;
             }
             location.hash = newhash;
         };

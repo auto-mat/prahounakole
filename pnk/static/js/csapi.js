@@ -70,7 +70,7 @@ var CSApi = {
         var route = CSApi.getFeature(features, 'route');
         CSApi.routeFeatures[route.attributes.plan] = features;
         CSApi.itinerary = route.attributes.itinerary;
-        callback(route.attributes.itinerary, features, options);
+        callback(route.attributes.itinerary, plan, features, options);
       }
     });
   },
