@@ -554,7 +554,11 @@ function defaultPanZoom() {
                 // odebereme focus nastaveny v setupRouting, jinak po chvili vybehne autocomplete
                 $('.ui-autocomplete-input').blur();
                 selectedPlan = null;
-                CSApi.journey(args['trasa'], null, 'balanced', addPlannedJourney, { select: args['plan'] });
+                var plan = args['plan'];
+                if (plan === undefined) {
+                    plan = 'balanced';
+                }
+                CSApi.journey(args['trasa'], null, 'balanced', addPlannedJourney, { select: plan });
             };
         };
         // encode the param into hash url
