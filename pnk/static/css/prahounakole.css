@@ -131,6 +131,10 @@ dt{font-weight:bold;}
   margin-right: 5px;
   margin-top: 15px;
 }
+#hledani #prague-logo {
+  float:left;
+  margin-right: 5px;
+}
 .panel-content {
   margin-right: 5px;
   font-family: Georgia, Serif;
@@ -181,7 +185,13 @@ dt{font-weight:bold;}
   margin-top:40px;
   border-top:1px solid #CCCCCC;
   font-size:11px;
+  min-height:40px;
 }
+
+.attribution { 
+  font-size:11px;
+  min-height:40px;
+ }
 
 .jpPlanType {color:#333;}
 .jpPlanType:hover {border-bottom:1px solid #333;color:#000;} 
