@@ -264,7 +264,7 @@ function defaultPanZoom() {
             toggleButtons();
             map.events.register("click", map, onMapClick);
             $('#jpPlanButton').click(planJourney);
-            $('.jpPlanType').click(selectPlan);
+            $('.jpPlanType').click(onPlanSelect);
             $('.jpPlanType').hover(previewPlanIn, previewPlanOut);
             appMode = 'routing';
             $('.panel').hide();
@@ -431,7 +431,8 @@ function defaultPanZoom() {
                 CSApi.journey(itinerary, null, 'quietest', addPlannedJourney, options);
             }
             if (options && options.select && options.select == plan) {
-                setHashParameter('trasa', itinerary, false);
+                selectedItinerary = itinerary;
+                setHash('trasa=' + itinerary, false);
                 $('#' + plan).click();
                 updateMarkersAndLabels(route);
             }
@@ -476,8 +477,10 @@ function defaultPanZoom() {
             });
             map.addLayer(journeyLayer);
         }
-        function selectPlan() {
-            var plan = this.id;
+        function onPlanSelect() {
+            selectPlan(this.id);
+        }
+        function selectPlan(plan) {
             if (plan == selectedPlan) {
                 // kliknuti na selector planu zazoomuje zpet na celou trasu
                 map.zoomToExtent(journeyLayer.getDataExtent());
@@ -531,7 +534,7 @@ function defaultPanZoom() {
            }
            return args;
         }
-        function onHashChange() {
+        function onHashChange(e) {
             if (ignoreHashChange) {
                 ignoreHashChange = false;
                 return;
@@ -548,21 +551,30 @@ function defaultPanZoom() {
             };
             if (args['trasa']) {
                 setupRouting();
+                var plan = args['plan'];
+                if ($.inArray(plan, ['balanced', 'quietest', 'fastest']) < 0) {
+                    plan = 'balanced';
+                }
                 if (selectedItinerary == args['trasa']) {
+                    if (selectedPlan != plan) {
+                        selectPlan(plan);
+                    }
                     return;
                 }
                 // odebereme focus nastaveny v setupRouting, jinak po chvili vybehne autocomplete
                 $('.ui-autocomplete-input').blur();
                 selectedPlan = null;
-                var plan = args['plan'];
-                if (plan === undefined) {
-                    plan = 'balanced';
-                }
                 CSApi.journey(args['trasa'], null, 'balanced', addPlannedJourney, { select: plan });
             };
         };
-        // encode the param into hash url
         // if trigger=True, fires the hashchange event
+        function setHash(newhash, trigger) {
+            if (!trigger && (location.hash.replace(/^#/, '') != newhash)) {
+                ignoreHashChange = true;
+            }
+            location.hash = newhash;
+        };
+        // encode the param into hash url
         function setHashParameter(param, value, trigger) {
             args = parseHash();
             args[param] = value;
@@ -573,12 +585,8 @@ function defaultPanZoom() {
             if (newhash != '') {
                 newhash = newhash.substr(1);
             }
-            if (!trigger && (location.hash.replace(/^#/, '') != newhash)) {
-                ignoreHashChange = true;
-            }
-            location.hash = newhash;
+            setHash(newhash, trigger);
         };
-
         function getPoi(id) {
             var feat;
             for(var i=0; i<map.layers.length; i++) {
