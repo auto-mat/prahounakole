@@ -19,7 +19,7 @@
         var selectedPlan;
         var ignoreHashChange = false;
 
-        var bounds = new OpenLayers.Bounds(14.018,49.762,14.897,50.318);
+        var bounds = new OpenLayers.Bounds(12,48.5,19,51.1)
 
         var EPSG4326 = new OpenLayers.Projection("EPSG:4326");
         var EPSG900913 = new OpenLayers.Projection("EPSG:900913"); 
