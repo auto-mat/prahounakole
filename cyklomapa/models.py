@@ -3,7 +3,7 @@
 from django.contrib.gis.db import models
 from django.utils.safestring import mark_safe
 from django.core.cache import cache
-
+from django.contrib.auth.models import User
 
 class Status(models.Model):
     "stavy zobrazeni konkretniho objektu, vrstvy apod. - aktivni, navrzeny, zruseny, ..."
@@ -79,6 +79,10 @@ class Mesto(models.Model):
         verbose_name_plural = "města"
     def __unicode__(self):
         return self.nazev
+
+class UserMesto(models.Model):
+    user = models.OneToOneField(User)
+    mesta = models.ManyToManyField(Mesto)
 
 class Poi(models.Model):
     "Misto - bod v mape"

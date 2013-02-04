@@ -9,6 +9,8 @@ from django.conf import settings # needed if we use the GOOGLE_MAPS_API_KEY from
 
 # Import the admin site reference from django.contrib.admin
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.models import User
 
 # Grab the Admin Manager that automaticall initializes an OpenLayers map
 # for any geometry field using the in Google Mercator projection with OpenStreetMap basedata
@@ -17,6 +19,17 @@ from django.contrib.gis.admin import OSMGeoAdmin
 from cyklomapa.models import *
 
 USE_GOOGLE_TERRAIN_TILES = False
+
+# Define an inline admin descriptor for Employee model
+# which acts a bit like a singleton
+class UserMestoInline(admin.StackedInline):
+    model = UserMesto
+    can_delete = False
+    verbose_name_plural = 'Uzivatelska mesta'
+
+# Define a new User admin
+class UserAdmin(UserAdmin):
+    inlines = (UserMestoInline, )
 
 class PoiAdmin(OSMGeoAdmin):
     # Standard Django Admin Options
@@ -117,3 +130,6 @@ admin.site.register(Status, admin.ModelAdmin)
 admin.site.register(Upresneni, UpresneniAdmin)
 admin.site.register(Legenda, LegendaAdmin)
 admin.site.register(Mesto, MestoAdmin)
+
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)
