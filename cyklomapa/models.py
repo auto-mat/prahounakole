@@ -67,7 +67,7 @@ class ViditelneManager(models.GeoManager):
 class Mesto(models.Model):
     "Mesto - vyber na zaklade subdomeny"
     nazev         = models.CharField(unique=True, max_length=255, blank=False)   # Jméno města
-    subdomena     = models.CharField(unique=True, max_length=255, blank=False)   # Subdoména města
+    slug          = models.SlugField(unique=True, verbose_name=u"název v URL", blank=False)   # Subdoména města
     vyhledavani   = models.BooleanField()                                        # Je zapnutý vyhledávač
     zoom          = models.PositiveIntegerField(default=13)                      # Defaultní zoom
     uvodni_zprava = models.TextField(null=True, blank=True)                      # Úvodní zpráva

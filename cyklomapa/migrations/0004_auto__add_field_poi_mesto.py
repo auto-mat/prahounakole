@@ -33,7 +33,7 @@ class Migration(SchemaMigration):
             'geom': ('django.contrib.gis.db.models.fields.PointField', [], {}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'nazev': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '255'}),
-            'subdomena': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '255'}),
+            'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '50'}),
             'uvodni_zprava': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             'vyhledavani': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'zoom': ('django.db.models.fields.PositiveIntegerField', [], {'default': '13'})

@@ -51,7 +51,7 @@ def mapa_view(request, poi_id=None):
         'legenda': Legenda.objects.all(),
         'center_poi' : center_poi,
         'nomenu': nomenu,
-        'mesto': Mesto.objects.get(subdomena = request.subdomain),
+        'mesto': Mesto.objects.get(slug = request.subdomain),
         'minimize_layerswitcher': minimize_layerswitcher,
         'mobilni': mobilni,
     })

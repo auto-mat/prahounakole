@@ -94,8 +94,21 @@ class LegendaAdmin(admin.ModelAdmin):
     obrazek_img.allow_tags = True
     obrazek_img.short_description = u"obrázek"
 
-class MestoAdmin(admin.ModelAdmin):
-   list_display = ('nazev', 'subdomena', 'vyhledavani', 'zoom', 'uvodni_zprava',)
+class MestoAdmin(OSMGeoAdmin):
+   list_display = ('nazev', 'slug', 'vyhledavani', 'zoom', 'uvodni_zprava',)
+   if USE_GOOGLE_TERRAIN_TILES:
+     map_template = 'gis/admin/google.html'
+     extra_js = ['http://openstreetmap.org/openlayers/OpenStreetMap.js', 'http://maps.google.com/maps?file=api&amp;v=2&amp;key=%s' % settings.GOOGLE_MAPS_API_KEY]
+   else:
+     pass # defaults to OSMGeoAdmin presets of OpenStreetMap tiles
+   
+   default_lon = 1605350
+   default_lat = 6461466
+   default_zoom = 12
+   scrollable = False
+   map_width = 700
+   map_height = 500
+   map_srid = 900913
 
 admin.site.register(Poi   , PoiAdmin   )
 admin.site.register(Vrstva, VrstvaAdmin)
