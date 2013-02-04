@@ -15,6 +15,7 @@ from django.contrib.auth.models import User
 # Grab the Admin Manager that automaticall initializes an OpenLayers map
 # for any geometry field using the in Google Mercator projection with OpenStreetMap basedata
 from django.contrib.gis.admin import OSMGeoAdmin
+from django.contrib.gis.geos import Point
 
 from cyklomapa.models import *
 
@@ -32,6 +33,41 @@ class UserAdmin(UserAdmin):
     inlines = (UserMestoInline, )
 
 class PoiAdmin(OSMGeoAdmin):
+    def get_form(self, request, obj=None, **kwargs):
+         if request.user.is_superuser:
+            self.default_lon = 1605350
+            self.default_lat = 6461466
+         else:
+            mesto = UserMesto.objects.get(user=request.user).mesta.all()[0]
+            pnt = Point(mesto.geom.x, mesto.geom.y, srid=4326)
+            pnt.transform(900913)
+            self.default_lon, self.default_lat = pnt.coords
+         form = super(PoiAdmin, self).get_form(request, obj, **kwargs)
+         return form
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+       if db_field.name == "mesto":
+          if request.user.is_superuser:
+              kwargs["queryset"] = Mesto.objects
+          else:
+              kwargs["queryset"] = UserMesto.objects.get(user=request.user).mesta
+
+       return super(PoiAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
+
+    def has_change_permission(self, request, obj = None):
+       if request.user.is_superuser:
+          return True
+       if obj == None:
+          return True
+       return obj.mesto in UserMesto.objects.get(user=request.user).mesta.all()
+
+    def has_delete_permission(self, request, obj = None):
+       if request.user.is_superuser:
+          return True
+       if obj == None:
+          return False
+       return obj.mesto in UserMesto.objects.get(user=request.user).mesta.all()
+
     # Standard Django Admin Options
     # http://docs.djangoproject.com/en/1.1/ref/contrib/admin/
     list_display = ('__unicode__', 'nazev','status','znacka','url','foto_thumb')
@@ -53,8 +89,6 @@ class PoiAdmin(OSMGeoAdmin):
     # To learn more about this jargon visit:
     # www.openlayers.org
     
-    default_lon = 1605350
-    default_lat = 6461466
     default_zoom = 12
     #display_wkt = False
     #display_srid = False
