@@ -22,7 +22,7 @@ class PoiAdmin(OSMGeoAdmin):
     # Standard Django Admin Options
     # http://docs.djangoproject.com/en/1.1/ref/contrib/admin/
     list_display = ('__unicode__', 'nazev','status','znacka','url','foto_thumb')
-    list_filter = ('znacka__vrstva', 'znacka', 'status',)
+    list_filter = ('mesto__nazev', 'znacka__vrstva', 'znacka', 'status',)
     search_fields = ('nazev',)
     ordering = ('nazev',)
     save_as = True
@@ -94,9 +94,13 @@ class LegendaAdmin(admin.ModelAdmin):
     obrazek_img.allow_tags = True
     obrazek_img.short_description = u"obrázek"
 
+class MestoAdmin(admin.ModelAdmin):
+   list_display = ('nazev', 'subdomena', 'vyhledavani', 'zoom', 'uvodni_zprava',)
+
 admin.site.register(Poi   , PoiAdmin   )
 admin.site.register(Vrstva, VrstvaAdmin)
 admin.site.register(Znacka, ZnackaAdmin)
 admin.site.register(Status, admin.ModelAdmin)
 admin.site.register(Upresneni, UpresneniAdmin)
 admin.site.register(Legenda, LegendaAdmin)
+admin.site.register(Mesto, MestoAdmin)
