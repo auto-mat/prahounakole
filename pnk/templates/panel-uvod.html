@@ -3,9 +3,11 @@
 
     <div class="submenu wide_stretch">
         <ul>
+            {% if request.subdomain == 'mapa' %}
             <li>
                 <a href="/#hledani" title="Vyhledání trasy pro cestu na kole">Najít trasu</a>
             </li>
+            {% endif %}
             <li>
                 <a href="/?layers=0000BFFFFFFTFT" title="Dlouhodobé uzavírky, zimní údržba">Mapa uzavírek</a>
             </li>
@@ -44,6 +46,7 @@ function toggle(obj) {
   </div>
 
 
+  {% if request.subdomain == 'mapa' %}
   <div id="panel-hidden2">
   <h3><br /><a href="/#hledani" title="Vyhledání trasy pro cestu na kole">Zkuste náš nový vyhledávač tras!</a></h3>
   <p>Po měsících vývoje vám představujeme unikátní možnost vyhledat si trasu pro jízdu na kole v Praze a blízkém okolí.</p>
@@ -62,6 +65,7 @@ function toggle(obj) {
   <p><a href="/#hledani" title="Vyhledání trasy pro cestu na kole">Pokračujte zde</a></p>
   <p><a href="http://prahounakole.cz/kudy-po-praze/mapa/vyhledavac/" target="_blank">Návod pro vyhledávání</a></p>
   </div>
+  {% endif %}
 
 </div>
 

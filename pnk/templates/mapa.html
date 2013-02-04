@@ -32,7 +32,13 @@
    <script type="text/javascript" src="{% static "js/mapa.js" %}"></script>
   {% endif %}
 
-    <title>Mapa Prahou na kole</title>
+    {% if request.subdomain == 'brno' %}
+       <title>Mapa Brnem na kole</title>
+    {% else %}{% if request.subdomain == 'ostrava' %}
+       <title>Mapa Ostravou na kole</title>
+    {% else %}
+       <title>Mapa Prahou na kole</title>
+    {% endif %} {% endif %}
 
 <script type="text/javascript">
 
@@ -42,9 +48,19 @@
     {% for v in vrstvy %}
        mapconfig['vrstvy'].push(["{{v.nazev}}", "{% url 'cyklomapa.views.kml_view' v.slug %}", "{{v.enabled}}"]);
     {% endfor %} 
-     mapconfig['basezoom'] = 13;
-     mapconfig['baselon'] = 14.4211;
-     mapconfig['baselat'] = 50.08741;
+    {% if request.subdomain == 'brno' %}
+        mapconfig['basezoom'] = 13;
+        mapconfig['baselon'] = 16.6;
+        mapconfig['baselat'] = 49.2;
+    {% else %}{% if request.subdomain == 'ostrava' %}
+        mapconfig['basezoom'] = 13;
+        mapconfig['baselon'] = 18.27;
+        mapconfig['baselat'] = 49.83;
+    {% else %}
+        mapconfig['basezoom'] = 13;
+        mapconfig['baselon'] = 14.4211;
+        mapconfig['baselat'] = 50.08741;
+    {% endif %} {% endif %}
     {% if center_poi %}
         mapconfig['zoom'] = 15;
         mapconfig['lon'] = {{ center_poi.geom.x }};
