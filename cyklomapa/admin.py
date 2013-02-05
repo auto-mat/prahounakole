@@ -16,7 +16,6 @@ from django.contrib.auth.models import User
 # for any geometry field using the in Google Mercator projection with OpenStreetMap basedata
 from django.contrib.gis.admin import OSMGeoAdmin
 from django.contrib.gis.geos import Point
-from django.db.models import Q
 
 from cyklomapa.models import *
 
@@ -39,8 +38,7 @@ class PoiAdmin(OSMGeoAdmin):
        if request.user.is_superuser:
           return queryset
 
-       queryset = queryset.filter(reduce(lambda q, f: q | Q(mesto=f), request.user.usermesto_set.mesta.all(), Q()))
-       return queryset
+       return queryset.filter(mesto__in=request.user.usermesto.mesta.all())
 
     def get_form(self, request, obj=None, **kwargs):
          mesto = Mesto.objects.get(slug = request.subdomain)
@@ -57,7 +55,7 @@ class PoiAdmin(OSMGeoAdmin):
           if request.user.is_superuser:
               kwargs["queryset"] = Mesto.objects
           else:
-              kwargs["queryset"] = request.user.usermesto_set.mesta.all()
+              kwargs["queryset"] = request.user.usermesto.mesta.all()
 
        return super(PoiAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
 
@@ -66,14 +64,14 @@ class PoiAdmin(OSMGeoAdmin):
           return True
        if obj == None:
           return True
-       return obj.mesto in request.user.usermesto_set.mesta.all()
+       return obj.mesto in request.user.usermesto.mesta.all()
 
     def has_delete_permission(self, request, obj = None):
        if request.user.is_superuser:
           return True
        if obj == None:
           return False
-       return obj.mesto in request.user.usermesto_set.mesta.all()
+       return obj.mesto in request.user.usermesto.mesta.all()
 
     # Standard Django Admin Options
     # http://docs.djangoproject.com/en/1.1/ref/contrib/admin/
@@ -154,15 +152,14 @@ class MestoAdmin(OSMGeoAdmin):
       if request.user.is_superuser:
          return queryset
 
-      queryset = queryset.filter(reduce(lambda q, f: q | Q(id=f.id), request.user.usermesto_set.mesta.all(), Q()))
-      return queryset
+      return queryset.filter(id__in=request.user.usermesto.mesta.all())
 
    def has_change_permission(self, request, obj = None):
       if request.user.is_superuser:
          return True
       if obj == None:
          return True
-      return obj in request.user.usermesto_set.mesta.all()
+      return obj in request.user.usermesto.mesta.all()
 
    list_display = ('nazev', 'slug', 'vyhledavani', 'zoom', 'uvodni_zprava',)
    if USE_GOOGLE_TERRAIN_TILES:
