@@ -16,6 +16,7 @@ from django.contrib.auth.models import User
 # for any geometry field using the in Google Mercator projection with OpenStreetMap basedata
 from django.contrib.gis.admin import OSMGeoAdmin
 from django.contrib.gis.geos import Point
+from django.db.models import Q
 
 from cyklomapa.models import *
 
@@ -33,6 +34,14 @@ class UserAdmin(UserAdmin):
     inlines = (UserMestoInline, )
 
 class PoiAdmin(OSMGeoAdmin):
+    def queryset(self, request):
+       queryset = super(PoiAdmin, self).queryset(request)
+       if request.user.is_superuser:
+          return queryset
+
+       queryset = queryset.filter(reduce(lambda q, f: q | Q(mesto=f), UserMesto.objects.get(user=request.user).mesta.all(), Q()))
+       return queryset
+
     def get_form(self, request, obj=None, **kwargs):
          mesto = Mesto.objects.get(slug = request.subdomain)
          pnt = Point(mesto.geom.x, mesto.geom.y, srid=4326)
@@ -68,7 +77,7 @@ class PoiAdmin(OSMGeoAdmin):
 
     # Standard Django Admin Options
     # http://docs.djangoproject.com/en/1.1/ref/contrib/admin/
-    list_display = ('__unicode__', 'nazev','status','znacka','url','foto_thumb')
+    list_display = ('__unicode__', 'nazev','status','znacka','url','foto_thumb', 'mesto')
     list_filter = ('mesto__nazev', 'znacka__vrstva', 'znacka', 'status',)
     search_fields = ('nazev',)
     ordering = ('nazev',)
