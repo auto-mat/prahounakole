@@ -39,7 +39,7 @@ class PoiAdmin(OSMGeoAdmin):
        if request.user.is_superuser:
           return queryset
 
-       queryset = queryset.filter(reduce(lambda q, f: q | Q(mesto=f), UserMesto.objects.get(user=request.user).mesta.all(), Q()))
+       queryset = queryset.filter(reduce(lambda q, f: q | Q(mesto=f), request.user.usermesto_set.mesta.all(), Q()))
        return queryset
 
     def get_form(self, request, obj=None, **kwargs):
@@ -57,7 +57,7 @@ class PoiAdmin(OSMGeoAdmin):
           if request.user.is_superuser:
               kwargs["queryset"] = Mesto.objects
           else:
-              kwargs["queryset"] = UserMesto.objects.get(user=request.user).mesta
+              kwargs["queryset"] = request.user.usermesto_set.mesta.all()
 
        return super(PoiAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
 
@@ -66,14 +66,14 @@ class PoiAdmin(OSMGeoAdmin):
           return True
        if obj == None:
           return True
-       return obj.mesto in UserMesto.objects.get(user=request.user).mesta.all()
+       return obj.mesto in request.user.usermesto_set.mesta.all()
 
     def has_delete_permission(self, request, obj = None):
        if request.user.is_superuser:
           return True
        if obj == None:
           return False
-       return obj.mesto in UserMesto.objects.get(user=request.user).mesta.all()
+       return obj.mesto in request.user.usermesto_set.mesta.all()
 
     # Standard Django Admin Options
     # http://docs.djangoproject.com/en/1.1/ref/contrib/admin/
@@ -154,7 +154,7 @@ class MestoAdmin(OSMGeoAdmin):
       if request.user.is_superuser:
          return queryset
 
-      queryset = queryset.filter(reduce(lambda q, f: q | Q(id=f.id), UserMesto.objects.get(user=request.user).mesta.all(), Q()))
+      queryset = queryset.filter(reduce(lambda q, f: q | Q(id=f.id), request.user.usermesto_set.mesta.all(), Q()))
       return queryset
 
    def has_change_permission(self, request, obj = None):
@@ -162,7 +162,7 @@ class MestoAdmin(OSMGeoAdmin):
          return True
       if obj == None:
          return True
-      return obj in UserMesto.objects.get(user=request.user).mesta.all()
+      return obj in request.user.usermesto_set.mesta.all()
 
    list_display = ('nazev', 'slug', 'vyhledavani', 'zoom', 'uvodni_zprava',)
    if USE_GOOGLE_TERRAIN_TILES:
