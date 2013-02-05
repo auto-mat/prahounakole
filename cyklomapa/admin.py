@@ -149,6 +149,21 @@ class LegendaAdmin(admin.ModelAdmin):
     obrazek_img.short_description = u"obrázek"
 
 class MestoAdmin(OSMGeoAdmin):
+   def queryset(self, request):
+      queryset = super(MestoAdmin, self).queryset(request)
+      if request.user.is_superuser:
+         return queryset
+
+      queryset = queryset.filter(reduce(lambda q, f: q | Q(id=f.id), UserMesto.objects.get(user=request.user).mesta.all(), Q()))
+      return queryset
+
+   def has_change_permission(self, request, obj = None):
+      if request.user.is_superuser:
+         return True
+      if obj == None:
+         return True
+      return obj in UserMesto.objects.get(user=request.user).mesta.all()
+
    list_display = ('nazev', 'slug', 'vyhledavani', 'zoom', 'uvodni_zprava',)
    if USE_GOOGLE_TERRAIN_TILES:
      map_template = 'gis/admin/google.html'
