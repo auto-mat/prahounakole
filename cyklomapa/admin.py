@@ -34,15 +34,13 @@ class UserAdmin(UserAdmin):
 
 class PoiAdmin(OSMGeoAdmin):
     def get_form(self, request, obj=None, **kwargs):
-         if request.user.is_superuser:
-            self.default_lon = 1605350
-            self.default_lat = 6461466
-         else:
-            mesto = UserMesto.objects.get(user=request.user).mesta.all()[0]
-            pnt = Point(mesto.geom.x, mesto.geom.y, srid=4326)
-            pnt.transform(900913)
-            self.default_lon, self.default_lat = pnt.coords
+         mesto = Mesto.objects.get(slug = request.subdomain)
+         pnt = Point(mesto.geom.x, mesto.geom.y, srid=4326)
+         pnt.transform(900913)
+         self.default_lon, self.default_lat = pnt.coords
+
          form = super(PoiAdmin, self).get_form(request, obj, **kwargs)
+         form.base_fields['mesto'].initial = mesto
          return form
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
