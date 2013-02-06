@@ -38,10 +38,7 @@ def mapa_view(request, poi_id=None):
     nomenu = request.GET.get('nomenu', 0)
 
     # detekce mobilni verze podle url
-    subdomain = request.META.get('HTTP_HOST', '').split('.')
-    mobilni = False
-    if 'm' in subdomain:
-        mobilni = True
+    if request.mobilni:
         minimize_layerswitcher = 1
         nomenu = 1
 
@@ -51,9 +48,9 @@ def mapa_view(request, poi_id=None):
         'legenda': Legenda.objects.all(),
         'center_poi' : center_poi,
         'nomenu': nomenu,
-        'mesto': Mesto.objects.get(slug = request.subdomain),
+        'mesto': request.mesto,
         'minimize_layerswitcher': minimize_layerswitcher,
-        'mobilni': mobilni,
+        'mobilni': request.mobilni,
     })
     return render_to_response('mapa.html', context_instance=context)
 
@@ -65,7 +62,7 @@ def kml_view(request, nazev_vrstvy):
     v = get_object_or_404(Vrstva, slug=nazev_vrstvy, status__show=True)
 
     # vsechny body co jsou v teto vrstve a jsou zapnute
-    points = Poi.viditelne.filter(znacka__vrstva=v).filter(mesto__slug = request.subdomain).kml()
+    points = Poi.viditelne.filter(znacka__vrstva=v).filter(mesto = request.mesto).kml()
     return render_to_kml("gis/kml/vrstva.kml", { 'places' : points})
 
 @gzip_page
