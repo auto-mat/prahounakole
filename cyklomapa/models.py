@@ -67,12 +67,12 @@ class ViditelneManager(models.GeoManager):
 class Mesto(models.Model):
     "Mesto - vyber na zaklade subdomeny"
     nazev         = models.CharField(unique=True, max_length=255, blank=False)   # Jméno města
-    slug          = models.SlugField(unique=True, verbose_name=u"název v URL", blank=False)   # Subdoména města
+    slug          = models.SlugField(unique=True, verbose_name=u"Subdoména v URL", blank=False)   # Subdoména města
     vyhledavani   = models.BooleanField()                                        # Je zapnutý vyhledávač
     zoom          = models.PositiveIntegerField(default=13)                      # Defaultní zoom
     uvodni_zprava = models.TextField(null=True, blank=True)                      # Úvodní zpráva
 
-    geom        = models.PointField(verbose_name=u"Poloha stredu",srid=4326)     #Poloha středu
+    geom        = models.PointField(verbose_name=u"Poloha středu",srid=4326)     #Poloha středu
     objects = models.GeoManager()
 
     class Meta:

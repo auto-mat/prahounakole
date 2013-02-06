@@ -161,6 +161,14 @@ class MestoAdmin(OSMGeoAdmin):
          return True
       return obj in request.user.usermesto.mesta.all()
 
+   def get_fieldsets(self, request, obj=None):
+       fieldsets = super(MestoAdmin, self).get_fieldsets(request, obj)
+       if request.user.is_superuser:
+          return fieldsets
+       fieldsets[0][1]['fields'].remove('slug')
+       fieldsets[0][1]['fields'].remove('vyhledavani')
+       return fieldsets
+
    list_display = ('nazev', 'slug', 'vyhledavani', 'zoom', 'uvodni_zprava',)
    if USE_GOOGLE_TERRAIN_TILES:
      map_template = 'gis/admin/google.html'
