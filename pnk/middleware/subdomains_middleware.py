@@ -15,7 +15,7 @@ class SubdomainsMiddleware:
             request.subdomain = parts[0]
             request.domain = '.'.join(parts[1:])
 
-            if 'm' in parts[0]:
+            if 'm' == parts[0]:
                    request.mobilni = True
                    request.subdomain = parts[1]
                    request.domain = '.'.join(parts[2:])
