@@ -161,13 +161,12 @@ class MestoAdmin(OSMGeoAdmin):
          return True
       return obj in request.user.usermesto.mesta.all()
 
-   def get_fieldsets(self, request, obj=None):
-       fieldsets = super(MestoAdmin, self).get_fieldsets(request, obj)
+   def get_form(self, request, obj=None, **kwargs):
        if request.user.is_superuser:
-          return fieldsets
-       fieldsets[0][1]['fields'].remove('slug')
-       fieldsets[0][1]['fields'].remove('vyhledavani')
-       return fieldsets
+           self.exclude = ()
+       else:
+           self.exclude = ('slug', 'vyhledavani',)  
+       return super(MestoAdmin, self).get_form(request, obj=None, **kwargs)
 
    list_display = ('nazev', 'slug', 'vyhledavani', 'zoom', 'uvodni_zprava',)
    if USE_GOOGLE_TERRAIN_TILES:
