@@ -151,10 +151,10 @@ function defaultPanZoom() {
             layerGoogle.mapObject.setTilt(0);
 
 
-            // zabranime odzoomovani na nizsi level nez 11 
+            // zabranime odzoomovani na nizsi level nez 8 
             map.isValidZoomLevel = function(zoomLevel) {
                 var valid = ( (zoomLevel != null) &&
-                    (zoomLevel >= 11) &&
+                    (zoomLevel >= 8) &&
                     (zoomLevel < this.getNumZoomLevels()) );
                 if (valid && zoomFilter.value != 999) {
                     // Toto je trochu hack, ale jinak (napr. pomoci eventu) nelze zajistit
