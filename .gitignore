@@ -1,0 +1,10 @@
+*.py[co]
+media/
+env/
+*.swp
+*.diff
+*.rej
+run.sh
+pnk/settings.py
+!.gitkeep
+*~
