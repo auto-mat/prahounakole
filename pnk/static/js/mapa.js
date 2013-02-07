@@ -85,9 +85,17 @@ function defaultPanZoom() {
             mainFilter.filters.push(zoomFilter);
 
             simpleSwitcher = new SimpleLayerSwitcher();
-            layerSwitcher = new OpenLayers.Control.LayerSwitcher({roundedCornerColor:'#cb541c', ascending:0});
-            var options = { 
-                controls: [
+            var controls;
+            if(mapconfig.mobilni) {
+               controls = [
+                    new OpenLayers.Control.ArgParser(),
+                    new OpenLayers.Control.Attribution(),
+                    new OpenLayers.Control.Navigation(),
+                    defaultPanZoom()
+                ];
+            } else {
+               layerSwitcher = new OpenLayers.Control.LayerSwitcher({roundedCornerColor:'#cb541c', ascending:0});
+               controls = [
                     new OpenLayers.Control.ArgParser(),
                     new OpenLayers.Control.Attribution(),
                     layerSwitcher,
@@ -96,7 +104,11 @@ function defaultPanZoom() {
                     new OpenLayers.Control.Permalink(),
                     new OpenLayers.Control.ScaleLine({maxWidth: 300}),
                     defaultPanZoom()
-                ],
+                ];
+            }
+
+            var options = { 
+                controls: controls,
                 maxExtent: bounds.clone(),
                 restrictedExtent: bounds.clone(),
                 projection: EPSG4326,
@@ -107,10 +119,12 @@ function defaultPanZoom() {
 
             map = new OpenLayers.Map('map', options);
 
-            if (mapconfig.minimize_layerswitcher) {
-                layerSwitcher.minimizeControl();
-            } else {
-	        layerSwitcher.maximizeControl();
+            if(!mapconfig.mobilni) {
+               if (mapconfig.minimize_layerswitcher) {
+                   layerSwitcher.minimizeControl();
+               } else {
+                   layerSwitcher.maximizeControl();
+               };
             };
 
             layer_osm = new OpenLayers.Layer.OSM.Mapnik("OpenStreetMap", { 
@@ -147,8 +161,11 @@ function defaultPanZoom() {
                 numZoomLevels: 22
             });
 
-            map.addLayers([layerPNK, layerPNK_BW, layer_osm, layerCycle, layerGoogle]);
-            layerGoogle.mapObject.setTilt(0);
+            map.addLayers([layerPNK]);
+            if(!mapconfig.mobilni) {
+               map.addLayers([layerPNK_BW, layer_osm, layerCycle, layerGoogle]);
+               layerGoogle.mapObject.setTilt(0);
+            }
 
 
             // zabranime odzoomovani na nizsi level nez 8 
@@ -184,23 +201,45 @@ function defaultPanZoom() {
 
             map.setBaseLayer(layerPNK);
             $('.olControlLayerSwitcher').show();
-            kmlvrstvy = mapconfig.vrstvy;
-            for (i in kmlvrstvy) {
-                addPoiLayer(kmlvrstvy[i][0], mapconfig.root_url + kmlvrstvy[i][1], kmlvrstvy[i][2] == 'True');
-            };
 
-            selectControl = new OpenLayers.Control.SelectFeature(
-                vectors, {
-                    toggle: true,
-                    clickout: true,
-                    multiple: false,
-                    onUnselect: onFeatureUnselect,
-                    onSelect: onFeatureSelect
-                }
-            );
+            if(!mapconfig.mobilni) {
+               kmlvrstvy = mapconfig.vrstvy;
+               for (i in kmlvrstvy) {
+                   addPoiLayer(kmlvrstvy[i][0], mapconfig.root_url + kmlvrstvy[i][1], kmlvrstvy[i][2] == 'True');
+               };
 
-            map.addControl(selectControl);
-            selectControl.activate();
+               selectControl = new OpenLayers.Control.SelectFeature(
+                   vectors, {
+                       toggle: true,
+                       clickout: true,
+                       multiple: false,
+                       onUnselect: onFeatureUnselect,
+                       onSelect: onFeatureSelect
+                   }
+               );
+
+               map.addControl(selectControl);
+               selectControl.activate();
+            }
+
+            if(mapconfig.mobilni) {
+               position_layer = new OpenLayers.Layer.Vector("Poloha", {});
+               map.addLayer(position_layer);
+             
+               geocontrol = new OpenLayers.Control.Geolocate({
+                   watch: true,
+                   bind: false,
+                   geolocationOptions: {
+                       enableHighAccuracy: true,
+                       maximumAge: 0,
+                       timeout: 7000
+                   }
+               });
+               map.addControl(geocontrol);
+               geocontrol.activate();
+               geocontrol.events.register("locationupdated", geocontrol, onLocationUpdate);
+            }
+
             appMode = 'pnkmap';
             $('.panel').hide();
             $('#uvod').show();
@@ -718,3 +757,38 @@ function defaultPanZoom() {
         function movePointToLonLat(point, ll) {
             point.move(ll.lon - point.x, ll.lat - point.y);
         } 
+
+        var accuracy_style = {
+            fillOpacity: 0.1,
+            fillColor: '#000',
+            strokeColor: '#00f',
+            strokeOpacity: 0.4
+        };
+        function onLocationUpdate(evt) {
+            var coords = evt.position.coords;
+            position_layer.removeAllFeatures();
+            position_layer.addFeatures([
+              new OpenLayers.Feature.Vector(
+                evt.point,
+                {},
+                {
+                    graphicName: 'cross',
+                    strokeColor: '#00f',
+                    strokeWidth: 2,
+                    fillOpacity: 0,
+                    pointRadius: 10
+                }
+              ),
+              new OpenLayers.Feature.Vector(
+                OpenLayers.Geometry.Polygon.createRegularPolygon(
+                    new OpenLayers.Geometry.Point(evt.point.x, evt.point.y),
+                    evt.position.coords.accuracy / 2,
+                    50,
+                    0
+                ),
+                {},
+                accuracy_style
+              )
+            ]);
+            map.zoomToExtent(position_layer.getDataExtent());
+        };
