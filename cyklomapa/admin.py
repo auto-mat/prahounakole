@@ -165,10 +165,10 @@ class MestoAdmin(OSMGeoAdmin):
        if request.user.is_superuser:
            self.exclude = ()
        else:
-           self.exclude = ('slug', 'vyhledavani',)  
+           self.exclude = ('slug', 'vyhledavani', 'aktivni',)  
        return super(MestoAdmin, self).get_form(request, obj=None, **kwargs)
 
-   list_display = ('nazev', 'slug', 'vyhledavani', 'zoom', 'uvodni_zprava',)
+   list_display = ('nazev', 'slug', 'aktivni', 'vyhledavani', 'zoom', 'uvodni_zprava',)
    if USE_GOOGLE_TERRAIN_TILES:
      map_template = 'gis/admin/google.html'
      extra_js = ['http://openstreetmap.org/openlayers/OpenStreetMap.js', 'http://maps.google.com/maps?file=api&amp;v=2&amp;key=%s' % settings.GOOGLE_MAPS_API_KEY]

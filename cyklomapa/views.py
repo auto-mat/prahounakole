@@ -52,6 +52,9 @@ def mapa_view(request, poi_id=None):
         'minimize_layerswitcher': minimize_layerswitcher,
         'mobilni': request.mobilni,
     })
+    if not request.mesto.aktivni and not request.user.is_authenticated():
+       return render_to_response('neaktivni.html', context_instance=context)
+
     return render_to_response('mapa.html', context_instance=context)
 
 @gzip_page
