@@ -3,7 +3,8 @@ search_options = {
        source: function ( request, response ) {
            $.ajax({
                   url: geoCodeURL,
-                  dataType: "json",
+                  dataType: "jsonp",
+                  jsonp: 'json_callback',
                   data: {
                       format: "json",
                       viewbox: "14.018,50.318,14.897,49.762",
