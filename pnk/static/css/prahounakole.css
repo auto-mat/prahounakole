@@ -256,16 +256,16 @@ td.turn i {display:block; width:15px; height:15px}
 .bear_left              {background:url(../img/sipky_sprite.png) no-repeat 0px -60px;}
 .sharp_right            {background:url(../img/sipky_sprite.png) no-repeat 0px -75px;}
 .sharp_left             {background:url(../img/sipky_sprite.png) no-repeat 0px -90px;}
-.double_back            {background:url(../img/sipky_sprite.png) no-repeat 0px -135px;}
-.unknown                {background:url(../img/sipky_sprite.png) no-repeat 0px -150px;}
-.join_roundabout        {background:url(../img/sipky_sprite.png) no-repeat 0px -165px;}
-.first_exit             {background:url(../img/sipky_sprite.png) no-repeat 0px -180x;}
-.second_exit            {background:url(../img/sipky_sprite.png) no-repeat 0px -195px;}
-.third_exit             {background:url(../img/sipky_sprite.png) no-repeat 0px -210px;}
-.fourth_exit            {background:url(../img/sipky_sprite.png) no-repeat 0px -225px;}
-.fifth_exit             {background:url(../img/sipky_sprite.png) no-repeat 0px -240px;}
-.sixth_exit             {background:url(../img/sipky_sprite.png) no-repeat 0px -255px;}
-.seventh_or_more_exit   {background:url(../img/sipky_sprite.png) no-repeat 0px -270px;}
+.double_back            {background:url(../img/sipky_sprite.png) no-repeat 0px -140px;}
+.unknown                {background:url(../img/sipky_sprite.png) no-repeat 0px -155px;}
+.join_roundabout        {background:url(../img/sipky_sprite.png) no-repeat 0px -170px;}
+.first_exit             {background:url(../img/sipky_sprite.png) no-repeat 0px -185px;}
+.second_exit            {background:url(../img/sipky_sprite.png) no-repeat 0px -200px;}
+.third_exit             {background:url(../img/sipky_sprite.png) no-repeat 0px -215px;}
+.fourth_exit            {background:url(../img/sipky_sprite.png) no-repeat 0px -230px;}
+.fifth_exit             {background:url(../img/sipky_sprite.png) no-repeat 0px -245px;}
+.sixth_exit             {background:url(../img/sipky_sprite.png) no-repeat 0px -260px;}
+.seventh_or_more_exit   {background:url(../img/sipky_sprite.png) no-repeat 0px -275px;}
 
 td.distance .dist{display:none}
 td.distance:hover .dist{display:block}
