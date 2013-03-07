@@ -1,3 +1,9 @@
+#panel {
+   visibility: hidden;
+}
+div#map.fullscreen {
+   left: 0px;
+}
 div.olControlZoomPanel {
     height: 108px
     width: 36px;

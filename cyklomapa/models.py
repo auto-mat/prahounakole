@@ -3,7 +3,7 @@
 from django.contrib.gis.db import models
 from django.utils.safestring import mark_safe
 from django.core.cache import cache
-
+from django.contrib.auth.models import User
 
 class Status(models.Model):
     "stavy zobrazeni konkretniho objektu, vrstvy apod. - aktivni, navrzeny, zruseny, ..."
@@ -64,6 +64,27 @@ class ViditelneManager(models.GeoManager):
     def get_query_set(self):
         return super(ViditelneManager, self).get_query_set().filter(status__show=True, znacka__status__show=True)
 
+class Mesto(models.Model):
+    "Mesto - vyber na zaklade subdomeny"
+    nazev         = models.CharField(unique=True, max_length=255, blank=False)   # Jméno města
+    slug          = models.SlugField(unique=True, verbose_name=u"Subdoména v URL", blank=False)   # Subdoména města
+    aktivni       = models.BooleanField(default=True)                            # Je město aktivované
+    vyhledavani   = models.BooleanField()                                        # Je zapnutý vyhledávač
+    zoom          = models.PositiveIntegerField(default=13)                      # Defaultní zoom
+    uvodni_zprava = models.TextField(null=True, blank=True)                      # Úvodní zpráva
+
+    geom        = models.PointField(verbose_name=u"Poloha středu",srid=4326)     #Poloha středu
+    objects = models.GeoManager()
+
+    class Meta:
+        verbose_name_plural = "města"
+    def __unicode__(self):
+        return self.nazev
+
+class UserMesto(models.Model):
+    user = models.OneToOneField(User)
+    mesta = models.ManyToManyField(Mesto)
+
 class Poi(models.Model):
     "Misto - bod v mape"
     nazev   = models.CharField(max_length=255, blank=True)   # Name of the location
@@ -92,6 +113,8 @@ class Poi(models.Model):
 
     # navzdory nazvu jde o fotku v plnem rozliseni
     foto_thumb  = models.ImageField(null=True, blank=True, upload_to='foto')
+
+    mesto  = models.ForeignKey(Mesto, default=1)           # Město, do kterého místo patří
     
     viditelne = ViditelneManager()
     
@@ -133,7 +156,7 @@ class Upresneni(models.Model):
     """
     Tabulka pro uzivatelske doplnovani informaci do mapy. 
 
-    Prozatim na proncipu rucniho prepisu udaju v adminu.
+    Prozatim na principu rucniho prepisu udaju v adminu.
     Vyzchazi z POI, ale nekopiruje se do ni.
     Slouzi predevsim k doplneni informace k mistu. Nektera pole mohou byt proto nefunkncni.
     Pouziva se pouze v Zelene mape, v PNK zatim neaktivni

@@ -26,13 +26,9 @@
    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.min.js" type="text/javascript"></script>
    <script type="text/javascript" src="{% static "js/search.js" %}"></script>
    <script type="text/javascript" src="{% static "js/csapi.js" %}"></script>
-  {% if mobilni %}
-   <script type="text/javascript" src="{% static "js/mapa-mobilni.js" %}"></script>
-  {% else %}
    <script type="text/javascript" src="{% static "js/mapa.js" %}"></script>
-  {% endif %}
 
-    <title>Mapa Prahou na kole</title>
+  <title>Mapa Prahou na kole - {{ mesto.nazev }} </title>
 
 <script type="text/javascript">
 
@@ -42,9 +38,9 @@
     {% for v in vrstvy %}
        mapconfig['vrstvy'].push(["{{v.nazev}}", "{% url 'cyklomapa.views.kml_view' v.slug %}", "{{v.enabled}}"]);
     {% endfor %} 
-     mapconfig['basezoom'] = 13;
-     mapconfig['baselon'] = 14.4211;
-     mapconfig['baselat'] = 50.08741;
+    mapconfig['basezoom'] = {{ mesto.zoom }};
+    mapconfig['baselon'] = {{ mesto.geom.x }};
+    mapconfig['baselat'] = {{ mesto.geom.y }};
     {% if center_poi %}
         mapconfig['zoom'] = 15;
         mapconfig['lon'] = {{ center_poi.geom.x }};
