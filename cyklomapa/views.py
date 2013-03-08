@@ -9,6 +9,7 @@ from django.shortcuts import render, render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.contrib.gis.shortcuts import render_to_kml
 from django.views.decorators.cache import cache_page
+from django.core.cache import get_cache
 from django.views.decorators.cache import never_cache
 from django.views.decorators.gzip import *
 from django.core.mail import send_mail
@@ -57,9 +58,23 @@ def mapa_view(request, poi_id=None):
 
     return render_to_response('mapa.html', context_instance=context)
 
+def cache_page_mesto(expiration):
+   def cache_page_mesto_dc(fn):
+       def wrapper(*args, **kwargs):
+          cache = get_cache('default')
+
+          cache_key = 'kml_view_' + args[1] + '_' + args[0].mesto.nazev
+          result = cache.get(cache_key)
+          if result == None:
+             result = fn(*args, **kwargs)
+             cache.set( cache_key, result, expiration ) 
+          return result
+       return wrapper
+   return cache_page_mesto_dc
+
 @gzip_page
 @never_cache              # zabranime prohlizeci cachovat si kml
-@cache_page(24 * 60 * 60) # cachujeme view v memcached s platnosti 24h
+@cache_page_mesto(24 * 60 * 60) # cachujeme view v memcached s platnosti 24h
 def kml_view(request, nazev_vrstvy):
     # najdeme vrstvu podle slugu. pokud neexistuje, vyhodime 404
     v = get_object_or_404(Vrstva, slug=nazev_vrstvy, status__show=True)
