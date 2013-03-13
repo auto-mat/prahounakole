@@ -11,12 +11,13 @@ body {
     top:50px;
     z-index:-1;
     bottom: 0px;
-    left:312px;
+    left:311px;
     right:0px;
     border: 0px;
     padding: 0px;
     position: absolute;
 }
+.panel_switched #map{left:26px;}
 div#map.fullscreen {
     top: 0px;
     bottom: 0px;
@@ -109,23 +110,41 @@ dt{font-weight:bold;}
 }
 #panel {
   position: absolute;
-  top: 55px;
+  top: 50px;
   bottom: 0px;
-  width: 260px;
-  padding: 0 26px;
+  width: 310px;
+  height:100%;
+  padding: 0;
   border-right: 2px solid #000;
-  overflow-y: auto;
-  overflow-x: hidden;
+/*  overflow-y: hidden;
+  overflow-x: hidden;*/
 }
-.panel {
-  display: none;
+.panel_switched #panel{left:-286px;}
+/* CSS animations */
+.panel_switched .the_content, .panel_switched .submenu{
+  visibility:hidden;
+  opacity:0;
+  -webkit-transition:visibility 0s linear 0.5s,opacity 0.5s linear;
+  -moz-transition:visibility 0s linear 0.5s,opacity 0.5s linear;
+  -o-transition:visibility 0s linear 0.5s,opacity 0.5s linear;
+  -ms-transition:visibility 0s linear 0.5s,opacity 0.5s linear;
+  transition:visibility 0s linear 0.5s,opacity 0.5s linear;
+  }
+#panel, #map, .panel_switched #panel .the_content, .panel_switched #panel .submenu{
+   -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
+
 #panel #uvod {
   display: block;
 }
 #panel-header {
   height: 48px;
 }
+
 #hledani #cs-logo {
   float:left;
   margin-right: 5px;
@@ -135,6 +154,9 @@ dt{font-weight:bold;}
   float:left;
   margin-right: 5px;
 }
+.panel {
+  display: none;
+}
 .panel-content {
   margin-right: 5px;
   font-family: Georgia, Serif;
@@ -143,7 +165,15 @@ dt{font-weight:bold;}
 .panel a, #jpFeedbackForm a {
   border-bottom: 1px solid #B1B1B1;
 }
+.the_content{
+  position: absolute;
+  top: 90px; bottom: 50px; left: 0; right: 0; /* this funny positioning is necesary for proper scrolling inside other absolute positioned div */
+ overflow-y: auto;
+  overflow-x: hidden; 
+  padding:2em 26px 0 26px;
+  width:258px;
 
+}
 #jpPlanButton {
   display: none;
   cursor: pointer;
@@ -155,13 +185,14 @@ dt{font-weight:bold;}
 }
 #jpPlanTypeSelector {
   display: none;
+  margin-bottom: 2em;
 }
 #jpDetails {
   display: none;
 }
 #jpForm {
   /* float:left; */
-  min-height:147px;
+  min-height:150px;
 }
 
 .panel {font-size:13px;line-height:1.4em;font-family:Georgia;}
@@ -169,17 +200,21 @@ dt{font-weight:bold;}
 .panel a {text-decoration:none;color:#333;}
 .panel a:hover, a.active{border-bottom:1px solid #333;color:#000}
 
-.submenu {padding:0 0 1em 0; margin:1em 0 2em 0; font-size:11px; border-bottom:solid 2px black;}
+.submenu {padding:0; margin:0; font-size:11px; height:72px}
 .submenu a {width:25%}
 .submenu ul, .submenu li{padding:0;margin:0;}
 .submenu li{width:45%;display:inline-block;text-align:center; border:solid 0px #CCC; margin:1px; padding:1px; }
+.submenu .inner{ border-bottom:solid 2px black;padding:2em 0;margin:0 2em;}
 
+.panel_switch{position:absolute;z-index:2;left:293px;margin:1em 0 0 0;background:url(../img/open_close.png) no-repeat 0 0;width:17px;height:18px;display:block;}
+.panel_switched .panel_switch{background:url(../img/open_close.png) no-repeat -17px 0;width:17px;height:18px;display:block;}
 .jpTools{padding:0 0 1em 0; margin:1em 0 1em 0; font-size:11px; border-bottom: none;}
 .jpTools a {width:25%}
 .jpTools ul, .jpTools li{padding:0;margin:0;}
 .jpTools li{width:45%;display:inline-block;text-align:center; border:solid 0px #CCC; margin:1px; padding:1px; }
 
 #panel-hidden {display:none;}
+#panel-hidden .inner, #panel-hidden2 .inner{margin:0 26px}
 
 #cyclestreets-attribution, #panel-credits {
   margin-top:40px;
@@ -193,7 +228,7 @@ dt{font-weight:bold;}
   min-height:40px;
  }
 
-.jpPlanType {color:#333;}
+.jpPlanType {color:#333;font-weight: bold;cursor:pointer;}
 .jpPlanType:hover {border-bottom:1px solid #333;color:#000;} 
 .panel input{border:1px solid #ccc;padding:0.5em 0.2em;}
 .panel input.right_arrowed{border-top:1px;border-left:1px;border-bottom:1px;border-right:15px;-o-border-image:url(../img/grey_border.png) 30% stretch;border-image:url(../img/grey_border.png) 30% stretch;border-style:solid;}
@@ -227,14 +262,45 @@ ul.ui-menu {padding: 0.5em 0;border-radius: 5px;border: 1px solid black; box-sha
 .ui-state-hover a, .ui-state-hover a:hover, .ui-state-hover a:link, .ui-state-hover a:visited { color: #ffffff; text-decoration: none; }
 
 
-.chart{float:left;height:90px;border-bottom:2px solid #000;background:url(../img/mapa_input_sprites.png) no-repeat 68px -319px;}
-.chart.loaded{background:url(../img/mapa_input_sprites.png) no-repeat 68px -438px;}
+.chart{float:left;height:105px;border-bottom:2px solid #000;/*background:url(../img/mapa_input_sprites.png) no-repeat 68px -319px;*/}
+/*.chart.loaded{background:url(../img/mapa_input_sprites.png) no-repeat 68px -438px;}*/
+
 .in_chart{position:relative;}
 
 #needle{display:none}
-#needle.balanced{position:absolute;z-index:2;top:34px;left:116px;width:16px;height:65px;background:url(../img/mapa_input_sprites.png) no-repeat -82px -59px;display:block;}
+/*#needle.balanced{position:absolute;z-index:2;top:34px;left:116px;width:16px;height:65px;background:url(../img/mapa_input_sprites.png) no-repeat -82px -59px;display:block;}
 #needle.quietest{position:absolute;z-index:2;top:51px;left:81px;width:50px;height:47px;background:url(../img/mapa_input_sprites.png) no-repeat 0px -535px;display:block;}
-#needle.fastest{position:absolute;z-index:2;top:51px;left:116px;width:50px;height:47px;background:url(../img/mapa_input_sprites.png) no-repeat -57px -535px;display:block;}
+#needle.fastest{position:absolute;z-index:2;top:51px;left:116px;width:50px;height:47px;background:url(../img/mapa_input_sprites.png) no-repeat -57px -535px;display:block;}*/
+#needle.balanced, #needle.quietest, #needle.fastest{position:absolute;z-index:2;top:47px;left:116px;width:16px;height:65px;background:url(../img/mapa_input_sprites.png) no-repeat -82px -59px;display:block;    
+  -moz-transform-origin: 50% 87.6%;
+  -webkit-transform-origin: 50% 87.6%; /* Safari 5+, Chrome 10+*/
+  -ms-transform-origin: 50% 87.6%; /* Internet Exlorer 9+ */
+  transform-origin: 50% 87.6%;    
+  
+  -moz-transition: all 0.4s ease-in;
+-webkit-transition: all 0.4s ease-in;
+-ms-transition: all 0.4s ease-in;
+-o-transition: all 0.4s ease-in;
+transition: all 0.4s ease-in;
+  }
+
+#needle.quietest{
+transform: rotate(-45deg);
+-ms-transform: rotate(-45deg); /* IE 9 */
+-webkit-transform: rotate(-45deg); /* Safari and Chrome */
+-o-transform: rotate(-45deg); /* Opera */
+-moz-transform: rotate(-45deg); /* Firefox */
+}
+#needle.fastest{
+  transform: rotate(45deg);
+-ms-transform: rotate(45deg); /* IE 9 */
+-webkit-transform: rotate(45deg); /* Safari and Chrome */
+-o-transform: rotate(45deg); /* Opera */
+-moz-transform: rotate(45deg); /* Firefox */
+
+}
+#quietest{width:69px}
+.touch_map{position:absolute;top:52px;}
 
 table.instructions{float:none;margin:1em 0 0 0;border-collapse: collapse;border-spacing: 0; width:100%}
 table.instructions tr{cursor: pointer;}
@@ -286,3 +352,4 @@ transition:  all 0.2s linear;}
 .align-right{float:right;clear:none;}
 .centred{text-align:center;}
 .margin_b_05{margin-bottom:0.5em;}
+.margin_t_2{margin-top:2em;}

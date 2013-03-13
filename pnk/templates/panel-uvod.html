@@ -1,22 +1,24 @@
 {% load static cache %}
 <div id="uvod" class="panel">
 
-    <div class="submenu wide_stretch">
-        <ul>
-            <li>
-                <a href="/#hledani" title="Vyhledání trasy pro cestu na kole">Najít trasu</a>
-            </li>
-            <li>
-                <a href="/?layers=0000BFFFFFFTFT" title="Dlouhodobé uzavírky, zimní údržba">Mapa uzavírek</a>
-            </li>
-            <li>
-                <a href="/?layers=0000BFFFFFFFTT" title="Místa, která čekají na úpravu, nebo byla upravena svépomocí">Cykloopatření</a>
-            </li>
-            <li>
-                <a onclick="toggle('panel-hidden')" title="Zobrazí základní legendu mapy přímo v panelu">Základní legenda</a>
-            </li>
-        </ul>
-    </div> 
+  <div class="submenu wide_stretch">
+   <div class="inner">
+    <ul>
+      <li>
+        <a href="/#hledani" title="Vyhledání trasy pro cestu na kole">Najít trasu</a>
+      </li>
+      <li>
+        <a href="/?layers=0000BFFFFFFTFT" title="Dlouhodobé uzavírky, zimní údržba">Mapa uzavírek</a>
+      </li>
+      <li>
+        <a href="/?layers=0000BFFFFFFFTT" title="Místa, která čekají na úpravu, nebo byla upravena svépomocí">Cykloopatření</a>
+      </li>
+      <li>
+        <a onclick="toggle('panel-hidden')" title="Zobrazí základní legendu mapy přímo v panelu">Základní legenda</a>
+      </li>
+    </ul>
+  </div>
+</div> 
 
 <script type="text/javascript" >
 function toggle(obj) {
@@ -33,35 +35,39 @@ function toggle(obj) {
 
 <div class="panel-content">
   <div id="panel-hidden">
-  <p id="hidden-header" onClick="toggle('panel-hidden')">Základní značky v cyklomapě</p>
-  <p class="desc_vlastnosti">
-  {% cache 3600 legenda %}
-  {% for l in legenda %}
+    <div class="inner">
+    <p id="hidden-header" class="margin_t_2" onClick="toggle('panel-hidden')">Základní značky v cyklomapě</p>
+    <p class="desc_vlastnosti">
+      {% cache 3600 legenda %}
+      {% for l in legenda %}
       <img src="{{ l.obrazek.url }}"> &nbsp; {{ l.nazev }}<br/>
-  {% endfor %}
-  {% endcache %}
-  </p>
+      {% endfor %}
+      {% endcache %}
+    </p>
+    </div>
   </div>
 
 
   <div id="panel-hidden2">
-  <h3><br /><a href="/#hledani" title="Vyhledání trasy pro cestu na kole">Zkuste náš nový vyhledávač tras!</a></h3>
-  <p>Po měsících vývoje vám představujeme unikátní možnost vyhledat si trasu pro jízdu na kole v Praze a blízkém okolí.</p>
-  <p>Co bereme v potaz:</p>
-  <ul>
-	<li>značené a doporučené cyklotrasy,</li>
-	<li>cyklostezky, cyklopruhy,</li>
-	<li>třídu komunikace, ze které odvozuje provoz,</li>
-	<li>cykloobousměrky,</li>
-	<li>omezení vjezdu a vstupu,</li>
-	<li>kopce,</li>
-	<li>nezpevněný povrch,</li>
-	<li>tramvajové koleje,</li>
-	<li>dlažbu a kočičí hlavy.</li>
-  </ul>
-  <p><a href="/#hledani" title="Vyhledání trasy pro cestu na kole">Pokračujte zde</a></p>
-  <p><a href="http://prahounakole.cz/kudy-po-praze/mapa/vyhledavac/" target="_blank">Návod pro vyhledávání</a></p>
-  </div>
+    <div class="inner">
+    <h3><br /><a href="/#hledani" title="Vyhledání trasy pro cestu na kole">Zkuste náš nový vyhledávač tras!</a></h3>
+    <p>Po měsících vývoje vám představujeme unikátní možnost vyhledat si trasu pro jízdu na kole v Praze a blízkém okolí.</p>
+    <p>Co bereme v potaz:</p>
+    <ul>
+     <li>značené a doporučené cyklotrasy,</li>
+     <li>cyklostezky, cyklopruhy,</li>
+     <li>třídu komunikace, ze které odvozuje provoz,</li>
+     <li>cykloobousměrky,</li>
+     <li>omezení vjezdu a vstupu,</li>
+     <li>kopce,</li>
+     <li>nezpevněný povrch,</li>
+     <li>tramvajové koleje,</li>
+     <li>dlažbu a kočičí hlavy.</li>
+   </ul>
+   <p><a href="/#hledani" title="Vyhledání trasy pro cestu na kole">Pokračujte zde</a></p>
+   <p><a href="http://prahounakole.cz/kudy-po-praze/mapa/vyhledavac/" target="_blank">Návod pro vyhledávání</a></p>
+   </div>
+ </div>
 
 </div>
 
