@@ -76,6 +76,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'pnk.middleware.subdomains_middleware.SubdomainsMiddleware',
 )
 
 ROOT_URLCONF = 'pnk.urls'
