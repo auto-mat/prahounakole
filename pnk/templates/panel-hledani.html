@@ -1,16 +1,4 @@
 {% load static %}
-<!-- closing element -->
-<div class="panel_switch">
-  &nbsp;
-</div>
-<script>
-  jQuery(document).ready(function($) {
-    // on click add class to body, the css does the rest
-    $('.panel_switch').click( function(){
-      $('body').toggleClass('panel_switched');
-    });
-  });
-</script>
 <div id="hledani" class="panel">
     <div class="submenu">
       <div class="inner">
@@ -46,17 +34,17 @@
             <div class="in_chart">
                 <div id="needle" class="hard_way"></div>
                 <div class="wide_stretch centred margin_b_05">
-                    <span id="balanced" data-plan="balanced" class="jpPlanType way_2">35km/20min</span>
+                    <span id="balanced" data-plan="balanced" class="jpPlanType way_2"></span>
                 </div>
                 <div class="wide_stretch">
-                    <span id="quietest" data-plan="quitest" class="jpPlanType align-left way_1">45km/25min</span>
+                    <span id="quietest" data-plan="quietest" class="jpPlanType align-left way_1"></span>
                     <img src="{% static "img/budik.png" %}" width="105" height="53" border="0" usemap="#path_map" class="touch_map"/>
                     <map name="path_map">
                       <area class="jpPlanType" shape="rect" coords="2,13,36,53" data-plan="quietest" />
                       <area class="jpPlanType" shape="rect" coords="36,4,69,39" data-plan="balanced" />
                       <area class="jpPlanType" shape="rect" coords="69,16,102,51" data-plan="fastest" />
                     </map>
-                    <span id="fastest" data-plan="fastest" class="jpPlanType align-right way_3">5km/50min</span>
+                    <span id="fastest" data-plan="fastest" class="jpPlanType align-right way_3"></span>
                 </div>
             </div>
         </div> 

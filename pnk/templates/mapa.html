@@ -108,6 +108,19 @@ href="http://mtbmap.cz/?zoom=11&amp;lat=50.0864&amp;lon=14.40193&amp;layers=FBF0
           {% include "panel-hledani.html" %}
         </div>
 
+        <!-- closing element -->
+        <div class="panel_switch">
+          &nbsp;
+        </div>
+        <script>
+          jQuery(document).ready(function($) {
+            // on click add class to body, the css does the rest
+            $('.panel_switch').click( function(){
+                $('body').toggleClass('panel_switched');
+            });
+          });
+        </script>
+
         <div id="map" {% if nomenu %}class="fullscreen"{% endif %}></div>
       </div>
   </body>
