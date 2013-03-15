@@ -66,14 +66,14 @@ class ViditelneManager(models.GeoManager):
 
 class Mesto(models.Model):
     "Mesto - vyber na zaklade subdomeny"
-    nazev         = models.CharField(unique=True, max_length=255, blank=False)   # Jméno města
-    slug          = models.SlugField(unique=True, verbose_name=u"Subdoména v URL", blank=False)   # Subdoména města
-    aktivni       = models.BooleanField(default=True)                            # Je město aktivované
-    vyhledavani   = models.BooleanField()                                        # Je zapnutý vyhledávač
-    zoom          = models.PositiveIntegerField(default=13)                      # Defaultní zoom
-    uvodni_zprava = models.TextField(null=True, blank=True)                      # Úvodní zpráva
+    nazev         = models.CharField(unique=True, verbose_name=u"Název", max_length=255, blank=False)
+    slug          = models.SlugField(unique=True, verbose_name=u"Subdoména v URL", blank=False)
+    aktivni       = models.BooleanField(default=True, verbose_name=u"Aktivní", help_text=u"Město je přístupné pro veřejnost")
+    vyhledavani   = models.BooleanField(verbose_name=u"Vyhledávač", help_text=u"Vyhledávání je aktivované")
+    zoom          = models.PositiveIntegerField(default=13, help_text=u"Zoomlevel, ve kterém se zobrazí mapa po načtení")
+    uvodni_zprava = models.TextField(null=True, blank=True, verbose_name=u"Úvodní zpráva", help_text=u"Zpráva, která se zobrazí v levém panelu")
 
-    geom        = models.PointField(verbose_name=u"Poloha středu",srid=4326)     #Poloha středu
+    geom        = models.PointField(verbose_name=u"Poloha středu",srid=4326)
     objects = models.GeoManager()
 
     class Meta:
@@ -87,11 +87,11 @@ class UserMesto(models.Model):
 
 class Poi(models.Model):
     "Misto - bod v mape"
-    nazev   = models.CharField(max_length=255, blank=True)   # Name of the location
+    nazev   = models.CharField(max_length=255, verbose_name=u"Název", blank=True)   # Name of the location
     
     # Relationships
-    znacka  = models.ForeignKey(Znacka)          # "Znacky"   - misto ma prave jednu
-    status  = models.ForeignKey(Status)          # "Statuty"  - misto ma prave jeden
+    znacka  = models.ForeignKey(Znacka, verbose_name=u"Značka")          # "Znacky"   - misto ma prave jednu
+    status  = models.ForeignKey(Status, verbose_name=u"Status")          # "Statuty"  - misto ma prave jeden
     
     # "dulezitost" - modifikator minimalniho zoomu, ve kterem se misto zobrazuje. 
     # Cim vetsi, tim vice bude poi videt, +20 = bude videt vydycky
@@ -105,16 +105,16 @@ class Poi(models.Model):
     objects = models.GeoManager()
     
     # Own content (facultative)
-    desc    = models.TextField(null=True, blank=True)
-    desc_extra = models.TextField(null=True, blank=True, help_text="text do podrobnějšího výpisu podniku (mimo popup)")
-    url     = models.URLField(null=True, blank=True)  # Odkaz z vypisu - stranka podniku apod.
+    desc    = models.TextField(null=True, verbose_name=u"Popis", blank=True)
+    desc_extra = models.TextField(null=True, verbose_name=u"Extra popis", blank=True, help_text="text do podrobnějšího výpisu bodu (mimo popup)")
+    url     = models.URLField(null=True, verbose_name=u"Odkaz URL", blank=True)  # Odkaz z vypisu - stranka podniku apod.
     # address = models.CharField(max_length=255, null=True, blank=True)
-    remark  = models.TextField(null=True, blank=True) # Interni informace o objektu, ktere se nebudou zobrazovat!
+    remark  = models.TextField(null=True, verbose_name=u"Poznámka", blank=True, help_text="Interni informace o objektu, ktere se nebudou zobrazovat!")
 
     # navzdory nazvu jde o fotku v plnem rozliseni
-    foto_thumb  = models.ImageField(null=True, blank=True, upload_to='foto')
+    foto_thumb  = models.ImageField(null=True, verbose_name=u"Fotka", blank=True, upload_to='foto')
 
-    mesto  = models.ForeignKey(Mesto, default=1)           # Město, do kterého místo patří
+    mesto  = models.ForeignKey(Mesto, verbose_name=u"Město", default=1)           # Město, do kterého místo patří
     
     viditelne = ViditelneManager()
     
