@@ -115,6 +115,8 @@ class Poi(models.Model):
     foto_thumb  = models.ImageField(null=True, verbose_name=u"Fotka", blank=True, upload_to='foto')
 
     mesto  = models.ForeignKey(Mesto, verbose_name=u"Město", default=1)           # Město, do kterého místo patří
+
+    datum_zmeny = models.DateTimeField(auto_now=True, verbose_name=u"Datum poslední změny")
     
     viditelne = ViditelneManager()
     

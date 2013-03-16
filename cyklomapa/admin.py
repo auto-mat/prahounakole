@@ -75,8 +75,9 @@ class PoiAdmin(OSMGeoAdmin):
 
     # Standard Django Admin Options
     # http://docs.djangoproject.com/en/1.1/ref/contrib/admin/
-    list_display = ('__unicode__', 'nazev','status','znacka','url','foto_thumb', 'mesto', 'id')
+    list_display = ('__unicode__', 'nazev','status','znacka','url','foto_thumb', 'mesto', 'datum_zmeny', 'id')
     list_filter = ('mesto__nazev', 'znacka__vrstva', 'znacka', 'status',)
+    readonly_fields = ['datum_zmeny',]
     search_fields = ('nazev',)
     ordering = ('nazev',)
     save_as = True
