@@ -43,7 +43,7 @@ def mapa_view(request, poi_id=None):
         minimize_layerswitcher = 1
         nomenu = 1
 
-    historie = Poi.objects.filter(status=4).order_by('datum_zmeny').reverse()[:10]
+    historie = Poi.objects.filter(status=4, mesto=request.mesto).order_by('datum_zmeny').reverse()[:10]
 
     context = RequestContext(request, {
         'root_url': ROOT_URL,
