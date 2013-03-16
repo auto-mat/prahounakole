@@ -517,7 +517,7 @@ function defaultPanZoom() {
             map.addLayer(journeyLayer);
         }
         function onPlanSelect() {
-            selectPlan(this.id);
+            selectPlan($(this).data('plan'));
         }
         function selectPlan(plan) {
             if (plan == selectedPlan) {
@@ -542,7 +542,7 @@ function defaultPanZoom() {
             setHashParameter('plan', plan, false);
         }
         function previewPlanIn() {
-            var plan = this.id;
+            var plan = $(this).data('plan');
             if (! CSApi.routeFeatures || ! CSApi.routeFeatures[plan]) {
                 return false;
             }

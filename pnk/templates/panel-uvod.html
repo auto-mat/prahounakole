@@ -1,27 +1,26 @@
 {% load static cache %}
 <div id="uvod" class="panel">
 
-    <div class="submenu wide_stretch">
-        <ul>
-            {% if mesto.vyhledavani %}
-            <li>
-                <a href="/#hledani" title="Vyhledání trasy pro cestu na kole">Najít trasu</a>
-            </li>
-            {% endif %}
-            <li>
-                <a href="/?layers=0000BFFFFFFTFT" title="Dlouhodobé uzavírky, zimní údržba">Mapa uzavírek</a>
-            </li>
-            <li>
-                <a href="/?layers=0000BFFFFFFFTT" title="Místa, která čekají na úpravu, nebo byla upravena svépomocí">Cykloopatření</a>
-            </li>
-            <li>
-                <a onclick="toggle('panel-hidden')" title="Zobrazí základní legendu mapy přímo v panelu">Základní legenda</a>
-            </li>
-            <li>
-                <a onclick="toggle('panel-historie')" title="Naposledy změněné body">Poslední změny</a>
-            </li>
-        </ul>
-    </div> 
+  <div class="submenu wide_stretch">
+   <div class="inner">
+    <ul>
+      {% if mesto.vyhledavani %}
+      <li>
+        <a href="/#hledani" title="Vyhledání trasy pro cestu na kole">Najít trasu</a>
+      </li>
+      {% endif %}
+      <li>
+        <a href="/?layers=0000BFFFFFFTFT" title="Dlouhodobé uzavírky, zimní údržba">Mapa uzavírek</a>
+      </li>
+      <li>
+        <a href="/?layers=0000BFFFFFFFTT" title="Místa, která čekají na úpravu, nebo byla upravena svépomocí">Cykloopatření</a>
+      </li>
+      <li>
+        <a onclick="toggle('panel-hidden')" title="Zobrazí základní legendu mapy přímo v panelu">Základní legenda</a>
+      </li>
+    </ul>
+  </div>
+</div> 
 
 <script type="text/javascript" >
 function toggle(obj) {
@@ -38,14 +37,16 @@ function toggle(obj) {
 
 <div class="panel-content">
   <div id="panel-hidden">
-  <h3 id="hidden-header" onClick="toggle('panel-hidden')">Základní značky v cyklomapě</h3>
-  <p class="desc_vlastnosti">
-  {% cache 3600 legenda %}
-  {% for l in legenda %}
+    <div class="inner">
+    <p id="hidden-header" class="margin_t_2" onClick="toggle('panel-hidden')">Základní značky v cyklomapě</p>
+    <p class="desc_vlastnosti">
+      {% cache 3600 legenda %}
+      {% for l in legenda %}
       <img src="{{ l.obrazek.url }}"> &nbsp; {{ l.nazev }}<br/>
-  {% endfor %}
-  {% endcache %}
-  </p>
+      {% endfor %}
+      {% endcache %}
+    </p>
+    </div>
   </div>
 
   <div id="panel-historie">
@@ -55,7 +56,9 @@ function toggle(obj) {
 
 
   <div id="panel-hidden2">
-  {{ mesto.uvodni_zprava|safe }}
+    <div class="inner">
+    {{ mesto.uvodni_zprava|safe }}
+    </div>
   </div>
 
 </div>
