@@ -546,17 +546,18 @@ function defaultPanZoom() {
             if (! CSApi.routeFeatures || ! CSApi.routeFeatures[plan]) {
                 return false;
             }
-            if ($(this).hasClass('selected')) {
+            if ($('#' + plan).hasClass('selected')) {
                 return false;
             }
             previewedRoute = CSApi.routeFeatures[plan];
             journeyLayer.addFeatures(previewedRoute);
         }
         function previewPlanOut() {
+            var plan = $(this).data('plan');
             if (!previewedRoute) {
-                return false 
+                return false;
             };
-            if ($(this).hasClass('selected')) {
+            if ($('#' + plan).hasClass('selected')) {
                 return false;
             }
             journeyLayer.removeFeatures(previewedRoute);
