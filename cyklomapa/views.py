@@ -43,6 +43,8 @@ def mapa_view(request, poi_id=None):
         minimize_layerswitcher = 1
         nomenu = 1
 
+    historie = Poi.objects.filter(status=4).order_by('datum_zmeny').reverse()[:10]
+
     context = RequestContext(request, {
         'root_url': ROOT_URL,
         'vrstvy': vrstvy,
@@ -52,6 +54,7 @@ def mapa_view(request, poi_id=None):
         'mesto': request.mesto,
         'minimize_layerswitcher': minimize_layerswitcher,
         'mobilni': request.mobilni,
+        'historie': historie
     })
     if not request.mesto.aktivni and not request.user.is_authenticated():
        return render_to_response('neaktivni.html', context_instance=context)

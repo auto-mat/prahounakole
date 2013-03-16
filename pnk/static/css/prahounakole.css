@@ -179,7 +179,7 @@ dt{font-weight:bold;}
 .jpTools ul, .jpTools li{padding:0;margin:0;}
 .jpTools li{width:45%;display:inline-block;text-align:center; border:solid 0px #CCC; margin:1px; padding:1px; }
 
-#panel-hidden {display:none;}
+#panel-hidden, #panel-historie {display:none;}
 
 #cyclestreets-attribution, #panel-credits {
   margin-top:40px;

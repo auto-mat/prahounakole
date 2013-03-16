@@ -17,6 +17,9 @@
             <li>
                 <a onclick="toggle('panel-hidden')" title="Zobrazí základní legendu mapy přímo v panelu">Základní legenda</a>
             </li>
+            <li>
+                <a onclick="toggle('panel-historie')" title="Naposledy změněné body">Poslední změny</a>
+            </li>
         </ul>
     </div> 
 
@@ -35,7 +38,7 @@ function toggle(obj) {
 
 <div class="panel-content">
   <div id="panel-hidden">
-  <p id="hidden-header" onClick="toggle('panel-hidden')">Základní značky v cyklomapě</p>
+  <h3 id="hidden-header" onClick="toggle('panel-hidden')">Základní značky v cyklomapě</h3>
   <p class="desc_vlastnosti">
   {% cache 3600 legenda %}
   {% for l in legenda %}
@@ -43,6 +46,11 @@ function toggle(obj) {
   {% endfor %}
   {% endcache %}
   </p>
+  </div>
+
+  <div id="panel-historie">
+     <h3 id="hidden-header" onClick="toggle('panel-historie')">Poslední změny v mapě</h3>
+     {% include "panel-historie.html" %}
   </div>
 
 

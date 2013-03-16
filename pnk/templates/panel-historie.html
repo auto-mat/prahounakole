@@ -1,0 +1,11 @@
+{% load static %}
+{% load humanize %}
+<div>
+   {% for poi in historie %}
+      {{ poi.datum_zmeny|naturalday }}:
+      <a href="/misto/{{poi.id}}/">
+         {{ poi.nazev|safe }}
+      </a>
+      <br/>
+   {% endfor %}
+</div>

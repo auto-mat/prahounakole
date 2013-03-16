@@ -100,6 +100,7 @@ INSTALLED_APPS = (
     'django.contrib.gis',
     'cyklomapa',
     'easy_thumbnails',
+    'django.contrib.humanize',
     'south',
 )
 
