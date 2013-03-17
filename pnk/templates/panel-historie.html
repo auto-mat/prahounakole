@@ -1,6 +1,8 @@
 {% load static %}
+{% load static cache %}
 {% load humanize %}
 <div>
+   {% cache 3600 historie %}
    {% for poi in historie %}
       <img src="{{ poi.znacka.default_icon.url }}" title="{{ poi.datum_zmeny|naturalday }}"/>
       <a href="/misto/{{poi.id}}/" title="{{ poi.datum_zmeny|naturalday }}"/>
@@ -8,4 +10,5 @@
       </a>
       <br/>
    {% endfor %}
+   {% endcache %}
 </div>
