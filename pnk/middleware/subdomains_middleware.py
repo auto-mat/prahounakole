@@ -19,6 +19,9 @@ class SubdomainsMiddleware:
                    request.mobilni = True
                    request.subdomain = parts[1]
                    request.domain = '.'.join(parts[2:])
+        else:
+            # fallback na Prahu
+            request.subdomain = 'mapa'
 
-            # najdeme mesto podle slugu. pokud neexistuje, vyhodime 404
-            request.mesto = get_object_or_404(Mesto, slug = request.subdomain)
+        # najdeme mesto podle slugu. pokud neexistuje, vyhodime 404
+        request.mesto = get_object_or_404(Mesto, slug = request.subdomain)
