@@ -23,5 +23,8 @@ class SubdomainsMiddleware:
             # fallback na Prahu
             request.subdomain = 'mapa'
 
+        # umoznime nastavit subdomenu pomoci settings
+        request.subdomain = getattr(settings, 'FORCE_SUBDOMAIN', request.subdomain)
+
         # najdeme mesto podle slugu. pokud neexistuje, vyhodime 404
         request.mesto = get_object_or_404(Mesto, slug = request.subdomain)
