@@ -1,6 +1,4 @@
-{% load static %}
-{% load static cache %}
-{% load humanize %}
+{% load humanize cache %}
 <div>
    {% cache 3600 historie %}
    {% for poi in historie %}
