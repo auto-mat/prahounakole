@@ -16,32 +16,19 @@
         <a href="/?layers=0000BFFFFFFFTT" title="Místa, která čekají na úpravu, nebo byla upravena svépomocí">Cykloopatření</a>
       </li>
       <li>
-        <a onclick="toggle('panel-hidden')" title="Zobrazí základní legendu mapy přímo v panelu">Základní legenda</a>
+        <a onclick="$('#panel-legenda').toggle();" style="cursor:pointer;" title="Zobrazí základní legendu mapy přímo v panelu">Základní legenda</a>
       </li>
       <li>
-          <a onclick="toggle('panel-historie')" title="Naposledy změněné body">Poslední změny</a>
+          <a onclick="$('#panel-historie').toggle();" style="cursor:pointer;" title="Naposledy změněné body">Poslední změny</a>
       </li>
     </ul>
   </div>
 </div> 
 
-<script type="text/javascript" >
-function toggle(obj) {
-	var el = document.getElementById(obj);
-	if ( el.style.display != 'none' &  el.style.display != '' ) {
-		el.style.display = 'none';
-	}
-	else {
-		el.style.display = 'block';
-	}
-}
-
-</script>
-
 <div class="panel-content">
-  <div id="panel-hidden">
+  <div id="panel-legenda">
     <div class="inner">
-    <h3 id="hidden-header" class="margin_t_2" onClick="toggle('panel-hidden')">Základní značky v cyklomapě</h3>
+    <h3 id="hidden-header" class="margin_t_2">Základní značky v cyklomapě</h3>
     <p class="desc_vlastnosti">
       {% cache 3600 legenda %}
       {% for l in legenda %}
@@ -54,13 +41,13 @@ function toggle(obj) {
 
   <div id="panel-historie">
     <div class="inner">
-       <h3 id="hidden-header" class="margin_t_2" onClick="toggle('panel-historie')">Poslední změny v mapě</h3>
+       <h3 id="hidden-header" class="margin_t_2">Poslední změny v mapě</h3>
        {% include "panel-historie.html" %}
     </div>
   </div>
 
 
-  <div id="panel-hidden2">
+  <div id="panel-uvodni-zprava">
     <div class="inner">
     {{ mesto.uvodni_zprava|safe }}
     </div>
