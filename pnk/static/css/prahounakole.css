@@ -41,7 +41,6 @@ div#map.fullscreen {
 #titulka a{
   float:left; 
   width:285px; 
-  background: url('prazak-ico.png') no-repeat 240px 0;
   color: #800000;
   font-weight: bold;
   font-size: 29px;

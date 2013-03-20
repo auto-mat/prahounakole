@@ -72,6 +72,9 @@ class Mesto(models.Model):
     vyhledavani   = models.BooleanField(verbose_name=u"Vyhledávač", help_text=u"Vyhledávání je aktivované")
     zoom          = models.PositiveIntegerField(default=13, help_text=u"Zoomlevel, ve kterém se zobrazí mapa po načtení")
     uvodni_zprava = models.TextField(null=True, blank=True, verbose_name=u"Úvodní zpráva", help_text=u"Zpráva, která se zobrazí v levém panelu")
+    horni_menu    = models.TextField(null=True, blank=True, verbose_name=u"obsah horního menu")
+    paticka       = models.TextField(null=True, blank=True, verbose_name=u"patička", help_text=u"Patička zobrazená v levém menu")
+    logo          = models.ImageField(null=True, upload_to='loga')
 
     geom        = models.PointField(verbose_name=u"Poloha středu",srid=4326)
     objects = models.GeoManager()

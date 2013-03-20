@@ -27,6 +27,12 @@
    <script type="text/javascript" src="{% static "js/search.js" %}"></script>
    <script type="text/javascript" src="{% static "js/csapi.js" %}"></script>
    <script type="text/javascript" src="{% static "js/mapa.js" %}"></script>
+   <style>
+      #titulka a{
+        background: url('{{ mesto.logo.url}}') no-repeat 240px 0;
+      }
+   </style>
+
 
   <title>Mapa Prahou na kole - {{ mesto.nazev }} </title>
 
@@ -86,18 +92,7 @@
              <a href="http://prahounakole.cz" target="_self" title="Home / přehledka">Prahou na kole</a>
            </div>
            <div class="menu" id="menu">
-     <a target="_blank" href="http://www.prahounakole.cz/mapa/pouzivani/legenda/" title="Legenda online mapy">Legenda</a>
-     <a href="javascript:print()" title="Tisk mapy">Tisk</a>
-     <a target="_blank" href="http://prahounakole.cz/category/mapa/" title="Novinky v online mapě, cyklotrasách a cyklostezkách">Novinky</a> 
-     <a target="_blank" href="http://www.prahounakole.cz/mapa/pridavani-do-mapy/">Doplnění mapy</a>
-     <a target="_blank" href="http://www.prahounakole.cz/mapa/vystupy-z-mapy/greenway/" title="Greenway Praha - Wien">Greenway</a>
-	/
-           </div>
-
-           <div class="menu" id="menu2">
-     <a class="small" target="_blank" href="http://www.zelenamapa.cz/" title="Zelená  mapa Auto*Matu">Zelená mapa</a>
-     <a class="small" target="_blank"
-href="http://mtbmap.cz/?zoom=11&amp;lat=50.0864&amp;lon=14.40193&amp;layers=FBF00" title="MTB mapa Martina Tesaře">MTB mapa</a>
+             {{ mesto.horni_menu|safe }}
            </div>
       </div>    
      {% endif %}
