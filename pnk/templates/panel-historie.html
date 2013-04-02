@@ -1,6 +1,6 @@
 {% load humanize cache %}
 <div>
-   {% cache 3600 historie %}
+   {% cache 3600 historie mesto.slug %}
    {% for poi in historie %}
       <img src="{{ poi.znacka.default_icon.url }}" title="{{ poi.datum_zmeny|naturalday }}"/>
       <a href="{{ poi.get_absolute_url }}" title="{{ poi.datum_zmeny|naturalday }}"/>
