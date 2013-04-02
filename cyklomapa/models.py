@@ -5,6 +5,8 @@ from django.utils.safestring import mark_safe
 from django.core.cache import cache
 from django.contrib.auth.models import User
 
+from .utils import SlugifyFileSystemStorage
+
 class Status(models.Model):
     "stavy zobrazeni konkretniho objektu, vrstvy apod. - aktivni, navrzeny, zruseny, ..."
     nazev   = models.CharField(unique=True, max_length=255)         # Nazev statutu
@@ -48,7 +50,7 @@ class Znacka(models.Model):
     remark  = models.TextField(null=True, blank=True) # Interni informace o objektu, ktere se nebudou zobrazovat!
     
     # Base icon and zoom dependent display range
-    default_icon = models.ImageField(null=True, upload_to='ikony') # XXX: zrusit null=True
+    default_icon = models.ImageField(null=True, upload_to='ikony', storage=SlugifyFileSystemStorage()) # XXX: zrusit null=True
     minzoom = models.PositiveIntegerField(default=1)
     maxzoom = models.PositiveIntegerField(default=10)
 
@@ -112,7 +114,8 @@ class Poi(models.Model):
     remark  = models.TextField(null=True, verbose_name=u"Poznámka", blank=True, help_text="Interni informace o objektu, ktere se nebudou zobrazovat!")
 
     # navzdory nazvu jde o fotku v plnem rozliseni
-    foto_thumb  = models.ImageField(null=True, verbose_name=u"Fotka", blank=True, upload_to='foto')
+    foto_thumb  = models.ImageField(verbose_name=u"fotka", null=True, blank=True,
+                                    upload_to='foto', storage=SlugifyFileSystemStorage())
 
     mesto  = models.ForeignKey(Mesto, verbose_name=u"Město", default=1)           # Město, do kterého místo patří
 
@@ -134,7 +137,7 @@ class Legenda(models.Model):
     nazev   = models.CharField(unique=True, max_length=255)
     slug    = models.SlugField(unique=True, verbose_name=u"název v URL")
     popis    = models.TextField(null=True, blank=True)
-    obrazek = models.ImageField(upload_to='ikony')
+    obrazek = models.ImageField(upload_to='ikony', storage=SlugifyFileSystemStorage())
     class Meta:
         verbose_name_plural = u"legenda"
     def __unicode__(self):
