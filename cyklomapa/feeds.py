@@ -5,10 +5,13 @@ from cyklomapa.models import Poi
 class UzavirkyFeed(Feed):
         title = u"Prahou Na Kole - aktuální uzavírky"
         link = "/sitenews/"
-        description = u"Aktuální uzavírky pražských cyklostezek a cyklotras"
+        description = u"Aktuální uzavírky cyklostezek a cyklotras"
 
-        def items(self):
-                return Poi.objects.filter(status__show=True, znacka__slug='vyluka_akt')
+        def get_object(self, request):
+                return request.mesto
+
+        def items(self, obj):
+                return Poi.objects.filter(mesto=obj, status__show=True, znacka__slug='vyluka_akt')
 
         def item_title(self, item):
                 return unicode(item)
