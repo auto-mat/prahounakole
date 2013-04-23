@@ -11,6 +11,9 @@
   <link rel="stylesheet" href="{% static "css/prahounakole.css" %}" type="text/css" />
   <link rel="stylesheet" href="{% static "css/google.css" %}" type="text/css" />
   <link rel="stylesheet" href="{% static "css/layerswitcher.css" %}" type="text/css" />
+  {% if mesto.slug != "mapa" %}
+  <link rel="stylesheet" href="{% static "css/dpnk.css" %}" type="text/css" />
+  {% endif %}
 								    
   <link rel="stylesheet" href="{% static "css/print.css" %}" type="text/css" media="print" />
   {% if mobilni %}
@@ -82,8 +85,9 @@
   <body onload="init(mapconfig)">
      {% if not nomenu %}
      <div id="head">
-       <div id="titulka">
-         <a href="http://prahounakole.cz" target="_self" title="Home / přehledka">Prahou na kole</a>
+         {% if mesto.slug == "mapa" %}
+         <div id="titulka">
+           <a href="http://prahounakole.cz" target="_self" title="Home / přehledka">Prahou na kole</a>
          </div>
          <div class="menu" id="menu">
            <a target="_blank" href="http://www.prahounakole.cz/mapa/pouzivani/legenda/" title="Legenda online mapy">Legenda</a>
@@ -99,6 +103,20 @@
            <a class="small" target="_blank"
            href="http://mtbmap.cz/?zoom=11&amp;lat=50.0864&amp;lon=14.40193&amp;layers=FBF00" title="MTB mapa Martina Tesaře">MTB mapa</a>
          </div>
+         {% else %}
+         <div id="dpnk-head">
+         <div id="titulka">
+           <a href="http://dopracenakole.net/mesta/{{ mesto.slug }}/" target="_self">
+                <img src="http://www.dopracenakole.net/wp-content/themes/easy/images/dopracenakole.png">
+           </a>
+         </div>
+         <div class="menu" id="menu">
+           <a target="_blank" href="http://www.prahounakole.cz/mapa/pouzivani/legenda/" title="Legenda online mapy">Legenda</a>
+           <a target="_blank" href="http://dopracenakole.net/mesta/{{ mesto.slug }}/">Do práce na kole - {{ mesto }}</a>
+         </div>
+         </div>
+         </div>
+         {% endif %}
       </div>    
      {% endif %}
 
