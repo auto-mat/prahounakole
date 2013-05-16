@@ -58,6 +58,8 @@ class Znacka(models.Model):
     
     class Meta:
         verbose_name_plural = "značky"
+        ordering = ['nazev']
+
     def __unicode__(self):
         return self.nazev
 
