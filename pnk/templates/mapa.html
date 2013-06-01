@@ -39,7 +39,12 @@
     mapconfig['root_url'] = "{{ root_url }}";
     mapconfig['vrstvy'] = [];
     {% for v in vrstvy %}
-       mapconfig['vrstvy'].push(["{{v.nazev}}", "{% url 'cyklomapa.views.kml_view' v.slug %}", "{{v.enabled}}"]);
+        {% if center_poi.znacka.vrstva == v %}
+            enabled = "True";
+        {% else %}
+            enabled = "{{v.enabled}}";
+        {% endif %}
+        mapconfig['vrstvy'].push(["{{v.nazev}}", "{% url 'cyklomapa.views.kml_view' v.slug %}", enabled]);
     {% endfor %} 
     mapconfig['basezoom'] = {{ mesto.zoom }};
     mapconfig['baselon'] = {{ mesto.geom.x }};
