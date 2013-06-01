@@ -4,7 +4,12 @@
 # e.g., for the MEDIA_ROOT, and TEMPLATE_DIRS settings.
 # see: http://rob.cogit8.org/blog/2008/Jun/20/django-and-relativity/
 import os
-PROJECT_DIR = os.path.dirname(__file__)
+import sys
+normpath = lambda *args: os.path.normpath(os.path.abspath(os.path.join(*args)))
+PROJECT_DIR = normpath(__file__, "..", "..")
+
+sys.path.append(normpath(PROJECT_DIR, "project"))
+sys.path.append(normpath(PROJECT_DIR, "apps"))
 
 # http://docs.djangoproject.com/en/dev/topics/testing/#id1
 # Your user must be a postgrest superuser
@@ -20,23 +25,11 @@ ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
 )
 
-# DOPLNETE VLASTNI NASTAVENI DB
-DATABASES = {
-        'default': {
-                'ENGINE': 'django.contrib.gis.db.backends.postgis',
-                'NAME': '',
-                'USER': '',
-                'PASSWORD': '',
-                'HOST': 'localhost',
-                'PORT': '',
-        },
-}
-
 CACHES = {
 	'default': {
-                'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
-#		'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+		'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
 		'LOCATION': '127.0.0.1:11211',
+		'KEY_PREFIX': 'pnkvr',
 	},
 }
 
@@ -55,14 +48,8 @@ MEDIA_URL = '/media/'
 STATIC_ROOT = '/home/www/prahounakole.cz/static/'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
-        os.path.join(PROJECT_DIR, 'static'),
+        os.path.join(PROJECT_DIR, 'apps/pnk/static'),
 )
-
-# url cele aplikace bez koncoveho lomitka
-ROOT_URL = ''
-
-# DOPLNTE VLASTNI SECRET_KEY
-SECRET_KEY = ''
 
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
 TEMPLATE_CONTEXT_PROCESSORS += (
@@ -84,13 +71,14 @@ ROOT_URLCONF = 'pnk.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'pnk.wsgi.application'
 
-TEMPLATE_DIRS = (
+TEMPLATE_DIRS = [
     os.path.join(PROJECT_DIR, 'templates'),
+    os.path.join(PROJECT_DIR, 'apps/pnk/templates'),
     os.path.join(PROJECT_DIR, 'olwidget/templates'),
     # Don't forget to use absolute paths, not relative paths.
-)
+]
 
-INSTALLED_APPS = (
+INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -102,7 +90,8 @@ INSTALLED_APPS = (
     'easy_thumbnails',
     'django.contrib.humanize',
     'south',
-)
+    'smart_selects',
+]
 
 ENABLE_API_PROXY = DEBUG        # http-roxy pro requesty na /api
 PROXY_DOMAIN = 'www.cyclestreets.net'

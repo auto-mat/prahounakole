@@ -6,3 +6,4 @@ django-smart-selects
 python-memcached
 psycopg2
 pil
+django-debug-toolbar
