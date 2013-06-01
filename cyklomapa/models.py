@@ -4,6 +4,7 @@ from django.contrib.gis.db import models
 from django.utils.safestring import mark_safe
 from django.core.cache import cache
 from django.contrib.auth.models import User
+from smart_selects.db_fields import GroupedForeignKey
 
 from .utils import SlugifyFileSystemStorage
 
@@ -58,7 +59,7 @@ class Znacka(models.Model):
     
     class Meta:
         verbose_name_plural = "značky"
-        ordering = ['nazev']
+        ordering = ['-vrstva__order', 'nazev']
 
     def __unicode__(self):
         return self.nazev
@@ -94,7 +95,8 @@ class Poi(models.Model):
     nazev   = models.CharField(max_length=255, verbose_name=u"Název", blank=True)   # Name of the location
     
     # Relationships
-    znacka  = models.ForeignKey(Znacka, verbose_name=u"Značka")          # "Znacky"   - misto ma prave jednu
+    vrstva  = 0                                                          # Pole používané smart_selects
+    znacka  = GroupedForeignKey(Znacka, "vrstva", verbose_name=u"Značka")# "Znacky"   - misto ma prave jednu
     status  = models.ForeignKey(Status, verbose_name=u"Status")          # "Statuty"  - misto ma prave jeden
     
     # "dulezitost" - modifikator minimalniho zoomu, ve kterem se misto zobrazuje. 

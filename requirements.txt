@@ -2,6 +2,7 @@ Django==1.4
 easy-thumbnails==1.0.3
 South
 django-http-proxy
+django-smart-selects
 python-memcached
 psycopg2
 pil
