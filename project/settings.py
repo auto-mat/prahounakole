@@ -21,10 +21,6 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 #COMPRESS = True
 
-ADMINS = (
-    # ('Your Name', 'your_email@domain.com'),
-)
-
 CACHES = {
 	'default': {
 		'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
@@ -66,10 +62,10 @@ MIDDLEWARE_CLASSES = (
     'pnk.middleware.subdomains_middleware.SubdomainsMiddleware',
 )
 
-ROOT_URLCONF = 'pnk.urls'
+ROOT_URLCONF = 'urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'pnk.wsgi.application'
+#WSGI_APPLICATION = 'pnk.wsgi.application'
 
 TEMPLATE_DIRS = [
     os.path.join(PROJECT_DIR, 'templates'),

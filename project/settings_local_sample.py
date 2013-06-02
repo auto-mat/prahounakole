@@ -2,7 +2,15 @@
 
 from settings import *
 
-# Sem doplňte vaše lokální nastavení
+# Tento soubor překopírujte s názvem settings_local.py a doplňte vaše lokální nastavení
+
+DEBUG = True
+TEMPLATE_DEBUG = DEBUG
+
+ADMINS = (
+    # ('Your Name', 'your_email@domain.com'),
+)
+
 DATABASES = {
         'default': {
                 'ENGINE': 'django.contrib.gis.db.backends.postgis',
@@ -38,4 +46,4 @@ DEBUG_TOOLBAR_CONFIG = {
 
 THUMBNAIL_DEBUG = True
 
-ENABLE_API_PROXY = False
+ENABLE_API_PROXY = True

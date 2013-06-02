@@ -33,7 +33,7 @@ def mapa_view(request, poi_id=None):
     if hasattr(settings, 'ROOT_URL'):
         ROOT_URL = settings.ROOT_URL
     else:
-        ROOT_URL = '/'
+        ROOT_URL = ''
 
     minimize_layerswitcher = request.GET.get('nols', 0)
     nomenu = request.GET.get('nomenu', 0)
