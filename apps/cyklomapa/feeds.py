@@ -18,3 +18,20 @@ class UzavirkyFeed(Feed):
 
         def item_description(self, item):
                 return item.desc 
+
+class NovinkyFeed(Feed):
+        title = u"Prahou Na Kole - novinky v mapě"
+        link = "/sitenews/"
+        description = u"Novinky v mapě"
+
+        def get_object(self, request):
+                return request.mesto
+
+        def items(self, obj):
+                return Poi.objects.filter(status=4, mesto=obj).order_by('datum_zmeny').reverse()[:10]
+
+        def item_title(self, item):
+                return unicode(item)
+
+        def item_description(self, item):
+                return item.desc

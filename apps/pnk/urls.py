@@ -3,7 +3,7 @@ from django.conf.urls import patterns, url, include
 from django.contrib import admin
 
 from cyklomapa.views import *
-from cyklomapa.feeds import UzavirkyFeed
+from cyklomapa.feeds import UzavirkyFeed, NovinkyFeed
 
 urlpatterns = patterns('',
     (r'^$', mapa_view),
@@ -12,6 +12,7 @@ urlpatterns = patterns('',
     (r'^popup/(\d+)/$', popup_view),
     (r'^uzavirky/$', uzavirky_view),
     (r'^uzavirky/feed/$', UzavirkyFeed()),
+    (r'^novinky/feed/$', NovinkyFeed()),
     (r'^metro/$', metro_view),
     (r'^znacky/$', znacky_view),
 )
