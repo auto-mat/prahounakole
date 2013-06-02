@@ -34,7 +34,7 @@ for item in list(sys.path):
         sys.path.remove(item)
 sys.path[:0] = new_sys_path
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "pnk.settings_local")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "project.settings_local")
 
 # This application object is used by any WSGI server configured to use this
 # file. This includes Django's development server, if the WSGI_APPLICATION
