@@ -7,6 +7,7 @@ from settings import *
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+SERVER_EMAIL = 'pnk-technik@auto-mat.cz'
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
 )
