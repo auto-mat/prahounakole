@@ -44,7 +44,7 @@ MEDIA_URL = '/media/'
 STATIC_ROOT = '/home/www/prahounakole.cz/static/'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
-        os.path.join(PROJECT_DIR, 'apps/pnk/static'),
+        os.path.join(PROJECT_DIR, 'apps/cyklomapa/static'),
 )
 
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
@@ -59,17 +59,17 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'pnk.middleware.subdomains_middleware.SubdomainsMiddleware',
+    'cyklomapa.middleware.subdomains_middleware.SubdomainsMiddleware',
 )
 
 ROOT_URLCONF = 'urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-#WSGI_APPLICATION = 'pnk.wsgi.application'
+#WSGI_APPLICATION = 'cyklomapa.wsgi.application'
 
 TEMPLATE_DIRS = [
     os.path.join(PROJECT_DIR, 'templates'),
-    os.path.join(PROJECT_DIR, 'apps/pnk/templates'),
+    os.path.join(PROJECT_DIR, 'apps/cyklomapa/templates'),
     os.path.join(PROJECT_DIR, 'olwidget/templates'),
     # Don't forget to use absolute paths, not relative paths.
 ]
