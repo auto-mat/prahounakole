@@ -31,8 +31,8 @@
    <script type="text/javascript" src="{% static "js/csapi.js" %}"></script>
    <script type="text/javascript" src="{% static "js/mapa.js" %}"></script>
 
-   <link rel="alternate" type="application/rss+xml" title="Novinky v mapě" href="novinky/feed" />
-   <link rel="alternate" type="application/rss+xml" title="Uzavírky" href="uzavirky/feed" />
+   <link rel="alternate" type="application/rss+xml" title="Novinky v mapě" href="{% url 'novinky_feed' %}" />
+   <link rel="alternate" type="application/rss+xml" title="Uzavírky" href="{% url 'uzavirky_feed' %}" />
 
   <title>Mapa Prahou na kole - {{ mesto.nazev }} </title>
 
