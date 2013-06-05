@@ -28,8 +28,6 @@ DATABASES = {
 # OpenLayers maps
 GOOGLE_MAPS_API_KEY='abcdefg'
 
-MEDIA_URL = 'http://mapa.prahounakole.cz/media/'
-
 SECRET_KEY = ''
 
 # Don't forget to use absolute paths, not relative paths.
