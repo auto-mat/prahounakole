@@ -13,6 +13,9 @@ class UzavirkyFeed(Feed):
         def items(self, obj):
                 return Poi.objects.filter(mesto=obj, status__show=True, znacka__slug='vyluka_akt')
 
+        def item_pubdate(self, item):
+                return item.datum_zmeny
+
         def item_title(self, item):
                 return unicode(item)
 
@@ -29,6 +32,9 @@ class NovinkyFeed(Feed):
 
         def items(self, obj):
                 return Poi.objects.filter(status=4, mesto=obj).order_by('datum_zmeny').reverse()[:10]
+
+        def item_pubdate(self, item):
+                return item.datum_zmeny
 
         def item_title(self, item):
                 return unicode(item)
