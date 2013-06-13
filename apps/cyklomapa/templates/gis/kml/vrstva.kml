@@ -9,7 +9,10 @@
        <height>{{ place.znacka.default_icon.height }}</height>
        <width>{{ place.znacka.default_icon.width }}</width>
     {% endif %}
-    {{ place.kml|safe }}
+    {{ place.geom.kml|safe }}
+    {{ place.line.kml|safe }}
+    {{ place.polygon.kml|safe }}
+    {{ place.multi_geom.kml|safe }}
   </Placemark>
 {% endfor %}
 {% endblock %}

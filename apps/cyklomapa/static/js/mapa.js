@@ -714,7 +714,11 @@ function defaultPanZoom() {
                // jineho POI. V tom pripade popup vyrabet nebudeme.
                return false;
             }
-            var anchor = {'size': new OpenLayers.Size(this.attributes.width,this.attributes.height), 'offset': new OpenLayers.Pixel(-this.attributes.width/2,-this.attributes.height/2)}
+            if(this.geometry.CLASS_NAME == 'OpenLayers.Geometry.Point'){
+               var anchor = {'size': new OpenLayers.Size(this.attributes.width,this.attributes.height), 'offset': new OpenLayers.Pixel(-this.attributes.width/2,-this.attributes.height/2)}
+            } else {
+               var anchor = null;
+            }
             popup = new OpenLayers.Popup.FramedCloud(
                 "chicken", 
                 this.geometry.getBounds().getCenterLonLat(),

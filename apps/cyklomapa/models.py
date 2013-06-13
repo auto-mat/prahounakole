@@ -107,7 +107,10 @@ class Poi(models.Model):
     dulezitost = models.SmallIntegerField(default=0)
     
     # Geographical intepretation
-    geom    = models.PointField(verbose_name=u"Poloha",srid=4326)
+    geom    = models.PointField(verbose_name=u"Poloha",srid=4326, null=True, blank=True, default=None)
+    line    = models.LineStringField(verbose_name=u"linie",srid=4326, null=True, blank=True, default=None)
+    polygon = models.PolygonField(verbose_name=u"polygon",srid=4326, null=True, blank=True, default=None)
+    multi_geom = models.GeometryField(verbose_name=u"geometry",srid=4326, null=True, blank=True, default=None)
     objects = models.GeoManager()
     
     # Own content (facultative)
