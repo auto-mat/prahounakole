@@ -5,6 +5,7 @@ from django.utils.safestring import mark_safe
 from django.core.cache import cache
 from django.contrib.auth.models import User
 from smart_selects.db_fields import GroupedForeignKey
+from colorful.fields import RGBColorField
 
 from .utils import SlugifyFileSystemStorage
 
@@ -54,6 +55,13 @@ class Znacka(models.Model):
     default_icon = models.ImageField(null=True, upload_to='ikony', storage=SlugifyFileSystemStorage()) # XXX: zrusit null=True
     minzoom = models.PositiveIntegerField(default=1)
     maxzoom = models.PositiveIntegerField(default=10)
+
+    # Linear elements style
+    line_width = models.FloatField( verbose_name=u"šířka čáry", default=2,)
+    line_color = RGBColorField(default="#ffc90e")
+    def line_color_kml(this):
+        color = this.line_color[1:]
+        return "88" + color[4:6] + color[2:4] + color[0:2]
 
     url     = models.URLField(null=True, blank=True, help_text=u"ukáže se u všech míst s touto značkou, pokud nemají vlastní url")
     
@@ -107,10 +115,7 @@ class Poi(models.Model):
     dulezitost = models.SmallIntegerField(default=0)
     
     # Geographical intepretation
-    geom    = models.PointField(verbose_name=u"Poloha",srid=4326, null=True, blank=True, default=None)
-    line    = models.LineStringField(verbose_name=u"linie",srid=4326, null=True, blank=True, default=None)
-    polygon = models.PolygonField(verbose_name=u"polygon",srid=4326, null=True, blank=True, default=None)
-    multi_geom = models.GeometryField(verbose_name=u"geometry",srid=4326, null=True, blank=True, default=None)
+    geom    = models.GeometryField(verbose_name=u"Poloha",srid=4326)
     objects = models.GeoManager()
     
     # Own content (facultative)

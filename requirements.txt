@@ -1,10 +1,12 @@
-Django==1.4
-easy-thumbnails==1.0.3
+-e git+git://github.com/django/django.git#egg=Django
+#Django==1.6a1
+easy-thumbnails
 South
 django-http-proxy
-django-smart-selects
+-e git+git://github.com/PetrDlouhy/django-smart-selects.git#egg=django-smart-selects
 python-memcached
 psycopg2
 pil
 django-debug-toolbar
 httplib2
+django-colorful

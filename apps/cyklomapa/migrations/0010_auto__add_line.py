@@ -8,38 +8,30 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding field 'Poi.line'
-        db.add_column(u'cyklomapa_poi', 'line',
-                      self.gf('django.contrib.gis.db.models.fields.LineStringField')(default=None, null=True, blank=True),
+        # Adding field 'Znacka.line_width'
+        db.add_column(u'cyklomapa_znacka', 'line_width',
+                      self.gf('django.db.models.fields.FloatField')(default=2),
                       keep_default=False)
 
-        # Adding field 'Poi.polygon'
-        db.add_column(u'cyklomapa_poi', 'polygon',
-                      self.gf('django.contrib.gis.db.models.fields.PolygonField')(default=None, null=True, blank=True),
-                      keep_default=False)
-
-        # Adding field 'Poi.multi_geom'
-        db.add_column(u'cyklomapa_poi', 'multi_geom',
-                      self.gf('django.contrib.gis.db.models.fields.GeometryField')(default=None, null=True, blank=True),
+        # Adding field 'Znacka.line_color'
+        db.add_column(u'cyklomapa_znacka', 'line_color',
+                      self.gf('colorful.fields.RGBColorField')(default='#ffc90e', max_length=7),
                       keep_default=False)
 
 
         # Changing field 'Poi.geom'
-        db.alter_column(u'cyklomapa_poi', 'geom', self.gf('django.contrib.gis.db.models.fields.PointField')(null=True))
+        db.alter_column(u'cyklomapa_poi', 'geom', self.gf('django.contrib.gis.db.models.fields.GeometryField')())
 
     def backwards(self, orm):
-        # Deleting field 'Poi.line'
-        db.delete_column(u'cyklomapa_poi', 'line')
+        # Deleting field 'Znacka.line_width'
+        db.delete_column(u'cyklomapa_znacka', 'line_width')
 
-        # Deleting field 'Poi.polygon'
-        db.delete_column(u'cyklomapa_poi', 'polygon')
-
-        # Deleting field 'Poi.multi_geom'
-        db.delete_column(u'cyklomapa_poi', 'multi_geom')
+        # Deleting field 'Znacka.line_color'
+        db.delete_column(u'cyklomapa_znacka', 'line_color')
 
 
         # Changing field 'Poi.geom'
-        db.alter_column(u'cyklomapa_poi', 'geom', self.gf('django.contrib.gis.db.models.fields.PointField')(default=None))
+        db.alter_column(u'cyklomapa_poi', 'geom', self.gf('django.contrib.gis.db.models.fields.PointField')())
 
     models = {
         u'auth.group': {
@@ -94,7 +86,7 @@ class Migration(SchemaMigration):
             'nazev': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '255'}),
             'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '50'}),
             'uvodni_zprava': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
-            'vyhledavani': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'vyhledavani': ('django.db.models.fields.BooleanField', [], {}),
             'zoom': ('django.db.models.fields.PositiveIntegerField', [], {'default': '13'})
         },
         u'cyklomapa.poi': {
@@ -104,13 +96,10 @@ class Migration(SchemaMigration):
             'desc_extra': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             'dulezitost': ('django.db.models.fields.SmallIntegerField', [], {'default': '0'}),
             'foto_thumb': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
-            'geom': ('django.contrib.gis.db.models.fields.PointField', [], {'default': 'None', 'null': 'True', 'blank': 'True'}),
+            'geom': ('django.contrib.gis.db.models.fields.GeometryField', [], {}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'line': ('django.contrib.gis.db.models.fields.LineStringField', [], {'default': 'None', 'null': 'True', 'blank': 'True'}),
             'mesto': ('django.db.models.fields.related.ForeignKey', [], {'default': '1', 'to': u"orm['cyklomapa.Mesto']"}),
-            'multi_geom': ('django.contrib.gis.db.models.fields.GeometryField', [], {'default': 'None', 'null': 'True', 'blank': 'True'}),
             'nazev': ('django.db.models.fields.CharField', [], {'max_length': '255', 'blank': 'True'}),
-            'polygon': ('django.contrib.gis.db.models.fields.PolygonField', [], {'default': 'None', 'null': 'True', 'blank': 'True'}),
             'remark': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             'status': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['cyklomapa.Status']"}),
             'url': ('django.db.models.fields.URLField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
@@ -121,8 +110,8 @@ class Migration(SchemaMigration):
             'desc': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'nazev': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '255'}),
-            'show': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'show_TU': ('django.db.models.fields.BooleanField', [], {'default': 'False'})
+            'show': ('django.db.models.fields.BooleanField', [], {}),
+            'show_TU': ('django.db.models.fields.BooleanField', [], {})
         },
         u'cyklomapa.upresneni': {
             'Meta': {'object_name': 'Upresneni'},
@@ -143,7 +132,7 @@ class Migration(SchemaMigration):
         u'cyklomapa.vrstva': {
             'Meta': {'ordering': "['order']", 'object_name': 'Vrstva'},
             'desc': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
-            'enabled': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'enabled': ('django.db.models.fields.BooleanField', [], {}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'nazev': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
             'order': ('django.db.models.fields.PositiveIntegerField', [], {}),
@@ -156,6 +145,8 @@ class Migration(SchemaMigration):
             'default_icon': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True'}),
             'desc': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'line_color': ('colorful.fields.RGBColorField', [], {'default': "'#ffc90e'", 'max_length': '7'}),
+            'line_width': ('django.db.models.fields.FloatField', [], {'default': '2'}),
             'maxzoom': ('django.db.models.fields.PositiveIntegerField', [], {'default': '10'}),
             'minzoom': ('django.db.models.fields.PositiveIntegerField', [], {'default': '1'}),
             'nazev': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '255'}),

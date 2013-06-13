@@ -87,6 +87,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'south',
     'smart_selects',
+    'colorful',
 ]
 
 ENABLE_API_PROXY = DEBUG        # http-roxy pro requesty na /api

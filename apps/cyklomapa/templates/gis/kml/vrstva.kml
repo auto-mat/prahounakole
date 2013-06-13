@@ -1,8 +1,21 @@
 {% extends "gis/kml/base.kml" %}
 {% block placemarks %}
+{% for znacka in znacky %}
+    <Style id="znacka-{{ znacka.slug }}">
+      <LineStyle>
+        <width>{{ znacka.line_width }}</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>{{ znacka.line_color_kml }}</color>
+      </PolyStyle>
+    </Style>
+{% endfor %}
 {% for place in places %}
   <Placemark id="{{place.id}}">
     <name>{{ place }}</name>
+    {% if place.geom.geom_type != 'Point' %}
+       <styleUrl>#znacka-{{ place.znacka.slug }}</styleUrl>
+    {% endif %}
     <minZoom>{{ place.znacka.minzoom }}</minZoom>
     {% if place.znacka.default_icon.url %}
        <ikona>{{ place.znacka.default_icon.url }}</ikona>
@@ -10,9 +23,6 @@
        <width>{{ place.znacka.default_icon.width }}</width>
     {% endif %}
     {{ place.geom.kml|safe }}
-    {{ place.line.kml|safe }}
-    {{ place.polygon.kml|safe }}
-    {{ place.multi_geom.kml|safe }}
   </Placemark>
 {% endfor %}
 {% endblock %}
