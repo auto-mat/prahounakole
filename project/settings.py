@@ -38,10 +38,10 @@ SITE_ID = 1
 
 USE_I18N = True
 
-MEDIA_ROOT = '/home/www/prahounakole.cz/media/'
+MEDIA_ROOT = 'media/'
 MEDIA_URL = '/media/'
 
-STATIC_ROOT = '/home/www/prahounakole.cz/static/'
+STATIC_ROOT = 'static/'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
         os.path.join(PROJECT_DIR, 'apps/cyklomapa/static'),
