@@ -54,8 +54,8 @@
     mapconfig['baselat'] = {{ mesto.geom.y }};
     {% if center_poi %}
         mapconfig['zoom'] = 15;
-        mapconfig['lon'] = {{ center_poi.geom.x }};
-        mapconfig['lat'] = {{ center_poi.geom.y }};
+        mapconfig['lon'] = {{ center_poi.geom.centroid.x }};
+        mapconfig['lat'] = {{ center_poi.geom.centroid.y }};
         mapconfig['center_feature'] = {{ center_poi.id }};
     {% else %}
         mapconfig['zoom'] = mapconfig['basezoom'];
