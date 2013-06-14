@@ -2,7 +2,7 @@
 #Django==1.6a1
 easy-thumbnails
 South
--e hg+https://bitbucket.org/yvandermeer/django-http-proxy#egg=django-http-proxy
+-e hg+https://pdlouhy@bitbucket.org/pdlouhy/django-http-proxy#egg=django-http-proxy
 django-smart-selects
 python-memcached
 psycopg2
