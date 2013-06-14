@@ -92,3 +92,9 @@ INSTALLED_APPS = [
 
 ENABLE_API_PROXY = DEBUG        # http-roxy pro requesty na /api
 PROXY_BASE_URL = 'http://www.cyclestreets.net'
+
+# import local settings
+try:
+    from settings_local import *
+except ImportError:
+    pass
