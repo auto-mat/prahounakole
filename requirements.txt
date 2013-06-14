@@ -2,8 +2,8 @@
 #Django==1.6a1
 easy-thumbnails
 South
-django-http-proxy
--e git+git://github.com/PetrDlouhy/django-smart-selects.git#egg=django-smart-selects
+-e hg+https://bitbucket.org/yvandermeer/django-http-proxy#egg=django-http-proxy
+django-smart-selects
 python-memcached
 psycopg2
 pil
