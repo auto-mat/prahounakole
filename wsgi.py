@@ -16,9 +16,9 @@ framework.
 import os
 import site
 import sys
-import settings
+from project.settings import PROJECT_DIR
 
-ALLDIRS = [ os.path.join(settings.PROJECT_DIR, 'env/lib/python2.6/site-packages'), ]
+ALLDIRS = [ os.path.join(PROJECT_DIR, 'env/lib/python2.6/site-packages'), ]
 
 # Remember original sys.path.
 prev_sys_path = list(sys.path)
