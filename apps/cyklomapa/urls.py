@@ -4,6 +4,7 @@ from django.contrib import admin
 
 from cyklomapa.views import *
 from cyklomapa.feeds import UzavirkyFeed, NovinkyFeed
+from httpproxy.views import HttpProxy
 
 urlpatterns = patterns('',
     (r'^$', mapa_view),
@@ -19,5 +20,5 @@ urlpatterns = patterns('',
 
 if settings.ENABLE_API_PROXY:
    urlpatterns += patterns('',
-      (r'^(?P<url>api/.*)$', 'httpproxy.views.proxy'),
+      (r'^(?P<url>api/.*)$', HttpProxy.as_view(base_url = settings.PROXY_BASE_URL)),
    )

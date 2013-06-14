@@ -91,4 +91,4 @@ INSTALLED_APPS = [
 ]
 
 ENABLE_API_PROXY = DEBUG        # http-roxy pro requesty na /api
-PROXY_DOMAIN = 'www.cyclestreets.net'
+PROXY_BASE_URL = 'http://www.cyclestreets.net'
