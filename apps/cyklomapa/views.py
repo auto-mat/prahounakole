@@ -84,8 +84,7 @@ def kml_view(request, nazev_vrstvy):
 
     # vsechny body co jsou v teto vrstve a jsou zapnute
     points = Poi.viditelne.filter(znacka__vrstva=v).filter(mesto = request.mesto).kml()
-    znacky = Znacka.objects.filter(vrstva=v)
-    return render_to_kml("gis/kml/vrstva.kml", { 'places' : points, 'znacky': znacky})
+    return render_to_kml("gis/kml/vrstva.kml", { 'places' : points})
 
 @gzip_page
 def popup_view(request, poi_id):
