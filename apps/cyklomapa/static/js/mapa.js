@@ -721,7 +721,7 @@ function defaultPanZoom() {
             }
             popup = new OpenLayers.Popup.FramedCloud(
                 "chicken", 
-                this.geometry.getBounds().getCenterLonLat(),
+                this.geometry.getCentroid().getBounds().getCenterLonLat(),
                 new OpenLayers.Size(300,300),
                 response.responseText,
                 anchor, true, null
