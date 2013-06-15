@@ -109,7 +109,7 @@ class PoiAdmin(OSMGeoAdmin):
     #mouse_position = True
     #scale_text = True
     #layerswitcher = True
-    scrollable = False
+    scrollable = True
     map_width = 700
     map_height = 500
     map_srid = 900913
