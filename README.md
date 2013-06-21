@@ -15,11 +15,12 @@ Ke zprovoznění je zapotřebí následující
 * Virtualenv
 * Postgres 8.4 + postgis 1.5
 
-Vzorová konfigurace je v project/settings_local_sample.py, stačí přejmenovat na settings_local.py a doplnit přístup k DB a SECRET_KEY.
+Vzorová lokální konfigurace je v project/settings_local_sample.py, stačí přejmenovat na settings_local.py a doplnit přístup k DB a SECRET_KEY.
 
 Instalace probíhá pomocí následujícíh příkazů:
 
 * virtualenv --no-site-packages env
+* env/bin/pip install distribute --upgrade
 * env/bin/pip install -r requirements.txt
 
 Spuštění
@@ -27,4 +28,4 @@ Spuštění
 
 Pro testovací účely spustíte projekt pomocí následujícího příkazu:
 
-* env/bin/python manage.py runserver 0.0.0.0:8000 --settings "settings_local"
+* env/bin/python manage.py runserver 0.0.0.0:8000
