@@ -1,41 +1,15 @@
-#left {
-  display: none;
-}
-
-#greeting {
-  display: none;
-}
-
-#tabnav {
-  display: none;
-}
-
-#sidebar {
-  display: none;
-}
-
-.olControlPermalink {
-  display: none;
-}
-
-.olControlPanZoom {
-  display: none;
-}
-
-#bottom {
-   display: none;
-}
-
-#head {
-   display: none;
-}
-
-.olControlPanZoomBar {
-  display: none;
-}
-
+#panel,
+.olControlZoomPanel,
+.panel_switch,
+#left,
+.olControlPermalink,
+.SimpleLayerSwitcher,
+.olControlPanZoom,
+#head,
+.olControlPanZoomBar,
+.olControlLayerSwitcher,
 .olControlLayerSwitcher {
-  display: none;
+  display: none !important;
 }
 
 .olControlAttribution {
