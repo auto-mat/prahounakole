@@ -46,3 +46,5 @@ DEBUG_TOOLBAR_CONFIG = {
 THUMBNAIL_DEBUG = True
 
 ENABLE_API_PROXY = True
+
+LOGGING['handlers']['logfile']['filename'] = "pnk.log"
