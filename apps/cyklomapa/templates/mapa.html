@@ -34,6 +34,10 @@
    <link rel="alternate" type="application/rss+xml" title="Novinky v mapě" href="{% url 'novinky_feed' %}" />
    <link rel="alternate" type="application/rss+xml" title="Uzavírky" href="{% url 'uzavirky_feed' %}" />
 
+   {# comments #}
+   <link rel="stylesheet" type="text/css" href="{% static "fluent_comments/css/ajaxcomments.css" %}" />
+   <script type="text/javascript" src="{% static "fluent_comments/js/ajaxcomments.js" %}"></script>
+
   <title>Mapa Prahou na kole - {{ mesto.nazev }} </title>
 
 <script type="text/javascript">

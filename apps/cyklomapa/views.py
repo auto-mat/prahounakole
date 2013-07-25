@@ -94,6 +94,15 @@ def popup_view(request, poi_id):
           context_instance=RequestContext(request, { 'poi' : poi }),
           content_type="application/xml")
 
+@gzip_page
+def poi_comments(request, poi_id):
+    poi = get_object_or_404(Poi, id=poi_id)
+
+    return render_to_response("poi_comments.html",
+          { 'poi' : poi },
+          RequestContext(request),
+          )
+
 # vyhledani poi podle nazvu nebo adresy
 # v PNK se nepouziva
 @gzip_page

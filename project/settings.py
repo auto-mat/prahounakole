@@ -89,6 +89,10 @@ INSTALLED_APPS = [
     'south',
     'smart_selects',
     'colorful',
+    'django.contrib.sites',
+    'fluent_comments',
+    'crispy_forms',
+    'django.contrib.comments',
 ]
 
 ENABLE_API_PROXY = DEBUG        # http-roxy pro requesty na /api

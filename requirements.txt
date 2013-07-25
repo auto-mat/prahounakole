@@ -9,3 +9,4 @@ psycopg2
 pil
 django-debug-toolbar
 django-colorful
+django-fluent-comments

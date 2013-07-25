@@ -12,10 +12,12 @@ urlpatterns = patterns('',
     (r'^kml/([-\w]+)/$', kml_view),
     (r'^popup/(\d+)/$', popup_view),
     (r'^uzavirky/$', uzavirky_view),
+    url(r'^poi-comments/(\d+)/$', poi_comments, name="poi_comments"),
     url(r'^uzavirky/feed/$', UzavirkyFeed(), name="uzavirky_feed"),
     url(r'^novinky/feed/$', NovinkyFeed(), name="novinky_feed"),
     (r'^metro/$', metro_view),
     (r'^znacky/$', znacky_view),
+    url(r'^comments/', include('fluent_comments.urls')),
 )
 
 if settings.ENABLE_API_PROXY:

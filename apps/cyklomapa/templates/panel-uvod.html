@@ -21,6 +21,9 @@
       <li>
           <a onclick="$('#panel-historie').toggle();" style="cursor:pointer;" title="Naposledy změněné body">Poslední změny</a>
       </li>
+      <li>
+          <a onclick="$('#panel-comments').toggle();" style="cursor:pointer;" title="Komentáře k jednotlivým bodům">Komentáře</a>
+      </li>
     </ul>
   </div>
 </div> 
@@ -36,6 +39,20 @@
       {% endfor %}
       {% endcache %}
     </p>
+    </div>
+  </div>
+
+  <div id="panel-comments">
+    <div class="inner">
+       <h3 id="hidden-header" class="margin_t_2">Komentáře</h3>
+       {% if center_poi %}
+          <div id="load-comments"></div>
+          <script>
+             $('#load-comments').load('{% url poi_comments center_poi.id %}', function(){
+                $.fn.activate_comments();
+             });
+          </script>
+       {% endif %}
     </div>
   </div>
 
