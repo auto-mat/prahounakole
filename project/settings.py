@@ -144,7 +144,7 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': False,
         },
-        'dpnk': {
+        'cyklomapa': {
             'handlers': ['console', 'mail_admins', 'logfile'],
             'level': 'INFO',
         }
