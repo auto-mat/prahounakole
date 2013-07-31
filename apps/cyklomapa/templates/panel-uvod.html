@@ -48,7 +48,7 @@
        {% if center_poi %}
           <div id="load-comments"></div>
           <script>
-             $('#load-comments').load('{% url poi_comments center_poi.id %}', function(){
+             $('#load-comments').load("{% url 'poi_comments' center_poi.id %}", function(){
                 $.fn.activate_comments();
              });
           </script>
