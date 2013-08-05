@@ -1,12 +1,12 @@
--e git+git://github.com/django/django.git#egg=Django
+-e git+git://github.com/django/django.git@1.6b1#egg=Django
 #Django==1.6a1
-easy-thumbnails
-South
+easy-thumbnails==1.3
+South==0.8.1
 -e hg+https://pdlouhy@bitbucket.org/pdlouhy/django-http-proxy#egg=django-http-proxy
-django-smart-selects
-python-memcached
-psycopg2
-pil
-django-debug-toolbar
-django-colorful
--e git+git@github.com:euanlau/django-fluent-comments.git#egg=django-fluent-comments
+-e git+https://github.com/PetrDlouhy/django-smart-selects.git#egg=django-smart-selects
+python-memcached==1.53
+psycopg2==2.5.1
+pil==1.1.7
+django-debug-toolbar==0.9.4
+django-colorful==0.1.3
+-e git+https://github.com/euanlau/django-fluent-comments.git#egg=django-fluent-comments
