@@ -47,4 +47,5 @@ THUMBNAIL_DEBUG = True
 
 ENABLE_API_PROXY = True
 
-LOGGING['handlers']['logfile']['filename'] = "pnk.log"
+#Make log in execution directory when testing
+LOGGING['handlers']['logfile']['filename'] = normpath(PROJECT_DIR, "pnk.log")
