@@ -47,11 +47,6 @@
        <h3 id="hidden-header" class="margin_t_2">Komentáře</h3>
        {% if center_poi %}
           <div id="load-comments"></div>
-          <script>
-             $('#load-comments').load("{% url 'poi_comments' center_poi.id %}", function(){
-                $.fn.activate_comments();
-             });
-          </script>
        {% endif %}
     </div>
   </div>

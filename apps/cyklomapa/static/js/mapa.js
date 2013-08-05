@@ -702,6 +702,12 @@ function defaultPanZoom() {
                failure: requestFailed,
                scope: feature
             });
+
+            $('#load-comments').load("/poi-comments/" + feature.fid, function(){
+               $('#comments-wrapper').fluentcomments({
+                   append: true
+               })
+            });
         };
 
         var requestFailed = function(response) {

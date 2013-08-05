@@ -9,4 +9,4 @@ psycopg2
 pil
 django-debug-toolbar
 django-colorful
-django-fluent-comments
+-e git+git@github.com:euanlau/django-fluent-comments.git#egg=django-fluent-comments
