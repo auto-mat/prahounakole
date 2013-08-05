@@ -123,7 +123,7 @@ LOGGING = {
         'logfile': {
             'level':'DEBUG',
             'class':'logging.handlers.RotatingFileHandler',
-            'filename': "/var/log/django/aklub.log",
+            'filename': "/var/log/django/pnk.log",
             'backupCount': 50,
             'maxBytes': 10000000,
             'formatter': 'verbose',
