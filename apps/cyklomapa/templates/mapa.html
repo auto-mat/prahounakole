@@ -39,6 +39,10 @@
    <link rel="stylesheet" type="text/css" href="{% static "fluent_comments/css/ajaxcomments.css" %}" />
    <script type="text/javascript" src="{% static "fluent_comments/js/ajaxcomments.js" %}"></script>
 
+   {# comments - persist login values #}
+   <script type="text/javascript" src="{% static "js/jquery.cookie.js" %}"></script>
+   <script type="text/javascript" src="{% static "js/jquery.persist.js" %}"></script>
+
   <title>Mapa Prahou na kole - {{ mesto.nazev }} </title>
 
 <script type="text/javascript">

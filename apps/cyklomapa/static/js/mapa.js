@@ -707,6 +707,7 @@ function defaultPanZoom() {
                $('#comments-wrapper').fluentcomments({
                    append: true
                })
+               jQuery('#id_name,#id_email,#id_url').persist();
             });
         };
 
