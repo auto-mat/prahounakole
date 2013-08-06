@@ -690,25 +690,28 @@ function defaultPanZoom() {
         };
 
         function onFeatureSelect(feature) {
-            var url = mapconfig.root_url + "/popup/" + feature.fid + "/";
-            lastSelectedFeature = feature.fid;
-            for (var i in map.popups) {
-               removePopup(map.popups[i]);
+            if(!$('#id_comment').length >  || $('#id_comment').val() == "" ||
+                  confirm("Máte vyplněný komentář, přepnutím bodu ztratíte tento text.\nPřejete si opravdu bod přepnout?")){
+               var url = mapconfig.root_url + "/popup/" + feature.fid + "/";
+               lastSelectedFeature = feature.fid;
+               for (var i in map.popups) {
+                  removePopup(map.popups[i]);
+               }
+
+               var request = OpenLayers.Request.GET({
+                  url: url,
+                  success: createPopup,
+                  failure: requestFailed,
+                  scope: feature
+               });
+
+               $('#load-comments').load("/poi-comments/" + feature.fid, function(){
+                  $('#comments-wrapper').fluentcomments({
+                      append: true
+                  })
+                  jQuery('#id_name,#id_email,#id_url').persist();
+               });
             }
-
-            var request = OpenLayers.Request.GET({
-               url: url,
-               success: createPopup,
-               failure: requestFailed,
-               scope: feature
-            });
-
-            $('#load-comments').load("/poi-comments/" + feature.fid, function(){
-               $('#comments-wrapper').fluentcomments({
-                   append: true
-               })
-               jQuery('#id_name,#id_email,#id_url').persist();
-            });
         };
 
         var requestFailed = function(response) {
