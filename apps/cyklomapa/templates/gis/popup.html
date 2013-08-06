@@ -1,5 +1,6 @@
 {% load url from future %}
 {% load thumbnail static %}
+{% load comments %}
 <div>
 <div class="trc">
    {% if poi.url %}<h4><a href="{{ poi.url|escape }}" title="{{ poi.url|escape }}"  target="_blank">{{ poi }}</a></h4>
@@ -30,6 +31,9 @@
     <p><a target="_blank" href="{{ poi.znacka.url|escape }}" title="{{ poi.znacka.url|escape }}">{{ poi.znacka.url|escape|truncatewords:4 }}</a></p>
   {% endif %}
 {% endif %}
+
+   {% get_comment_count for poi as comment_count %}
+   <p>Počet komentářů: {{ comment_count }}</p>
 </div>
 <p class="addinfo">
     {% if perms.cyklomapa.poi_change %}
