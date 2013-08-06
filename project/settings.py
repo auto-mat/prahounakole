@@ -89,6 +89,7 @@ INSTALLED_APPS = [
     'south',
     'smart_selects',
     'colorful',
+    'massadmin',
 ]
 
 ENABLE_API_PROXY = DEBUG        # http-roxy pro requesty na /api
