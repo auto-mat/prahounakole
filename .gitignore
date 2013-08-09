@@ -5,6 +5,7 @@ env/
 *.diff
 *.rej
 run.sh
+pnk.log
 project/settings_local.py
 !.gitkeep
 *~
