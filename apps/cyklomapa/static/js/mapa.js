@@ -721,13 +721,13 @@ function defaultPanZoom() {
             }
             popup = new OpenLayers.Popup.FramedCloud(
                 "chicken", 
-                this.geometry.getCentroid().getBounds().getCenterLonLat(),
+                this.geometry.getCentroid(true).getBounds().getCenterLonLat(),
                 new OpenLayers.Size(300,300),
                 response.responseText,
                 anchor, true, null
             );
             popup.keepInMap = true;
-            popup.panMapIfOutOfView = false;
+            popup.panMapIfOutOfView = true;
             popup.maxSize = new OpenLayers.Size(320,500);
             this.popup = popup;
             popup.feature = this;
