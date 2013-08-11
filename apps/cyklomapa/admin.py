@@ -133,6 +133,9 @@ class ZnackaAdmin(admin.ModelAdmin):
     list_display = ('nazev', 'vrstva', 'minzoom', 'status')
     list_filter = ('vrstva','status',)
     search_fields = ('nazev',)
+
+class StatusAdmin(admin.ModelAdmin):
+    list_display = ('nazev', 'desc', 'show', 'show_TU')
     
 class UpresneniAdmin(admin.ModelAdmin):
     model = Upresneni
@@ -187,7 +190,7 @@ class MestoAdmin(OSMGeoAdmin):
 admin.site.register(Poi   , PoiAdmin   )
 admin.site.register(Vrstva, VrstvaAdmin)
 admin.site.register(Znacka, ZnackaAdmin)
-admin.site.register(Status, admin.ModelAdmin)
+admin.site.register(Status, StatusAdmin)
 admin.site.register(Upresneni, UpresneniAdmin)
 admin.site.register(Legenda, LegendaAdmin)
 admin.site.register(Mesto, MestoAdmin)

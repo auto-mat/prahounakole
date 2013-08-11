@@ -13,8 +13,8 @@ class Status(models.Model):
     "stavy zobrazeni konkretniho objektu, vrstvy apod. - aktivni, navrzeny, zruseny, ..."
     nazev   = models.CharField(unique=True, max_length=255)         # Nazev statutu
     desc    = models.TextField(null=True, blank=True)               # Description
-    show    = models.BooleanField()                                 # Zobrazit uzivateli zvenci
-    show_TU = models.BooleanField()                                 # Zobrazit editorovi mapy
+    show    = models.BooleanField(help_text=u"Zobrazit uživateli zvenčí")
+    show_TU = models.BooleanField(help_text=u"Zobrazit editorovi mapy")
 
     class Meta:
         verbose_name_plural = "statuty"
