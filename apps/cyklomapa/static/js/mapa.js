@@ -659,6 +659,7 @@ function defaultPanZoom() {
             kml = new OpenLayers.Layer.Vector(nazev, {
                     projection: EPSG4326,
                     strategies: [new OpenLayers.Strategy.Fixed()],
+                    rendererOptions: {yOrdering: true, zIndexing: true},
                     protocol: new OpenLayers.Protocol.HTTP({
                         url: url,
                         format: new OpenLayers.Format.KML({
