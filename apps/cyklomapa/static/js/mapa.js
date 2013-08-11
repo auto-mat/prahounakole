@@ -66,12 +66,12 @@ function defaultPanZoom() {
             
             filter_rule = new OpenLayers.Rule({
                 filter: mainFilter,
-                symbolizer: {'externalGraphic': '${ikona}', 'graphicWidth': 20, 'graphicHeight': 20, 'strokeWidth': '${line_width}', 'strokeColor': '${line_color}', 'fillColor': '${line_color}',
-                graphicXOffset: -10, graphicYOffset: -10, 'graphicOpacity': 1, 'graphicTitle': '${name}' }
+                symbolizer: {'externalGraphic': '${ikona}', 'graphicWidth': 20, 'graphicHeight': 20, 'graphicZIndex': '${zindex}', 'strokeWidth': '${line_width}', 'strokeColor': '${line_color}', 'fillColor': '${line_color}',
+                graphicXOffset: -10, graphicYOffset: -10, 'graphicOpacity': 1, 'graphicTitle': '${name}'}
             });
             nofilter_rule = new OpenLayers.Rule({
-                symbolizer: {'externalGraphic': '${ikona}', 'graphicWidth': 20, 'graphicHeight': 20, 'strokeWidth': '${line_width}', 'strokeColor': '${line_color}', 'fillColor': '${line_color}',
-                graphicXOffset: -10, graphicYOffset: -10, 'graphicOpacity': 1, 'graphicTitle': '${name}' }
+                symbolizer: {'externalGraphic': '${ikona}', 'graphicWidth': 20, 'graphicHeight': 20, 'graphicZIndex': '${zindex}', 'strokeWidth': '${line_width}', 'strokeColor': '${line_color}', 'fillColor': '${line_color}',
+                graphicXOffset: -10, graphicYOffset: -10, 'graphicOpacity': 1, 'graphicTitle': '${name}'}
             });
             // Filtr, ktery na nejnizsich zoomlevelech skryje nektere znacky.
             // Hodnotu kriteria je nutne aktualizovat pri zmene zoom levelu.
