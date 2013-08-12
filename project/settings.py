@@ -93,6 +93,7 @@ INSTALLED_APPS = [
     'fluent_comments',
     'crispy_forms',
     'django.contrib.comments',
+    'massadmin',
 ]
 
 ENABLE_API_PROXY = DEBUG        # http-roxy pro requesty na /api

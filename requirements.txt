@@ -10,3 +10,4 @@ pil==1.1.7
 django-debug-toolbar==0.9.4
 django-colorful==0.1.3
 -e git+https://github.com/euanlau/django-fluent-comments.git#egg=django-fluent-comments
+django-mass-edit==1.5.1
