@@ -691,7 +691,7 @@ function defaultPanZoom() {
         };
 
         function onFeatureSelect(feature) {
-            if(!$('#id_comment').length >  || $('#id_comment').val() == "" ||
+            if(!$('#id_comment').length > 0 || $('#id_comment').val() == "" ||
                   confirm("Máte vyplněný komentář, přepnutím bodu ztratíte tento text.\nPřejete si opravdu bod přepnout?")){
                var url = mapconfig.root_url + "/popup/" + feature.fid + "/";
                lastSelectedFeature = feature.fid;
