@@ -102,11 +102,18 @@
   <body onload="init(mapconfig)">
      {% if not nomenu %}
      <div id="head">
+
          {% if mesto.slug == "mapa" %}
          <div id="titulka">
            <a href="http://prahounakole.cz" target="_self" title="Home / přehledka">Prahou na kole</a>
          </div>
          <div class="menu" id="menu">
+           {% if mesto.vyhledavani %}
+             <a href="/#hledani" title="Vyhledání trasy pro cestu na kole">Najít trasu</a>
+           {% endif %}
+           <a href="/?layers=0000BFFFFFFTFT" title="Dlouhodobé uzavírky, zimní údržba">Mapa uzavírek</a>
+           <a href="/?layers=0000BFFFFFFFTT" title="Místa, která čekají na úpravu, nebo byla upravena svépomocí">Cykloopatření</a>
+
            <a target="_blank" href="http://www.prahounakole.cz/mapa/pouzivani/legenda/" title="Legenda online mapy">Legenda</a>
            <a href="javascript:print()" title="Tisk mapy">Tisk</a>
            <a target="_blank" href="http://prahounakole.cz/category/mapa/" title="Novinky v online mapě, cyklotrasách a cyklostezkách">Novinky</a> 
@@ -153,6 +160,10 @@
             $('.panel_switch').click( function(){
                 $('body').toggleClass('panel_switched');
             });
+          });
+
+          $(function() {
+              $( "#panel" ).tabs();
           });
         </script>
 

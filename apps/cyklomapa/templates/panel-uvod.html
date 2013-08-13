@@ -1,32 +1,19 @@
 {% load static cache %}
 <div id="uvod" class="panel">
-
-  <div class="submenu wide_stretch">
-   <div class="inner">
     <ul>
-      {% if mesto.vyhledavani %}
       <li>
-        <a href="/#hledani" title="Vyhledání trasy pro cestu na kole">Najít trasu</a>
-      </li>
-      {% endif %}
-      <li>
-        <a href="/?layers=0000BFFFFFFTFT" title="Dlouhodobé uzavírky, zimní údržba">Mapa uzavírek</a>
+          <a href='#panel-uvodni-zprava' style="cursor:pointer;" title="Komentáře k jednotlivým bodům">Info</a>
       </li>
       <li>
-        <a href="/?layers=0000BFFFFFFFTT" title="Místa, která čekají na úpravu, nebo byla upravena svépomocí">Cykloopatření</a>
+        <a href='#panel-legenda' style="cursor:pointer;" title="Zobrazí základní legendu mapy přímo v panelu">Legenda</a>
       </li>
       <li>
-        <a onclick="$('#panel-legenda').toggle();" style="cursor:pointer;" title="Zobrazí základní legendu mapy přímo v panelu">Základní legenda</a>
+          <a href='#panel-historie' style="cursor:pointer;" title="Naposledy změněné body">Změny</a>
       </li>
       <li>
-          <a onclick="$('#panel-historie').toggle();" style="cursor:pointer;" title="Naposledy změněné body">Poslední změny</a>
-      </li>
-      <li>
-          <a onclick="$('#panel-comments').toggle();" style="cursor:pointer;" title="Komentáře k jednotlivým bodům">Komentáře</a>
+          <a href='#panel-comments' style="cursor:pointer;" title="Komentáře k jednotlivým bodům">Komentáře</a>
       </li>
     </ul>
-  </div>
-</div> 
 
 <div class="panel-content">
   <div id="panel-legenda">
