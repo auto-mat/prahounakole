@@ -31,7 +31,7 @@ class NovinkyFeed(Feed):
                 return request.mesto
 
         def items(self, obj):
-                return Poi.objects.filter(status=4, mesto=obj).order_by('datum_zmeny').reverse()[:10]
+                return Poi.objects.filter(status__show=True, mesto=obj).order_by('datum_zmeny').reverse()[:10]
 
         def item_pubdate(self, item):
                 return item.datum_zmeny
