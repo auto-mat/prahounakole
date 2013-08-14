@@ -61,6 +61,7 @@ class PoiAdmin(OSMGeoAdmin):
 
          form = super(PoiAdmin, self).get_form(request, obj, **kwargs)
          form.base_fields['mesto'].initial = mesto
+         form.base_fields['znacka'].queryset = form.base_fields['znacka'].queryset.filter(status__show = True)
          return form
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
