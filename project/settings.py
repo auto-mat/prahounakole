@@ -91,6 +91,7 @@ INSTALLED_APPS = [
     'colorful',
     'django.contrib.sites',
     'fluent_comments',
+    'comments_moderation',
     'crispy_forms',
     'django.contrib.comments',
     'massadmin',
