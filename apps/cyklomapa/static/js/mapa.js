@@ -1,4 +1,4 @@
-        var map, layer_osm, layerPNK, layerPNK_BW,  kml, filter_rule, nofilter_rule, zoomFilter;
+        var map, layer_osm, layerPNK, layerPNK_BW, layerGoogle, kml, filter_rule, nofilter_rule, zoomFilter;
         var simpleSwitcher, layerSwitcher;
         var appMode = ''; // pnkmap nebo routing
         // jakou cast zadani prave resime - slouzi hlavne pro obsluhu kurzoru
@@ -154,7 +154,7 @@ function defaultPanZoom() {
                 getURL: getTileURL,
                 tileOptions : {crossOriginKeyword: null}
             });
-            var layerGoogle = new OpenLayers.Layer.Google(
+            layerGoogle = new OpenLayers.Layer.Google(
                 "Satelitní mapa Google", {
                 displayInLayerSwitcher: false,
                 type: google.maps.MapTypeId.SATELLITE,
@@ -589,6 +589,18 @@ function defaultPanZoom() {
                 setupRouting();
                 initRoutingPanel();
             };
+            if (hash == 'normal') {
+                setupPnkMap();
+                showNormalView();
+            };
+            if (hash == 'uzavirky') {
+                setupPnkMap();
+                showClosureView();
+            };
+            if (hash == 'opatreni') {
+                setupPnkMap();
+                showInfrastructureView();
+            };
             if (args['trasa']) {
                 setupRouting();
                 var plan = args['plan'];
@@ -808,3 +820,45 @@ function defaultPanZoom() {
             ]);
             map.zoomToExtent(position_layer.getDataExtent());
         };
+
+function showInfrastructureView() {
+   for(var i=0; i<map.layers.length; i++) {
+      layer = map.layers[i];
+      if(layer.CLASS_NAME == "OpenLayers.Layer.Vector"){
+         if(layer.protocol.url == "/kml/soutez/"){
+            layer.setVisibility(true);
+         } else {
+            layer.setVisibility(false);
+         }
+      }
+   }
+   map.setBaseLayer(layerGoogle);
+}
+
+function showClosureView() {
+   for(var i=0; i<map.layers.length; i++) {
+      layer = map.layers[i];
+      if(layer.CLASS_NAME == "OpenLayers.Layer.Vector"){
+         if(layer.protocol.url == "/kml/u/"){
+            layer.setVisibility(true);
+         } else {
+            layer.setVisibility(false);
+         }
+      }
+   }
+   map.setBaseLayer(layerGoogle);
+}
+
+function showNormalView() {
+   for(var i=0; i<map.layers.length; i++) {
+      layer = map.layers[i];
+      if(layer.CLASS_NAME == "OpenLayers.Layer.Vector"){
+         if(layer.protocol.url == "/kml/soutez/"){
+            layer.setVisibility(false);
+         } else {
+            layer.setVisibility(true);
+         }
+      }
+   }
+   map.setBaseLayer(layerPNK);
+}
