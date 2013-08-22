@@ -95,7 +95,7 @@ class Mesto(models.Model):
         return self.nazev
 
 class UserMesto(models.Model):
-    user = models.OneToOneField(User, related_name="user_mesto")
+    user = models.OneToOneField(User)
     mesta = models.ManyToManyField(Mesto)
 
 class Poi(models.Model):
