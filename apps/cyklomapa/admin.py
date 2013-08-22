@@ -30,7 +30,16 @@ class UserMestoInline(admin.StackedInline):
 
 # Define a new User admin
 class UserAdmin(UserAdmin):
+    list_display = ('__unicode__', 'email', 'first_name', 'last_name', 'is_staff', 'is_superuser', 'is_active', 'date_joined', 'get_groups', 'get_user_permissions')
     inlines = (UserMestoInline, )
+
+    def get_groups(self, obj):
+        if obj:
+            return ", ".join([group.name for group in obj.groups.all()])
+
+    def get_user_permissions(self, obj):
+        if obj:
+            return ", ".join([group.name for group in obj.user_permissions.all()])
 
 class PoiAdmin(OSMGeoAdmin):
     def queryset(self, request):
