@@ -143,6 +143,7 @@
             // on click add class to body, the css does the rest
             $('.panel_switch').click( function(){
                 $('body').toggleClass('panel_switched');
+                setTimeout(function(){map.updateSize();},500);
             });
           });
         </script>
