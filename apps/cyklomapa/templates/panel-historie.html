@@ -2,7 +2,7 @@
 <div>
    {% cache 3600 historie mesto.slug %}
    {% for poi in historie %}
-      <a href="javascript: onFeatureSelect(getPoi({{poi.id}}));" title="{{ poi.datum_zmeny|naturalday }}"/>
+      <a href="{{ poi.get_absolute_url }}" onclick="onFeatureSelect(getPoi({{poi.id}}));return false;" title="{{ poi.datum_zmeny|naturalday }}"/>
       <img src="{{ poi.znacka.default_icon.url }}" title="{{ poi.datum_zmeny|naturalday }}"/>
          {{ poi.nazev|safe }}
       </a>
