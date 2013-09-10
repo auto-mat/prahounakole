@@ -12,7 +12,6 @@
         var startFeature = null;
         var endFeature = null;
         var draggedFeature = null;
-        var lastSelectedFeature;
         var criteria = {};
         var criteriaCnt = 0;
         var selectedItinerary = null;
@@ -706,55 +705,17 @@ function defaultPanZoom() {
             if(!$('#id_comment').length > 0 || $('#id_comment').val() == "" ||
                   confirm("Máte vyplněný komentář, přepnutím bodu ztratíte tento text.\nPřejete si opravdu bod přepnout?")){
                var url = mapconfig.root_url + "/popup/" + feature.fid + "/";
-               lastSelectedFeature = feature.fid;
                for (var i in map.popups) {
                   removePopup(map.popups[i]);
                }
 
-               var request = OpenLayers.Request.GET({
-                  url: url,
-                  success: createPopup,
-                  failure: requestFailed,
-                  scope: feature
-               });
-
-               $('#load-comments').load("/poi-comments/" + feature.fid, function(){
+               $('#load-misto').load("/popup/" + feature.fid, function(){
                   $('#comments-wrapper').fluentcomments({
                       append: true
                   })
                   jQuery('#id_name,#id_email,#id_url').persist();
                });
             }
-        };
-
-        var requestFailed = function(response) {
-           alert(response.responseText);
-        }
-
-        var createPopup = function(response) {
-            if (this.fid != lastSelectedFeature) {
-               // Pokud uzivatel klika moc rychle, dobehne nacitani popupu az po vybrani
-               // jineho POI. V tom pripade popup vyrabet nebudeme.
-               return false;
-            }
-            if(this.geometry.CLASS_NAME == 'OpenLayers.Geometry.Point'){
-               var anchor = {'size': new OpenLayers.Size(this.attributes.width,this.attributes.height), 'offset': new OpenLayers.Pixel(-this.attributes.width/2,-this.attributes.height/2)}
-            } else {
-               var anchor = null;
-            }
-            popup = new OpenLayers.Popup.FramedCloud(
-                "chicken", 
-                this.geometry.getCentroid(true).getBounds().getCenterLonLat(),
-                new OpenLayers.Size(300,300),
-                response.responseText,
-                anchor, true, null
-            );
-            popup.keepInMap = true;
-            popup.panMapIfOutOfView = true;
-            popup.maxSize = new OpenLayers.Size(320,500);
-            this.popup = popup;
-            popup.feature = this;
-            map.addPopup(popup);
         };
 
         function onFeatureUnselect(feature) {

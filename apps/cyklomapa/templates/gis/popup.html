@@ -3,8 +3,8 @@
 {% load comments %}
 <div>
 <div class="trc">
-   {% if poi.url %}<h4><a href="{{ poi.url|escape }}" title="{{ poi.url|escape }}"  target="_blank">{{ poi }}</a></h4>
-   {% else %}<h4>{{ poi }}</h4>
+   {% if poi.url %}<h3><a href="{{ poi.url|escape }}" title="{{ poi.url|escape }}"  target="_blank">{{ poi }}</a></h3>
+   {% else %}<h3>{{ poi }}</h3>
    {% endif %}
 </div>
 
@@ -32,8 +32,13 @@
   {% endif %}
 {% endif %}
 
+   <hr/>
    {% get_comment_count for poi as comment_count %}
-   <p>Počet komentářů: {{ comment_count }}</p>
+   <h3 id="hidden-header" class="margin_t_2">Komentáře ({{ comment_count }})</h3>
+   <div id="comments-wrapper">
+      {% render_comment_list for poi %}
+      {% render_comment_form for poi %}
+   </div>
 </div>
 <p class="addinfo">
     {% if perms.cyklomapa.poi_change %}

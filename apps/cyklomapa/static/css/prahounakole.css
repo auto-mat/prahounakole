@@ -213,8 +213,8 @@ overflow-x: hidden;*/
 .jpTools ul, .jpTools li{padding:0;margin:0;}
 .jpTools li{width:45%;display:inline-block;text-align:center; border:solid 0px #CCC; margin:1px; padding:1px; }
 
-#panel-comments, #panel-legenda, #panel-historie {display:none;}
-#panel-comments, #panel-legenda .inner, #panel-uvodni-zprava .inner, #panel-historie .inner{margin:0 5px}
+#panel-misto, #panel-legenda, #panel-historie {display:none;}
+#panel-misto, #panel-legenda .inner, #panel-uvodni-zprava .inner, #panel-historie .inner{margin:0 5px}
 
 #panel-credits {
   border-top:2px solid #000;
