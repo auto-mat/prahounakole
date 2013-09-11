@@ -97,6 +97,7 @@ class PoiAdmin(OSMGeoAdmin):
     save_as = True
     search_fields = ['nazev']
     list_select_related = True
+    list_max_show_all = 10000
 
     if USE_GOOGLE_TERRAIN_TILES:
       map_template = 'gis/admin/google.html'
