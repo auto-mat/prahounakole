@@ -74,11 +74,9 @@ class PoiAdmin(OSMGeoAdmin):
        return super(PoiAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
 
     def has_change_permission(self, request, obj = None):
-       if request.user.is_superuser:
-          return True
        if obj == None:
           return True
-       return obj.mesto in request.user.usermesto.mesta.all()
+       return obj.has_change_permission(request.user)
 
     def has_delete_permission(self, request, obj = None):
        if request.user.is_superuser:

@@ -91,7 +91,10 @@ def popup_view(request, poi_id):
     poi = get_object_or_404(Poi, id=poi_id)
 
     return render(request, "gis/popup.html",
-          context_instance=RequestContext(request, { 'poi' : poi }),
+          context_instance=RequestContext(request, {
+              'poi' : poi,
+              'can_change': request.user.has_perm('cyklomapa.change_poi') and poi.has_change_permission(request.user),
+              }),
           content_type="application/xml")
 
 # vyhledani poi podle nazvu nebo adresy
