@@ -41,7 +41,7 @@
    </div>
 </div>
 <p class="addinfo">
-    {% if perms.cyklomapa.poi_change %}
+    {% if perms.cyklomapa.change_poi %}
     <a href="{% url 'admin:cyklomapa_poi_change' poi.id %}">upravit</a>,
     {% endif %}
     <a href="javascript:void(0);" onclick="ZoomToLonLat(this, {{ poi.geom.x }}, {{ poi.geom.y }}, 15);"
