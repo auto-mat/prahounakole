@@ -1,5 +1,6 @@
 *.py[co]
 media/
+static/
 env/
 *.swp
 *.diff
