@@ -207,6 +207,7 @@ function defaultPanZoom() {
                for (i in kmlvrstvy) {
                    addPoiLayer(kmlvrstvy[i][0], mapconfig.root_url + kmlvrstvy[i][1], kmlvrstvy[i][2] == 'True');
                };
+               addRekola();
 
                selectControl = new OpenLayers.Control.SelectFeature(
                    vectors, {
@@ -697,6 +698,23 @@ function defaultPanZoom() {
                removePopup(map.popups[i]);
             }
 
+            // Trochu hackovita podpora pro specialni vrstvu ReKola
+            // obsah popup se netaha ze serveru, ale vyrabi se z KML
+            if (feature.layer.name == "ReKola") {
+                var response = {};
+                response.responseText =
+                        '<div> <div class="trc"> <h4>' +
+                        feature.attributes.name +
+                        '</h4> </div><div class="rc"><p>' + 
+                        feature.attributes.description +
+                        '<p><a href="http://www.rekola.cz/" target="_blank">ReKola - komunitní bikesharing (zatím) v Praze</a>' +
+                        '</div></div>';
+                feature.attributes.width = 32;
+                feature.attributes.height = 20;
+                createPopup.call(feature, response);
+                return;
+            }
+
             var request = OpenLayers.Request.GET({
                url: url,
                success: createPopup,
@@ -798,3 +816,28 @@ function defaultPanZoom() {
             ]);
             map.zoomToExtent(position_layer.getDataExtent());
         };
+
+function addRekola() {
+        var rekola = new OpenLayers.Layer.Vector("ReKola", {
+            strategies: [new OpenLayers.Strategy.Fixed()],
+            protocol: new OpenLayers.Protocol.Script({
+                // pomoci Yahoo obchazime crossdomain bezpecnostni politiku
+                // http://openlayers.org/dev/examples/cross-origin-xml.html
+                url: "http://query.yahooapis.com/v1/public/yql",
+                params: {
+                        q: "select * from xml where url='http://app.rekola.cz/server/api/bikes/kml'"
+                },
+                //url: "http://app.rekola.cz/server/api/bikes/kml",
+                format: new OpenLayers.Format.KML({
+                    extractStyles: true, 
+                    extractAttributes: true,
+                    maxDepth: 2
+                }),
+                parseFeatures: function(data) {
+                        return this.format.read(data.results[0]);
+                }
+            })
+        });
+        map.addLayers([rekola]);
+        vectors.push(rekola);
+}
