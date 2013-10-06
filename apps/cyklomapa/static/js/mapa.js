@@ -829,7 +829,7 @@ function addRekola() {
                 },
                 //url: "http://app.rekola.cz/server/api/bikes/kml",
                 format: new OpenLayers.Format.KML({
-                    extractStyles: true, 
+                    //extractStyles: true, 
                     extractAttributes: true,
                     maxDepth: 2
                 }),
@@ -838,6 +838,11 @@ function addRekola() {
                 }
             })
         });
+        rekola.styleMap.styles["default"].defaultStyle.cursor = 'pointer';
+        rekola.styleMap.styles["default"].defaultStyle.externalGraphic = 'static/img/rekola.png';
+        rekola.styleMap.styles["default"].defaultStyle.graphicWidth = 20;
+        rekola.styleMap.styles["default"].defaultStyle.graphicHeight = 20;
+        rekola.styleMap.styles["default"].defaultStyle.fillOpacity = 1;
         map.addLayers([rekola]);
         vectors.push(rekola);
 }
