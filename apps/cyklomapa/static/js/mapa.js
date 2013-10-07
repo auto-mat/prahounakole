@@ -839,7 +839,7 @@ function addRekola() {
             })
         });
         rekola.styleMap.styles["default"].defaultStyle.cursor = 'pointer';
-        rekola.styleMap.styles["default"].defaultStyle.externalGraphic = 'static/img/rekola.png';
+        rekola.styleMap.styles["default"].defaultStyle.externalGraphic = '/static/img/rekola.png';
         rekola.styleMap.styles["default"].defaultStyle.graphicWidth = 20;
         rekola.styleMap.styles["default"].defaultStyle.graphicHeight = 20;
         rekola.styleMap.styles["default"].defaultStyle.fillOpacity = 1;
