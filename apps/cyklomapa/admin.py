@@ -143,9 +143,28 @@ class VrstvaAdmin(admin.ModelAdmin):
     inlines = [ZnackaInline]
 
 class ZnackaAdmin(admin.ModelAdmin):
-    list_display = ('nazev', 'vrstva', 'minzoom', 'status')
+    list_display = ('nazev', 'desc', 'vrstva', 'minzoom', 'status', 'default_icon_image', 'poi_count')
     list_filter = ('vrstva','status',)
-    search_fields = ('nazev',)
+    search_fields = ('nazev', 'desc',)
+
+    def default_icon_image(self, obj):
+        if obj.default_icon:
+            return '<img src="%s"/>' % obj.default_icon.url
+    default_icon_image.short_description = "icon"
+    default_icon_image.allow_tags = True
+
+    def get_form(self, request, obj=None, **kwargs):
+        if not request.user.is_superuser and request.user.has_perm(u'mapa.can_only_view'):
+            self.fields = ('nazev', )
+            self.readonly_fields = ('nazev', )
+        else:
+            self.fields = ZnackaAdmin.fields
+            self.readonly_fields = ZnackaAdmin.readonly_fields
+        return super(ZnackaAdmin, self).get_form(request, obj, **kwargs)
+
+    def poi_count(self, obj):
+        return obj.pois.count()
+    poi_count.short_description = "Count"
 
 class StatusAdmin(admin.ModelAdmin):
     list_display = ('nazev', 'desc', 'show', 'show_TU')
