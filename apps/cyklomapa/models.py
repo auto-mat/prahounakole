@@ -4,7 +4,6 @@ from django.contrib.gis.db import models
 from django.utils.safestring import mark_safe
 from django.core.cache import cache
 from django.contrib.auth.models import User
-from smart_selects.db_fields import GroupedForeignKey
 from colorful.fields import RGBColorField
 
 from .utils import SlugifyFileSystemStorage
@@ -103,8 +102,7 @@ class Poi(models.Model):
     nazev   = models.CharField(max_length=255, verbose_name=u"Název", blank=True)   # Name of the location
     
     # Relationships
-    vrstva  = 0                                                          # Pole používané smart_selects
-    znacka  = GroupedForeignKey(Znacka, "vrstva", verbose_name=u"Značka")# "Znacky"   - misto ma prave jednu
+    znacka  = models.ForeignKey(Znacka, limit_choices_to = {'status__show_TU': 'True', 'vrstva__status__show_TU': 'True'}, verbose_name=u"značka", help_text="Zde vyberte ikonu, která se zobrazí na mapě.", related_name="pois")
     status  = models.ForeignKey(Status, verbose_name=u"Status")          # "Statuty"  - misto ma prave jeden
     
     # "dulezitost" - modifikator minimalniho zoomu, ve kterem se misto zobrazuje. 

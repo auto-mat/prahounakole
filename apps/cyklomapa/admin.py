@@ -61,7 +61,6 @@ class PoiAdmin(OSMGeoAdmin):
 
          form = super(PoiAdmin, self).get_form(request, obj, **kwargs)
          form.base_fields['mesto'].initial = mesto
-         form.base_fields['znacka'].queryset = form.base_fields['znacka'].queryset.filter(status__show = True)
          return form
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
@@ -90,6 +89,7 @@ class PoiAdmin(OSMGeoAdmin):
     list_display = ('__unicode__', 'nazev','status','znacka','url','foto_thumb', 'mesto', 'datum_zmeny', 'id')
     list_filter = ('mesto__nazev', 'znacka__vrstva', 'znacka', 'status',)
     readonly_fields = ['datum_zmeny',]
+    raw_id_fields = ('znacka',)
     search_fields = ('nazev',)
     ordering = ('nazev',)
     save_as = True

@@ -90,7 +90,6 @@ INSTALLED_APPS = [
     'easy_thumbnails',
     'django.contrib.humanize',
     'south',
-    'smart_selects',
     'colorful',
     'django.contrib.sites',
     'fluent_comments',
