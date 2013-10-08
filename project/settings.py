@@ -87,7 +87,6 @@ INSTALLED_APPS = [
     'easy_thumbnails',
     'django.contrib.humanize',
     'south',
-    'smart_selects',
     'colorful',
     'massadmin',
 ]

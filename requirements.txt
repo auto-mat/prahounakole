@@ -3,7 +3,6 @@
 easy-thumbnails==1.3
 South==0.8.1
 -e hg+https://pdlouhy@bitbucket.org/pdlouhy/django-http-proxy#egg=django-http-proxy
--e git+https://github.com/PetrDlouhy/django-smart-selects.git#egg=django-smart-selects
 python-memcached==1.53
 psycopg2==2.5.1
 pil==1.1.7
