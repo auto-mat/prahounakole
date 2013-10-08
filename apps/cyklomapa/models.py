@@ -3,15 +3,16 @@
 from django.contrib.gis.db import models
 from django.utils.safestring import mark_safe
 from django.core.cache import cache
+
 from django.contrib.auth.models import User
 from colorful.fields import RGBColorField
 
 from .utils import SlugifyFileSystemStorage
 
 class Status(models.Model):
-    "stavy zobrazeni konkretniho objektu, vrstvy apod. - aktivni, navrzeny, zruseny, ..."
-    nazev   = models.CharField(unique=True, max_length=255)         # Nazev statutu
-    desc    = models.TextField(null=True, blank=True)               # Description
+    "Stavy zobrazeni konkretniho objektu, vrstvy apod. - aktivni, navrzeny, zruseny, ..."
+    nazev   = models.CharField(unique=True, max_length=255, help_text=u"Název statutu")
+    desc    = models.TextField(null=True, blank=True, help_text=u"Popis")
     show    = models.BooleanField(help_text=u"Zobrazit uživateli zvenčí")
     show_TU = models.BooleanField(help_text=u"Zobrazit editorovi mapy")
 
@@ -21,24 +22,22 @@ class Status(models.Model):
         return self.nazev
 
 class Vrstva(models.Model):
-    "vrstvy, ktere se zobrazi v konkretni mape"
+    "Vrstvy, ktere se zobrazi v konkretni mape"
     nazev   = models.CharField(max_length=255)                      # Name of the layer
-    slug    = models.SlugField(unique=True, verbose_name=u"Název v URL")  # Vrstva v URL
+    slug    = models.SlugField(unique=True, verbose_name=u"název v URL")  # Vrstva v URL
     desc    = models.TextField(null=True, blank=True)               # Description
     status  = models.ForeignKey(Status)              # zobrazovaci status
     order   = models.PositiveIntegerField()
-    remark  = models.TextField(null=True, blank=True) # Interni informace o objektu, ktere se nebudou zobrazovat!
-    enabled = models.BooleanField()                                 # Vrstva je defaultně zobrazená
+    remark  = models.TextField(null=True, blank=True, help_text=u"interni informace o objektu, ktere se nebudou zobrazovat")
 
     class Meta:
-        verbose_name_plural = "vrstvy"
+        verbose_name_plural = u"vrstvy"
         ordering = ['order']
     def __unicode__(self):
         return self.nazev
 
-    
 class Znacka(models.Model):
-    "mapove znacky vcetne definice zobrazeni"
+    "Mapove znacky vcetne definice zobrazeni"
     nazev   = models.CharField(unique=True, max_length=255)   # Name of the mark
     slug    = models.SlugField(unique=True, verbose_name=u"název v URL")  # Vrstva v URL
     
@@ -47,11 +46,11 @@ class Znacka(models.Model):
     status  = models.ForeignKey(Status)              # kvuli vypinani
     
     # content 
-    desc    = models.TextField(null=True, blank=True) # podrobny popis znacky
-    remark  = models.TextField(null=True, blank=True) # Interni informace o objektu, ktere se nebudou zobrazovat!
+    desc    = models.TextField(null=True, blank=True, help_text=u"podrobny popis znacky")
+    remark  = models.TextField(null=True, blank=True, help_text=u"interni informace o objektu, ktere se nebudou zobrazovat")
     
     # Base icon and zoom dependent display range
-    default_icon = models.ImageField(null=True, upload_to='ikony', storage=SlugifyFileSystemStorage()) # XXX: zrusit null=True
+    default_icon = models.ImageField(null=True, blank=True, upload_to='ikony', storage=SlugifyFileSystemStorage()) # XXX: zrusit null=True
     minzoom = models.PositiveIntegerField(default=1)
     maxzoom = models.PositiveIntegerField(default=10)
 
@@ -106,14 +105,14 @@ class Poi(models.Model):
     status  = models.ForeignKey(Status, default=3, help_text="Status místa; určuje, kde všude se místo zobrazí.")
     
     # "dulezitost" - modifikator minimalniho zoomu, ve kterem se misto zobrazuje. 
-    # Cim vetsi, tim vice bude poi videt, +20 = bude videt vydycky
-    # Cil je mit vyber zakladnich objektu viditelnych ve velkych meritcich
-    # a zabranit pretizeni mapy znackami v prehledce.
-    # Lze pouzit pro placenou reklamu! ("Vas podnik bude videt hned po otevreni mapy")
-    dulezitost = models.SmallIntegerField(default=0)
+    dulezitost = models.SmallIntegerField(default=0, verbose_name=u"důležitost",
+                 help_text=u"""Modifikátor minimalniho zoomu, ve kterém se místo zobrazuje (20+ bude vidět vždy).<br/>
+                               Cíl je mít výběr základních objektů viditelných ve velkých měřítcích
+                               a zabránit přetížení mapy značkami v přehledce.<br/>
+                               Lze použít pro placenou reklamu! ("Váš podnik bude vidět hned po otevření mapy")""")
     
     # Geographical intepretation
-    geom    = models.GeometryField(verbose_name=u"poloha",srid=4326, help_text=u"""Vložení bodu: Klikni na tužku s plusem a umísti bod na mapu<br/>
+    geom    = models.GeometryField(verbose_name=u"poloha",srid=4326, help_text=u"""Vložení bodu: Klikněte na tužku s plusem a umístěte bod na mapu<br/>
             Kreslení linie: Klikněte na ikonu linie a klikáním do mapy určete lomenou čáru. Kreslení ukončíte dvouklikem.<br/>
             Kreslení oblasti: Klikněte na ikonu oblasti a klikáním do mapy definujte oblast. Kreslení ukončíte dvouklikem.<br/>
             Úprava vložených objektů: Klikněte na první ikonu a potom klikněte na objekt v mapě. Tažením přesouváte body, body uprostřed úseků slouží k vkládání nových bodů do úseku.""")
@@ -122,15 +121,16 @@ class Poi(models.Model):
     # Own content (facultative)
 
     desc    = models.TextField(null=True, blank=True, verbose_name=u"popis", help_text=u"Text, který se zobrazí na mapě po kliknutí na ikonu.")
-    desc_extra = models.TextField(null=True, verbose_name=u"Extra popis", blank=True, help_text="Text do podrobnějšího výpisu bodu (mimo popup).")
+    desc_extra = models.TextField(null=True, blank=True, verbose_name=u"podrobný popis", help_text="Text, který rozšiřuje informace výše.")
     url     = models.URLField(null=True, blank=True, help_text=u"Odkaz na webovou stránku místa.")
     # address = models.CharField(max_length=255, null=True, blank=True)
-    remark  = models.TextField(null=True, verbose_name=u"Poznámka", blank=True, help_text="Interni informace o objektu, ktere se nebudou zobrazovat!")
+    remark  = models.TextField(null=True, blank=True, verbose_name=u"interní poznámka", help_text=u"Interní informace o objektu, které se nebudou zobrazovat.")
 
     # navzdory nazvu jde o fotku v plnem rozliseni
-    foto_thumb  = models.ImageField(verbose_name=u"fotka", null=True, blank=True,
+    foto_thumb  = models.ImageField(null=True, blank=True,
                                     upload_to='foto', storage=SlugifyFileSystemStorage(),
-                                    help_text=u"Nahrajte fotku v plné velikosti."
+                                    verbose_name=u"fotka",
+                                    help_text=u"Nahrajte fotku v plné velikosti.",
                                    )
 
     mesto  = models.ForeignKey(Mesto, verbose_name=u"Město", default=1, help_text="Město, do kterého místo patří.")
