@@ -88,7 +88,7 @@ class PoiAdmin(OSMGeoAdmin):
     # http://docs.djangoproject.com/en/1.1/ref/contrib/admin/
     list_display = ('__unicode__', 'nazev','status','znacka','url','foto_thumb', 'mesto', 'datum_zmeny', 'id')
     list_filter = ('mesto__nazev', 'znacka__vrstva', 'znacka', 'status',)
-    readonly_fields = ['datum_zmeny',]
+    readonly_fields = ['datum_zmeny', 'dulezitost']
     raw_id_fields = ('znacka',)
     search_fields = ('nazev',)
     ordering = ('nazev',)

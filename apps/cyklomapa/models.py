@@ -99,11 +99,11 @@ class UserMesto(models.Model):
 
 class Poi(models.Model):
     "Misto - bod v mape"
-    nazev   = models.CharField(max_length=255, verbose_name=u"Název", blank=True)   # Name of the location
+    nazev   = models.CharField(max_length=255, verbose_name=u"název", help_text=u"Přesný název místa.")
     
     # Relationships
     znacka  = models.ForeignKey(Znacka, limit_choices_to = {'status__show_TU': 'True', 'vrstva__status__show_TU': 'True'}, verbose_name=u"značka", help_text="Zde vyberte ikonu, která se zobrazí na mapě.", related_name="pois")
-    status  = models.ForeignKey(Status, verbose_name=u"Status")          # "Statuty"  - misto ma prave jeden
+    status  = models.ForeignKey(Status, default=3, help_text="Status místa; určuje, kde všude se místo zobrazí.")
     
     # "dulezitost" - modifikator minimalniho zoomu, ve kterem se misto zobrazuje. 
     # Cim vetsi, tim vice bude poi videt, +20 = bude videt vydycky
@@ -113,21 +113,27 @@ class Poi(models.Model):
     dulezitost = models.SmallIntegerField(default=0)
     
     # Geographical intepretation
-    geom    = models.GeometryField(verbose_name=u"Poloha",srid=4326)
+    geom    = models.GeometryField(verbose_name=u"poloha",srid=4326, help_text=u"""Vložení bodu: Klikni na tužku s plusem a umísti bod na mapu<br/>
+            Kreslení linie: Klikněte na ikonu linie a klikáním do mapy určete lomenou čáru. Kreslení ukončíte dvouklikem.<br/>
+            Kreslení oblasti: Klikněte na ikonu oblasti a klikáním do mapy definujte oblast. Kreslení ukončíte dvouklikem.<br/>
+            Úprava vložených objektů: Klikněte na první ikonu a potom klikněte na objekt v mapě. Tažením přesouváte body, body uprostřed úseků slouží k vkládání nových bodů do úseku.""")
     objects = models.GeoManager()
     
     # Own content (facultative)
-    desc    = models.TextField(null=True, verbose_name=u"Popis", blank=True)
-    desc_extra = models.TextField(null=True, verbose_name=u"Extra popis", blank=True, help_text="text do podrobnějšího výpisu bodu (mimo popup)")
-    url     = models.URLField(null=True, verbose_name=u"Odkaz URL", blank=True)  # Odkaz z vypisu - stranka podniku apod.
+
+    desc    = models.TextField(null=True, blank=True, verbose_name=u"popis", help_text=u"Text, který se zobrazí na mapě po kliknutí na ikonu.")
+    desc_extra = models.TextField(null=True, verbose_name=u"Extra popis", blank=True, help_text="Text do podrobnějšího výpisu bodu (mimo popup).")
+    url     = models.URLField(null=True, blank=True, help_text=u"Odkaz na webovou stránku místa.")
     # address = models.CharField(max_length=255, null=True, blank=True)
     remark  = models.TextField(null=True, verbose_name=u"Poznámka", blank=True, help_text="Interni informace o objektu, ktere se nebudou zobrazovat!")
 
     # navzdory nazvu jde o fotku v plnem rozliseni
     foto_thumb  = models.ImageField(verbose_name=u"fotka", null=True, blank=True,
-                                    upload_to='foto', storage=SlugifyFileSystemStorage())
+                                    upload_to='foto', storage=SlugifyFileSystemStorage(),
+                                    help_text=u"Nahrajte fotku v plné velikosti."
+                                   )
 
-    mesto  = models.ForeignKey(Mesto, verbose_name=u"Město", default=1)           # Město, do kterého místo patří
+    mesto  = models.ForeignKey(Mesto, verbose_name=u"Město", default=1, help_text="Město, do kterého místo patří.")
 
     datum_zmeny = models.DateTimeField(auto_now=True, verbose_name=u"Datum poslední změny")
     
