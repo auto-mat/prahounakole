@@ -11,6 +11,7 @@ from django.conf import settings # needed if we use the GOOGLE_MAPS_API_KEY from
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 
 # Grab the Admin Manager that automaticall initializes an OpenLayers map
 # for any geometry field using the in Google Mercator projection with OpenStreetMap basedata
@@ -163,8 +164,10 @@ class ZnackaAdmin(admin.ModelAdmin):
         return super(ZnackaAdmin, self).get_form(request, obj, **kwargs)
 
     def poi_count(self, obj):
-        return obj.pois.count()
+        url = reverse('admin:cyklomapa_poi_changelist')
+        return '<a href="{0}?znacka__id__exact={1}">{2}</a>'.format(url, obj.id, obj.pois.count())
     poi_count.short_description = "Count"
+    poi_count.allow_tags = True
 
 class StatusAdmin(admin.ModelAdmin):
     list_display = ('nazev', 'desc', 'show', 'show_TU')
