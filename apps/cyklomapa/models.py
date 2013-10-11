@@ -143,6 +143,7 @@ class Poi(models.Model):
     viditelne = ViditelneManager()
     
     class Meta:
+        verbose_name = "místo"
         verbose_name_plural = "místa"
     def __unicode__(self):
         if self.nazev:
