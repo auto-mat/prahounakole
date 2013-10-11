@@ -155,7 +155,7 @@ class ZnackaAdmin(admin.ModelAdmin):
     default_icon_image.allow_tags = True
 
     def get_form(self, request, obj=None, **kwargs):
-        if not request.user.is_superuser and request.user.has_perm(u'mapa.can_only_view'):
+        if not request.user.is_superuser and request.user.has_perm(u'cyklomapa.can_only_view'):
             self.fields = ('nazev', )
             self.readonly_fields = ('nazev', )
         else:

@@ -64,6 +64,9 @@ class Znacka(models.Model):
     url     = models.URLField(null=True, blank=True, help_text=u"ukáže se u všech míst s touto značkou, pokud nemají vlastní url")
     
     class Meta:
+        permissions = [
+            ("can_only_view", "Can only view"),
+        ]
         verbose_name_plural = "značky"
         ordering = ['-vrstva__order', 'nazev']
 
