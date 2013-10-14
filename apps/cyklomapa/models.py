@@ -29,7 +29,7 @@ class Vrstva(models.Model):
     status  = models.ForeignKey(Status)              # zobrazovaci status
     order   = models.PositiveIntegerField()
     remark  = models.TextField(null=True, blank=True, help_text=u"interni informace o objektu, ktere se nebudou zobrazovat")
-    enabled = models.BooleanField()
+    enabled = models.BooleanField(verbose_name=u"Defaultně zapnuto", help_text=u"True = při načtení mapy se vrstva zobrazí jako zapnutá")
 
     class Meta:
         verbose_name_plural = u"vrstvy"
