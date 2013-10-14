@@ -10,3 +10,4 @@ pnk.log
 project/settings_local.py
 !.gitkeep
 *~
+db_backup/
