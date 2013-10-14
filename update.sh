@@ -1,7 +1,7 @@
 #!/bin/sh
 
 git pull
-env/bin/pip install -r requirements
+env/bin/pip install -r requirements.txt
 if [ "$1" = "migrate" ]; then
    echo "Backuping db..."
    mkdir db_backup
@@ -9,6 +9,5 @@ if [ "$1" = "migrate" ]; then
    echo "Migrating..."
    env/bin/python manage.py migrate
 fi
-(cd apps/cyklomapa/ && django-admin.py compilemessages)
 env/bin/python manage.py collectstatic --noinput
 touch wsgi.py
