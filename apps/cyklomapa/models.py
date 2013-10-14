@@ -169,11 +169,12 @@ class Legenda(models.Model):
     def __unicode__(self):
         return self.nazev
 
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
 def invalidate_cache(sender, instance, **kwargs):
     if sender in [Status, Vrstva, Znacka, Poi, Legenda]:
         cache.clear()
 post_save.connect(invalidate_cache)
+post_delete.connect(invalidate_cache)
     
 
 UPRESNENI_CHOICE = (
