@@ -83,7 +83,8 @@ class PoiAdmin(OSMGeoAdmin):
           return True
        if obj == None:
           return False
-       return obj.mesto in request.user.usermesto.mesta.all()
+       if obj.mesto in request.user.usermesto.mesta.all():
+          return super(PoiAdmin, self).has_delete_permission(request, obj)
 
     # Standard Django Admin Options
     # http://docs.djangoproject.com/en/1.1/ref/contrib/admin/
@@ -196,9 +197,9 @@ class MestoAdmin(OSMGeoAdmin):
    def has_change_permission(self, request, obj = None):
       if request.user.is_superuser:
          return True
-      if obj == None:
-         return True
-      return obj in request.user.usermesto.mesta.all()
+      if not obj in request.user.usermesto.mesta.all():
+          return False
+      return super(MestoAdmin, self).has_change_permission(request, obj)
 
    def get_form(self, request, obj=None, **kwargs):
        if request.user.is_superuser:
