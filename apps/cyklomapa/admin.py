@@ -193,13 +193,6 @@ class MestoAdmin(OSMGeoAdmin):
 
       return queryset.filter(id__in=request.user.usermesto.mesta.all())
 
-   def has_change_permission(self, request, obj = None):
-      if request.user.is_superuser:
-         return True
-      if not obj in request.user.usermesto.mesta.all():
-          return False
-      return super(MestoAdmin, self).has_change_permission(request, obj)
-
    def get_form(self, request, obj=None, **kwargs):
        if request.user.is_superuser:
            self.exclude = ()
