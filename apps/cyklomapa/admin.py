@@ -73,19 +73,6 @@ class PoiAdmin(OSMGeoAdmin):
 
        return super(PoiAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
 
-    def has_change_permission(self, request, obj = None):
-       if obj == None:
-          return True
-       return obj.has_change_permission(request.user)
-
-    def has_delete_permission(self, request, obj = None):
-       if request.user.is_superuser:
-          return True
-       if obj == None:
-          return False
-       if obj.mesto in request.user.usermesto.mesta.all():
-          return super(PoiAdmin, self).has_delete_permission(request, obj)
-
     # Standard Django Admin Options
     # http://docs.djangoproject.com/en/1.1/ref/contrib/admin/
     list_display = ('__unicode__', 'nazev','status','znacka','url','foto_thumb', 'mesto', 'datum_zmeny', 'id')
