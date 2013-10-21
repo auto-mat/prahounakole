@@ -153,6 +153,11 @@ class Poi(models.Model):
     def get_absolute_url(self):
         return "/misto/%i/" % self.id
 
+    def has_change_permission(self, user):
+       if user.is_superuser:
+          return True
+       return self.mesto in user.usermesto.mesta.all()
+
 class Legenda(models.Model):
     "prvky legendy mapoveho podkladu"
     nazev   = models.CharField(unique=True, max_length=255)
