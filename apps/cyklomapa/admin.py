@@ -25,6 +25,7 @@ USE_GOOGLE_TERRAIN_TILES = False
 # Define an inline admin descriptor for Employee model
 # which acts a bit like a singleton
 class UserMestoInline(admin.StackedInline):
+    filter_horizontal = ('mesta',)
     model = UserMesto
     can_delete = False
     verbose_name_plural = 'Uzivatelska mesta'
