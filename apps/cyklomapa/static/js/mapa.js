@@ -88,7 +88,7 @@ function defaultPanZoom() {
             var controls;
             if(mapconfig.mobilni) {
                controls = [
-                    new OpenLayers.Control.ArgParser(),
+                    new OpenLayers.Control.ArgParser({configureLayers: configureLayers}),
                     new OpenLayers.Control.Attribution(),
                     new OpenLayers.Control.Navigation(),
                     defaultPanZoom()
@@ -96,12 +96,12 @@ function defaultPanZoom() {
             } else {
                layerSwitcher = new OpenLayers.Control.LayerSwitcher({roundedCornerColor:'#cb541c', ascending:0});
                controls = [
-                    new OpenLayers.Control.ArgParser(),
+                    new OpenLayers.Control.ArgParser({configureLayers: configureLayers}),
                     new OpenLayers.Control.Attribution(),
                     layerSwitcher,
                     simpleSwitcher,
                     new OpenLayers.Control.Navigation(),
-                    new OpenLayers.Control.Permalink(),
+                    new OpenLayers.Control.Permalink({createParams: createParams}),
                     new OpenLayers.Control.ScaleLine({maxWidth: 300}),
                     defaultPanZoom()
                 ];
@@ -128,17 +128,20 @@ function defaultPanZoom() {
             };
 
             layer_osm = new OpenLayers.Layer.OSM.Mapnik("OpenStreetMap", { 
+                slug:"O",
                 displayOutsideMaxExtent: false,
                 displayInLayerSwitcher: false
             });
 
             var layerCycle  = new OpenLayers.Layer.OSM.CycleMap("Cycle map", {
+                slug: "C",
                 displayInLayerSwitcher: false
             });
             layerPNK = new OpenLayers.Layer.OSM(
                 "Prahou na kole",
                 "http://tiles.prahounakole.cz/", {
                 displayInLayerSwitcher: false,
+                slug:"P",
                 type: 'png',
                 numZoomLevels: 19,
                 getURL: getTileURL,
@@ -149,6 +152,7 @@ function defaultPanZoom() {
                 "Vyhledávač PNK",
                 "http://tilesbw.prahounakole.cz/", {
                 displayInLayerSwitcher: false,
+                slug:"H",
                 type: 'png',
                 numZoomLevels: 19,
                 getURL: getTileURL,
@@ -157,6 +161,7 @@ function defaultPanZoom() {
             var layerGoogle = new OpenLayers.Layer.Google(
                 "Satelitní mapa Google", {
                 displayInLayerSwitcher: false,
+                slug:"G",
                 type: google.maps.MapTypeId.SATELLITE,
                 numZoomLevels: 22
             });
@@ -205,7 +210,7 @@ function defaultPanZoom() {
             if(!mapconfig.mobilni) {
                kmlvrstvy = mapconfig.vrstvy;
                for (i in kmlvrstvy) {
-                   addPoiLayer(kmlvrstvy[i][0], mapconfig.root_url + kmlvrstvy[i][1], kmlvrstvy[i][2] == 'True');
+                   addPoiLayer(kmlvrstvy[i][0], mapconfig.root_url + kmlvrstvy[i][1], kmlvrstvy[i][2] == 'True', kmlvrstvy[i][3]);
                };
                addRekola();
 
@@ -650,7 +655,7 @@ function defaultPanZoom() {
             }
         };
 
-        function addPoiLayer(nazev, url, enabled) {
+        function addPoiLayer(nazev, url, enabled, id) {
             for (var i=0; i < vectors.length; i++) {
                 if (vectors[i].name == nazev) {
                     map.addLayer(vectors[i]);
@@ -659,6 +664,7 @@ function defaultPanZoom() {
             }
             kml = new OpenLayers.Layer.Vector(nazev, {
                     projection: EPSG4326,
+                    slug: id,
                     strategies: [new OpenLayers.Strategy.Fixed()],
                     rendererOptions: {yOrdering: true, zIndexing: true},
                     protocol: new OpenLayers.Protocol.HTTP({
@@ -819,6 +825,7 @@ function defaultPanZoom() {
 
 function addRekola() {
         var rekola = new OpenLayers.Layer.Vector("ReKola", {
+            slug: "re",
             strategies: [new OpenLayers.Strategy.Fixed()],
             protocol: new OpenLayers.Protocol.Script({
                 // pomoci Yahoo obchazime crossdomain bezpecnostni politiku
