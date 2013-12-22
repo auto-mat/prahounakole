@@ -36,7 +36,7 @@ function createParams(center, zoom, layers) {
             var layer = layers[i];
 
             if (layer.getVisibility() && layer.slug) {
-               params.layers += layer.slug + "_"
+               params.layers += layer.slug
             }
         }
     }
@@ -48,7 +48,7 @@ function configureLayers() {
     for(var i=0, len=this.map.layers.length; i<len; i++) {
         layer = this.map.layers[i];
 
-        var layer_visible = this.layers.indexOf("_" + layer.slug + "_") != -1;
+        var layer_visible = this.layers.indexOf(layer.slug) != -1;
         if(layer.isBaseLayer) {
            if(layer_visible) {
               this.map.setBaseLayer(layer);

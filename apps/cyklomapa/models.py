@@ -24,6 +24,7 @@ class Status(models.Model):
 class Vrstva(models.Model):
     "Vrstvy, ktere se zobrazi v konkretni mape"
     nazev   = models.CharField(max_length=255)                      # Name of the layer
+    slug_character = models.CharField(max_length=1, unique=True, null=False)
     slug    = models.SlugField(unique=True, verbose_name=u"název v URL")  # Vrstva v URL
     desc    = models.TextField(null=True, blank=True)               # Description
     status  = models.ForeignKey(Status)              # zobrazovaci status

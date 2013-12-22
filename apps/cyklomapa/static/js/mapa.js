@@ -825,7 +825,7 @@ function defaultPanZoom() {
 
 function addRekola() {
         var rekola = new OpenLayers.Layer.Vector("ReKola", {
-            slug: "re",
+            slug: "r",
             strategies: [new OpenLayers.Strategy.Fixed()],
             protocol: new OpenLayers.Protocol.Script({
                 // pomoci Yahoo obchazime crossdomain bezpecnostni politiku
