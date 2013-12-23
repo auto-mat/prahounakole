@@ -185,14 +185,14 @@ function defaultPanZoom() {
                 }
                 return valid;
             };
-            if (!map.getCenter()) {
-                map.setCenter(new OpenLayers.LonLat(mapconfig.lon, mapconfig.lat).transform(EPSG4326, map.getProjectionObject()), mapconfig.zoom);
-            }
             // pokud byl zoomlevel nastaven z url, musime aktualizovat filter
             zoomFilter.value = map.getZoom();
 
             $(window).hashchange(onHashChange);
             $(window).hashchange();
+            if (!map.getCenter()) {
+                map.setCenter(new OpenLayers.LonLat(mapconfig.lon, mapconfig.lat).transform(EPSG4326, map.getProjectionObject()), mapconfig.zoom);
+            }
         } // init
 
         function setupPnkMap() {
