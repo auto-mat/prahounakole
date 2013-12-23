@@ -48,6 +48,10 @@ function configureLayers() {
     for(var i=0, len=this.map.layers.length; i<len; i++) {
         layer = this.map.layers[i];
 
+        if(!layer.slug) {
+           continue;
+        }
+
         var layer_visible = this.layers.indexOf(layer.slug) != -1;
         if(layer.isBaseLayer) {
            if(layer_visible) {
@@ -60,7 +64,6 @@ function configureLayers() {
 
     if (this.layers.length == this.map.layers.length && this.layers.charAt(0) != "_") {
         this.map.events.unregister('addlayer', this, this.configureLayers);
-
         for(var i=0, len=this.layers.length; i<len; i++) {
             
             var layer = this.map.layers[i];
