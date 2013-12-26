@@ -8,16 +8,14 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding field 'Vrstva.slug_character'
-        db.add_column(u'cyklomapa_vrstva', 'slug_character',
-                      self.gf('django.db.models.fields.CharField')(max_length=1, unique=True, null=True),
-                      keep_default=False)
 
+        # Changing field 'Vrstva.slug'
+        db.alter_column(u'cyklomapa_vrstva', 'slug', self.gf('django.db.models.fields.SlugField')(unique=True, max_length=1))
 
     def backwards(self, orm):
-        # Deleting field 'Vrstva.slug_character'
-        db.delete_column(u'cyklomapa_vrstva', 'slug_character')
 
+        # Changing field 'Vrstva.slug'
+        db.alter_column(u'cyklomapa_vrstva', 'slug', self.gf('django.db.models.fields.SlugField')(max_length=50, unique=True))
 
     models = {
         u'auth.group': {
@@ -123,8 +121,7 @@ class Migration(SchemaMigration):
             'nazev': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
             'order': ('django.db.models.fields.PositiveIntegerField', [], {}),
             'remark': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
-            'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '50'}),
-            'slug_character': ('django.db.models.fields.CharField', [], {'max_length': '1', 'unique': 'True', 'null': 'True'}),
+            'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '1'}),
             'status': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['cyklomapa.Status']"})
         },
         u'cyklomapa.znacka': {

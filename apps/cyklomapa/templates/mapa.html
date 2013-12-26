@@ -48,7 +48,7 @@
         {% else %}
             enabled = "{{v.enabled}}";
         {% endif %}
-        mapconfig['vrstvy'].push(["{{v.nazev}}", "{% url 'cyklomapa.views.kml_view' v.slug %}", enabled, "{{v.slug_character}}"]);
+        mapconfig['vrstvy'].push(["{{v.nazev}}", "{% url 'cyklomapa.views.kml_view' v.slug %}", enabled, "{{v.slug}}"]);
     {% endfor %} 
     mapconfig['basezoom'] = {{ mesto.zoom }};
     mapconfig['baselon'] = {{ mesto.geom.x }};

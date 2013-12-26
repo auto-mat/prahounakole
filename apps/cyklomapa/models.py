@@ -22,15 +22,14 @@ class Status(models.Model):
     def __unicode__(self):
         return self.nazev
 
-def validate_slug_character(value):
+def validate_slug(value):
     if value in ["P", "O", "C", "H", "G", "r"]:
         raise ValidationError(u'%s je již použité jako pro základní vrstvu. Prosím, nepoužívejte hodnoty: P, O, C, H, G, r' % value)
 
 class Vrstva(models.Model):
     "Vrstvy, ktere se zobrazi v konkretni mape"
     nazev   = models.CharField(max_length=255)                      # Name of the layer
-    slug_character = models.CharField(max_length=1, unique=True, null=False, validators=[ validate_slug_character ], help_text=u"Písmeno, které se objeví jako zkratka vrstvy v URL.")
-    slug    = models.SlugField(unique=True, verbose_name=u"název v URL")  # Vrstva v URL
+    slug    = models.SlugField(max_length=1, unique=True, validators=[ validate_slug ], verbose_name=u"Písmeno, které se objeví jako zkratka vrstvy v URL")  # Vrstva v URL
     desc    = models.TextField(null=True, blank=True)               # Description
     status  = models.ForeignKey(Status)              # zobrazovaci status
     order   = models.PositiveIntegerField()
