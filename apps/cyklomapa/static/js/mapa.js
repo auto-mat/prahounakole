@@ -369,17 +369,17 @@ function defaultPanZoom() {
         function setWaypoint(feature) {
             // called either on selection of result from search box,
             // mouse click or dragging of a marker
-            var lonlat;
-            if (feature == startMarker) {
-                lonlat = startMarker.geometry.clone();
-                waypoints[0] = lonlat.transform(map.getProjectionObject(), EPSG4326);
-            }
-            if (feature == endMarker) {
-                lonlat = endMarker.geometry.clone();
-                waypoints[1] = lonlat.transform(map.getProjectionObject(), EPSG4326);
-            }
             if (!feature.layer) {
                 markerLayer.addFeatures(feature);
+            }
+            var lonlat = feature.geometry.clone();
+            if (feature == startMarker) {
+                waypoints[0] = lonlat.transform(map.getProjectionObject(), EPSG4326);
+            } else if (feature == endMarker) {
+                waypoints[1] = lonlat.transform(map.getProjectionObject(), EPSG4326);
+            } else {
+                waypoints.push(lonlat.transform(map.getProjectionObject(), EPSG4326));
+                $('#jpPlanButton').click();
             }
             markerLayer.redraw();
             toggleButtons();
@@ -387,8 +387,7 @@ function defaultPanZoom() {
         function onDragComplete(feature) {
             if (feature == startMarker) {
                 CSApi.nearestPoint(startMarker, updateStartLabel);
-            }
-            if (feature == endMarker) {
+            } else if (feature == endMarker) {
                 CSApi.nearestPoint(endMarker, updateEndLabel);
             }
             setWaypoint(feature);
