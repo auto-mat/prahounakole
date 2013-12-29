@@ -6,6 +6,9 @@ var CSApi = {
 
   // dict of GML returned from CS server indexed by plan name
   routeFeatures: {},
+
+  // just the linestring of the route returned from CS server indexed by plan name
+  route: {},
   
   // CS itinerary ID of current route
   itinerary: null,
@@ -56,10 +59,12 @@ var CSApi = {
     } else {
       var itinerarypoints = '';
       for(var i=0; i < waypoints.length; i++){
+        if (i == 1)
+            // the end point will be added later on
+            continue;
         itinerarypoints += this.r6(waypoints[i].x) + ',' + this.r6(waypoints[i].y) + '|';
       }
-      // remove the last '|'
-      itinerarypoints = itinerarypoints.substring(0, itinerarypoints.length - 1);
+      itinerarypoints += this.r6(waypoints[1].x) + ',' + this.r6(waypoints[1].y);
       url =  this.baseUrl + '/api/journey.xml?key=' + this.apiKey + '&useDom=1&itinerarypoints=' + itinerarypoints + '&plan=' + plan;
     }
     $.ajax({
@@ -69,6 +74,7 @@ var CSApi = {
         var features = CSApi.formatGML.read(data);
         var route = CSApi.getFeature(features, 'route');
         CSApi.routeFeatures[route.attributes.plan] = features;
+        CSApi.route[route.attributes.plan] = route;
         CSApi.itinerary = route.attributes.itinerary;
         callback(route.attributes.itinerary, plan, features, options);
       }
@@ -107,7 +113,6 @@ var CSApi = {
 
   getRouteInstructions: function (plan) {
     var features = this.routeFeatures[plan];
-    var route = this.getFeature(features, 'route');
     var output = $('<table class="instructions"></table>');
     var totalDst = 0;
     for (var i=0; i < features.length; i++) {

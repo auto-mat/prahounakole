@@ -6,7 +6,7 @@
         // * go - muzeme spustit vyhledavani
         var routingState = 'start';
         var vectors = [];
-        var journeyLayer, markerLayer, startMarker, endMarker;
+        var journeyLayer, markerLayer, startMarker, endMarker, middleMarker;
         var previewedRoute;
         var waypoints = [];
         var startFeature = null;
@@ -289,7 +289,10 @@ function defaultPanZoom() {
                     new OpenLayers.Geometry.Point(0,0),
                     { icon: "/static/img/route-stop.png" }
             );
-
+            middleMarker = new OpenLayers.Feature.Vector(
+                    new OpenLayers.Geometry.Point(0,0),
+                    { icon: "/static/img/waypoint.png" }
+            );
             // zabranime odeslani formu, kdyz uzivatel zmackne enter v okamziku,
             // kdy neni vybrana polozka autocompletu 
             $(".jpSearch").keypress(function(e) {
@@ -307,6 +310,7 @@ function defaultPanZoom() {
             $('.jpPlanType').click(onPlanSelect);
             $('.jpPlanType').hover(previewPlanIn, previewPlanOut);
             appMode = 'routing';
+            selectedPlan = null;
             $('.panel').hide();
             $('#hledani').show();
             $('#jpStartStreetSearch').focus();
@@ -329,6 +333,8 @@ function defaultPanZoom() {
                          'mailto:redakce@prahounakole.cz?subject=Připomínka k trase ' + CSApi.itinerary + ', varianta ' + selectedPlan);
                     $('#jpFeedbackForm').dialog("open");
                 });
+
+            map.events.register('mousemove', map, onMouseMove);
         };
         function destroyRouting() {
             if (appMode != 'routing') {
@@ -542,6 +548,7 @@ function defaultPanZoom() {
             $('#gpxLink').attr('href', CSApi.gpxLink(plan));
             setHashParameter('plan', plan, false);
         }
+        
         function previewPlanIn() {
             var plan = $(this).data('plan');
             if (! CSApi.routeFeatures || ! CSApi.routeFeatures[plan]) {
@@ -563,6 +570,30 @@ function defaultPanZoom() {
             }
             journeyLayer.removeFeatures(previewedRoute);
             previewedRoute = null;
+        }
+        function onMouseMove(e) {
+           // podle vzdalenosti kurzoru od trasy umozni preroutovani
+           // pridanim dalsiho waypointu
+           if (!selectedPlan)
+               return;
+           var cur = map.getLonLatFromPixel(e.xy);
+           var curPt = new OpenLayers.Geometry.Point(cur.lon, cur.lat);
+           var line = CSApi.route[selectedPlan];
+           var dist = line.geometry.distanceTo(curPt, { details: true});
+           // vzdalenost kurzoru od cary v pixelech prepoctena dle aktualniho zoomu
+           var LIMIT = 20 * map.getResolution();
+           if (dist.distance < LIMIT &&
+               curPt.distanceTo(startMarker.geometry) > LIMIT &&
+               curPt.distanceTo(endMarker.geometry) > LIMIT) {
+               movePointToLonLat(middleMarker.geometry, {lon: dist.x0, lat: dist.y0});
+               markerLayer.addFeatures(middleMarker);
+               markerLayer.redraw();
+           } else {
+               if (middleMarker.layer) {
+                   markerLayer.removeFeatures(middleMarker);
+                   markerLayer.redraw();
+               };
+           }
         }
         function parseHash() {
            var hash = location.hash;
