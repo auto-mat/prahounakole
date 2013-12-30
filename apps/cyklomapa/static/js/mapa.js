@@ -347,6 +347,7 @@ function defaultPanZoom() {
                 journeyLayer.destroy();
             };
             map.events.unregister("click", map, onMapClick);
+            map.events.unregister('mousemove', map, onMouseMove);
             $('.olMap').css("cursor", "auto");
             appMode = 'normal';
         }
@@ -355,6 +356,7 @@ function defaultPanZoom() {
             $('#jpPlanTypeSelector').hide();
             waypoints = [];
             selectedItinerary = null;
+            selectedPlan = null;
             startFeature = null;
             endFeature = null;
             markerLayer.removeAllFeatures();
@@ -372,14 +374,17 @@ function defaultPanZoom() {
             if (!feature.layer) {
                 markerLayer.addFeatures(feature);
             }
-            var lonlat = feature.geometry.clone();
+            var lonlat = feature.geometry.clone().transform(map.getProjectionObject(), EPSG4326);
             if (feature == startMarker) {
-                waypoints[0] = lonlat.transform(map.getProjectionObject(), EPSG4326);
+                waypoints[0] = lonlat;
             } else if (feature == endMarker) {
-                waypoints[1] = lonlat.transform(map.getProjectionObject(), EPSG4326);
+                waypoints[1] = lonlat;
             } else {
-                waypoints.push(lonlat.transform(map.getProjectionObject(), EPSG4326));
-                $('#jpPlanButton').click();
+                if (feature.attributes.sequenceId) {
+                    waypoints[parseInt(feature.attributes.sequenceId)] = lonlat;
+                } else {
+                    waypoints.push(lonlat);
+                }
             }
             markerLayer.redraw();
             toggleButtons();
@@ -391,6 +396,9 @@ function defaultPanZoom() {
                 CSApi.nearestPoint(endMarker, updateEndLabel);
             }
             setWaypoint(feature);
+            // po umisteni cile nebo pretazeni prvku uz nalezene trasy muzeme rovnou vyhledat
+            if (waypoints.length >= 2)
+                $('#jpPlanButton').click();
         };
         function onMapClick(e) {
             var marker;
@@ -409,15 +417,7 @@ function defaultPanZoom() {
             };
             var position = map.getLonLatFromPixel(e.xy);
             movePointToLonLat(marker.geometry, position);
-            if (!marker.layer) {
-                markerLayer.addFeatures(marker);
-            };
-            markerLayer.redraw();
             onDragComplete(marker, position);
-            // po umisteni cile muzeme rovnou vyhledat
-            if (marker == endMarker) {
-                $('#jpPlanButton').click();
-            };
         };
         function toggleButtons() {
             switch (waypoints.length) {
@@ -459,6 +459,15 @@ function defaultPanZoom() {
             lonlat = startfinish.finish.clone().transform(EPSG4326, map.getProjectionObject());
             movePointToLonLat(endMarker.geometry, lonlat);
             setWaypoint(endMarker);
+            var wps = CSApi.getWaypoints(route);
+            for (var i=1; i < wps.length - 1; i++) {
+                var marker = new OpenLayers.Feature.Vector(
+                    wps[i].geometry.clone(),
+                    { icon: "/static/img/waypoint.png" }
+                );
+                marker.attributes.sequenceId = wps[i].attributes.sequenceId
+                setWaypoint(marker);
+            }
             markerLayer.redraw();
         };
         function planJourney() {
@@ -570,9 +579,18 @@ function defaultPanZoom() {
             journeyLayer.removeFeatures(previewedRoute);
             previewedRoute = null;
         }
+        function closeToWaypoints(pt, limit) {
+           // check if given point is close to any waypoint
+           for (var i=0; i < waypoints.length; i++) {
+                if (pt.distanceTo(waypoints[i].clone().transform(EPSG4326, map.getProjectionObject())) < limit)
+                    return true;
+            };
+            return false;
+        };
         function onMouseMove(e) {
-           // podle vzdalenosti kurzoru od trasy umozni preroutovani
-           // pridanim dalsiho waypointu
+           // Podle vzdalenosti kurzoru od trasy umozni preroutovani
+           // pridanim markeru pro dalsi waypoint.
+           // Po jeho pretazeni se pusti onDragComplete, jako u ostatnich markeru.
            if (!selectedPlan)
                return;
            var cur = map.getLonLatFromPixel(e.xy);
@@ -581,9 +599,7 @@ function defaultPanZoom() {
            var dist = line.geometry.distanceTo(curPt, { details: true});
            // vzdalenost kurzoru od cary v pixelech prepoctena dle aktualniho zoomu
            var LIMIT = 20 * map.getResolution();
-           if (dist.distance < LIMIT &&
-               curPt.distanceTo(startMarker.geometry) > LIMIT &&
-               curPt.distanceTo(endMarker.geometry) > LIMIT) {
+           if (dist.distance < LIMIT && !closeToWaypoints(curPt, LIMIT)) {
                movePointToLonLat(middleMarker.geometry, {lon: dist.x0, lat: dist.y0});
                markerLayer.addFeatures(middleMarker);
                markerLayer.redraw();

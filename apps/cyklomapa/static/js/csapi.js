@@ -160,6 +160,18 @@ var CSApi = {
     };
   },
 
+  getWaypoints: function (features) {
+    var waypoints = [];
+    for (var i=0; i < features.length; i++) {
+      feature = features[i];
+      if (feature.gml.featureType == 'waypoint') {
+        waypoints.push(feature);
+      }
+    }
+    return waypoints;
+  },
+
+
   gpxLink: function (plan) {
     return 'http://praha.cyclestreets.net/journey/' + CSApi.itinerary + '/cyclestreets' + CSApi.itinerary + plan + '.gpx';
   },
