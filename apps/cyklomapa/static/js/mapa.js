@@ -306,7 +306,7 @@ function defaultPanZoom() {
             addJourneyLayer();
             toggleButtons();
             map.events.register("click", map, onMapClick);
-            $('#jpPlanButton').click(planJourney);
+            $('#jpPlanButton').click(onPlanButtonClick);
             $('.jpPlanType').click(onPlanSelect);
             $('.jpPlanType').hover(previewPlanIn, previewPlanOut);
             appMode = 'routing';
@@ -398,7 +398,7 @@ function defaultPanZoom() {
             setWaypoint(feature);
             // po umisteni cile nebo pretazeni prvku uz nalezene trasy muzeme rovnou vyhledat
             if (waypoints.length >= 2)
-                $('#jpPlanButton').click();
+                planJourney();
         };
         function onMapClick(e) {
             var marker;
@@ -470,6 +470,23 @@ function defaultPanZoom() {
             }
             markerLayer.redraw();
         };
+        function clearWaypoints() {
+            // clear waypoints
+           remove = []
+           for (var i=0; i < markerLayer.features.length; i++) {
+                feature = markerLayer.features[i];
+                if (feature != startMarker && feature != endMarker && feature != middleMarker) {
+                    remove.push(feature);
+                };
+            };
+            markerLayer.destroyFeatures(remove);
+            waypoints.splice(2, waypoints.length - 2);
+        };
+        function onPlanButtonClick() {
+            clearWaypoints();
+            planJourney();
+            return false;
+        };
         function planJourney() {
             $('#jpPlanButton').hide();
             $('#jpPlanMessage').show();
@@ -479,7 +496,6 @@ function defaultPanZoom() {
                 reqPlan = 'balanced';
             selectedPlan = null;
             CSApi.journey(null, waypoints, 'balanced', addPlannedJourney, { select: reqPlan });
-            return false;
         };
         // callback to process route returned by server
         function addPlannedJourney(itinerary, plan, route, options) {
