@@ -129,7 +129,7 @@ class ZnackaInline(admin.TabularInline):
 
 class VrstvaAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('nazev',) } # slug se automaticky vytvari z nazvu
-    list_display = ['nazev', 'status', 'order', 'enabled']
+    list_display = ['nazev', 'status', 'order', 'enabled', 'slug']
     inlines = [ZnackaInline]
 
 class ZnackaAdmin(admin.ModelAdmin):

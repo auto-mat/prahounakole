@@ -20,6 +20,7 @@
    <link rel="stylesheet" href="{% static "css/mobile.css" %}" type="text/css" />
   {% endif %}
    <script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.8&amp;sensor=false"></script>
+   <script type="text/javascript" src="{% static "js/char_parameters.js" %}"></script>
    <script type="text/javascript" src="{% static "js/OpenLayers.js" %}"></script>
    <script type="text/javascript" src="{% static "js/OpenStreetMap.js" %}"></script>
    <script type="text/javascript" src="{% static "js/cs-CZ.js" %}"></script>
@@ -47,7 +48,7 @@
         {% else %}
             enabled = "{{v.enabled}}";
         {% endif %}
-        mapconfig['vrstvy'].push(["{{v.nazev}}", "{% url 'cyklomapa.views.kml_view' v.slug %}", enabled]);
+        mapconfig['vrstvy'].push(["{{v.nazev}}", "{% url 'cyklomapa.views.kml_view' v.slug %}", enabled, "{{v.slug}}"]);
     {% endfor %} 
     mapconfig['basezoom'] = {{ mesto.zoom }};
     mapconfig['baselon'] = {{ mesto.geom.x }};
