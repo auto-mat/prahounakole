@@ -619,7 +619,7 @@ function defaultPanZoom() {
            var dist = line.geometry.distanceTo(curPt, { details: true});
            // vzdalenost kurzoru od cary v pixelech prepoctena dle aktualniho zoomu
            var LIMIT = 20 * map.getResolution();
-           if (dist.distance < LIMIT && !closeToWaypoints(curPt, LIMIT)) {
+           if (dist.distance < LIMIT && !closeToWaypoints(curPt, 2*LIMIT)) {
                movePointToLonLat(middleMarker.geometry, {lon: dist.x0, lat: dist.y0});
                markerLayer.addFeatures(middleMarker);
                markerLayer.redraw();
