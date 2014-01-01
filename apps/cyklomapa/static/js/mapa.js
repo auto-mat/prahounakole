@@ -473,8 +473,12 @@ function defaultPanZoom() {
         function planJourney() {
             $('#jpPlanButton').hide();
             $('#jpPlanMessage').show();
+            if (selectedPlan)
+                reqPlan = selectedPlan;
+            else
+                reqPlan = 'balanced';
             selectedPlan = null;
-            CSApi.journey(null, waypoints, 'balanced', addPlannedJourney, { select: 'balanced' });
+            CSApi.journey(null, waypoints, 'balanced', addPlannedJourney, { select: reqPlan });
             return false;
         };
         // callback to process route returned by server
