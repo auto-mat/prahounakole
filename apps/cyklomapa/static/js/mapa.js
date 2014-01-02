@@ -17,6 +17,7 @@
         var criteriaCnt = 0;
         var selectedItinerary = null;
         var selectedPlan;
+        var dragInAction = false;
         var ignoreHashChange = false;
 
         var bounds = new OpenLayers.Bounds(12,48.5,19,51.1)
@@ -282,6 +283,7 @@ function defaultPanZoom() {
             });
             map.addLayer(markerLayer);
             drag = new OpenLayers.Control.DragFeature(markerLayer, {
+                onStart: onDragStart,
                 onComplete: onDragComplete
             });
             map.addControl(drag);
@@ -394,7 +396,11 @@ function defaultPanZoom() {
             markerLayer.redraw();
             toggleButtons();
         };
+        function onDragStart(feature, pixel) {
+            dragInAction = true;
+        }
         function onDragComplete(feature) {
+            dragInAction = false;
             if (feature == startMarker) {
                 CSApi.nearestPoint(startMarker, updateStartLabel);
             } else if (feature == endMarker) {
@@ -616,7 +622,7 @@ function defaultPanZoom() {
            // Podle vzdalenosti kurzoru od trasy umozni preroutovani
            // pridanim markeru pro dalsi waypoint.
            // Po jeho pretazeni se pusti onDragComplete, jako u ostatnich markeru.
-           if (!selectedPlan)
+           if (!selectedPlan || dragInAction)
                return;
            var cur = map.getLonLatFromPixel(e.xy);
            var curPt = new OpenLayers.Geometry.Point(cur.lon, cur.lat);
