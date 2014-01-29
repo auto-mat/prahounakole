@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 # Django global settings
 
 # This allows us to construct the needed absolute paths dynamically,
@@ -62,6 +64,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'cyklomapa.middleware.subdomains_middleware.SubdomainsMiddleware',
+    'author.middlewares.AuthorDefaultBackendMiddleware',
 )
 
 ROOT_URLCONF = 'urls'
@@ -90,10 +93,27 @@ INSTALLED_APPS = [
     'south',
     'colorful',
     'massadmin',
+
+    'author',
+    'positions',
+    'constance.backends.database',
+    'constance',
+    'import_export',
+    'webmap',
 ]
 
 ENABLE_API_PROXY = DEBUG        # http-roxy pro requesty na /api
 PROXY_BASE_URL = 'http://www.cyclestreets.net'
+
+CONSTANCE_APP_NAME = "webmap"
+CONSTANCE_CONFIG = {
+    'MAP_BASELON': (14.4211, u'zeměpisná délka základní polohy mapy'),
+    'MAP_BASELAT': (50.08741, u'zeměpisná délka základní polohy mapy'),
+    'MAP_BOUNDS': ("14.22, 49.95, 14.8, 50.18", u'hranice zobrazení mapy'),
+    'DEFAULT_STATUS_ID': (2, u'id defaultního statusu'),
+}
+CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
+
 
 LOGGING = {
     'version': 1,
