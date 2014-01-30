@@ -618,6 +618,19 @@ function defaultPanZoom() {
             };
             return false;
         };
+        function findNearestSegment(pt) {
+            var segments = CSApi.segments[selectedPlan];
+            var feat = null;
+            var featDist = Number.MAX_VALUE;
+            for (var i=0; i < segments.length; i++) {
+                curDist = pt.distanceTo(segments[i].geometry);
+                if (curDist < featDist) {
+                    featDist = curDist;
+                    feat = segments[i];
+                }
+            }
+            return feat; 
+        }
         function onMouseMove(e) {
            // Podle vzdalenosti kurzoru od trasy umozni preroutovani
            // pridanim markeru pro dalsi waypoint.

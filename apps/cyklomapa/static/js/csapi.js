@@ -9,7 +9,13 @@ var CSApi = {
 
   // just the linestring of the route returned from CS server indexed by plan name
   route: {},
-  
+ 
+  // dict of route segments returned from CS server indexed by plan name
+  segments: {},
+
+  // dict of route waypoints returned from CS server indexed by plan name
+  waypoints: {},
+ 
   // CS itinerary ID of current route
   itinerary: null,
 
@@ -73,8 +79,11 @@ var CSApi = {
       success: function (data) {
         var features = CSApi.formatGML.read(data);
         var route = CSApi.getFeature(features, 'route');
-        CSApi.routeFeatures[route.attributes.plan] = features;
-        CSApi.route[route.attributes.plan] = route;
+        var plan = route.attributes.plan;
+        CSApi.routeFeatures[plan] = features;
+        CSApi.segments[plan] = CSApi.getSegments(features);
+        CSApi.waypoints[plan] = CSApi.getWaypoints(features);
+        CSApi.route[plan] = route;
         CSApi.itinerary = route.attributes.itinerary;
         callback(route.attributes.itinerary, plan, features, options);
       }
@@ -171,6 +180,49 @@ var CSApi = {
     return waypoints;
   },
 
+  getSegments: function (features) {
+    var segments = [];
+    for (var i=0; i < features.length; i++) {
+      feature = features[i];
+      if (feature.gml.featureType == 'segment') {
+        segments.push(feature);
+      }
+    }
+    return segments;
+  },
+
+  getWaypointBySegment : function (plan, segment) {
+    // Podle zadaneho segmentu nalezene nejblizsi predchozi waypoint.
+    // Pri hledani se vychazi z predpokladu, ze waypoint vzdy tvori
+    // pocatecni bod nejakeho segementu. Kvuli zaokrouhlovacim chybam
+    // nelze porovnavat souradnice presne, ale jen s urcenou toleranci.
+    var segments = CSApi.segments[plan];
+    var waypoints = CSApi.waypoints[plan];
+    var xy;
+    var idx;
+    // jak blizko musi byt waypoint k zacatku segementu, abychom je
+    // povazovali za identicke body
+    // seste desetinne misto ve WGS je cca 11m
+    var tolerance = 0.000003;
+
+    // najdeme poradi prislusneho segmentu
+    for (idx=0; idx < segments.length; idx++) {
+      if (segments[idx].id == segment.id)
+        break;
+    }
+
+    // projdeme vsechny waypointy a porovname se segemnty smerem ke startu trasy
+    for (var i=idx; i >= 0; i--) {
+      // points obsahuje mezerou oddelene jednotlive body segmentu s WGS84 souradnicemi
+      // x a y oddelenymi carkou
+      xy = CSApi.segments['balanced'][i].attributes.points.split(' ')[0].split(',');
+      for (var j=0; j < waypoints.length; j++) {
+        if ((Math.abs(parseFloat(waypoints[j].attributes.longitude) - xy[0]) < tolerance) &&
+            (Math.abs(parseFloat(waypoints[j].attributes.latitude) - xy[1]) < tolerance))
+          return waypoints[j];
+      }
+    } 
+  },
 
   gpxLink: function (plan) {
     return 'http://praha.cyclestreets.net/journey/' + CSApi.itinerary + '/cyclestreets' + CSApi.itinerary + plan + '.gpx';
