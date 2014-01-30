@@ -50,6 +50,8 @@ class Migration(DataMigration):
                     }
                 )
             obj_new.save()
+            markerznacka = orm.markerznacka( url = obj.url, marker = obj_new )
+            markerznacka.save()
 
         for obj in orm.mesto.objects.all():
             obj_new, created = orm['webmap.sector'].objects.get_or_create(slug = obj.slug,
@@ -60,9 +62,10 @@ class Migration(DataMigration):
                     }
                 )
             obj_new.save()
+            obj.sektor = obj_new
+            obj.save()
 
         poi_objects = orm.poi.objects
-        print poi_objects.count();
         i = 0.0
         for obj in poi_objects.all():
             if i % 1000 == 0:
@@ -98,6 +101,7 @@ class Migration(DataMigration):
         "Write your backwards methods here."
         orm['webmap.photo'].objects.all().delete()
         orm['webmap.poi'].objects.all().delete()
+        orm['webmap.marker'].objects.all().delete()
 
 
     models = {
@@ -237,12 +241,19 @@ class Migration(DataMigration):
             'popis': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '50'})
         },
+        u'cyklomapa.markerznacka': {
+            'Meta': {'object_name': 'MarkerZnacka'},
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'marker': ('django.db.models.fields.related.OneToOneField', [], {'to': u"orm['webmap.Marker']", 'unique': 'True', 'null': 'True'}),
+            'url': ('django.db.models.fields.URLField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'})
+        },
         u'cyklomapa.mesto': {
             'Meta': {'object_name': 'Mesto'},
             'aktivni': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
             'geom': ('django.contrib.gis.db.models.fields.PointField', [], {}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'nazev': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '255'}),
+            'sektor': ('django.db.models.fields.related.OneToOneField', [], {'to': u"orm['webmap.Sector']", 'unique': 'True', 'null': 'True'}),
             'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '50'}),
             'uvodni_zprava': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             'vyhledavani': ('django.db.models.fields.BooleanField', [], {}),

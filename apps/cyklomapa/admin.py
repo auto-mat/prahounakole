@@ -19,6 +19,8 @@ from django.contrib.gis.admin import OSMGeoAdmin
 from django.contrib.gis.geos import Point
 
 from cyklomapa.models import *
+from webmap.models import Sector, Marker
+from webmap.admin import SectorAdmin, MarkerAdmin
 
 USE_GOOGLE_TERRAIN_TILES = False
 
@@ -173,6 +175,14 @@ class LegendaAdmin(admin.ModelAdmin):
     obrazek_img.allow_tags = True
     obrazek_img.short_description = u"obrázek"
 
+class MestoInline(admin.StackedInline):
+    model = Mesto
+    can_delete = False
+    verbose_name_plural = 'Parametry města'
+
+class MestoSectorAdmin(SectorAdmin):
+    inlines = SectorAdmin.inlines + [MestoInline,]
+
 class MestoAdmin(OSMGeoAdmin):
    def queryset(self, request):
       queryset = super(MestoAdmin, self).queryset(request)
@@ -203,6 +213,15 @@ class MestoAdmin(OSMGeoAdmin):
    map_height = 500
    map_srid = 900913
 
+class MarkerZnackaInline(admin.StackedInline):
+    model = MarkerZnacka
+    can_delete = False
+    verbose_name_plural = 'Parametry města'
+
+class MarkerZnackaAdmin(MarkerAdmin):
+    inlines = MarkerAdmin.inlines + [MarkerZnackaInline,]
+
+
 admin.site.register(Poi   , PoiAdmin   )
 admin.site.register(Vrstva, VrstvaAdmin)
 admin.site.register(Znacka, ZnackaAdmin)
@@ -213,3 +232,9 @@ admin.site.register(Mesto, MestoAdmin)
 
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
+
+admin.site.unregister(Sector)
+admin.site.register(Sector, MestoSectorAdmin)
+
+admin.site.unregister(Marker)
+admin.site.register(Marker, MarkerZnackaAdmin)

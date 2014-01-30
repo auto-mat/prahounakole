@@ -87,12 +87,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.staticfiles',
     'django.contrib.gis',
-    'cyklomapa',
-    'easy_thumbnails',
-    'django.contrib.humanize',
-    'south',
-    'colorful',
-    'massadmin',
 
     'author',
     'positions',
@@ -100,6 +94,13 @@ INSTALLED_APPS = [
     'constance',
     'import_export',
     'webmap',
+
+    'cyklomapa',
+    'easy_thumbnails',
+    'django.contrib.humanize',
+    'south',
+    'colorful',
+    'massadmin',
 ]
 
 ENABLE_API_PROXY = DEBUG        # http-roxy pro requesty na /api

@@ -9,6 +9,7 @@ from colorful.fields import RGBColorField
 
 from .utils import SlugifyFileSystemStorage
 from django.core.exceptions import ValidationError
+from webmap.models import Sector, Marker
 
 class Status(models.Model):
     "Stavy zobrazeni konkretniho objektu, vrstvy apod. - aktivni, navrzeny, zruseny, ..."
@@ -84,6 +85,10 @@ class ViditelneManager(models.GeoManager):
     def get_query_set(self):
         return super(ViditelneManager, self).get_query_set().filter(status__show=True, znacka__status__show=True)
 
+class MarkerZnacka(models.Model):
+    marker = models.OneToOneField(Marker, null=True)
+    url = models.URLField(null=True, blank=True, help_text=u"ukáže se u všech míst s touto značkou, pokud nemají vlastní url")
+
 class Mesto(models.Model):
     "Mesto - vyber na zaklade subdomeny"
     nazev         = models.CharField(unique=True, verbose_name=u"Název", max_length=255, blank=False)
@@ -94,6 +99,7 @@ class Mesto(models.Model):
     uvodni_zprava = models.TextField(null=True, blank=True, verbose_name=u"Úvodní zpráva", help_text=u"Zpráva, která se zobrazí v levém panelu")
 
     geom        = models.PointField(verbose_name=u"Poloha středu",srid=4326)
+    sektor = models.OneToOneField(Sector, null=True)
     objects = models.GeoManager()
 
     class Meta:
