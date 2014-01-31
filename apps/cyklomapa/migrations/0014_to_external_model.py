@@ -22,6 +22,17 @@ class Migration(DataMigration):
                 )
             obj_new.save()
 
+        for obj in orm.legenda.objects.all():
+            obj_new, created = orm['webmap.legend'].objects.get_or_create(slug= obj.slug, 
+                    defaults={
+                        'name':           obj.nazev,
+                        'slug':           obj.slug,
+                        'desc':           obj.popis,
+                        'image':          obj.obrazek,
+                    }
+                )
+            obj_new.save()
+
         for obj in orm.vrstva.objects.all():
             obj_new, created = orm['webmap.layer'].objects.get_or_create(slug= obj.slug, 
                     defaults={
@@ -31,6 +42,7 @@ class Migration(DataMigration):
                         'status':         orm['webmap.status'].objects.get(name= obj.status.nazev),
                         'order':          obj.order,
                         'remark':         obj.remark,
+                        'enabled':        obj.enabled,
                     }
                 )
             obj_new.save()
@@ -101,7 +113,10 @@ class Migration(DataMigration):
         "Write your backwards methods here."
         orm['webmap.photo'].objects.all().delete()
         orm['webmap.poi'].objects.all().delete()
+        orm['webmap.status'].objects.all().delete()
         orm['webmap.marker'].objects.all().delete()
+        orm['webmap.layer'].objects.all().delete()
+        #orm['webmap.sector'].objects.all().delete()
 
 
     models = {
@@ -144,6 +159,7 @@ class Migration(DataMigration):
         'webmap.layer': {
             'Meta': {'ordering': "['order']", 'object_name': 'Layer'},
             'desc': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
+            'enabled': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
             'order': ('django.db.models.fields.PositiveIntegerField', [], {}),
@@ -223,6 +239,14 @@ class Migration(DataMigration):
             'geom': ('django.contrib.gis.db.models.fields.PolygonField', [], {}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
+            'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '50'})
+        },
+        u'webmap.legend': {
+            'Meta': {'object_name': 'Legend'},
+            'desc': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'image': ('django.db.models.fields.files.ImageField', [], {'max_length': '100'}),
+            'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '255'}),
             'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '50'})
         },
         'webmap.status': {
