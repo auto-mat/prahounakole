@@ -27,7 +27,7 @@
 {% for u in poi %}
   <tr>
     <td>
-      <a href="http://mapa.prahounakole.cz/misto/{{ u.id }}" target="_top" title="{{ u.desc|safe }}"><img src="{{ u.znacka.default_icon.url }}"></a>
+      <a href="http://mapa.prahounakole.cz/misto/{{ u.id }}" target="_top" title="{{ u.desc|safe }}"><img src="{{ u.marker.default_icon.url }}"></a>
       <b>{{ u }}</b>
     </td>
     <td>{{ u.desc|safe }}</td>

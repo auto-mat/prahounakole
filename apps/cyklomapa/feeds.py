@@ -1,6 +1,6 @@
 #coding=utf-8
 from django.contrib.syndication.views import Feed
-from cyklomapa.models import Poi
+from webmap.models import Poi
 
 class UzavirkyFeed(Feed):
         title = u"Prahou Na Kole - aktuální uzavírky"
@@ -11,10 +11,10 @@ class UzavirkyFeed(Feed):
                 return request.mesto
 
         def items(self, obj):
-                return Poi.objects.filter(mesto=obj, status__show=True, znacka__slug='vyluka_akt')
+                return Poi.objects.filter(geom__contained=obj.sektor.geom, status__show=True, marker__slug='vyluka_akt')
 
         def item_pubdate(self, item):
-                return item.datum_zmeny
+                return item.last_modification
 
         def item_title(self, item):
                 return unicode(item)
@@ -31,10 +31,10 @@ class NovinkyFeed(Feed):
                 return request.mesto
 
         def items(self, obj):
-                return Poi.objects.filter(status=4, mesto=obj).order_by('datum_zmeny').reverse()[:10]
+                return Poi.objects.filter(status__name="active", geom__contained=obj.sektor.geom).order_by('last_modification').reverse()[:10]
 
         def item_pubdate(self, item):
-                return item.datum_zmeny
+                return item.last_modification
 
         def item_title(self, item):
                 return unicode(item)
