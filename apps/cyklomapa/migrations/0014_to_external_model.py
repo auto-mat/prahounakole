@@ -57,6 +57,7 @@ class Migration(DataMigration):
                         'default_icon':   obj.default_icon,
                         'minzoom':        obj.minzoom,
                         'maxzoom':        obj.maxzoom,
+                        'slug':           obj.slug,
                         'line_width':     obj.line_width,
                         'line_color':     obj.line_color,
                     }
@@ -181,6 +182,7 @@ class Migration(DataMigration):
             'layer': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['webmap.Layer']"}),
             'line_color': ('colorful.fields.RGBColorField', [], {'default': "'#ffc90e'", 'max_length': '7'}),
             'line_width': ('django.db.models.fields.FloatField', [], {'default': '2'}),
+            'slug': ('django.db.models.fields.SlugField', [], {'max_length': '50', 'unique': 'True', 'null': 'True'}),
             'maxzoom': ('django.db.models.fields.PositiveIntegerField', [], {'default': '10'}),
             'minzoom': ('django.db.models.fields.PositiveIntegerField', [], {'default': '1'}),
             'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '255'}),
