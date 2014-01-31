@@ -11,7 +11,7 @@ class SubdomainsMiddleware:
         request.mesto = None
         parts = request.domain.split('.')
 
-        if len(parts) == 3 or len(parts) == 4:
+        if len(parts) in (2, 3, 4):
             request.subdomain = parts[0]
             request.domain = '.'.join(parts[1:])
 
