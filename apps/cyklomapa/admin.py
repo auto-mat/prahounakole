@@ -216,7 +216,7 @@ class MestoAdmin(OSMGeoAdmin):
 class MarkerZnackaInline(admin.StackedInline):
     model = MarkerZnacka
     can_delete = False
-    verbose_name_plural = 'Parametry města'
+    verbose_name_plural = 'Parametry značky'
 
 class MarkerZnackaAdmin(MarkerAdmin):
     inlines = MarkerAdmin.inlines + [MarkerZnackaInline,]
