@@ -15,6 +15,7 @@ class Migration(DataMigration):
         for obj in orm.status.objects.all():
             obj_new, created = orm['webmap.status'].objects.get_or_create(name = obj.nazev, 
                     defaults={
+                        'id':             obj.id,
                         'desc':           obj.desc,
                         'show':           obj.show,
                         'show_to_mapper': obj.show_TU,
@@ -25,6 +26,7 @@ class Migration(DataMigration):
         for obj in orm.legenda.objects.all():
             obj_new, created = orm['webmap.legend'].objects.get_or_create(slug= obj.slug, 
                     defaults={
+                        'id':             obj.id,
                         'name':           obj.nazev,
                         'slug':           obj.slug,
                         'desc':           obj.popis,
@@ -36,6 +38,7 @@ class Migration(DataMigration):
         for obj in orm.vrstva.objects.all():
             obj_new, created = orm['webmap.layer'].objects.get_or_create(slug= obj.slug, 
                     defaults={
+                        'id':             obj.id,
                         'name':           obj.nazev,
                         'slug':           obj.slug,
                         'desc':           obj.desc,
@@ -50,6 +53,7 @@ class Migration(DataMigration):
         for obj in orm.znacka.objects.all():
             obj_new, created = orm['webmap.marker'].objects.get_or_create(name = obj.nazev,
                     defaults={
+                        'id':             obj.id,
                         'layer':          orm['webmap.layer'].objects.get(slug= obj.vrstva.slug),
                         'status':         orm['webmap.status'].objects.get(name= obj.status.nazev),
                         'desc':           obj.desc,
@@ -69,6 +73,7 @@ class Migration(DataMigration):
         for obj in orm.mesto.objects.all():
             obj_new, created = orm['webmap.sector'].objects.get_or_create(slug = obj.slug,
                     defaults={
+                        'id':             obj.id,
                         'name':           obj.nazev,
                         'slug':           obj.slug,
                         'geom':           "POLYGON ((14.0592378174430870 49.8937003767014176, 14.5234101806598481 49.8733483390246803, 14.8461335692865131 49.9909175906933356, 14.8227876220244426 50.1970728989478943, 14.5604890380763354 50.2796378092465019, 14.1855805908628714 50.2743719806893949, 13.9974397217486395 50.1073193726645556, 14.0592378174430870 49.8937003767014176))",
@@ -91,6 +96,7 @@ class Migration(DataMigration):
                     field.auto_now_add = False
 
             kwargs={
+                'id':             obj.id,
                 'name':           obj.nazev,
                 'marker':         orm['webmap.marker'].objects.get(name=obj.znacka.nazev),
                 'status':         orm['webmap.status'].objects.get(name= obj.status.nazev),
