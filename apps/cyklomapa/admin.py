@@ -17,10 +17,11 @@ from django.core.urlresolvers import reverse
 # for any geometry field using the in Google Mercator projection with OpenStreetMap basedata
 from django.contrib.gis.admin import OSMGeoAdmin
 from django.contrib.gis.geos import Point
+from django.contrib.gis.db.models import Union
 
-from cyklomapa.models import *
-from webmap.models import Sector, Marker
-from webmap.admin import SectorAdmin, MarkerAdmin
+from cyklomapa.models import UserMesto, Znacka, Upresneni, Mesto, MarkerZnacka, Vrstva, Status, Legenda
+from webmap.models import Sector, Marker, Poi
+from webmap.admin import SectorAdmin, MarkerAdmin, PoiAdmin
 
 USE_GOOGLE_TERRAIN_TILES = False
 
@@ -49,22 +50,16 @@ class UserAdmin(UserAdmin):
         if obj:
             return ", ".join([mesto.nazev for mesto in obj.usermesto.mesta.all()])
 
-class PoiAdmin(OSMGeoAdmin):
+class MestoPoiAdmin(PoiAdmin):
     def queryset(self, request):
        queryset = super(PoiAdmin, self).queryset(request)
        if request.user.is_superuser:
           return queryset
-
-       return queryset.filter(mesto__in=request.user.usermesto.mesta.all())
+       return queryset.filter(geom__intersects=request.user.usermesto.mesta.aggregate(Union('sektor__geom'))['sektor__geom__union'])
 
     def get_form(self, request, obj=None, **kwargs):
          mesto = Mesto.objects.get(slug = request.subdomain)
-         pnt = Point(mesto.geom.x, mesto.geom.y, srid=4326)
-         pnt.transform(900913)
-         self.default_lon, self.default_lat = pnt.coords
-
          form = super(PoiAdmin, self).get_form(request, obj, **kwargs)
-         form.base_fields['mesto'].initial = mesto
          return form
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
@@ -75,56 +70,6 @@ class PoiAdmin(OSMGeoAdmin):
               kwargs["queryset"] = request.user.usermesto.mesta.all()
 
        return super(PoiAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
-
-    # Standard Django Admin Options
-    # http://docs.djangoproject.com/en/1.1/ref/contrib/admin/
-    list_display = ('__unicode__', 'nazev','status','znacka','url','foto_thumb', 'mesto', 'datum_zmeny', 'id')
-    list_filter = ('mesto__nazev', 'znacka__vrstva', 'znacka', 'status',)
-    readonly_fields = ['datum_zmeny', 'dulezitost']
-    raw_id_fields = ('znacka',)
-    search_fields = ('nazev',)
-    ordering = ('nazev',)
-    save_as = True
-    search_fields = ['nazev']
-    list_select_related = True
-    list_max_show_all = 10000
-
-    if USE_GOOGLE_TERRAIN_TILES:
-      map_template = 'gis/admin/google.html'
-      extra_js = ['http://openstreetmap.org/openlayers/OpenStreetMap.js', 'http://maps.google.com/maps?file=api&amp;v=2&amp;key=%s' % settings.GOOGLE_MAPS_API_KEY]
-    else:
-      pass # defaults to OSMGeoAdmin presets of OpenStreetMap tiles
-
-    # Default GeoDjango OpenLayers map options
-    # Uncomment and modify as desired
-    # To learn more about this jargon visit:
-    # www.openlayers.org
-    
-    default_zoom = 12
-    #display_wkt = False
-    #display_srid = False
-    #extra_js = []
-    #num_zoom = 18
-    #max_zoom = False
-    #min_zoom = False
-    #units = False
-    #max_resolution = False
-    #max_extent = False
-    #modifiable = True
-    #mouse_position = True
-    #scale_text = True
-    #layerswitcher = True
-    scrollable = True
-    map_width = 700
-    map_height = 500
-    map_srid = 900913
-    #map_template = 'gis/admin/openlayers.html'
-    #openlayers_url = 'http://openlayers.org/api/2.6/OpenLayers.js'
-    #wms_url = 'http://labs.metacarta.com/wms/vmap0'
-    #wms_layer = 'basic'
-    #wms_name = 'OpenLayers WMS'
-    #debug = False
-    #widget = OpenLayersWidget
 
 class ZnackaInline(admin.TabularInline):
     model = Znacka
@@ -222,7 +167,6 @@ class MarkerZnackaAdmin(MarkerAdmin):
     inlines = MarkerAdmin.inlines + [MarkerZnackaInline,]
 
 
-admin.site.register(Poi   , PoiAdmin   )
 admin.site.register(Vrstva, VrstvaAdmin)
 admin.site.register(Znacka, ZnackaAdmin)
 admin.site.register(Status, StatusAdmin)
@@ -238,3 +182,6 @@ admin.site.register(Sector, MestoSectorAdmin)
 
 admin.site.unregister(Marker)
 admin.site.register(Marker, MarkerZnackaAdmin)
+
+admin.site.unregister(Poi)
+admin.site.register(Poi, MestoPoiAdmin)
