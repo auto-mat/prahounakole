@@ -19,7 +19,7 @@ from django.contrib.gis.admin import OSMGeoAdmin
 from django.contrib.gis.geos import Point
 from django.contrib.gis.db.models import Union
 
-from cyklomapa.models import UserMesto, Znacka, Upresneni, Mesto, MarkerZnacka, Vrstva, Status, Legenda
+from cyklomapa.models import UserMesto, Upresneni, Mesto, MarkerZnacka
 from webmap.models import Sector, Marker, Poi
 from webmap.admin import SectorAdmin, MarkerAdmin, PoiAdmin
 
@@ -71,42 +71,6 @@ class MestoPoiAdmin(PoiAdmin):
 
        return super(PoiAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
 
-class ZnackaInline(admin.TabularInline):
-    model = Znacka
-
-class VrstvaAdmin(admin.ModelAdmin):
-    prepopulated_fields = {'slug': ('nazev',) } # slug se automaticky vytvari z nazvu
-    list_display = ['nazev', 'status', 'order', 'enabled', 'slug']
-    inlines = [ZnackaInline]
-
-class ZnackaAdmin(admin.ModelAdmin):
-    list_display = ('nazev', 'desc', 'vrstva', 'minzoom', 'status', 'default_icon_image', 'poi_count')
-    list_filter = ('vrstva','status',)
-    search_fields = ('nazev', 'desc',)
-
-    def default_icon_image(self, obj):
-        if obj.default_icon:
-            return '<img src="%s"/>' % obj.default_icon.url
-    default_icon_image.short_description = "icon"
-    default_icon_image.allow_tags = True
-
-    def get_form(self, request, obj=None, **kwargs):
-        return super(ZnackaAdmin, self).get_form(request, obj, **kwargs)
-
-    def has_change_permission(self, request, obj = None):
-        if obj == None and request.user.has_perm(u'cyklomapa.can_only_view'):
-            return True
-        return super(ZnackaAdmin, self).has_change_permission(request, obj)
-
-    def poi_count(self, obj):
-        url = reverse('admin:cyklomapa_poi_changelist')
-        return '<a href="{0}?znacka__id__exact={1}">{2}</a>'.format(url, obj.id, obj.pois.count())
-    poi_count.short_description = "Count"
-    poi_count.allow_tags = True
-
-class StatusAdmin(admin.ModelAdmin):
-    list_display = ('nazev', 'desc', 'show', 'show_TU')
-    
 class UpresneniAdmin(admin.ModelAdmin):
     model = Upresneni
     raw_id_fields = ('misto',)
@@ -128,36 +92,6 @@ class MestoInline(admin.StackedInline):
 class MestoSectorAdmin(SectorAdmin):
     inlines = SectorAdmin.inlines + [MestoInline,]
 
-class MestoAdmin(OSMGeoAdmin):
-   def queryset(self, request):
-      queryset = super(MestoAdmin, self).queryset(request)
-      if request.user.is_superuser:
-         return queryset
-
-      return queryset.filter(id__in=request.user.usermesto.mesta.all())
-
-   def get_form(self, request, obj=None, **kwargs):
-       if request.user.is_superuser:
-           self.exclude = ()
-       else:
-           self.exclude = ('slug', 'vyhledavani', 'aktivni',)  
-       return super(MestoAdmin, self).get_form(request, obj=None, **kwargs)
-
-   list_display = ('nazev', 'slug', 'aktivni', 'vyhledavani', 'zoom', 'uvodni_zprava',)
-   if USE_GOOGLE_TERRAIN_TILES:
-     map_template = 'gis/admin/google.html'
-     extra_js = ['http://openstreetmap.org/openlayers/OpenStreetMap.js', 'http://maps.google.com/maps?file=api&amp;v=2&amp;key=%s' % settings.GOOGLE_MAPS_API_KEY]
-   else:
-     pass # defaults to OSMGeoAdmin presets of OpenStreetMap tiles
-   
-   default_lon = 1605350
-   default_lat = 6461466
-   default_zoom = 12
-   scrollable = False
-   map_width = 700
-   map_height = 500
-   map_srid = 900913
-
 class MarkerZnackaInline(admin.StackedInline):
     model = MarkerZnacka
     can_delete = False
@@ -166,13 +100,6 @@ class MarkerZnackaInline(admin.StackedInline):
 class MarkerZnackaAdmin(MarkerAdmin):
     inlines = MarkerAdmin.inlines + [MarkerZnackaInline,]
 
-
-admin.site.register(Vrstva, VrstvaAdmin)
-admin.site.register(Znacka, ZnackaAdmin)
-admin.site.register(Status, StatusAdmin)
-admin.site.register(Upresneni, UpresneniAdmin)
-admin.site.register(Legenda, LegendaAdmin)
-admin.site.register(Mesto, MestoAdmin)
 
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
