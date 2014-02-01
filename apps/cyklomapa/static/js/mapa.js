@@ -478,6 +478,7 @@ function defaultPanZoom() {
             lonlat = startfinish.finish.clone().transform(EPSG4326, map.getProjectionObject());
             movePointToLonLat(endMarker.geometry, lonlat);
             setWaypoint(endMarker);
+            removeWaypointMarkers();
             var wps = CSApi.getWaypoints(route);
             for (var i=1; i < wps.length - 1; i++) {
                 var marker = new OpenLayers.Feature.Vector(
@@ -489,7 +490,7 @@ function defaultPanZoom() {
             }
             markerLayer.redraw();
         };
-        function clearWaypoints() {
+        function removeWaypointMarkers() {
             // clear waypoints
            remove = []
            for (var i=0; i < markerLayer.features.length; i++) {
@@ -499,6 +500,8 @@ function defaultPanZoom() {
                 };
             };
             markerLayer.destroyFeatures(remove);
+        };
+        function clearWaypoints() {
             waypoints.splice(2, waypoints.length - 2);
         };
         function onPlanButtonClick() {
