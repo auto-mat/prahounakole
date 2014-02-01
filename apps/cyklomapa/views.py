@@ -71,7 +71,7 @@ def mapa_view(request, poi_id=None):
         minimize_layerswitcher = 1
         nomenu = 1
 
-    historie = Poi.objects.filter(status__show=True, geom__contained=request.mesto.sektor.geom).order_by('last_modification').reverse()[:10]
+    historie = Poi.objects.filter(status__show=True, geom__intersects=request.mesto.sektor.geom).order_by('last_modification').reverse()[:10]
 
     context = RequestContext(request, {
         'root_url': ROOT_URL,
@@ -111,7 +111,7 @@ def kml_view(request, nazev_vrstvy):
     v = get_object_or_404(Layer, slug=nazev_vrstvy, status__show=True)
 
     # vsechny body co jsou v teto vrstve a jsou zapnute
-    points = Poi.visible.filter(marker__layer=v).filter(geom__contained = request.mesto.sektor.geom).kml()
+    points = Poi.visible.filter(marker__layer=v).filter(geom__intersects = request.mesto.sektor.geom).kml()
     return render_to_kml("webmap/gis/kml/layer.kml", { 'places' : points})
 
 @gzip_page
