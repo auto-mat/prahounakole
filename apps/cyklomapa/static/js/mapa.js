@@ -390,7 +390,7 @@ function defaultPanZoom() {
                 if (feature.attributes.sequenceId) {
                     waypoints[parseInt(feature.attributes.sequenceId)] = lonlat;
                 } else {
-                    waypoints.push(lonlat);
+                    waypoints.splice(parseInt(feature.attributes.newWpSequenceId) + 1, 0, lonlat);
                 }
             }
             markerLayer.redraw();
@@ -398,6 +398,14 @@ function defaultPanZoom() {
         };
         function onDragStart(feature, pixel) {
             dragInAction = true;
+            if (! feature.attributes.sequenceId) {
+                // jde o novy waypoint, nikoliv posun stavajiciho
+                // dohledame posledni wp v poradi pred menenym segmentem
+                var segment = findNearestSegment(feature.geometry);
+                var wp = CSApi.getWaypointBySegment(selectedPlan, segment);
+                // a jeho pozici si docasne ulozime na feature dragovaci ikony
+                feature.attributes.newWpSequenceId = wp.attributes.sequenceId;
+            };
         }
         function onDragComplete(feature) {
             dragInAction = false;
