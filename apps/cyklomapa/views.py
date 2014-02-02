@@ -17,7 +17,7 @@ from django.core.urlresolvers import reverse
 from django.db.models import Q 
 
 
-from webmap.models import Layer, Marker, Poi, Legend
+from webmap.models import OverlayLayer, Marker, Poi, Legend
 
 # kopie  django.contrib.admin.views.main.get_query_string
 from django.utils.http import urlencode
@@ -49,7 +49,7 @@ def mapa_view(request, poi_id=None):
             params = get_query_string(dict(request.GET.items()), { 'layers' : newlayers })
             return http.HttpResponseRedirect(request.path + params)
 
-    vrstvy = Layer.objects.filter(status__show=True)
+    vrstvy = OverlayLayer.objects.filter(status__show=True)
     # volitelne poi_id zadane mape jako bod, na ktery se ma zazoomovat
     center_poi = None
     if poi_id:
@@ -108,7 +108,7 @@ def cache_page_mesto(expiration):
 @cache_page_mesto(24 * 60 * 60) # cachujeme view v memcached s platnosti 24h
 def kml_view(request, nazev_vrstvy):
     # najdeme vrstvu podle slugu. pokud neexistuje, vyhodime 404
-    v = get_object_or_404(Layer, slug=nazev_vrstvy, status__show=True)
+    v = get_object_or_404(OverlayLayer, slug=nazev_vrstvy, status__show=True)
 
     # vsechny body co jsou v teto vrstve a jsou zapnute
     points = Poi.visible.filter(marker__layer=v).filter(geom__intersects = request.mesto.sektor.geom).kml()
@@ -159,7 +159,7 @@ def metro_view(request):
 # View pro podrobny vypis vrstev
 @cache_page(24 * 60 * 60) # cachujeme view v memcached s platnosti 24h
 def znacky_view(request):
-    vrstvy = Layer.objects.filter(status__show=True)
+    vrstvy = OverlayLayer.objects.filter(status__show=True)
     znacky = Marker.objects.filter(status__show=True)
     legenda = Legend.objects.all()
     return render_to_response('znacky.html',
