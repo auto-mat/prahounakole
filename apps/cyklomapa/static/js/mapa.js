@@ -824,6 +824,12 @@ function defaultPanZoom() {
         };
 
 function addRekola() {
+        for (var i=0; i < vectors.length; i++) {
+           if (vectors[i].slug == 'r') {
+               map.addLayer(vectors[i]);
+               return;
+           }
+        };
         var rekola = new OpenLayers.Layer.Vector("ReKola", {
             slug: "r",
             strategies: [new OpenLayers.Strategy.Fixed()],
