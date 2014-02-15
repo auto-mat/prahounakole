@@ -211,17 +211,19 @@ var CSApi = {
         break;
     }
 
-    // projdeme vsechny waypointy a porovname se segemnty smerem ke startu trasy
+    // projdeme vsechny waypointy a porovname se segmenty smerem ke startu trasy
     for (var i=idx; i >= 0; i--) {
       // points obsahuje mezerou oddelene jednotlive body segmentu s WGS84 souradnicemi
       // x a y oddelenymi carkou
-      xy = CSApi.segments['balanced'][i].attributes.points.split(' ')[0].split(',');
+      xy = CSApi.segments[plan][i].attributes.points.split(' ')[0].split(',');
       for (var j=0; j < waypoints.length; j++) {
         if ((Math.abs(parseFloat(waypoints[j].attributes.longitude) - xy[0]) < tolerance) &&
             (Math.abs(parseFloat(waypoints[j].attributes.latitude) - xy[1]) < tolerance))
           return waypoints[j];
       }
     } 
+    // nenasli jsme zadny waypoint, vratime start
+    return waypoints[0];
   },
 
   gpxLink: function (plan) {
