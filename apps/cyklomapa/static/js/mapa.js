@@ -6,7 +6,7 @@
         // * go - muzeme spustit vyhledavani
         var routingState = 'start';
         var vectors = [];
-        var journeyLayer, markerLayer, startMarker, endMarker, middleMarker;
+        var journeyLayer, markerLayer, startMarker, endMarker, middleMarker, wpAttrs;
         var previewedRoute;
         var waypoints = [];
         var startFeature = null;
@@ -274,10 +274,11 @@ function defaultPanZoom() {
                  styleMap: new OpenLayers.StyleMap({
                      externalGraphic: "${icon}",
                      pointRadius: 15,
-                     graphicWidth: 34,
-                     graphicHeight: 42,
-                     graphicXOffset: -17,
-                     graphicYOffset: -42
+                     graphicWidth: '${w}',
+                     graphicHeight: '${h}',
+                     graphicXOffset: '${xof}',
+                     graphicYOffset: '${yof}',
+                     graphicTitle: "Přetažením změníte trasu"
                 }),
                 displayInLayerSwitcher: false
             });
@@ -290,15 +291,16 @@ function defaultPanZoom() {
             drag.activate();
             startMarker = new OpenLayers.Feature.Vector(
                     new OpenLayers.Geometry.Point(0,0),
-                    { icon: "/static/img/route-start.png" }
+                    { icon: "/static/img/route-start.png", w: 34, h: 42, xof: -17, yof: -42 }
             );
             endMarker = new OpenLayers.Feature.Vector(
                     new OpenLayers.Geometry.Point(0,0),
-                    { icon: "/static/img/route-stop.png" }
+                    { icon: "/static/img/route-stop.png", w:34, h:42, xof: -17, yof: -42 }
             );
+            wpAttrs = { icon: "/static/img/waypoint.png", w:26, h:35, xof: -8, yof: -32 }
             middleMarker = new OpenLayers.Feature.Vector(
-                    new OpenLayers.Geometry.Point(0,0),
-                    { icon: "/static/img/waypoint.png" }
+                    new OpenLayers.Geometry.Point(0,0), 
+                    wpAttrs
             );
             // zabranime odeslani formu, kdyz uzivatel zmackne enter v okamziku,
             // kdy neni vybrana polozka autocompletu 
@@ -483,7 +485,7 @@ function defaultPanZoom() {
             for (var i=1; i < wps.length - 1; i++) {
                 var marker = new OpenLayers.Feature.Vector(
                     wps[i].geometry.clone(),
-                    { icon: "/static/img/waypoint.png" }
+                    wpAttrs
                 );
                 marker.attributes.sequenceId = wps[i].attributes.sequenceId
                 setWaypoint(marker);
