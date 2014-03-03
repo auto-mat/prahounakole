@@ -443,11 +443,14 @@ function defaultPanZoom() {
         function toggleButtons() {
             switch (waypoints.length) {
                 case 0:
-                    $('.olMap').css("cursor", "url('/static/img/route-start.png') 17 42, auto"); 
+                    // IE nepodporuje hotspot pres souradnice, ale jen zakodovany v .cur
+                    $('.olMap').css("cursor", "url('/static/img/route-start.cur'), crosshair"); 
+                    $('.olMap').css("cursor", "url('/static/img/route-start.cur') 17 41, crosshair"); 
                     routingState = 'start';
                     break;
                 case 1:
-                    $('.olMap').css("cursor", "url('/static/img/route-stop.png') 17 42, auto");
+                    $('.olMap').css("cursor", "url('/static/img/route-stop.cur'), crosshair"); 
+                    $('.olMap').css("cursor", "url('/static/img/route-stop.cur') 17 41, crosshair"); 
                     routingState = 'stop';
                     break;
                 default:
