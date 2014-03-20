@@ -664,6 +664,13 @@ function defaultPanZoom() {
                markerLayer.addFeatures(middleMarker);
                markerLayer.redraw();
            } else {
+               // Pokud se kurzor nachazi nad ikonou, ale daleko od trasy
+               // musime explicitne rict DragControlu, ze uz neni nad feature,
+               // pred tim, nez ji zrusime. Jinak zustane kurzor v rezimu drag
+               // a pri kliknuti kamkoliv do mapy ve snaze o posun se vytvory waypoint.
+               if (drag.feature) {
+                   drag.outFeature(drag.feature)
+               };
                if (middleMarker.layer) {
                    markerLayer.removeFeatures(middleMarker);
                    markerLayer.redraw();
