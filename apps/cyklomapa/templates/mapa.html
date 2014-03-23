@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="{% static "css/prahounakole.css" %}" type="text/css" />
   <link rel="stylesheet" href="{% static "css/google.css" %}" type="text/css" />
   <link rel="stylesheet" href="{% static "css/layerswitcher.css" %}" type="text/css" />
-  {% if mesto.slug != "mapa" %}
+  {% if mesto.slug != "mapa" and mesto.slug != "devel" %}
   <link rel="stylesheet" href="{% static "css/dpnk.css" %}" type="text/css" />
   {% endif %}
 								    
@@ -94,7 +94,7 @@
   <body onload="init(mapconfig)">
      {% if not nomenu %}
      <div id="head">
-         {% if mesto.slug == "mapa" %}
+         {% if mesto.slug == "mapa" or mesto.slug == "devel" %}
          <div id="titulka">
            <a href="http://prahounakole.cz" target="_self" title="Home / přehledka">Prahou na kole</a>
          </div>

@@ -6,7 +6,7 @@
         // * go - muzeme spustit vyhledavani
         var routingState = 'start';
         var vectors = [];
-        var journeyLayer, markerLayer, startMarker, endMarker;
+        var journeyLayer, markerLayer, startMarker, endMarker, middleMarker, wpAttrs;
         var previewedRoute;
         var waypoints = [];
         var startFeature = null;
@@ -17,6 +17,7 @@
         var criteriaCnt = 0;
         var selectedItinerary = null;
         var selectedPlan;
+        var dragInAction = false;
         var ignoreHashChange = false;
 
         var bounds = new OpenLayers.Bounds(12,48.5,19,51.1)
@@ -273,28 +274,34 @@ function defaultPanZoom() {
                  styleMap: new OpenLayers.StyleMap({
                      externalGraphic: "${icon}",
                      pointRadius: 15,
-                     graphicWidth: 34,
-                     graphicHeight: 42,
-                     graphicXOffset: -17,
-                     graphicYOffset: -42
+                     graphicWidth: '${w}',
+                     graphicHeight: '${h}',
+                     graphicXOffset: '${xof}',
+                     graphicYOffset: '${yof}',
+                     graphicTitle: "Přetažením změníte trasu"
                 }),
                 displayInLayerSwitcher: false
             });
             map.addLayer(markerLayer);
             drag = new OpenLayers.Control.DragFeature(markerLayer, {
+                onStart: onDragStart,
                 onComplete: onDragComplete
             });
             map.addControl(drag);
             drag.activate();
             startMarker = new OpenLayers.Feature.Vector(
                     new OpenLayers.Geometry.Point(0,0),
-                    { icon: "/static/img/route-start.png" }
+                    { icon: "/static/img/route-start.png", w: 34, h: 42, xof: -17, yof: -42 }
             );
             endMarker = new OpenLayers.Feature.Vector(
                     new OpenLayers.Geometry.Point(0,0),
-                    { icon: "/static/img/route-stop.png" }
+                    { icon: "/static/img/route-stop.png", w:34, h:42, xof: -17, yof: -42 }
             );
-
+            wpAttrs = { icon: "/static/img/waypoint.png", w:26, h:35, xof: -8, yof: -32 }
+            middleMarker = new OpenLayers.Feature.Vector(
+                    new OpenLayers.Geometry.Point(0,0), 
+                    wpAttrs
+            );
             // zabranime odeslani formu, kdyz uzivatel zmackne enter v okamziku,
             // kdy neni vybrana polozka autocompletu 
             $(".jpSearch").keypress(function(e) {
@@ -308,10 +315,11 @@ function defaultPanZoom() {
             addJourneyLayer();
             toggleButtons();
             map.events.register("click", map, onMapClick);
-            $('#jpPlanButton').click(planJourney);
+            $('#jpPlanButton').click(onPlanButtonClick);
             $('.jpPlanType').click(onPlanSelect);
             $('.jpPlanType').hover(previewPlanIn, previewPlanOut);
             appMode = 'routing';
+            selectedPlan = null;
             $('.panel').hide();
             $('#hledani').show();
             $('#jpStartStreetSearch').focus();
@@ -334,6 +342,8 @@ function defaultPanZoom() {
                          'mailto:redakce@prahounakole.cz?subject=Připomínka k trase ' + CSApi.itinerary + ', varianta ' + selectedPlan);
                     $('#jpFeedbackForm').dialog("open");
                 });
+
+            map.events.register('mousemove', map, onMouseMove);
         };
         function destroyRouting() {
             if (appMode != 'routing') {
@@ -346,6 +356,7 @@ function defaultPanZoom() {
                 journeyLayer.destroy();
             };
             map.events.unregister("click", map, onMapClick);
+            map.events.unregister('mousemove', map, onMouseMove);
             $('.olMap').css("cursor", "auto");
             appMode = 'normal';
         }
@@ -354,6 +365,7 @@ function defaultPanZoom() {
             $('#jpPlanTypeSelector').hide();
             waypoints = [];
             selectedItinerary = null;
+            selectedPlan = null;
             startFeature = null;
             endFeature = null;
             markerLayer.removeAllFeatures();
@@ -368,29 +380,46 @@ function defaultPanZoom() {
         function setWaypoint(feature) {
             // called either on selection of result from search box,
             // mouse click or dragging of a marker
-            var lonlat;
-            if (feature == startMarker) {
-                lonlat = startMarker.geometry.clone();
-                waypoints[0] = lonlat.transform(map.getProjectionObject(), EPSG4326);
-            }
-            if (feature == endMarker) {
-                lonlat = endMarker.geometry.clone();
-                waypoints[1] = lonlat.transform(map.getProjectionObject(), EPSG4326);
-            }
             if (!feature.layer) {
                 markerLayer.addFeatures(feature);
+            }
+            var lonlat = feature.geometry.clone().transform(map.getProjectionObject(), EPSG4326);
+            if (feature == startMarker) {
+                waypoints[0] = lonlat;
+            } else if (feature == endMarker) {
+                waypoints[1] = lonlat;
+            } else {
+                if (feature.attributes.sequenceId) {
+                    waypoints[parseInt(feature.attributes.sequenceId)] = lonlat;
+                } else {
+                    waypoints.splice(parseInt(feature.attributes.newWpSequenceId) + 1, 0, lonlat);
+                }
             }
             markerLayer.redraw();
             toggleButtons();
         };
+        function onDragStart(feature, pixel) {
+            dragInAction = true;
+            if (! feature.attributes.sequenceId) {
+                // jde o novy waypoint, nikoliv posun stavajiciho
+                // dohledame posledni wp v poradi pred menenym segmentem
+                var segment = findNearestSegment(feature.geometry);
+                var wp = CSApi.getWaypointBySegment(selectedPlan, segment);
+                // a jeho pozici si docasne ulozime na feature dragovaci ikony
+                feature.attributes.newWpSequenceId = wp.attributes.sequenceId;
+            };
+        }
         function onDragComplete(feature) {
+            dragInAction = false;
             if (feature == startMarker) {
                 CSApi.nearestPoint(startMarker, updateStartLabel);
-            }
-            if (feature == endMarker) {
+            } else if (feature == endMarker) {
                 CSApi.nearestPoint(endMarker, updateEndLabel);
             }
             setWaypoint(feature);
+            // po umisteni cile nebo pretazeni prvku uz nalezene trasy muzeme rovnou vyhledat
+            if (waypoints.length >= 2)
+                planJourney();
         };
         function onMapClick(e) {
             var marker;
@@ -409,24 +438,19 @@ function defaultPanZoom() {
             };
             var position = map.getLonLatFromPixel(e.xy);
             movePointToLonLat(marker.geometry, position);
-            if (!marker.layer) {
-                markerLayer.addFeatures(marker);
-            };
-            markerLayer.redraw();
             onDragComplete(marker, position);
-            // po umisteni cile muzeme rovnou vyhledat
-            if (marker == endMarker) {
-                $('#jpPlanButton').click();
-            };
         };
         function toggleButtons() {
             switch (waypoints.length) {
                 case 0:
-                    $('.olMap').css("cursor", "url('/static/img/route-start.png') 17 42, auto"); 
+                    // IE nepodporuje hotspot pres souradnice, ale jen zakodovany v .cur
+                    $('.olMap').css("cursor", "url('/static/img/route-start.cur'), crosshair"); 
+                    $('.olMap').css("cursor", "url('/static/img/route-start.cur') 17 41, crosshair"); 
                     routingState = 'start';
                     break;
                 case 1:
-                    $('.olMap').css("cursor", "url('/static/img/route-stop.png') 17 42, auto");
+                    $('.olMap').css("cursor", "url('/static/img/route-stop.cur'), crosshair"); 
+                    $('.olMap').css("cursor", "url('/static/img/route-stop.cur') 17 41, crosshair"); 
                     routingState = 'stop';
                     break;
                 default:
@@ -459,14 +483,46 @@ function defaultPanZoom() {
             lonlat = startfinish.finish.clone().transform(EPSG4326, map.getProjectionObject());
             movePointToLonLat(endMarker.geometry, lonlat);
             setWaypoint(endMarker);
+            removeWaypointMarkers();
+            var wps = CSApi.getWaypoints(route);
+            for (var i=1; i < wps.length - 1; i++) {
+                var marker = new OpenLayers.Feature.Vector(
+                    wps[i].geometry.clone(),
+                    wpAttrs
+                );
+                marker.attributes.sequenceId = wps[i].attributes.sequenceId
+                setWaypoint(marker);
+            }
             markerLayer.redraw();
+        };
+        function removeWaypointMarkers() {
+            // clear waypoints
+           remove = []
+           for (var i=0; i < markerLayer.features.length; i++) {
+                feature = markerLayer.features[i];
+                if (feature != startMarker && feature != endMarker && feature != middleMarker) {
+                    remove.push(feature);
+                };
+            };
+            markerLayer.destroyFeatures(remove);
+        };
+        function clearWaypoints() {
+            waypoints.splice(2, waypoints.length - 2);
+        };
+        function onPlanButtonClick() {
+            clearWaypoints();
+            planJourney();
+            return false;
         };
         function planJourney() {
             $('#jpPlanButton').hide();
             $('#jpPlanMessage').show();
+            if (selectedPlan)
+                reqPlan = selectedPlan;
+            else
+                reqPlan = 'balanced';
             selectedPlan = null;
-            CSApi.journey(null, waypoints, 'balanced', addPlannedJourney, { select: 'balanced' });
-            return false;
+            CSApi.journey(null, waypoints, 'balanced', addPlannedJourney, { select: reqPlan });
         };
         // callback to process route returned by server
         function addPlannedJourney(itinerary, plan, route, options) {
@@ -547,6 +603,7 @@ function defaultPanZoom() {
             $('#gpxLink').attr('href', CSApi.gpxLink(plan));
             setHashParameter('plan', plan, false);
         }
+        
         function previewPlanIn() {
             var plan = $(this).data('plan');
             if (! CSApi.routeFeatures || ! CSApi.routeFeatures[plan]) {
@@ -568,6 +625,57 @@ function defaultPanZoom() {
             }
             journeyLayer.removeFeatures(previewedRoute);
             previewedRoute = null;
+        }
+        function closeToWaypoints(pt, limit) {
+           // check if given point is close to any waypoint
+           for (var i=0; i < waypoints.length; i++) {
+                if (pt.distanceTo(waypoints[i].clone().transform(EPSG4326, map.getProjectionObject())) < limit)
+                    return true;
+            };
+            return false;
+        };
+        function findNearestSegment(pt) {
+            var segments = CSApi.segments[selectedPlan];
+            var feat = null;
+            var featDist = Number.MAX_VALUE;
+            for (var i=0; i < segments.length; i++) {
+                curDist = pt.distanceTo(segments[i].geometry);
+                if (curDist < featDist) {
+                    featDist = curDist;
+                    feat = segments[i];
+                }
+            }
+            return feat; 
+        }
+        function onMouseMove(e) {
+           // Podle vzdalenosti kurzoru od trasy umozni preroutovani
+           // pridanim markeru pro dalsi waypoint.
+           // Po jeho pretazeni se pusti onDragComplete, jako u ostatnich markeru.
+           if (!selectedPlan || dragInAction)
+               return;
+           var cur = map.getLonLatFromPixel(e.xy);
+           var curPt = new OpenLayers.Geometry.Point(cur.lon, cur.lat);
+           var line = CSApi.route[selectedPlan];
+           var dist = line.geometry.distanceTo(curPt, { details: true});
+           // vzdalenost kurzoru od cary v pixelech prepoctena dle aktualniho zoomu
+           var LIMIT = 20 * map.getResolution();
+           if (dist.distance < LIMIT && !closeToWaypoints(curPt, 2*LIMIT)) {
+               movePointToLonLat(middleMarker.geometry, {lon: dist.x0, lat: dist.y0});
+               markerLayer.addFeatures(middleMarker);
+               markerLayer.redraw();
+           } else {
+               // Pokud se kurzor nachazi nad ikonou, ale daleko od trasy
+               // musime explicitne rict DragControlu, ze uz neni nad feature,
+               // pred tim, nez ji zrusime. Jinak zustane kurzor v rezimu drag
+               // a pri kliknuti kamkoliv do mapy ve snaze o posun se vytvory waypoint.
+               if (drag.feature) {
+                   drag.outFeature(drag.feature)
+               };
+               if (middleMarker.layer) {
+                   markerLayer.removeFeatures(middleMarker);
+                   markerLayer.redraw();
+               };
+           }
         }
         function parseHash() {
            var hash = location.hash;
@@ -824,6 +932,12 @@ function defaultPanZoom() {
         };
 
 function addRekola() {
+        for (var i=0; i < vectors.length; i++) {
+           if (vectors[i].slug == 'r') {
+               map.addLayer(vectors[i]);
+               return;
+           }
+        };
         var rekola = new OpenLayers.Layer.Vector("ReKola", {
             slug: "r",
             strategies: [new OpenLayers.Strategy.Fixed()],
