@@ -94,7 +94,7 @@ def cache_page_mesto(expiration):
        def wrapper(*args, **kwargs):
           cache = get_cache('default')
 
-          cache_key = 'kml_view_' + args[1] + '_' + args[0].mesto.slug
+          cache_key = 'kml_view_' + args[1] + '_' + args[0].mesto.sektor.slug
           result = cache.get(cache_key)
           if result == None:
              result = fn(*args, **kwargs)
