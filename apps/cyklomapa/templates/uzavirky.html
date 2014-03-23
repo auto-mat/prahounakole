@@ -1,6 +1,6 @@
 <ul>
 {% for u in uzavirky %}
-<li><img src="{{ u.znacka.default_icon.url }}" align="left"> <a href="http://mapa.prahounakole.cz/misto/{{ u.id }}" target="_top" title="{{ u.desc|safe }}">{{ u  }}</a></li>
+<li><img src="{{ u.marker.default_icon.url }}" align="left"> <a href="http://mapa.prahounakole.cz/misto/{{ u.id }}" target="_top" title="{{ u.desc|safe }}">{{ u  }}</a></li>
 {% endfor %}
 </ul>
 
