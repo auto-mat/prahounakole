@@ -11,6 +11,9 @@ class Migration(DataMigration):
         # Note: Don't use "from appname.models import ModelName". 
         # Use orm.ModelName to refer to models in this application,
         # and orm['appname.ModelName'] for models in other applications.
+         
+        license = orm['webmap.license'](name="bez licence")
+        license.save()
 
         for obj in orm.status.objects.all():
             obj_new, created = orm['webmap.status'].objects.get_or_create(name = obj.nazev, 
@@ -113,7 +116,7 @@ class Migration(DataMigration):
             obj_new = orm['webmap.poi'].objects.create(**kwargs)
 
             if obj.foto_thumb:
-                photo_new = orm['webmap.photo'].objects.create(poi = obj_new, photo = obj.foto_thumb, license_id=1, order=0)
+                photo_new = orm['webmap.photo'].objects.create(poi = obj_new, photo = obj.foto_thumb, license=license, order=0)
                 photo_new.save()
 
     def backwards(self, orm):
