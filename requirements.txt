@@ -10,3 +10,5 @@ django-colorful==0.1.3
 django-mass-edit==1.5.1
 django-webmap-corpus
 django-smart-selects==1.0.9
+django-constance[database]
+django-import-export
