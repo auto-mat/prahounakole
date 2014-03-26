@@ -8,10 +8,10 @@
 </div>
 
 <div class="rc">
-{% if poi.foto_thumb %}
-  {% thumbnail poi.foto_thumb "250x250" as foto %}
-    <a href="{{ poi.foto_thumb.url }}" title="Podrobné informace o místě" target="_blank">
-    <img src="{{ foto.url }}" title="{{ poi }}" width="{{ foto.width }}" height="{{ foto.height }}" class="foto_thumb"/></a>
+{% if fotky %}
+  {% thumbnail fotky.0.photo "250x250" as foto_thumb %}
+    <a href="{{ fotky.0.photo.url }}" title="Fotka v plném rozlišení" target="_blank">
+    <img src="{{ foto_thumb.url }}" title="{{ fotky.0.name }}" width="{{ foto_thumb.width }}" height="{{ foto_thumb.height }}" class="foto_thumb"></a>
 {% endif %}
 
 {% if poi.desc %}
@@ -33,7 +33,7 @@
 </div>
 <p class="addinfo">
     {% if can_change %}
-    <a href="{% url 'admin:cyklomapa_poi_change' poi.id %}">upravit</a>,
+    <a href="{% url 'admin:webmap_poi_change' poi.id %}">upravit</a>,
     {% endif %}
     <a href="javascript:void(0);" onclick="ZoomToLonLat(this, {{ poi.geom.x }}, {{ poi.geom.y }}, 15);"
       title="Najet v mapě na místo" >na střed</a>,

@@ -121,6 +121,7 @@ def popup_view(request, poi_id):
     return render(request, "gis/popup.html",
           context_instance=RequestContext(request, {
               'poi' : poi,
+              'fotky': poi.photos.all(),
               'can_change': request.user.has_perm('cyklomapa.change_poi')# and poi.has_change_permission(request.user),
               }),
           content_type="application/xml")
