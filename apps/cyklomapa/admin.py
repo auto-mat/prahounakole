@@ -48,7 +48,7 @@ class UserAdmin(UserAdmin):
 
     def usermesto__mesta(self, obj):
         if obj:
-            return ", ".join([mesto.nazev for mesto in obj.usermesto.mesta.all()])
+            return ", ".join([mesto.sektor.name for mesto in obj.usermesto.mesta.all()])
 
 class MestoPoiAdmin(PoiAdmin):
     def queryset(self, request):
