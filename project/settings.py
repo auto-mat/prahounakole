@@ -89,7 +89,7 @@ INSTALLED_APPS = [
     'django.contrib.gis',
 
     'author',
-    'positions',
+    'adminsortable',
     'constance.backends.database',
     'constance',
     'import_export',
