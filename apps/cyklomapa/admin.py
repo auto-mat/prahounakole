@@ -2,16 +2,15 @@
 # admin.py
 
 # This file controls the look and feel of the models within the Admin App
-# They appear in the admin app once they are registered at the bottom of 
+# They appear in the admin app once they are registered at the bottom of
 # this code (same goes for the databrowse app)
 
-from django.conf import settings # needed if we use the GOOGLE_MAPS_API_KEY from settings
+from django.conf import settings  # needed if we use the GOOGLE_MAPS_API_KEY from settings
 
 # Import the admin site reference from django.contrib.admin
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
-from django.core.urlresolvers import reverse
 
 # Grab the Admin Manager that automaticall initializes an OpenLayers map
 # for any geometry field using the in Google Mercator projection with OpenStreetMap basedata
@@ -20,10 +19,11 @@ from django.contrib.gis.geos import Point
 from django.contrib.gis.db.models import Union
 
 from cyklomapa.models import UserMesto, Upresneni, Mesto, MarkerZnacka
-from webmap.models import Sector, Marker, Poi
-from webmap.admin import SectorAdmin, MarkerAdmin, PoiAdmin
+from webmap.models import Marker, Poi
+from webmap.admin import MarkerAdmin, PoiAdmin
 
 USE_GOOGLE_TERRAIN_TILES = False
+
 
 # Define an inline admin descriptor for Employee model
 # which acts a bit like a singleton
@@ -32,6 +32,7 @@ class UserMestoInline(admin.StackedInline):
     model = UserMesto
     can_delete = False
     verbose_name_plural = 'Uzivatelska mesta'
+
 
 # Define a new User admin
 class UserAdmin(UserAdmin):
@@ -50,30 +51,32 @@ class UserAdmin(UserAdmin):
         if obj:
             return ", ".join([mesto.sektor.name for mesto in obj.usermesto.mesta.all()])
 
+
 class MestoPoiAdmin(PoiAdmin):
     def queryset(self, request):
-       queryset = super(PoiAdmin, self).queryset(request)
-       if request.user.is_superuser:
-          return queryset
-       return queryset.filter(geom__intersects=request.user.usermesto.mesta.aggregate(Union('sektor__geom'))['sektor__geom__union'])
+        queryset = super(PoiAdmin, self).queryset(request)
+        if request.user.is_superuser:
+            return queryset
+        return queryset.filter(geom__intersects=request.user.usermesto.mesta.aggregate(Union('sektor__geom'))['sektor__geom__union'])
 
     def get_form(self, request, obj=None, **kwargs):
-         mesto = Mesto.objects.get(sektor__slug = request.subdomain)
-         pnt = Point(mesto.geom.x, mesto.geom.y, srid=4326)
-         pnt.transform(900913)
-         self.default_lon, self.default_lat = pnt.coords
+        mesto = Mesto.objects.get(sektor__slug=request.subdomain)
+        pnt = Point(mesto.geom.x, mesto.geom.y, srid=4326)
+        pnt.transform(900913)
+        self.default_lon, self.default_lat = pnt.coords
 
-         form = super(PoiAdmin, self).get_form(request, obj, **kwargs)
-         return form
+        form = super(PoiAdmin, self).get_form(request, obj, **kwargs)
+        return form
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
-       if db_field.name == "mesto":
-          if request.user.is_superuser:
-              kwargs["queryset"] = Mesto.objects
-          else:
-              kwargs["queryset"] = request.user.usermesto.mesta.all()
+        if db_field.name == "mesto":
+            if request.user.is_superuser:
+                kwargs["queryset"] = Mesto.objects
+            else:
+                kwargs["queryset"] = request.user.usermesto.mesta.all()
 
-       return super(PoiAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
+        return super(PoiAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
+
 
 class UpresneniAdmin(admin.ModelAdmin):
     model = Upresneni
@@ -81,12 +84,15 @@ class UpresneniAdmin(admin.ModelAdmin):
     list_filter = ('status',)
     list_display = ('misto', 'email', 'status', 'desc',)
 
+
 class LegendaAdmin(admin.ModelAdmin):
     list_display = ('nazev', 'obrazek_img', 'popis',)
+
     def obrazek_img(self, obj):
         return u'<img src=%s>' % obj.obrazek.url
     obrazek_img.allow_tags = True
     obrazek_img.short_description = u"obrázek"
+
 
 class MestoInline(admin.StackedInline):
     model = Mesto
@@ -98,24 +104,26 @@ class MestoInline(admin.StackedInline):
 #class MestoSectorAdmin(SectorAdmin):
 #    inlines = SectorAdmin.inlines + [MestoInline,]
 
+
 class MarkerZnackaInline(admin.StackedInline):
     model = MarkerZnacka
     can_delete = False
     verbose_name_plural = 'Parametry značky'
 
+
 class MarkerZnackaAdmin(MarkerAdmin):
-    inlines = MarkerAdmin.inlines + [MarkerZnackaInline,]
+    inlines = MarkerAdmin.inlines + [MarkerZnackaInline, ]
 
 
 class MestoAdmin(OSMGeoAdmin):
     list_display = ('sektor', 'zoom', 'aktivni', 'vyhledavani', 'uvodni_zprava', )
 
     def queryset(self, request):
-       queryset = super(MestoAdmin, self).queryset(request)
-       if request.user.is_superuser:
-          return queryset
+        queryset = super(MestoAdmin, self).queryset(request)
+        if request.user.is_superuser:
+            return queryset
 
-       return queryset.filter(id__in=request.user.usermesto.mesta.all())
+        return queryset.filter(id__in=request.user.usermesto.mesta.all())
 
     def get_form(self, request, obj=None, **kwargs):
         if not request.user.has_perm(u"cyklomapa.can_edit_all_fields"):
@@ -126,7 +134,7 @@ class MestoAdmin(OSMGeoAdmin):
         map_template = 'gis/admin/google.html'
         extra_js = ['http://openstreetmap.org/openlayers/OpenStreetMap.js', 'http://maps.google.com/maps?file=api&amp;v=2&amp;key=%s' % settings.GOOGLE_MAPS_API_KEY]
     else:
-        pass # defaults to OSMGeoAdmin presets of OpenStreetMap tiles
+        pass  # defaults to OSMGeoAdmin presets of OpenStreetMap tiles
 
     default_lon = 1605350
     default_lat = 6461466
