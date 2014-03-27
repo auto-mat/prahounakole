@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="{% static "css/prahounakole.css" %}" type="text/css" />
   <link rel="stylesheet" href="{% static "css/google.css" %}" type="text/css" />
   <link rel="stylesheet" href="{% static "css/layerswitcher.css" %}" type="text/css" />
-  {% if mesto.slug != "mapa" and mesto.slug != "devel" %}
+  {% if mesto.sektor.slug != "mapa" and mesto.sektor.slug != "devel" %}
   <link rel="stylesheet" href="{% static "css/dpnk.css" %}" type="text/css" />
   {% endif %}
 								    
@@ -35,7 +35,7 @@
    <link rel="alternate" type="application/rss+xml" title="Novinky v mapě" href="{% url 'novinky_feed' %}" />
    <link rel="alternate" type="application/rss+xml" title="Uzavírky" href="{% url 'uzavirky_feed' %}" />
 
-  <title>Mapa Prahou na kole - {{ mesto.nazev }} </title>
+  <title>Mapa Prahou na kole - {{ mesto.sektor.nazev }} </title>
 
 <script type="text/javascript">
 
@@ -94,7 +94,7 @@
   <body onload="init(mapconfig)">
      {% if not nomenu %}
      <div id="head">
-         {% if mesto.slug == "mapa" or mesto.slug == "devel" %}
+         {% if mesto.sektor.slug == "mapa" or mesto.sektor.slug == "devel" %}
          <div id="titulka">
            <a href="http://prahounakole.cz" target="_self" title="Home / přehledka">Prahou na kole</a>
          </div>
@@ -115,13 +115,13 @@
          {% else %}
          <div id="dpnk-head">
          <div id="titulka">
-           <a href="http://dopracenakole.net/mesta/{{ mesto.slug }}/" target="_self">
+           <a href="http://dopracenakole.net/mesta/{{ mesto.sektor.slug }}/" target="_self">
                 <img src="http://www.dopracenakole.net/wp-content/themes/easy/images/dopracenakole.png">
            </a>
          </div>
          <div class="menu" id="menu">
            <a target="_blank" href="http://www.prahounakole.cz/mapa/pouzivani/legenda/" title="Legenda online mapy">Legenda</a>
-           <a target="_blank" href="http://dopracenakole.net/mesta/{{ mesto.slug }}/">Do práce na kole - {{ mesto }}</a>
+           <a target="_blank" href="http://dopracenakole.net/mesta/{{ mesto.sektor.slug }}/">Do práce na kole - {{ mesto }}</a>
          </div>
          </div>
          </div>
