@@ -93,8 +93,10 @@ class MestoInline(admin.StackedInline):
     can_delete = False
     verbose_name_plural = 'Parametry města'
 
-class MestoSectorAdmin(SectorAdmin):
-    inlines = SectorAdmin.inlines + [MestoInline,]
+
+#TODO: make Mesto map to display OSM
+#class MestoSectorAdmin(SectorAdmin):
+#    inlines = SectorAdmin.inlines + [MestoInline,]
 
 class MarkerZnackaInline(admin.StackedInline):
     model = MarkerZnacka
@@ -105,11 +107,43 @@ class MarkerZnackaAdmin(MarkerAdmin):
     inlines = MarkerAdmin.inlines + [MarkerZnackaInline,]
 
 
+class MestoAdmin(OSMGeoAdmin):
+    list_display = ('sektor', 'zoom', 'aktivni', 'vyhledavani', 'uvodni_zprava', )
+
+    def queryset(self, request):
+       queryset = super(MestoAdmin, self).queryset(request)
+       if request.user.is_superuser:
+          return queryset
+
+       return queryset.filter(id__in=request.user.usermesto.mesta.all())
+
+    def get_form(self, request, obj=None, **kwargs):
+        if not request.user.has_perm(u"cyklomapa.can_edit_all_fields"):
+            self.readonly_fields = ('vyhledavani', 'aktivni', 'sektor')
+        return super(MestoAdmin, self).get_form(request, obj=None, **kwargs)
+
+    if USE_GOOGLE_TERRAIN_TILES:
+        map_template = 'gis/admin/google.html'
+        extra_js = ['http://openstreetmap.org/openlayers/OpenStreetMap.js', 'http://maps.google.com/maps?file=api&amp;v=2&amp;key=%s' % settings.GOOGLE_MAPS_API_KEY]
+    else:
+        pass # defaults to OSMGeoAdmin presets of OpenStreetMap tiles
+
+    default_lon = 1605350
+    default_lat = 6461466
+    default_zoom = 12
+    scrollable = True
+    map_width = 700
+    map_height = 500
+    map_srid = 900913
+
+
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
 
-admin.site.unregister(Sector)
-admin.site.register(Sector, MestoSectorAdmin)
+#admin.site.unregister(Sector)
+#admin.site.register(Sector, MestoSectorAdmin)
+
+admin.site.register(Mesto, MestoAdmin)
 
 admin.site.unregister(Marker)
 admin.site.register(Marker, MarkerZnackaAdmin)

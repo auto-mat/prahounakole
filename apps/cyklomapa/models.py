@@ -27,6 +27,9 @@ class Mesto(models.Model):
     objects = models.GeoManager()
 
     class Meta:
+        permissions = [
+            ("can_edit_all_fields", "Can edit all field"),
+        ]
         verbose_name_plural = "města"
     def __unicode__(self):
         return self.sektor.name
