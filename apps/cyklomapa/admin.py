@@ -54,7 +54,7 @@ class UserAdmin(UserAdmin):
 
 class MestoPoiAdmin(PoiAdmin):
     def queryset(self, request):
-        queryset = super(PoiAdmin, self).queryset(request)
+        queryset = super(MestoPoiAdmin, self).queryset(request)
         if request.user.is_superuser:
             return queryset
         return queryset.filter(geom__intersects=request.user.usermesto.mesta.aggregate(Union('sektor__geom'))['sektor__geom__union'])
@@ -65,7 +65,7 @@ class MestoPoiAdmin(PoiAdmin):
         pnt.transform(900913)
         self.default_lon, self.default_lat = pnt.coords
 
-        form = super(PoiAdmin, self).get_form(request, obj, **kwargs)
+        form = super(MestoPoiAdmin, self).get_form(request, obj, **kwargs)
         return form
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
@@ -75,7 +75,7 @@ class MestoPoiAdmin(PoiAdmin):
             else:
                 kwargs["queryset"] = request.user.usermesto.mesta.all()
 
-        return super(PoiAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
+        return super(MestoPoiAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
 
 
 class UpresneniAdmin(admin.ModelAdmin):
