@@ -946,7 +946,7 @@ function addRekola() {
                 // http://openlayers.org/dev/examples/cross-origin-xml.html
                 url: "http://query.yahooapis.com/v1/public/yql",
                 params: {
-                        q: "select * from xml where url='http://app.rekola.cz/server/api/bikes/kml'"
+                        q: "select * from xml where url='http://moje.rekola.cz/api/bikes/kml'"
                 },
                 //url: "http://app.rekola.cz/server/api/bikes/kml",
                 format: new OpenLayers.Format.KML({
