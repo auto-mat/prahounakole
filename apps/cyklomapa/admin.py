@@ -62,7 +62,7 @@ class MestoPoiAdmin(PoiAdmin):
     def get_form(self, request, obj=None, **kwargs):
         mesto = Mesto.objects.get(sektor__slug=request.subdomain)
         pnt = Point(mesto.geom.x, mesto.geom.y, srid=4326)
-        pnt.transform(900913)
+        pnt.transform(3857)
         self.default_lon, self.default_lat = pnt.coords
 
         form = super(MestoPoiAdmin, self).get_form(request, obj, **kwargs)
@@ -142,7 +142,7 @@ class MestoAdmin(OSMGeoAdmin):
     scrollable = True
     map_width = 700
     map_height = 500
-    map_srid = 900913
+    map_srid = 3857
 
 
 admin.site.unregister(User)
