@@ -2,7 +2,8 @@ from django.conf import settings
 from django.conf.urls import patterns, url, include
 from django.contrib import admin
 
-from cyklomapa.views import mapa_view, kml_view, popup_view, uzavirky_view, metro_view, znacky_view
+from cyklomapa.views import mapa_view, popup_view, uzavirky_view, metro_view, znacky_view
+from webmap.views import kml_view
 from cyklomapa.feeds import UzavirkyFeed, NovinkyFeed
 from httpproxy.views import HttpProxy
 
