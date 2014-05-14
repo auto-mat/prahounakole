@@ -122,7 +122,8 @@ def popup_view(request, poi_id):
           context_instance=RequestContext(request, {
               'poi' : poi,
               'fotky': poi.photos.all(),
-              'can_change': request.user.has_perm('cyklomapa.change_poi')# and poi.has_change_permission(request.user),
+              'settings': settings,
+              'can_change': request.user.has_perm('webmap.change_poi')# and poi.has_change_permission(request.user),
               }),
           content_type="application/xml")
 
