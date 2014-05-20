@@ -100,7 +100,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'south',
     'colorful',
-    'massadmin',
+    #'massadmin',
 ]
 
 ENABLE_API_PROXY = DEBUG        # http-roxy pro requesty na /api
