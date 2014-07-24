@@ -23,7 +23,7 @@ var ignoreHashChange = false;
 var EPSG4326 = new OpenLayers.Projection("EPSG:4326");
 var EPSG900913 = new OpenLayers.Projection("EPSG:900913"); 
 
-var bounds = new OpenLayers.Bounds(12,48.5,19,51.1)
+var bounds = new OpenLayers.Bounds(12,48.5,19,51.1);
 bounds.transform(EPSG4326, EPSG900913);
 
 function defaultPanZoom() {
@@ -148,8 +148,8 @@ function init(mapconfig) {
             layerSwitcher.minimizeControl();
         } else {
             layerSwitcher.maximizeControl();
-        };
-    };
+        }
+    }
 
     layer_osm = new OpenLayers.Layer.OSM.Mapnik(
         "OpenStreetMap", { 
@@ -199,7 +199,7 @@ function init(mapconfig) {
 
      // zabranime odzoomovani na nizsi level nez 8 
      map.isValidZoomLevel = function(zoomLevel) {
-         var valid = ( (zoomLevel != null) &&
+         var valid = ( (zoomLevel !== null) &&
                        (zoomLevel >= 8) &&
                        (zoomLevel < this.getNumZoomLevels()) );
          if (valid && zoomFilter.value != 999) {
@@ -223,19 +223,19 @@ function setupPnkMap() {
     if (appMode == 'pnkmap') {
         // uz jsme v rezimu routing, neni co delat
         return;
-    };
+    }
     if (appMode == 'routing') {
         destroyRouting();
-    };
+    }
 
     map.setBaseLayer(layerPNK);
     $('.olControlLayerSwitcher').show();
 
     if(!mapconfig.mobilni) {
         kmlvrstvy = mapconfig.vrstvy;
-        for (i in kmlvrstvy) {
+        for (var i in kmlvrstvy) {
             addPoiLayer(kmlvrstvy[i][0], mapconfig.root_url + kmlvrstvy[i][1], kmlvrstvy[i][2] == 'True', kmlvrstvy[i][3]);
-        };
+        }
         addRekola();
 
         selectControl = new OpenLayers.Control.SelectFeature(
@@ -271,22 +271,22 @@ function setupPnkMap() {
      appMode = 'pnkmap';
      $('.panel').hide();
      $('#uvod').show();
-}; // setupPnkMap
+} // setupPnkMap
 
 function destroyPnkMap() {
     map.removeControl(selectControl);
     selectControl.destroy();
     removePoiLayers();
-};
+}
 
 function setupRouting() {
     if (appMode == 'routing') {
         // uz jsme v rezimu routing, neni co delat
         return;
-    };
+    }
     if (appMode == 'pnkmap') {
        destroyPnkMap();
-    };
+    }
 
     map.setBaseLayer(layerPNK_BW);
     $('.olControlLayerSwitcher').hide(); // jinak zustane po LS prouzek zpusobeny marginem
@@ -321,7 +321,7 @@ function setupRouting() {
             { icon: "/static/img/route-stop.png",
             w:34, h:42, xof: -17, yof: -42 }
     );
-    wpAttrs = { icon: "/static/img/waypoint.png", w:26, h:35, xof: -8, yof: -32 }
+    wpAttrs = { icon: "/static/img/waypoint.png", w:26, h:35, xof: -8, yof: -32 };
     middleMarker = new OpenLayers.Feature.Vector(
         new OpenLayers.Geometry.Point(0,0), 
         wpAttrs
@@ -369,18 +369,18 @@ function setupRouting() {
         });
 
     map.events.register('mousemove', map, onMouseMove);
-}; // setupRouting
+} // setupRouting
 
 function destroyRouting() {
     if (appMode != 'routing') {
         // mapa neni v routing modu, nemame co delat
         return;
-    };
+    }
     drag.destroy(); 
     markerLayer.destroy();
     if (journeyLayer) {
         journeyLayer.destroy();
-    };
+    }
     map.events.unregister("click", map, onMapClick);
     map.events.unregister('mousemove', map, onMouseMove);
     $('.olMap').css("cursor", "auto");
@@ -398,7 +398,7 @@ function initRoutingPanel() {
     markerLayer.removeAllFeatures();
     if (journeyLayer) {
         journeyLayer.destroyFeatures();
-    };
+    }
     $('#jpStartStreetSearch').val('');
     $('#jpFinishStreetSearch').val('');
     $('#jpStartStreetSearch').focus();
@@ -425,7 +425,7 @@ function setWaypoint(feature) {
     }
     markerLayer.redraw();
     toggleButtons();
-};
+}
 
 function onDragStart(feature, pixel) {
     dragInAction = true;
@@ -436,7 +436,7 @@ function onDragStart(feature, pixel) {
         var wp = CSApi.getWaypointBySegment(selectedPlan, segment);
         // a jeho pozici si docasne ulozime na feature dragovaci ikony
         feature.attributes.newWpSequenceId = wp.attributes.sequenceId;
-    };
+    }
 }
 
 function onDragComplete(feature) {
@@ -450,7 +450,7 @@ function onDragComplete(feature) {
     // po umisteni cile nebo pretazeni prvku uz nalezene trasy muzeme rovnou vyhledat
     if (waypoints.length >= 2)
        planJourney();
-};
+}
 
 function onMapClick(e) {
     var marker;
@@ -466,11 +466,11 @@ function onMapClick(e) {
             break;
         default:
             return;
-    };
+    }
     var position = map.getLonLatFromPixel(e.xy);
     movePointToLonLat(marker.geometry, position);
     onDragComplete(marker, position);
-};
+}
 
 function toggleButtons() {
     switch (waypoints.length) {
@@ -492,19 +492,19 @@ function toggleButtons() {
             $('#jpPlanButton').show();
             routingState = 'go';
     }
-};
+}
 
 function updateStartLabel(features) {
     if (features && features.length > 0) {
         $('#jpStartStreetSearch').val(features[0].attributes.name);
     } 
-};
+}
 
 function updateEndLabel(features) {
     if (features && features.length > 0) {
         $('#jpFinishStreetSearch').val(features[0].attributes.name);
     } 
-};
+}
 
 // move the start and finish markers according to the route
 // this is necessary if route was loaded directly by ID in URL hash
@@ -525,33 +525,33 @@ function updateMarkersAndLabels(route) {
             wps[i].geometry.clone(),
             wpAttrs
         );
-        marker.attributes.sequenceId = wps[i].attributes.sequenceId
+        marker.attributes.sequenceId = wps[i].attributes.sequenceId;
         setWaypoint(marker);
      }
      markerLayer.redraw();
-};
+}
 
 function removeWaypointMarkers() {
     // clear waypoints
-    remove = []
+    remove = [];
     for (var i=0; i < markerLayer.features.length; i++) {
         feature = markerLayer.features[i];
         if (feature != startMarker && feature != endMarker && feature != middleMarker) {
             remove.push(feature);
-        };
-    };
+        }
+    }
     markerLayer.destroyFeatures(remove);
-};
+}
 
 function clearWaypoints() {
     waypoints.splice(2, waypoints.length - 2);
-};
+}
 
 function onPlanButtonClick() {
     clearWaypoints();
     planJourney();
     return false;
-};
+}
 
 function planJourney() {
     $('#jpPlanButton').hide();
@@ -562,7 +562,7 @@ function planJourney() {
         reqPlan = 'balanced';
     selectedPlan = null;
     CSApi.journey(null, waypoints, 'balanced', addPlannedJourney, { select: reqPlan });
-};
+}
 
 // callback to process route returned by server
 function addPlannedJourney(itinerary, plan, route, options) {
@@ -663,7 +663,7 @@ function previewPlanOut() {
     var plan = $(this).data('plan');
     if (!previewedRoute) {
         return false;
-    };
+    }
     if ($('#' + plan).hasClass('selected')) {
         return false;
     }
@@ -676,9 +676,9 @@ function closeToWaypoints(pt, limit) {
     for (var i=0; i < waypoints.length; i++) {
         if (pt.distanceTo(waypoints[i].clone().transform(EPSG4326, map.getProjectionObject())) < limit)
             return true;
-     };
-     return false;
-};
+    }
+    return false;
+}
 
 function findNearestSegment(pt) {
     var segments = CSApi.segments[selectedPlan];
@@ -717,11 +717,11 @@ function onMouseMove(e) {
         // a pri kliknuti kamkoliv do mapy ve snaze o posun se vytvory waypoint.
         if (drag.feature && drag.feature == middleMarker) {
             drag.outFeature(drag.feature);
-        };
+        }
         if (middleMarker.layer) {
             markerLayer.removeFeatures(middleMarker);
             markerLayer.redraw();
-        };
+        }
     }
 }
 
@@ -746,13 +746,13 @@ function onHashChange(e) {
     var hash = location.hash;
     hash = hash.replace(/^#/, '');
     var args = parseHash();
-    if (hash == '') {
+    if (hash === '') {
         setupPnkMap();
-    };
+    }
     if (hash == 'hledani') {
         setupRouting();
         initRoutingPanel();
-    };
+    }
     if (args['trasa']) {
         setupRouting();
         var plan = args['plan'];
@@ -769,8 +769,8 @@ function onHashChange(e) {
         $('.ui-autocomplete-input').blur();
         selectedPlan = null;
         CSApi.journey(args['trasa'], null, 'balanced', addPlannedJourney, { select: plan });
-    };
-};
+    }
+}
 
 // if trigger=True, fires the hashchange event
 function setHash(newhash, trigger) {
@@ -778,33 +778,33 @@ function setHash(newhash, trigger) {
         ignoreHashChange = true;
     }
     location.hash = newhash;
-};
+}
 
 // encode the param into hash url
 function setHashParameter(param, value, trigger) {
     args = parseHash();
     args[param] = value;
     var newhash = '';
-    for (i in args) {
+    for (var i in args) {
         newhash += '@' + i + '=' + args[i];
     }
-    if (newhash != '') {
+    if (newhash !== '') {
         newhash = newhash.substr(1);
     }
     setHash(newhash, trigger);
-};
+}
 
 function getPoi(id) {
     var feat;
     for(var i=0; i<map.layers.length; i++) {
         if (map.layers[i].isBaseLayer)
-            continue
+            continue;
         feat = map.layers[i].getFeatureByFid(id);
         if (feat) {
             return feat;
         }
     }
-};
+}
         
 function onLoadEnd(evt) {
     if (mapconfig.center_feature) {
@@ -814,7 +814,7 @@ function onLoadEnd(evt) {
            selectControl.select(feature);
        }
     }
-};
+}
 
 function addPoiLayer(nazev, url, enabled, id) {
     for (var i=0; i < vectors.length; i++) {
@@ -841,7 +841,7 @@ function addPoiLayer(nazev, url, enabled, id) {
     kml.events.register('loadend', kml, onLoadEnd);
     vectors.push(kml);
     map.addLayer(kml);
-};
+}
 
 function removePoiLayers() {
     for (var i=0; i < vectors.length; i++) {
@@ -856,7 +856,7 @@ function removePopup(popup) {
      
 function onPopupClose(evt) {
     removePopup(this);
-};
+}
 
 function onFeatureSelect(feature) {
     var url = mapconfig.root_url + "/popup/" + feature.fid + "/";
@@ -882,16 +882,16 @@ function onFeatureSelect(feature) {
         return;
     }
 
+    var requestFailed = function(response) {
+        alert(response.responseText);
+    };
+
     var request = OpenLayers.Request.GET({
         url: url,
         success: createPopup,
         failure: requestFailed,
         scope: feature
     });
-};
-
-var requestFailed = function(response) {
-    alert(response.responseText);
 }
 
 var createPopup = function(response) {
@@ -900,12 +900,14 @@ var createPopup = function(response) {
         // jineho POI. V tom pripade popup vyrabet nebudeme.
         return false;
     }
+    var anchor;
     if (this.geometry.CLASS_NAME == 'OpenLayers.Geometry.Point') {
-        var anchor = {
+        anchor = {
             'size': new OpenLayers.Size(this.attributes.width,this.attributes.height),
-            'offset': new OpenLayers.Pixel(-this.attributes.width/2,-this.attributes.height/2)}
+            'offset': new OpenLayers.Pixel(-this.attributes.width/2,-this.attributes.height/2)
+        };
     } else {
-        var anchor = null;
+        anchor = null;
     }
     popup = new OpenLayers.Popup.FramedCloud(
         "chicken", 
@@ -926,14 +928,14 @@ var createPopup = function(response) {
 
 function onFeatureUnselect(feature) {
     if (feature.popup)
-        removePopup(feature.popup)
-};
+        removePopup(feature.popup);
+}
 
 function zoomToSegment() {
     feature = journeyLayer.getFeatureById($(this).attr('data-fid'));
     map.zoomToExtent(feature.geometry.getBounds(), closest=true);
     //setHashParameter('rnd', feature.id.split('_')[1]);
-};
+}
 
 function ZoomToLonLat( obj, lon, lat, zoom) {
     lonlat = new OpenLayers.LonLat(lon,lat);
@@ -946,7 +948,7 @@ function ZoomToLonLat( obj, lon, lat, zoom) {
 	    //alert("Overlay, musime posutnout!");
 	    map.pan(-130,0);
 	}
-};
+}
 
 // utility funciton to move OpenLayers point
 function movePointToLonLat(point, ll) {
@@ -986,7 +988,7 @@ function onLocationUpdate(evt) {
          )
     ]);
     map.zoomToExtent(position_layer.getDataExtent());
-};
+}
 
 function addRekola() {
     for (var i=0; i < vectors.length; i++) {
@@ -994,7 +996,7 @@ function addRekola() {
             map.addLayer(vectors[i]);
             return;
         }
-     };
+     }
      var rekola = new OpenLayers.Layer.Vector("ReKola", {
          slug: "r",
          strategies: [new OpenLayers.Strategy.Fixed()],
