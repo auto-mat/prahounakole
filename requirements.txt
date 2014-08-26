@@ -12,3 +12,4 @@ django-smart-selects==1.0.9
 django-constance[database]
 django-import-export
 -e git+https://github.com/PetrDlouhy/django-webmap-corpus.git#egg=webmap
+django-sentry

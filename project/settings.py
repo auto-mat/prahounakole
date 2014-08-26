@@ -101,6 +101,7 @@ INSTALLED_APPS = [
     'south',
     'colorful',
     #'massadmin',
+    'raven.contrib.django.raven_compat',
 ]
 
 ENABLE_API_PROXY = DEBUG        # http-roxy pro requesty na /api
