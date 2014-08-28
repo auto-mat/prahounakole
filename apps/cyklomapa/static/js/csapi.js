@@ -120,6 +120,20 @@ var CSApi = {
     return feature;
   },
 
+  localize: function(text) {
+    var dict = {
+      "Alongside": "podél ul.",
+      "Regional cycle network": "cyklotrasa",
+      Tunnel: "tunel",
+      Bridge: "most"
+    };
+
+    var re = new RegExp(Object.keys(dict).join("|"),"gi");
+    return text.replace(re, function(matched){
+      return dict[matched];
+    });
+  },
+
   getRouteInstructions: function (plan) {
     var features = this.routeFeatures[plan];
     var output = $('<table class="instructions"></table>');
@@ -134,7 +148,7 @@ var CSApi = {
         } else {
           item.append('<td class="turn"></td>');
         };
-        item.append('<td>'+ feature.attributes.name + '</td>');
+        item.append('<td>'+ this.localize(feature.attributes.name) + '</td>');
         if (feature.attributes.provisionName && feature.attributes.provisionName == 'Steps') {
           item.append('<td><i class="stairs"></i></td>');
         } else {
