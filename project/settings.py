@@ -98,7 +98,6 @@ INSTALLED_APPS = [
     'cyklomapa',
     'easy_thumbnails',
     'django.contrib.humanize',
-    'south',
     'colorful',
     'massadmin',
 ]

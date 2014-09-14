@@ -1,156 +1,72 @@
 # -*- coding: utf-8 -*-
-import datetime
-from south.db import db
-from south.v2 import SchemaMigration
-from django.db import models
+from __future__ import unicode_literals
+
+from django.db import models, migrations
+from django.conf import settings
+import django.contrib.gis.db.models.fields
 
 
-class Migration(SchemaMigration):
+class Migration(migrations.Migration):
 
-    def forwards(self, orm):
-        # Adding model 'Status'
-        db.create_table('cyklomapa_status', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('nazev', self.gf('django.db.models.fields.CharField')(unique=True, max_length=255)),
-            ('desc', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
-            ('show', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('show_TU', self.gf('django.db.models.fields.BooleanField')(default=False)),
-        ))
-        db.send_create_signal('cyklomapa', ['Status'])
+    dependencies = [
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+        ('webmap', '__first__'),
+    ]
 
-        # Adding model 'Vrstva'
-        db.create_table('cyklomapa_vrstva', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('nazev', self.gf('django.db.models.fields.CharField')(max_length=255)),
-            ('slug', self.gf('django.db.models.fields.SlugField')(unique=True, max_length=50)),
-            ('desc', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
-            ('status', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['cyklomapa.Status'])),
-            ('order', self.gf('django.db.models.fields.PositiveIntegerField')()),
-            ('remark', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
-            ('enabled', self.gf('django.db.models.fields.BooleanField')(default=False)),
-        ))
-        db.send_create_signal('cyklomapa', ['Vrstva'])
-
-        # Adding model 'Znacka'
-        db.create_table('cyklomapa_znacka', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('nazev', self.gf('django.db.models.fields.CharField')(unique=True, max_length=255)),
-            ('slug', self.gf('django.db.models.fields.SlugField')(unique=True, max_length=50)),
-            ('vrstva', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['cyklomapa.Vrstva'])),
-            ('status', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['cyklomapa.Status'])),
-            ('desc', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
-            ('remark', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
-            ('default_icon', self.gf('django.db.models.fields.files.ImageField')(max_length=100, null=True)),
-            ('minzoom', self.gf('django.db.models.fields.PositiveIntegerField')(default=1)),
-            ('maxzoom', self.gf('django.db.models.fields.PositiveIntegerField')(default=10)),
-            ('url', self.gf('django.db.models.fields.URLField')(max_length=200, null=True, blank=True)),
-        ))
-        db.send_create_signal('cyklomapa', ['Znacka'])
-
-        # Adding model 'Poi'
-        db.create_table('cyklomapa_poi', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('nazev', self.gf('django.db.models.fields.CharField')(max_length=255, blank=True)),
-            ('znacka', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['cyklomapa.Znacka'])),
-            ('status', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['cyklomapa.Status'])),
-            ('dulezitost', self.gf('django.db.models.fields.SmallIntegerField')(default=0)),
-            ('geom', self.gf('django.contrib.gis.db.models.fields.PointField')()),
-            ('desc', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
-            ('desc_extra', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
-            ('url', self.gf('django.db.models.fields.URLField')(max_length=200, null=True, blank=True)),
-            ('remark', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
-            ('foto_thumb', self.gf('django.db.models.fields.files.ImageField')(max_length=100, null=True, blank=True)),
-        ))
-        db.send_create_signal('cyklomapa', ['Poi'])
-
-        # Adding model 'Upresneni'
-        db.create_table('cyklomapa_upresneni', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('misto', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['cyklomapa.Poi'], null=True, blank=True)),
-            ('email', self.gf('django.db.models.fields.EmailField')(max_length=75, null=True)),
-            ('status', self.gf('django.db.models.fields.CharField')(max_length=10)),
-            ('desc', self.gf('django.db.models.fields.TextField')(null=True)),
-            ('url', self.gf('django.db.models.fields.URLField')(max_length=200, null=True, blank=True)),
-            ('address', self.gf('django.db.models.fields.CharField')(max_length=255, null=True, blank=True)),
-        ))
-        db.send_create_signal('cyklomapa', ['Upresneni'])
-
-
-    def backwards(self, orm):
-        # Deleting model 'Status'
-        db.delete_table('cyklomapa_status')
-
-        # Deleting model 'Vrstva'
-        db.delete_table('cyklomapa_vrstva')
-
-        # Deleting model 'Znacka'
-        db.delete_table('cyklomapa_znacka')
-
-        # Deleting model 'Poi'
-        db.delete_table('cyklomapa_poi')
-
-        # Deleting model 'Upresneni'
-        db.delete_table('cyklomapa_upresneni')
-
-
-    models = {
-        'cyklomapa.poi': {
-            'Meta': {'object_name': 'Poi'},
-            'desc': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
-            'desc_extra': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
-            'dulezitost': ('django.db.models.fields.SmallIntegerField', [], {'default': '0'}),
-            'foto_thumb': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
-            'geom': ('django.contrib.gis.db.models.fields.PointField', [], {}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'nazev': ('django.db.models.fields.CharField', [], {'max_length': '255', 'blank': 'True'}),
-            'remark': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
-            'status': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['cyklomapa.Status']"}),
-            'url': ('django.db.models.fields.URLField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
-            'znacka': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['cyklomapa.Znacka']"})
-        },
-        'cyklomapa.status': {
-            'Meta': {'object_name': 'Status'},
-            'desc': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'nazev': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '255'}),
-            'show': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'show_TU': ('django.db.models.fields.BooleanField', [], {'default': 'False'})
-        },
-        'cyklomapa.upresneni': {
-            'Meta': {'object_name': 'Upresneni'},
-            'address': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
-            'desc': ('django.db.models.fields.TextField', [], {'null': 'True'}),
-            'email': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'null': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'misto': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['cyklomapa.Poi']", 'null': 'True', 'blank': 'True'}),
-            'status': ('django.db.models.fields.CharField', [], {'max_length': '10'}),
-            'url': ('django.db.models.fields.URLField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'})
-        },
-        'cyklomapa.vrstva': {
-            'Meta': {'ordering': "['order']", 'object_name': 'Vrstva'},
-            'desc': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
-            'enabled': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'nazev': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
-            'order': ('django.db.models.fields.PositiveIntegerField', [], {}),
-            'remark': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
-            'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '50'}),
-            'status': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['cyklomapa.Status']"})
-        },
-        'cyklomapa.znacka': {
-            'Meta': {'object_name': 'Znacka'},
-            'default_icon': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True'}),
-            'desc': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'maxzoom': ('django.db.models.fields.PositiveIntegerField', [], {'default': '10'}),
-            'minzoom': ('django.db.models.fields.PositiveIntegerField', [], {'default': '1'}),
-            'nazev': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '255'}),
-            'remark': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
-            'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '50'}),
-            'status': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['cyklomapa.Status']"}),
-            'url': ('django.db.models.fields.URLField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
-            'vrstva': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['cyklomapa.Vrstva']"})
-        }
-    }
-
-    complete_apps = ['cyklomapa']
+    operations = [
+        migrations.CreateModel(
+            name='MarkerZnacka',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('url', models.URLField(help_text='uk\xe1\u017ee se u v\u0161ech m\xedst s touto zna\u010dkou, pokud nemaj\xed vlastn\xed url', null=True, blank=True)),
+                ('marker', models.OneToOneField(null=True, to='webmap.Marker')),
+            ],
+            options={
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Mesto',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('aktivni', models.BooleanField(default=True, help_text='M\u011bsto je p\u0159\xedstupn\xe9 pro ve\u0159ejnost', verbose_name='Aktivn\xed')),
+                ('vyhledavani', models.BooleanField(default=True, help_text='Vyhled\xe1v\xe1n\xed je aktivovan\xe9', verbose_name='Vyhled\xe1va\u010d')),
+                ('zoom', models.PositiveIntegerField(default=13, help_text='Zoomlevel, ve kter\xe9m se zobraz\xed mapa po na\u010dten\xed')),
+                ('uvodni_zprava', models.TextField(help_text='Zpr\xe1va, kter\xe1 se zobraz\xed v lev\xe9m panelu', null=True, verbose_name='\xdavodn\xed zpr\xe1va', blank=True)),
+                ('geom', django.contrib.gis.db.models.fields.PointField(srid=4326, verbose_name='Poloha st\u0159edu')),
+                ('sektor', models.OneToOneField(null=True, to='webmap.Sector')),
+            ],
+            options={
+                'verbose_name_plural': 'm\u011bsta',
+                'permissions': [('can_edit_all_fields', 'Can edit all field')],
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Upresneni',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('email', models.EmailField(max_length=75, null=True, verbose_name='V\xe1\u0161 e-mail (pro dal\u0161\xed komunikaci)')),
+                ('status', models.CharField(max_length=10, choices=[(b'novy', 'Nov\xfd'), (b'reseno', 'V \u0159e\u0161en\xed'), (b'vyreseno', 'Vy\u0159e\u0161eno'), (b'zamitnuto', 'Zam\xedtnuto')])),
+                ('desc', models.TextField(null=True, verbose_name='Popis (dopln\u011bn\xed nebo oprava nebo popis nov\xe9ho m\xedsta, povinn\xe9 pole)')),
+                ('url', models.URLField(null=True, verbose_name='Odkaz, webov\xe9 str\xe1nky m\xedsta (voliteln\xe9 pole)', blank=True)),
+                ('address', models.CharField(max_length=255, null=True, verbose_name='Adresa m\xedsta, popis lokace (voliteln\xe9 pole)', blank=True)),
+                ('misto', models.ForeignKey(blank=True, to='webmap.Poi', null=True)),
+            ],
+            options={
+                'verbose_name_plural': 'up\u0159esn\u011bn\xed',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='UserMesto',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('mesta', models.ManyToManyField(to='cyklomapa.Mesto')),
+                ('user', models.OneToOneField(to=settings.AUTH_USER_MODEL)),
+            ],
+            options={
+            },
+            bases=(models.Model,),
+        ),
+    ]
