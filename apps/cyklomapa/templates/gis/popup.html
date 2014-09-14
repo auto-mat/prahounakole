@@ -10,8 +10,8 @@
 <div class="rc">
 {% if fotky %}
   {% thumbnail fotky.0.photo "250x250" as foto_thumb %}
-    <a href="{{ fotky.0.photo.url }}" title="Fotka v plném rozlišení" target="_blank">
-    <img src="{{ foto_thumb.url }}" title="{{ fotky.0 }}" width="{{ foto_thumb.width }}" height="{{ foto_thumb.height }}" class="foto_thumb"></a>
+    <a href="{{ settings.SITE_URL}}{{ fotky.0.photo.url }}" title="Fotka v plném rozlišení" target="_blank">
+    <img src="{{ settings.SITE_URL}}{{ foto_thumb.url }}" title="{{ fotky.0 }}" width="{{ foto_thumb.width }}" height="{{ foto_thumb.height }}" class="foto_thumb"></a>
 {% endif %}
 
 {% if poi.desc %}
