@@ -60,12 +60,13 @@ class MestoPoiAdmin(PoiAdmin):
         return queryset.filter(geom__intersects=request.user.usermesto.mesta.aggregate(Union('sektor__geom'))['sektor__geom__union'])
 
     def get_form(self, request, obj=None, **kwargs):
+        form = super(MestoPoiAdmin, self).get_form(request, obj, **kwargs)
+
         mesto = Mesto.objects.get(sektor__slug=request.subdomain)
         pnt = Point(mesto.geom.x, mesto.geom.y, srid=4326)
         pnt.transform(3857)
         self.default_lon, self.default_lat = pnt.coords
 
-        form = super(MestoPoiAdmin, self).get_form(request, obj, **kwargs)
         return form
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
