@@ -2,10 +2,10 @@
 <div id="uvod" class="panel">
     <ul>
       <li>
-          <a href='#panel-uvodni-zprava' style="cursor:pointer;" title="Komentáře k jednotlivým bodům">Info</a>
+        <a href="/?layers=_Gu" title="Dlouhodobé uzavírky, zimní údržba">Mapa uzavírek</a>
       </li>
       <li>
-        <a href='#panel-legenda' style="cursor:pointer;" title="Zobrazí základní legendu mapy přímo v panelu">Legenda</a>
+        <a href="/?layers=_Gc" title="Místa, která čekají na úpravu, nebo byla upravena svépomocí">Cykloopatření</a>
       </li>
       <li>
           <a href='#panel-historie' style="cursor:pointer;" title="Naposledy změněné body">Změny</a>
@@ -22,7 +22,7 @@
     <p class="desc_vlastnosti">
       {% cache 3600 legenda %}
       {% for l in legenda %}
-      <img src="{{ l.obrazek.url }}"> &nbsp; {{ l.nazev }}<br/>
+      <img src="{{ l.image.url }}"> &nbsp; {{ l.name }}<br/>
       {% endfor %}
       {% endcache %}
     </p>
@@ -56,7 +56,7 @@
   <p>Cyklomapa Prahou na kole je zde s vámi už od roku 2006. V letech 2011-12 podpořilo vývoj mapy Hlavní město Praha</p>
   {% else %}
   Tyto stránky vyvíjí <a href="http://www.auto-mat.cz/">Auto*Mat</a> a provozuje <a href="http://prahounakole.cz/">Prahou na kole</a>.
-  Dotazy k aplikaci zasílejte na mapa@prahounakole.cz.
+  Dotazy k aplikaci zasílejte na redakce@prahounakole.cz.
   {% endif %}
 </div>
 

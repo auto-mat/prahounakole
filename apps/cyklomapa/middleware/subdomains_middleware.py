@@ -11,7 +11,7 @@ class SubdomainsMiddleware:
         request.mesto = None
         parts = request.domain.split('.')
 
-        if len(parts) == 3 or len(parts) == 4:
+        if len(parts) in (2, 3, 4):
             request.subdomain = parts[0]
             request.domain = '.'.join(parts[1:])
 
@@ -27,4 +27,4 @@ class SubdomainsMiddleware:
         request.subdomain = getattr(settings, 'FORCE_SUBDOMAIN', request.subdomain)
 
         # najdeme mesto podle slugu. pokud neexistuje, vyhodime 404
-        request.mesto = get_object_or_404(Mesto, slug = request.subdomain)
+        request.mesto = get_object_or_404(Mesto, sektor__slug = request.subdomain)

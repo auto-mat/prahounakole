@@ -6,7 +6,16 @@ var CSApi = {
 
   // dict of GML returned from CS server indexed by plan name
   routeFeatures: {},
-  
+
+  // just the linestring of the route returned from CS server indexed by plan name
+  route: {},
+ 
+  // dict of route segments returned from CS server indexed by plan name
+  segments: {},
+
+  // dict of route waypoints returned from CS server indexed by plan name
+  waypoints: {},
+ 
   // CS itinerary ID of current route
   itinerary: null,
 
@@ -56,10 +65,12 @@ var CSApi = {
     } else {
       var itinerarypoints = '';
       for(var i=0; i < waypoints.length; i++){
+        if (i == 1)
+            // the end point will be added later on
+            continue;
         itinerarypoints += this.r6(waypoints[i].x) + ',' + this.r6(waypoints[i].y) + '|';
       }
-      // remove the last '|'
-      itinerarypoints = itinerarypoints.substring(0, itinerarypoints.length - 1);
+      itinerarypoints += this.r6(waypoints[1].x) + ',' + this.r6(waypoints[1].y);
       url =  this.baseUrl + '/api/journey.xml?key=' + this.apiKey + '&useDom=1&itinerarypoints=' + itinerarypoints + '&plan=' + plan;
     }
     $.ajax({
@@ -68,7 +79,11 @@ var CSApi = {
       success: function (data) {
         var features = CSApi.formatGML.read(data);
         var route = CSApi.getFeature(features, 'route');
-        CSApi.routeFeatures[route.attributes.plan] = features;
+        var plan = route.attributes.plan;
+        CSApi.routeFeatures[plan] = features;
+        CSApi.segments[plan] = CSApi.getSegments(features);
+        CSApi.waypoints[plan] = CSApi.getWaypoints(features);
+        CSApi.route[plan] = route;
         CSApi.itinerary = route.attributes.itinerary;
         callback(route.attributes.itinerary, plan, features, options);
       }
@@ -107,7 +122,6 @@ var CSApi = {
 
   getRouteInstructions: function (plan) {
     var features = this.routeFeatures[plan];
-    var route = this.getFeature(features, 'route');
     var output = $('<table class="instructions"></table>');
     var totalDst = 0;
     for (var i=0; i < features.length; i++) {
@@ -153,6 +167,63 @@ var CSApi = {
         'start_label': route.attributes.start,
         'finish_label': route.attributes.finish
     };
+  },
+
+  getWaypoints: function (features) {
+    var waypoints = [];
+    for (var i=0; i < features.length; i++) {
+      feature = features[i];
+      if (feature.gml.featureType == 'waypoint') {
+        waypoints.push(feature);
+      }
+    }
+    return waypoints;
+  },
+
+  getSegments: function (features) {
+    var segments = [];
+    for (var i=0; i < features.length; i++) {
+      feature = features[i];
+      if (feature.gml.featureType == 'segment') {
+        segments.push(feature);
+      }
+    }
+    return segments;
+  },
+
+  getWaypointBySegment : function (plan, segment) {
+    // Podle zadaneho segmentu nalezene nejblizsi predchozi waypoint.
+    // Pri hledani se vychazi z predpokladu, ze waypoint vzdy tvori
+    // pocatecni bod nejakeho segementu. Kvuli zaokrouhlovacim chybam
+    // nelze porovnavat souradnice presne, ale jen s urcenou toleranci.
+    var segments = CSApi.segments[plan];
+    var waypoints = CSApi.waypoints[plan];
+    var xy;
+    var idx;
+    // jak blizko musi byt waypoint k zacatku segementu, abychom je
+    // povazovali za identicke body
+    // seste desetinne misto ve WGS je cca 11m
+    var tolerance = 0.000003;
+
+    // najdeme poradi prislusneho segmentu
+    for (idx=0; idx < segments.length; idx++) {
+      if (segments[idx].id == segment.id)
+        break;
+    }
+
+    // projdeme vsechny waypointy a porovname se segmenty smerem ke startu trasy
+    for (var i=idx; i >= 0; i--) {
+      // points obsahuje mezerou oddelene jednotlive body segmentu s WGS84 souradnicemi
+      // x a y oddelenymi carkou
+      xy = CSApi.segments[plan][i].attributes.points.split(' ')[0].split(',');
+      for (var j=0; j < waypoints.length; j++) {
+        if ((Math.abs(parseFloat(waypoints[j].attributes.longitude) - xy[0]) < tolerance) &&
+            (Math.abs(parseFloat(waypoints[j].attributes.latitude) - xy[1]) < tolerance))
+          return waypoints[j];
+      }
+    } 
+    // nenasli jsme zadny waypoint, vratime start
+    return waypoints[0];
   },
 
   gpxLink: function (plan) {

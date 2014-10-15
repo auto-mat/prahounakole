@@ -16,17 +16,45 @@ from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 from django.db.models import Q 
 
-from cyklomapa.models import *
+
+from webmap.models import OverlayLayer, Marker, Poi, Legend
+
+# kopie  django.contrib.admin.views.main.get_query_string
+from django.utils.http import urlencode
+def get_query_string(params, new_params=None, remove=None):
+    if new_params is None: new_params = {}
+    if remove is None: remove = []
+    p = params.copy()
+    for r in remove:
+        for k in p.keys():
+            if k.startswith(r):
+                del p[k]
+    for k, v in new_params.items():
+        if v is None:
+            if k in p:
+                del p[k]
+        else:
+            p[k] = v
+    return '?%s' % urlencode(p)
 
 @gzip_page 
 #@cache_page(24 * 60 * 60) # cachujeme view v memcached s platnosti 24h
 def mapa_view(request, poi_id=None):
-    vrstvy = Vrstva.objects.filter(status__show=True)
+
+    # hack pro kompatibilitu se starsimu url po pridani vrstvy rekola
+    layers = request.GET.get('layers', None)
+    if layers:
+        if len(layers) == 14:
+            newlayers = layers[0:13] + 'F' + layers[13]
+            params = get_query_string(dict(request.GET.items()), { 'layers' : newlayers })
+            return http.HttpResponseRedirect(request.path + params)
+
+    vrstvy = OverlayLayer.objects.filter(status__show=True)
     # volitelne poi_id zadane mape jako bod, na ktery se ma zazoomovat
     center_poi = None
     if poi_id:
         try:
-            center_poi = Poi.viditelne.get(id=poi_id)
+            center_poi = Poi.visible.get(id=poi_id)
         except Poi.DoesNotExist:
             pass
 
@@ -43,12 +71,12 @@ def mapa_view(request, poi_id=None):
         minimize_layerswitcher = 1
         nomenu = 1
 
-    historie = Poi.objects.filter(status__show=True, mesto=request.mesto).order_by('datum_zmeny').reverse()[:10]
+    historie = Poi.objects.filter(status__show=True, geom__intersects=request.mesto.sektor.geom).order_by('last_modification').reverse()[:10]
 
     context = RequestContext(request, {
         'root_url': ROOT_URL,
         'vrstvy': vrstvy,
-        'legenda': Legenda.objects.all(),
+        'legenda': Legend.objects.all(),
         'center_poi' : center_poi,
         'nomenu': nomenu,
         'mesto': request.mesto,
@@ -66,7 +94,7 @@ def cache_page_mesto(expiration):
        def wrapper(*args, **kwargs):
           cache = get_cache('default')
 
-          cache_key = 'kml_view_' + args[1] + '_' + args[0].mesto.slug
+          cache_key = 'kml_view_' + args[1] + '_' + args[0].mesto.sektor.slug
           result = cache.get(cache_key)
           if result == None:
              result = fn(*args, **kwargs)
@@ -80,11 +108,11 @@ def cache_page_mesto(expiration):
 @cache_page_mesto(24 * 60 * 60) # cachujeme view v memcached s platnosti 24h
 def kml_view(request, nazev_vrstvy):
     # najdeme vrstvu podle slugu. pokud neexistuje, vyhodime 404
-    v = get_object_or_404(Vrstva, slug=nazev_vrstvy, status__show=True)
+    v = get_object_or_404(OverlayLayer, slug=nazev_vrstvy, status__show=True)
 
     # vsechny body co jsou v teto vrstve a jsou zapnute
-    points = Poi.viditelne.filter(znacka__vrstva=v).filter(mesto = request.mesto).kml()
-    return render_to_kml("gis/kml/vrstva.kml", { 'places' : points})
+    points = Poi.visible.filter(marker__layer=v).filter(geom__intersects = request.mesto.sektor.geom).kml()
+    return render_to_kml("webmap/gis/kml/layer.kml", { 'places' : points})
 
 @gzip_page
 def popup_view(request, poi_id):
@@ -93,7 +121,9 @@ def popup_view(request, poi_id):
     return render(request, "gis/popup.html",
           context_instance=RequestContext(request, {
               'poi' : poi,
-              'can_change': request.user.has_perm('cyklomapa.change_poi') and poi.has_change_permission(request.user),
+              'fotky': poi.photos.all(),
+              'settings': settings,
+              'can_change': request.user.has_perm('webmap.change_poi')# and poi.has_change_permission(request.user),
               }),
           content_type="application/xml")
 
@@ -106,9 +136,9 @@ def search_view(request, query):
     ikona = None
 
     #  nejdriv podle nazvu
-    nazev_qs = Poi.viditelne.filter(Q(nazev__icontains=query))
+    nazev_qs = Poi.visible.filter(Q(name__icontains=query))
     # pak podle popisu, adresy a nazvu znacky, pokud uz nejsou vyse
-    extra_qs = Poi.viditelne.filter(Q(desc__icontains=query)|Q(address__icontains=query)|Q(znacka__nazev__icontains=query)).exclude(id__in=nazev_qs)
+    extra_qs = Poi.visible.filter(Q(desc__icontains=query)|Q(address__icontains=query)|Q(marker__name__icontains=query)).exclude(id__in=nazev_qs)
     # union qs nezachova poradi, tak je prevedeme na listy a spojime
     points = list(nazev_qs.kml()) + list(extra_qs.kml())
     return render_to_kml("gis/kml/vrstva.kml", {
@@ -118,21 +148,21 @@ def search_view(request, query):
 # vypisy uzavirek a metra pouzite na hlavnim webu PNK
 @cache_page(24 * 60 * 60) # cachujeme view v memcached s platnosti 24h
 def uzavirky_view(request):
-    poi = Poi.objects.filter(status__show=True, znacka__slug='vyluka_akt')
+    poi = Poi.objects.filter(status__show=True, marker__slug='vyluka_akt')
     return render_to_response('uzavirky.html',
         context_instance=RequestContext(request, { 'uzavirky': poi }))
 
 @cache_page(24 * 60 * 60) # cachujeme view v memcached s platnosti 24h
 def metro_view(request):
-    poi = Poi.objects.filter(status__show=True, znacka__slug__in=['metro_a', 'metro_b', 'metro_c']).order_by('znacka__slug', 'id')
+    poi = Poi.objects.filter(status__show=True, marker__slug__in=['metro_a', 'metro_b', 'metro_c']).order_by('marker__slug', 'id')
     return render_to_response('metro.html',
         context_instance=RequestContext(request, { 'poi': poi }))
 
 # View pro podrobny vypis vrstev
 @cache_page(24 * 60 * 60) # cachujeme view v memcached s platnosti 24h
 def znacky_view(request):
-    vrstvy = Vrstva.objects.filter(status__show=True)
-    znacky = Znacka.objects.filter(status__show=True)
-    legenda = Legenda.objects.all()
+    vrstvy = OverlayLayer.objects.filter(status__show=True)
+    znacky = Marker.objects.filter(status__show=True)
+    legenda = Legend.objects.all()
     return render_to_response('znacky.html',
         context_instance=RequestContext(request, { 'vrstvy': vrstvy, 'znacky': znacky, 'legenda': legenda }))
