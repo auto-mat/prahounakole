@@ -849,86 +849,35 @@ function removePoiLayers() {
     }
 }
 
-function removePopup(popup) {
-    map.removePopup(popup);
-    popup.destroy();
-}
-     
-function onPopupClose(evt) {
-    removePopup(this);
-}
-
 function onFeatureSelect(feature) {
-    var url = mapconfig.root_url + "/popup/" + feature.fid + "/";
-    lastSelectedFeature = feature.fid;
-    for (var i in map.popups) {
-        removePopup(map.popups[i]);
-    }
-
     // Trochu hackovita podpora pro specialni vrstvu ReKola
     // obsah popup se netaha ze serveru, ale vyrabi se z KML
     if (feature.layer.name == "ReKola") {
-        var response = {};
-        response.responseText =
-            '<div> <div class="trc"> <h4>' +
+        var responseText =
+            '<div> <div class="trc"> <h3>' +
             feature.attributes.name +
-            '</h4> </div><div class="rc"><p>' + 
+            '</h3> </div><div class="rc"><p>' +
             feature.attributes.description +
             '<p><a href="http://www.rekola.cz/" target="_blank">ReKola - komunitní bikesharing (zatím) v Praze</a>' +
             '</div></div>';
-        feature.attributes.width = 32;
-        feature.attributes.height = 20;
-        createPopup.call(feature, response);
+        $('#load-misto').html(responseText);
         return;
     }
 
-    var requestFailed = function(response) {
-        alert(response.responseText);
-    };
+    if(!$('#id_comment').length > 0 || $('#id_comment').val() == "" ||
+          confirm("Máte vyplněný komentář, přepnutím bodu ztratíte tento text.\nPřejete si opravdu bod přepnout?")){
+       var url = mapconfig.root_url + "/popup/" + feature.fid + "/";
 
-    var request = OpenLayers.Request.GET({
-        url: url,
-        success: createPopup,
-        failure: requestFailed,
-        scope: feature
-    });
+       $('#load-misto').load("/popup/" + feature.fid, function(){
+          $('#comments-wrapper').fluentcomments({
+              append: true
+          })
+          jQuery('#id_name,#id_email,#id_url').persist();
+       });
+    }
 }
 
-var createPopup = function(response) {
-    if (this.fid != lastSelectedFeature) {
-        // Pokud uzivatel klika moc rychle, dobehne nacitani popupu az po vybrani
-        // jineho POI. V tom pripade popup vyrabet nebudeme.
-        return false;
-    }
-    var anchor;
-    if (this.geometry.CLASS_NAME == 'OpenLayers.Geometry.Point') {
-        anchor = {
-            'size': new OpenLayers.Size(this.attributes.width,this.attributes.height),
-            'offset': new OpenLayers.Pixel(-this.attributes.width/2,-this.attributes.height/2)
-        };
-    } else {
-        anchor = null;
-    }
-    popup = new OpenLayers.Popup.FramedCloud(
-        "chicken", 
-        this.geometry.getCentroid(true).getBounds().getCenterLonLat(),
-        new OpenLayers.Size(300,300),
-        response.responseText,
-        anchor,
-        true,
-        null
-    );
-    popup.keepInMap = true;
-    popup.panMapIfOutOfView = true;
-    popup.maxSize = new OpenLayers.Size(320,500);
-    this.popup = popup;
-    popup.feature = this;
-    map.addPopup(popup);
-};
-
 function onFeatureUnselect(feature) {
-    if (feature.popup)
-        removePopup(feature.popup);
 }
 
 function zoomToSegment() {
