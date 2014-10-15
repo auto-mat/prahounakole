@@ -1,4 +1,3 @@
--e git+https://github.com/euanlau/django-fluent-comments.git#egg=django-fluent-comments
 Django<1.8
 easy-thumbnails
 -e hg+https://pdlouhy@bitbucket.org/pdlouhy/django-http-proxy#egg=django-http-proxy
@@ -7,6 +6,7 @@ psycopg2
 django-debug-toolbar
 django-colorful
 django-mass-edit
+django-fluent-comments
 -e git+https://github.com/auto-mat/django-webmap-corpus.git#egg=django-webmap-corpus
 -e git+https://github.com/PetrDlouhy/django-smart-selects.git#egg=django-smart-selects
 django-import-export
