@@ -1,7 +1,12 @@
 #!/bin/bash
-#version 0.1
+#version 0.2
 
 set -e
+
+if [ "$1" = "reinstall" ]; then
+   rm env -rf
+   virtualenv --no-site-packages env
+fi
 
 git pull
 source env/bin/activate
