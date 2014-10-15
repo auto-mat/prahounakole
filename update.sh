@@ -10,7 +10,7 @@ fi
 
 git pull
 source env/bin/activate
-env/bin/python env/bin/pip install -r requirements.txt --upgrade
+env/bin/python env/bin/pip install --process-dependency-links -r requirements.txt --upgrade
 if [ "$1" = "migrate" ]; then
    echo "Backuping db..."
    mkdir -p db_backup
