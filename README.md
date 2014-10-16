@@ -17,11 +17,9 @@ Ke zprovoznění je zapotřebí následující
 
 Vzorová lokální konfigurace je v project/settings_local_sample.py, stačí přejmenovat na settings_local.py a doplnit přístup k DB a SECRET_KEY.
 
-Instalace probíhá pomocí následujícíh příkazů:
+Instalace probíhá pomocí následujícíh příkazu:
 
-* virtualenv --no-site-packages env
-* env/bin/pip install distribute --upgrade
-* env/bin/pip install -r requirements.txt
+* ./update.sh reinstall
 
 Spuštění
 ============
