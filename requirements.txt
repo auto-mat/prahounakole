@@ -12,3 +12,4 @@ django-fluent-comments
 django-import-export
 #django-cors-headers
 django-sentry
+gunicorn
