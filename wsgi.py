@@ -18,6 +18,9 @@ import site
 import sys
 from project.settings import PROJECT_DIR
 
+import newrelic.agent
+newrelic.agent.initialize(os.path.join(PROJECT_DIR,'newrelic.ini'))
+
 ALLDIRS = [ os.path.join(PROJECT_DIR, 'env/lib/python2.6/site-packages'), ]
 
 # Remember original sys.path.
