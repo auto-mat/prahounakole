@@ -11,3 +11,5 @@ django-mass-edit
 django-import-export
 #django-cors-headers
 django-sentry
+gunicorn
+newrelic
