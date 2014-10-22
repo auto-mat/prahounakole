@@ -148,13 +148,13 @@ def search_view(request, query):
 # vypisy uzavirek a metra pouzite na hlavnim webu PNK
 @cache_page(24 * 60 * 60) # cachujeme view v memcached s platnosti 24h
 def uzavirky_view(request):
-    poi = Poi.objects.filter(status__show=True, marker__slug='vyluka_akt')
+    poi = Poi.objects.select_related('marker').filter(status__show=True, marker__slug='vyluka_akt')
     return render_to_response('uzavirky.html',
         context_instance=RequestContext(request, { 'uzavirky': poi }))
 
 @cache_page(24 * 60 * 60) # cachujeme view v memcached s platnosti 24h
 def metro_view(request):
-    poi = Poi.objects.filter(status__show=True, marker__slug__in=['metro_a', 'metro_b', 'metro_c']).order_by('marker__slug', 'id')
+    poi = Poi.objects.select_related('marker').filter(status__show=True, marker__slug__in=['metro_a', 'metro_b', 'metro_c']).order_by('marker__slug', 'id')
     return render_to_response('metro.html',
         context_instance=RequestContext(request, { 'poi': poi }))
 
@@ -162,7 +162,7 @@ def metro_view(request):
 @cache_page(24 * 60 * 60) # cachujeme view v memcached s platnosti 24h
 def znacky_view(request):
     vrstvy = OverlayLayer.objects.filter(status__show=True)
-    znacky = Marker.objects.filter(status__show=True)
+    znacky = Marker.objects.select_related('layer').filter(status__show=True)
     legenda = Legend.objects.all()
     return render_to_response('znacky.html',
         context_instance=RequestContext(request, { 'vrstvy': vrstvy, 'znacky': znacky, 'legenda': legenda }))
