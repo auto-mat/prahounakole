@@ -28,11 +28,11 @@
 <div class="panel-content">
   <div id="panel-legenda">
     <div class="inner">
-    <h3 id="hidden-header" class="margin_t_2">Základní značky v cyklomapě</h3>
+    <h3 class="margin_t_2">Základní značky v cyklomapě</h3>
     <p class="desc_vlastnosti">
       {% cache 3600 legenda %}
       {% for l in legenda %}
-      <img src="{{ l.image.url }}"> &nbsp; {{ l.name }}<br/>
+      <img src="{{ l.image.url }}" alt="{{ l.name }}"> &nbsp; {{ l.name }}<br/>
       {% endfor %}
       {% endcache %}
     </p>
@@ -41,7 +41,7 @@
 
   <div id="panel-historie">
     <div class="inner">
-       <h3 id="hidden-header" class="margin_t_2">Poslední změny v mapě</h3>
+       <h3 class="margin_t_2">Poslední změny v mapě</h3>
        {% include "panel-historie.html" %}
     </div>
   </div>
