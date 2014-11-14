@@ -78,6 +78,10 @@ class MestoPoiAdmin(PoiAdmin):
 
         return super(MestoPoiAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
 
+    def __init__(self, *args, **kwargs):
+       super(MestoPoiAdmin, self).__init__(*args, **kwargs)
+       self.list_filter += ("photos__license",)
+
 
 class UpresneniAdmin(admin.ModelAdmin):
     model = Upresneni
