@@ -92,7 +92,7 @@
 
      </head>
   <body onload="init(mapconfig)">
-     {% if not nomenu %}
+    <!--  {% if not nomenu %}
      <div id="head">
          {% if mesto.sektor.slug == "mapa" or mesto.sektor.slug == "devel" %}
          <div id="titulka">
@@ -126,30 +126,63 @@
          </div>
          </div>
          {% endif %}
-      </div>    
+      </div>     
      {% endif %}
+     -->
 
-      <div id="core">
-        <div id="panel">
-          {% include "panel-uvod.html" %}
-          {% include "panel-hledani.html" %}
+      <div id="core" class="container">
+        <div class="row">
+          <div id="panel" class="col-md-3">
+            <div class="row">
+              <nav class="col-md-10 col-md-offset-1">
+                <div class="row">
+                  <div class="col-md-12 logo">
+                    <a href="http://mapa.prahounakole.cz">Prahou na kole <img src="{% static "css/prazak.png" %}" alt="mapa.prahounakole.cz">
+                    </a>
+                  </div>
+                  <div class="col-md-3">  
+                    <a href="#" class="sprite btn search active"></a>
+                    <label for="search">Vyhledat</label>
+                  </div>
+                  <div class="col-md-3">  
+                    <a href="#" class="sprite btn search-path"></a>
+                    <label for="search">Vyhledat trasu</label>
+                  </div>
+                  <div class="col-md-3">
+                    <a href="#" class="sprite btn information"></a>
+                    <label for="search">Informace</label>
+                  </div>
+                  <div class="col-md-3">  
+                    <a href="#" class="sprite btn feedback"></a>
+                    <label for="search">Feedback</label>
+                  </div>
+                </div>
+              </nav>
+              <article>
+                <div id="content" class="col-md-10 col-md-offset-1">
+                  <!-- here comes the treasure -->
+                  {% include "panel-hledani.html" %}
+                </div>
+              </article>
+            </div>
+          </div>
+          <!-- closing element -->
+         <!--  <div class="panel_switch">
+            &nbsp;
+          </div> -->
+          <div class="col-md-9 map_holder">
+            <div id="map" {% if nomenu %}class="fullscreen"{% endif %}></div>
+          </div>
         </div>
-
-        <!-- closing element -->
-        <div class="panel_switch">
-          &nbsp;
-        </div>
-        <script>
+      </div>
+      <script>
           jQuery(document).ready(function($) {
             // on click add class to body, the css does the rest
-            $('.panel_switch').click( function(){
-                $('body').toggleClass('panel_switched');
-                setTimeout(function(){map.updateSize();},500);
-            });
+            // $('.panel_switch').click( function(){
+            //     $('body').toggleClass('panel_switched');
+            //     setTimeout(function(){map.updateSize();},500);
+            // });
           });
         </script>
-
-        <div id="map" {% if nomenu %}class="fullscreen"{% endif %}></div>
-      </div>
   </body>
 </html>
