@@ -141,19 +141,19 @@
                     </a>
                   </div>
                   <div class="col-md-3">  
-                    <a href="#" class="sprite btn search active"></a>
+                    <a href="#" class="sprite btn mode-btn mapa active"></a>
                     <label for="search">Vyhledat</label>
                   </div>
                   <div class="col-md-3">  
-                    <a href="#" class="sprite btn search-path"></a>
+                    <a href="#hledani" class="sprite btn mode-btn hledani"></a>
                     <label for="search">Vyhledat trasu</label>
                   </div>
                   <div class="col-md-3">
-                    <a href="#" class="sprite btn information"></a>
+                    <a href="#informace" class="sprite btn mode-btn informace"></a>
                     <label for="search">Informace</label>
                   </div>
                   <div class="col-md-3">  
-                    <a href="#" class="sprite btn feedback"></a>
+                    <a href="#feedback" class="sprite btn mode-btn feedback"></a>
                     <label for="search">Feedback</label>
                   </div>
                 </div>
@@ -162,6 +162,7 @@
                 <div id="content" class="col-md-10 col-md-offset-1">
                   <!-- here comes the treasure -->
                   {% include "panel-hledani.html" %}
+                  {% include "panel-informace.html" %}
                 </div>
               </article>
             </div>

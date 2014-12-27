@@ -219,6 +219,15 @@ function init(mapconfig) {
      }
 } // init
 
+function showPanel(slug) {
+    // highlight active mode icon
+    $('.mode-btn').removeClass('active');
+    $('.mode-btn.' + slug).addClass('active');
+
+    $('.panel').hide();
+    $('#' + slug + '.panel').show();
+};
+
 function setupPnkMap() {
     if (appMode == 'pnkmap') {
         // uz jsme v rezimu routing, neni co delat
@@ -269,8 +278,6 @@ function setupPnkMap() {
      }
 
      appMode = 'pnkmap';
-     $('.panel').hide();
-     $('#uvod').show();
 } // setupPnkMap
 
 function destroyPnkMap() {
@@ -345,8 +352,6 @@ function setupRouting() {
     $('.jpPlanType').hover(previewPlanIn, previewPlanOut);
     appMode = 'routing';
     selectedPlan = null;
-    $('.panel').hide();
-    $('#hledani').show();
     $('#jpStartStreetSearch').focus();
     $('#jpFeedbackForm').dialog({
         autoOpen: false,
@@ -748,13 +753,16 @@ function onHashChange(e) {
     var args = parseHash();
     if (hash === '') {
         setupPnkMap();
+        showPanel('mapa');
     }
     if (hash == 'hledani') {
         setupRouting();
         initRoutingPanel();
+        showPanel('hledani');
     }
     if (args['trasa']) {
         setupRouting();
+        showPanel('hledani');
         var plan = args['plan'];
         if ($.inArray(plan, ['balanced', 'quietest', 'fastest']) < 0) {
             plan = 'balanced';
@@ -769,6 +777,12 @@ function onHashChange(e) {
         $('.ui-autocomplete-input').blur();
         selectedPlan = null;
         CSApi.journey(args['trasa'], null, 'balanced', addPlannedJourney, { select: plan });
+    }
+    if (hash == 'informace') {
+        showPanel('informace');
+    }
+    if (hash == 'feedback') {
+        showPanel('feedback');
     }
 }
 
