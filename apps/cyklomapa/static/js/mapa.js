@@ -778,6 +778,10 @@ function onHashChange(e) {
         selectedPlan = null;
         CSApi.journey(args['trasa'], null, 'balanced', addPlannedJourney, { select: plan });
     }
+    if (args['misto']) {
+        var misto = args['misto'];
+        setupPnkMap();
+    }
     if (hash == 'informace') {
         showPanel('informace');
     }
@@ -873,6 +877,7 @@ function onPopupClose(evt) {
 }
 
 function onFeatureSelect(feature) {
+    location.hash = 'misto/' + feature.fid;
     var url = mapconfig.root_url + "/popup/" + feature.fid + "/";
     lastSelectedFeature = feature.fid;
     for (var i in map.popups) {
@@ -909,35 +914,8 @@ function onFeatureSelect(feature) {
 }
 
 var createPopup = function(response) {
-    if (this.fid != lastSelectedFeature) {
-        // Pokud uzivatel klika moc rychle, dobehne nacitani popupu az po vybrani
-        // jineho POI. V tom pripade popup vyrabet nebudeme.
-        return false;
-    }
-    var anchor;
-    if (this.geometry.CLASS_NAME == 'OpenLayers.Geometry.Point') {
-        anchor = {
-            'size': new OpenLayers.Size(this.attributes.width,this.attributes.height),
-            'offset': new OpenLayers.Pixel(-this.attributes.width/2,-this.attributes.height/2)
-        };
-    } else {
-        anchor = null;
-    }
-    popup = new OpenLayers.Popup.FramedCloud(
-        "chicken", 
-        this.geometry.getCentroid(true).getBounds().getCenterLonLat(),
-        new OpenLayers.Size(300,300),
-        response.responseText,
-        anchor,
-        true,
-        null
-    );
-    popup.keepInMap = true;
-    popup.panMapIfOutOfView = true;
-    popup.maxSize = new OpenLayers.Size(320,500);
-    this.popup = popup;
-    popup.feature = this;
-    map.addPopup(popup);
+    $('#informace.panel').html(response.responseText);
+    showPanel('informace');
 };
 
 function onFeatureUnselect(feature) {
