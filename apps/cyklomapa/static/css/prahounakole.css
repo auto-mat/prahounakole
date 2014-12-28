@@ -146,6 +146,13 @@ body {
 #panel .feedback {
   background-position: -240px -6px;
 }
+#poi_box {
+  position: absolute;
+  width: 100%;
+  top: 85px;
+  background: pink;
+  display: none;
+}
 i.point_A,
 i.point_B {
   height: 35px;

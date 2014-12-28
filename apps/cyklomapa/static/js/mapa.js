@@ -217,6 +217,8 @@ function init(mapconfig) {
      if (!map.getCenter()) {
          map.setCenter(new OpenLayers.LonLat(mapconfig.lon, mapconfig.lat).transform(EPSG4326, map.getProjectionObject()), mapconfig.zoom);
      }
+
+     $('.btn.close').click(closePoiBox);
 } // init
 
 function showPanel(slug) {
@@ -730,11 +732,19 @@ function onMouseMove(e) {
     }
 }
 
+function selectFeatureById(poi_id) {
+   var feat = getPoi(poi_id);
+   selectControl.select(feat);
+}
+
 function parseHash() {
     var hash = location.hash;
     hash = hash.replace(/^#/, '');
-    var parts = hash.split('@');
     var args = {};
+    if (hash.length == 0) {
+        return args;
+    }
+    var parts = hash.split('@');
     for (var i=0; i < parts.length; i++) {
         var a = parts[i].split('=');
         args[a[0]] = a[1];
@@ -742,10 +752,44 @@ function parseHash() {
     return args;
 }
 
-function selectFeatureById(poi_id) {
-   var feat = getPoi(poi_id);
-   selectControl.select(feat);
+// if trigger=True, fires the hashchange event
+function setHash(newhash, trigger) {
+    if (!trigger && (location.hash.replace(/^#/, '') != newhash)) {
+        ignoreHashChange = true;
+    }
+    location.hash = newhash;
 }
+
+function encodeHash(args) {
+    var newhash = '';
+    for (var i in args) {
+        if (args[i]) {
+            newhash += '@' + i + '=' + args[i];
+        } else {
+            newhash += '@' + i;
+        }
+    }
+    if (newhash !== '') {
+        newhash = newhash.substr(1);
+    }
+    return newhash;
+}
+
+// encode the param into hash url
+function setHashParameter(param, value, trigger) {
+    args = parseHash();
+    args[param] = value;
+    var newhash = encodeHash(args);
+    setHash(newhash, trigger);
+}
+
+function removeHashParameter(param, trigger) {
+    args = parseHash();
+    delete args[param];
+    var newhash = encodeHash(args);
+    setHash(newhash, trigger);
+}
+
 
 function onHashChange(e) {
     if (ignoreHashChange) {
@@ -787,7 +831,6 @@ function onHashChange(e) {
         var poi_id = parseInt(args['misto']);
         mapconfig.center_feature = poi_id;
         setupPnkMap();
-        showPanel('informace');
     }
     if (hash == 'informace') {
         showPanel('informace');
@@ -795,28 +838,6 @@ function onHashChange(e) {
     if (hash == 'feedback') {
         showPanel('feedback');
     }
-}
-
-// if trigger=True, fires the hashchange event
-function setHash(newhash, trigger) {
-    if (!trigger && (location.hash.replace(/^#/, '') != newhash)) {
-        ignoreHashChange = true;
-    }
-    location.hash = newhash;
-}
-
-// encode the param into hash url
-function setHashParameter(param, value, trigger) {
-    args = parseHash();
-    args[param] = value;
-    var newhash = '';
-    for (var i in args) {
-        newhash += '@' + i + '=' + args[i];
-    }
-    if (newhash !== '') {
-        newhash = newhash.substr(1);
-    }
-    setHash(newhash, trigger);
 }
 
 function getPoi(id) {
@@ -875,7 +896,7 @@ function removePoiLayers() {
 }
 
 function onFeatureSelect(feature) {
-    setHash('misto=' + feature.fid, false);
+    setHashParameter('misto', feature.fid, false);
     lastSelectedFeature = feature.fid;
 
     // Trochu hackovita podpora pro specialni vrstvu ReKola
@@ -915,10 +936,15 @@ function showPoiDetail(poi_id) {
     });
 }
 
-var createPopup = function(response) {
-    $('#informace.panel').html(response.responseText);
-    showPanel('informace');
+function createPopup(response) {
+    $('#poi_text').html(response.responseText);
+    $('#poi_box').show();
 };
+
+function closePoiBox() {
+    $('#poi_box').hide();
+    removeHashParameter('misto', false);    
+}
 
 function zoomToSegment() {
     feature = journeyLayer.getFeatureById($(this).attr('data-fid'));
