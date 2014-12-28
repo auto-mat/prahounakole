@@ -35,9 +35,7 @@
     {% if can_change %}
     <a href="{% url 'admin:webmap_poi_change' poi.id %}">upravit</a>,
     {% endif %}
-    <a href="javascript:void(0);" onclick="ZoomToLonLat(this, {{ poi.geom.x }}, {{ poi.geom.y }}, 15);"
-      title="Najet v mapě na místo" >na střed</a>,
-    <a href="{% url 'cyklomapa.views.mapa_view' poi.id %}" target="_top" title="Odkaz na místo">permalink</a>,
+    <a href="#misto={{ poi.id }}" title="Odkaz na místo">permalink</a>,
     <a href="http://maps.google.com/?q={{ poi|urlencode }}@{{ poi.geom.y }},{{ poi.geom.x }}&amp;z=18&amp;t=h" target="pnk_gmap" title="Zobrazit v Google Maps"><img src="{% static 'google.ico' %}" /></a>
 </p>
 </div>

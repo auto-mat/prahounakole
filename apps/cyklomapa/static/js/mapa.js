@@ -742,6 +742,11 @@ function parseHash() {
     return args;
 }
 
+function selectFeatureById(poi_id) {
+   var feat = getPoi(poi_id);
+   selectControl.select(feat);
+}
+
 function onHashChange(e) {
     if (ignoreHashChange) {
         ignoreHashChange = false;
@@ -779,8 +784,10 @@ function onHashChange(e) {
         CSApi.journey(args['trasa'], null, 'balanced', addPlannedJourney, { select: plan });
     }
     if (args['misto']) {
-        var misto = args['misto'];
+        var poi_id = parseInt(args['misto']);
+        mapconfig.center_feature = poi_id;
         setupPnkMap();
+        showPanel('informace');
     }
     if (hash == 'informace') {
         showPanel('informace');
@@ -828,7 +835,7 @@ function onLoadEnd(evt) {
     if (mapconfig.center_feature) {
        var feature = this.getFeatureByFid(mapconfig.center_feature);
        if (feature) {
-	       ZoomToLonLat(this, mapconfig.lon, mapconfig.lat, 17);
+           map.setCenter(new OpenLayers.LonLat(feature.geometry.x, feature.geometry.y), 17)
            selectControl.select(feature);
        }
     }
@@ -867,22 +874,9 @@ function removePoiLayers() {
     }
 }
 
-function removePopup(popup) {
-    map.removePopup(popup);
-    popup.destroy();
-}
-     
-function onPopupClose(evt) {
-    removePopup(this);
-}
-
 function onFeatureSelect(feature) {
-    location.hash = 'misto/' + feature.fid;
-    var url = mapconfig.root_url + "/popup/" + feature.fid + "/";
+    setHash('misto=' + feature.fid, false);
     lastSelectedFeature = feature.fid;
-    for (var i in map.popups) {
-        removePopup(map.popups[i]);
-    }
 
     // Trochu hackovita podpora pro specialni vrstvu ReKola
     // obsah popup se netaha ze serveru, ale vyrabi se z KML
@@ -900,6 +894,14 @@ function onFeatureSelect(feature) {
         createPopup.call(feature, response);
         return;
     }
+    showPoiDetail(feature.fid);
+}
+
+function onFeatureUnselect(feature) {
+}
+
+function showPoiDetail(poi_id) {
+    var url = mapconfig.root_url + "/popup/" + poi_id + "/";
 
     var requestFailed = function(response) {
         alert(response.responseText);
@@ -909,7 +911,7 @@ function onFeatureSelect(feature) {
         url: url,
         success: createPopup,
         failure: requestFailed,
-        scope: feature
+        //scope: feature
     });
 }
 
@@ -918,28 +920,16 @@ var createPopup = function(response) {
     showPanel('informace');
 };
 
-function onFeatureUnselect(feature) {
-    if (feature.popup)
-        removePopup(feature.popup);
-}
-
 function zoomToSegment() {
     feature = journeyLayer.getFeatureById($(this).attr('data-fid'));
     map.zoomToExtent(feature.geometry.getBounds(), closest=true);
     //setHashParameter('rnd', feature.id.split('_')[1]);
 }
 
-function ZoomToLonLat( obj, lon, lat, zoom) {
+function ZoomToLonLat(obj, lon, lat, zoom) {
     lonlat = new OpenLayers.LonLat(lon,lat);
-	lonlat.transform(EPSG4326, map.getProjectionObject());
-	map.setCenter(lonlat,zoom);
-	   
-	// Test on displayed left overlay - move right to be visible.
-	var overlay_left = $('#overlay_left');
-	if(overlay_left.css('display') != 'none') {
-	    //alert("Overlay, musime posutnout!");
-	    map.pan(-130,0);
-	}
+    lonlat.transform(EPSG4326, map.getProjectionObject());
+    map.setCenter(lonlat,zoom);
 }
 
 // utility funciton to move OpenLayers point
