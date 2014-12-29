@@ -1,6 +1,6 @@
 {% load static %}
-<div id="hledani" class="panel">
-    <div class="submenu">
+<div id="hledani" class="panel col-md-12">
+   <!--  <div class="submenu">
       <div class="inner">
         <ul>
             <li>
@@ -18,21 +18,38 @@
         </ul>
       </div>
     </div> 
-    <div class="the_content">
-      <div class="inner">
-        <form id="jpForm" class="search wide_stretch">
-            <i class="point_A"></i> 
-            <input id="jpStartStreetSearch" class="jpSearch input_A right_arrowed" type="text" name="street_search_address" value="" />
-            <br />
-            <input id="jpFinishStreetSearch" class="jpSearch input_B right_arrowed" type="text" name="street_search_address" value="" />
-            <i class="point_B"></i> 
+    <div class="row">
+      <div class="inner"> -->
+        <form id="jpForm" class="search-form">
+          <div class="row from_a">
+            <div class="col-md-2">
+              <i class="point_A"></i>
+            </div> 
+            <div class="col-md-10">
+              <input id="jpStartStreetSearch" class="jpSearch input_A right_arrowed" type="text" name="street_search_address" value="" />
+            </div>
+          </div>
+          <div class="row to_b">
+            <div class="col-md-10">
+              <input id="jpFinishStreetSearch" class="jpSearch input_B right_arrowed" type="text" name="street_search_address" value="" />
+            </div>
+            <div class="col-md-2">
+              <i class="point_B"></i> 
+            </div>
+          </div>
+          <div class="row">
             <div id="jpPlanMessage">Čekání na server</div>
-            <input id="jpPlanButton" class="search_submit send_arrow" type=submit title="Hledat" value="" />
+            <div class="col-md-3 col-md-offset-9">
+              <input id="jpPlanButton" class="search_submit send_arrow" type=submit title="Hledat" value="" />
+            </div>
+          </div>
         </form>
 
         <div id="jpPlanTypeSelector" class="chart wide_stretch loaded">
             <div class="in_chart">
-                <div id="needle" class="hard_way"></div>
+                <div class="needle_holder">
+                  <div id="needle" class="hard_way"></div>
+                </div>
                 <div class="wide_stretch centred margin_b_05">
                     <span id="balanced" data-plan="balanced" class="jpPlanType way_2"></span>
                 </div>
@@ -50,15 +67,13 @@
         </div> 
 
         <div id="jpDetails">
-          <div class="jpTools wide_stretch">
-            <ul>
-              <li>
+          <div class="jpTools row">
+            <div class="col-md-6">
                 <a id="gpxLink" href="" title="Stáhnout trasu ve formátu GPX">GPX</a>
-              </li>
-              <li>
+              </div>
+              <div class="col-md-6">
                 <a id="jpFeedbackButton" title="Poslat redakci komentář k trase">Nezdá se vám trasa?</a>
-              </li>
-            </ul>
+              </div>
           </div>
           <div id="jpInstructions" class="cleaner wide_stretch"></div>
           <div id="jpFeedbackForm">
@@ -74,6 +89,6 @@
           <img id="prague-logo" src="{% static "img/praha_logo_40.gif" %}" width="40" height="40" alt="Praha" />
           <p>Vývoj vyhledávače podpořilo <a href="http://praha.eu">Hlavní město Praha</a></p>
         </div>
-      </div>
-    </div>
+      <!-- </div>
+    </div> -->
 </div>
