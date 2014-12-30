@@ -11,7 +11,6 @@ var previewedRoute;
 var waypoints = [];
 var startFeature = null;
 var endFeature = null;
-var draggedFeature = null;
 var lastSelectedFeature;
 var criteria = {};
 var criteriaCnt = 0;
