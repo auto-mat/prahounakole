@@ -1,94 +1,99 @@
 {% load static %}
-<div id="hledani" class="panel col-md-12">
-   <!--  <div class="submenu">
-      <div class="inner">
-        <ul>
-            <li>
-                <a href="/#" title="Základní cyklomapa Prahou na kole">Standardní mapa</a>
-            </li>
-            <li>
-                <a href="/?layers=0000BFFFFFFTFT" title="Dlouhodobé uzavírky, zimní údržba">Mapa uzavírek</a>
-            </li>
-            <li>
-                <a href="/?layers=0000BFFFFFFFTT" title="Místa, která čekají na úpravu, nebo byla upravena svépomocí">Cykloopatření</a>
-            </li>
-      	    <li>
-      	      <a href="http://prahounakole.cz/kudy-po-praze/mapa/vyhledavac/" target="_blank">Návod pro hledání</a>
-      	    </li>
-        </ul>
-      </div>
-    </div> 
-    <div class="row">
-      <div class="inner"> -->
-        <form id="jpForm" class="search-form">
-          <div class="row from_a">
-            <div class="col-md-2">
-              <i class="point_A"></i>
-            </div> 
-            <div class="col-md-10">
-              <input id="jpStartStreetSearch" class="jpSearch input_A right_arrowed" type="text" name="street_search_address" value="" />
-            </div>
-          </div>
-          <div class="row to_b">
-            <div class="col-md-10">
-              <input id="jpFinishStreetSearch" class="jpSearch input_B right_arrowed" type="text" name="street_search_address" value="" />
-            </div>
-            <div class="col-md-2">
-              <i class="point_B"></i> 
-            </div>
-          </div>
-          <div class="row">
-            <div id="jpPlanMessage">Čekání na server</div>
-            <div class="col-md-3 col-md-offset-9">
-              <input id="jpPlanButton" class="search_submit send_arrow" type=submit title="Hledat" value="" />
-            </div>
-          </div>
-        </form>
-
-        <div id="jpPlanTypeSelector" class="chart wide_stretch loaded">
-            <div class="in_chart">
-                <div class="needle_holder">
-                  <div id="needle" class="hard_way"></div>
-                </div>
-                <div class="wide_stretch centred margin_b_05">
-                    <span id="balanced" data-plan="balanced" class="jpPlanType way_2"></span>
-                </div>
-                <div class="wide_stretch">
-                    <span id="quietest" data-plan="quietest" class="jpPlanType align-left way_1"></span>
-                    <img src="{% static "img/budik.png" %}" width="105" height="53" border="0" usemap="#path_map" class="touch_map" alt="" />
-                    <map name="path_map">
-                      <area class="jpPlanType" shape="rect" coords="2,13,36,53" data-plan="quietest" />
-                      <area class="jpPlanType" shape="rect" coords="36,4,69,39" data-plan="balanced" />
-                      <area class="jpPlanType" shape="rect" coords="69,16,102,51" data-plan="fastest" />
-                    </map>
-                    <span id="fastest" data-plan="fastest" class="jpPlanType align-right way_3"></span>
-                </div>
-            </div>
-        </div> 
-
-        <div id="jpDetails">
-          <div class="jpTools row">
-            <div class="col-md-6">
-                <a id="gpxLink" href="" title="Stáhnout trasu ve formátu GPX">GPX</a>
+<div class="row">
+  <div id="hledani" class="panel col-md-12">
+     <!--  <div class="submenu">
+        <div class="inner">
+          <ul>
+              <li>
+                  <a href="/#" title="Základní cyklomapa Prahou na kole">Standardní mapa</a>
+              </li>
+              <li>
+                  <a href="/?layers=0000BFFFFFFTFT" title="Dlouhodobé uzavírky, zimní údržba">Mapa uzavírek</a>
+              </li>
+              <li>
+                  <a href="/?layers=0000BFFFFFFFTT" title="Místa, která čekají na úpravu, nebo byla upravena svépomocí">Cykloopatření</a>
+              </li>
+        	    <li>
+        	      <a href="http://prahounakole.cz/kudy-po-praze/mapa/vyhledavac/" target="_blank">Návod pro hledání</a>
+        	    </li>
+          </ul>
+        </div>
+      </div> 
+      <div class="row">
+        <div class="inner"> -->
+          <form id="jpForm" class="search-form">
+            <div class="row from_a">
+              <div class="col-md-2">
+                <i class="point_A"></i>
+              </div> 
+              <div class="col-md-10">
+                <input id="jpStartStreetSearch" class="jpSearch input_A right_arrowed" type="text" name="street_search_address" value="" />
               </div>
+            </div>
+            <div class="row to_b">
+              <div class="col-md-10">
+                <input id="jpFinishStreetSearch" class="jpSearch input_B right_arrowed" type="text" name="street_search_address" value="" />
+              </div>
+              <div class="col-md-2">
+                <i class="point_B"></i> 
+              </div>
+            </div>
+            <div class="row">
+              <div id="jpPlanMessage">Čekání na server</div>
+              <div class="col-md-3 col-md-offset-9">
+                <input id="jpPlanButton" class="search_submit send_arrow" type=submit title="Hledat" value="" />
+              </div>
+            </div>
+          </form>
+
+          <div id="jpPlanTypeSelector" class="chart wide_stretch loaded">
+              <div class="in_chart">
+                  <div class="needle_holder">
+                    <div id="needle" class="hard_way"></div>
+                  </div>
+                  <div class="wide_stretch centred margin_b_05">
+                      <span id="balanced" data-plan="balanced" class="jpPlanType way_2"></span>
+                  </div>
+                  <div class="wide_stretch centred">
+                      <span id="quietest" data-plan="quietest" class="jpPlanType align-left way_1"></span>
+                      <img src="{% static "img/budik.png" %}" width="105" height="53" border="0" usemap="#path_map" class="touch_map" alt="" />
+                      <map name="path_map">
+                        <area class="jpPlanType" shape="rect" coords="2,13,36,53" data-plan="quietest" />
+                        <area class="jpPlanType" shape="rect" coords="36,4,69,39" data-plan="balanced" />
+                        <area class="jpPlanType" shape="rect" coords="69,16,102,51" data-plan="fastest" />
+                      </map>
+                      <span id="fastest" data-plan="fastest" class="jpPlanType align-right way_3"></span>
+                  </div>
+              </div>
+          </div> 
+
+          <div id="jpDetails">
+            <div class="jpTools row">
               <div class="col-md-6">
-                <a id="jpFeedbackButton" title="Poslat redakci komentář k trase">Nezdá se vám trasa?</a>
-              </div>
+                  <a id="gpxLink" href="" title="Stáhnout trasu ve formátu GPX">GPX</a>
+                </div>
+                <div class="col-md-6">
+                  <a id="jpFeedbackButton" title="Poslat redakci komentář k trase">Nezdá se vám trasa?</a>
+                </div>
+            </div>
+            <div id="jpInstructions" class="cleaner wide_stretch"></div>
+            <div id="jpFeedbackForm">
+              <p>Zde pro Vás chystáme formulář pro zaslání připomínky k nalezené trase.</p>
+              <p>Než ho zprovozníme, můžete nám poslat <a id="jpFeedbackMailto" href="mailto:redakce@prahounakole.cz">email</a>.</p>
+            </div>
           </div>
-          <div id="jpInstructions" class="cleaner wide_stretch"></div>
-          <div id="jpFeedbackForm">
-            <p>Zde pro Vás chystáme formulář pro zaslání připomínky k nalezené trase.</p>
-            <p>Než ho zprovozníme, můžete nám poslat <a id="jpFeedbackMailto" href="mailto:redakce@prahounakole.cz">email</a>.</p>
+          <div class="more">
+            <div id="cyclestreets-attribution" class="wide_stretch">
+              <p><img id="cs-logo" src="{% static "img/cs_logo.png" %}" width="40" height="40" alt="CycleStreets.net" />
+              Vyhledávání tras Vám poskytujeme ve spolupráci s&nbsp;<a href="http://www.cyclestreets.net">CycleStreets.net</a></p>
+            </div>
+            <div class="attribution wide_stretch">
+              <p>
+               <img id="prague-logo" src="{% static "img/praha_logo_40.gif" %}" width="40" height="40" alt="Praha" />
+               Vývoj vyhledávače podpořilo <a href="http://praha.eu">Hlavní město Praha</a></p>
+            </div>
           </div>
-        </div>
-        <div id="cyclestreets-attribution" class="wide_stretch">
-          <img id="cs-logo" src="{% static "img/cs_logo.png" %}" width="40" height="40" alt="CycleStreets.net" />
-          <p>Vyhledávání tras Vám poskytujeme ve spolupráci s&nbsp;<a href="http://www.cyclestreets.net">CycleStreets.net</a></p>
-        </div>
-        <div class="attribution wide_stretch">
-          <img id="prague-logo" src="{% static "img/praha_logo_40.gif" %}" width="40" height="40" alt="Praha" />
-          <p>Vývoj vyhledávače podpořilo <a href="http://praha.eu">Hlavní město Praha</a></p>
-        </div>
-      <!-- </div>
-    </div> -->
+        <!-- </div>
+      </div> -->
+  </div>
 </div>
