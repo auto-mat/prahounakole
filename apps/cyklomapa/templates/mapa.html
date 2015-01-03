@@ -92,59 +92,30 @@
 
      </head>
   <body onload="init(mapconfig)">
-    <!--  {% if not nomenu %}
-     <div id="head">
-         {% if mesto.sektor.slug == "mapa" or mesto.sektor.slug == "devel" %}
-         <div id="titulka">
-           <a href="http://prahounakole.cz" target="_self" title="Home / přehledka">Prahou na kole</a>
-         </div>
-         <div class="menu" id="menu">
-           <a target="_blank" href="http://www.prahounakole.cz/mapa/pouzivani/legenda/" title="Legenda online mapy">Legenda</a>
-           <a href="javascript:print()" title="Tisk mapy">Tisk</a>
-           <a target="_blank" href="http://prahounakole.cz/category/mapa/" title="Novinky v online mapě, cyklotrasách a cyklostezkách">Novinky</a> 
-           <a target="_blank" href="http://www.prahounakole.cz/mapa/pridavani-do-mapy/">Doplnění mapy</a>
-           <a target="_blank" href="http://www.prahounakole.cz/mapa/vystupy-z-mapy/greenway/" title="Greenway Praha - Wien">Greenway</a>
-	   /
-         </div>
-
-         <div class="menu" id="menu2">
-           <a class="small" target="_blank" href="http://www.zelenamapa.cz/" title="Zelená  mapa Auto*Matu">Zelená mapa</a>
-           <a class="small" target="_blank"
-           href="http://mtbmap.cz/?zoom=11&amp;lat=50.0864&amp;lon=14.40193&amp;layers=FBF00" title="MTB mapa Martina Tesaře">MTB mapa</a>
-         </div>
-         {% else %}
-         <div id="dpnk-head">
-         <div id="titulka">
-           <a href="http://dopracenakole.net/mesta/{{ mesto.sektor.slug }}/" target="_self">
-                <img src="http://www.dopracenakole.net/wp-content/themes/easy/images/dopracenakole.png">
-           </a>
-         </div>
-         <div class="menu" id="menu">
-           <a target="_blank" href="http://www.prahounakole.cz/mapa/pouzivani/legenda/" title="Legenda online mapy">Legenda</a>
-           <a target="_blank" href="http://dopracenakole.net/mesta/{{ mesto.sektor.slug }}/">Do práce na kole - {{ mesto }}</a>
-         </div>
-         </div>
-         </div>
-         {% endif %}
-      </div>     
-     {% endif %}
-     -->
-
       <div id="core" class="container">
         <div class="row">
           <div id="panel" class="col-md-3">
-            <div class="row">
+            <!-- sprclej panel -->
+            <div class="row dildo hide">
+               <a href="http://mapa.prahounakole.cz"><img src="{% static "css/prazak.png" %}" alt="mapa.prahounakole.cz">
+                </a>
+                 <a class="panel_switch" href="#">switch</a>
+            </div>
+
+            <!-- Panel v plne krase -->
+            <div class="row gold">
               <nav class="col-md-10 col-md-offset-1">
-                <div class="row">
+                <div class="row centred">
                   <div class="col-md-12 logo">
                     <a href="http://mapa.prahounakole.cz">Prahou na kole <img src="{% static "css/prazak.png" %}" alt="mapa.prahounakole.cz">
                     </a>
+                    <a class="panel_switch" href="#">switch</a>
                   </div>
                   <div class="col-md-3">  
-                    <a href="#" class="sprite btn mode-btn mapa active"></a>
+                    <a href="#" class="sprite sprite btn mode-btn mapa active"></a>
                     <label for="search">Vyhledat</label>
                   </div>
-                  <div class="col-md-3">  
+                  <div class="col-md-3 ">  
                     <a href="#hledani" class="sprite btn mode-btn hledani"></a>
                     <label for="search">Vyhledat trasu</label>
                   </div>
@@ -163,20 +134,27 @@
                   <!-- here comes the treasure -->
                   {% include "panel-hledani.html" %}
                   {% include "panel-informace.html" %}
+                   <div id="poi_box" class="row">
+                    <div class="col-md-3 col-md-offset-3 centred">
+                      <a class="sprite btn link"></a>
+                      <label for="link">Odkaz</label>
+                    </div>
+                    <div class="col-md-3 centred">
+                      <a class="sprite btn print"></a>
+                      <label for="print">Tisk</label>
+                    </div>
+                    <div class="col-md-3 centred">
+                      <a class="sprite btn close"></a>
+                      <label for="close">zavřít</label>
+                    </div>
+                    <div class="col-md-12">
+                      <a id="poi_text" class="cont"></a>
+                    </div>
+                  </div>
                 </div>
               </article>
             </div>
-            <div id="poi_box">
-               <div class="btn link">L</div>
-               <div class="btn print">P</div>
-               <div class="btn close">X</div>
-               <div id="poi_text"></div>
-            </div>
           </div>
-          <!-- closing element -->
-         <!--  <div class="panel_switch">
-            &nbsp;
-          </div> -->
           <div class="col-md-9 map_holder">
             <div id="map" {% if nomenu %}class="fullscreen"{% endif %}></div>
           </div>
@@ -184,11 +162,23 @@
       </div>
       <script>
           jQuery(document).ready(function($) {
-            // on click add class to body, the css does the rest
-            // $('.panel_switch').click( function(){
-            //     $('body').toggleClass('panel_switched');
-            //     setTimeout(function(){map.updateSize();},500);
-            // });
+
+            // --------  PANEL SWITCH ---------
+            $('.panel_switch').click( function(){
+                // prevent default a (link) behavior
+                event.preventDefault();
+                // let tthe body know the change .. for next possible visual changes
+               $('body').toggleClass('panel_minimized');
+                  // stretch - extend panel container
+                   $('#panel').toggleClass('minimized col-md-3');
+                   // stretch - extend map container
+                  $('.map_holder').toggleClass('col-md-12 col-md-9');
+                  // show/hide panel content
+                  $('.dildo, .gold').toggleClass('hide');
+                
+                // update map size
+                setTimeout(function(){map.updateSize();},500);
+            });
           });
         </script>
   </body>
