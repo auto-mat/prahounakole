@@ -226,6 +226,9 @@ function showPanel(slug) {
     $('.mode-btn').removeClass('active');
     $('.mode-btn.' + slug).addClass('active');
 
+    // always close POI detail when changing panel
+    closePoiBox();
+
     $('.panel').hide();
     $('#' + slug + '.panel').show();
 };
