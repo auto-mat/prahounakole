@@ -126,7 +126,7 @@ function init(mapconfig) {
             simpleSwitcher,
             new OpenLayers.Control.Navigation(),
             new OpenLayers.Control.Permalink({createParams: createParams}),
-            new OpenLayers.Control.ScaleLine({maxWidth: 300}),
+            new OpenLayers.Control.ScaleLine({maxWidth: 300, bottomOutUnits: ''}),
             defaultPanZoom()
         ];
     }
