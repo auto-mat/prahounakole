@@ -4,6 +4,7 @@
 <html>
   <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" type="text/css" />
@@ -94,10 +95,10 @@
   <body onload="init(mapconfig)">
       <div id="core" class="container">
         <div class="row">
-          <div id="panel" class="col-md-3">
+          <div id="panel" class="col-md-3 col-sm-10">
             <!-- sprclej panel -->
             <div class="row dildo hide">
-               <a href="http://mapa.prahounakole.cz"><img src="{% static "css/prazak.png" %}" alt="mapa.prahounakole.cz">
+               <a class="home" href="http://mapa.prahounakole.cz"><img src="{% static "css/prazak.png" %}" alt="mapa.prahounakole.cz">
                 </a>
                  <a class="panel_switch" href="#">switch</a>
             </div>
@@ -112,19 +113,19 @@
                     <a class="panel_switch" href="#">switch</a>
                   </div>
                   <div class="col-md-3">  
-                    <a href="#" class="sprite sprite btn mode-btn mapa active"></a>
+                    <a href="#" class="sprite tab_switch btn mode-btn mapa active"></a>
                     <label for="search">Vyhledat</label>
                   </div>
                   <div class="col-md-3 ">  
-                    <a href="#hledani" class="sprite btn mode-btn hledani"></a>
+                    <a href="#hledani" class="sprite tab_switch btn mode-btn hledani"></a>
                     <label for="search">Vyhledat trasu</label>
                   </div>
                   <div class="col-md-3">
-                    <a href="#informace" class="sprite btn mode-btn informace"></a>
+                    <a href="#informace" class="sprite tab_switch btn mode-btn informace"></a>
                     <label for="search">Informace</label>
                   </div>
                   <div class="col-md-3">  
-                    <a href="#feedback" class="sprite btn mode-btn feedback"></a>
+                    <a href="#feedback" class="sprite tab_switch btn mode-btn feedback"></a>
                     <label for="search">Feedback</label>
                   </div>
                 </div>
@@ -135,7 +136,7 @@
                   {% include "panel-hledani.html" %}
                   {% include "panel-informace.html" %}
                    <div id="poi_box" class="row">
-                    <div class="col-md-3 col-md-offset-3 centred">
+                   <!--  <div class="col-md-3 col-md-offset-3 centred">
                       <a class="sprite btn link"></a>
                       <label for="link">Odkaz</label>
                     </div>
@@ -146,20 +147,42 @@
                     <div class="col-md-3 centred">
                       <a class="sprite btn close"></a>
                       <label for="close">zavřít</label>
-                    </div>
-                    <div class="col-md-12">
+                    </div>-->
+                    <div class="col-md-12 detail">
                       <a id="poi_text" class="cont"></a>
-                    </div>
+                    </div> 
                   </div>
                 </div>
               </article>
             </div>
           </div>
-          <div class="col-md-9 map_holder">
+          <div class="col-md-9 col-sm-2 map_holder">
             <div id="map" {% if nomenu %}class="fullscreen"{% endif %}></div>
           </div>
         </div>
       </div>
+
+    <!-- TADY SE BUDE GENEROVAT OBSAH VRSTEV APOD. -->
+      <div class="modal fade">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body">
+              <p> TADY SE BUDE GENEROVAT OBSAH VRSTEV APOD.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+
+
+
       <script>
           jQuery(document).ready(function($) {
 
@@ -170,15 +193,19 @@
                 // let tthe body know the change .. for next possible visual changes
                $('body').toggleClass('panel_minimized');
                   // stretch - extend panel container
-                   $('#panel').toggleClass('minimized col-md-3');
+                   $('#panel').toggleClass('minimized col-md-3 col-sm-2 col-sm-10');
                    // stretch - extend map container
-                  $('.map_holder').toggleClass('col-md-12 col-md-9');
+                  $('.map_holder').toggleClass('col-md-12 col-md-9 col-sm-12 col-sm-2');
                   // show/hide panel content
                   $('.dildo, .gold').toggleClass('hide');
-                
                 // update map size
                 setTimeout(function(){map.updateSize();},500);
             });
+            // ------ CLOSE POI -----
+            $('.close').live("click",function(){
+              $('#poi_box').slideUp(400).hide(400)
+            });
+
           });
         </script>
   </body>
