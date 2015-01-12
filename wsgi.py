@@ -16,10 +16,12 @@ framework.
 import os
 import site
 import sys
+import project.settings
 from project.settings import PROJECT_DIR
 
-import newrelic.agent
-newrelic.agent.initialize(os.path.join(PROJECT_DIR,'newrelic.ini'))
+if getattr(project.settings, 'NEWRELIC_ENABLE', False):
+    import newrelic.agent
+    newrelic.agent.initialize(os.path.join(PROJECT_DIR,'newrelic.ini'))
 
 ALLDIRS = [ os.path.join(PROJECT_DIR, 'env/lib/python2.6/site-packages'), ]
 
