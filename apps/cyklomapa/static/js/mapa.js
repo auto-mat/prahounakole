@@ -6,7 +6,7 @@ var appMode = ''; // pnkmap nebo routing
 // * go - muzeme spustit vyhledavani
 var routingState = 'start';
 var vectors = [];
-var journeyLayer, markerLayer, startMarker, endMarker, middleMarker, wpAttrs;
+var journeyLayer, markerLayer, startMarker, endMarker, middleMarker, selectedMarker, wpAttrs;
 var previewedRoute;
 var waypoints = [];
 var startFeature = null;
@@ -225,6 +225,9 @@ function showPanel(slug) {
     $('.mode-btn').removeClass('active');
     $('.mode-btn.' + slug).addClass('active');
 
+    // always close POI detail when changing panel
+    closePoiBox();
+
     $('.panel').hide();
     $('#' + slug + '.panel').show();
 };
@@ -277,6 +280,24 @@ function setupPnkMap() {
          geocontrol.activate();
          geocontrol.events.register("locationupdated", geocontrol, onLocationUpdate);
      }
+
+     /*
+      * XXX OL don't allow us to add custom background/border image
+      * to emphasize selected feature so we use this hack as a workaround.
+      * When feature is selected, add extra feature to the same position
+      * and assign the border image to it.
+      */
+     selectedMarker = new OpenLayers.Feature.Vector(
+        new OpenLayers.Geometry.Point(0,0), {
+                icon: "/static/img/route-start.png",
+                ikona: "/static/img/route-start.png",
+                w: 34, h: 42, xof: -17, yof: -42
+            }, {
+                externalGraphic: "/static/img/circle.png",
+                graphicWidth: 50,
+                graphicHeight: 50
+            }
+     );
 
      appMode = 'pnkmap';
 } // setupPnkMap
@@ -883,6 +904,7 @@ function addPoiLayer(nazev, url, enabled, id) {
     kml.setVisibility(enabled);
     kml.styleMap.styles["default"].addRules([filter_rule]);
     kml.styleMap.styles["default"].defaultStyle.cursor = 'pointer';
+    kml.styleMap.styles["default"].defaultStyle.cursor = 'pointer';
     kml.events.register('loadend', kml, onLoadEnd);
     vectors.push(kml);
     map.addLayer(kml);
@@ -896,7 +918,14 @@ function removePoiLayers() {
 
 function onFeatureSelect(feature) {
     setHashParameter('misto', feature.fid, false);
-    lastSelectedFeature = feature.fid;
+    lastSelectedFeature = feature;
+    $("#" + feature.geometry.id).attr("class", "selected");
+
+    selectedMarker.geometry = feature.geometry.clone();
+    if (selectedMarker.layer) {
+        selectedMarker.layer.removeFeatures([selectedMarker]);
+    }
+    feature.layer.addFeatures([selectedMarker]); 
 
     // Trochu hackovita podpora pro specialni vrstvu ReKola
     // obsah popup se netaha ze serveru, ale vyrabi se z KML
@@ -918,6 +947,10 @@ function onFeatureSelect(feature) {
 }
 
 function onFeatureUnselect(feature) {
+    $("#" + feature.geometry.id).removeAttr("class");
+    var l = selectedMarker.layer;
+    l.removeFeatures(selectedMarker);
+    selectedMarker.geometry.destroy();
 }
 
 function showPoiDetail(poi_id) {
@@ -943,6 +976,7 @@ function createPopup(response) {
 function closePoiBox() {
     $('#poi_box').hide();
     removeHashParameter('misto', false);    
+    selectControl.unselectAll();
 }
 
 function zoomToSegment() {
