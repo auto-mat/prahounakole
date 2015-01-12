@@ -17,7 +17,7 @@ from django.core.urlresolvers import reverse
 from django.db.models import Q 
 
 
-from webmap.models import OverlayLayer, Marker, Poi, Legend
+from webmap.models import OverlayLayer, Marker, Poi, Legend, MapPreset
 
 # kopie  django.contrib.admin.views.main.get_query_string
 from django.utils.http import urlencode
@@ -82,6 +82,7 @@ def mapa_view(request, poi_id=None):
         'mesto': request.mesto,
         'minimize_layerswitcher': minimize_layerswitcher,
         'mobilni': request.mobilni,
+        'presets': MapPreset.objects.all(),
         'historie': historie
     })
     if not request.mesto.aktivni and not request.user.is_authenticated():

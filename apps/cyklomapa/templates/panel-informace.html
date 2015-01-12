@@ -1,4 +1,20 @@
 {% load static %}
 <div id="informace" class="panel col-md-12">
 <h2>Informace</h2>
+<script>
+   function setLayersVisibility(layers){
+      for(var layer_id in map.layers){
+         map.layers[layer_id].setVisibility(false);
+      }
+      for(var layer_id in layers){
+         map.getLayersByName(layers[layer_id])[0].setVisibility(true);
+      }
+   }
+</script>
+{% for preset in presets %}
+<a href="javascript:setLayersVisibility(['{{preset.base_layer.name}}', '{{preset.base_layer_names|join:"', '"}}']);">
+   {{ preset.name }}
+   <img src="media/{{ preset.icon }}" width="50px"/>
+</a> <br/>
+{% endfor %}
 </div>
