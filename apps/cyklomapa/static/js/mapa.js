@@ -6,12 +6,11 @@ var appMode = ''; // pnkmap nebo routing
 // * go - muzeme spustit vyhledavani
 var routingState = 'start';
 var vectors = [];
-var journeyLayer, markerLayer, startMarker, endMarker, middleMarker, wpAttrs;
+var journeyLayer, markerLayer, startMarker, endMarker, middleMarker, selectedMarker, wpAttrs;
 var previewedRoute;
 var waypoints = [];
 var startFeature = null;
 var endFeature = null;
-var draggedFeature = null;
 var lastSelectedFeature;
 var criteria = {};
 var criteriaCnt = 0;
@@ -217,7 +216,21 @@ function init(mapconfig) {
      if (!map.getCenter()) {
          map.setCenter(new OpenLayers.LonLat(mapconfig.lon, mapconfig.lat).transform(EPSG4326, map.getProjectionObject()), mapconfig.zoom);
      }
+
+     $('.btn.close').click(closePoiBox);
 } // init
+
+function showPanel(slug) {
+    // highlight active mode icon
+    $('.mode-btn').removeClass('active');
+    $('.mode-btn.' + slug).addClass('active');
+
+    // always close POI detail when changing panel
+    closePoiBox();
+
+    $('.panel').hide();
+    $('#' + slug + '.panel').show();
+};
 
 function setupPnkMap() {
     if (appMode == 'pnkmap') {
@@ -268,9 +281,25 @@ function setupPnkMap() {
          geocontrol.events.register("locationupdated", geocontrol, onLocationUpdate);
      }
 
+     /*
+      * XXX OL don't allow us to add custom background/border image
+      * to emphasize selected feature so we use this hack as a workaround.
+      * When feature is selected, add extra feature to the same position
+      * and assign the border image to it.
+      */
+     selectedMarker = new OpenLayers.Feature.Vector(
+        new OpenLayers.Geometry.Point(0,0), {
+                icon: "/static/img/route-start.png",
+                ikona: "/static/img/route-start.png",
+                w: 34, h: 42, xof: -17, yof: -42
+            }, {
+                externalGraphic: "/static/img/circle.png",
+                graphicWidth: 50,
+                graphicHeight: 50
+            }
+     );
+
      appMode = 'pnkmap';
-     $('.panel').hide();
-     $('#uvod').show();
 } // setupPnkMap
 
 function destroyPnkMap() {
@@ -345,8 +374,6 @@ function setupRouting() {
     $('.jpPlanType').hover(previewPlanIn, previewPlanOut);
     appMode = 'routing';
     selectedPlan = null;
-    $('.panel').hide();
-    $('#hledani').show();
     $('#jpStartStreetSearch').focus();
     $('#jpFeedbackForm').dialog({
         autoOpen: false,
@@ -725,17 +752,64 @@ function onMouseMove(e) {
     }
 }
 
+function selectFeatureById(poi_id) {
+   var feat = getPoi(poi_id);
+   selectControl.select(feat);
+}
+
 function parseHash() {
     var hash = location.hash;
     hash = hash.replace(/^#/, '');
-    var parts = hash.split('@');
     var args = {};
+    if (hash.length == 0) {
+        return args;
+    }
+    var parts = hash.split('@');
     for (var i=0; i < parts.length; i++) {
         var a = parts[i].split('=');
         args[a[0]] = a[1];
     }
     return args;
 }
+
+// if trigger=True, fires the hashchange event
+function setHash(newhash, trigger) {
+    if (!trigger && (location.hash.replace(/^#/, '') != newhash)) {
+        ignoreHashChange = true;
+    }
+    location.hash = newhash;
+}
+
+function encodeHash(args) {
+    var newhash = '';
+    for (var i in args) {
+        if (args[i]) {
+            newhash += '@' + i + '=' + args[i];
+        } else {
+            newhash += '@' + i;
+        }
+    }
+    if (newhash !== '') {
+        newhash = newhash.substr(1);
+    }
+    return newhash;
+}
+
+// encode the param into hash url
+function setHashParameter(param, value, trigger) {
+    args = parseHash();
+    args[param] = value;
+    var newhash = encodeHash(args);
+    setHash(newhash, trigger);
+}
+
+function removeHashParameter(param, trigger) {
+    args = parseHash();
+    delete args[param];
+    var newhash = encodeHash(args);
+    setHash(newhash, trigger);
+}
+
 
 function onHashChange(e) {
     if (ignoreHashChange) {
@@ -748,13 +822,16 @@ function onHashChange(e) {
     var args = parseHash();
     if (hash === '') {
         setupPnkMap();
+        showPanel('mapa');
     }
     if (hash == 'hledani') {
         setupRouting();
         initRoutingPanel();
+        showPanel('hledani');
     }
     if (args['trasa']) {
         setupRouting();
+        showPanel('hledani');
         var plan = args['plan'];
         if ($.inArray(plan, ['balanced', 'quietest', 'fastest']) < 0) {
             plan = 'balanced';
@@ -770,28 +847,17 @@ function onHashChange(e) {
         selectedPlan = null;
         CSApi.journey(args['trasa'], null, 'balanced', addPlannedJourney, { select: plan });
     }
-}
-
-// if trigger=True, fires the hashchange event
-function setHash(newhash, trigger) {
-    if (!trigger && (location.hash.replace(/^#/, '') != newhash)) {
-        ignoreHashChange = true;
+    if (args['misto']) {
+        var poi_id = parseInt(args['misto']);
+        mapconfig.center_feature = poi_id;
+        setupPnkMap();
     }
-    location.hash = newhash;
-}
-
-// encode the param into hash url
-function setHashParameter(param, value, trigger) {
-    args = parseHash();
-    args[param] = value;
-    var newhash = '';
-    for (var i in args) {
-        newhash += '@' + i + '=' + args[i];
+    if (hash == 'informace') {
+        showPanel('informace');
     }
-    if (newhash !== '') {
-        newhash = newhash.substr(1);
+    if (hash == 'feedback') {
+        showPanel('feedback');
     }
-    setHash(newhash, trigger);
 }
 
 function getPoi(id) {
@@ -810,7 +876,7 @@ function onLoadEnd(evt) {
     if (mapconfig.center_feature) {
        var feature = this.getFeatureByFid(mapconfig.center_feature);
        if (feature) {
-	       ZoomToLonLat(this, mapconfig.lon, mapconfig.lat, 17);
+           map.setCenter(new OpenLayers.LonLat(feature.geometry.x, feature.geometry.y), 17)
            selectControl.select(feature);
        }
     }
@@ -838,6 +904,7 @@ function addPoiLayer(nazev, url, enabled, id) {
     kml.setVisibility(enabled);
     kml.styleMap.styles["default"].addRules([filter_rule]);
     kml.styleMap.styles["default"].defaultStyle.cursor = 'pointer';
+    kml.styleMap.styles["default"].defaultStyle.cursor = 'pointer';
     kml.events.register('loadend', kml, onLoadEnd);
     vectors.push(kml);
     map.addLayer(kml);
@@ -849,21 +916,16 @@ function removePoiLayers() {
     }
 }
 
-function removePopup(popup) {
-    map.removePopup(popup);
-    popup.destroy();
-}
-     
-function onPopupClose(evt) {
-    removePopup(this);
-}
-
 function onFeatureSelect(feature) {
-    var url = mapconfig.root_url + "/popup/" + feature.fid + "/";
-    lastSelectedFeature = feature.fid;
-    for (var i in map.popups) {
-        removePopup(map.popups[i]);
+    setHashParameter('misto', feature.fid, false);
+    lastSelectedFeature = feature;
+    $("#" + feature.geometry.id).attr("class", "selected");
+
+    selectedMarker.geometry = feature.geometry.clone();
+    if (selectedMarker.layer) {
+        selectedMarker.layer.removeFeatures([selectedMarker]);
     }
+    feature.layer.addFeatures([selectedMarker]); 
 
     // Trochu hackovita podpora pro specialni vrstvu ReKola
     // obsah popup se netaha ze serveru, ale vyrabi se z KML
@@ -881,6 +943,18 @@ function onFeatureSelect(feature) {
         createPopup.call(feature, response);
         return;
     }
+    showPoiDetail(feature.fid);
+}
+
+function onFeatureUnselect(feature) {
+    $("#" + feature.geometry.id).removeAttr("class");
+    var l = selectedMarker.layer;
+    l.removeFeatures(selectedMarker);
+    selectedMarker.geometry.destroy();
+}
+
+function showPoiDetail(poi_id) {
+    var url = mapconfig.root_url + "/popup/" + poi_id + "/";
 
     var requestFailed = function(response) {
         alert(response.responseText);
@@ -890,45 +964,19 @@ function onFeatureSelect(feature) {
         url: url,
         success: createPopup,
         failure: requestFailed,
-        scope: feature
+        //scope: feature
     });
 }
 
-var createPopup = function(response) {
-    if (this.fid != lastSelectedFeature) {
-        // Pokud uzivatel klika moc rychle, dobehne nacitani popupu az po vybrani
-        // jineho POI. V tom pripade popup vyrabet nebudeme.
-        return false;
-    }
-    var anchor;
-    if (this.geometry.CLASS_NAME == 'OpenLayers.Geometry.Point') {
-        anchor = {
-            'size': new OpenLayers.Size(this.attributes.width,this.attributes.height),
-            'offset': new OpenLayers.Pixel(-this.attributes.width/2,-this.attributes.height/2)
-        };
-    } else {
-        anchor = null;
-    }
-    popup = new OpenLayers.Popup.FramedCloud(
-        "chicken", 
-        this.geometry.getCentroid(true).getBounds().getCenterLonLat(),
-        new OpenLayers.Size(300,300),
-        response.responseText,
-        anchor,
-        true,
-        null
-    );
-    popup.keepInMap = true;
-    popup.panMapIfOutOfView = true;
-    popup.maxSize = new OpenLayers.Size(320,500);
-    this.popup = popup;
-    popup.feature = this;
-    map.addPopup(popup);
+function createPopup(response) {
+    $('#poi_text').html(response.responseText);
+    $('#poi_box').show();
 };
 
-function onFeatureUnselect(feature) {
-    if (feature.popup)
-        removePopup(feature.popup);
+function closePoiBox() {
+    $('#poi_box').hide();
+    removeHashParameter('misto', false);    
+    selectControl.unselectAll();
 }
 
 function zoomToSegment() {
@@ -937,17 +985,10 @@ function zoomToSegment() {
     //setHashParameter('rnd', feature.id.split('_')[1]);
 }
 
-function ZoomToLonLat( obj, lon, lat, zoom) {
+function ZoomToLonLat(obj, lon, lat, zoom) {
     lonlat = new OpenLayers.LonLat(lon,lat);
-	lonlat.transform(EPSG4326, map.getProjectionObject());
-	map.setCenter(lonlat,zoom);
-	   
-	// Test on displayed left overlay - move right to be visible.
-	var overlay_left = $('#overlay_left');
-	if(overlay_left.css('display') != 'none') {
-	    //alert("Overlay, musime posutnout!");
-	    map.pan(-130,0);
-	}
+    lonlat.transform(EPSG4326, map.getProjectionObject());
+    map.setCenter(lonlat,zoom);
 }
 
 // utility funciton to move OpenLayers point
