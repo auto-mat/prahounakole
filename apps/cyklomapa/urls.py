@@ -6,6 +6,7 @@ from cyklomapa.views import mapa_view, popup_view, uzavirky_view, metro_view, zn
 from webmap.views import kml_view
 from cyklomapa.feeds import UzavirkyFeed, NovinkyFeed
 from httpproxy.views import HttpProxy
+from django.contrib.comments.feeds import LatestCommentFeed
 
 urlpatterns = patterns('',
     (r'^$', mapa_view),
@@ -17,6 +18,8 @@ urlpatterns = patterns('',
     url(r'^novinky/feed/$', NovinkyFeed(), name="novinky_feed"),
     (r'^metro/$', metro_view),
     (r'^znacky/$', znacky_view),
+    url(r'^comments/', include('fluent_comments.urls')),
+    url(r'^comments/feeds/latest/$', LatestCommentFeed(), name="latest_comments_feed"),
 )
 
 if settings.ENABLE_API_PROXY:

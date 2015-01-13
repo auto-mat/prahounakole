@@ -35,6 +35,15 @@
 
    <link rel="alternate" type="application/rss+xml" title="Novinky v mapě" href="{% url 'novinky_feed' %}" />
    <link rel="alternate" type="application/rss+xml" title="Uzavírky" href="{% url 'uzavirky_feed' %}" />
+   <link rel="alternate" type="application/rss+xml" title="Nejnovější komentáře" href="{% url 'latest_comments_feed' %}" />
+
+   {# comments #}
+   <link rel="stylesheet" type="text/css" href="{% static "fluent_comments/css/ajaxcomments.css" %}" />
+   <script type="text/javascript" src="{% static "fluent_comments/js/ajaxcomments.js" %}"></script>
+
+   {# comments - persist login values #}
+   <script type="text/javascript" src="{% static "js/jquery.cookie.js" %}"></script>
+   <script type="text/javascript" src="{% static "js/jquery.persist.js" %}"></script>
 
   <title>Mapa Prahou na kole - {{ mesto.sektor.nazev }} </title>
 

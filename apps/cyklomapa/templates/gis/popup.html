@@ -1,5 +1,6 @@
 {% load url from future %}
 {% load thumbnail static %}
+{% load comments %}
 <div>
 <div class="trc" id="poi_id_{{ poi.id }}">
 
@@ -44,6 +45,14 @@
     <p><a target="_blank" href="{{ poi.znacka.url|escape }}" title="{{ poi.znacka.url|escape }}">{{ poi.znacka.url|escape|truncatewords:4 }}</a></p>
   {% endif %}
 {% endif %}
+
+   <hr/>
+   {% get_comment_count for poi as comment_count %}
+   <h3 id="hidden-header" class="margin_t_2">Komentáře ({{ comment_count }})</h3>
+   <div id="comments-wrapper">
+      {% render_comment_list for poi %}
+      {% render_comment_form for poi %}
+   </div>
 </div>
 <p class="addinfo">
     {% if can_change %}
