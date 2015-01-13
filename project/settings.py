@@ -94,6 +94,7 @@ INSTALLED_APPS = [
     'constance',
     'import_export',
     'webmap',
+    'rest_framework',
 
     'cyklomapa',
     'easy_thumbnails',
@@ -174,6 +175,14 @@ LOGGING = {
         }
     }
 }
+
+THUMBNAIL_ALIASES = {
+    '': {
+        'photo_thumb': {'size': (514, 320), 'crop': 'smart'},
+    },
+}
+
+REST_ENABLED=True
 
 # import local settings
 try:
