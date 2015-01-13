@@ -171,7 +171,12 @@
               <h4 class="modal-title">Modal title</h4>
             </div>
             <div class="modal-body">
-              <p> TADY SE BUDE GENEROVAT OBSAH VRSTEV APOD.</p>
+              {% for preset in presets %}
+              <a href="javascript:activateLayers(['{{preset.base_layer.name}}', '{{preset.base_layer_names|join:"', '"}}']);">
+                 <img src="media/{{ preset.icon }}" width="150px"/>
+                 {{ preset.name }}
+              </a> <br/>
+              {% endfor %}
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

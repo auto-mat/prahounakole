@@ -1067,3 +1067,12 @@ function addRekola() {
      map.addLayers([rekola]);
      vectors.push(rekola);
 }
+
+function activateLayers(layers){
+   for(var layer_id in map.layers){
+      map.layers[layer_id].setVisibility(false);
+   }
+   for(var layer_id in layers){
+      map.getLayersByName(layers[layer_id])[0].setVisibility(true);
+   }
+}
