@@ -168,7 +168,7 @@ function init(mapconfig) {
         displayInLayerSwitcher: false,
         slug:"P",
         type: 'png',
-        numZoomLevels: 19,
+        numZoomLevels: 20,
         getURL: getTileURL,
         tileOptions : {crossOriginKeyword: null} 
     });
