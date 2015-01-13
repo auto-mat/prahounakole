@@ -15,6 +15,7 @@ from django.views.decorators.gzip import *
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 from django.db.models import Q 
+from django.contrib.sites.models import get_current_site
 
 
 from webmap.models import OverlayLayer, Marker, Poi, Legend
@@ -112,7 +113,10 @@ def kml_view(request, nazev_vrstvy):
 
     # vsechny body co jsou v teto vrstve a jsou zapnute
     points = Poi.visible.filter(marker__layer=v).filter(geom__intersects = request.mesto.sektor.geom).kml()
-    return render_to_kml("webmap/gis/kml/layer.kml", { 'places' : points})
+    return render_to_kml("webmap/gis/kml/layer.kml", {
+       'places' : points,
+       'site': get_current_site(request).domain,
+    })
 
 @gzip_page
 def popup_view(request, poi_id):

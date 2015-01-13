@@ -2,15 +2,14 @@ from django.conf import settings
 from django.conf.urls import patterns, url, include
 from django.contrib import admin
 
-from cyklomapa.views import mapa_view, popup_view, uzavirky_view, metro_view, znacky_view
-from webmap.views import kml_view
+from cyklomapa.views import mapa_view, kml_view, popup_view, uzavirky_view, metro_view, znacky_view
 from cyklomapa.feeds import UzavirkyFeed, NovinkyFeed
 from httpproxy.views import HttpProxy
 
 urlpatterns = patterns('',
     (r'^$', mapa_view),
     (r'^misto/(\d+)/$', mapa_view),
-    (r'^kml/([-\w]+)/$', kml_view),
+    url(r'^kml/([-\w]+)/$', kml_view, name="kml_view"),
     (r'^popup/(\d+)/$', popup_view),
     (r'^uzavirky/$', uzavirky_view),
     url(r'^uzavirky/feed/$', UzavirkyFeed(), name="uzavirky_feed"),
