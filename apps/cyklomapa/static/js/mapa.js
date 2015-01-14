@@ -257,6 +257,7 @@ function setupPnkMap() {
             clickout: true,
             multiple: false,
             onUnselect: onFeatureUnselect,
+            onBeforeSelect: onBeforeFeatureSelect,
             onSelect: onFeatureSelect
         });
 
@@ -915,6 +916,14 @@ function removePoiLayers() {
         map.removeLayer(vectors[i]);
     }
 }
+
+function onBeforeFeatureSelect(feature) {
+    if(!$('#id_comment').length > 0 || $('#id_comment').val() == "" ||
+          confirm("Máte vyplněný komentář, přepnutím bodu ztratíte tento text.\nPřejete si opravdu bod přepnout?")){
+          return true;
+    }
+    return false;
+};
 
 function onFeatureSelect(feature) {
     setHashParameter('misto', feature.fid, false);
