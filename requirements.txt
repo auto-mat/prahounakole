@@ -11,6 +11,6 @@ django-fluent-comments==1.0b1
 -e git+https://github.com/PetrDlouhy/django-smart-selects.git#egg=django-smart-selects
 django-import-export
 #django-cors-headers
-django-sentry
+raven
 gunicorn
 newrelic
