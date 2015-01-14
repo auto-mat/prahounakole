@@ -6,7 +6,7 @@ psycopg2
 django-debug-toolbar
 django-colorful
 django-mass-edit
-django-fluent-comments
+django-fluent-comments==1.0b1
 -e git+https://github.com/auto-mat/django-webmap-corpus.git#egg=django-webmap-corpus
 -e git+https://github.com/PetrDlouhy/django-smart-selects.git#egg=django-smart-selects
 django-import-export

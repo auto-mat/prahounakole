@@ -191,6 +191,8 @@ THUMBNAIL_ALIASES = {
 
 REST_ENABLED=True
 
+COMMENTS_APP = 'fluent_comments'
+
 # import local settings
 try:
     from settings_local import *

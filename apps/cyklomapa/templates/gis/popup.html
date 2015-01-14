@@ -47,6 +47,11 @@
 {% endif %}
 
    <hr/>
+
+   <script>
+      $.getScript("{% static "fluent_comments/js/ajaxcomments.js" %}");
+   </script>
+
    {% get_comment_count for poi as comment_count %}
    <h3 id="hidden-header" class="margin_t_2">Komentáře ({{ comment_count }})</h3>
    <div id="comments-wrapper">
