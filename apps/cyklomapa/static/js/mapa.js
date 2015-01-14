@@ -979,6 +979,7 @@ function showPoiDetail(poi_id) {
 
 function createPopup(response) {
     $('#poi_text').html(response.responseText);
+    jQuery('#id_name,#id_email,#id_url').persist();
     $('#poi_box').show();
 };
 
