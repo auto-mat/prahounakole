@@ -1,5 +1,5 @@
 var map, layer_osm, layerPNK, layerPNK_BW,  kml, filter_rule, nofilter_rule, zoomFilter;
-var simpleSwitcher, layerSwitcher;
+var layerSwitcher;
 var appMode = ''; // pnkmap nebo routing
 // jakou cast zadani prave resime - slouzi hlavne pro obsluhu kurzoru
 // * start, stop - vychozi a cilovy bod
@@ -107,7 +107,6 @@ function init(mapconfig) {
     });
     mainFilter.filters.push(zoomFilter);
 
-    simpleSwitcher = new SimpleLayerSwitcher();
     var controls;
     if(mapconfig.mobilni) {
         controls = [
@@ -117,12 +116,11 @@ function init(mapconfig) {
             defaultPanZoom()
         ];
     } else {
-        layerSwitcher = new OpenLayers.Control.LayerSwitcher({roundedCornerColor:'#cb541c', ascending:0});
+        layerSwitcher = new OpenLayers.Control.LayerSwitcher({'div':OpenLayers.Util.getElement('layer_switcher')});
         controls = [
             new OpenLayers.Control.ArgParser({configureLayers: configureLayers}),
             new OpenLayers.Control.Attribution(),
             layerSwitcher,
-            simpleSwitcher,
             new OpenLayers.Control.Navigation(),
             new OpenLayers.Control.Permalink({createParams: createParams}),
             new OpenLayers.Control.ScaleLine({maxWidth: 300, bottomOutUnits: ''}),
@@ -154,17 +152,14 @@ function init(mapconfig) {
         "OpenStreetMap", { 
         slug: "O",
         displayOutsideMaxExtent: false,
-        displayInLayerSwitcher: false
     });
     var layerCycle  = new OpenLayers.Layer.OSM.CycleMap(
         "Cycle map", {
         slug: "C",
-        displayInLayerSwitcher: false
     });
     layerPNK = new OpenLayers.Layer.OSM(
         "Prahou na kole",
         "http://tiles.prahounakole.cz/", {
-        displayInLayerSwitcher: false,
         slug:"P",
         type: 'png',
         numZoomLevels: 20,
@@ -175,7 +170,6 @@ function init(mapconfig) {
     layerPNK_BW = new OpenLayers.Layer.OSM(
         "Vyhledávač PNK",
         "http://tilesbw.prahounakole.cz/", {
-        displayInLayerSwitcher: false,
         slug:"H",
         type: 'png',
         numZoomLevels: 19,
@@ -184,7 +178,6 @@ function init(mapconfig) {
     });
     var layerGoogle = new OpenLayers.Layer.Google(
         "Satelitní mapa Google", {
-        displayInLayerSwitcher: false,
         slug:"G",
         type: google.maps.MapTypeId.SATELLITE,
         numZoomLevels: 22
