@@ -179,7 +179,7 @@
             </div>
             <div class="modal-body">
               {% for preset in presets %}
-              <a href="javascript:activateLayers(['{{preset.base_layer.name}}', '{{preset.base_layer_names|join:"', '"}}']);">
+              <a href="javascript:activateLayers('{{preset.base_layer.name}}', ['{{preset.base_layer_names|join:"', '"}}']);">
                  <img src="media/{{ preset.icon }}" width="150px"/>
                  {{ preset.name }}
               </a> <br/>

@@ -1071,11 +1071,15 @@ function addRekola() {
      vectors.push(rekola);
 }
 
-function activateLayers(layers){
+function activateLayers(base_layer_name, overlay_layer_names){
+   map.setBaseLayer(map.getLayersByName(base_layer_name)[0]);
+
    for(var layer_id in map.layers){
-      map.layers[layer_id].setVisibility(false);
-   }
-   for(var layer_id in layers){
-      map.getLayersByName(layers[layer_id])[0].setVisibility(true);
+      layer = map.layers[layer_id]
+      if(!layer.isBaseLayer)
+        if($.inArray(layer.name, overlay_layer_names) >= 0)
+           map.layers[layer_id].setVisibility(true);
+        else
+           map.layers[layer_id].setVisibility(false);
    }
 }
