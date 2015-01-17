@@ -923,11 +923,11 @@ function onFeatureSelect(feature) {
     lastSelectedFeature = feature;
     $("#" + feature.geometry.id).attr("class", "selected");
 
-    selectedMarker.geometry = feature.geometry.clone();
-    if (selectedMarker.layer) {
-        selectedMarker.layer.removeFeatures([selectedMarker]);
-    }
-    feature.layer.addFeatures([selectedMarker]); 
+    //selectedMarker.geometry = feature.geometry.clone();
+    //if (selectedMarker.layer) {
+    //    selectedMarker.layer.removeFeatures([selectedMarker]);
+    //}
+    //feature.layer.addFeatures([selectedMarker]); 
 
     // Trochu hackovita podpora pro specialni vrstvu ReKola
     // obsah popup se netaha ze serveru, ale vyrabi se z KML
@@ -950,9 +950,9 @@ function onFeatureSelect(feature) {
 
 function onFeatureUnselect(feature) {
     $("#" + feature.geometry.id).removeAttr("class");
-    var l = selectedMarker.layer;
-    l.removeFeatures(selectedMarker);
-    selectedMarker.geometry.destroy();
+    //var l = selectedMarker.layer;
+    //l.removeFeatures(selectedMarker);
+    //selectedMarker.geometry.destroy();
 }
 
 function showPoiDetail(poi_id) {
