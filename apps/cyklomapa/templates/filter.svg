@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="0px" height="0px">
+  <defs>
+    <filter id="circle" x="-0.5" y="-0.5" width="2" height="2">
+      <feImage xlink:href="/static/img/circle.png"/>
+      <feMerge> 
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/> 
+      </feMerge>
+    </filter>
+  </defs>
+</svg>

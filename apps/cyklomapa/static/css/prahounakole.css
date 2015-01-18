@@ -788,5 +788,5 @@ td.distance:hover .leng {
 }
 
 .olLayerDiv:not(.olLayerGrid) image.selected {
-   filter: url(filter.svg#circle);
+   filter: url('/#circle');
 }
