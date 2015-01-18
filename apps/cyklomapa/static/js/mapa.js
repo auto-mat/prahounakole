@@ -11,6 +11,7 @@ var previewedRoute;
 var waypoints = [];
 var startFeature = null;
 var endFeature = null;
+var selectControl;
 var lastSelectedFeature;
 var criteria = {};
 var criteriaCnt = 0;
@@ -227,7 +228,7 @@ function showPanel(slug) {
 
 function setupPnkMap() {
     if (appMode == 'pnkmap') {
-        // uz jsme v rezimu routing, neni co delat
+        // uz jsme v rezimu pnkmap, neni co delat
         return;
     }
     if (appMode == 'routing') {
@@ -827,6 +828,7 @@ function onHashChange(e) {
         var poi_id = parseInt(args['misto']);
         mapconfig.center_feature = poi_id;
         setupPnkMap();
+        showPanel('mapa');
     }
     if (hash == 'informace') {
         showPanel('informace');
@@ -951,7 +953,7 @@ function createPopup(response) {
 function closePoiBox() {
     $('#poi_box').hide();
     removeHashParameter('misto', false);    
-    selectControl.unselectAll();
+    //XXX selectControl.unselectAll();
 }
 
 function zoomToSegment() {

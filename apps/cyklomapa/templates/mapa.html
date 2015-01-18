@@ -141,25 +141,10 @@
               <article>
                 <div id="content" class="col-md-10 col-md-offset-1">
                   <!-- here comes the treasure -->
+                  {% include "panel-mapa.html" %}
                   {% include "panel-hledani.html" %}
                   {% include "panel-informace.html" %}
-                   <div id="poi_box" class="row">
-                   <!--  <div class="col-md-3 col-md-offset-3 centred">
-                      <a class="sprite btn link"></a>
-                      <label for="link">Odkaz</label>
-                    </div>
-                    <div class="col-md-3 centred">
-                      <a class="sprite btn print"></a>
-                      <label for="print">Tisk</label>
-                    </div>
-                    <div class="col-md-3 centred">
-                      <a class="sprite btn close"></a>
-                      <label for="close">zavřít</label>
-                    </div>-->
-                    <div class="col-md-12 detail">
-                      <a id="poi_text" class="cont"></a>
-                    </div> 
-                  </div>
+                  {% include "panel-feedback.html" %}
                 </div>
               </article>
             </div>

@@ -269,6 +269,9 @@ i.point_B {
   -o-transition: all 0.1s linear 0.1s;
   transition: all 0.1s linear 0.1s;
 }
+.panel {
+  display: none;
+}
 .panel .to_b {
   margin-top: 0.3em;
 }
