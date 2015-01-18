@@ -786,3 +786,7 @@ td.distance:hover .leng {
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
   /* Styles */
 }
+
+.olLayerDiv:not(.olLayerGrid) image.selected {
+   filter: url('/#circle');
+}
