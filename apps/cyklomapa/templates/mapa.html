@@ -66,6 +66,7 @@
             mapconfig['vrstvy'].push(["{{v.name}}", "{% url 'kml_view' v.slug %}", enabled, "{{v.slug}}"]);
         {% endfor %} 
         mapconfig['basezoom'] = {{ mesto.zoom }};
+        mapconfig['address_search_area'] = "{{ mesto.sektor.geom.extent|join:"," }}";
         mapconfig['maxzoom'] = {{ mesto.maxzoom }};
         mapconfig['baselon'] = {{ mesto.geom.x }};
         mapconfig['baselat'] = {{ mesto.geom.y }};

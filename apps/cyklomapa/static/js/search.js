@@ -7,7 +7,7 @@ search_options = {
                   jsonp: 'json_callback',
                   data: {
                       format: "json",
-                      viewbox: "14.018,50.318,14.897,49.762",
+                      viewbox: mapconfig.address_search_area,
                       bounded: 1,
                       q: request.term
                   },
