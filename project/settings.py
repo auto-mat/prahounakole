@@ -73,6 +73,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'cyklomapa.middleware.subdomains_middleware.SubdomainsMiddleware',
     'author.middlewares.AuthorDefaultBackendMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 )
 
 ROOT_URLCONF = 'urls'
@@ -117,6 +119,7 @@ INSTALLED_APPS = [
     #'massadmin',
     'compressor',
     'raven.contrib.django.raven_compat',
+    'corsheaders',
 ]
 
 ENABLE_API_PROXY = DEBUG        # http-roxy pro requesty na /api
@@ -133,6 +136,9 @@ CONSTANCE_CONFIG = {
 }
 CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
 
+CORS_ORIGIN_WHITELIST = (
+    'cyklomapa.plzne.cz',
+)
 
 LOGGING = {
     'version': 1,

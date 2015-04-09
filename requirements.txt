@@ -17,6 +17,7 @@ django-constance-updated[database] #remove this after constance is updated for c
 django-smart-selects
 django-import-export
 raven
+django-cors-headers
 gunicorn
 newrelic
 -e git+https://github.com/PetrDlouhy/django-feedback.git@pnk_improvements#egg=django-feedback
