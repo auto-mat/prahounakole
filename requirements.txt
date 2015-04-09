@@ -9,7 +9,7 @@ django-mass-edit
 -e git+https://github.com/auto-mat/django-webmap-corpus.git@90e3eaa3#egg=django-webmap-corpus
 -e git+https://github.com/PetrDlouhy/django-smart-selects.git#egg=django-smart-selects
 django-import-export
-#django-cors-headers
+django-cors-headers
 django-sentry
 gunicorn
 newrelic
