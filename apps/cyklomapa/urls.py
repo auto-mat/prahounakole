@@ -8,7 +8,7 @@ from httpproxy.views import HttpProxy
 from django.contrib.comments.feeds import LatestCommentFeed
 
 urlpatterns = patterns('',
-    (r'^$', mapa_view),
+    url(r'^$', mapa_view, name="mapa_view"),
     (r'^misto/(\d+)/$', mapa_view),
     url(r'^kml/([-\w]+)/$', kml_view, name="kml_view"),
     (r'^popup/(\d+)/$', popup_view),

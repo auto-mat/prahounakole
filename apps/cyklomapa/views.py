@@ -19,6 +19,7 @@ from django.contrib.sites.models import get_current_site
 
 
 from webmap.models import OverlayLayer, Marker, Poi, Legend, MapPreset
+from models import Mesto
 
 # kopie  django.contrib.admin.views.main.get_query_string
 from django.utils.http import urlencode
@@ -84,6 +85,7 @@ def mapa_view(request, poi_id=None):
         'minimize_layerswitcher': minimize_layerswitcher,
         'mobilni': request.mobilni,
         'presets': MapPreset.objects.all(),
+        'mesta': Mesto.objects.all(),
         'historie': historie
     })
     if not request.mesto.aktivni and not request.user.is_authenticated():

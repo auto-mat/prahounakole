@@ -121,6 +121,9 @@
             <div class="row gold">
               <nav class="col-md-10 col-md-offset-1">
                 <div class="row centred">
+                     {% for mesto in mesta %}
+                        <a href="http://{{ mesto.sektor.slug }}.dopracenakole.net/">{{ mesto.sektor.name }}</a>
+                     {% endfor %}
                   <div class="col-md-12 logo">
                     <a href="http://mapa.prahounakole.cz">Prahou na kole <img src="{% static "css/prazak.png" %}" alt="mapa.prahounakole.cz">
                     </a>
