@@ -1,19 +1,25 @@
     <!-- TADY SE BUDE GENEROVAT OBSAH VRSTEV APOD. -->
       <div id="modal-layer" class="modal fade">
+         <a type="button" class="close-me" data-dismiss="modal">X</a>
         <div class="modal-dialog">
           <div class="modal-content">
-            <div class="modal-header">
-              <b type="button" class="" data-dismiss="modal">Close</b>
-            </div>
+            <!-- <div class="modal-header">
+              
+            </div> -->
             <div id="layer_switcher"></div>
             <div class="modal-body">
-              {% for preset in presets %}
-              <a href="javascript:activateLayers('{{preset.base_layer.name}}', ['{{preset.base_layer_names|join:"', '"}}']);">
-                 <img src="media/{{ preset.icon }}" width="150px"/>
-                 {{ preset.name }}
-              </a> <br/>
-              {% endfor %}
-              <hr/>
+              <div class="container">
+                <div class="row">
+                  {% for preset in presets %}
+                  <div class="col-md-3 each-view">
+                    <a href="javascript:activateLayers('{{preset.base_layer.name}}', ['{{preset.base_layer_names|join:"', '"}}']);">
+                       <img src="media/{{ preset.icon }}" class=""/>
+                       {{ preset.name }}
+                    </a>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
             </div>
           </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
