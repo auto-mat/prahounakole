@@ -1,26 +1,47 @@
-    <!-- TADY SE BUDE GENEROVAT OBSAH VRSTEV APOD. -->
-      <div id="modal-layer" class="modal fade">
-         <a type="button" class="close-me" data-dismiss="modal">X</a>
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <!-- <div class="modal-header">
-              
-            </div> -->
-            <div id="layer_switcher"></div>
-            <div class="modal-body">
-              <div class="container">
-                <div class="row">
-                  {% for preset in presets %}
-                  <div class="col-md-3 each-view">
-                    <a href="javascript:activateLayers('{{preset.base_layer.name}}', ['{{preset.base_layer_names|join:"', '"}}']);">
-                       <img src="media/{{ preset.icon }}" class=""/>
-                       {{ preset.name }}
-                    </a>
-                  </div>
-                  {% endfor %}
-                </div>
+<!-- TADY SE BUDE GENEROVAT OBSAH VRSTEV APOD. -->
+  <div id="modal-layer" class="modal fade">
+     <a type="button" class="close-me" data-dismiss="modal">X</a>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="container">
+            <div class="row">
+              {% for preset in presets %}
+              <div class="col-md-3 each-view">
+                <a href="javascript:activateLayers('{{preset.base_layer.name}}', ['{{preset.base_layer_names|join:"', '"}}']);">
+                   <img src="media/{{ preset.icon }}" class=""/>
+                   {{ preset.name }}
+                </a>
               </div>
+              {% endfor %}
             </div>
-          </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-      </div><!-- /.modal -->
+          </div>
+        </div>
+        <div id="layer_switcher"></div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+
+  <div id="modal-city" class="modal fade">
+     <a type="button" class="close-me" data-dismiss="modal">X</a>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- <div class="modal-header">
+          
+        </div> -->
+        <div id="layer_switcher"></div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="row centred">
+            <span class="globe"></span>
+            <br><br>
+              {% for mesto in mesta %}
+                <a href="http://{{ mesto.sektor.slug}}.dopracenakole.net/">{{ mesto.sektor.name }}</a><br>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->

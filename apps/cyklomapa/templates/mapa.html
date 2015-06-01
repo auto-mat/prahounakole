@@ -106,11 +106,15 @@
 
        
     </script>
+    <a id="layers-switch" data-toggle="modal" data-target="#modal-layer"></a>
       <div id="core" class="container">
         {% include "filter.svg" %}
         <div class="row">
           <div id="panel" class="col-md-3 col-sm-10">
-          <a class="panel_switch" href="#">&#8676;</a>
+            <div id="city_switch_holder">
+             <a id="city-switch" data-toggle="modal" data-target="#modal-city"></a>
+            </div>
+            <a class="panel_switch" href="#">&#8676;</a>
             <!-- sprclej panel -->
             <div class="row dildo hide">
                <a class="home" href="http://mapa.prahounakole.cz"><img src="{% static "css/prazak.png" %}" alt="mapa.prahounakole.cz">
@@ -121,28 +125,33 @@
             <div class="row gold">
               <nav class="col-md-10 col-md-offset-1">
                 <div class="row centred">
-                     {% for mesto in mesta %}
-                        <a href="http://{{ mesto.sektor.slug }}.dopracenakole.net/">{{ mesto.sektor.name }}</a>
-                     {% endfor %}
                   <div class="col-md-12 logo">
                     <a href="http://mapa.prahounakole.cz">Prahou na kole <img src="{% static "css/prazak.png" %}" alt="mapa.prahounakole.cz">
                     </a>
                   </div>
                   <div class="col-md-3">  
-                    <a href="#" class="sprite tab_switch btn mode-btn mapa active"></a>
-                    <label>Vyhledat</label>
+                    <a href="#" class="tab_switch active">
+                      <span class="sprite mapa btn mode-btn"></span>
+                      <label>Vyhledat</label>
+                    </a>
                   </div>
                   <div class="col-md-3 ">  
-                    <a href="#hledani" class="sprite tab_switch btn mode-btn hledani"></a>
-                    <label>Vyhledat trasu</label>
+                    <a href="#hledani" class="tab_switch">
+                      <span class="sprite btn mode-btn hledani"></span>
+                      <label>Vyhledat trasu</label>
+                    </a>
                   </div>
                   <div class="col-md-3">
-                    <a href="#informace" class="sprite tab_switch btn mode-btn informace"></a>
+                    <a href="#informace" class="tab_switch">
+                    <span class="sprite  btn mode-btn informace"></span>
                     <label>Informace</label>
+                    </a>
                   </div>
                   <div class="col-md-3">  
-                    <a href="#feedback" class="sprite tab_switch btn mode-btn feedback"></a>
+                    <a href="#feedback" class="tab_switch">
+                    <span class="sprite  btn mode-btn feedback"></span>
                     <label>Feedback</label>
+                    </a>
                   </div>
                 </div>
               </nav>
@@ -187,6 +196,22 @@
             $('.close').live("click",function(){
               $('#poi_box').slideUp(400).hide(400)
             });
+            // corect the map width on large screens
+             // 1445
+            function map_width_fix(){
+              W_width = $(window).width();
+              if(W_width > 1444){
+                panel_width = $('#panel').width();
+                $('.map_holder').css("width", W_width - panel_width);
+              }
+            }
+            map_width_fix();
+
+            $(window).resize(function(event) {
+              /* Act on the event */
+              map_width_fix()
+            });
+
 
           });
         </script>

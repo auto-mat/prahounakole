@@ -162,11 +162,14 @@ img{
     // -moz-border-radius: 30px;
     // border-radius: 30px;
     // border:2px solid #000;
+  }
+  .tab_switch{
     .anim_fast;
     .moderate_opacity;
     &:hover, &:focus, &:active, &.active{
       .anim_fast;
       .full_opacity;
+      text-decoration: none;
     }
   }
   .mapa{
@@ -378,7 +381,7 @@ i.point_B{
 }
 
 // modal view
-#modal-layer{
+#modal-layer, #modal-city{
   .close-me{
     position:fixed;
     top: 10px;
@@ -524,6 +527,22 @@ i.point_B{
     text-decoration: none;
   }
 }
+.globe{
+  width:30px;
+  height:30px;
+  display: inline-block;
+  background: url(../img/cityglobe.png) no-repeat center center;
+}
+#city_switch_holder{
+  float: right;
+  #city-switch{
+    position:absolute;
+    z-index: 50;
+    top: 70px;
+    margin-left: 13px;
+    .globe;
+  }
+}
 .minimized{
   .panel_switch{
     padding-left:0.5em;
@@ -534,8 +553,34 @@ i.point_B{
     transform: rotate(180deg);
   } 
 }
+#layers-switch{
+  position: fixed;
+  z-index: 50;
+  top: 10px;
+  right: 10px;
+  height:36px;
+  width:45px;
+  background:url(../img/layers.png) no-repeat 5px 0;
+  display: block;
+  &:hover, &:focus{
+    background:url(../img/layers.png) no-repeat -37px 0;
+  }
+  // &.active{
+  //   background:url(../img/layers.png) no-repeat -80px 0;
+  // }
+}
+.modal-open{
+  #layers-switch{
+    display: none;
+  }
+}
 .map_holder{
   position: fixed;
+}
+.minimized{
+   #city_switch_holder #city-switch{
+    top:10px;
+  } 
 }
 #map{
   width:100%;
@@ -607,6 +652,9 @@ td.distance:hover .leng{display:none}
     border-radius: 6px;
     -webkit-box-shadow: 0 3px 9px rgba(0,0,0,0.0);
     box-shadow: 0 3px 9px rgba(0,0,0,0.0);
+    .container{
+      width:100%;
+    }
   }
 
 // CSS miracles
@@ -666,6 +714,20 @@ td.distance:hover .leng{display:none}
 @media only screen 
 and (min-device-width : 320px) 
 and (max-device-width : 480px) {
+  .tab_switch{
+    label{
+      font-size:11px;
+    }
+  }
+  .olControlZoomPanel {
+    top: 50px;
+  }
+  #layers-switch{
+    right:3px;
+  }
+  #city_switch_holder #city-switch{
+    top:112px;
+  }
 /* Styles */
 }
 
@@ -797,12 +859,6 @@ and (max-width : 768px) {
       -moz-border-radius: 30px;
       border-radius: 30px;
       border:2px solid #000;
-      .anim_fast;
-      .moderate_opacity;
-      &:hover, &:focus, &:active, &.active{
-        .anim_fast;
-        .full_opacity;
-      }
     }
     .mapa{
       background-position: -64px -9px;
