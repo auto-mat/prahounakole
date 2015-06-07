@@ -191,6 +191,7 @@ THUMBNAIL_ALIASES = {
 
 REST_ENABLED=True
 
+FLUENT_COMMENTS_EXCLUDE_FIELDS = ('url',)
 COMMENTS_APP = 'fluent_comments'
 
 # import local settings
