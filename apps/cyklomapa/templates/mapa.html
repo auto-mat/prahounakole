@@ -212,6 +212,18 @@
               map_width_fix()
             });
 
+            // advanced menu in layers layer
+            // live('click', function(event) {
+            //   /* Act on the event */
+            // });
+            $('.baseLbl').on('click', function () {
+              e.preventDefault();
+              $('.baseLayersDiv').toggle();
+            });
+            $('.dataLbl').on('click', function () {
+              e.preventDefault();
+              $('.dataLayersDiv').toggle();
+            });
 
           });
         </script>

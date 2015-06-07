@@ -437,8 +437,24 @@ i.point_B{
       }
     }
   }
+  .baseLayersDiv, .dataLayersDiv, #OpenLayers_Control_MinimizeDiv{
+    display: none;
+    padding:1em 0;
+  }
+  .dataLbl, .baseLbl{
+    text-decoration: underline;
+    color: #333;
+    &:hover{
+      color: #000;
+    }
+  }
+  input[type=radio], input[type=checkbox]{
+    margin-right: 0.3em;
+  }
 }
-
+.modal-backdrop{
+  position: fixed;
+}
 // naseptavac
 .ui-menu {
   z-index: 1000;
@@ -527,19 +543,14 @@ i.point_B{
     text-decoration: none;
   }
 }
-.globe{
-  width:30px;
-  height:30px;
-  display: inline-block;
-  background: url(../img/cityglobe.png) no-repeat center center;
-}
+
 #city_switch_holder{
   float: right;
   #city-switch{
-    position:absolute;
-    z-index: 50;
-    top: 70px;
-    margin-left: 13px;
+    position:fixed;
+    z-index: 900;
+    top: 114px;
+    margin-left: 19px;
     .globe;
   }
 }
@@ -552,10 +563,48 @@ i.point_B{
     -ms-transform: rotate(180deg);
     transform: rotate(180deg);
   } 
+  
+}
+.globe{
+  width:33px;
+  height:33px;
+  display: inline-block;
+  background: url(../img/controls.png) no-repeat 0 -58px;
+  .moderate_opacity_;
+  &:hover{
+    .full_opacity;
+  }
+}
+#OpenLayers_Control_ZoomPanel_10{
+  // minus
+  .olControlZoomOutItemInactive{
+    .globe;
+    background-position: 0 -33px; 
+    top:75px;
+    height:25px;
+  }
+  // center
+  .olControlZoomToMaxExtentItemInactive{
+    .globe;
+    background-position: 0 -95px;
+    top:39px;
+    left:-1px;
+  }
+  // plus
+  .olControlZoomInItemInactive{
+    .globe;
+    background-position: 0 0; 
+    
+  }
+}
+.panel_minimized{
+  #OpenLayers_Control_ZoomPanel_10{
+    left: 119px;
+  }
 }
 #layers-switch{
   position: fixed;
-  z-index: 50;
+  z-index: 900;
   top: 10px;
   right: 10px;
   height:36px;
@@ -577,11 +626,7 @@ i.point_B{
 .map_holder{
   position: fixed;
 }
-.minimized{
-   #city_switch_holder #city-switch{
-    top:10px;
-  } 
-}
+
 #map{
   width:100%;
   height:100vh;
@@ -684,6 +729,14 @@ td.distance:hover .leng{display:none}
   filter: progid:DXImageTransform.Microsoft.Alpha(opacity=40);
   filter:alpha(opacity=40);
 }
+.moderate_opacity_{
+    -moz-opacity: 0.80;
+  -khtml-opacity: 0.80;
+  opacity: 0.80;
+  // -ms-filter:"progid:DXImageTransform.Microsoft.Alpha"(Opacity=40);
+  filter: progid:DXImageTransform.Microsoft.Alpha(opacity=40);
+  filter:alpha(opacity=40);
+}
 .full_opacity{
     -moz-opacity: 1;
   -khtml-opacity: 1;
@@ -719,14 +772,30 @@ and (max-device-width : 480px) {
       font-size:11px;
     }
   }
-  .olControlZoomPanel {
-    top: 50px;
+  // .olControlZoomPanel {
+  //   top: 50px;
+  // }
+  .olControlZoomPanel{
+    left:14px;
   }
   #layers-switch{
-    right:3px;
+    right:0px;
+    top:160px;
   }
   #city_switch_holder #city-switch{
-    top:112px;
+    top:116px;
+    margin-left: 14px;
+  }
+  .panel_minimized{
+    #city_switch_holder{
+    #city-switch{
+          top: 10px;
+          margin-left: 63px;
+      }
+    }
+    #layers-switch{
+      top:6px;
+    }
   }
 /* Styles */
 }
@@ -847,6 +916,9 @@ and (max-width : 640px){
 @media only screen 
 and (max-width : 768px) {
 /* Styles */
+.modal-body{
+  padding:40px 15px 15px 15px;
+}
   #panel{
     .logo{
       font-size:25px;
