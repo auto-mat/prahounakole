@@ -1,4 +1,4 @@
-Django<1.8
+Django<1.9
 easy-thumbnails
 -e hg+https://pdlouhy@bitbucket.org/pdlouhy/django-http-proxy#egg=django-http-proxy
 python-memcached
