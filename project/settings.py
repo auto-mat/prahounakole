@@ -105,7 +105,7 @@ INSTALLED_APPS = [
     'fluent_comments',
     'comments_moderation',
     'crispy_forms',
-    'django.contrib.comments',
+    'django_comments',
     'colorful',
     #'massadmin',
     'raven.contrib.django.raven_compat',
