@@ -85,7 +85,7 @@ def mapa_view(request, poi_id=None):
         'minimize_layerswitcher': minimize_layerswitcher,
         'mobilni': request.mobilni,
         'presets': MapPreset.objects.all(),
-        'mesta': Mesto.objects.all(),
+        'mesta': Mesto.objects.order_by('sektor__name').all(),
         'historie': historie
     })
     if not request.mesto.aktivni and not request.user.is_authenticated():
