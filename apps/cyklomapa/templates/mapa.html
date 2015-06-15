@@ -114,7 +114,9 @@
             <div id="city_switch_holder">
              <a id="city-switch" data-toggle="modal" data-target="#modal-city"></a>
             </div>
-            <a class="panel_switch" href="#">&#8676;</a>
+            <span class="panel_switch_holder">
+              <a class="panel_switch" href="#">&#8676;</a>
+            </span>
             <!-- sprclej panel -->
             <div class="row dildo hide">
                <a class="home" href="http://mapa.prahounakole.cz"><img src="{% static "css/prazak.png" %}" alt="mapa.prahounakole.cz">
@@ -213,18 +215,10 @@
             });
 
             // advanced menu in layers layer
-            // live('click', function(event) {
-            //   /* Act on the event */
-            // });
-            $('.baseLbl').on('click', function () {
+            $('#advanced_switch').on('click', function (e) {
               e.preventDefault();
-              $('.baseLayersDiv').toggle();
+              $('#layer_switcher').toggle();
             });
-            $('.dataLbl').on('click', function () {
-              e.preventDefault();
-              $('.dataLayersDiv').toggle();
-            });
-
           });
         </script>
   </body>

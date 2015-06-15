@@ -19,7 +19,16 @@
         <!-- <label for="close">zavřít</label> -->
       </div>
    </div>
-
+<script type="text/javascript">
+// print page
+jQuery(document).ready(function($) {
+  $('.print').on('click', function (e) {
+    e.preventDefault();
+    console.log('print')
+    window.print()
+  });
+});
+ </script>
 </div>
 
 <div class="rc">

@@ -124,7 +124,8 @@ img:focus {
   display: block;
   text-align: center;
   padding: 0;
-  margin-top: -1em;
+  margin-top: 1.5em;
+  padding-right: 0.4em;
 }
 #panel h4 {
   font-size: 1.6em;
@@ -137,7 +138,7 @@ img:focus {
 }
 #panel .logo {
   font-size: 29px;
-  margin: 0.5em 0 0.5em 0;
+  margin: 1em 0 0.5em 0;
   text-align: center;
 }
 #panel .logo a {
@@ -459,33 +460,42 @@ i.point_B {
   border-radius: 3px;
   padding-bottom: 0.3em;
 }
-#modal-layer .baseLayersDiv,
-#modal-city .baseLayersDiv,
-#modal-layer .dataLayersDiv,
-#modal-city .dataLayersDiv,
+#modal-layer #layer_switcher,
+#modal-city #layer_switcher,
 #modal-layer #OpenLayers_Control_MinimizeDiv,
 #modal-city #OpenLayers_Control_MinimizeDiv {
   display: none;
   padding: 1em 0;
 }
+#modal-layer #advanced_switch,
+#modal-city #advanced_switch {
+  text-decoration: underline;
+  color: #555;
+}
+#modal-layer #advanced_switch:hover,
+#modal-city #advanced_switch:hover {
+  color: #000;
+}
 #modal-layer .dataLbl,
 #modal-city .dataLbl,
 #modal-layer .baseLbl,
 #modal-city .baseLbl {
-  text-decoration: underline;
-  color: #333;
+  color: #555;
+  margin-bottom: 1em;
 }
-#modal-layer .dataLbl:hover,
-#modal-city .dataLbl:hover,
-#modal-layer .baseLbl:hover,
-#modal-city .baseLbl:hover {
-  color: #000;
+#modal-layer .dataLbl,
+#modal-city .dataLbl {
+  margin-top: 1em;
 }
 #modal-layer input[type=radio],
 #modal-city input[type=radio],
 #modal-layer input[type=checkbox],
 #modal-city input[type=checkbox] {
   margin-right: 0.3em;
+}
+.preset_name {
+  min-height: 3em;
+  display: block;
 }
 .modal-backdrop {
   position: fixed;
@@ -570,20 +580,25 @@ i.point_B {
   -moz-transform: rotate(45deg);
   /* Firefox */
 }
-.panel_switch {
+.panel_switch_holder {
+  margin-top: 0.3em;
+  float: right;
+}
+.panel_switch_holder .panel_switch {
+  position: relative;
+  margin-left: -51px;
   font-size: 2em;
   color: #333;
-  padding: 0 0.3em;
+  padding: 0.16em 0.3em 0 0.3em;
   border-radius: 3px;
-  float: right;
   text-decoration: none;
   -webkit-transition: all 0.1s linear 0.1s;
   -moz-transition: all 0.1s linear 0.1s;
   -o-transition: all 0.1s linear 0.1s;
   transition: all 0.1s linear 0.1s;
 }
-.panel_switch:hover,
-.panel_switch.active {
+.panel_switch_holder .panel_switch:hover,
+.panel_switch_holder .panel_switch.active {
   color: #000;
   text-decoration: none;
   position: relative;
@@ -598,8 +613,8 @@ i.point_B {
   -o-transition: all 0.1s linear 0.1s;
   transition: all 0.1s linear 0.1s;
 }
-.panel_switch:active,
-.panel_switch:focus {
+.panel_switch_holder .panel_switch:active,
+.panel_switch_holder .panel_switch:focus {
   text-decoration: none;
 }
 #city_switch_holder {
@@ -1124,9 +1139,11 @@ td.distance:hover .leng {
   }
   #panel .print {
     background-position: -361px -4px;
+    cursor: pointer;
   }
   #panel .close {
     background-position: -420px -3px;
+    cursor: pointer;
   }
 }
 /* Desktops and laptops ----------- */

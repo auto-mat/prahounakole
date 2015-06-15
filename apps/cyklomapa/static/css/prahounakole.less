@@ -119,10 +119,11 @@ img{
     min-height: 100px;
     background:url(../img/dildo_bcg.png) no-repeat right bottom transparent; 
     .home{
-      display: block;
-      text-align: center;
-      padding:0;
-      margin-top: -1em;
+        display: block;
+        text-align: center;
+        padding: 0;
+        margin-top: 1.5em;
+        padding-right: 0.4em;
     }
   }
 
@@ -139,7 +140,7 @@ img{
   }
   .logo{
     font-size:29px;
-    margin:@dist 0 @dist 0;
+    margin:1em 0 @dist 0;
     text-align: center;
     a{
       text-decoration: none;
@@ -437,20 +438,31 @@ i.point_B{
       }
     }
   }
-  .baseLayersDiv, .dataLayersDiv, #OpenLayers_Control_MinimizeDiv{
+  #layer_switcher, #OpenLayers_Control_MinimizeDiv{
     display: none;
     padding:1em 0;
   }
-  .dataLbl, .baseLbl{
+  #advanced_switch{
     text-decoration: underline;
-    color: #333;
+    color: #555;
     &:hover{
       color: #000;
     }
   }
+  .dataLbl, .baseLbl{
+    color: #555;
+    margin-bottom: 1em;
+  }
+  .dataLbl{
+    margin-top: 1em;
+  }
   input[type=radio], input[type=checkbox]{
     margin-right: 0.3em;
   }
+}
+.preset_name{
+  min-height: 3em;
+  display: block;
 }
 .modal-backdrop{
   position: fixed;
@@ -521,27 +533,32 @@ i.point_B{
     }
   }
 }
-.panel_switch{
-  font-size:2em;
-  color:#333;
-  padding:0 0.3em;
-  border-radius: 3px;
+.panel_switch_holder{
+  margin-top: 0.3em;
   float: right;
-  text-decoration: none;
-  .anim_fast;
-  &:hover, &.active{
-    color:#000;
-    text-decoration: none;
+  .panel_switch{
     position: relative;
-    -webkit-animation: left-to-right 1s infinite; /* Chrome, Safari, Opera */
-    -webkit-animation-direction: alternate; /* Chrome, Safari, Opera */
-    animation: left-to-right 1s infinite;
-    animation-direction: alternate;
-    .anim_fast;
-  }
-  &:active, &:focus{
+    margin-left: -51px;
+    font-size:2em;
+    color:#333;
+    padding: 0.16em 0.3em 0 0.3em;
+    border-radius: 3px;
     text-decoration: none;
-  }
+    .anim_fast;
+    &:hover, &.active{
+      color:#000;
+      text-decoration: none;
+      position: relative;
+      -webkit-animation: left-to-right 1s infinite; /* Chrome, Safari, Opera */
+      -webkit-animation-direction: alternate; /* Chrome, Safari, Opera */
+      animation: left-to-right 1s infinite;
+      animation-direction: alternate;
+      .anim_fast;
+    }
+    &:active, &:focus{
+      text-decoration: none;
+    }
+}
 }
 
 #city_switch_holder{
@@ -949,9 +966,11 @@ and (max-width : 768px) {
     }
     .print{
       background-position: -361px -4px;
+      cursor: pointer;
     }
     .close{
       background-position: -420px -3px;
+      cursor: pointer;
     }
   }
 }

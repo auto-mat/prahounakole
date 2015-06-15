@@ -10,14 +10,23 @@
               <div class="col-md-3 col-sm-6 each-view">
                 <a href="javascript:activateLayers('{{preset.base_layer.name}}', ['{{preset.base_layer_names|join:"', '"}}']);">
                    <img src="media/{{ preset.icon }}" class=""/>
+                </a>
+                <a class="preset_name" href="javascript:activateLayers('{{preset.base_layer.name}}', ['{{preset.base_layer_names|join:"', '"}}']);">
                    {{ preset.name }}
                 </a>
               </div>
               {% endfor %}
             </div>
           </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <b id="advanced_switch">Pokročilé nastavení</b>
+                <div id="layer_switcher"></div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div id="layer_switcher"></div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
