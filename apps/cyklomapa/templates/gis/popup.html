@@ -33,9 +33,11 @@ jQuery(document).ready(function($) {
 
 <div class="rc">
 {% if fotky %}
-  {% thumbnail fotky.0.photo "250x250" as foto_thumb %}
-    <a href="{{ settings.SITE_URL}}{{ fotky.0.photo.url }}" title="Fotka v plném rozlišení" target="_blank">
-    <img src="{{ settings.SITE_URL}}{{ foto_thumb.url }}" title="{{ fotky.0 }}" width="{{ foto_thumb.width }}" height="{{ foto_thumb.height }}" class="foto_thumb"></a>
+  {% for fotka in fotky %}
+    {% thumbnail fotka.photo "250x250" as foto_thumb %}
+    <a href="{{ settings.SITE_URL}}{{ fotka.photo.url }}" title="Fotka v plném rozlišení" target="_blank">
+    <img src="{{ settings.SITE_URL}}{{ foto_thumb.url }}" title="{{ fotka }}" width="{{ foto_thumb.width }}" height="{{ foto_thumb.height }}" class="foto_thumb"></a>
+  {% endfor %}
 {% endif %}
 
 {% if poi.desc %}

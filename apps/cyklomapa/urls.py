@@ -5,7 +5,7 @@ from django.contrib import admin
 from cyklomapa.views import mapa_view, kml_view, popup_view, uzavirky_view, metro_view, znacky_view
 from cyklomapa.feeds import UzavirkyFeed, NovinkyFeed
 from httpproxy.views import HttpProxy
-from django.contrib.comments.feeds import LatestCommentFeed
+from django_comments.feeds import LatestCommentFeed
 
 urlpatterns = patterns('',
     url(r'^$', mapa_view, name="mapa_view"),

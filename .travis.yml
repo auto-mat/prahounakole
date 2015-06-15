@@ -1,0 +1,11 @@
+language: python
+python:
+  - "2.7"
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - psql --no-password travis_ci_test -U postgres -c "create extension postgis"
+script: 
+  - ./update.sh reinstall
+  - python manage.py migrate
+addons:
+  postgresql: "9.3"

@@ -1,16 +1,15 @@
-Django<1.8
+Django<1.9
 easy-thumbnails
--e hg+https://pdlouhy@bitbucket.org/pdlouhy/django-http-proxy#egg=django-http-proxy
+django-http-proxy
 python-memcached
 psycopg2
 django-debug-toolbar
 django-colorful
 django-mass-edit
-django-fluent-comments==1.0b1
+django-fluent-comments
 -e git+https://github.com/auto-mat/django-webmap-corpus.git#egg=django-webmap-corpus
--e git+https://github.com/PetrDlouhy/django-smart-selects.git#egg=django-smart-selects
+django-smart-selects
 django-import-export
-#django-cors-headers
 raven
 gunicorn
 newrelic
