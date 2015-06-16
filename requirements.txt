@@ -1,4 +1,5 @@
-Django<1.9
+#Django<1.9 - wait for django-constance to be compatible with this version
+Django<1.8
 easy-thumbnails
 django-http-proxy
 python-memcached
