@@ -194,6 +194,8 @@ REST_ENABLED=True
 FLUENT_COMMENTS_EXCLUDE_FIELDS = ('url',)
 COMMENTS_APP = 'fluent_comments'
 
+SECRET_KEY = 'change_me'
+
 # import local settings
 try:
     from settings_local import *
