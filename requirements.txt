@@ -1,5 +1,4 @@
-#Django<1.9 - wait for django-constance to be compatible with this version
-Django<1.8
+Django<1.9
 easy-thumbnails
 django-http-proxy
 python-memcached
@@ -14,3 +13,4 @@ django-import-export
 raven
 gunicorn
 newrelic
+django-constance-updated[database] #remove this after constance is updated for compatibility with Django 1.8
