@@ -24,6 +24,6 @@ if [ "$1" = "migrate" ]; then
 fi
 env/bin/python ./manage.py collectstatic --noinput
 touch wsgi.py
-sudo supervisorctl restart $app_name
+type supervisorctl && sudo supervisorctl restart $app_name
 
 echo "App succesfully updated"
