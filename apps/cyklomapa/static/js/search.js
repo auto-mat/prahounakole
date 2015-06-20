@@ -30,12 +30,15 @@ search_options = {
                   new OpenLayers.Projection("EPSG:4326"),
                   map.getProjectionObject()
             );
+            map.setCenter(lonlat, 16);
+            if (appMode != 'routing') {
+                return;
+            }
             if (e.target.id == "jpStartStreetSearch") {
                 marker = startMarker;
             } else {
                 marker = endMarker;
             };
-            map.setCenter(lonlat, 16);
             curpos = marker.geometry;
             marker.geometry.move(lonlat.lon - curpos.x, lonlat.lat - curpos.y);
             setWaypoint(marker);
