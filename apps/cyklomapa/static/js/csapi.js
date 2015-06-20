@@ -1,7 +1,7 @@
 var CSApi = {
   //apiKey: 'ad9beeeff0afb15e',
   apiKey: '',
-  //baseUrl: 'http://praha.cyclestreets.net',
+  v2baseUrl: 'https://api.cyclestreets.net',
   baseUrl: '',
 
   // dict of GML returned from CS server indexed by plan name
@@ -37,6 +37,10 @@ var CSApi = {
       internalProjection: map.getProjectionObject(),
       externalProjection: new OpenLayers.Projection("EPSG:4326")
     });
+    CSApi.formatJSON =  new OpenLayers.Format.GeoJSON({
+      internalProjection: map.getProjectionObject(),
+      externalProjection: new OpenLayers.Projection("EPSG:4326")
+    });
   },
 
   nearestPoint: function (feature, callback) {
@@ -44,12 +48,12 @@ var CSApi = {
     pos.transform(map.getProjectionObject(), new OpenLayers.Projection("EPSG:4326"));
     longitude = pos.x;
     latitude = pos.y;
-    var url =  this.baseUrl + '/api/nearestpoint.xml?key=' + this.apiKey + '&useDom=1&longitude=' + this.r6(longitude) + '&latitude=' + this.r6(latitude);
+    var url =  this.v2baseUrl + '/v2/nearestpoint?key=' + this.apiKey + '&lonlat=' + this.r6(longitude) + ',' + this.r6(latitude);
     $.ajax({
       url: url,
       dataType: "text",
       success: function (data) {
-        var features = CSApi.formatGML.read(data);
+        var features = CSApi.formatJSON.read(data);
         callback(features);
       }
     });
