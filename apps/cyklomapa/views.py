@@ -89,6 +89,7 @@ def mapa_view(request, poi_id=None):
         'mobilni': request.mobilni,
         'presets': MapPreset.objects.all(),
         'mesta': Mesto.objects.order_by('sektor__name').all(),
+        'uzavirky': Poi.objects.select_related('marker').filter(status__show=True, marker__slug='vyluka_akt'),
         'historie': historie
     })
     if not (request.mesto and request.mesto.aktivni) and not request.user.is_authenticated():

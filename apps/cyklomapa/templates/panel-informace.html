@@ -1,9 +1,15 @@
 {% load static %}
 <div id="informace" class="panel row">
   <div class="col-md-12">
-  <h4>Informace</h4>
+  <h4>O mapě</h4>
   <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur iusto doloremque, officiis quibusdam laboriosam eaque ut aperiam asperiores fugiat quisquam! Suscipit officiis libero doloribus aliquid facilis dolor eveniet porro eos perferendis doloremque incidunt unde, assumenda labore deleniti distinctio earum? Sunt quidem voluptate amet dicta dolorem sit ex laboriosam, aut, suscipit.
   </p>
   </div>
+  <h4>Historie</h4>
+  {% include "panel-historie.html" %}
+  <h4>Město</h4>
+  {{ mesto.uvodni_zprava }}
+  <h4>Uzavírky</h4>
+  {% include "panel-uzavirky.html" %}
 </div>
