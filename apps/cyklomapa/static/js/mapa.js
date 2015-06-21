@@ -231,9 +231,20 @@ function setupPnkMap() {
     if(!mapconfig.mobilni) {
         kmlvrstvy = mapconfig.vrstvy;
         for (var i in kmlvrstvy) {
-            addPoiLayer(kmlvrstvy[i][0], mapconfig.root_url + kmlvrstvy[i][1], kmlvrstvy[i][2] == 'True', kmlvrstvy[i][3]);
+            switch(kmlvrstvy[i][3]) {
+                case 'r':
+                    addRekola();
+                    break;
+                case 'D1':
+                    addDPNK1();
+                    break;
+                case 'D2':
+                    addDPNK2();
+                    break;
+                default:
+                    addPoiLayer(kmlvrstvy[i][0], mapconfig.root_url + kmlvrstvy[i][1], kmlvrstvy[i][2] == 'True', kmlvrstvy[i][3]);
+            }
         }
-        addRekola();
 
         selectControl = new OpenLayers.Control.SelectFeature(
             vectors, {
@@ -999,13 +1010,33 @@ function onLocationUpdate(evt) {
     map.zoomToExtent(position_layer.getDataExtent());
 }
 
+function addDPNK1() {
+  var dpnk_gpxfile = new OpenLayers.Layer.WMS("Nahrané denní Do práce na kole 2015",
+     "http://www.auto-mat.cz:8080/geoserver/dpnk/wms?tiled=true",
+     {
+        slug:"D1",
+        layers: 'dpnk:the_gpx_geom_anonymous',
+        format: 'image/png',
+        transparent: true,
+  });
+  dpnk_gpxfile.setVisibility(false);
+  map.addLayers([dpnk_gpxfile]);
+}
+
+function addDPNK2() {
+  var dpnk_tracks = new OpenLayers.Layer.WMS("Zadané trasy Do práce na kole 2015",
+     "http://www.auto-mat.cz:8080/geoserver/dpnk/wms?tiled=true",
+     {
+        slug:"D2",
+        layers: 'dpnk:tracks_anonymous',
+        format: 'image/png',
+        transparent: true,
+  });
+  dpnk_tracks.setVisibility(false);
+  map.addLayers([dpnk_tracks]);
+}
+
 function addRekola() {
-    for (var i=0; i < vectors.length; i++) {
-        if (vectors[i].slug == 'r') {
-            map.addLayer(vectors[i]);
-            return;
-        }
-     }
      var rekola = new OpenLayers.Layer.Vector("ReKola", {
          slug: "r",
          strategies: [new OpenLayers.Strategy.Fixed()],
