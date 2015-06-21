@@ -167,6 +167,14 @@ function init(mapconfig) {
         getURL: getTileURL,
         tileOptions : {crossOriginKeyword: null} 
     });
+    layerBW = new OpenLayers.Layer.OSM(
+        "Černobílý Mapnik",
+        "http://a.tiles.wmflabs.org/bw-mapnik/", {
+        slug:"C",
+        type: 'png',
+        numZoomLevels: 20,
+        getURL: getTileURL,
+    });
     var layerGoogle = new OpenLayers.Layer.Google(
         "Satelitní mapa Google", {
         slug:"G",
@@ -176,7 +184,7 @@ function init(mapconfig) {
 
      map.addLayers([layerPNK]);
      if(!mapconfig.mobilni) {
-         map.addLayers([layer_osm, layerCycle, layerGoogle]);
+         map.addLayers([layer_osm, layerCycle, layerGoogle, layerBW]);
          layerGoogle.mapObject.setTilt(0);
      }
 
