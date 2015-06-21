@@ -167,16 +167,6 @@ function init(mapconfig) {
         getURL: getTileURL,
         tileOptions : {crossOriginKeyword: null} 
     });
-    // tlumena verze mapy pro vyhledavac
-    layerPNK_BW = new OpenLayers.Layer.OSM(
-        "Vyhledávač PNK",
-        "http://tilesbw.prahounakole.cz/", {
-        slug:"H",
-        type: 'png',
-        numZoomLevels: 19,
-        getURL: getTileURL,
-        tileOptions : {crossOriginKeyword: null}
-    });
     var layerGoogle = new OpenLayers.Layer.Google(
         "Satelitní mapa Google", {
         slug:"G",
@@ -186,7 +176,7 @@ function init(mapconfig) {
 
      map.addLayers([layerPNK]);
      if(!mapconfig.mobilni) {
-         map.addLayers([layerPNK_BW, layer_osm, layerCycle, layerGoogle]);
+         map.addLayers([layer_osm, layerCycle, layerGoogle]);
          layerGoogle.mapObject.setTilt(0);
      }
 
