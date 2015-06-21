@@ -6,11 +6,16 @@ psycopg2
 django-debug-toolbar
 django-colorful
 django-mass-edit
+
+-e git+https://github.com/PetrDlouhy/django-contrib-comments.git#egg=django-contrib-comments #remove after #a54aff6 is in pip
+
 django-fluent-comments
+
+django-constance-updated[database] #remove this after constance is updated for compatibility with Django 1.8
+
 -e git+https://github.com/auto-mat/django-webmap-corpus.git#egg=django-webmap-corpus
 django-smart-selects
 django-import-export
 raven
 gunicorn
 newrelic
-django-constance-updated[database] #remove this after constance is updated for compatibility with Django 1.8
