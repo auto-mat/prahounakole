@@ -3,13 +3,13 @@
   <div class="col-md-12">
   <h4>O mapě</h4>
   <p>
-     {{ config.ABOUT_MAP }}
+     {{ config.ABOUT_MAP|safe }}
   </p>
   </div>
   <h4>Historie</h4>
   {% include "panel-historie.html" %}
   <h4>Město</h4>
-  {{ mesto.uvodni_zprava }}
+  {{ mesto.uvodni_zprava|safe }}
   <h4>Uzavírky</h4>
   {% include "panel-uzavirky.html" %}
 </div>
