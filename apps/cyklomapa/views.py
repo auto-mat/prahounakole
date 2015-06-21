@@ -73,7 +73,10 @@ def mapa_view(request, poi_id=None):
         minimize_layerswitcher = 1
         nomenu = 1
 
-    historie = Poi.objects.filter(status__show=True, geom__intersects=request.mesto.sektor.geom).order_by('last_modification').reverse()[:10]
+    if request.mesto:
+        historie = Poi.objects.filter(status__show=True, geom__intersects=request.mesto.sektor.geom).order_by('last_modification').reverse()[:10]
+    else:
+        historie = None
 
     context = RequestContext(request, {
         'root_url': ROOT_URL,
@@ -88,7 +91,7 @@ def mapa_view(request, poi_id=None):
         'mesta': Mesto.objects.order_by('sektor__name').all(),
         'historie': historie
     })
-    if not request.mesto.aktivni and not request.user.is_authenticated():
+    if not (request.mesto and request.mesto.aktivni) and not request.user.is_authenticated():
        return render_to_response('neaktivni.html', context_instance=context)
 
     return render_to_response('mapa.html', context_instance=context)

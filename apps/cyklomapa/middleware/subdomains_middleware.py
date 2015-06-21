@@ -27,4 +27,7 @@ class SubdomainsMiddleware:
         request.subdomain = getattr(settings, 'FORCE_SUBDOMAIN', request.subdomain)
 
         # najdeme mesto podle slugu. pokud neexistuje, vyhodime 404
-        request.mesto = get_object_or_404(Mesto, sektor__slug = request.subdomain)
+        try:
+            request.mesto = Mesto.objects.get(sektor__slug=request.subdomain)
+        except Mesto.DoesNotExist:
+            request.mesto = None
