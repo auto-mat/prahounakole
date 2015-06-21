@@ -56,6 +56,7 @@ from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
 TEMPLATE_CONTEXT_PROCESSORS += (
      'django.core.context_processors.request',
      'django.core.context_processors.media',
+     'constance.context_processors.config',
      'django.contrib.messages.context_processors.messages',
 ) 
 
@@ -120,6 +121,7 @@ CONSTANCE_CONFIG = {
     'MAP_BASELAT': (50.08741, u'zeměpisná délka základní polohy mapy'),
     'MAP_BOUNDS': ("14.22, 49.95, 14.8, 50.18", u'hranice zobrazení mapy'),
     'DEFAULT_STATUS_ID': (2, u'id defaultního statusu'),
+    'ABOUT_MAP': ("Lorem ipsum", u'info o mapě'),
 }
 CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
 
