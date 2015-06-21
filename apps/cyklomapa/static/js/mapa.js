@@ -275,6 +275,7 @@ function setupPnkMap() {
          geocontrol.activate();
          geocontrol.events.register("locationupdated", geocontrol, onLocationUpdate);
      }
+     $('#mapStreetSearch').autocomplete(search_options);
 
      appMode = 'pnkmap';
 } // setupPnkMap
