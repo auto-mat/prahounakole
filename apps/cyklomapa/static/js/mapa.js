@@ -1051,7 +1051,7 @@ function activateLayers(base_layer_name, overlay_layer_names){
 
    for(var layer_id in map.layers){
       layer = map.layers[layer_id]
-      if(!layer.isBaseLayer)
+      if(layer.displayInLayerSwitcher && !layer.isBaseLayer)
         if($.inArray(layer.name, overlay_layer_names) >= 0)
            map.layers[layer_id].setVisibility(true);
         else
