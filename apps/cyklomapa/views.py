@@ -87,7 +87,7 @@ def mapa_view(request, poi_id=None):
         'mesto': request.mesto,
         'minimize_layerswitcher': minimize_layerswitcher,
         'mobilni': request.mobilni,
-        'presets': MapPreset.objects.all(),
+        'presets': MapPreset.objects.filter(status__show=True),
         'mesta': Mesto.objects.order_by('sektor__name').all(),
         'uzavirky': Poi.objects.select_related('marker').filter(status__show=True, marker__slug='vyluka_akt'),
         'historie': historie
