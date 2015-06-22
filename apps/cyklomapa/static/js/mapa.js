@@ -745,6 +745,7 @@ function selectFeatureById(poi_id) {
    var feat = getPoi(poi_id);
    if(feat) {
       map.zoomToExtent(feat.geometry.getBounds());
+      selectControl.unselectAll();
       selectControl.select(feat);
    }
 }
