@@ -235,7 +235,7 @@ function setupPnkMap() {
         destroyRouting();
     }
 
-    //map.setBaseLayer(layerPNK);
+    map.setBaseLayer(layerPNK);
     $('.olControlLayerSwitcher').show();
 
     if(!mapconfig.mobilni) {
@@ -306,6 +306,7 @@ function setupRouting() {
        destroyPnkMap();
     }
 
+    map.setBaseLayer(layerBW);
     $('.olControlLayerSwitcher').hide(); // jinak zustane po LS prouzek zpusobeny marginem
     CSApi.init(map, 'ad9beeeff0afb15e');
 
