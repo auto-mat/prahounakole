@@ -483,9 +483,9 @@ a.olControlZoomOut {
     transition: opacity 0.2s linear;
 }
 
-.cb-tiles {
-    filter: gray;
+.cb-tiles > img {
     filter: grayscale(100%);
+    filter: gray;
     -webkit-filter: grayscale(100%);
 }
 
