@@ -2,7 +2,7 @@
 <div>
    {% cache 3600 uzavirky mesto.sektor.slug %}
    {% for u in uzavirky %}
-      <a href="{{  u.get_absolute_url }}" target="_top" title="{{ u.desc|safe }}">
+      <a href="{{  u.get_absolute_url }}" onclick="selectFeatureById({{u.id}});return false;" target="_top" title="{{ u.desc|safe }}">
          <img src="{{ u.marker.default_icon.url }}" align="left">
          {{ u.name|safe }}
       </a>

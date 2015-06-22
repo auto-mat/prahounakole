@@ -743,7 +743,10 @@ function onMouseMove(e) {
 
 function selectFeatureById(poi_id) {
    var feat = getPoi(poi_id);
-   selectControl.select(feat);
+   if(feat) {
+      map.setCenter(new OpenLayers.LonLat(feat.geometry.x, feat.geometry.y), 17)
+      selectControl.select(feat);
+   }
 }
 
 function parseHash() {
@@ -852,12 +855,13 @@ function onHashChange(e) {
 
 function getPoi(id) {
     var feat;
-    for(var i=0; i<map.layers.length; i++) {
-        if (map.layers[i].isBaseLayer)
-            continue;
-        feat = map.layers[i].getFeatureByFid(id);
-        if (feat) {
-            return feat;
+    for(var layer_id in map.layers) {
+        layer = map.layers[layer_id]
+        if (layer.getFeatureByFid) {
+           feat = layer.getFeatureByFid(id);
+           if (feat) {
+               return feat;
+           }
         }
     }
 }
