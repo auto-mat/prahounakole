@@ -488,3 +488,7 @@ a.olControlZoomOut {
     filter: grayscale(100%);
     -webkit-filter: grayscale(100%);
 }
+
+.olLayerDiv:not(.olLayerGrid) image.selected {
+   filter: url('/#circle');
+}
