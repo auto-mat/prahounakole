@@ -744,7 +744,7 @@ function onMouseMove(e) {
 function selectFeatureById(poi_id) {
    var feat = getPoi(poi_id);
    if(feat) {
-      map.setCenter(new OpenLayers.LonLat(feat.geometry.x, feat.geometry.y), 17)
+      map.zoomToExtent(feat.geometry.getBounds());
       selectControl.select(feat);
    }
 }
@@ -870,7 +870,7 @@ function onLoadEnd(evt) {
     if (mapconfig.center_feature) {
        var feature = this.getFeatureByFid(mapconfig.center_feature);
        if (feature) {
-           map.setCenter(new OpenLayers.LonLat(feature.geometry.x, feature.geometry.y), 17)
+           map.zoomToExtent(feature.geometry.getBounds());
            selectControl.select(feature);
        }
     }
