@@ -168,9 +168,9 @@ function init(mapconfig) {
         tileOptions : {crossOriginKeyword: null} 
     });
     layerBW = new OpenLayers.Layer.OSM(
-        "Černobílý Mapnik",
+        "Černobílá",
         "http://a.tiles.wmflabs.org/bw-mapnik/", {
-        slug:"C",
+        slug:"CB",
         type: 'png',
         numZoomLevels: 20,
         getURL: getTileURL,
