@@ -8,10 +8,10 @@
             <div class="row">
               {% for preset in presets %}
               <div class="col-md-3 col-sm-6 each-view">
-                <a href="javascript:activateLayers('{{preset.base_layer.name}}', ['{{preset.base_layer_names|join:"', '"}}']);">
+                <a href="javascript:activateLayers('{{preset.base_layer.slug}}', ['{{preset.overlay_layers_slugs|join:"', '"}}']);">
                    <img src="media/{{ preset.icon }}" class=""/>
                 </a>
-                <a class="preset_name" href="javascript:activateLayers('{{preset.base_layer.name}}', ['{{preset.base_layer_names|join:"', '"}}']);">
+                <a class="preset_name" href="javascript:activateLayers('{{preset.base_layer.slug}}', ['{{preset.overlay_layers_slugs|join:"', '"}}']);">
                    {{ preset.name }}
                 </a>
               </div>

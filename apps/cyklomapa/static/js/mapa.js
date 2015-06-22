@@ -1,4 +1,4 @@
-var map, layer_osm, layerPNK, layerPNK_BW,  kml, filter_rule, nofilter_rule, zoomFilter;
+var map, layer_osm, layerPNK, kml, filter_rule, nofilter_rule, zoomFilter;
 var layerSwitcher;
 var appMode = ''; // pnkmap nebo routing
 // jakou cast zadani prave resime - slouzi hlavne pro obsluhu kurzoru
@@ -304,7 +304,6 @@ function setupRouting() {
        destroyPnkMap();
     }
 
-    //map.setBaseLayer(layerPNK_BW);
     $('.olControlLayerSwitcher').hide(); // jinak zustane po LS prouzek zpusobeny marginem
     CSApi.init(map, 'ad9beeeff0afb15e');
 
@@ -1022,11 +1021,11 @@ function addDPNK1() {
   var dpnk_gpxfile = new OpenLayers.Layer.WMS("Nahrané denní Do práce na kole 2015",
      "http://www.auto-mat.cz:8080/geoserver/dpnk/wms?tiled=true",
      {
-        slug:"D1",
         layers: 'dpnk:the_gpx_geom_anonymous',
         format: 'image/png',
         transparent: true,
   });
+  dpnk_gpxfile.slug = "D1"
   dpnk_gpxfile.setVisibility(false);
   map.addLayers([dpnk_gpxfile]);
 }
@@ -1035,11 +1034,11 @@ function addDPNK2() {
   var dpnk_tracks = new OpenLayers.Layer.WMS("Zadané trasy Do práce na kole 2015",
      "http://www.auto-mat.cz:8080/geoserver/dpnk/wms?tiled=true",
      {
-        slug:"D2",
         layers: 'dpnk:tracks_anonymous',
         format: 'image/png',
         transparent: true,
   });
+  dpnk_tracks.slug = "D2"
   dpnk_tracks.setVisibility(false);
   map.addLayers([dpnk_tracks]);
 }
@@ -1075,13 +1074,13 @@ function addRekola() {
      vectors.push(rekola);
 }
 
-function activateLayers(base_layer_name, overlay_layer_names){
-   map.setBaseLayer(map.getLayersByName(base_layer_name)[0]);
+function activateLayers(base_layer_slug, overlay_layer_slugs){
+   map.setBaseLayer(map.getLayersBy("slug", base_layer_slug)[0]);
 
    for(var layer_id in map.layers){
       layer = map.layers[layer_id]
       if(layer.displayInLayerSwitcher && !layer.isBaseLayer)
-        if($.inArray(layer.name, overlay_layer_names) >= 0)
+        if($.inArray(layer.slug, overlay_layer_slugs) >= 0)
            map.layers[layer_id].setVisibility(true);
         else
            map.layers[layer_id].setVisibility(false);
