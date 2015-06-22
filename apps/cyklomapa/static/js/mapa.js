@@ -847,9 +847,11 @@ function onHashChange(e) {
         showPanel('mapa');
     }
     if (hash == 'informace') {
+        setupPnkMap();
         showPanel('informace');
     }
     if (hash == 'feedback') {
+        setupPnkMap();
         showPanel('feedback');
     }
 }
