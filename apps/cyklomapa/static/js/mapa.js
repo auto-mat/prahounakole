@@ -169,11 +169,13 @@ function init(mapconfig) {
     });
     layerBW = new OpenLayers.Layer.OSM(
         "Černobílá",
-        "http://a.tiles.wmflabs.org/bw-mapnik/", {
+        "http://tiles.prahounakole.cz/", {
         slug:"CB",
         type: 'png',
         numZoomLevels: 20,
         getURL: getTileURL,
+        className: "cb-tiles",
+        tileOptions : {crossOriginKeyword: null}
     });
     var layerGoogle = new OpenLayers.Layer.Google(
         "Satelitní mapa Google", {
