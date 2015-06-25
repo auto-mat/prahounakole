@@ -1094,6 +1094,9 @@ function addCSLayer() {
      cs_layer.styleMap.styles["default"].defaultStyle.strokeColor = "#006500";
      cs_layer.styleMap.styles["default"].defaultStyle.fillOpacity = 0.85;
      cs_layer.styleMap.styles["default"].defaultStyle.fillColor = "#006500";
+     cs_layer.styleMap.styles["select"].defaultStyle.fillColor = "#53B431";
+     cs_layer.styleMap.styles["select"].defaultStyle.strokeColor = "#53B431";
+     cs_layer.styleMap.styles["select"].defaultStyle.fillOpacity = 0.85;
      map.addLayers([cs_layer]);
      vectors.push(cs_layer);
 }
@@ -1125,6 +1128,7 @@ function addRekola() {
      rekola.styleMap.styles["default"].defaultStyle.graphicWidth = 20;
      rekola.styleMap.styles["default"].defaultStyle.graphicHeight = 20;
      rekola.styleMap.styles["default"].defaultStyle.fillOpacity = 1;
+     rekola.styleMap.styles["select"].defaultStyle.fillOpacity = 1;
      map.addLayers([rekola]);
      vectors.push(rekola);
 }
