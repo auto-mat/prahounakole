@@ -170,7 +170,7 @@ function init(mapconfig) {
     layerBW = new OpenLayers.Layer.OSM(
         "Černobílá",
         "http://tiles.prahounakole.cz/", {
-        slug:"CB",
+        slug:"W",
         type: 'png',
         numZoomLevels: 20,
         getURL: getTileURL,
@@ -248,10 +248,10 @@ function setupPnkMap() {
                 case 'r':
                     addRekola();
                     break;
-                case 'D1':
+                case 'g':
                     addDPNK1();
                     break;
-                case 'D2':
+                case 't':
                     addDPNK2();
                     break;
                 default:
@@ -1059,7 +1059,7 @@ function addDPNK1() {
         format: 'image/png',
         transparent: true,
   });
-  dpnk_gpxfile.slug = "D1"
+  dpnk_gpxfile.slug = "g"
   dpnk_gpxfile.setVisibility(false);
   map.addLayers([dpnk_gpxfile]);
 }
@@ -1072,7 +1072,7 @@ function addDPNK2() {
         format: 'image/png',
         transparent: true,
   });
-  dpnk_tracks.slug = "D2"
+  dpnk_tracks.slug = "t"
   dpnk_tracks.setVisibility(false);
   map.addLayers([dpnk_tracks]);
 }
