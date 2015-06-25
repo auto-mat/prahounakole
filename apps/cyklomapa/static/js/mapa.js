@@ -927,7 +927,7 @@ function onFeatureSelect(feature) {
 
     // Trochu hackovita podpora pro specialni vrstvu ReKola
     // obsah popup se netaha ze serveru, ale vyrabi se z KML
-    if (feature.layer.name == "ReKola") {
+    if (feature.layer.slug == "r") {
         var response = {};
         response.responseText =
             '<div> <div class="trc"> <h4>' +
