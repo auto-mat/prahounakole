@@ -242,6 +242,9 @@ function setupPnkMap() {
         kmlvrstvy = mapconfig.vrstvy;
         for (var i in kmlvrstvy) {
             switch(kmlvrstvy[i][3]) {
+                case 'a':
+                    addCSLayer();
+                    break;
                 case 'r':
                     addRekola();
                     break;
@@ -941,6 +944,27 @@ function onFeatureSelect(feature) {
         createPopup.call(feature, response);
         return;
     }
+    if (feature.layer.slug == "a") {
+        var response = {};
+        var photo = ""
+        if(feature.attributes.photo_thumb_url){
+            photo = "<img src='http://www.cyklistesobe.cz/" + feature.attributes.photo_thumb_url + "'>";
+        }
+        response.responseText =
+            '<div> <div class="trc"> <h4>' +
+            feature.attributes.title +
+            '</h4> <div class="row controls"> <div class="col-md-2 col-md-offset-10 centred"> <a class="sprite btn close" title="Zavřít popis místa"></a> </div> </div> </div> <div class="rc"><p>' +
+            photo +
+            feature.attributes.description +
+            '<p><a href="http://www.cyklistesobe.cz/' +
+            feature.attributes.url +
+            '" target="_blank">Cyklisté sobě</a>' +
+            '</div></div>';
+        feature.attributes.width = 32;
+        feature.attributes.height = 20;
+        createPopup.call(feature, response);
+        return;
+    }
     showPoiDetail(feature.fid);
 }
 
@@ -1051,6 +1075,27 @@ function addDPNK2() {
   dpnk_tracks.slug = "D2"
   dpnk_tracks.setVisibility(false);
   map.addLayers([dpnk_tracks]);
+}
+
+function addCSLayer() {
+     var cs_layer = new OpenLayers.Layer.Vector("Cyklisté sobě", {
+         slug: "a",
+         strategies: [new OpenLayers.Strategy.Fixed()],
+         protocol: new OpenLayers.Protocol.HTTP({
+            url: "http://prahounakole.cz/wp-content/pnk/cs_tracks/list.json",
+            format: new OpenLayers.Format.GeoJSON(),
+        })
+     });
+     cs_layer.styleMap.styles["default"].defaultStyle.cursor = 'pointer';
+     cs_layer.styleMap.styles["default"].defaultStyle.externalGraphic = '/static/img/cyklistesobe.png';
+     cs_layer.styleMap.styles["default"].defaultStyle.graphicWidth = 20;
+     cs_layer.styleMap.styles["default"].defaultStyle.graphicHeight = 20;
+     cs_layer.styleMap.styles["default"].defaultStyle.strokeWidth = 3;
+     cs_layer.styleMap.styles["default"].defaultStyle.strokeColor = "#006500";
+     cs_layer.styleMap.styles["default"].defaultStyle.fillOpacity = 0.85;
+     cs_layer.styleMap.styles["default"].defaultStyle.fillColor = "#006500";
+     map.addLayers([cs_layer]);
+     vectors.push(cs_layer);
 }
 
 function addRekola() {
