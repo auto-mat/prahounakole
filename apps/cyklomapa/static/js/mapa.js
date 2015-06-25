@@ -241,21 +241,25 @@ function setupPnkMap() {
     if(!mapconfig.mobilni) {
         kmlvrstvy = mapconfig.vrstvy;
         for (var i in kmlvrstvy) {
-            switch(kmlvrstvy[i][3]) {
+            name = kmlvrstvy[i][0];
+            url = mapconfig.root_url + kmlvrstvy[i][1];
+            enabled = kmlvrstvy[i][2] == 'True';
+            slug = kmlvrstvy[i][3];
+            switch(slug) {
                 case 'a':
-                    addCSLayer();
+                    addCSLayer(name, enabled, slug);
                     break;
                 case 'r':
-                    addRekola();
+                    addRekola(name, enabled, slug);
                     break;
                 case 'g':
-                    addDPNK1();
+                    addDPNK1(name, enabled, slug);
                     break;
                 case 't':
-                    addDPNK2();
+                    addDPNK2(name, enabled, slug);
                     break;
                 default:
-                    addPoiLayer(kmlvrstvy[i][0], mapconfig.root_url + kmlvrstvy[i][1], kmlvrstvy[i][2] == 'True', kmlvrstvy[i][3]);
+                    addPoiLayer(name, url, enabled, slug);
             }
         }
 
@@ -1051,35 +1055,35 @@ function onLocationUpdate(evt) {
     map.zoomToExtent(position_layer.getDataExtent());
 }
 
-function addDPNK1() {
-  var dpnk_gpxfile = new OpenLayers.Layer.WMS("Nahrané denní Do práce na kole 2015",
+function addDPNK1(name, enabled, slug) {
+  var dpnk_gpxfile = new OpenLayers.Layer.WMS(name,
      "http://www.auto-mat.cz:8080/geoserver/dpnk/wms?tiled=true",
      {
         layers: 'dpnk:the_gpx_geom_anonymous',
         format: 'image/png',
         transparent: true,
   });
-  dpnk_gpxfile.slug = "g"
-  dpnk_gpxfile.setVisibility(false);
+  dpnk_gpxfile.slug = slug
+  dpnk_gpxfile.setVisibility(enabled);
   map.addLayers([dpnk_gpxfile]);
 }
 
-function addDPNK2() {
-  var dpnk_tracks = new OpenLayers.Layer.WMS("Zadané trasy Do práce na kole 2015",
+function addDPNK2(name, enabled, slug) {
+  var dpnk_tracks = new OpenLayers.Layer.WMS(name,
      "http://www.auto-mat.cz:8080/geoserver/dpnk/wms?tiled=true",
      {
         layers: 'dpnk:tracks_anonymous',
         format: 'image/png',
         transparent: true,
   });
-  dpnk_tracks.slug = "t"
-  dpnk_tracks.setVisibility(false);
+  dpnk_tracks.slug = slug
+  dpnk_tracks.setVisibility(enabled);
   map.addLayers([dpnk_tracks]);
 }
 
-function addCSLayer() {
-     var cs_layer = new OpenLayers.Layer.Vector("Cyklisté sobě", {
-         slug: "a",
+function addCSLayer(name, enabled, slug) {
+     var cs_layer = new OpenLayers.Layer.Vector(name, {
+         slug: slug,
          strategies: [new OpenLayers.Strategy.Fixed()],
          protocol: new OpenLayers.Protocol.HTTP({
             url: "http://prahounakole.cz/wp-content/pnk/cs_tracks/list.json",
@@ -1103,13 +1107,14 @@ function addCSLayer() {
            fillOpacity: 0.85,
         },
      });
+     cs_layer.setVisibility(enabled);
      map.addLayers([cs_layer]);
      vectors.push(cs_layer);
 }
 
-function addRekola() {
-     var rekola = new OpenLayers.Layer.Vector("ReKola", {
-         slug: "r",
+function addRekola(name, enabled, slug) {
+     var rekola = new OpenLayers.Layer.Vector(name, {
+         slug: slug,
          strategies: [new OpenLayers.Strategy.Fixed()],
          protocol: new OpenLayers.Protocol.Script({
             // pomoci Yahoo obchazime crossdomain bezpecnostni politiku
@@ -1141,6 +1146,7 @@ function addRekola() {
            fillOpacity: 1,
         },
      });
+     rekola.setVisibility(enabled);
      map.addLayers([rekola]);
      vectors.push(rekola);
 }
