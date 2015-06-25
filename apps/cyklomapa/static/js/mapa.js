@@ -932,7 +932,7 @@ function onFeatureSelect(feature) {
         response.responseText =
             '<div> <div class="trc"> <h4>' +
             feature.attributes.name +
-            '</h4> </div><div class="rc"><p>' + 
+            '</h4> <div class="row controls"> <div class="col-md-2 col-md-offset-10 centred"> <a class="sprite btn close" title="Zavřít popis místa"></a> </div> </div> </div> <div class="rc"><p>' +
             feature.attributes.description +
             '<p><a href="http://www.rekola.cz/" target="_blank">ReKola - komunitní bikesharing (zatím) v Praze</a>' +
             '</div></div>';
