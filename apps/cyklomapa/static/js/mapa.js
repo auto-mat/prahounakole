@@ -1086,17 +1086,23 @@ function addCSLayer() {
             format: new OpenLayers.Format.GeoJSON(),
         })
      });
-     cs_layer.styleMap.styles["default"].defaultStyle.cursor = 'pointer';
-     cs_layer.styleMap.styles["default"].defaultStyle.externalGraphic = '/static/img/cyklistesobe.png';
-     cs_layer.styleMap.styles["default"].defaultStyle.graphicWidth = 20;
-     cs_layer.styleMap.styles["default"].defaultStyle.graphicHeight = 20;
-     cs_layer.styleMap.styles["default"].defaultStyle.strokeWidth = 3;
-     cs_layer.styleMap.styles["default"].defaultStyle.strokeColor = "#006500";
-     cs_layer.styleMap.styles["default"].defaultStyle.fillOpacity = 0.85;
-     cs_layer.styleMap.styles["default"].defaultStyle.fillColor = "#006500";
-     cs_layer.styleMap.styles["select"].defaultStyle.fillColor = "#53B431";
-     cs_layer.styleMap.styles["select"].defaultStyle.strokeColor = "#53B431";
-     cs_layer.styleMap.styles["select"].defaultStyle.fillOpacity = 0.85;
+     cs_layer.styleMap = new OpenLayers.StyleMap({
+        "default": {
+           cursor: 'pointer',
+           externalGraphic: '/static/img/cyklistesobe.png',
+           graphicWidth: 20,
+           graphicHeight: 20,
+           strokeWidth: 3,
+           strokeColor: "#006500",
+           fillOpacity: 0.85,
+           fillColor: "#006500",
+        },
+        "select": {
+           fillColor: "#53B431",
+           strokeColor: "#53B431",
+           fillOpacity: 0.85,
+        },
+     });
      map.addLayers([cs_layer]);
      vectors.push(cs_layer);
 }
@@ -1123,12 +1129,18 @@ function addRekola() {
             }
         })
      });
-     rekola.styleMap.styles["default"].defaultStyle.cursor = 'pointer';
-     rekola.styleMap.styles["default"].defaultStyle.externalGraphic = '/static/img/rekola.png';
-     rekola.styleMap.styles["default"].defaultStyle.graphicWidth = 20;
-     rekola.styleMap.styles["default"].defaultStyle.graphicHeight = 20;
-     rekola.styleMap.styles["default"].defaultStyle.fillOpacity = 1;
-     rekola.styleMap.styles["select"].defaultStyle.fillOpacity = 1;
+     rekola.styleMap = new OpenLayers.StyleMap({
+        "default": {
+           cursor: 'pointer',
+           externalGraphic: '/static/img/rekola.png',
+           graphicWidth: 20,
+           graphicHeight: 20,
+           fillOpacity: 1,
+        },
+        "select": {
+           fillOpacity: 1,
+        },
+     });
      map.addLayers([rekola]);
      vectors.push(rekola);
 }
