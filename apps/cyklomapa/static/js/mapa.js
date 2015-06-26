@@ -918,6 +918,7 @@ function removePoiLayers() {
     for (var i=0; i < vectors.length; i++) {
         map.removeLayer(vectors[i]);
     }
+    vectors = [];
 }
 
 function onBeforeFeatureSelect(feature) {
