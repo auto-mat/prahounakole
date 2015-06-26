@@ -6,10 +6,16 @@
      {{ config.ABOUT_MAP|safe }}
   </p>
   </div>
+
   <h4>Historie</h4>
   {% include "panel-historie.html" %}
+
   <h4>Město</h4>
   {{ mesto.uvodni_zprava|safe }}
+
   <h4>Uzavírky</h4>
   {% include "panel-uzavirky.html" %}
+
+  <h4>Legenda</h4>
+  {% include "panel-legenda.html" %}
 </div>
