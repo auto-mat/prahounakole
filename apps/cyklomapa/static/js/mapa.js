@@ -11,6 +11,8 @@ var previewedRoute;
 var waypoints = [];
 var startFeature = null;
 var endFeature = null;
+var drag = null;
+var isRoutingSet = false;
 var selectControl;
 var lastSelectedFeature;
 var criteria = {};
@@ -240,38 +242,46 @@ function setupPnkMap() {
 
     if(!mapconfig.mobilni) {
         kmlvrstvy = mapconfig.vrstvy;
-        for (var i in kmlvrstvy) {
-            name = kmlvrstvy[i][0];
-            url = mapconfig.root_url + kmlvrstvy[i][1];
-            enabled = kmlvrstvy[i][2] == 'True';
-            slug = kmlvrstvy[i][3];
-            switch(slug) {
-                case 'a':
-                    addCSLayer(name, enabled, slug);
-                    break;
-                case 'r':
-                    addRekola(name, enabled, slug);
-                    break;
-                case 'g':
-                    addDPNK1(name, enabled, slug);
-                    break;
-                case 't':
-                    addDPNK2(name, enabled, slug);
-                    break;
-                default:
-                    addPoiLayer(name, url, enabled, slug);
-            }
-        }
+        if(vectors.length == 0){
+           for (var i in kmlvrstvy) {
+               name = kmlvrstvy[i][0];
+               url = mapconfig.root_url + kmlvrstvy[i][1];
+               enabled = kmlvrstvy[i][2] == 'True';
+               slug = kmlvrstvy[i][3];
+               switch(slug) {
+                   case 'a':
+                       addCSLayer(name, enabled, slug);
+                       break;
+                   case 'r':
+                       addRekola(name, enabled, slug);
+                       break;
+                   case 'g':
+                       addDPNK1(name, enabled, slug);
+                       break;
+                   case 't':
+                       addDPNK2(name, enabled, slug);
+                       break;
+                   default:
+                       addPoiLayer(name, url, enabled, slug);
+               }
+           }
+        } else {
+           for (var i=0; i < vectors.length; i++) {
+              vectors[i].setVisibility(vectors[i].was_visible);
+           };
+        };
 
-        selectControl = new OpenLayers.Control.SelectFeature(
-            vectors, {
-            toggle: true,
-            clickout: true,
-            multiple: false,
-            onUnselect: onFeatureUnselect,
-            onBeforeSelect: onBeforeFeatureSelect,
-            onSelect: onFeatureSelect
-        });
+        if(!selectControl){
+           selectControl = new OpenLayers.Control.SelectFeature(
+               vectors, {
+               toggle: true,
+               clickout: true,
+               multiple: false,
+               onUnselect: onFeatureUnselect,
+               onBeforeSelect: onBeforeFeatureSelect,
+               onSelect: onFeatureSelect
+           });
+        };
 
         map.addControl(selectControl);
         selectControl.activate();
@@ -300,7 +310,7 @@ function setupPnkMap() {
 
 function destroyPnkMap() {
     map.removeControl(selectControl);
-    selectControl.destroy();
+    selectControl.deactivate();
     removePoiLayers();
 }
 
@@ -314,82 +324,90 @@ function setupRouting() {
     }
 
     map.setBaseLayer(layerBW);
-    $('.olControlLayerSwitcher').hide(); // jinak zustane po LS prouzek zpusobeny marginem
     CSApi.init(map, 'ad9beeeff0afb15e');
 
-    markerLayer = new OpenLayers.Layer.Vector("Start/cil", {
-        styleMap: new OpenLayers.StyleMap({
-            externalGraphic: "${icon}",
-            pointRadius: 15,
-            graphicWidth: '${w}',
-            graphicHeight: '${h}',
-            graphicXOffset: '${xof}',
-            graphicYOffset: '${yof}',
-            graphicTitle: "Přetažením změníte trasu"
-        }),
-        displayInLayerSwitcher: false
-    });
-    map.addLayer(markerLayer);
-    drag = new OpenLayers.Control.DragFeature(markerLayer, {
-        onStart: onDragStart,
-        onComplete: onDragComplete
-    });
-    map.addControl(drag);
-    drag.activate();
-    startMarker = new OpenLayers.Feature.Vector(
-        new OpenLayers.Geometry.Point(0,0), {
-            icon: "/static/img/route-start.png",
-            w: 34, h: 42, xof: -17, yof: -42 }
-    );
-    endMarker = new OpenLayers.Feature.Vector(
-        new OpenLayers.Geometry.Point(0,0),
-            { icon: "/static/img/route-stop.png",
-            w:34, h:42, xof: -17, yof: -42 }
-    );
-    wpAttrs = { icon: "/static/img/waypoint.png", w:26, h:35, xof: -8, yof: -32 };
-    middleMarker = new OpenLayers.Feature.Vector(
-        new OpenLayers.Geometry.Point(0,0), 
-        wpAttrs
-    );
+    if(isRoutingSet){
+       markerLayer.setVisibility(true);
+    } else {
+       markerLayer = new OpenLayers.Layer.Vector("Start/cil", {
+           styleMap: new OpenLayers.StyleMap({
+               externalGraphic: "${icon}",
+               pointRadius: 15,
+               graphicWidth: '${w}',
+               graphicHeight: '${h}',
+               graphicXOffset: '${xof}',
+               graphicYOffset: '${yof}',
+               graphicTitle: "Přetažením změníte trasu"
+           }),
+           displayInLayerSwitcher: false
+       });
+       map.addLayer(markerLayer);
+    }
 
-    // zabranime odeslani formu, kdyz uzivatel zmackne enter v okamziku,
-    // kdy neni vybrana polozka autocompletu 
-    $(".jpSearch").keypress(function(e) {
-        var code = (e.keyCode ? e.keyCode : e.which);
-        if(code == 13) { //Enter keycode
-            return false;
-        }
-    });
-    $('#jpStartStreetSearch').autocomplete(search_options);
-    $('#jpFinishStreetSearch').autocomplete(search_options);
-    addJourneyLayer();
+    if(!isRoutingSet){
+       drag = new OpenLayers.Control.DragFeature(markerLayer, {
+           onStart: onDragStart,
+           onComplete: onDragComplete
+       });
+
+       startMarker = new OpenLayers.Feature.Vector(
+           new OpenLayers.Geometry.Point(0,0), {
+               icon: "/static/img/route-start.png",
+               w: 34, h: 42, xof: -17, yof: -42 }
+       );
+       endMarker = new OpenLayers.Feature.Vector(
+           new OpenLayers.Geometry.Point(0,0),
+               { icon: "/static/img/route-stop.png",
+               w:34, h:42, xof: -17, yof: -42 }
+       );
+       wpAttrs = { icon: "/static/img/waypoint.png", w:26, h:35, xof: -8, yof: -32 };
+       middleMarker = new OpenLayers.Feature.Vector(
+           new OpenLayers.Geometry.Point(0,0),
+           wpAttrs
+       );
+
+       // zabranime odeslani formu, kdyz uzivatel zmackne enter v okamziku,
+       // kdy neni vybrana polozka autocompletu
+       $(".jpSearch").keypress(function(e) {
+           var code = (e.keyCode ? e.keyCode : e.which);
+           if(code == 13) { //Enter keycode
+               return false;
+           }
+       });
+       $('#jpStartStreetSearch').autocomplete(search_options);
+       $('#jpFinishStreetSearch').autocomplete(search_options);
+       $('#jpPlanButton').click(onPlanButtonClick);
+       $('.jpPlanType').click(onPlanSelect);
+       $('.jpPlanType').hover(previewPlanIn, previewPlanOut);
+       selectedPlan = null;
+       $('#jpStartStreetSearch').focus();
+       $('#jpFeedbackForm').dialog({
+           autoOpen: false,
+           modal: true,
+           buttons: {
+               //"Poslat": function() {
+               //},
+               "Zrušit": function() { $(this).dialog("close"); }
+           },
+           title: "Připomínka k nalezené trase",
+           width: "350px"
+       });
+       $('#jpFeedbackButton')
+           .click(function() {
+               //$('#jpFeedbackForm #trasa').val(CSApi.itinerary);
+               //$('#jpFeedbackForm #varianta').val(selectedPlan);
+               $('#jpFeedbackMailto').attr('href',
+                   'mailto:redakce@prahounakole.cz?subject=Připomínka k trase ' + CSApi.itinerary + ', varianta ' + selectedPlan);
+               $('#jpFeedbackForm').dialog("open");
+           });
+    }
+
     toggleButtons();
     map.events.register("click", map, onMapClick);
-    $('#jpPlanButton').click(onPlanButtonClick);
-    $('.jpPlanType').click(onPlanSelect);
-    $('.jpPlanType').hover(previewPlanIn, previewPlanOut);
     appMode = 'routing';
-    selectedPlan = null;
-    $('#jpStartStreetSearch').focus();
-    $('#jpFeedbackForm').dialog({
-        autoOpen: false,
-        modal: true,
-        buttons: {
-            //"Poslat": function() {
-            //},
-            "Zrušit": function() { $(this).dialog("close"); }
-        },
-        title: "Připomínka k nalezené trase",
-        width: "350px"
-    });
-    $('#jpFeedbackButton')
-        .click(function() {
-            //$('#jpFeedbackForm #trasa').val(CSApi.itinerary);
-            //$('#jpFeedbackForm #varianta').val(selectedPlan);
-            $('#jpFeedbackMailto').attr('href',
-                'mailto:redakce@prahounakole.cz?subject=Připomínka k trase ' + CSApi.itinerary + ', varianta ' + selectedPlan);
-            $('#jpFeedbackForm').dialog("open");
-        });
+    addJourneyLayer();
+    map.addControl(drag);
+    drag.activate();
 
     map.events.register('mousemove', map, onMouseMove);
 } // setupRouting
@@ -399,10 +417,11 @@ function destroyRouting() {
         // mapa neni v routing modu, nemame co delat
         return;
     }
-    drag.destroy(); 
-    markerLayer.destroy();
+    isRoutingSet = true;
+    drag.deactivate();
+    markerLayer.setVisibility(false);
     if (journeyLayer) {
-        journeyLayer.destroy();
+        journeyLayer.setVisibility(false);
     }
     map.events.unregister("click", map, onMapClick);
     map.events.unregister('mousemove', map, onMouseMove);
@@ -411,21 +430,24 @@ function destroyRouting() {
 }
 
 function initRoutingPanel() {
-    $('#jpDetails').hide();
-    $('#jpPlanTypeSelector').hide();
-    waypoints = [];
-    selectedItinerary = null;
-    selectedPlan = null;
-    startFeature = null;
-    endFeature = null;
-    markerLayer.removeAllFeatures();
-    if (journeyLayer) {
-        journeyLayer.destroyFeatures();
+    if(!isRoutingSet){
+       $('#jpDetails').hide();
+       $('#jpPlanTypeSelector').hide();
+       $('#jpPlanMessage').hide();
+       waypoints = [];
+       selectedItinerary = null;
+       selectedPlan = null;
+       startFeature = null;
+       endFeature = null;
+       markerLayer.removeAllFeatures();
+       if (journeyLayer) {
+           journeyLayer.destroyFeatures();
+       }
+       $('#jpStartStreetSearch').val('');
+       $('#jpFinishStreetSearch').val('');
+       $('#jpStartStreetSearch').focus();
+       toggleButtons();
     }
-    $('#jpStartStreetSearch').val('');
-    $('#jpFinishStreetSearch').val('');
-    $('#jpStartStreetSearch').focus();
-    toggleButtons();
 }
 
 function setWaypoint(feature) {
@@ -636,11 +658,15 @@ function addJourneyLayer() {
     // Add a rule from the above lookup table, with the keys mapped to the "type" property of the features, for the "default" intent.
     styleMap.addUniqueValueRules("default", "plan", lookup);
 
-    journeyLayer = new OpenLayers.Layer.Vector("Trasa", {
-        styleMap: styleMap,
-        displayInLayerSwitcher: false
-    });
-    map.addLayer(journeyLayer);
+    if(journeyLayer) {
+       journeyLayer.setVisibility(true);
+    } else {
+       journeyLayer = new OpenLayers.Layer.Vector("Trasa", {
+           styleMap: styleMap,
+           displayInLayerSwitcher: false
+       });
+       map.addLayer(journeyLayer);
+    }
 }
 
 function onPlanSelect() {
@@ -916,9 +942,9 @@ function addPoiLayer(nazev, url, enabled, id) {
 
 function removePoiLayers() {
     for (var i=0; i < vectors.length; i++) {
-        map.removeLayer(vectors[i]);
+        vectors[i].was_visible = vectors[i].getVisibility();
+        vectors[i].setVisibility(false);
     }
-    vectors = [];
 }
 
 function onBeforeFeatureSelect(feature) {
