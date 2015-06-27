@@ -1,6 +1,5 @@
 html,
 body {
-  width: 100vw;
   height: 100vh;
   background: #fff;
   margin: 0;
@@ -23,9 +22,6 @@ img:hover,
 img:active,
 img:focus {
   border: 0;
-}
-.container {
-  width: 100vw;
 }
 .container .row {
   width: 100%;
@@ -136,6 +132,16 @@ img:focus {
   background: url(../img/external_link.png) right top no-repeat;
   padding-right: 15px;
 }
+#panel h4 a.open_txt {
+  background-image: none;
+  display: block;
+  padding-bottom: 0.3em;
+  border-bottom: 1px dashed #333;
+  margin-bottom: 1.5em;
+}
+#panel .txt {
+  margin-bottom: 1.5em;
+}
 #panel .logo {
   font-size: 29px;
   margin: 1em 0 0.5em 0;
@@ -193,7 +199,7 @@ img:focus {
   background-position: -192px -16px;
 }
 #panel .feedback {
-  background-position: -253px -17px;
+  background-position: -252px -14px;
 }
 #panel .link {
   background-position: -309px -14px;
@@ -204,9 +210,26 @@ img:focus {
 #panel .close {
   background-position: -430px -15px;
 }
+#panel .gmap {
+  background-position: -476px -15px;
+}
+#panel img {
+  max-width: 100%;
+  height: auto;
+}
 #content {
   text-align: left;
   margin-top: 1.5em;
+}
+ul#uzavirky {
+  padding-left: 0;
+}
+ul#uzavirky li {
+  line-height: 1.6em;
+}
+ul#uzavirky li img {
+  display: inline-block;
+  margin-right: 0.3em;
 }
 .detail {
   border-top: 1px solid #000;
@@ -214,6 +237,10 @@ img:focus {
 }
 .detail .controls {
   margin-bottom: 1em;
+}
+#mapStreetSearch {
+  width: 100%;
+  margin-bottom: 1.5em;
 }
 #poi_box {
   display: none;
@@ -226,6 +253,7 @@ img:focus {
   min-width: 100%;
   max-width: 100%;
   height: auto;
+  margin-bottom: 1.5em;
 }
 #poi_text .addinfo img {
   width: initial;
@@ -402,6 +430,7 @@ i.point_B {
   color: #fff;
   background-color: #000;
   padding: 0.3em 0.5em;
+  margin-bottom: 1.5em;
 }
 #comments-wrapper .js-errors {
   color: #ED4867;
@@ -421,6 +450,10 @@ i.point_B {
 }
 #comments-wrapper .comment-item:last-child {
   border-bottom: 0;
+}
+#modal-layer,
+#modal-city {
+  background-color: rgba(255, 255, 255, 0.85);
 }
 #modal-layer .close-me,
 #modal-city .close-me {
@@ -458,7 +491,6 @@ i.point_B {
   height: auto;
   border: 1px solid #000;
   border-radius: 3px;
-  padding-bottom: 0.3em;
 }
 #modal-layer #layer_switcher,
 #modal-city #layer_switcher,

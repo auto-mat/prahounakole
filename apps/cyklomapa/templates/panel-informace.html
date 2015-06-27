@@ -1,21 +1,52 @@
 {% load static %}
+
+<!-- Bootstrap aacordeon nelze pouzit podle vseho diky aktualni kolizi jquery verze -->
+
 <div id="informace" class="panel row">
-  <div class="col-md-12">
-  <h4>O mapě</h4>
-  <p>
-     {{ config.ABOUT_MAP|safe }}
-  </p>
+
+  <div class="col-md-12 harmonika">
+    <h4>
+       <a href="#" class="open_txt">O mapě</a>
+    </h4>
+    <div class="txt">
+      {{ config.ABOUT_MAP|safe }}
+    </div>
   </div>
 
-  <h4>Historie</h4>
-  {% include "panel-historie.html" %}
+  <div class="col-md-12 harmonika">
+    <h4>
+       <a href="#" class="open_txt">Historie</a>
+    </h4>
+    <div class="txt">
+      {% include "panel-historie.html" %}
+    </div>
+  </div>
 
-  <h4>Město</h4>
-  {{ mesto.uvodni_zprava|safe }}
+  <div class="col-md-12 harmonika">
+    <h4>
+       <a href="#" class="open_txt">Město</a>
+    </h4>
+    <div class="txt">
+      {{ mesto.uvodni_zprava|safe }}
+    </div>
+  </div>
 
-  <h4>Uzavírky</h4>
-  {% include "panel-uzavirky.html" %}
+  <div class="col-md-12 harmonika">
+    <h4>
+       <a href="#" class="open_txt">Uzavírky</a>
+    </h4>
+    <div class="txt">
+     {% include "panel-uzavirky.html" %}
+    </div>
+  </div>
 
-  <h4>Legenda</h4>
-  {% include "panel-legenda.html" %}
+  <div class="col-md-12 harmonika">
+    <h4>
+       <a href="#" class="open_txt">Legenda</a>
+    </h4>
+    <div class="txt">
+      {% include "panel-legenda.html" %}
+    </div>
+  </div>
+
 </div>
