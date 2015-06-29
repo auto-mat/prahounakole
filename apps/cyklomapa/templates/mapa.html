@@ -161,16 +161,18 @@
               </nav>
               <article>
                 <div id="content" class="col-md-10 col-md-offset-1">
-                  <!-- here comes the treasure -->
                   <div id="poi_box" class="row">
                     <div class="col-md-12 detail">
                       <div id="poi_text" class="cont"></div>
                     </div>
                   </div>
-                  {% include "panel-mapa.html" %}
-                  {% include "panel-hledani.html" %}
-                  {% include "panel-informace.html" %}
-                  {% include "panel-feedback.html" %}
+                  <!-- here comes the treasure -->
+                  <div id="panel-content">
+                     {% include "panel-mapa.html" %}
+                     {% include "panel-hledani.html" %}
+                     {% include "panel-informace.html" %}
+                     {% include "panel-feedback.html" %}
+                  </div>
                 </div>
               </article>
             </div>
@@ -203,7 +205,7 @@
             });
             // ------ CLOSE POI -----
             $('.close').live("click",function(){
-              $('#poi_box').slideUp(400).hide(400)
+              closePoiBox();
             });
             // corect the map width on large screens
              // 1445

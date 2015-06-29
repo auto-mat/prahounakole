@@ -1022,12 +1022,14 @@ function createPopup(response) {
     $('#poi_text').html(response.responseText);
     jQuery('#id_name,#id_email,#id_url').persist();
     $('#poi_box').show();
+    $('#panel-content').hide();
 };
 
 function closePoiBox() {
     $('#poi_box').hide();
+    $('#panel-content').show();
     removeHashParameter('misto', false);    
-    //XXX selectControl.unselectAll();
+    selectControl.unselectAll();
 }
 
 function zoomToSegment() {
