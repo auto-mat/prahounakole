@@ -3,6 +3,16 @@
 
 app_name=pnk
 db_name=pnk
+
+error() {
+   printf '\E[31m'; echo "$@"; printf '\E[0m'
+}
+
+if [[ $EUID -eq 0 ]]; then
+   error "This script should not be run using sudo or as the root user"
+   exit 1
+fi
+
 source update_local.sh
 
 set -e
