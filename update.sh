@@ -22,6 +22,7 @@ if [ "$1" = "migrate" ]; then
    echo "Migrating..."
    env/bin/python ./manage.py migrate
 fi
+bower install
 env/bin/python ./manage.py collectstatic --noinput
 touch wsgi.py
 type supervisorctl && sudo supervisorctl restart $app_name
