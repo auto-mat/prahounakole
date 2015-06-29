@@ -223,6 +223,7 @@ function showPanel(slug) {
 
     // always close POI detail when changing panel
     closePoiBox();
+    selectControl.unselectAll();
 
     $('.panel').hide();
     $('#' + slug + '.panel').show();
@@ -1030,7 +1031,6 @@ function closePoiBox() {
     $('#poi_box').hide();
     $('#panel-content').show();
     removeHashParameter('misto', false);    
-    selectControl.unselectAll();
 }
 
 function zoomToSegment() {

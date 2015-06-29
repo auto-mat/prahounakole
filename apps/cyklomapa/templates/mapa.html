@@ -205,7 +205,8 @@
             });
             // ------ CLOSE POI -----
             $('.close').live("click",function(){
-              closePoiBox();
+              closePoiBox(true);
+              selectControl.unselectAll();
             });
             // corect the map width on large screens
              // 1445
