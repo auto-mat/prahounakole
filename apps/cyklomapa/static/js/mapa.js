@@ -223,7 +223,6 @@ function showPanel(slug) {
 
     // always close POI detail when changing panel
     closePoiBox();
-    selectControl.unselectAll();
 
     $('.panel').hide();
     $('#' + slug + '.panel').show();
