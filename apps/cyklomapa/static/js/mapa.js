@@ -1001,6 +1001,7 @@ function onFeatureSelect(feature) {
 
 function onFeatureUnselect(feature) {
     $("#" + feature.geometry.id).removeAttr("class");
+    closePoiBox();
 }
 
 function showPoiDetail(poi_id) {
