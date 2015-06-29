@@ -1128,13 +1128,15 @@ function addCSLayer(name, enabled, slug) {
            graphicHeight: 20,
            strokeWidth: 3,
            strokeColor: "#006500",
-           fillOpacity: 0.85,
+           fillOpacity: 0.6,
+           graphicOpacity: 1,
            fillColor: "#006500",
         },
         "select": {
            fillColor: "#53B431",
            strokeColor: "#53B431",
            fillOpacity: 0.85,
+           graphicOpacity: 1,
         },
      });
      cs_layer.setVisibility(enabled);
