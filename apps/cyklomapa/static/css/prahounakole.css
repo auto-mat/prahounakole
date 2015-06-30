@@ -224,6 +224,9 @@ img:focus {
   text-align: left;
   margin-top: 1.5em;
 }
+#informace {
+  margin-top: 1.5em;
+}
 ul#uzavirky {
   padding-left: 0;
 }
@@ -235,7 +238,6 @@ ul#uzavirky li img {
   margin-right: 0.3em;
 }
 .detail {
-  border-top: 1px solid #000;
   padding-top: 1.5em;
 }
 .detail .controls {
