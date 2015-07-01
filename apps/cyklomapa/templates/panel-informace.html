@@ -6,19 +6,19 @@
 
   <div class="col-md-12 harmonika">
     <h4>
-       <a href="#" class="open_txt">O mapě</a>
+       <a href="#" class="open_txt">Uzavírky</a>
     </h4>
     <div class="txt">
-      {{ config.ABOUT_MAP|safe }}
+     {% include "panel-uzavirky.html" %}
     </div>
   </div>
 
   <div class="col-md-12 harmonika">
     <h4>
-       <a href="#" class="open_txt">Historie</a>
+       <a href="#" class="open_txt">O mapě</a>
     </h4>
     <div class="txt">
-      {% include "panel-historie.html" %}
+      {{ config.ABOUT_MAP|safe }}
     </div>
   </div>
 
@@ -33,10 +33,10 @@
 
   <div class="col-md-12 harmonika">
     <h4>
-       <a href="#" class="open_txt">Uzavírky</a>
+       <a href="#" class="open_txt">Historie</a>
     </h4>
     <div class="txt">
-     {% include "panel-uzavirky.html" %}
+      {% include "panel-historie.html" %}
     </div>
   </div>
 
