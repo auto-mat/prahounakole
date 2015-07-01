@@ -185,7 +185,7 @@ function init(mapconfig) {
         "Satelitní mapa Google", {
         slug:"G",
         type: google.maps.MapTypeId.SATELLITE,
-        numZoomLevels: 22
+        numZoomLevels: 21
      });
 
      map.addLayers([layerPNK]);
