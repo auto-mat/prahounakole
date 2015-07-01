@@ -177,6 +177,8 @@ function init(mapconfig) {
         numZoomLevels: 20,
         getURL: getTileURL,
         className: "cb-tiles",
+        transitionEffect: null,
+        zoomMethod: null,
         tileOptions : {crossOriginKeyword: null}
     });
     var layerGoogle = new OpenLayers.Layer.Google(
