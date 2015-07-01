@@ -177,13 +177,15 @@ function init(mapconfig) {
         numZoomLevels: 20,
         getURL: getTileURL,
         className: "cb-tiles",
+        transitionEffect: null,
+        zoomMethod: null,
         tileOptions : {crossOriginKeyword: null}
     });
     var layerGoogle = new OpenLayers.Layer.Google(
         "Satelitní mapa Google", {
         slug:"G",
         type: google.maps.MapTypeId.SATELLITE,
-        numZoomLevels: 22
+        numZoomLevels: 21
      });
 
      map.addLayers([layerPNK]);
@@ -989,7 +991,7 @@ function onFeatureSelect(feature) {
             feature.attributes.description +
             '<p><a href="http://www.cyklistesobe.cz/' +
             feature.attributes.url +
-            '" target="_blank">Cyklisté sobě</a>' +
+            '" target="_blank">Stránka podnětu Cyklisté sobě</a>' +
             '</div></div>';
         feature.attributes.width = 32;
         feature.attributes.height = 20;
@@ -1020,6 +1022,7 @@ function showPoiDetail(poi_id) {
 }
 
 function createPopup(response) {
+    togglePanel(event, false);
     $('#poi_text').html(response.responseText);
     jQuery('#id_name,#id_email,#id_url').persist();
     $('#poi_box').show();
