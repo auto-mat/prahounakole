@@ -991,7 +991,7 @@ function onFeatureSelect(feature) {
             feature.attributes.description +
             '<p><a href="http://www.cyklistesobe.cz/' +
             feature.attributes.url +
-            '" target="_blank">Cyklisté sobě</a>' +
+            '" target="_blank">Stránka podnětu Cyklisté sobě</a>' +
             '</div></div>';
         feature.attributes.width = 32;
         feature.attributes.height = 20;
