@@ -879,8 +879,10 @@ function onHashChange(e) {
         CSApi.journey(args['trasa'], null, 'balanced', addPlannedJourney, { select: plan });
     }
     if (args['misto']) {
-        var poi_id = parseInt(args['misto']);
+        var poi_array = args['misto'].split("_");
+        var poi_id = parseInt(poi_array[poi_array.length-1]);
         mapconfig.center_feature = poi_id;
+        mapconfig.center_feature_slug = poi_array[poi_array.length-2];
         setupPnkMap();
         showPanel('mapa');
     }
@@ -910,7 +912,7 @@ function getPoi(id) {
 function onLoadEnd(evt) {
     if (mapconfig.center_feature) {
        var feature = this.getFeatureByFid(mapconfig.center_feature);
-       if (feature) {
+       if ((!mapconfig.center_feature_slug || mapconfig.center_feature_slug == this.slug) && feature) {
            map.zoomToExtent(feature.geometry.getBounds());
            selectControl.select(feature);
        }
@@ -961,7 +963,7 @@ function onBeforeFeatureSelect(feature) {
 };
 
 function onFeatureSelect(feature) {
-    setHashParameter('misto', feature.fid, false);
+    setHashParameter('misto', feature.layer.slug + "_" + feature.fid, false);
     $("#" + feature.geometry.id).attr("class", "selected"); 
 
     // Trochu hackovita podpora pro specialni vrstvu ReKola
@@ -1145,6 +1147,7 @@ function addCSLayer(name, enabled, slug) {
         },
      });
      cs_layer.setVisibility(enabled);
+     cs_layer.events.register('loadend', cs_layer, onLoadEnd);
      map.addLayers([cs_layer]);
      vectors.push(cs_layer);
 }
@@ -1184,6 +1187,7 @@ function addRekola(name, enabled, slug) {
         },
      });
      rekola.setVisibility(enabled);
+     rekola.events.register('loadend', rekola, onLoadEnd);
      map.addLayers([rekola]);
      vectors.push(rekola);
 }
