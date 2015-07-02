@@ -25,11 +25,23 @@ function togglePanel(event, minimalized){
 jQuery(document).ready(function($) {
 
   // --------  PANEL SWITCH ---------
-  $('.panel_switch').click(togglePanel);
+  $('.panel_switch').click( function(event){
+      // prevent default a (link) behavior
+      event.preventDefault();
+      // let tthe body know the change .. for next possible visual changes
+     $('body').toggleClass('panel_minimized');
+        // stretch - extend panel container
+         $('#panel').toggleClass('minimized col-md-3 col-sm-2 col-sm-10');
+         // stretch - extend map container
+        $('.map_holder').toggleClass('col-md-12 col-md-9 col-sm-12 col-sm-2');
+        // show/hide panel content
+        $('.dildo, .gold').toggleClass('hide');
+      // update map size
+      setTimeout(function(){map.updateSize();},500);
+  });
   // ------ CLOSE POI -----
   $('.close').live("click",function(){
-    closePoiBox(true);
-    selectControl.unselectAll();
+    $('#poi_box').slideUp(400).hide(400)
   });
   // corect the map width on large screens
    // 1445
