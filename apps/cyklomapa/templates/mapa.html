@@ -14,7 +14,6 @@
   <link rel="stylesheet" href="{% static "css/prahounakole.css" %}" type="text/css" />
   <link rel="stylesheet" href="{% static "css/google.css" %}" type="text/css" />
   <link rel="stylesheet" href="{% static "css/layerswitcher.css" %}" type="text/css" />
-  <link rel="stylesheet" href="{% static "bow/lightbox/dist/css/lightbox.css" %}" type="text/css" />
   {% if mesto.sektor.slug != "mapa" and mesto.sektor.slug != "devel" %}
   <link rel="stylesheet" href="{% static "css/dpnk.css" %}" type="text/css" />
   {% endif %}
@@ -38,8 +37,6 @@
    <script type="text/javascript" src="{% static "js/search.js" %}"></script>
    <script type="text/javascript" src="{% static "js/csapi.js" %}"></script>
    <script type="text/javascript" src="{% static "js/mapa.js" %}"></script>
-   <script type="text/javascript" src="{% static "js/main-page.js" %}"></script>
-   <script type="text/javascript" src="{% static "bow/lightbox/dist/js/lightbox.js" %}"></script>
 
    <link rel="alternate" type="application/rss+xml" title="Novinky v mapě" href="{% url 'novinky_feed' %}" />
    <link rel="alternate" type="application/rss+xml" title="Uzavírky" href="{% url 'uzavirky_feed' %}" />
@@ -109,13 +106,13 @@
 
        
     </script>
-    <a id="layers-switch" data-toggle="modal" data-target="#modal-layer"></a>
+    <a href="#" id="layers-switch" data-toggle="modal" data-target="#modal-layer"></a>
       <div id="core" class="container">
         {% include "filter.svg" %}
         <div class="row">
           <div id="panel" class="col-md-3 col-sm-10">
             <div id="city_switch_holder">
-             <a id="city-switch" data-toggle="modal" data-target="#modal-city"></a>
+             <a href="#" id="city-switch" data-toggle="modal" data-target="#modal-city"></a>
             </div>
             <span class="panel_switch_holder">
               <a class="panel_switch" href="#">&#8676;</a>
@@ -162,18 +159,11 @@
               </nav>
               <article>
                 <div id="content" class="col-md-10 col-md-offset-1">
-                  <div id="poi_box" class="row">
-                    <div class="col-md-12 detail">
-                      <div id="poi_text" class="cont"></div>
-                    </div>
-                  </div>
                   <!-- here comes the treasure -->
-                  <div id="panel-content">
-                     {% include "panel-mapa.html" %}
-                     {% include "panel-hledani.html" %}
-                     {% include "panel-informace.html" %}
-                     {% include "panel-feedback.html" %}
-                  </div>
+                  {% include "panel-mapa.html" %}
+                  {% include "panel-hledani.html" %}
+                  {% include "panel-informace.html" %}
+                  {% include "panel-feedback.html" %}
                 </div>
               </article>
             </div>
@@ -185,5 +175,68 @@
       </div>
 
       {% include "modal-layers.html" %}
+
+      <script>
+          jQuery(document).ready(function($) {
+
+            // --------  PANEL SWITCH ---------
+            $('.panel_switch').click( function(event){
+                // prevent default a (link) behavior
+                event.preventDefault();
+                // let tthe body know the change .. for next possible visual changes
+               $('body').toggleClass('panel_minimized');
+                  // stretch - extend panel container
+                   $('#panel').toggleClass('minimized col-md-3 col-sm-2 col-sm-10');
+                   // stretch - extend map container
+                  $('.map_holder').toggleClass('col-md-12 col-md-9 col-sm-12 col-sm-2');
+                  // show/hide panel content
+                  $('.dildo, .gold').toggleClass('hide');
+                // update map size
+                setTimeout(function(){map.updateSize();},500);
+            });
+            // ------ CLOSE POI -----
+            $('.close').live("click",function(){
+              $('#poi_box').slideUp(400).hide(400)
+            });
+            // corect the map width on large screens
+             // 1445
+            function map_width_fix(){
+              W_width = $(window).width();
+              if(W_width > 1444){
+                panel_width = $('#panel').width();
+                $('.map_holder').css("width", W_width - panel_width);
+              }
+            }
+            map_width_fix();
+
+            $(window).resize(function(event) {
+              /* Act on the event */
+              map_width_fix()
+            });
+
+            // advanced menu in layers layer
+            $('#advanced_switch').on('click', function (e) {
+              e.preventDefault();
+              $('#layer_switcher').toggle();
+            });
+
+            // akordeon (panel-informace )
+            $('.harmonika .txt').hide();
+
+            $('.open_txt').click(function(event) {
+              event.preventDefault()
+              /* Act on the event */
+              $('.harmonika .txt').slideUp();
+              var closest_txt  = $(this).closest('.harmonika').find('.txt');
+              if($(closest_txt).is(':visible')){
+                $(closest_txt).slideUp();
+              }else{
+                $(closest_txt).slideDown();
+              }
+            });
+  
+  
+          });
+        </script>
   </body>
 </html>
