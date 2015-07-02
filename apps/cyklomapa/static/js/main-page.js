@@ -68,5 +68,11 @@ jQuery(document).ready(function($) {
     }
   });
 
+  $(".change-layer").click(function(event) {
+     base_layer = event.currentTarget.dataset['baselayer']
+     overlayers = event.currentTarget.dataset['overlayers']
+     activateLayers(base_layer, overlayers)
+  });
+
 
 });
