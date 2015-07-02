@@ -161,11 +161,18 @@
               </nav>
               <article>
                 <div id="content" class="col-md-10 col-md-offset-1">
+                  <div id="poi_box" class="row">
+                    <div class="col-md-12 detail">
+                      <div id="poi_text" class="cont"></div>
+                    </div>
+                  </div>
                   <!-- here comes the treasure -->
-                  {% include "panel-mapa.html" %}
-                  {% include "panel-hledani.html" %}
-                  {% include "panel-informace.html" %}
-                  {% include "panel-feedback.html" %}
+                  <div id="panel-content">
+                     {% include "panel-mapa.html" %}
+                     {% include "panel-hledani.html" %}
+                     {% include "panel-informace.html" %}
+                     {% include "panel-feedback.html" %}
+                  </div>
                 </div>
               </article>
             </div>
