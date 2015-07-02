@@ -223,12 +223,15 @@ function showPanel(slug) {
     $('.mode-btn').removeClass('active');
     $('.mode-btn.' + slug).addClass('active');
 
-    // always close POI detail when changing panel
-    closePoiBox();
-
     $('.panel').hide();
     $('#' + slug + '.panel').show();
 };
+
+function showPanel_closeBox(slug) {
+   showPanel(slug);
+   closePoiBox();
+   selectControl.unselectAll();
+}
 
 function setupPnkMap() {
     if (appMode == 'pnkmap') {
@@ -850,16 +853,16 @@ function onHashChange(e) {
     var args = parseHash();
     if (hash === '') {
         setupPnkMap();
-        showPanel('mapa');
+        showPanel_closeBox('mapa');
     }
     if (hash == 'hledani') {
         setupRouting();
         initRoutingPanel();
-        showPanel('hledani');
+        showPanel_closeBox('hledani');
     }
     if (args['trasa']) {
         setupRouting();
-        showPanel('hledani');
+        showPanel_closeBox('hledani');
         var plan = args['plan'];
         if ($.inArray(plan, ['balanced', 'quietest', 'fastest']) < 0) {
             plan = 'balanced';
@@ -883,11 +886,11 @@ function onHashChange(e) {
     }
     if (hash == 'informace') {
         setupPnkMap();
-        showPanel('informace');
+        showPanel_closeBox('informace');
     }
     if (hash == 'feedback') {
         setupPnkMap();
-        showPanel('feedback');
+        showPanel_closeBox('feedback');
     }
 }
 
