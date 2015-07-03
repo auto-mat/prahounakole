@@ -490,5 +490,11 @@ a.olControlZoomOut {
 }
 
 .olLayerDiv:not(.olLayerGrid) image.selected {
-   filter: url('/#circle');
+   filter: url("/static/css/filter.svg#circle");
 }
+
+/* hack to make it work in all browsers */
+.webkit .olLayerDiv:not(.olLayerGrid) image.selected {
+   filter: url("#circle");
+}
+
