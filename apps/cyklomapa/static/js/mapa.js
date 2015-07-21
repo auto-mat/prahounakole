@@ -220,8 +220,8 @@ function init(mapconfig) {
 
 function showPanel(slug) {
     // highlight active mode icon
-    $('.mode-btn').removeClass('active');
-    $('.mode-btn.' + slug).addClass('active');
+    $('.mode-btn').parent().removeClass('active');
+    $('.mode-btn.' + slug).parent().addClass('active');
 
     $('.panel').hide();
     $('#' + slug + '.panel').show();
