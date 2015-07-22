@@ -165,7 +165,7 @@ function init(mapconfig) {
         "http://tiles.prahounakole.cz/", {
         slug:"P",
         type: 'png',
-        numZoomLevels: 20,
+        numZoomLevels: mapconfig.maxzoom + 1,
         getURL: getTileURL,
         tileOptions : {crossOriginKeyword: null} 
     });
@@ -174,7 +174,7 @@ function init(mapconfig) {
         "http://tiles.prahounakole.cz/", {
         slug:"W",
         type: 'png',
-        numZoomLevels: 20,
+        numZoomLevels: mapconfig.maxzoom + 1,
         getURL: getTileURL,
         className: "cb-tiles",
         transitionEffect: null,
