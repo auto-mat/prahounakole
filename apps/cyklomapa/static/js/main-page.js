@@ -66,7 +66,7 @@ jQuery(document).ready(function($) {
   });
 
   // akordeon (panel-informace )
-  $('.harmonika .txt').hide();
+  $('.harmonika .txt').not('.active').hide();
 
   $('.open_txt').click(function(event) {
     event.preventDefault()

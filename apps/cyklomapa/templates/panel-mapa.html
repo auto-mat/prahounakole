@@ -5,6 +5,20 @@
         <div class="col-md-12">
           <input id="mapStreetSearch" class="jpSearch" type="text" name="street_search_address" value="" />
         </div>
+
+        <div class="col-md-12">
+          <h4>Novinky</h4>
+          <div>
+            {{ config.MAP_NEWS|safe }}
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <h4>{{ mesto }}</h4>
+          <div>
+            {{ mesto.uvodni_zprava|safe }}
+          </div>
+        </div>
       </div>
     </form>
   </div>
