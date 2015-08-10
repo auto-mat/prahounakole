@@ -230,7 +230,9 @@ function showPanel(slug) {
 function showPanel_closeBox(slug) {
    showPanel(slug);
    closePoiBox();
-   selectControl.unselectAll();
+   if(selectControl){
+      selectControl.unselectAll();
+   }
 }
 
 function setupPnkMap() {
