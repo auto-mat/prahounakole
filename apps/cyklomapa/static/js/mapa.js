@@ -253,8 +253,8 @@ function setupPnkMap() {
            for (var i in kmlvrstvy) {
                name = kmlvrstvy[i][0];
                url = mapconfig.root_url + kmlvrstvy[i][1];
-               enabled = kmlvrstvy[i][2] == 'True';
                slug = kmlvrstvy[i][3];
+               enabled = kmlvrstvy[i][2] == 'True' || mapconfig.center_feature_slug == slug;
                switch(slug) {
                    case 'a':
                        addCSLayer(name, enabled, slug);
