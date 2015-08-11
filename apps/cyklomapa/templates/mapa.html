@@ -53,6 +53,8 @@
    <script type="text/javascript" src="{% static "js/jquery.cookie.js" %}"></script>
    <script type="text/javascript" src="{% static "js/jquery.persist.js" %}"></script>
 
+   {% include "feedback/header.html" %}
+
   <title>Mapa Prahou na kole - {{ mesto.sektor.nazev }} </title>
 
     <script type="text/javascript">
@@ -155,7 +157,7 @@
                     </a>
                   </div>
                   <div class="col-md-3">  
-                    <a href="#feedback" class="tab_switch">
+                    <a id="feedback_button" class="tab_switch">
                     <span class="sprite  btn mode-btn feedback"></span>
                     <label>Feedback</label>
                     </a>
@@ -174,7 +176,6 @@
                      {% include "panel-mapa.html" %}
                      {% include "panel-hledani.html" %}
                      {% include "panel-informace.html" %}
-                     {% include "panel-feedback.html" %}
                   </div>
                 </div>
               </article>
@@ -187,5 +188,6 @@
       </div>
 
       {% include "modal-layers.html" %}
+      {% include "feedback/feedback.html" %}
   </body>
 </html>

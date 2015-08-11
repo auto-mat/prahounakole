@@ -99,6 +99,7 @@ INSTALLED_APPS = [
     'webmap',
     'rest_framework',
 
+    'feedback',
     'cyklomapa',
     'easy_thumbnails',
     'django.contrib.humanize',
