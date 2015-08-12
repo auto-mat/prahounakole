@@ -42,6 +42,7 @@ jQuery(document).ready(function($) {
   // ------ CLOSE POI -----
   $('.close').live("click",function(){
     $('#poi_box').slideUp(400).hide(400)
+    $('#panel-content').show(400);
   });
   // corect the map width on large screens
    // 1445
