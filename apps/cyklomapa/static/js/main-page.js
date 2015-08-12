@@ -86,5 +86,12 @@ jQuery(document).ready(function($) {
      activateLayers(base_layer, overlayers)
   });
 
+  $("#feedback_button").click(function(event){
+     $("body").addClass("modal-open");
+  });
+  $("#feedback_drop, .close").click(function(event){
+     $("body").removeClass("modal-open");
+  });
+
 
 });

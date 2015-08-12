@@ -462,10 +462,10 @@ i.point_B {
 #comments-wrapper .comment-item:last-child {
   border-bottom: 0;
 }
-#modal-layer,
-#modal-city {
-  background-color: rgba(255, 255, 255, 0.85);
-}
+#feedback_popup .close,
+#modal-layer .close,
+#modal-city .close,
+#feedback_popup .close-me,
 #modal-layer .close-me,
 #modal-city .close-me {
   position: fixed;
@@ -479,6 +479,10 @@ i.point_B {
   overflow: hidden;
   text-indent: 100em;
 }
+#feedback_popup .close:hover,
+#modal-layer .close:hover,
+#modal-city .close:hover,
+#feedback_popup .close-me:hover,
 #modal-layer .close-me:hover,
 #modal-city .close-me:hover {
   -moz-opacity: 0.40;
@@ -487,14 +491,23 @@ i.point_B {
   filter: progid:DXImageTransform.Microsoft.Alpha(opacity=40);
   filter: alpha(opacity=40);
 }
+#feedback_drop,
+#modal-layer,
+#modal-city {
+  background-color: rgba(255, 255, 255, 0.85);
+  opacity: 1;
+}
+#feedback_drop .container,
 #modal-layer .container,
 #modal-city .container {
   width: 100%;
 }
+#feedback_drop .container .each-view,
 #modal-layer .container .each-view,
 #modal-city .container .each-view {
   text-align: center;
 }
+#feedback_drop .container .each-view img,
 #modal-layer .container .each-view img,
 #modal-city .container .each-view img {
   width: 95%;
@@ -503,36 +516,45 @@ i.point_B {
   border: 1px solid #000;
   border-radius: 3px;
 }
+#feedback_drop #layer_switcher,
 #modal-layer #layer_switcher,
 #modal-city #layer_switcher,
+#feedback_drop #OpenLayers_Control_MinimizeDiv,
 #modal-layer #OpenLayers_Control_MinimizeDiv,
 #modal-city #OpenLayers_Control_MinimizeDiv {
   display: none;
   padding: 1em 0;
 }
+#feedback_drop #advanced_switch,
 #modal-layer #advanced_switch,
 #modal-city #advanced_switch {
   text-decoration: underline;
   color: #555;
   cursor: pointer;
 }
+#feedback_drop #advanced_switch:hover,
 #modal-layer #advanced_switch:hover,
 #modal-city #advanced_switch:hover {
   color: #000;
 }
+#feedback_drop .dataLbl,
 #modal-layer .dataLbl,
 #modal-city .dataLbl,
+#feedback_drop .baseLbl,
 #modal-layer .baseLbl,
 #modal-city .baseLbl {
   color: #555;
   margin-bottom: 1em;
 }
+#feedback_drop .dataLbl,
 #modal-layer .dataLbl,
 #modal-city .dataLbl {
   margin-top: 1em;
 }
+#feedback_drop input[type=radio],
 #modal-layer input[type=radio],
 #modal-city input[type=radio],
+#feedback_drop input[type=checkbox],
 #modal-layer input[type=checkbox],
 #modal-city input[type=checkbox] {
   margin-right: 0.3em;
@@ -1295,9 +1317,8 @@ td.distance:hover .leng {
 }
 /* Desktops and laptops ----------- */
 @media only screen and (min-width: 1224px) {
-  max-width: 360px;
-  
   /* Styles */
+  max-width: 360px;
 }
 /* Large screens ----------- */
 @media only screen and (min-width: 1824px) {

@@ -440,9 +440,8 @@ i.point_B{
 }
 
 // modal view
-#modal-layer, #modal-city{
-  background-color: rgba(255,255,255,0.85);
-  .close-me{
+#feedback_popup, #modal-layer, #modal-city{
+  .close, .close-me{
     position:fixed;
     top: 10px;
     right:10px;
@@ -457,6 +456,11 @@ i.point_B{
       .moderate_opacity;
     }
   }
+}
+
+#feedback_drop, #modal-layer, #modal-city{
+  background-color: rgba(255,255,255,0.85);
+  opacity:1;
   .baseLayersDiv{
     input{
       // width:30%;
