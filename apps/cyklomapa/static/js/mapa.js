@@ -1031,7 +1031,7 @@ function showPoiDetail(poi_id) {
 function createPopup(response) {
     togglePanel(null, false);
     $('#poi_text').html(response.responseText);
-    jQuery('#id_name,#id_email,#id_url').persist();
+    jQuery('.textinput,.emailinput,#id_url').persist();
     $('#poi_box').show();
     $('#panel-content').hide();
 };
