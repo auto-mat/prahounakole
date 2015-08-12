@@ -388,25 +388,6 @@ function setupRouting() {
        $('.jpPlanType').hover(previewPlanIn, previewPlanOut);
        selectedPlan = null;
        $('#jpStartStreetSearch').focus();
-       $('#jpFeedbackForm').dialog({
-           autoOpen: false,
-           modal: true,
-           buttons: {
-               //"Poslat": function() {
-               //},
-               "Zrušit": function() { $(this).dialog("close"); }
-           },
-           title: "Připomínka k nalezené trase",
-           width: "350px"
-       });
-       $('#jpFeedbackButton')
-           .click(function() {
-               //$('#jpFeedbackForm #trasa').val(CSApi.itinerary);
-               //$('#jpFeedbackForm #varianta').val(selectedPlan);
-               $('#jpFeedbackMailto').attr('href',
-                   'mailto:redakce@prahounakole.cz?subject=Připomínka k trase ' + CSApi.itinerary + ', varianta ' + selectedPlan);
-               $('#jpFeedbackForm').dialog("open");
-           });
     }
 
     toggleButtons();
@@ -891,10 +872,6 @@ function onHashChange(e) {
     if (hash == 'informace') {
         setupPnkMap();
         showPanel_closeBox('informace');
-    }
-    if (hash == 'feedback') {
-        setupPnkMap();
-        showPanel_closeBox('feedback');
     }
 }
 
