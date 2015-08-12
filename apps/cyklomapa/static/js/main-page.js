@@ -31,9 +31,9 @@ jQuery(document).ready(function($) {
       // let tthe body know the change .. for next possible visual changes
      $('body').toggleClass('panel_minimized');
         // stretch - extend panel container
-         $('#panel').toggleClass('minimized col-md-3 col-sm-2 col-sm-10');
+         $('#panel').toggleClass('minimized col-md-3 col-smd-4 col-sm-2 col-sm-10');
          // stretch - extend map container
-        $('.map_holder').toggleClass('col-md-12 col-md-9 col-sm-12 col-sm-2');
+        $('.map_holder').toggleClass('col-md-12 col-md-9 col-smd-8 col-sm-12 col-sm-2');
         // show/hide panel content
         $('.dildo, .gold').toggleClass('hide');
       // update map size

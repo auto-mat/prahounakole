@@ -14,6 +14,7 @@ body {
 }
 a {
   color: #000;
+  word-wrap: break-word;
 }
 img {
   border: 0;
@@ -22,6 +23,10 @@ img:hover,
 img:active,
 img:focus {
   border: 0;
+}
+textarea {
+  resize: vertical ;
+  width: 100%;
 }
 .container .row {
   width: 100%;
@@ -104,7 +109,6 @@ img:focus {
 #panel {
   background: url(../img/pattern_R.png) repeat-y right top #ffffff;
   min-height: 100vh;
-  max-width: 360px;
 }
 #panel.minimized {
   width: 100px;
@@ -360,11 +364,12 @@ i.point_B {
 }
 .panel input.search_submit {
   margin-top: 0.5em;
+  margin-right: 12px;
   float: right;
-  width: 59px;
-  height: 59px;
+  width: 40px;
+  height: 40px;
   border: 0;
-  background: url(../img/mapa_input_sprites.png) no-repeat -60px -234px;
+  background: url(../img/mapa_input_sprites.png) no-repeat -48px -239px;
   text-indent: 10em;
   overflow: hidden;
   -moz-opacity: 0.40;
@@ -419,6 +424,7 @@ i.point_B {
 }
 #comments-wrapper input {
   width: 100%;
+  border: 1px solid #000;
 }
 #comments-wrapper h4 {
   font-size: 1.2em;
@@ -508,6 +514,7 @@ i.point_B {
 #modal-city #advanced_switch {
   text-decoration: underline;
   color: #555;
+  cursor: pointer;
 }
 #modal-layer #advanced_switch:hover,
 #modal-city #advanced_switch:hover {
@@ -629,26 +636,12 @@ i.point_B {
   padding: 0.16em 0.3em 0 0.3em;
   border-radius: 3px;
   text-decoration: none;
-  -webkit-transition: all 0.1s linear 0.1s;
-  -moz-transition: all 0.1s linear 0.1s;
-  -o-transition: all 0.1s linear 0.1s;
-  transition: all 0.1s linear 0.1s;
 }
 .panel_switch_holder .panel_switch:hover,
 .panel_switch_holder .panel_switch.active {
   color: #000;
   text-decoration: none;
   position: relative;
-  -webkit-animation: left-to-right 1s infinite;
-  /* Chrome, Safari, Opera */
-  -webkit-animation-direction: alternate;
-  /* Chrome, Safari, Opera */
-  animation: left-to-right 1s infinite;
-  animation-direction: alternate;
-  -webkit-transition: all 0.1s linear 0.1s;
-  -moz-transition: all 0.1s linear 0.1s;
-  -o-transition: all 0.1s linear 0.1s;
-  transition: all 0.1s linear 0.1s;
 }
 .panel_switch_holder .panel_switch:active,
 .panel_switch_holder .panel_switch:focus {
@@ -686,6 +679,7 @@ i.point_B {
   -o-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
   transform: rotate(180deg);
+  display: inline-block;
 }
 .globe {
   width: 33px;
@@ -1001,6 +995,10 @@ td.distance:hover .leng {
 .show {
   display: inline-block;
 }
+#poi_text {
+  padding-top: 2.5em;
+  border-top: 1px solid #000;
+}
 /* Chrome, Safari, Opera */
 @-webkit-keyframes left-to-right {
   0% {
@@ -1049,6 +1047,9 @@ td.distance:hover .leng {
   }
   /* Styles */
 }
+#uzavirky li {
+  list-style: none;
+}
 /* Smartphones (landscape) ----------- */
 @media only screen and (min-width: 321px) {
   /* Styles */
@@ -1059,6 +1060,82 @@ td.distance:hover .leng {
 }
 /* iPads (portrait and landscape) ----------- */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  /* Styles */
+}
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (max-device-width: 1024px) {
+  .container .row .col-smd-1 {
+    width: 8.333%;
+  }
+  .container .row .col-smd-2 {
+    width: 16.666%;
+  }
+  .container .row .col-smd-3 {
+    width: 25%;
+  }
+  .container .row .col-smd-4 {
+    width: 33.333%;
+  }
+  .container .row .col-smd-5 {
+    width: 41.666%;
+  }
+  .container .row .col-smd-6 {
+    width: 50%;
+  }
+  .container .row .col-smd-7 {
+    width: 58.333%;
+  }
+  .container .row .col-smd-8 {
+    width: 66.666%;
+  }
+  .container .row .col-smd-9 {
+    width: 75%;
+  }
+  .container .row .col-smd-10 {
+    width: 83.333%;
+  }
+  .container .row .col-smd-11 {
+    width: 91.666%;
+  }
+  .container .row .col-smd-12 {
+    width: 100%;
+  }
+  .container .row .col-smd-offset-0 {
+    margin-left: 0;
+  }
+  .container .row .col-smd-offset-1 {
+    margin-left: 8.333%;
+  }
+  .container .row .col-smd-offset-2 {
+    margin-left: 16.666%;
+  }
+  .container .row .col-smd-offset-3 {
+    margin-left: 25%;
+  }
+  .container .row .col-smd-offset-4 {
+    margin-left: 33.333%;
+  }
+  .container .row .col-smd-offset-5 {
+    margin-left: 41.666%;
+  }
+  .container .row .col-smd-offset-6 {
+    margin-left: 50%;
+  }
+  .container .row .col-smd-offset-7 {
+    margin-left: 58.333%;
+  }
+  .container .row .col-smd-offset-8 {
+    margin-left: 66.666%;
+  }
+  .container .row .col-smd-offset-9 {
+    margin-left: 75%;
+  }
+  .container .row .col-smd-offset-10 {
+    margin-left: 83.333%;
+  }
+  .container .row .col-smd-offset-11 {
+    margin-left: 91.666%;
+  }
   /* Styles */
 }
 /* iPads (landscape) ----------- */
@@ -1107,6 +1184,9 @@ td.distance:hover .leng {
   .container .row .col-sm-12 {
     width: 100%;
   }
+  .container .row .col-sm-offset-0 {
+    margin-left: 0;
+  }
   .container .row .col-sm-offset-1 {
     margin-left: 8.333%;
   }
@@ -1147,12 +1227,9 @@ td.distance:hover .leng {
   .modal-body {
     padding: 40px 15px 15px 15px;
   }
-  #panel .logo {
-    font-size: 25px;
-  }
   #panel .btn {
-    width: 52px;
-    height: 52px;
+    width: 40px;
+    height: 40px;
     display: inline-block;
     -webkit-border-radius: 30px;
     -moz-border-radius: 30px;
@@ -1160,31 +1237,66 @@ td.distance:hover .leng {
     border: 2px solid #000;
   }
   #panel .mapa {
-    background-position: -64px -9px;
+    background-position: -71px -10px;
   }
   #panel .hledani {
-    background-position: -125px -8px;
+    background-position: -142px -16px;
   }
   #panel .informace {
-    background-position: -184px -7px;
+    background-position: -190px -14px;
   }
   #panel .feedback {
-    background-position: -243px -9px;
+    background-position: -245px -12px;
   }
   #panel .link {
-    background-position: -300px -3px;
+    background-position: -310px -11px;
   }
   #panel .print {
-    background-position: -361px -4px;
+    background-position: -542px -12px;
     cursor: pointer;
   }
   #panel .close {
-    background-position: -420px -3px;
+    background-position: -430px -12px;
     cursor: pointer;
+    border: 0;
+  }
+  #panel .gmap {
+    background-position: -478px -11px;
+  }
+}
+@media only screen and (min-device-width: 680px) and (max-device-width: 768px) {
+  .tab_switch label {
+    display: none;
+  }
+  #panel .logo {
+    text-align: left;
+    font-size: 20px;
+  }
+}
+@media only screen and (width: 480px) {
+  #layers-switch {
+    right: 24px;
+    top: 160px;
+  }
+}
+@media only screen and (max-width: 480px) {
+  /* Styles */
+  #panel h4 {
+    font-size: 1.3em;
+  }
+  #panel .logo {
+    font-size: 20px;
+    text-align: left;
+  }
+  #panel .btn {
+    width: 40px;
+    height: 40px;
   }
 }
 /* Desktops and laptops ----------- */
 @media only screen and (min-width: 1224px) {
+  max-width: 360px;
+  
   /* Styles */
 }
 /* Large screens ----------- */
