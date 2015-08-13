@@ -6,14 +6,12 @@
           <input id="mapStreetSearch" placeholder="zadejte adresu" class="jpSearch" type="text" name="street_search_address" value="" />
         </div>
 
-        <div class="col-md-12">
+        <div class="col-md-12 mapa-obsah-panelu txt">
           <h4>Novinky</h4>
           <div>
             {{ config.MAP_NEWS|safe }}
           </div>
-        </div>
 
-        <div class="col-md-12">
           <h4>{{ mesto }}</h4>
           <div>
             {{ mesto.uvodni_zprava|safe }}

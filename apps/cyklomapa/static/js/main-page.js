@@ -38,6 +38,7 @@ jQuery(document).ready(function($) {
         $('.dildo, .gold').toggleClass('hide');
       // update map size
       setTimeout(function(){map.updateSize();},500);
+      map_width_fix();
   });
   // ------ CLOSE POI -----
   $('.close').live("click",function(){
@@ -48,18 +49,25 @@ jQuery(document).ready(function($) {
    // 1445
   function map_width_fix(){
     W_width = $(window).width();
-    if(W_width > 1444){
+    // console.log(W_width);
+    // if(W_width > 1444){
+    var Body = $('body');
+    if (Body.is('.minimized')) {
+      $('.map_holder').css("width", '100%');
+      console.log('minimized');
+    }else{
       panel_width = $('#panel').width();
       $('.map_holder').css("width", W_width - panel_width);
-    }
+     }
   }
   map_width_fix();
 
-  $(window).resize(function(event) {
-    /* Act on the event */
-    map_width_fix()
+ $(window).on({
+    resize:function(){
+      /* Act on the event */
+      map_width_fix()
+      }
   });
-
   // advanced menu in layers layer
   $('#advanced_switch').on('click', function (e) {
     e.preventDefault();
@@ -86,4 +94,6 @@ jQuery(document).ready(function($) {
      overlayers = event.currentTarget.dataset['overlayers']
      activateLayers(base_layer, overlayers)
   });
+
+
 });

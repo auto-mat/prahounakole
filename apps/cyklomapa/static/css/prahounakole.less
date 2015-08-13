@@ -111,6 +111,7 @@ textarea{
   }
 }
 #panel{
+  max-width:400px;
   // *[class*='col-md-']{
   //   text-align:center;
   // }
@@ -235,8 +236,10 @@ textarea{
   text-align: left;
   margin-top: @dist*3;
 }
-#informace{
-  margin-top:1.5em;
+#informace, .mapa-obsah-panelu{
+    padding-top:1.5em;
+    margin-top:0.5em;
+    border-top:1px solid #000;
 }
 ul#uzavirky{
   padding-left: 0;
@@ -374,6 +377,7 @@ i.point_B{
       }
     }
   }
+
   .from_a, .to_b{
      &:hover, &:active, &:focus{
       .point_A, .point_B{
@@ -467,25 +471,25 @@ i.point_B{
       // height:;
     }
     // prahou na kole 
-    #OpenLayers_Control_LayerSwitcher_4_input_52{
+    // #OpenLayers_Control_LayerSwitcher_4_input_52{
 
-    }
-    // Vyhledavac PNK 
-    #OpenLayers_Control_LayerSwitcher_4_input_53{
+    // }
+    // // Vyhledavac PNK 
+    // #OpenLayers_Control_LayerSwitcher_4_input_53{
 
-    }
-    //  Open street map
-    #OpenLayers_Control_LayerSwitcher_4_input_54{
+    // }
+    // //  Open street map
+    // #OpenLayers_Control_LayerSwitcher_4_input_54{
 
-    }
-    // cycle map
-    #OpenLayers_Control_LayerSwitcher_4_input_55{
+    // }
+    // // cycle map
+    // #OpenLayers_Control_LayerSwitcher_4_input_55{
 
-    }
-    // Google satelite 
-    #OpenLayers_Control_LayerSwitcher_4_input_56{
+    // }
+    // // Google satelite 
+    // #OpenLayers_Control_LayerSwitcher_4_input_56{
 
-    }
+    // }
   }
   .container{
     width: 100%;
@@ -629,11 +633,17 @@ i.point_B{
   #city-switch{
     position:fixed;
     z-index: 900;
-    top: 114px;
-    margin-left: 19px;
+    top: 54px;
+    right: 16px;
+    &:hover{
+      transform:rotate(10deg);
+      .anim_fast;
+    }
+    // margin-left: 19px;
     .globe;
   }
 }
+
 .minimized{
   .panel_switch{
     padding-left:0.5em;
@@ -657,32 +667,43 @@ i.point_B{
   }
 }
 #OpenLayers_Control_ZoomPanel_10{
-  // minus
-  .olControlZoomOutItemInactive{
-    .globe;
-    background-position: 0 -33px; 
-    top:75px;
-    height:25px;
-  }
-  // center
-  .olControlZoomToMaxExtentItemInactive{
-    .globe;
-    background-position: 0 -95px;
-    top:39px;
-    left:-1px;
+  position:static !important;
+  right:10px;
+  top:100px;
+  z-index:1001;
+  .olControlZoomInItemInactive, .olControlZoomToMaxExtentItemInactive, .olControlZoomOutItemInactive{
+    left:100% !important;
+    position:fixed;
+    z-index:1001;
+    margin-left:-48px;
   }
   // plus
   .olControlZoomInItemInactive{
     .globe;
     background-position: 0 0; 
-    
+    margin-top: 96px;
+    top:0px;
+  }
+  // minus
+  .olControlZoomOutItemInactive{
+    .globe;
+    background-position: 0 -33px; 
+    top: 7px;
+    height:24px;
+  }
+  // center
+  .olControlZoomToMaxExtentItemInactive{
+    .globe;
+    background-position: 0 -95px;
+    margin-top: 96px;
+    top:172px;
   }
 }
-.panel_minimized{
-  #OpenLayers_Control_ZoomPanel_10{
-    left: 119px;
-  }
-}
+// .panel_minimized{
+//   #OpenLayers_Control_ZoomPanel_10{
+//     left: 119px;
+//   }
+// }
 #layers-switch{
   position: fixed;
   z-index: 900;
@@ -836,7 +857,9 @@ td.distance:hover .leng{display:none}
   padding-top:2.5em;
   border-top:1px solid #000;
 }
-
+label{
+  display:block;
+}
 /* Chrome, Safari, Opera */
 @-webkit-keyframes left-to-right {
     0%   {left: 0px;}
@@ -861,28 +884,28 @@ and (max-device-width : 480px) {
   // .olControlZoomPanel {
   //   top: 50px;
   // }
-  .olControlZoomPanel{
-    left:14px;
-  }
-  #layers-switch{
-    right:0px;
-    top:160px;
-  }
-  #city_switch_holder #city-switch{
-    top:116px;
-    margin-left: 14px;
-  }
-  .panel_minimized{
-    #city_switch_holder{
-    #city-switch{
-          top: 10px;
-          margin-left: 63px;
-      }
-    }
-    #layers-switch{
-      top:6px;
-    }
-  }
+  // .olControlZoomPanel{
+  //   left:14px;
+  // }
+  // #layers-switch{
+  //   right:0px;
+  //   top:160px;
+  // }
+  // #city_switch_holder #city-switch{
+  //   top:116px;
+  //   margin-left: 14px;
+  // }
+  // .panel_minimized{
+  //   #city_switch_holder{
+  //   // #city-switch{
+  //   //       top: 10px;
+  //   //       margin-left: 63px;
+  //   //   }
+  //   // }
+  //   // #layers-switch{
+  //   //   top:6px;
+  //   }
+  // }
 /* Styles */
 }
 #uzavirky{
@@ -1169,17 +1192,12 @@ and (max-device-width : 768px) {
     font-size:20px;
   }
 }
-@media only screen 
-and (width : 480px) {
-  #layers-switch {
-      right: 24px;
-      top: 160px;
-  }
-}
+
 @media only screen 
 and (max-width : 480px) {
 /* Styles */
   #panel{
+    width:258px;
     h4{
       font-size: 1.3em;
     }
@@ -1219,23 +1237,31 @@ and (max-width : 480px) {
     //   background-position: -478px -11px
     // }
   }
+  #OpenLayers_Control_ZoomPanel_10{
+      .olControlZoomToMaxExtentItemInactive {
+      top:45px;
+    }
+    .olControlZoomOutItemInactive {
+      top:179px;
+    }
+  }
 }
 /* Desktops and laptops ----------- */
-@media only screen 
-and (min-width : 1224px) {
-/* Styles */
-max-width:360px;
-}
+// @media only screen 
+// and (min-width : 1224px) {
+// /* Styles */
+// max-width:360px;
+// }
 
-/* Large screens ----------- */
-@media only screen 
-and (min-width : 1824px) {
-/* Styles */
-}
+//  Large screens ----------- 
+// @media only screen 
+// and (min-width : 1824px) {
+// /* Styles */
+// }
 
 /* iPhone 4 ----------- */
-@media
-only screen and (-webkit-min-device-pixel-ratio : 1.5),
-only screen and (min-device-pixel-ratio : 1.5) {
-/* Styles */
-}
+// @media
+// only screen and (-webkit-min-device-pixel-ratio : 1.5),
+// only screen and (min-device-pixel-ratio : 1.5) {
+// /* Styles */
+// }
