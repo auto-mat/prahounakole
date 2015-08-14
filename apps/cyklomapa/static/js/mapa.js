@@ -436,6 +436,7 @@ function initRoutingPanel() {
        $('#jpStartStreetSearch').focus();
        toggleButtons();
     }
+    routeHash();
 }
 
 function setWaypoint(feature) {
@@ -597,6 +598,13 @@ function planJourney() {
     CSApi.journey(null, waypoints, 'balanced', addPlannedJourney, { select: reqPlan });
 }
 
+function routeHash(){
+   if(selectedPlan){
+      setHashParameter('trasa', selectedItinerary, false);
+      setHashParameter('plan', selectedPlan, false);
+   }
+}
+
 // callback to process route returned by server
 function addPlannedJourney(itinerary, plan, route, options) {
     CSApi.routeInfo(route);
@@ -606,7 +614,6 @@ function addPlannedJourney(itinerary, plan, route, options) {
     }
     if (options && options.select && options.select == plan) {
         selectedItinerary = itinerary;
-        setHash('trasa=' + itinerary, false);
         $('#' + plan).click();
         updateMarkersAndLabels(route);
     }
@@ -681,7 +688,7 @@ function selectPlan(plan) {
     $('#jpInstructions').find('tr').click(zoomToSegment);
     $('#jpDetails').show();
     $('#gpxLink').attr('href', CSApi.gpxLink(plan));
-    setHashParameter('plan', plan, false);
+    routeHash();
 }
         
 function previewPlanIn() {
