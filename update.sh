@@ -35,7 +35,7 @@ fi
 
 bower install
 #compile PNK version of OpenLayers:
-(cd apps/cyklomapa/static/bow/openlayers/build/ && python build.py -c closure_ws pnk ../OpenLayers.PNK.js)
+(cd apps/cyklomapa/static/bow/openlayers/build/ && python build.py -c closure_ws ../../../openstreetmap-pnk ../OpenLayers.PNK.js)
 
 env/bin/python ./manage.py collectstatic --noinput
 touch wsgi.py
