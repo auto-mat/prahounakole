@@ -14,14 +14,8 @@
   <link rel="stylesheet" href="{% static "css/google.css" %}" type="text/css" />
   <link rel="stylesheet" href="{% static "css/layerswitcher.css" %}" type="text/css" />
   <link rel="stylesheet" href="{% static "bow/lightbox/dist/css/lightbox.css" %}" type="text/css" />
-  {% if mesto.sektor.slug != "mapa" and mesto.sektor.slug != "devel" %}
-  <link rel="stylesheet" href="{% static "css/dpnk.css" %}" type="text/css" />
-  {% endif %}
                     
   <link rel="stylesheet" href="{% static "css/print.css" %}" type="text/css" media="print" />
-  {% if mobilni %}
-   <link rel="stylesheet" href="{% static "css/mobile.css" %}" type="text/css" />
-  {% endif %}
    <script type="text/javascript" src="{% static "bow/jquery/dist/jquery.min.js" %}"></script>
    <script type="text/javascript" src="{% static "bow/bootstrap/dist/js/bootstrap.min.js" %}"></script> <!-- Bootstrap musi byt hned za Jquery, resp, pret tools apod. -->
    <script type="text/javascript" src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
