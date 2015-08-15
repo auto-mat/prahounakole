@@ -23,6 +23,7 @@ function togglePanel(event, minimalized){
 }
 
 jQuery(document).ready(function($) {
+  init(mapconfig);
 
   // --------  PANEL SWITCH ---------
   $('.panel_switch').click( function(event){
@@ -86,4 +87,5 @@ jQuery(document).ready(function($) {
      overlayers = event.currentTarget.dataset['overlayers']
      activateLayers(base_layer, overlayers)
   });
+
 });
