@@ -32,7 +32,11 @@ if [ "$1" = "migrate" ]; then
    echo "Migrating..."
    env/bin/python ./manage.py migrate
 fi
+
 bower install
+#compile PNK version of OpenLayers:
+(cd apps/cyklomapa/static/bow/OpenLayers/build/ && python build.py -c closure_ws pnk ../OpenLayers.PNK.js)
+
 env/bin/python ./manage.py collectstatic --noinput
 touch wsgi.py
 type supervisorctl && sudo supervisorctl restart $app_name
