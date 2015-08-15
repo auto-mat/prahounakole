@@ -21,7 +21,7 @@
     "jquery-hashchange": "*",
     "openlayers": "*",
     "bootstrap": "~3.3.5",
-    "jquery.tools": "~1.2.7",
+    "jquery.tools": "http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js",
     "jquery.persist": "https://jquery-persist.googlecode.com/files/jquery-persist-1.1.tgz"
   }
 }
