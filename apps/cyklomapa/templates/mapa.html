@@ -18,7 +18,8 @@
   <link rel="stylesheet" href="{% static "bow/lightbox/dist/css/lightbox.css" %}" type="text/css" />
   <link rel="stylesheet" type="text/css" href="{% static "fluent_comments/css/ajaxcomments.css" %}" />
   <link rel="stylesheet" href="{% static "feedback/main.css" %}" type="text/css" />
-  <link rel="stylesheet" href="{% static "css/prahounakole.css" %}" type="text/css" />
+  <link rel="stylesheet" href="{% static "css/prahounakole.css" %}" type="text/css" media="screen"/>
+  <!-- chrome nema rad media print wuery uvnitr, obecneho css ;( nebo co ) -->
   <link rel="stylesheet" href="{% static "css/print.css" %}" type="text/css" media="print" />
   {% endcompress %}
 
@@ -107,14 +108,19 @@
 
        
     </script>
-    <a href="#" id="layers-switch" data-toggle="modal" data-target="#modal-layer"></a>
+
+    <div id="my_map_controls">
+	    <a href="#" id="layers-switch" data-toggle="modal" data-target="#modal-layer"></a>
+        <a href="#" id="city-switch" data-toggle="modal" data-target="#modal-city"></a>
+	    <a href="#" id="zoom-reset" data-toggle="modal"></a>
+	    <a href="#" id="zoom-in" data-toggle="modal"></a>
+	    <a href="#" id="zoom-out" data-toggle="modal"></a>
+    </div>
+
       <div id="core" class="container">
         {% include "filter.svg" %}
         <div class="row">
           <div id="panel" class="col-md-3 col-sm-10 col-smd-4">
-            <div id="city_switch_holder">
-             <a href="#" id="city-switch" data-toggle="modal" data-target="#modal-city"></a>
-            </div>
             <span class="panel_switch_holder">
               <a class="panel_switch" href="#">&#8676;</a>
             </span>
@@ -132,29 +138,31 @@
                     <a href="http://mapa.prahounakole.cz">Prahou na kole <img src="{% static "css/prazak.png" %}" alt="mapa.prahounakole.cz">
                     </a>
                   </div>
-                  <div class="col-md-3">  
-                    <a href="#" class="tab_switch active">
-                      <span class="sprite mapa btn mode-btn"></span>
-                      <label>Vyhledat</label>
-                    </a>
-                  </div>
-                  <div class="col-md-3 ">  
-                    <a href="#hledani" class="tab_switch">
-                      <span class="sprite btn mode-btn hledani"></span>
-                      <label>Vyhledat trasu</label>
-                    </a>
-                  </div>
-                  <div class="col-md-3">
-                    <a href="#informace" class="tab_switch">
-                    <span class="sprite  btn mode-btn informace"></span>
-                    <label>Informace</label>
-                    </a>
-                  </div>
-                  <div class="col-md-3">  
-                    <a class="tab_switch feedback_button">
-                    <span class="sprite  btn mode-btn feedback"></span>
-                    <label>Feedback</label>
-                    </a>
+                  <div class="row tabs">
+                    <div class="col-md-3">  
+                      <a href="#" class="tab_switch active">
+                        <span class="sprite mapa btn mode-btn"></span>
+                        <label>Vyhledat</label>
+                      </a>
+                    </div>
+                    <div class="col-md-3 ">  
+                      <a href="#hledani" class="tab_switch">
+                        <span class="sprite btn mode-btn hledani"></span>
+                        <label>Vyhledat trasu</label>
+                      </a>
+                    </div>
+                    <div class="col-md-3">
+                      <a href="#informace" class="tab_switch">
+                      <span class="sprite  btn mode-btn informace"></span>
+                      <label>Informace</label>
+                      </a>
+                    </div>
+                    <div class="col-md-3">  
+                      <a class="tab_switch feedback_button">
+                      <span class="sprite  btn mode-btn feedback"></span>
+                      <label>Feedback</label>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </nav>
@@ -171,13 +179,15 @@
                      {% include "panel-hledani.html" %}
                      {% include "panel-informace.html" %}
                   </div>
+                  <a class="sprite btn print" title="Tisk"></a>
                 </div>
+
               </article>
             </div>
           </div>
-          <!-- <div class="col-md-9 col-sm-2 col-smd-8 map_holder"> -->
+          <div class="col-md-9 col-sm-2 col-smd-8 map_holder">
           <!-- map width is defined dynamicaly in man_page.js -->
-          <div class="map_holder">
+          <!-- <div class="map_holder"> -->
             <div id="map" {% if nomenu %}class="fullscreen"{% endif %}></div>
           </div>
         </div>

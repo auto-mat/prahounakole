@@ -23,6 +23,25 @@ function togglePanel(event, minimalized){
 }
 
 jQuery(document).ready(function($) {
+  
+
+  $('#zoom-in').click( function(event){
+      event.preventDefault();
+      map.zoomIn()
+    });
+  $('#zoom-out').click( function(event){
+      event.preventDefault();
+      map.zoomOut()
+    });
+  $('#zoom-reset').click( function(event){
+      event.preventDefault();
+      // Prosim doplnit
+      // map.zoom....()
+    });
+  $('.print').on('click', function (e) {
+    e.preventDefault();
+    window.print()
+  });
 
   // --------  PANEL SWITCH ---------
   $('.panel_switch').click( function(event){
@@ -37,7 +56,8 @@ jQuery(document).ready(function($) {
         // show/hide panel content
         $('.dildo, .gold').toggleClass('hide');
       // update map size
-      setTimeout(function(){map.updateSize();},500);
+      // Not needed anymnore ;)
+      // setTimeout(function(){map.updateSize();},500);
       map_width_fix();
   });
   // ------ CLOSE POI -----
@@ -52,7 +72,7 @@ jQuery(document).ready(function($) {
     // console.log(W_width);
     // if(W_width > 1444){
     var Body = $('body');
-    if (Body.is('.minimized')) {
+    if (Body.is('.panel_minimized')) {
       $('.map_holder').css("width", '100%');
       console.log('minimized');
     }else{
