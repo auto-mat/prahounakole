@@ -9,6 +9,7 @@
 /pnk.log
 /project/settings_local.py
 /apps/cyklomapa/static/bow/
+/apps/cyklomapa/static/css/prahounakole.css
 !.gitkeep
 *~
 /db_backup/

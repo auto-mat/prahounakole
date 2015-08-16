@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="{% static "bow/lightbox/dist/css/lightbox.css" %}" type="text/css" />
   <link rel="stylesheet" type="text/css" href="{% static "fluent_comments/css/ajaxcomments.css" %}" />
   <link rel="stylesheet" href="{% static "feedback/main.css" %}" type="text/css" />
-  <link rel="stylesheet" href="{% static "css/prahounakole.css" %}" type="text/css" media="screen"/>
+  <link rel="stylesheet" href="{% static "css/prahounakole.less" %}" type="text/less" />
   <!-- chrome nema rad media print wuery uvnitr, obecneho css ;( nebo co ) -->
   <link rel="stylesheet" href="{% static "css/print.css" %}" type="text/css" media="print" />
   {% endcompress %}
@@ -43,8 +43,8 @@
   <script type="text/javascript" src="{% static "bow/jquery.persist/jquery.persist.js" %}"></script>
   <script type="text/javascript" src="{% static "feedback/jquery.form.js" %}"></script>
   <script type="text/javascript" src="{% static "feedback/main.js" %}"></script>
-  {% endcompress %}
   <script type="text/javascript" src="{% static "bow/css-browser-selector/css_browser_selector.js" %}"></script>
+  {% endcompress %}
 
    <link rel="alternate" type="application/rss+xml" title="Novinky v mapě" href="{% url 'novinky_feed' %}" />
    <link rel="alternate" type="application/rss+xml" title="Uzavírky" href="{% url 'uzavirky_feed' %}" />
@@ -175,9 +175,12 @@
                   </div>
                   <!-- here comes the treasure -->
                   <div id="panel-content">
-                     {% include "panel-mapa.html" %}
-                     {% include "panel-hledani.html" %}
-                     {% include "panel-informace.html" %}
+                     <div id="mapa" data-src="/panel-mapa" class="panel row">
+                     </div>
+                     <div id="hledani" data-src="/panel-hledani" class="panel row">
+                     </div>
+                     <div id="informace" data-src="/panel-informace" class="panel row">
+                     </div>
                   </div>
                   <a class="sprite btn print" title="Tisk"></a>
                 </div>
