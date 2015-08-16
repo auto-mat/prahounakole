@@ -204,6 +204,10 @@ REST_ENABLED=True
 FLUENT_COMMENTS_EXCLUDE_FIELDS = ('url',)
 COMMENTS_APP = 'fluent_comments'
 
+COMPRESS_PRECOMPILERS = (
+    ('text/less', 'lessc {infile} {outfile}'),
+)
+
 # import local settings
 try:
     from settings_local import *
