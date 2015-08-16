@@ -20,3 +20,5 @@ raven
 gunicorn
 newrelic
 -e git+https://github.com/PetrDlouhy/django-feedback.git@pnk_improvements#egg=django-feedback
+
+django-compressor

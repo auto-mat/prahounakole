@@ -51,6 +51,11 @@ LOGIN_URL = '/admin/'
 STATICFILES_DIRS = (
         os.path.join(PROJECT_DIR, 'apps/cyklomapa/static'),
 )
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+)
 
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
 TEMPLATE_CONTEXT_PROCESSORS += (
@@ -110,6 +115,7 @@ INSTALLED_APPS = [
     'django_comments',
     'colorful',
     #'massadmin',
+    'compressor',
     'raven.contrib.django.raven_compat',
 ]
 
