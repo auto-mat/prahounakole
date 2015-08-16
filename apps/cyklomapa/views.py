@@ -12,6 +12,7 @@ from django.views.decorators.cache import cache_page
 from django.core.cache import get_cache
 from django.views.decorators.cache import never_cache
 from django.views.decorators.gzip import *
+from django.views.generic import TemplateView
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 from django.db.models import Q 
@@ -73,15 +74,9 @@ def mapa_view(request, poi_id=None):
         minimize_layerswitcher = 1
         nomenu = 1
 
-    if request.mesto:
-        historie = Poi.objects.filter(status__show=True, geom__intersects=request.mesto.sektor.geom).order_by('last_modification').reverse()[:10]
-    else:
-        historie = None
-
     context = RequestContext(request, {
         'root_url': ROOT_URL,
         'vrstvy': vrstvy,
-        'legenda': Legend.objects.all(),
         'center_poi' : center_poi,
         'nomenu': nomenu,
         'mesto': request.mesto,
@@ -89,8 +84,6 @@ def mapa_view(request, poi_id=None):
         'mobilni': request.mobilni,
         'presets': MapPreset.objects.filter(status__show=True),
         'mesta': Mesto.objects.order_by('sektor__name').all(),
-        'uzavirky': Poi.objects.select_related('marker').filter(status__show=True, geom__intersects=request.mesto.sektor.geom, marker__slug='vyluka_akt')[:10],
-        'historie': historie
     })
     if not (request.mesto and request.mesto.aktivni) and not request.user.is_authenticated():
        return render_to_response('neaktivni.html', context_instance=context)
@@ -177,3 +170,20 @@ def znacky_view(request):
     legenda = Legend.objects.all()
     return render_to_response('znacky.html',
         context_instance=RequestContext(request, { 'vrstvy': vrstvy, 'znacky': znacky, 'legenda': legenda }))
+
+class PanelMapaView(TemplateView):
+    template_name = "panel-mapa.html"
+
+class PanelHledaniView(TemplateView):
+    template_name = "panel-hledani.html"
+
+class PanelInformaceView(TemplateView):
+    template_name = "panel-informace.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(PanelInformaceView, self).get_context_data(**kwargs)
+        if self.request.mesto:
+            context['historie'] = Poi.objects.filter(status__show=True, geom__intersects=self.request.mesto.sektor.geom).order_by('last_modification').reverse()[:10]
+        context['uzavirky'] = Poi.objects.select_related('marker').filter(status__show=True, geom__intersects=self.request.mesto.sektor.geom, marker__slug='vyluka_akt')[:10]
+        context['legenda'] = Legend.objects.all()
+        return context

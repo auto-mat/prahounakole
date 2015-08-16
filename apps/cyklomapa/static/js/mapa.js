@@ -220,6 +220,10 @@ function init(mapconfig) {
 
 function showPanel(slug) {
     // highlight active mode icon
+    div_class = '#' + slug;
+    $(div_class).load($(div_class).data("src"), function(){
+       activateHarmonika();
+    });
     $('.mode-btn').parent().removeClass('active');
     $('.mode-btn.' + slug).parent().addClass('active');
 

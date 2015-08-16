@@ -167,9 +167,12 @@
                   </div>
                   <!-- here comes the treasure -->
                   <div id="panel-content">
-                     {% include "panel-mapa.html" %}
-                     {% include "panel-hledani.html" %}
-                     {% include "panel-informace.html" %}
+                     <div id="mapa" data-src="/panel-mapa" class="panel row">
+                     </div>
+                     <div id="hledani" data-src="/panel-hledani" class="panel row">
+                     </div>
+                     <div id="informace" data-src="/panel-informace" class="panel row">
+                     </div>
                   </div>
                 </div>
               </article>

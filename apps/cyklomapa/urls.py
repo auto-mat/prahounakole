@@ -3,6 +3,7 @@ from django.conf.urls import patterns, url, include
 from django.contrib import admin
 
 from cyklomapa.views import mapa_view, kml_view, popup_view, uzavirky_view, metro_view, znacky_view
+from cyklomapa.views import PanelMapaView, PanelInformaceView, PanelHledaniView
 from cyklomapa.feeds import UzavirkyFeed, NovinkyFeed
 from httpproxy.views import HttpProxy
 from django_comments.feeds import LatestCommentFeed
@@ -17,6 +18,9 @@ urlpatterns = patterns('',
     url(r'^novinky/feed/$', NovinkyFeed(), name="novinky_feed"),
     (r'^metro/$', metro_view),
     (r'^znacky/$', znacky_view),
+    url(r'^panel-mapa/$', PanelMapaView.as_view()),
+    url(r'^panel-informace/$', PanelInformaceView.as_view()),
+    url(r'^panel-hledani/$', PanelHledaniView.as_view()),
     url(r'^comments/', include('fluent_comments.urls')),
     url(r'^comments/feeds/latest/$', LatestCommentFeed(), name="latest_comments_feed"),
 )
