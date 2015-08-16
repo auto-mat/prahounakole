@@ -28,27 +28,6 @@ var EPSG900913 = new OpenLayers.Projection("EPSG:900913");
 var bounds = new OpenLayers.Bounds(12,48.5,19,51.1);
 bounds.transform(EPSG4326, EPSG900913);
 
-function defaultPanZoom() {
-    var newPanZoom = new OpenLayers.Control.ZoomPanel();
-
-    OpenLayers.Util.extend(newPanZoom, {
-        activateControl: function(evt) {
-            switch (evt.displayClass) {
-                case "olControlZoomIn": 
-                    this.map.zoomIn(); 
-                    break;
-                case "olControlZoomOut": 
-                    this.map.zoomOut(); 
-                    break;
-                case "olControlZoomToMaxExtent": 
-                    map.setCenter(new OpenLayers.LonLat(mapconfig.baselon, mapconfig.baselat).transform(EPSG4326, map.getProjectionObject()), mapconfig.basezoom);
-                    break;
-                }
-            }
-   });
-   return newPanZoom;
-}
-
 function getTileURL(bounds) {
     var res = this.map.getResolution();
     var x = Math.round((bounds.left - this.maxExtent.left) / (res * this.tileSize.w));
@@ -116,7 +95,6 @@ function init(mapconfig) {
             new OpenLayers.Control.ArgParser({configureLayers: configureLayers}),
             new OpenLayers.Control.Attribution(),
             new OpenLayers.Control.Navigation(),
-            defaultPanZoom()
         ];
     } else {
         layerSwitcher = new OpenLayers.Control.LayerSwitcher({'div':OpenLayers.Util.getElement('layer_switcher')});
@@ -127,7 +105,6 @@ function init(mapconfig) {
             new OpenLayers.Control.Navigation(),
             new OpenLayers.Control.Permalink({createParams: createParams}),
             new OpenLayers.Control.ScaleLine({maxWidth: 300, bottomOutUnits: ''}),
-            defaultPanZoom()
         ];
     }
 

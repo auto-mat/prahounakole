@@ -52,6 +52,7 @@ jQuery(document).ready(function($) {
     });
   $('#zoom-reset').click( function(event){
       event.preventDefault();
+      map.setCenter(new OpenLayers.LonLat(mapconfig.baselon, mapconfig.baselat).transform(EPSG4326, map.getProjectionObject()), mapconfig.basezoom);
       // Prosim doplnit
       // map.zoom....()
     });
