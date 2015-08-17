@@ -40,6 +40,9 @@
 {% else %}
     <p>{{ poi.znacka }}</p>
 {% endif %}
+{% if poi.desc_extra %}
+    <p>{{ poi.desc_extra|safe }}</p>
+{% endif %}
 {% if poi.address %}
     <p>Adresa:<br>{{ poi.address|safe }}</p>
 {% endif %}
