@@ -103,6 +103,7 @@ function init(mapconfig) {
             new OpenLayers.Control.Attribution(),
             layerSwitcher,
             new OpenLayers.Control.Navigation(),
+            new OpenLayers.Control.TouchNavigation(),
             new OpenLayers.Control.Permalink({createParams: createParams}),
             new OpenLayers.Control.ScaleLine({maxWidth: 300, bottomOutUnits: ''}),
         ];
