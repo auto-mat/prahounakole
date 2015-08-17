@@ -197,10 +197,6 @@ function init(mapconfig) {
 
 function showPanel(slug) {
     // highlight active mode icon
-    div_class = '#' + slug;
-    $(div_class).load($(div_class).data("src"), function(){
-       activateHarmonika();
-    });
     $('.mode-btn').parent().removeClass('active');
     $('.mode-btn.' + slug).parent().addClass('active');
 
@@ -812,6 +808,14 @@ function removeHashParameter(param, trigger) {
     setHash(newhash, trigger);
 }
 
+function loadPanelContent(slug, func) {
+    div_class = '#' + slug;
+    if($(div_class).children().length == 0){
+       $(div_class).load($(div_class).data("src"), func);
+    } else {
+       func();
+    }
+}
 
 function onHashChange(e) {
     if (ignoreHashChange) {
@@ -823,31 +827,37 @@ function onHashChange(e) {
     hash = hash.replace(/^#/, '');
     var args = parseHash();
     if (hash === '') {
-        setupPnkMap();
-        showPanel_closeBox('mapa');
+        loadPanelContent('mapa', function(){
+           setupPnkMap();
+           showPanel_closeBox('mapa');
+        });
     }
     if (hash == 'hledani') {
-        setupRouting();
-        initRoutingPanel();
-        showPanel_closeBox('hledani');
+        loadPanelContent('hledani', function(){
+           setupRouting();
+           initRoutingPanel();
+           showPanel_closeBox('hledani');
+        });
     }
     if (args['trasa']) {
-        setupRouting();
-        showPanel_closeBox('hledani');
-        var plan = args['plan'];
-        if ($.inArray(plan, ['balanced', 'quietest', 'fastest']) < 0) {
-            plan = 'balanced';
-        }
-        if (selectedItinerary == args['trasa']) {
-            if (selectedPlan != plan) {
-                selectPlan(plan);
-            }
-            return;
-        }
-        // odebereme focus nastaveny v setupRouting, jinak po chvili vybehne autocomplete
-        $('.ui-autocomplete-input').blur();
-        selectedPlan = null;
-        CSApi.journey(args['trasa'], null, 'balanced', addPlannedJourney, { select: plan });
+        loadPanelContent('hledani', function(){
+           setupRouting();
+           showPanel_closeBox('hledani');
+           var plan = args['plan'];
+           if ($.inArray(plan, ['balanced', 'quietest', 'fastest']) < 0) {
+               plan = 'balanced';
+           }
+           if (selectedItinerary == args['trasa']) {
+               if (selectedPlan != plan) {
+                   selectPlan(plan);
+               }
+               return;
+           }
+           // odebereme focus nastaveny v setupRouting, jinak po chvili vybehne autocomplete
+           $('.ui-autocomplete-input').blur();
+           selectedPlan = null;
+           CSApi.journey(args['trasa'], null, 'balanced', addPlannedJourney, { select: plan });
+        });
     }
     if (args['misto']) {
         var poi_array = args['misto'].split("_");
@@ -858,8 +868,10 @@ function onHashChange(e) {
         showPanel('mapa');
     }
     if (hash == 'informace') {
-        setupPnkMap();
-        showPanel_closeBox('informace');
+        loadPanelContent('informace', function(){
+           setupPnkMap();
+           showPanel_closeBox('informace');
+        });
     }
 }
 
