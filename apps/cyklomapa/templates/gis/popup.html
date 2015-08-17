@@ -59,8 +59,8 @@
    </script>
 
    {% get_comment_count for poi as comment_count %}
-   <h3 id="hidden-header" class="margin_t_2">Komentáře ({{ comment_count }})</h3>
    <div id="comments-wrapper">
+      <h3 id="hidden-header" class="margin_t_2">Komentáře ({{ comment_count }})</h3>
       {% render_comment_list for poi %}
       {% render_comment_form for poi %}
    </div>
