@@ -14,7 +14,7 @@
       {% else %}
       <div class="col-md-2 col-md-offset-6 col-sm-3 col-sm-offset-0 centred">
       {% endif %}
-        <a href="#misto={{ poi.id }}" class="sprite btn link" title="Odkaz na místo"></a>
+      <a href="#misto={{ poi.marker.layer.slug}}_{{ poi.id }}" class="sprite btn link" title="Odkaz na místo"></a>
       </div>
       <div class="col-md-2 col-sm-3 centred">
          <a href="http://maps.google.com/?q={{ poi|urlencode }}@{{ poi.geom.y }},{{ poi.geom.x }}&amp;z=18&amp;t=h" target="pnk_gmap" title="Zobrazit v Google Maps" class="sprite btn gmap"></a>
