@@ -174,6 +174,11 @@ def znacky_view(request):
 class PanelMapaView(TemplateView):
     template_name = "panel-mapa.html"
 
+    def get_context_data(self, **kwargs):
+        context = super(PanelMapaView, self).get_context_data(**kwargs)
+        context['mesto'] = self.request.mesto
+        return context
+
 class PanelHledaniView(TemplateView):
     template_name = "panel-hledani.html"
 
