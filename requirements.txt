@@ -9,7 +9,7 @@ django-mass-edit
 
 -e git+https://github.com/PetrDlouhy/django-contrib-comments.git#egg=django-contrib-comments #remove after #a54aff6 is in pip
 
-django-fluent-comments
+-e git+https://github.com/PetrDlouhy/django-fluent-comments.git#egg=django-fluent-comments
 
 django-constance-updated[database] #remove this after constance is updated for compatibility with Django 1.8
 
