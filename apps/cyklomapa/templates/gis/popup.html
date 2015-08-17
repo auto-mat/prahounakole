@@ -7,12 +7,12 @@
    <h4>{{ poi }}</h4>
    <div class="row controls">
       {% if can_change %}
-      <div class="col-md-2 col-md-offset-6 col-sm-3 centred">
+      <div class="col-md-2 col-md-offset-4 col-sm-3 centred">
          <a href="{% url 'admin:webmap_poi_change' poi.id %}" class="btn edit" title="Upravit">&#9874;</a>
       </div>
       <div class="col-md-2 col-sm-3 centred">
       {% else %}
-      <div class="col-md-2 col-md-offset-4 col-sm-3 col-sm-offset-0 centred">
+      <div class="col-md-2 col-md-offset-6 col-sm-3 col-sm-offset-0 centred">
       {% endif %}
         <a href="#misto={{ poi.id }}" class="sprite btn link" title="Odkaz na místo"></a>
       </div>
