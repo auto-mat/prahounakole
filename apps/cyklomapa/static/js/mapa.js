@@ -192,7 +192,11 @@ function init(mapconfig) {
          map.setCenter(new OpenLayers.LonLat(mapconfig.lon, mapconfig.lat).transform(EPSG4326, map.getProjectionObject()), mapconfig.zoom);
      }
 
-     $('.btn.close').click(closePoiBox);
+     $('.close').live("click",function(){
+        if(selectControl){
+           selectControl.unselectAll();
+        }
+     });
 } // init
 
 function showPanel(slug) {
@@ -1014,8 +1018,8 @@ function createPopup(response) {
 };
 
 function closePoiBox() {
-    $('#poi_box').hide();
-    $('#panel-content').show();
+    $('#poi_box').slideUp(400).hide(400)
+    $('#panel-content').show(400);
     removeHashParameter('misto', false);    
 }
 
