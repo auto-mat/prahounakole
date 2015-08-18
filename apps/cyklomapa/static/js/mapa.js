@@ -90,24 +90,16 @@ function init(mapconfig) {
     mainFilter.filters.push(zoomFilter);
 
     var controls;
-    if(mapconfig.mobilni) {
-        controls = [
-            new OpenLayers.Control.ArgParser({configureLayers: configureLayers}),
-            new OpenLayers.Control.Attribution(),
-            new OpenLayers.Control.Navigation(),
-        ];
-    } else {
-        layerSwitcher = new OpenLayers.Control.LayerSwitcher({'div':OpenLayers.Util.getElement('layer_switcher')});
-        controls = [
-            new OpenLayers.Control.TouchNavigation(),
-            new OpenLayers.Control.ArgParser({configureLayers: configureLayers}),
-            new OpenLayers.Control.Attribution(),
-            layerSwitcher,
-            new OpenLayers.Control.Navigation(),
-            new OpenLayers.Control.Permalink({createParams: createParams}),
-            new OpenLayers.Control.ScaleLine({maxWidth: 300, bottomOutUnits: ''}),
-        ];
-    }
+    layerSwitcher = new OpenLayers.Control.LayerSwitcher({'div':OpenLayers.Util.getElement('layer_switcher')});
+    controls = [
+        new OpenLayers.Control.TouchNavigation(),
+        new OpenLayers.Control.ArgParser({configureLayers: configureLayers}),
+        new OpenLayers.Control.Attribution(),
+        layerSwitcher,
+        new OpenLayers.Control.Navigation(),
+        new OpenLayers.Control.Permalink({createParams: createParams}),
+        new OpenLayers.Control.ScaleLine({maxWidth: 300, bottomOutUnits: ''}),
+    ];
 
     var options = { 
         controls: controls,
@@ -121,12 +113,10 @@ function init(mapconfig) {
 
     map = new OpenLayers.Map('map', options);
 
-    if(!mapconfig.mobilni) {
-        if (mapconfig.minimize_layerswitcher) {
-            layerSwitcher.minimizeControl();
-        } else {
-            layerSwitcher.maximizeControl();
-        }
+    if (mapconfig.minimize_layerswitcher) {
+        layerSwitcher.minimizeControl();
+    } else {
+        layerSwitcher.maximizeControl();
     }
 
     layer_osm = new OpenLayers.Layer.OSM.Mapnik(
@@ -166,11 +156,8 @@ function init(mapconfig) {
         numZoomLevels: 21
      });
 
-     map.addLayers([layerPNK]);
-     if(!mapconfig.mobilni) {
-         map.addLayers([layer_osm, layerCycle, layerGoogle, layerBW]);
-         layerGoogle.mapObject.setTilt(0);
-     }
+     map.addLayers([layerPNK, layer_osm, layerCycle, layerGoogle, layerBW]);
+     layerGoogle.mapObject.setTilt(0);
 
      // zabranime odzoomovani na nizsi level nez 8 
      map.isValidZoomLevel = function(zoomLevel) {
@@ -229,52 +216,50 @@ function setupPnkMap() {
     map.setBaseLayer(layerPNK);
     $('.olControlLayerSwitcher').show();
 
-    if(!mapconfig.mobilni) {
-        kmlvrstvy = mapconfig.vrstvy;
-        if(vectors.length == 0){
-           for (var i in kmlvrstvy) {
-               name = kmlvrstvy[i][0];
-               url = mapconfig.root_url + kmlvrstvy[i][1];
-               slug = kmlvrstvy[i][3];
-               enabled = kmlvrstvy[i][2] == 'True' || mapconfig.center_feature_slug == slug;
-               switch(slug) {
-                   case 'a':
-                       addCSLayer(name, enabled, slug);
-                       break;
-                   case 'r':
-                       addRekola(name, enabled, slug);
-                       break;
-                   case 'g':
-                       addDPNK1(name, enabled, slug);
-                       break;
-                   case 't':
-                       addDPNK2(name, enabled, slug);
-                       break;
-                   default:
-                       addPoiLayer(name, url, enabled, slug);
-               }
+    kmlvrstvy = mapconfig.vrstvy;
+    if(vectors.length == 0){
+       for (var i in kmlvrstvy) {
+           name = kmlvrstvy[i][0];
+           url = mapconfig.root_url + kmlvrstvy[i][1];
+           slug = kmlvrstvy[i][3];
+           enabled = kmlvrstvy[i][2] == 'True' || mapconfig.center_feature_slug == slug;
+           switch(slug) {
+               case 'a':
+                   addCSLayer(name, enabled, slug);
+                   break;
+               case 'r':
+                   addRekola(name, enabled, slug);
+                   break;
+               case 'g':
+                   addDPNK1(name, enabled, slug);
+                   break;
+               case 't':
+                   addDPNK2(name, enabled, slug);
+                   break;
+               default:
+                   addPoiLayer(name, url, enabled, slug);
            }
-        } else {
-           for (var i=0; i < vectors.length; i++) {
-              vectors[i].setVisibility(vectors[i].was_visible);
-           };
-        };
+       }
+    } else {
+       for (var i=0; i < vectors.length; i++) {
+          vectors[i].setVisibility(vectors[i].was_visible);
+       };
+    };
 
-        if(!selectControl){
-           selectControl = new OpenLayers.Control.SelectFeature(
-               vectors, {
-               toggle: true,
-               clickout: true,
-               multiple: false,
-               onUnselect: onFeatureUnselect,
-               onBeforeSelect: onBeforeFeatureSelect,
-               onSelect: onFeatureSelect
-           });
-        };
+    if(!selectControl){
+       selectControl = new OpenLayers.Control.SelectFeature(
+           vectors, {
+           toggle: true,
+           clickout: true,
+           multiple: false,
+           onUnselect: onFeatureUnselect,
+           onBeforeSelect: onBeforeFeatureSelect,
+           onSelect: onFeatureSelect
+       });
+    };
 
-        map.addControl(selectControl);
-        selectControl.activate();
-    }
+    map.addControl(selectControl);
+    selectControl.activate();
 
         position_layer = new OpenLayers.Layer.Vector("Poloha", {});
         map.addLayer(position_layer);
