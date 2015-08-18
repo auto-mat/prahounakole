@@ -465,35 +465,22 @@ i.point_B{
     }
   }
 }
-
+#feedback_popup{
+	border:2px solid #000;
+	width:30%;
+	h4{
+		margin-top:0;
+	}
+	input, textarea{
+		width:100%;
+		border:1px solid #000;
+	}
+}
 #feedback_drop, #modal-layer, #modal-city{
   background-color: rgba(255,255,255,0.85);
   opacity:1;
-  .baseLayersDiv{
-    input{
-      // width:30%;
-      // height:;
-    }
-    // prahou na kole 
-    // #OpenLayers_Control_LayerSwitcher_4_input_52{
-
-    // }
-    // // Vyhledavac PNK 
-    // #OpenLayers_Control_LayerSwitcher_4_input_53{
-
-    // }
-    // //  Open street map
-    // #OpenLayers_Control_LayerSwitcher_4_input_54{
-
-    // }
-    // // cycle map
-    // #OpenLayers_Control_LayerSwitcher_4_input_55{
-
-    // }
-    // // Google satelite 
-    // #OpenLayers_Control_LayerSwitcher_4_input_56{
-
-    // }
+  label{
+  	display:inline-block;
   }
   .container{
     width: 100%;
@@ -513,6 +500,10 @@ i.point_B{
     padding:1em 0;
   }
   #advanced_switch{
+  	display:block;
+  	margin-top: 1em;
+  	padding-top: 1em;
+  	border-top: 1px solid #000;
     text-decoration: underline;
     color: #555;
     cursor:pointer;
@@ -711,7 +702,7 @@ i.point_B{
 }
 
 .modal-open{
-  #layers-switch{
+  #my_map_controls{
     display: none;
   }
 }
