@@ -1014,7 +1014,7 @@ function createPopup(response) {
     togglePanel(null, false);
     $('#poi_text').html(response.responseText);
     jQuery('.textinput,.emailinput,#id_url').persist();
-    $('#poi_box').show();
+    $('#poi_box').slideDown(400).show(400);
     $('#panel-content').hide();
 };
 
