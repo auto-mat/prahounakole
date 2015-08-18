@@ -663,7 +663,7 @@ i.point_B{
   right:10px;
   top:10px;
   z-index:1001;
-  #zoom-in, #zoom-out, #zoom-reset, #city-switch{
+  #zoom-in, #zoom-out, #zoom-reset, #city-switch, #geolocate{
     .globe;
     float:right;
     clear:both;
@@ -683,6 +683,15 @@ i.point_B{
   #zoom-reset{
     background-position: 0 -95px;
   }
+
+  #geolocate{
+    background-position: 0 -95px;
+  }
+
+  #geolocate.geobind_active{
+    background-position: 0 -58px;
+  }
+
   #city-switch{
     
     &:hover{
