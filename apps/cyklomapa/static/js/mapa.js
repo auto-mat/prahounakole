@@ -273,10 +273,12 @@ function setupPnkMap() {
              timeout: 7000 }
       });
       map.addControl(geocontrol);
-      geocontrol.activate();
       geocontrol.events.register("locationupdated", geocontrol, onLocationUpdate);
 
       $("#geolocate").click(function(){
+          if(!geocontrol.active) {
+              geocontrol.activate();
+          }
           geocontrol.bind = true;
           if(position_layer.getDataExtent()){
               map.zoomToExtent(position_layer.getDataExtent())
