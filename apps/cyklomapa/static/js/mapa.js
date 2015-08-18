@@ -99,11 +99,11 @@ function init(mapconfig) {
     } else {
         layerSwitcher = new OpenLayers.Control.LayerSwitcher({'div':OpenLayers.Util.getElement('layer_switcher')});
         controls = [
+            new OpenLayers.Control.TouchNavigation(),
             new OpenLayers.Control.ArgParser({configureLayers: configureLayers}),
             new OpenLayers.Control.Attribution(),
             layerSwitcher,
             new OpenLayers.Control.Navigation(),
-            new OpenLayers.Control.TouchNavigation(),
             new OpenLayers.Control.Permalink({createParams: createParams}),
             new OpenLayers.Control.ScaleLine({maxWidth: 300, bottomOutUnits: ''}),
         ];
