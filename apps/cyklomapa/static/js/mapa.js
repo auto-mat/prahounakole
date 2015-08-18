@@ -276,22 +276,34 @@ function setupPnkMap() {
         selectControl.activate();
     }
 
-    if(mapconfig.mobilni) {
         position_layer = new OpenLayers.Layer.Vector("Poloha", {});
         map.addLayer(position_layer);
              
-        geocontrol = new OpenLayers.Control.Geolocate({
-            watch: true,
-            bind: false,
-            geolocationOptions: {
-                enableHighAccuracy: true,
-                maximumAge: 0,
-                timeout: 7000 }
-         });
-         map.addControl(geocontrol);
-         geocontrol.activate();
-         geocontrol.events.register("locationupdated", geocontrol, onLocationUpdate);
-     }
+     geocontrol = new OpenLayers.Control.Geolocate({
+         watch: true,
+         bind: false,
+         geolocationOptions: {
+             enableHighAccuracy: true,
+             maximumAge: 0,
+             timeout: 7000 }
+      });
+      map.addControl(geocontrol);
+      geocontrol.activate();
+      geocontrol.events.register("locationupdated", geocontrol, onLocationUpdate);
+
+      $("#geolocate").click(function(){
+          geocontrol.bind = true;
+          if(position_layer.getDataExtent()){
+              map.zoomToExtent(position_layer.getDataExtent())
+          }
+          $("#geolocate").addClass("geobind_active");
+      });
+      map.events.register("mousedown", map, function() {
+          geocontrol.bind = false;
+          $("#geolocate").removeClass("geobind_active");
+      }, true);
+
+
      $('#mapStreetSearch').autocomplete(search_options);
 
      appMode = 'pnkmap';
@@ -1073,7 +1085,6 @@ function onLocationUpdate(evt) {
              accuracy_style
          )
     ]);
-    map.zoomToExtent(position_layer.getDataExtent());
 }
 
 function addDPNK1(name, enabled, slug) {
