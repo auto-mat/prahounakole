@@ -77,6 +77,7 @@ jQuery(document).ready(function($) {
       // Not needed anymnore ;)
       // setTimeout(function(){map.updateSize();},500);
       map_width_fix();
+      map.updateSize();
   });
   // corect the map width on large screens
    // 1445
