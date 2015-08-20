@@ -12,6 +12,8 @@ var waypoints = [];
 var startFeature = null;
 var endFeature = null;
 var drag = null;
+var moved_by_geolocation = false; //Hack for move event triggered by geolocation
+var bind_to_geolocation = false;
 var isRoutingSet = false;
 var selectControl;
 var lastSelectedFeature;
@@ -279,16 +281,20 @@ function setupPnkMap() {
           if(!geocontrol.active) {
               geocontrol.activate();
           }
-          geocontrol.bind = true;
           if(position_layer.getDataExtent()){
-              map.zoomToExtent(position_layer.getDataExtent())
+              moved_by_geolocation = true;
+              map.zoomToExtent(position_layer.getDataExtent());
+              moved_by_geolocation = false;
           }
+          bind_to_geolocation = true;
           $("#geolocate").addClass("geobind_active");
       });
-      map.events.register("mousedown", map, function() {
-          geocontrol.bind = false;
-          $("#geolocate").removeClass("geobind_active");
-      }, true);
+      map.events.register("move", map, function(e) {
+          if(!moved_by_geolocation){
+             bind_to_geolocation = false;
+             $("#geolocate").removeClass("geobind_active");
+          }
+      });
 
 
      $('#mapStreetSearch').autocomplete(search_options);
@@ -1072,6 +1078,11 @@ function onLocationUpdate(evt) {
              accuracy_style
          )
     ]);
+    if(bind_to_geolocation){
+       moved_by_geolocation = true;
+       map.setCenter(new OpenLayers.LonLat(evt.point.x, evt.point.y));
+       moved_by_geolocation = false;
+    };
 }
 
 function addDPNK1(name, enabled, slug) {
