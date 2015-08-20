@@ -204,6 +204,7 @@ function showPanel_closeBox(slug) {
    if(selectControl){
       selectControl.unselectAll();
    }
+   $(".print").show();
 }
 
 function setupPnkMap() {
