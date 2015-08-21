@@ -38,6 +38,16 @@ function getTileURL(bounds) {
     return this.url + z + "/" + x + "/" + y + "." + this.type;
 }
 
+//Hack, který vylepší scaffold přepínače vrstev
+function polishLayersSwitcherScaffold(){
+    $("#layer_switcher").prepend("<div id='dataLayers' class='col-md-6'></div>")
+    $(".dataLbl").appendTo("#dataLayers");
+    $(".dataLayersDiv").appendTo("#dataLayers");
+    $("#layer_switcher").prepend("<div id='baseLayers' class='col-md-6'></div>")
+    $(".baseLbl").appendTo("#baseLayers");
+    $(".baseLayersDiv").appendTo("#baseLayers");
+}
+
 function init(mapconfig) {
     OpenLayers.ImgPath = "/static/css/img/";
     OpenLayers.Lang.setCode("cs-CZ");
@@ -120,6 +130,8 @@ function init(mapconfig) {
     } else {
         layerSwitcher.maximizeControl();
     }
+
+    polishLayersSwitcherScaffold();
 
     layer_osm = new OpenLayers.Layer.OSM.Mapnik(
         "OpenStreetMap", { 
