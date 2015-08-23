@@ -383,7 +383,7 @@ function setupRouting() {
        });
        $('#jpStartStreetSearch').autocomplete(search_options);
        $('#jpFinishStreetSearch').autocomplete(search_options);
-       $('#jpPlanButton').click(onPlanButtonClick);
+       $('#jpForm').submit(onPlanButtonClick);
        $('.jpPlanType').click(onPlanSelect);
        $('.jpPlanType').hover(previewPlanIn, previewPlanOut);
        selectedPlan = null;
@@ -582,8 +582,12 @@ function clearWaypoints() {
 }
 
 function onPlanButtonClick() {
-    clearWaypoints();
-    planJourney();
+    if(waypoints.length >= 2){
+        clearWaypoints();
+        planJourney();
+    } else {
+        alert("Zadejte start i cíl trasy a vyberte ho z rozbalovací nabídky");
+    }
     return false;
 }
 

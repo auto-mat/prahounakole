@@ -32,7 +32,7 @@ search_options = {
             );
             map.setCenter(lonlat, 16);
             if (appMode != 'routing') {
-                return;
+                return false;
             }
             if (e.target.id == "jpStartStreetSearch") {
                 marker = startMarker;
@@ -42,6 +42,7 @@ search_options = {
             curpos = marker.geometry;
             marker.geometry.move(lonlat.lon - curpos.x, lonlat.lat - curpos.y);
             setWaypoint(marker);
+            return false;
         },
         open: function () {
             $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top");
