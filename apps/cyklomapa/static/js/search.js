@@ -26,6 +26,7 @@ search_options = {
         minLength: 2,
         delay: 200,
         select: function (e, ui) {
+            ga('send', 'event', 'search', 'select', e.target.id);
             lonlat = new OpenLayers.LonLat( ui.item.lon, ui.item.lat).transform(
                   new OpenLayers.Projection("EPSG:4326"),
                   map.getProjectionObject()
@@ -44,11 +45,16 @@ search_options = {
             setWaypoint(marker);
             return false;
         },
-        open: function () {
+        open: function (e) {
+            ga('send', 'event', 'search', 'open', e.target.id);
             $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top");
         },
-        close: function () {
+        close: function (e) {
+            ga('send', 'event', 'search', 'close', e.target.id);
             $( this ).removeClass( "ui-corner-top").addClass("ui-corner-all");
+        },
+        focus: function (e) {
+            ga('send', 'event', 'search', 'focus', e.target.id);
         },
         //selectFirst: true,
         autoFocus: true 

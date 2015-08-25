@@ -598,6 +598,7 @@ function planJourney() {
         reqPlan = selectedPlan;
     else
         reqPlan = 'balanced';
+    ga('send', 'event', 'plan', 'selected', selectedPlan);
     selectedPlan = null;
     CSApi.journey(null, waypoints, 'balanced', addPlannedJourney, { select: reqPlan });
 }
@@ -854,12 +855,14 @@ function onHashChange(e) {
     hash = hash.replace(/^#/, '');
     var args = parseHash();
     if (hash === '') {
+        ga('send', 'event', 'left-panel-tab', 'switch', 'mapa');
         loadPanelContent('mapa', function(){
            setupPnkMap();
            showPanel_closeBox('mapa');
         });
     }
     if (hash == 'hledani') {
+        ga('send', 'event', 'left-panel-tab', 'switch', 'hledani');
         loadPanelContent('hledani', function(){
            setupRouting();
            initRoutingPanel();
@@ -867,6 +870,7 @@ function onHashChange(e) {
         });
     }
     if (args['trasa']) {
+        ga('send', 'event', 'left-panel-tab', 'switch', 'trasa');
         loadPanelContent('hledani', function(){
            setupRouting();
            showPanel_closeBox('hledani');
@@ -895,6 +899,7 @@ function onHashChange(e) {
         showPanel('mapa');
     }
     if (hash == 'informace') {
+        ga('send', 'event', 'left-panel-tab', 'switch', 'informace');
         loadPanelContent('informace', function(){
            activateHarmonika();
            setupPnkMap();
@@ -1014,11 +1019,13 @@ function onFeatureSelect(feature) {
 }
 
 function onFeatureUnselect(feature) {
+    ga('send', 'event', 'poi', 'close', feature.fid);
     $("#" + feature.geometry.id).removeAttr("class");
     closePoiBox();
 }
 
 function showPoiDetail(poi_id) {
+    ga('send', 'event', 'poi', 'show', poi_id);
     var url = mapconfig.root_url + "/popup/" + poi_id + "/";
 
     var requestFailed = function(response) {
