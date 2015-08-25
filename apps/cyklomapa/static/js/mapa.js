@@ -896,6 +896,7 @@ function onHashChange(e) {
     }
     if (hash == 'informace') {
         loadPanelContent('informace', function(){
+           activateHarmonika();
            setupPnkMap();
            showPanel_closeBox('informace');
         });
