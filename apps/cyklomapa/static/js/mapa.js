@@ -24,11 +24,11 @@ var selectedPlan;
 var dragInAction = false;
 var ignoreHashChange = false;
 
-var EPSG4326 = new OpenLayers.Projection("EPSG:4326");
-var EPSG900913 = new OpenLayers.Projection("EPSG:900913"); 
+//var EPSG4326 = new OpenLayers.Projection("EPSG:4326");
+//var EPSG900913 = new OpenLayers.Projection("EPSG:900913"); 
 
-var bounds = new OpenLayers.Bounds(12,48.5,19,51.1);
-bounds.transform(EPSG4326, EPSG900913);
+//var bounds = new OpenLayers.Bounds(12,48.5,19,51.1);
+//bounds.transform(EPSG4326, EPSG900913);
 
 function getTileURL(bounds) {
     var res = this.map.getResolution();
@@ -49,6 +49,31 @@ function polishLayersSwitcherScaffold(){
 }
 
 function init(mapconfig) {
+    var projection = ol.proj.get('EPSG:3857');
+    var attribution = new ol.Attribution({
+      html: 'Tiles &copy; <a href="http://maps.nls.uk/townplans/glasgow_1.html">' +
+          'National Library of Scotland</a>'
+    });
+    map = new ol.Map({
+      target: 'map',
+      layers: [
+        new ol.layer.Tile({
+           source: new ol.source.XYZ({
+             attributions: [attribution],
+             url: "http://tiles.prahounakole.cz/{z}/{x}/{y}.png",
+           })
+        }),
+      ],
+      view: new ol.View({
+        center: ol.proj.transform([mapconfig.lon, mapconfig.lat], 'EPSG:4326', 'EPSG:3857'),
+        zoom: 13
+      })
+    });
+
+    setupPnkMap();
+}
+
+function init1(mapconfig) {
     OpenLayers.ImgPath = "/static/css/img/";
     OpenLayers.Lang.setCode("cs-CZ");
     mainFilter = new OpenLayers.Filter.Logical({
@@ -228,7 +253,7 @@ function setupPnkMap() {
         destroyRouting();
     }
 
-    map.setBaseLayer(layerPNK);
+    //map.setBaseLayer(layerPNK);
     $('.olControlLayerSwitcher').show();
 
     kmlvrstvy = mapconfig.vrstvy;
@@ -239,18 +264,18 @@ function setupPnkMap() {
            slug = kmlvrstvy[i][3];
            enabled = kmlvrstvy[i][2] == 'True' || mapconfig.center_feature_slug == slug;
            switch(slug) {
-               case 'a':
-                   addCSLayer(name, enabled, slug);
-                   break;
-               case 'r':
-                   addRekola(name, enabled, slug);
-                   break;
-               case 'g':
-                   addDPNK1(name, enabled, slug);
-                   break;
-               case 't':
-                   addDPNK2(name, enabled, slug);
-                   break;
+               //case 'a':
+               //    addCSLayer(name, enabled, slug);
+               //    break;
+               //case 'r':
+               //    addRekola(name, enabled, slug);
+               //    break;
+               //case 'g':
+               //    addDPNK1(name, enabled, slug);
+               //    break;
+               //case 't':
+               //    addDPNK2(name, enabled, slug);
+               //    break;
                default:
                    addPoiLayer(name, url, enabled, slug);
            }
@@ -261,53 +286,61 @@ function setupPnkMap() {
        };
     };
 
-    if(!selectControl){
-       selectControl = new OpenLayers.Control.SelectFeature(
-           vectors, {
-           toggle: true,
-           clickout: true,
-           multiple: false,
-           onUnselect: onFeatureUnselect,
-           onBeforeSelect: onBeforeFeatureSelect,
-           onSelect: onFeatureSelect
-       });
-    };
 
-    map.addControl(selectControl);
-    selectControl.activate();
+    var select = new ol.interaction.Select({
+      condition: ol.events.condition.click
+    });
+    map.addInteraction(select);
+    select.on('select', onFeatureSelect);
+    select.on('uselect', onFeatureUnselect);
 
-        position_layer = new OpenLayers.Layer.Vector("Poloha", {});
-        map.addLayer(position_layer);
-             
-     geocontrol = new OpenLayers.Control.Geolocate({
-         watch: true,
-         bind: false,
-         geolocationOptions: {
-             enableHighAccuracy: true,
-             maximumAge: 0,
-             timeout: 7000 }
-      });
-      map.addControl(geocontrol);
-      geocontrol.events.register("locationupdated", geocontrol, onLocationUpdate);
+    //if(!selectControl){
+    //   selectControl = new OpenLayers.Control.SelectFeature(
+    //       vectors, {
+    //       toggle: true,
+    //       clickout: true,
+    //       multiple: false,
+    //       onUnselect: onFeatureUnselect,
+    //       onBeforeSelect: onBeforeFeatureSelect,
+    //       onSelect: onFeatureSelect
+    //   });
+    //};
 
-      $("#geolocate").click(function(){
-          if(!geocontrol.active) {
-              geocontrol.activate();
-          }
-          if(position_layer.getDataExtent()){
-              moved_by_geolocation = true;
-              map.zoomToExtent(position_layer.getDataExtent());
-              moved_by_geolocation = false;
-          }
-          bind_to_geolocation = true;
-          $("#geolocate").addClass("geobind_active");
-      });
-      map.events.register("move", map, function(e) {
-          if(!moved_by_geolocation){
-             bind_to_geolocation = false;
-             $("#geolocate").removeClass("geobind_active");
-          }
-      });
+    //map.addControl(selectControl);
+    //selectControl.activate();
+
+    //    position_layer = new OpenLayers.Layer.Vector("Poloha", {});
+    //    map.addLayer(position_layer);
+    //         
+    // geocontrol = new OpenLayers.Control.Geolocate({
+    //     watch: true,
+    //     bind: false,
+    //     geolocationOptions: {
+    //         enableHighAccuracy: true,
+    //         maximumAge: 0,
+    //         timeout: 7000 }
+    //  });
+    //  map.addControl(geocontrol);
+    //  geocontrol.events.register("locationupdated", geocontrol, onLocationUpdate);
+
+    //  $("#geolocate").click(function(){
+    //      if(!geocontrol.active) {
+    //          geocontrol.activate();
+    //      }
+    //      if(position_layer.getDataExtent()){
+    //          moved_by_geolocation = true;
+    //          map.zoomToExtent(position_layer.getDataExtent());
+    //          moved_by_geolocation = false;
+    //      }
+    //      bind_to_geolocation = true;
+    //      $("#geolocate").addClass("geobind_active");
+    //  });
+    //  map.events.register("move", map, function(e) {
+    //      if(!moved_by_geolocation){
+    //         bind_to_geolocation = false;
+    //         $("#geolocate").removeClass("geobind_active");
+    //      }
+    //  });
 
 
      $('#mapStreetSearch').autocomplete(search_options);
@@ -932,30 +965,24 @@ function onLoadEnd(evt) {
 }
 
 function addPoiLayer(nazev, url, enabled, id) {
-    for (var i=0; i < vectors.length; i++) {
-        if (vectors[i].name == nazev) {
-            map.addLayer(vectors[i]);
-            return;
-        }
-    }
-    kml = new OpenLayers.Layer.Vector(nazev, {
-        projection: EPSG4326,
-        slug: id,
-        strategies: [new OpenLayers.Strategy.Fixed()],
-        rendererOptions: {yOrdering: true, zIndexing: true},
-        protocol: new OpenLayers.Protocol.HTTP({
-            url: url,
-            format: new OpenLayers.Format.KML({
-                extractStyles: true,
-                extractAttributes: true})
-        })
+    //for (var i=0; i < vectors.length; i++) {
+    //    if (vectors[i].name == nazev) {
+    //        map.addLayer(vectors[i]);
+    //        return;
+    //    }
+    //}
+    kml = new ol.layer.Vector({
+      source: new ol.source.Vector({
+        url: url,
+        format: new ol.format.KML()
+      })
     });
-    kml.setVisibility(enabled);
-    kml.styleMap.styles["default"].addRules([filter_rule]);
-    kml.styleMap.styles["default"].defaultStyle.cursor = 'pointer';
-    kml.styleMap.styles["default"].defaultStyle.cursor = 'pointer';
-    kml.events.register('loadend', kml, onLoadEnd);
-    vectors.push(kml);
+    //kml.setVisibility(enabled);
+    //kml.styleMap.styles["default"].addRules([filter_rule]);
+    //kml.styleMap.styles["default"].defaultStyle.cursor = 'pointer';
+    //kml.styleMap.styles["default"].defaultStyle.cursor = 'pointer';
+    //kml.events.register('loadend', kml, onLoadEnd);
+    //vectors.push(kml);
     map.addLayer(kml);
 }
 
@@ -974,53 +1001,55 @@ function onBeforeFeatureSelect(feature) {
     return false;
 };
 
-function onFeatureSelect(feature) {
-    setHashParameter('misto', feature.layer.slug + "_" + feature.fid, false);
-    $("#" + feature.geometry.id).attr("class", "selected"); 
+function onFeatureSelect(e) {
+    var feature = e.selected[0];
+    setHashParameter('misto', "feature.layer.slug" + "_" + feature.getId(), false);
+    //$("#" + feature.geometry.id).attr("class", "selected"); 
 
-    // Trochu hackovita podpora pro specialni vrstvu ReKola
-    // obsah popup se netaha ze serveru, ale vyrabi se z KML
-    if (feature.layer.slug == "r") {
-        var response = {};
-        response.responseText =
-            '<div> <div class="trc"> <h4>' +
-            feature.attributes.name +
-            '</h4> <div class="row controls"> <div class="col-md-2 col-md-offset-10 centred"> <a class="sprite btn close" title="Zavřít popis místa"></a> </div> </div> </div> <div class="rc"><p>' +
-            feature.attributes.description +
-            '<p><a href="http://www.rekola.cz/" target="_blank">ReKola - komunitní bikesharing (zatím) v Praze</a>' +
-            '</div></div>';
-        feature.attributes.width = 32;
-        feature.attributes.height = 20;
-        createPopup.call(feature, response);
-        return;
-    }
-    if (feature.layer.slug == "a") {
-        var response = {};
-        var photo = ""
-        if(feature.attributes.photo_thumb_url){
-            photo = "<img src='http://www.cyklistesobe.cz/" + feature.attributes.photo_thumb_url + "'>";
-        }
-        response.responseText =
-            '<div> <div class="trc"> <h4>' +
-            feature.attributes.title +
-            '</h4> <div class="row controls"> <div class="col-md-2 col-md-offset-10 centred"> <a class="sprite btn close" title="Zavřít popis místa"></a> </div> </div> </div> <div class="rc"><p>' +
-            photo +
-            feature.attributes.description +
-            '<p><a href="http://www.cyklistesobe.cz/' +
-            feature.attributes.url +
-            '" target="_blank">Stránka podnětu Cyklisté sobě</a>' +
-            '</div></div>';
-        feature.attributes.width = 32;
-        feature.attributes.height = 20;
-        createPopup.call(feature, response);
-        return;
-    }
-    showPoiDetail(feature.fid);
+    //// Trochu hackovita podpora pro specialni vrstvu ReKola
+    //// obsah popup se netaha ze serveru, ale vyrabi se z KML
+    //if (feature.layer.slug == "r") {
+    //    var response = {};
+    //    response.responseText =
+    //        '<div> <div class="trc"> <h4>' +
+    //        feature.attributes.name +
+    //        '</h4> <div class="row controls"> <div class="col-md-2 col-md-offset-10 centred"> <a class="sprite btn close" title="Zavřít popis místa"></a> </div> </div> </div> <div class="rc"><p>' +
+    //        feature.attributes.description +
+    //        '<p><a href="http://www.rekola.cz/" target="_blank">ReKola - komunitní bikesharing (zatím) v Praze</a>' +
+    //        '</div></div>';
+    //    feature.attributes.width = 32;
+    //    feature.attributes.height = 20;
+    //    createPopup.call(feature, response);
+    //    return;
+    //}
+    //if (feature.layer.slug == "a") {
+    //    var response = {};
+    //    var photo = ""
+    //    if(feature.attributes.photo_thumb_url){
+    //        photo = "<img src='http://www.cyklistesobe.cz/" + feature.attributes.photo_thumb_url + "'>";
+    //    }
+    //    response.responseText =
+    //        '<div> <div class="trc"> <h4>' +
+    //        feature.attributes.title +
+    //        '</h4> <div class="row controls"> <div class="col-md-2 col-md-offset-10 centred"> <a class="sprite btn close" title="Zavřít popis místa"></a> </div> </div> </div> <div class="rc"><p>' +
+    //        photo +
+    //        feature.attributes.description +
+    //        '<p><a href="http://www.cyklistesobe.cz/' +
+    //        feature.attributes.url +
+    //        '" target="_blank">Stránka podnětu Cyklisté sobě</a>' +
+    //        '</div></div>';
+    //    feature.attributes.width = 32;
+    //    feature.attributes.height = 20;
+    //    createPopup.call(feature, response);
+    //    return;
+    //}
+    showPoiDetail(feature.getId());
 }
 
-function onFeatureUnselect(feature) {
-    ga('send', 'event', 'poi', 'close', feature.fid);
-    $("#" + feature.geometry.id).removeAttr("class");
+function onFeatureUnselect(e) {
+    var feature = e.selected[0];
+    ga('send', 'event', 'poi', 'close', feature.getId());
+    //$("#" + feature.geometry.id).removeAttr("class");
     closePoiBox();
 }
 
@@ -1032,17 +1061,11 @@ function showPoiDetail(poi_id) {
         alert(response.responseText);
     };
 
-    var request = OpenLayers.Request.GET({
-        url: url,
-        success: createPopup,
-        failure: requestFailed,
-        //scope: feature
-    });
+    $("#poi_text").load(url,  createPopup);
 }
 
-function createPopup(response) {
+function createPopup() {
     togglePanel(null, false);
-    $('#poi_text').html(response.responseText);
     jQuery('.textinput,.emailinput,#id_url').persist();
     $('#poi_box').slideDown(400).show(400);
     $('#panel-content').hide();

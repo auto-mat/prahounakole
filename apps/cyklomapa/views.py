@@ -115,6 +115,7 @@ def kml_view(request, nazev_vrstvy):
     points = Poi.visible.filter(marker__layer=v).filter(geom__intersects = request.mesto.sektor.geom).kml()
     return render_to_kml("webmap/gis/kml/layer.kml", {
        'places' : points,
+       'markers': Marker.objects.all(),
        'site': get_current_site(request).domain,
     })
 
