@@ -1,10 +1,11 @@
-from django.conf.urls import patterns, include, url
-from django.contrib import admin
+from django.conf import settings
+from django.conf.urls import include, patterns, url
 from django.conf.urls.static import static
+from django.contrib import admin
 from django.contrib.auth import views as auth_views
+
 admin.autodiscover()
 
-from django.conf import settings
 
 urlpatterns = patterns('',
     url(r'^admin/passreset/$',auth_views.password_reset,name='password_reset'),

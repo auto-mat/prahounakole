@@ -1,29 +1,30 @@
 # views.py
 
-import random, math
-import urllib, re
+import math
+import random
+import re
+import urllib
 
-from django.conf import settings
 from django import forms, http
-from django.shortcuts import render, render_to_response, get_object_or_404
-from django.template import RequestContext
+from django.conf import settings
 from django.contrib.gis.shortcuts import render_to_kml
-from django.views.decorators.cache import cache_page
+from django.contrib.sites.models import get_current_site
 from django.core.cache import get_cache
-from django.views.decorators.cache import never_cache
-from django.views.decorators.gzip import *
-from django.views.generic import TemplateView
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
-from django.db.models import Q 
-from django.contrib.sites.models import get_current_site
-
-
-from webmap.models import OverlayLayer, Marker, Poi, Legend, MapPreset
-from models import Mesto
-
+from django.db.models import Q
+from django.shortcuts import get_object_or_404, render, render_to_response
+from django.template import RequestContext
 # kopie  django.contrib.admin.views.main.get_query_string
 from django.utils.http import urlencode
+from django.views.decorators.cache import cache_page, never_cache
+from django.views.decorators.gzip import *
+from django.views.generic import TemplateView
+
+from models import Mesto
+from webmap.models import Legend, MapPreset, Marker, OverlayLayer, Poi
+
+
 def get_query_string(params, new_params=None, remove=None):
     if new_params is None: new_params = {}
     if remove is None: remove = []

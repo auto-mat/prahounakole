@@ -1,7 +1,10 @@
+import re
+
 from django.conf import settings
 from django.shortcuts import get_object_or_404
+
 from cyklomapa.models import Mesto
-import re
+
 
 class SubdomainsMiddleware:
     def process_request(self, request):

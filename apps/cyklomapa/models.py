@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 
+from django.contrib.auth.models import User
 from django.contrib.gis.db import models
 
-from django.contrib.auth.models import User
-
-from webmap.models import Sector, Marker, Poi
+from webmap.models import Marker, Poi, Sector
 
 
 class MarkerZnacka(models.Model):

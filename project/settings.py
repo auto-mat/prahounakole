@@ -7,6 +7,9 @@
 # see: http://rob.cogit8.org/blog/2008/Jun/20/django-and-relativity/
 import os
 import sys
+
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
+
 normpath = lambda *args: os.path.normpath(os.path.abspath(os.path.join(*args)))
 PROJECT_DIR = normpath(__file__, "..", "..")
 
@@ -57,7 +60,6 @@ STATICFILES_FINDERS = (
     'compressor.finders.CompressorFinder',
 )
 
-from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
 TEMPLATE_CONTEXT_PROCESSORS += (
      'django.core.context_processors.request',
      'django.core.context_processors.media',

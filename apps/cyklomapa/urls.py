@@ -1,12 +1,13 @@
 from django.conf import settings
-from django.conf.urls import patterns, url, include
+from django.conf.urls import include, patterns, url
 from django.contrib import admin
 
-from cyklomapa.views import mapa_view, kml_view, popup_view, uzavirky_view, metro_view, znacky_view
-from cyklomapa.views import PanelMapaView, PanelInformaceView, PanelHledaniView
-from cyklomapa.feeds import UzavirkyFeed, NovinkyFeed
-from httpproxy.views import HttpProxy
+from cyklomapa.feeds import NovinkyFeed, UzavirkyFeed
+from cyklomapa.views import (PanelHledaniView, PanelInformaceView,
+                             PanelMapaView, kml_view, mapa_view, metro_view,
+                             popup_view, uzavirky_view, znacky_view)
 from django_comments.feeds import LatestCommentFeed
+from httpproxy.views import HttpProxy
 
 urlpatterns = patterns('',
     url(r'^$', mapa_view, name="mapa_view"),
