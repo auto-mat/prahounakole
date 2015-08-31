@@ -22,23 +22,6 @@ function togglePanel(event, minimalized){
     setTimeout(function(){map.updateSize();},500);
 }
 
-function activateHarmonika(){
-  // akordeon (panel-informace )
-  $('.harmonika .txt').not('.active').hide();
-
-  $('.open_txt').click(function(event) {
-    event.preventDefault()
-    /* Act on the event */
-    $('.harmonika .txt').slideUp();
-    var closest_txt  = $(this).closest('.harmonika').find('.txt');
-    if($(closest_txt).is(':visible')){
-      $(closest_txt).slideUp();
-    }else{
-      $(closest_txt).slideDown();
-    }
-  });
-}
-
 jQuery(document).ready(function($) {
   
 
@@ -118,5 +101,16 @@ jQuery(document).ready(function($) {
      activateLayers(base_layer, overlayers)
   });
 
-
+  // akordeon (panel-informace )
+  $(document).on("click", '.open_txt', function(event) {
+    event.preventDefault()
+    /* Act on the event */
+    $('.harmonika .txt').slideUp();
+    var closest_txt  = $(this).closest('.harmonika').find('.txt');
+    if($(closest_txt).is(':visible')){
+      $(closest_txt).slideUp();
+    }else{
+      $(closest_txt).slideDown();
+    }
+  });
 });

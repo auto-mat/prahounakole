@@ -383,7 +383,7 @@ function setupRouting() {
        });
        $('#jpStartStreetSearch').autocomplete(search_options);
        $('#jpFinishStreetSearch').autocomplete(search_options);
-       $('#jpForm').submit(onPlanButtonClick);
+       $(document).on("submit", '#jpForm', onPlanButtonClick);
        $('.jpPlanType').click(onPlanSelect);
        $('.jpPlanType').hover(previewPlanIn, previewPlanOut);
        selectedPlan = null;
@@ -909,7 +909,7 @@ function onHashChange(e) {
            setupPnkMap();
            showPanel_closeBox('informace');
         }, function(){
-           activateHarmonika();
+           $('.harmonika .txt').not('.active').hide();
         });
     }
 }
