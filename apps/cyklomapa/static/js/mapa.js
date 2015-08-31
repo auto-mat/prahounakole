@@ -836,10 +836,15 @@ function removeHashParameter(param, trigger) {
     setHash(newhash, trigger);
 }
 
-function loadPanelContent(slug, func) {
+function loadPanelContent(slug, func, onload) {
     div_class = '#' + slug;
     if($(div_class).children().length == 0){
-       $(div_class).load($(div_class).data("src"), func);
+       $(div_class).load($(div_class).data("src"), function(){
+          func();
+          if(onload !== undefined){
+             onload();
+          }
+       });
     } else {
        func();
     }
@@ -901,9 +906,10 @@ function onHashChange(e) {
     if (hash == 'informace') {
         ga('send', 'event', 'left-panel-tab', 'switch', 'informace');
         loadPanelContent('informace', function(){
-           activateHarmonika();
            setupPnkMap();
            showPanel_closeBox('informace');
+        }, function(){
+           activateHarmonika();
         });
     }
 }
