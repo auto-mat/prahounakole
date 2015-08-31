@@ -20,6 +20,7 @@ from django.utils.http import urlencode
 from django.views.decorators.cache import cache_page, never_cache
 from django.views.decorators.gzip import *
 from django.views.generic import TemplateView
+from django_comments.models import Comment
 
 from models import Mesto
 from webmap.models import Legend, MapPreset, Marker, OverlayLayer, Poi
@@ -191,5 +192,6 @@ class PanelInformaceView(TemplateView):
         if self.request.mesto:
             context['historie'] = Poi.objects.filter(status__show=True, geom__intersects=self.request.mesto.sektor.geom).order_by('last_modification').reverse()[:10]
         context['uzavirky'] = Poi.objects.select_related('marker').filter(status__show=True, geom__intersects=self.request.mesto.sektor.geom, marker__slug='vyluka_akt')[:10]
+        context['komentare'] = Comment.objects.order_by('-submit_date')[:10]
         context['legenda'] = Legend.objects.all()
         return context
