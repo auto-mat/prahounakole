@@ -196,7 +196,7 @@ function init(mapconfig) {
          map_move_by_code = false;
      }
 
-     $('.close').live("click",function(){
+     $('.close_poi').live("click",function(){
         if(selectControl){
            selectControl.unselectAll();
         }
@@ -491,8 +491,8 @@ function onDragComplete(feature) {
 
 function hidePanelOnMobile() {
     var vw = $('body').width();
-    // kdyz je panel oteveny a sire stranky je mensi, nebo rovna 320px
-    if($('.panel_minimized').length == 0 && vw <= 320) {
+    // kdyz je panel oteveny a sire stranky je mensi, nebo rovna 400px
+    if($('.panel_minimized').length == 0 && vw <= 400) {
        panel_action();
     }
 }
@@ -1012,7 +1012,7 @@ function onFeatureSelect(feature) {
         response.responseText =
             '<div> <div class="trc"> <h4>' +
             feature.attributes.name +
-            '</h4> <div class="row controls"> <div class="col-md-2 col-md-offset-10 centred"> <a class="sprite btn close" title="Zavřít popis místa"></a> </div> </div> </div> <div class="rc"><p>' +
+            '</h4> <div class="row controls"> <div class="col-md-2 col-md-offset-10 centred"> <a class="sprite btn close close_poi" title="Zavřít popis místa"></a> </div> </div> </div> <div class="rc"><p>' +
             feature.attributes.description +
             '<p><a href="http://www.rekola.cz/" target="_blank">ReKola - komunitní bikesharing (zatím) v Praze</a>' +
             '</div></div>';
@@ -1030,7 +1030,7 @@ function onFeatureSelect(feature) {
         response.responseText =
             '<div> <div class="trc"> <h4>' +
             feature.attributes.title +
-            '</h4> <div class="row controls"> <div class="col-md-2 col-md-offset-10 centred"> <a class="sprite btn close" title="Zavřít popis místa"></a> </div> </div> </div> <div class="rc"><p>' +
+            '</h4> <div class="row controls"> <div class="col-md-2 col-md-offset-10 centred"> <a class="sprite btn close close_poi" title="Zavřít popis místa"></a> </div> </div> </div> <div class="rc"><p>' +
             photo +
             feature.attributes.description +
             '<p><a href="http://www.cyklistesobe.cz/' +
