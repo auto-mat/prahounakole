@@ -464,6 +464,7 @@ i.point_B{
       .moderate_opacity;
     }
   }
+
 }
 #feedback_popup{
 	border:2px solid #000;
@@ -475,7 +476,16 @@ i.point_B{
 		width:100%;
 		border:1px solid #000;
 	}
+  .feedback_button{
+    background-color: #000;
+      border: 0;
+      color: #fff;
+      &:hover{
+        color:#ccc;
+      }
+  }
 }
+
 #feedback_drop, #modal-layer, #modal-city{
   background-color: rgba(255,255,255,0.85);
   opacity:1;
@@ -514,9 +524,6 @@ i.point_B{
   .dataLbl, .baseLbl{
     color: #555;
     margin-bottom: 1em;
-  }
-  .dataLbl{
-    margin-top: 1em;
   }
   input[type=radio], input[type=checkbox]{
     margin-right: 0.3em;
@@ -690,12 +697,12 @@ i.point_B{
   }
 
   #geolocate{
-    background-position: 0 -95px;
+    background-position: 0 -128px;
   }
 
-  #geolocate.geobind_active{
-    background-position: 0 -58px;
-  }
+  // #geolocate.geobind_active{
+  //   background-position: 0 -58px;
+  // }
 
   #city-switch{
     
@@ -977,6 +984,11 @@ label{
       -moz-border-radius: 30px;
       border-radius: 30px;
       border:2px solid #000;
+      &.print{
+        // background-position: -542px -12px;
+        // cursor: pointer;
+        display:none !important;
+      }
     }
  
     .mapa{
@@ -993,10 +1005,6 @@ label{
     }
     .link{
       background-position: -310px -11px;
-    }
-    .print{
-      background-position: -542px -12px;
-      cursor: pointer;
     }
     .close{
       background-position: -430px -12px;
@@ -1088,6 +1096,10 @@ and (max-width : 640px){
       }
     }
   }
+  #feedback_popup{
+    width:60%;
+  }
+
 }
 @media only screen 
 and (min-device-width : 680px) 
@@ -1118,6 +1130,9 @@ and (max-width : 480px) {
       width:40px;
       height:40px;
     }
+  }
+  #feedback_popup{
+    width:95%;
   }
 }
 /* Desktops and laptops ----------- */

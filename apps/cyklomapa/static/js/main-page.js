@@ -47,24 +47,28 @@ jQuery(document).ready(function($) {
     window.print()
   });
 
+  function panel_action(){
+    $('body').toggleClass('panel_minimized');
+    // stretch - extend panel container
+     $('#panel').toggleClass('minimized col-md-3 col-smd-4 col-sm-2 col-sm-10');
+     // stretch - extend map container
+    $('.map_holder').toggleClass('col-md-12 col-md-9 col-smd-8 col-sm-12 col-sm-2');
+    // show/hide panel content
+    $('.dildo, .gold').toggleClass('hide');
+  }
   // --------  PANEL SWITCH ---------
   $('.panel_switch').click( function(event){
       // prevent default a (link) behavior
       event.preventDefault();
-      // let tthe body know the change .. for next possible visual changes
-     $('body').toggleClass('panel_minimized');
-        // stretch - extend panel container
-         $('#panel').toggleClass('minimized col-md-3 col-smd-4 col-sm-2 col-sm-10');
-         // stretch - extend map container
-        $('.map_holder').toggleClass('col-md-12 col-md-9 col-smd-8 col-sm-12 col-sm-2');
-        // show/hide panel content
-        $('.dildo, .gold').toggleClass('hide');
-      // update map size
-      // Not needed anymnore ;)
-      // setTimeout(function(){map.updateSize();},500);
+      // close | open panel
+      panel_action();
+      // change the map container size dinamicaly
       map_width_fix();
+      // update map size
       map.updateSize();
   });
+
+
   // corect the map width on large screens
    // 1445
   function map_width_fix(){
@@ -74,7 +78,6 @@ jQuery(document).ready(function($) {
     var Body = $('body');
     if (Body.is('.panel_minimized')) {
       $('.map_holder').css("width", '100%');
-      console.log('minimized');
     }else{
       panel_width = $('#panel').width();
       $('.map_holder').css("width", W_width - panel_width);
@@ -100,6 +103,8 @@ jQuery(document).ready(function($) {
      overlayers = event.currentTarget.dataset['overlayers']
      activateLayers(base_layer, overlayers)
   });
+
+ 
 
   // akordeon (panel-informace )
   $(document).on("click", '.open_txt', function(event) {
