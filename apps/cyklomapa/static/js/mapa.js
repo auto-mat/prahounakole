@@ -12,7 +12,7 @@ var waypoints = [];
 var startFeature = null;
 var endFeature = null;
 var drag = null;
-var moved_by_geolocation = false; //Hack for move event triggered by geolocation
+var map_move_by_code = false; //Hack for move event triggered by geolocation
 var bind_to_geolocation = false;
 var isRoutingSet = false;
 var selectControl;
@@ -191,7 +191,9 @@ function init(mapconfig) {
      $(window).hashchange(onHashChange);
      $(window).hashchange();
      if (!map.getCenter()) {
+         map_move_by_code = true;
          map.setCenter(new OpenLayers.LonLat(mapconfig.lon, mapconfig.lat).transform(EPSG4326, map.getProjectionObject()), mapconfig.zoom);
+         map_move_by_code = false;
      }
 
      $('.close').live("click",function(){
@@ -295,17 +297,18 @@ function setupPnkMap() {
               geocontrol.activate();
           }
           if(position_layer.getDataExtent()){
-              moved_by_geolocation = true;
+              map_move_by_code = true;
               map.zoomToExtent(position_layer.getDataExtent());
-              moved_by_geolocation = false;
+              map_move_by_code = false;
           }
           bind_to_geolocation = true;
           $("#geolocate").addClass("geobind_active");
       });
       map.events.register("move", map, function(e) {
-          if(!moved_by_geolocation){
+          if(!map_move_by_code){
              bind_to_geolocation = false;
              $("#geolocate").removeClass("geobind_active");
+             hidePanelOnMobile();
           }
       });
 
@@ -486,6 +489,14 @@ function onDragComplete(feature) {
        planJourney();
 }
 
+function hidePanelOnMobile() {
+    var vw = $('body').width();
+    // kdyz je panel oteveny a sire stranky je mensi, nebo rovna 320px
+    if($('.panel_minimized').length == 0 && vw <= 320) {
+       panel_action();
+    }
+}
+
 function onMapClick(e) {
     var marker;
     switch (routingState) {
@@ -504,6 +515,8 @@ function onMapClick(e) {
     var position = map.getLonLatFromPixel(e.xy);
     movePointToLonLat(marker.geometry, position);
     onDragComplete(marker, position);
+
+    hidePanelOnMobile();
 }
 
 function toggleButtons() {
@@ -676,7 +689,9 @@ function onPlanSelect() {
 function selectPlan(plan) {
     if (plan == selectedPlan) {
         // kliknuti na selector planu zazoomuje zpet na celou trasu
+        map_move_by_code = true;
         map.zoomToExtent(journeyLayer.getDataExtent());
+        map_move_by_code = false;
         return true;
     }
     if (! CSApi.routeFeatures || ! CSApi.routeFeatures[plan]) {
@@ -684,7 +699,9 @@ function selectPlan(plan) {
     }
     journeyLayer.removeAllFeatures();
     journeyLayer.addFeatures(CSApi.routeFeatures[plan]);
+    map_move_by_code = true;
     map.zoomToExtent(journeyLayer.getDataExtent());
+    map_move_by_code = false;
     $('.selected').removeClass('selected');
     $('#' + plan).addClass('selected');
     $('#needle').attr('class', plan);
@@ -777,7 +794,9 @@ function onMouseMove(e) {
 function selectFeatureById(poi_id) {
    var feat = getPoi(poi_id);
    if(feat) {
+      map_move_by_code = true;
       map.zoomToExtent(feat.geometry.getBounds());
+      map_move_by_code = false;
       selectControl.unselectAll();
       selectControl.select(feat);
    }
@@ -931,7 +950,9 @@ function onLoadEnd(evt) {
     if (mapconfig.center_feature) {
        var feature = this.getFeatureByFid(mapconfig.center_feature);
        if ((!mapconfig.center_feature_slug || mapconfig.center_feature_slug == this.slug) && feature) {
+           map_move_by_code = true;
            map.zoomToExtent(feature.geometry.getBounds());
+           map_move_by_code = false;
            selectControl.select(feature);
        }
     }
@@ -1062,14 +1083,18 @@ function closePoiBox() {
 
 function zoomToSegment() {
     feature = journeyLayer.getFeatureById($(this).attr('data-fid'));
+    map_move_by_code = true;
     map.zoomToExtent(feature.geometry.getBounds(), closest=true);
+    map_move_by_code = false;
     //setHashParameter('rnd', feature.id.split('_')[1]);
 }
 
 function ZoomToLonLat(obj, lon, lat, zoom) {
     lonlat = new OpenLayers.LonLat(lon,lat);
     lonlat.transform(EPSG4326, map.getProjectionObject());
+    map_move_by_code = true;
     map.setCenter(lonlat,zoom);
+    map_move_by_code = false;
 }
 
 // utility funciton to move OpenLayers point
@@ -1110,9 +1135,9 @@ function onLocationUpdate(evt) {
          )
     ]);
     if(bind_to_geolocation){
-       moved_by_geolocation = true;
+       map_move_by_code = true;
        map.setCenter(new OpenLayers.LonLat(evt.point.x, evt.point.y));
-       moved_by_geolocation = false;
+       map_move_by_code = false;
     };
 }
 
