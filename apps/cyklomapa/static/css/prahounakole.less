@@ -39,6 +39,11 @@ textarea{
       float: left;
       display:inline-block;
     }
+    // &.gold{
+    // 	margin-left: -6px;
+    // 	padding-left: 6px;
+    // 	background-color: #fff;
+    // }
     .col-md-1{
       width:8.333%;
     }
@@ -111,9 +116,13 @@ textarea{
   }
 }
 #panel{
+position:relative;
+z-index:999;
   max-width:400px;
   min-width: 257px;
   
+  min-height:100vh;
+  background-color: #fff;
   &.minimized{
     width: 100px;
     min-width: 100px; // :)
@@ -131,10 +140,11 @@ textarea{
         margin-top: 1.5em;
         padding-right: 0.4em;
     }
+    .gold{
+    	display:none;
+    }
   }
 
-  background:url(/static/img/pattern_R.png) repeat-y right top #fff; 
-  min-height:100vh;
   
   h4{
     font-size: 1.6em;
@@ -617,26 +627,25 @@ i.point_B{
   }
 }
 .panel_switch_holder{
-  margin-top: 0.3em;
-  float: right;
+  position:fixed;
+  z-index:999;
+  background-image:url(/static/img/pattern_R.png);
+  background-repeat: repeat;
+  background-attachment: local;
+  background-position:left center ;
+  width:6px;
+  height:100vh;
+  display:inline-block;
   .panel_switch{
-    position: relative;
-    margin-left: -51px;
-    font-size:2em;
-    color:#333;
-    padding: 0.16em 0.3em 0 0.3em;
-    border-radius: 3px;
-    text-decoration: none;
-    // .anim_fast;
+    position:fixed;
+    margin-left: -5px;
+    margin-top: -5px;
+    display:inline-block;
+    width:30px;
+    height:46px;
+    background:url(/static/img/panel_switch.png) no-repeat right top; 
     &:hover, &.active{
-      color:#000;
-      text-decoration: none;
-      position: relative;
-      // -webkit-animation: left-to-right 1s infinite; /* Chrome, Safari, Opera */
-      // -webkit-animation-direction: alternate; /* Chrome, Safari, Opera */
-      // animation: left-to-right 1s infinite;
-      // animation-direction: alternate;
-      // .anim_fast;
+     
     }
     &:active, &:focus{
       text-decoration: none;
@@ -646,16 +655,15 @@ i.point_B{
 
 
 .minimized{
-  .panel_switch{
-    padding-left:0.5em;
-    -webkit-transform: rotate(180deg);
-    -moz-transform: rotate(180deg);
-    -o-transform: rotate(180deg);
-    -ms-transform: rotate(180deg);
-    transform: rotate(180deg);
-    display: inline-block
-  } 
-  
+	.panel_switch_holder{
+		background: transparent;
+		height:1px !important;
+	  .panel_switch{
+		top:26px !important;
+		left:94px !important;
+		background:url(/static/img/panel_switch.png) no-repeat right bottom; 
+	  } 
+  	}
 }
 .globe{
   width:33px;
@@ -700,9 +708,9 @@ i.point_B{
     background-position: 0 -128px;
   }
 
-  // #geolocate.geobind_active{
-  //   background-position: 0 -58px;
-  // }
+  #geolocate.geobind_active{
+    background-position: 0 -159px;
+  }
 
   #city-switch{
     
@@ -728,13 +736,18 @@ i.point_B{
   }
 }
 .map_holder{
-  position: fixed;
-  height: 100%;
+  // position: fixed;
+  // height: 100%;
+  height: 100vh;
+	z-index: 1;
+	top:0;
+  float: !important;
 }
 
 #map{
   width:100%;
-  height:100%;
+  // height:100%;
+  height:100vh;
 }
 .sprite{
   background:url(/static/img/sprite.png);
@@ -1133,6 +1146,13 @@ and (max-width : 480px) {
   }
   #feedback_popup{
     width:95%;
+  }
+}
+@media only screen 
+and (max-width : 320px) {
+/* Styles */
+  #my_map_controls{
+  	right:5px;
   }
 }
 /* Desktops and laptops ----------- */

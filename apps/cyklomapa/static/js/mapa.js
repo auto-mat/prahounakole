@@ -1068,7 +1068,8 @@ function showPoiDetail(poi_id) {
 }
 
 function createPopup(response) {
-    togglePanel(null, false);
+    // togglePanel(null, false);
+    panel_action();
     $('#poi_text').html(response.responseText);
     jQuery('.textinput,.emailinput,#id_url').persist();
     $('#poi_box').slideDown(400).show(400);
