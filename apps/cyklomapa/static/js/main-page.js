@@ -68,9 +68,6 @@ function map_width_fix(){
    $('#map, .panel_switch_holder, .map_holder, body, html').css({
       "height": W_height
    });
-   $('#panel').css({
-      "min-height": W_height
-   });
 }
 
 jQuery(document).ready(function($) {
