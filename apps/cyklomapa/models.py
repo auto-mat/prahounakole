@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 
+from django.contrib.auth.models import User
 from django.contrib.gis.db import models
 
-from django.contrib.auth.models import User
-
-from webmap.models import Sector, Marker, Poi
+from webmap.models import Marker, Poi, Sector
 
 
 class MarkerZnacka(models.Model):
@@ -17,6 +16,7 @@ class Mesto(models.Model):
     aktivni       = models.BooleanField(default=True, verbose_name=u"Aktivní", help_text=u"Město je přístupné pro veřejnost")
     vyhledavani   = models.BooleanField(verbose_name=u"Vyhledávač", default=True, help_text=u"Vyhledávání je aktivované")
     zoom          = models.PositiveIntegerField(default=13, help_text=u"Zoomlevel, ve kterém se zobrazí mapa po načtení")
+    maxzoom       = models.PositiveIntegerField(default=18, help_text=u"Maximální zoomlevel mapy")
     uvodni_zprava = models.TextField(null=True, blank=True, verbose_name=u"Úvodní zpráva", help_text=u"Zpráva, která se zobrazí v levém panelu")
 
     geom        = models.PointField(verbose_name=u"Poloha středu", srid=4326)

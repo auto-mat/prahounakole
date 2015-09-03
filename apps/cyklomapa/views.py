@@ -1,27 +1,31 @@
 # views.py
 
-import random, math
-import urllib, re
+import math
+import random
+import re
+import urllib
 
-from django.conf import settings
 from django import forms, http
-from django.shortcuts import render, render_to_response, get_object_or_404
-from django.template import RequestContext
+from django.conf import settings
 from django.contrib.gis.shortcuts import render_to_kml
-from django.views.decorators.cache import cache_page
+from django.contrib.sites.models import get_current_site
 from django.core.cache import get_cache
-from django.views.decorators.cache import never_cache
-from django.views.decorators.gzip import *
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
-from django.db.models import Q 
-from django.contrib.sites.models import get_current_site
-
-
-from webmap.models import OverlayLayer, Marker, Poi, Legend
-
+from django.db.models import Q
+from django.shortcuts import get_object_or_404, render, render_to_response
+from django.template import RequestContext
 # kopie  django.contrib.admin.views.main.get_query_string
 from django.utils.http import urlencode
+from django.views.decorators.cache import cache_page, never_cache
+from django.views.decorators.gzip import *
+from django.views.generic import TemplateView
+from django_comments.models import Comment
+
+from models import Mesto
+from webmap.models import Legend, MapPreset, Marker, OverlayLayer, Poi
+
+
 def get_query_string(params, new_params=None, remove=None):
     if new_params is None: new_params = {}
     if remove is None: remove = []
@@ -72,20 +76,18 @@ def mapa_view(request, poi_id=None):
         minimize_layerswitcher = 1
         nomenu = 1
 
-    historie = Poi.objects.filter(status__show=True, geom__intersects=request.mesto.sektor.geom).order_by('last_modification').reverse()[:10]
-
     context = RequestContext(request, {
         'root_url': ROOT_URL,
         'vrstvy': vrstvy,
-        'legenda': Legend.objects.all(),
         'center_poi' : center_poi,
         'nomenu': nomenu,
         'mesto': request.mesto,
         'minimize_layerswitcher': minimize_layerswitcher,
         'mobilni': request.mobilni,
-        'historie': historie
+        'presets': MapPreset.objects.filter(status__show=True),
+        'mesta': Mesto.objects.order_by('sektor__name').all(),
     })
-    if not request.mesto.aktivni and not request.user.is_authenticated():
+    if not (request.mesto and request.mesto.aktivni) and not request.user.is_authenticated():
        return render_to_response('neaktivni.html', context_instance=context)
 
     return render_to_response('mapa.html', context_instance=context)
@@ -170,3 +172,26 @@ def znacky_view(request):
     legenda = Legend.objects.all()
     return render_to_response('znacky.html',
         context_instance=RequestContext(request, { 'vrstvy': vrstvy, 'znacky': znacky, 'legenda': legenda }))
+
+class PanelMapaView(TemplateView):
+    template_name = "panel-mapa.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(PanelMapaView, self).get_context_data(**kwargs)
+        context['mesto'] = self.request.mesto
+        return context
+
+class PanelHledaniView(TemplateView):
+    template_name = "panel-hledani.html"
+
+class PanelInformaceView(TemplateView):
+    template_name = "panel-informace.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(PanelInformaceView, self).get_context_data(**kwargs)
+        if self.request.mesto:
+            context['historie'] = Poi.objects.filter(status__show=True, geom__intersects=self.request.mesto.sektor.geom).order_by('last_modification').reverse()[:10]
+        context['uzavirky'] = Poi.objects.select_related('marker').filter(status__show=True, geom__intersects=self.request.mesto.sektor.geom, marker__slug='vyluka_akt')[:10]
+        context['komentare'] = Comment.objects.order_by('-submit_date')[:10]
+        context['legenda'] = Legend.objects.all()
+        return context

@@ -1,0 +1,14 @@
+sudo: false
+language: python
+python:
+  - "2.7"
+before_script:
+  - npm install -g bower
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - psql --no-password travis_ci_test -U postgres -c "create extension postgis"
+script: 
+  - cd project && cp settings_local_sample.py settings_local.py && cd ..
+  - ./update.sh reinstall
+  - python manage.py migrate
+addons:
+  postgresql: "9.3"

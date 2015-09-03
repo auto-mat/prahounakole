@@ -3,6 +3,16 @@
 
 app_name=pnk
 db_name=pnk
+
+error() {
+   printf '\E[31m'; echo "$@"; printf '\E[0m'
+}
+
+if [[ $EUID -eq 0 ]]; then
+   error "This script should not be run using sudo or as the root user"
+   exit 1
+fi
+
 source update_local.sh
 
 set -e
@@ -22,8 +32,13 @@ if [ "$1" = "migrate" ]; then
    echo "Migrating..."
    env/bin/python ./manage.py migrate
 fi
+
+bower install
+#compile PNK version of OpenLayers:
+(cd apps/cyklomapa/static/bow/openlayers/build/ && python build.py -c closure_ws ../../../openstreetmap-pnk ../OpenLayers.PNK.js)
+
 env/bin/python ./manage.py collectstatic --noinput
 touch wsgi.py
-sudo supervisorctl restart $app_name
+type supervisorctl && sudo supervisorctl restart $app_name
 
 echo "App succesfully updated"

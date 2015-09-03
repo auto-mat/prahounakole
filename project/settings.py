@@ -7,8 +7,13 @@
 # see: http://rob.cogit8.org/blog/2008/Jun/20/django-and-relativity/
 import os
 import sys
+
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
+
 normpath = lambda *args: os.path.normpath(os.path.abspath(os.path.join(*args)))
 PROJECT_DIR = normpath(__file__, "..", "..")
+
+DEFAULT_FROM_EMAIL = 'Prahou na kole <redakce@prahounakole.cz>'
 
 sys.path.append(normpath(PROJECT_DIR, "project"))
 sys.path.append(normpath(PROJECT_DIR, "apps"))
@@ -49,11 +54,16 @@ LOGIN_URL = '/admin/'
 STATICFILES_DIRS = (
         os.path.join(PROJECT_DIR, 'apps/cyklomapa/static'),
 )
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+)
 
-from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
 TEMPLATE_CONTEXT_PROCESSORS += (
      'django.core.context_processors.request',
      'django.core.context_processors.media',
+     'constance.context_processors.config',
      'django.contrib.messages.context_processors.messages',
 ) 
 
@@ -91,17 +101,25 @@ INSTALLED_APPS = [
     'django.contrib.gis',
 
     'author',
-    'adminsortable',
+    'adminsortable2',
     'constance.backends.database',
     'constance',
     'import_export',
     'webmap',
+    'rest_framework',
 
+    'feedback',
     'cyklomapa',
     'easy_thumbnails',
     'django.contrib.humanize',
+    'django.contrib.sites',
+    'fluent_comments',
+    'comments_moderation',
+    'crispy_forms',
+    'django_comments',
     'colorful',
     #'massadmin',
+    'compressor',
     'raven.contrib.django.raven_compat',
     'corsheaders',
 ]
@@ -115,6 +133,8 @@ CONSTANCE_CONFIG = {
     'MAP_BASELAT': (50.08741, u'zeměpisná délka základní polohy mapy'),
     'MAP_BOUNDS': ("14.22, 49.95, 14.8, 50.18", u'hranice zobrazení mapy'),
     'DEFAULT_STATUS_ID': (2, u'id defaultního statusu'),
+    'ABOUT_MAP': ("Lorem ipsum", u'info o mapě'),
+    'MAP_NEWS': ("Lorem ipsum", u'novinky mapy'),
 }
 CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
 
@@ -180,6 +200,22 @@ LOGGING = {
         }
     }
 }
+
+THUMBNAIL_ALIASES = {
+    '': {
+        'photo_thumb': {'size': (514, 320), 'crop': 'smart'},
+    },
+}
+
+REST_ENABLED=True
+
+FLUENT_COMMENTS_EXCLUDE_FIELDS = ('url',)
+COMMENTS_APP = 'fluent_comments'
+
+COMPRESS_CACHE_BACKEND='default'
+COMPRESS_PRECOMPILERS = (
+    ('text/less', 'lessc {infile} {outfile}'),
+)
 
 # import local settings
 try:

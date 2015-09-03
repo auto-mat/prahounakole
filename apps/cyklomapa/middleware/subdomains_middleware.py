@@ -1,7 +1,10 @@
+import re
+
 from django.conf import settings
 from django.shortcuts import get_object_or_404
+
 from cyklomapa.models import Mesto
-import re
+
 
 class SubdomainsMiddleware:
     def process_request(self, request):
@@ -27,4 +30,7 @@ class SubdomainsMiddleware:
         request.subdomain = getattr(settings, 'FORCE_SUBDOMAIN', request.subdomain)
 
         # najdeme mesto podle slugu. pokud neexistuje, vyhodime 404
-        request.mesto = get_object_or_404(Mesto, sektor__slug = request.subdomain)
+        try:
+            request.mesto = Mesto.objects.get(sektor__slug=request.subdomain)
+        except Mesto.DoesNotExist:
+            request.mesto = None

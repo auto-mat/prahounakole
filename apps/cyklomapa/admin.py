@@ -5,22 +5,21 @@
 # They appear in the admin app once they are registered at the bottom of
 # this code (same goes for the databrowse app)
 
-from django.conf import settings  # needed if we use the GOOGLE_MAPS_API_KEY from settings
-
+from django.conf import \
+    settings  # needed if we use the GOOGLE_MAPS_API_KEY from settings
 # Import the admin site reference from django.contrib.admin
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
-
 # Grab the Admin Manager that automaticall initializes an OpenLayers map
 # for any geometry field using the in Google Mercator projection with OpenStreetMap basedata
 from django.contrib.gis.admin import OSMGeoAdmin
-from django.contrib.gis.geos import Point
 from django.contrib.gis.db.models import Union
+from django.contrib.gis.geos import Point
 
-from cyklomapa.models import UserMesto, Upresneni, Mesto, MarkerZnacka
-from webmap.models import Marker, Poi
+from cyklomapa.models import MarkerZnacka, Mesto, Upresneni, UserMesto
 from webmap.admin import MarkerAdmin, PoiAdmin
+from webmap.models import Marker, Poi
 
 USE_GOOGLE_TERRAIN_TILES = False
 

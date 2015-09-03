@@ -1,0 +1,27 @@
+{
+  "directory": "apps/cyklomapa/static/js/bow/",
+  "name": "prahounakole",
+  "version": "0.0.0",
+  "authors": [
+    "Petr Dlouhý <petr.dlouhy@email.cz>"
+  ],
+  "license": "GPL",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "lightbox": "~2.7.4",
+    "css-browser-selector": "*",
+    "jqueryui": "~1.11.4",
+    "jquery": "~2.1.4",
+    "jquery-hashchange": "*",
+    "openlayers": "*",
+    "bootstrap": "~3.3.5",
+    "jquery.tools": "http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js",
+    "jquery.persist": "https://jquery-persist.googlecode.com/files/jquery-persist-1.1.tgz"
+  }
+}
