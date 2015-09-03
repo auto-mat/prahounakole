@@ -28,7 +28,9 @@ var EPSG4326 = new OpenLayers.Projection("EPSG:4326");
 var EPSG900913 = new OpenLayers.Projection("EPSG:900913"); 
 
 var bounds = new OpenLayers.Bounds(12,48.5,19,51.1);
+var extent = new OpenLayers.Bounds(-180.0,-90.0,180.0,90.0);
 bounds.transform(EPSG4326, EPSG900913);
+extent.transform(EPSG4326, EPSG900913);
 
 function getTileURL(bounds) {
     var res = this.map.getResolution();
@@ -115,7 +117,7 @@ function init(mapconfig) {
 
     var options = { 
         controls: controls,
-        maxExtent: bounds.clone(),
+        maxExtent: extent.clone(),
         restrictedExtent: bounds.clone(),
         projection: EPSG4326,
         displayProjection : EPSG4326,
