@@ -7,7 +7,7 @@
           <div class="container">
             <div class="row">
               {% for preset in presets %}
-              <div class="col-md-3 col-sm-6 each-view change-layer" data-name='{{preset.name}}' data-baselayer='{{preset.base_layer.slug}}' data-overlayers="['{{preset.overlay_layers_slugs|join:"', '"}}']">
+              <div class="col-md-3 col-sm-6 each-view change-layer" data-name='{{preset.name}}' data-baselayer='{{preset.base_layer.slug}}' data-overlayers="['{{preset.overlay_layers_slugs|join:"', '"}}']" title="{{ preset.desc }}">
                  <a href="javascript:void(0)" data-dismiss="modal">
                    <img src="media/{{ preset.icon }}" class=""/>
                    {{ preset.name }}
