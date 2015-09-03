@@ -48,9 +48,16 @@ function panel_position(){
 // corect the map width on large screens
  // 1445
 function map_width_fix(){
+  var panel_minimized = $('body').is('.panel_minimized');
+
+  if (!panel_minimized) {
+    $('.map_holder').css({
+      "position": "fixed"
+     });
+  }
+
   W_width = $(window).width();
-  var Body = $('body');
-  if (Body.is('.panel_minimized')) {
+  if (panel_minimized) {
     $('.map_holder').css({
       "width": '100%',
       "position":"static"
@@ -60,7 +67,6 @@ function map_width_fix(){
     $('.map_holder').css({
       "width": W_width - panel_width,
       "left": panel_width,
-      "position": "fixed"
      });
    }
    //Fix for Android browser, which doesn't support "vh" units
