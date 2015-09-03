@@ -63,6 +63,11 @@ function map_width_fix(){
       "position": "fixed"
      });
    }
+   //Fix for Android browser, which doesn't support "vh" units
+  W_height = $(window).height();
+   $('#map, .panel_switch_holder, .map_holder, body, html').css({
+      "height": W_height
+   });
 }
 
 jQuery(document).ready(function($) {
