@@ -15,8 +15,8 @@ ADMINS = (
 DATABASES = {
         'default': {
                 'ENGINE': 'django.contrib.gis.db.backends.postgis',
-                'NAME': '',
-                'USER': '',
+                'NAME': 'travis_ci_test',
+                'USER': 'postgres',
                 'PASSWORD': '',
                 'HOST': 'localhost',
                 'PORT': '',
@@ -28,7 +28,7 @@ DATABASES = {
 # OpenLayers maps
 GOOGLE_MAPS_API_KEY='abcdefg'
 
-SECRET_KEY = ''
+SECRET_KEY = 'change_me'
 
 # Don't forget to use absolute paths, not relative paths.
 TEMPLATE_DIRS.append(os.path.join(PROJECT_DIR, 'env/lib/python2.6/site-packages/debug_toolbar/templates'))

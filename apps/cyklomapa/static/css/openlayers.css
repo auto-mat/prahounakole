@@ -482,3 +482,19 @@ a.olControlZoomOut {
     -o-transition: opacity 0.2s linear;
     transition: opacity 0.2s linear;
 }
+
+.cb-tiles > img {
+    filter: grayscale(100%);
+    filter: gray;
+    -webkit-filter: grayscale(100%);
+}
+
+.olLayerDiv:not(.olLayerGrid) image.selected {
+   filter: url("#circle");
+}
+
+/* hack to make it work in all browsers */
+.gecko .olLayerDiv:not(.olLayerGrid) image.selected {
+   filter: url("/static/css/filter.svg#circle");
+}
+

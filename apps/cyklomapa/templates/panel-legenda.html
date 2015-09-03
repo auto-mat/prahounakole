@@ -1,0 +1,13 @@
+{% load cache %}
+<div id="panel-legenda">
+  <div class="inner">
+  <h3 class="margin_t_2">Základní značky v cyklomapě</h3>
+  <p class="desc_vlastnosti">
+    {% cache 3600 legenda %}
+    {% for l in legenda %}
+    <img src="{{ l.image.url }}" alt="{{ l.name }}"> &nbsp; {{ l.name }}<br/>
+    {% endfor %}
+    {% endcache %}
+  </p>
+  </div>
+</div>

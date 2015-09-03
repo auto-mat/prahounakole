@@ -1,25 +1,38 @@
-#panel,
-.olControlZoomPanel,
-.panel_switch,
-#left,
-.olControlPermalink,
-.SimpleLayerSwitcher,
-.olControlPanZoom,
-#head,
-.olControlPanZoomBar,
-.olControlLayerSwitcher,
-.olControlLayerSwitcher {
-  display: none !important;
+/*hide what you do not want to print */
+ #comments-wrapper, .controls, .tabs, .btn.print, #my_map_controls, #jpForm{
+ 	display: none;
+ }
+
+
+h2, h3 {
+    page-break-after: avoid;
+}
+img {
+max-width: 100% !important;
+}
+article {
+page-break-before: always;
+}
+#map{
+width:190mm; 
+height:150mm;
+page-break-after:always;
+border: 1px solid black;
+margin: auto !important; 
+}
+#map, #OpenLayers_Map_14_OpenLayers_Container{
+border:1px solid red;
+position:fixed;
+left:0;
+right:0;
+top:0;
+bottom:0;
+background-color: yellow;
 }
 
-.olControlAttribution {
-  bottom: 0px;
+/* force to print background images */
+* {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
 }
 
-#map {
-  border: 1px solid black;
-  bottom: 0px;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-}

@@ -1,23 +1,47 @@
 {% load url from future %}
 {% load thumbnail static %}
+{% load comments %}
 <div>
-<div class="trc">
-   {% if poi.url %}<h4><a href="{{ poi.url|escape }}" title="{{ poi.url|escape }}"  target="_blank">{{ poi }}</a></h4>
-   {% else %}<h4>{{ poi }}</h4>
-   {% endif %}
+<div class="trc" id="poi_id_{{ poi.id }}">
+
+   <h4>{{ poi }}</h4>
+   <div class="row controls">
+      {% if can_change %}
+      <div class="col-md-2 col-md-offset-4 col-sm-3 centred">
+         <a href="{% url 'admin:webmap_poi_change' poi.id %}" class="btn edit" title="Upravit">&#9874;</a>
+      </div>
+      <div class="col-md-2 col-sm-3 centred">
+      {% else %}
+      <div class="col-md-2 col-md-offset-6 col-sm-3 col-sm-offset-0 centred">
+      {% endif %}
+      <a href="#misto={{ poi.marker.layer.slug}}_{{ poi.id }}" class="sprite btn link" title="Odkaz na místo"></a>
+      </div>
+      <div class="col-md-2 col-sm-3 centred">
+         <a href="http://maps.google.com/?q={{ poi|urlencode }}@{{ poi.geom.y }},{{ poi.geom.x }}&amp;z=18&amp;t=h" target="pnk_gmap" title="Zobrazit v Google Maps" class="sprite btn gmap"></a>
+      </div>
+      <div class="col-md-2 col-sm-3 centred">
+        <a class="sprite btn close close_poi" title="Zavřít popis místa"></a>
+      </div>
+   </div>
 </div>
 
-<div class="rc">
+<div class="rc txt">
 {% if fotky %}
-  {% thumbnail fotky.0.photo "250x250" as foto_thumb %}
-    <a href="{{ settings.SITE_URL}}{{ fotky.0.photo.url }}" title="Fotka v plném rozlišení" target="_blank">
-    <img src="{{ settings.SITE_URL}}{{ foto_thumb.url }}" title="{{ fotky.0 }}" width="{{ foto_thumb.width }}" height="{{ foto_thumb.height }}" class="foto_thumb"></a>
+  {% for fotka in fotky %}
+    {% thumbnail fotka.photo "300x0" as foto_thumb %}
+    {{ fotka }}
+    <a href="{{ settings.SITE_URL}}{{ fotka.photo.url }}" title="{{ fotka }}" data-lightbox="poi-image" data-title="{{ fotka }}">
+    <img src="{{ settings.SITE_URL}}{{ foto_thumb.url }}" title="{{ fotka }}" width="{{ foto_thumb.width }}" height="{{ foto_thumb.height }}" class="foto_thumb"></a>
+  {% endfor %}
 {% endif %}
 
 {% if poi.desc %}
     <p>{{ poi.desc|safe }}</p>
 {% else %}
     <p>{{ poi.znacka }}</p>
+{% endif %}
+{% if poi.desc_extra %}
+    <p>{{ poi.desc_extra|safe }}</p>
 {% endif %}
 {% if poi.address %}
     <p>Adresa:<br>{{ poi.address|safe }}</p>
@@ -30,14 +54,18 @@
     <p><a target="_blank" href="{{ poi.znacka.url|escape }}" title="{{ poi.znacka.url|escape }}">{{ poi.znacka.url|escape|truncatewords:4 }}</a></p>
   {% endif %}
 {% endif %}
+
+   <hr/>
+
+   <script>
+      $.getScript("{% static "fluent_comments/js/ajaxcomments.js" %}");
+   </script>
+
+   {% get_comment_count for poi as comment_count %}
+   <div id="comments-wrapper">
+      <h3 id="hidden-header" class="margin_t_2">Komentáře ({{ comment_count }})</h3>
+      {% render_comment_list for poi %}
+      {% render_comment_form for poi %}
+   </div>
 </div>
-<p class="addinfo">
-    {% if can_change %}
-    <a href="{% url 'admin:webmap_poi_change' poi.id %}">upravit</a>,
-    {% endif %}
-    <a href="javascript:void(0);" onclick="ZoomToLonLat(this, {{ poi.geom.x }}, {{ poi.geom.y }}, 15);"
-      title="Najet v mapě na místo" >na střed</a>,
-    <a href="{% url 'cyklomapa.views.mapa_view' poi.id %}" target="_top" title="Odkaz na místo">permalink</a>,
-    <a href="http://maps.google.com/?q={{ poi|urlencode }}@{{ poi.geom.y }},{{ poi.geom.x }}&amp;z=18&amp;t=h" target="pnk_gmap" title="Zobrazit v Google Maps"><img src="{% static 'google.ico' %}" /></a>
-</p>
 </div>

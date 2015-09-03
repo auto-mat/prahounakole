@@ -1,6 +1,8 @@
 #coding=utf-8
 from django.contrib.syndication.views import Feed
+
 from webmap.models import Poi
+
 
 class UzavirkyFeed(Feed):
         title = u"Prahou Na Kole - aktuální uzavírky"

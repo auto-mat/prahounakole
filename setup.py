@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from setuptools import setup
 from os import path
 
+from setuptools import setup
 
 VERSION = (0, 1, 0)
 __version__ = VERSION
@@ -35,5 +35,3 @@ setup(
         "License :: OSI Approved :: BSD License",
     ],
 )
-
-
