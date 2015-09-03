@@ -230,7 +230,7 @@ function setupPnkMap() {
         destroyRouting();
     }
 
-    //map.setBaseLayer(layerPNK);
+    map.setBaseLayer(layerPNK);
     $('.olControlLayerSwitcher').show();
 
     kmlvrstvy = mapconfig.vrstvy;
