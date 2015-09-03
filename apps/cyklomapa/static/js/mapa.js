@@ -492,8 +492,8 @@ function onDragComplete(feature) {
 function hidePanelOnMobile() {
     var vw = $('body').width();
     // kdyz je panel oteveny a sire stranky je mensi, nebo rovna 400px
-    if($('.panel_minimized').length == 0 && vw <= 400) {
-       panel_action();
+    if(vw <= 400) {
+       panel_action('minimize');
     }
 }
 
@@ -1068,8 +1068,7 @@ function showPoiDetail(poi_id) {
 }
 
 function createPopup(response) {
-    // togglePanel(null, false);
-    panel_action();
+    panel_action('maximize');
     $('#poi_text').html(response.responseText);
     jQuery('.textinput,.emailinput,#id_url').persist();
     $('#poi_box').slideDown(400).show(400);

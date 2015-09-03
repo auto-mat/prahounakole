@@ -1,30 +1,11 @@
-// function togglePanel(event, minimalized){
-//     // prevent default a (link) behavior
-//     if(event){
-//        event.preventDefault();
-//     }
-//     // let tthe body know the change .. for next possible visual changes
-//    $('body').toggleClass('panel_minimized', minimalized);
-//       var not_minimalized = undefined;
-//       if(minimalized != undefined){
-//          not_minimalized = !minimalized;
-//       }
-//       // stretch - extend panel container
-//        // $('#panel').toggleClass('minimized col-sm-2', minimalized);
-//        // $('#panel').toggleClass('col-md-3 col-sm-10', not_minimalized);
-//        // stretch - extend map container
-//       // $('.map_holder').toggleClass('col-md-12 col-sm-12', minimalized);
-//       // $('.map_holder').toggleClass('col-md-9 col-sm-12', not_minimalized);
-//       // show/hide panel content
-//       $('.dildo').toggleClass('hide', not_minimalized);
-//       $('.gold').toggleClass('hide', minimalized);
-//     // update map size
-//     setTimeout(function(){map.updateSize();},500);
-// }
-
-function panel_action(){
-  var Body = $('body');
-  if (Body.is('.panel_minimized')) {
+function panel_action(action){
+  if(action != undefined){
+     maximize = (action == 'maximize');
+  } else {
+     var Body = $('body');
+     maximize = Body.is('.panel_minimized')
+  }
+  if (maximize) {
     $('body').removeClass('panel_minimized');
     $('#panel').removeClass('minimized');
     $('.dildo').addClass('hide');
