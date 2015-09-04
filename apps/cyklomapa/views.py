@@ -191,6 +191,7 @@ class PanelInformaceView(TemplateView):
         context = super(PanelInformaceView, self).get_context_data(**kwargs)
         if self.request.mesto:
             context['historie'] = Poi.objects.filter(status__show=True, geom__intersects=self.request.mesto.sektor.geom).order_by('last_modification').reverse()[:10]
+            context['mesto'] = self.request.mesto
         context['uzavirky'] = Poi.objects.select_related('marker').filter(status__show=True, geom__intersects=self.request.mesto.sektor.geom, marker__slug='vyluka_akt')[:10]
         context['komentare'] = Comment.objects.order_by('-submit_date')[:10]
         context['legenda'] = Legend.objects.all()
