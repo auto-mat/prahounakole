@@ -31,7 +31,9 @@ search_options = {
                   new OpenLayers.Projection("EPSG:4326"),
                   map.getProjectionObject()
             );
+            map_move_by_code = true;
             map.setCenter(lonlat, 16);
+            map_move_by_code = false;
             if (appMode != 'routing') {
                 return false;
             }
