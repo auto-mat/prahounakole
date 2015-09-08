@@ -21,6 +21,8 @@ from django.views.decorators.cache import cache_page, never_cache
 from django.views.decorators.gzip import *
 from django.views.generic import TemplateView
 from django_comments.models import Comment
+from django.core.cache import caches
+defalut_cache = caches['default']
 
 from models import Mesto
 from webmap.models import Legend, MapPreset, Marker, OverlayLayer, Poi
@@ -192,6 +194,16 @@ class PanelInformaceView(TemplateView):
         if self.request.mesto:
             context['historie'] = Poi.objects.filter(status__show=True, geom__intersects=self.request.mesto.sektor.geom).order_by('last_modification').reverse()[:10]
         context['uzavirky'] = Poi.objects.select_related('marker').filter(status__show=True, geom__intersects=self.request.mesto.sektor.geom, marker__slug='vyluka_akt')[:10]
-        context['komentare'] = Comment.objects.order_by('-submit_date')[:10]
+        pois_in_city = Poi.objects.select_related('marker').filter(geom__intersects=self.request.mesto.sektor.geom)
+
+        # TODO: This is workaround about following bug in Django: https://code.djangoproject.com/ticket/20271 Remove this code block once it is fixed for optimal query.
+        pois_ids_in_city = defalut_cache.get('info-cache-pois-' + self.request.mesto.sektor.slug)
+        if not pois_ids_in_city:
+           pois_ids_in_city = [p.pk for p in pois_in_city]
+           defalut_cache.set('info-cache-pois-' + self.request.mesto.sektor.slug, pois_ids_in_city, 3600)
+        pois_in_city = pois_ids_in_city
+
+        context['komentare'] = Comment.objects.filter(object_pk__in=pois_in_city).order_by('-submit_date')[:10]
         context['legenda'] = Legend.objects.all()
+
         return context
