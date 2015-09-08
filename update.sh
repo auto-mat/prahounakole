@@ -28,7 +28,7 @@ env/bin/python env/bin/pip install --process-dependency-links -r requirements.tx
 if [ "$1" = "migrate" ]; then
    echo "Backuping db..."
    mkdir -p db_backup
-   sudo -u postgres pg_dump $db_name > db_backup/`date +"%y%m%d-%H:%M:%S"`-pnk.sql
+   sudo -u postgres pg_dump -C $db_name > db_backup/`date +"%y%m%d-%H:%M:%S"`-pnk.sql
    echo "Migrating..."
    env/bin/python ./manage.py migrate
 fi
