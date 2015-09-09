@@ -495,7 +495,8 @@ function hidePanelOnMobile() {
     var vw = $('body').width();
     // kdyz je panel oteveny a sire stranky je mensi, nebo rovna 400px
     if(vw <= 400) {
-       panel_action('minimize');
+       // zavírání panelu bylo dočasně zrušeno, protože se nepodařilo vyřešit všechny případy, ve kterých se zavírá nechtěně
+       //panel_action('minimize');
     }
 }
 
