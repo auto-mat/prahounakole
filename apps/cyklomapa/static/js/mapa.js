@@ -22,6 +22,7 @@ var selectedItinerary = null;
 var selectedPlan;
 var dragInAction = false;
 var ignoreHashChange = false;
+var touchMoved = false;
 
 var EPSG4326 = new OpenLayers.Projection("EPSG:4326");
 var EPSG900913 = new OpenLayers.Projection("EPSG:900913"); 
@@ -105,7 +106,7 @@ function init(mapconfig) {
     var controls;
     layerSwitcher = new OpenLayers.Control.LayerSwitcher({'div':OpenLayers.Util.getElement('layer_switcher')});
     controls = [
-        new OpenLayers.Control.TouchNavigation(),
+        //new OpenLayers.Control.TouchNavigation(), // Tohle je zvláštní, pinchZoom mi funguje i bez toho a když to zapnu, tak to blokuje parametr xy pro touchend akci
         new OpenLayers.Control.ArgParser({configureLayers: configureLayers}),
         new OpenLayers.Control.Attribution(),
         layerSwitcher,
@@ -390,6 +391,11 @@ function setupRouting() {
 
     toggleButtons();
     map.events.register("click", map, onMapClick);
+
+    //Takhle zachycujeme kliknutí ma mobilu:
+    map.events.register("touchmove", map, onTouchMove);
+    map.events.register("touchend", map, onTouchEnd);
+
     appMode = 'routing';
     addJourneyLayer();
     map.addControl(drag);
@@ -410,6 +416,8 @@ function destroyRouting() {
         journeyLayer.setVisibility(false);
     }
     map.events.unregister("click", map, onMapClick);
+    map.events.unregister("touchend", map, onTouchEnd);
+    map.events.unregister("touchmove", map, onTouchMove);
     map.events.unregister('mousemove', map, onMouseMove);
     $('.olMap').css("cursor", "auto");
     appMode = 'normal';
@@ -492,6 +500,15 @@ function hidePanelOnMobile() {
     }
 }
 
+function onTouchMove(e){
+    touchMoved = true;
+}
+function onTouchEnd(e){
+    if(!touchMoved){
+        onMapClick(e);
+    };
+    touchMoved = false;
+}
 function onMapClick(e) {
     var marker;
     switch (routingState) {
