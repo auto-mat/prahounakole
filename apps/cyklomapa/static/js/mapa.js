@@ -127,12 +127,6 @@ function init(mapconfig) {
 
     map = new OpenLayers.Map('map', options);
 
-    if (mapconfig.minimize_layerswitcher) {
-        layerSwitcher.minimizeControl();
-    } else {
-        layerSwitcher.maximizeControl();
-    }
-
     polishLayersSwitcherScaffold();
 
     layer_osm = new OpenLayers.Layer.OSM.Mapnik(
