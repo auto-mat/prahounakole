@@ -1,5 +1,5 @@
 {% load cache %}CACHE MANIFEST
-{% cache 3600 komentar mesto.sektor.slug %}
+{% cache 3600 appcache_manifest mesto.sektor.slug %}
 # cached at: {% now "Y-m-d H:i:s" %}
 
 NETWORK:
