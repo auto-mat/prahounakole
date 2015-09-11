@@ -54,7 +54,6 @@
 
   <title>Mapa Prahou na kole - {{ mesto.sektor.nazev }} </title>
 
-  {% compress js inline %}
     <script type="text/javascript">
         var mapconfig = {};
         mapconfig['root_url'] = "{{ root_url }}";
@@ -87,7 +86,6 @@
             mapconfig['minimize_layerswitcher'] = true
         {% endif %}
     </script>
-  {% endcompress %}
 
   </head>
   <body onload="init(mapconfig)">

@@ -215,9 +215,6 @@ class AppCacheView(TemplateView):
         context['presets'] = MapPreset.objects.filter(status__show=True)
         context['znacky'] = Marker.objects.all()
         context['legenda'] = Legend.objects.all()
-        context['compressed_main_css'] = cache.get("compressed_main_css")
-        context['compressed_main_css_print'] = cache.get("compressed_main_css_print")
-        context['compressed_main_js'] = cache.get("compressed_main_js")
         context['mesto'] = self.request.mesto
         return context
 

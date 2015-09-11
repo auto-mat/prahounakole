@@ -216,6 +216,7 @@ COMPRESS_CACHE_BACKEND='default'
 COMPRESS_PRECOMPILERS = (
     ('text/less', 'lessc {infile} {outfile}'),
 )
+COMPRESS_OFFLINE = True
 
 # import local settings
 try:

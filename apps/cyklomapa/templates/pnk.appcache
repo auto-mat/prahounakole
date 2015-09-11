@@ -1,5 +1,5 @@
-{% load cache %}{% if compressed_main_css and compressed_main_css_print and compressed_main_js %}CACHE MANIFEST
-{% cache 3600 komentar mesto.sektor.slug compressed_main_css compressed_main_css_print compressed_main_js %}
+{% load cache %}CACHE MANIFEST
+{% cache 3600 komentar mesto.sektor.slug %}
 # cached at: {% now "Y-m-d H:m:s" %}
 
 NETWORK:
@@ -7,9 +7,7 @@ NETWORK:
 
 CACHE:
 /
-{{ compressed_main_css }}
-{{ compressed_main_css_print }}
-{{ compressed_main_js }}
+{% include "compress_cache_manifest.txt" %}
 /panel-informace/
 /panel-mapa/
 /panel-hledani/
@@ -75,4 +73,3 @@ FALLBACK:
 /static/bow/lightbox/dist/images/prev.png? /static/bow/lightbox/dist/images/prev.png
 /static/bow/lightbox/dist/images/next.png? /static/bow/lightbox/dist/images/next.png
 {% endcache %}
-{% endif %}

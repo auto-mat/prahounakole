@@ -12,6 +12,7 @@
 /apps/cyklomapa/static/bow/
 /apps/cyklomapa/static/css/prahounakole.css
 /apps/cyklomapa/static/CACHE/
+/apps/cyklomapa/templates/compress_cache_manifest.txt
 update_local.sh
 .htaccess
 !.gitkeep
