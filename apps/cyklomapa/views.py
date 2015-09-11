@@ -9,7 +9,6 @@ from django import forms, http
 from django.conf import settings
 from django.contrib.gis.shortcuts import render_to_kml
 from django.contrib.sites.models import get_current_site
-from django.core.cache import get_cache
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 from django.db.models import Q
@@ -21,8 +20,7 @@ from django.views.decorators.cache import cache_page, never_cache
 from django.views.decorators.gzip import *
 from django.views.generic import TemplateView
 from django_comments.models import Comment
-from django.core.cache import caches
-defalut_cache = caches['default']
+from django.core.cache import cache
 
 from models import Mesto
 from webmap.models import Legend, MapPreset, Marker, OverlayLayer, Poi
@@ -97,8 +95,6 @@ def mapa_view(request, poi_id=None):
 def cache_page_mesto(expiration):
    def cache_page_mesto_dc(fn):
        def wrapper(*args, **kwargs):
-          cache = get_cache('default')
-
           cache_key = 'kml_view_' + args[1] + '_' + args[0].mesto.sektor.slug
           result = cache.get(cache_key)
           if result == None:
@@ -198,10 +194,10 @@ class PanelInformaceView(TemplateView):
         pois_in_city = Poi.objects.select_related('marker').filter(geom__intersects=self.request.mesto.sektor.geom)
 
         # TODO: This is workaround about following bug in Django: https://code.djangoproject.com/ticket/20271 Remove this code block once it is fixed for optimal query.
-        pois_ids_in_city = defalut_cache.get('info-cache-pois-' + self.request.mesto.sektor.slug)
+        pois_ids_in_city = cache.get('info-cache-pois-' + self.request.mesto.sektor.slug)
         if not pois_ids_in_city:
            pois_ids_in_city = [p.pk for p in pois_in_city]
-           defalut_cache.set('info-cache-pois-' + self.request.mesto.sektor.slug, pois_ids_in_city, 3600)
+           cache.set('info-cache-pois-' + self.request.mesto.sektor.slug, pois_ids_in_city, 3600)
         pois_in_city = pois_ids_in_city
 
         context['komentare'] = Comment.objects.filter(object_pk__in=pois_in_city).order_by('-submit_date')[:10]
