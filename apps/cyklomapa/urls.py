@@ -5,7 +5,8 @@ from django.contrib import admin
 from cyklomapa.feeds import NovinkyFeed, UzavirkyFeed
 from cyklomapa.views import (PanelHledaniView, PanelInformaceView,
                              PanelMapaView, kml_view, mapa_view, metro_view,
-                             popup_view, uzavirky_view, znacky_view)
+                             popup_view, uzavirky_view, znacky_view,
+                             AppCacheView)
 from django_comments.feeds import LatestCommentFeed
 from httpproxy.views import HttpProxy
 
@@ -23,6 +24,7 @@ urlpatterns = patterns('',
     url(r'^panel-informace/$', PanelInformaceView.as_view()),
     url(r'^panel-hledani/$', PanelHledaniView.as_view()),
     url(r'^comments/', include('fluent_comments.urls')),
+    url(r'^pnk.appcache/', AppCacheView.as_view()),
     url(r'^comments/feeds/latest/$', LatestCommentFeed(), name="latest_comments_feed"),
 )
 

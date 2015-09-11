@@ -9,6 +9,7 @@ from django import forms, http
 from django.conf import settings
 from django.contrib.gis.shortcuts import render_to_kml
 from django.contrib.sites.models import get_current_site
+import datetime
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 from django.db.models import Q
@@ -204,3 +205,23 @@ class PanelInformaceView(TemplateView):
         context['legenda'] = Legend.objects.all()
 
         return context
+
+class AppCacheView(TemplateView):
+    template_name = "pnk.appcache"
+
+    def get_context_data(self, **kwargs):
+        context = super(AppCacheView, self).get_context_data(**kwargs)
+        context['vrstvy'] = OverlayLayer.objects.filter(status__show=True)
+        context['presets'] = MapPreset.objects.filter(status__show=True)
+        context['znacky'] = Marker.objects.all()
+        context['legenda'] = Legend.objects.all()
+        context['compressed_main_css'] = cache.get("compressed_main_css")
+        context['compressed_main_css_print'] = cache.get("compressed_main_css_print")
+        context['compressed_main_js'] = cache.get("compressed_main_js")
+        context['mesto'] = request.mesto
+        context['timestamp'] = datetime.datetime.now()
+        return context
+
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data()
+        return self.render_to_response(context, content_type="text/cache-manifest; charset=utf-8")

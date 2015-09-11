@@ -2,13 +2,13 @@
 {% load static %}
 {% load url from future %}
 <!DOCTYPE html>
-<html>
+<html manifest="pnk.appcache/">
   <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
 
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-  {% compress css %}
+  {% compress css file main_css %}
   <link rel="stylesheet" href="{% static "bow/jqueryui/themes/base/jquery-ui.css" %}" type="text/css" />
 
   <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.min.css" %}" type="text/css" />
@@ -19,11 +19,13 @@
   <link rel="stylesheet" type="text/css" href="{% static "fluent_comments/css/ajaxcomments.css" %}" />
   <link rel="stylesheet" href="{% static "feedback/main.css" %}" type="text/css" />
   <link rel="stylesheet" href="{% static "css/prahounakole.less" %}" type="text/less" />
+  {% endcompress %}
+  {% compress css file main_css_print %}
   <!-- chrome nema rad media print wuery uvnitr, obecneho css ;( nebo co ) -->
   <link rel="stylesheet" href="{% static "css/print.css" %}" type="text/css" media="print" />
   {% endcompress %}
 
-  {% compress js %}
+  {% compress js file main_js %}
   <script type="text/javascript" src="{% static "bow/jquery/dist/jquery.min.js" %}"></script>
   <script type="text/javascript" src="{% static "bow/bootstrap/dist/js/bootstrap.min.js" %}"></script> <!-- Bootstrap musi byt hned za Jquery, resp, pret tools apod. -->
   <script type="text/javascript" src="{% static "bow/jquery.tools/index.js" %}"></script>
@@ -166,11 +168,11 @@
                   </div>
                   <!-- here comes the treasure -->
                   <div id="panel-content">
-                     <div id="mapa" data-src="/panel-mapa" class="panel row">
+                     <div id="mapa" data-src="/panel-mapa/" class="panel row">
                      </div>
-                     <div id="hledani" data-src="/panel-hledani" class="panel row">
+                     <div id="hledani" data-src="/panel-hledani/" class="panel row">
                      </div>
-                     <div id="informace" data-src="/panel-informace" class="panel row">
+                     <div id="informace" data-src="/panel-informace/" class="panel row">
                      </div>
                   </div>
                   <a id="print-btn" class="sprite btn print" style="display:none" title="Tisk"></a>

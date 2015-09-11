@@ -1,0 +1,79 @@
+{% load cache %}CACHE MANIFEST
+{% if compressed_main_css and compressed_main_css_print and compressed_main_js %}
+{% cache 3600 komentar mesto.sektor.slug compressed_main_css compressed_main_css_print compressed_main_js %}
+# cached at: {{ timestamp }}
+
+NETWORK:
+*
+
+CACHE:
+/
+{{ compressed_main_css }}
+{{ compressed_main_css_print }}
+{{ compressed_main_js }}
+/panel-informace/
+/panel-mapa/
+/panel-hledani/
+http://www.google-analytics.com/analytics.js
+http://maps.google.com/maps/api/js?v=3.8&sensor=false 
+http://maps.gstatic.com/maps-api-v3/api/js/20/15/main.js
+http://maps.gstatic.com/maps-api-v3/api/js/20/15/common.js
+http://maps.gstatic.com/maps-api-v3/api/js/20/15/map.js
+/static/css/prazak.png
+/static/img/circle.png
+/static/img/cs_logo.png
+/static/img/budik.png
+/static/img/praha_logo_40.gif
+/static/img/route-start.cur
+/static/img/sprite.png
+/static/img/controls.png
+/static/img/layers.png
+/static/img/pattern_R.png
+/static/img/panel_switch.png
+/static/img/grey_border_.png
+/static/img/grey_border.png
+/static/img/mapa_input_sprites.png
+/static/img/dildo_bcg.png
+/static/bow/lightbox/dist/images/close.png
+/static/bow/lightbox/dist/images/loading.gif
+/static/bow/lightbox/dist/images/prev.png
+/static/bow/lightbox/dist/images/next.png
+/static/css/img/layer-switcher-maximize.png
+/static/css/img/layer-switcher-minimize.png
+
+{% for l in legenda %}
+   {% if l.image %}
+      /media/{{l.image}}
+   {% endif %}
+{% endfor %} 
+
+{% for z in znacky %}
+   {% if z.default_icon %}
+      /media/{{z.default_icon}}
+   {% endif %}
+{% endfor %} 
+
+{% for p in presets %}
+   /media/{{p.icon}}
+{% endfor %} 
+
+{% for v in vrstvy %}
+   /kml/{{v.slug}}/
+{% endfor %} 
+
+FALLBACK:
+/static/img/layers.png? /static/img/layers.png
+/static/img/sprite.png? /static/img/sprite.png
+/static/img/controls.png? /static/img/controls.png
+/static/img/pattern_R.png? /static/img/pattern_R.png
+/static/img/panel_switch.png? /static/img/panel_switch.png
+/static/img/grey_border_.png? /static/img/grey_border_.png
+/static/img/grey_border.png? /static/img/grey_border.png
+/static/img/mapa_input_sprites.png? /static/img/mapa_input_sprites.png
+/static/img/dildo_bcg.png? /static/img/dildo_bcg.png
+/static/bow/lightbox/dist/images/close.png? /static/bow/lightbox/dist/images/close.png
+/static/bow/lightbox/dist/images/loading.gif? /static/bow/lightbox/dist/images/loading.gif
+/static/bow/lightbox/dist/images/prev.png? /static/bow/lightbox/dist/images/prev.png
+/static/bow/lightbox/dist/images/next.png? /static/bow/lightbox/dist/images/next.png
+{% endcache %}
+{% endif %}
