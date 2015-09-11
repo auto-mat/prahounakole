@@ -218,7 +218,7 @@ class AppCacheView(TemplateView):
         context['compressed_main_css'] = cache.get("compressed_main_css")
         context['compressed_main_css_print'] = cache.get("compressed_main_css_print")
         context['compressed_main_js'] = cache.get("compressed_main_js")
-        context['mesto'] = request.mesto
+        context['mesto'] = self.request.mesto
         context['timestamp'] = datetime.datetime.now()
         return context
 
