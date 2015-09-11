@@ -1,5 +1,4 @@
-{% load cache %}CACHE MANIFEST
-{% if compressed_main_css and compressed_main_css_print and compressed_main_js %}
+{% load cache %}{% if compressed_main_css and compressed_main_css_print and compressed_main_js %}CACHE MANIFEST
 {% cache 3600 komentar mesto.sektor.slug compressed_main_css compressed_main_css_print compressed_main_js %}
 # cached at: {% now "Y-m-d H:m:s" %}
 
