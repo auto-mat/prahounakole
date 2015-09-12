@@ -4,6 +4,7 @@ python:
   - "2.7"
 before_script:
   - npm install -g bower
+  - npm install less
   - psql -c 'create database travis_ci_test;' -U postgres
   - psql --no-password travis_ci_test -U postgres -c "create extension postgis"
 script: 
