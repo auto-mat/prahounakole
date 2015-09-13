@@ -12,7 +12,6 @@ var waypoints = [];
 var startFeature = null;
 var endFeature = null;
 var drag = null;
-var bind_to_geolocation = false;
 var isRoutingSet = false;
 var selectControl;
 var lastSelectedFeature;
@@ -195,6 +194,36 @@ function init(mapconfig) {
            selectControl.unselectAll();
         }
      });
+
+     position_layer = new OpenLayers.Layer.Vector("Poloha", {});
+     map.addLayer(position_layer);
+
+     geocontrol = new OpenLayers.Control.Geolocate({
+         watch: true,
+         bind: true,
+         geolocationOptions: {
+             enableHighAccuracy: true,
+             maximumAge: 0,
+             timeout: 7000 }
+      });
+      map.addControl(geocontrol);
+      geocontrol.events.register("locationupdated", geocontrol, onLocationUpdate);
+
+      $("#geolocate").click(function(){
+          if(!geocontrol.active) {
+              geocontrol.activate();
+          }
+          if(position_layer.getDataExtent()){
+              map.setCenter(position_layer.getDataExtent().getCenterLonLat());
+          }
+          geocontrol.bind = true;
+          $("#geolocate").addClass("geobind_active");
+      });
+      $("#map").children().bind("touchstart click", function(){
+          geocontrol.bind = false;
+          $("#geolocate").removeClass("geobind_active");
+          hidePanelOnMobile();
+      });
 } // init
 
 function showPanel(slug) {
@@ -271,37 +300,6 @@ function setupPnkMap() {
 
     map.addControl(selectControl);
     selectControl.activate();
-
-        position_layer = new OpenLayers.Layer.Vector("Poloha", {});
-        map.addLayer(position_layer);
-             
-     geocontrol = new OpenLayers.Control.Geolocate({
-         watch: true,
-         bind: false,
-         geolocationOptions: {
-             enableHighAccuracy: true,
-             maximumAge: 0,
-             timeout: 7000 }
-      });
-      map.addControl(geocontrol);
-      geocontrol.events.register("locationupdated", geocontrol, onLocationUpdate);
-
-      $("#geolocate").click(function(){
-          if(!geocontrol.active) {
-              geocontrol.activate();
-          }
-          if(position_layer.getDataExtent()){
-              map.zoomToExtent(position_layer.getDataExtent());
-          }
-          bind_to_geolocation = true;
-          $("#geolocate").addClass("geobind_active");
-      });
-      $("#map").children().bind("touchstart click", function(){
-          bind_to_geolocation = false;
-          $("#geolocate").removeClass("geobind_active");
-          hidePanelOnMobile();
-      });
-
 
      $('#mapStreetSearch').autocomplete(search_options);
 
@@ -1128,9 +1126,6 @@ function onLocationUpdate(evt) {
              accuracy_style
          )
     ]);
-    if(bind_to_geolocation){
-       map.setCenter(new OpenLayers.LonLat(evt.point.x, evt.point.y));
-    };
 }
 
 function addDPNK1(name, enabled, slug) {
