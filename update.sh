@@ -37,10 +37,12 @@ bower install
 #compile PNK version of OpenLayers:
 (cd apps/cyklomapa/static/bow/openlayers/build/ && python build.py -c closure_ws ../../../openstreetmap-pnk ../OpenLayers.PNK.js)
 
-env/bin/python ./manage.py compress_create_manifest --force
-
 env/bin/python ./manage.py collectstatic --noinput
+env/bin/python ./manage.py compress_create_manifest --force
+env/bin/python ./manage.py collectstatic --noinput
+
 touch wsgi.py
+sudo /etc/init.d/memcached restart
 type supervisorctl && sudo supervisorctl restart $app_name
 
 echo "App succesfully updated"
