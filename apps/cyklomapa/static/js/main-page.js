@@ -19,6 +19,7 @@ function panel_action(action){
 
   // change the map container size dinamicaly
   map_width_fix();
+  panel_position()
   // update map size
   map.updateSize();
 }
