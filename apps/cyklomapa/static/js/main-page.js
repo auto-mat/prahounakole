@@ -1,13 +1,16 @@
 function full_screen(){
-  var body = document.documentElement;
-  if (body.requestFullscreen) {
-     body.requestFullscreen();
-  } else if (body.webkitRequestFullscreen) {
-     body.webkitRequestFullscreen();
-  } else if (body.mozRequestFullScreen) {
-     body.mozRequestFullScreen();
-  } else if (body.msRequestFullscreen) {
-     body.msRequestFullscreen();
+  var vw = $('body').width();
+  if(vw <= 768) {
+     var body = document.documentElement;
+     if (body.requestFullscreen) {
+        body.requestFullscreen();
+     } else if (body.webkitRequestFullscreen) {
+        body.webkitRequestFullscreen();
+     } else if (body.mozRequestFullScreen) {
+        body.mozRequestFullScreen();
+     } else if (body.msRequestFullscreen) {
+        body.msRequestFullscreen();
+     }
   }
 }
 
@@ -27,6 +30,7 @@ function panel_action(action){
     $('body').addClass('panel_minimized');
     $('#panel').addClass('minimized');
     $('.dildo').removeClass('hide');
+    full_screen();
     // console.log('maximaze')
   }
 
@@ -98,8 +102,6 @@ jQuery(document).ready(function($) {
       map.zoomOut()
     });
   $('#zoom-reset').click( function(event){
-      full_screen(); //Ideálně přemístit do samostatného tlačítka.
-
       event.preventDefault();
       map.setCenter(new OpenLayers.LonLat(mapconfig.baselon, mapconfig.baselat).transform(EPSG4326, map.getProjectionObject()), mapconfig.basezoom);
       // Prosim doplnit
