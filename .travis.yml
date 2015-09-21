@@ -9,7 +9,7 @@ before_script:
   - psql --no-password travis_ci_test -U postgres -c "create extension postgis"
 script: 
   - cd project && cp settings_local_sample.py settings_local.py && cd ..
-  - ./update.sh
+  - ./update.sh reinstall
   - python manage.py migrate
 addons:
   postgresql: "9.3"

@@ -158,15 +158,18 @@ function init(mapconfig) {
         zoomMethod: null,
         tileOptions : {crossOriginKeyword: null}
     });
-    var layerGoogle = new OpenLayers.Layer.Google(
-        "Satelitní mapa Google", {
-        slug:"G",
-        type: google.maps.MapTypeId.SATELLITE,
-        numZoomLevels: 21
-     });
 
-     map.addLayers([layerPNK, layer_osm, layerCycle, layerGoogle, layerBW]);
-     layerGoogle.mapObject.setTilt(0);
+     map.addLayers([layerPNK, layer_osm, layerCycle, layerBW]);
+     if(google.maps.MapTypeId !== undefined){
+        var layerGoogle = new OpenLayers.Layer.Google(
+           "Satelitní mapa Google", {
+           slug:"G",
+           type: google.maps.MapTypeId.SATELLITE,
+           numZoomLevels: 21
+        });
+        map.addLayer(layerGoogle);
+        layerGoogle.mapObject.setTilt(0);
+     }
 
      // zabranime odzoomovani na nizsi level nez 8 
      map.isValidZoomLevel = function(zoomLevel) {
