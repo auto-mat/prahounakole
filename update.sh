@@ -42,7 +42,7 @@ env/bin/python ./manage.py compress_create_manifest --force
 env/bin/python ./manage.py collectstatic --noinput
 
 touch wsgi.py
-sudo /etc/init.d/memcached restart
+sudo whoami && sudo /etc/init.d/memcached restart
 type supervisorctl && sudo supervisorctl restart $app_name
 
 echo "App succesfully updated"
