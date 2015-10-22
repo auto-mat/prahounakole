@@ -1032,12 +1032,10 @@ function onFeatureSelect(feature) {
             '</h4> <div class="row controls"> <div class="col-md-2 col-md-offset-10 centred"> <a class="sprite btn close close_poi" title="Zavřít popis místa"></a> </div> </div> </div> <div class="rc"><p>' +
             photo +
             feature.attributes.description +
-            '<p><a href="http://www.cyklistesobe.cz/' +
-            feature.attributes.url +
+            '<p><a href="' +
+            feature.attributes.cyclescape_url +
             '" target="_blank">Stránka podnětu Cyklisté sobě</a>' +
             '</div></div>';
-        feature.attributes.width = 32;
-        feature.attributes.height = 20;
         createPopup.call(feature, response);
         return;
     }
@@ -1163,8 +1161,18 @@ function addCSLayer(name, enabled, slug) {
          strategies: [new OpenLayers.Strategy.Fixed()],
          protocol: new OpenLayers.Protocol.HTTP({
             url: "http://prahounakole.cz/wp-content/pnk/cs_tracks/list.json",
-            format: new OpenLayers.Format.GeoJSON(),
-        })
+            format: new OpenLayers.Format.GeoJSON({
+                   parseFeature: function(data) {
+                       feature = OpenLayers.Format.GeoJSON.prototype.parseFeature(data)
+                       if($.inArray("vyresene", feature.attributes.tags) != -1){
+                          feature.attributes.stroke_color = "#006500"
+                       } else {
+                          feature.attributes.stroke_color = "#00c000"
+                       }
+                       return feature
+                   }
+            }),
+        }),
      });
      cs_layer.styleMap = new OpenLayers.StyleMap({
         "default": {
@@ -1173,7 +1181,7 @@ function addCSLayer(name, enabled, slug) {
            graphicWidth: 20,
            graphicHeight: 20,
            strokeWidth: 3,
-           strokeColor: "#006500",
+           strokeColor: "${stroke_color}",
            fillOpacity: 0.6,
            graphicOpacity: 1,
            fillColor: "#006500",
