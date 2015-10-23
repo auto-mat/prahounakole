@@ -1166,8 +1166,12 @@ function addCSLayer(name, enabled, slug) {
                        feature = OpenLayers.Format.GeoJSON.prototype.parseFeature(data)
                        if($.inArray("vyresene", feature.attributes.tags) != -1){
                           feature.attributes.stroke_color = "#006500"
+                          feature.attributes.fill_color = "#006500"
+                          feature.attributes.icon = '/static/img/cyklistesobe-done.png'
                        } else {
-                          feature.attributes.stroke_color = "#00c000"
+                          feature.attributes.stroke_color = "#650000"
+                          feature.attributes.fill_color = "#650000"
+                          feature.attributes.icon = '/static/img/cyklistesobe.png'
                        }
                        return feature
                    }
@@ -1177,14 +1181,14 @@ function addCSLayer(name, enabled, slug) {
      cs_layer.styleMap = new OpenLayers.StyleMap({
         "default": {
            cursor: 'pointer',
-           externalGraphic: '/static/img/cyklistesobe.png',
+           externalGraphic: '${icon}',
            graphicWidth: 20,
            graphicHeight: 20,
            strokeWidth: 3,
            strokeColor: "${stroke_color}",
            fillOpacity: 0.6,
            graphicOpacity: 1,
-           fillColor: "#006500",
+           fillColor: "${fill_color}",
         },
         "select": {
            fillColor: "#53B431",
