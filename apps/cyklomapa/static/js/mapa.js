@@ -1165,13 +1165,13 @@ function addCSLayer(name, enabled, slug) {
                    parseFeature: function(data) {
                        feature = OpenLayers.Format.GeoJSON.prototype.parseFeature(data)
                        if($.inArray("vyresene", feature.attributes.tags) != -1){
-                          feature.attributes.stroke_color = "#006500"
-                          feature.attributes.fill_color = "#006500"
-                          feature.attributes.icon = '/static/img/cyklistesobe-done.png'
+                          feature.attributes.feature_color = "#2BBF2B";
+                          feature.attributes.select_color = "#1D811D";
+                          feature.attributes.icon = '/static/img/cyklistesobe-done.png';
                        } else {
-                          feature.attributes.stroke_color = "#650000"
-                          feature.attributes.fill_color = "#650000"
-                          feature.attributes.icon = '/static/img/cyklistesobe.png'
+                          feature.attributes.feature_color = "#BF2B2B";
+                          feature.attributes.select_color = "#944747";
+                          feature.attributes.icon = '/static/img/cyklistesobe.png';
                        }
                        return feature
                    }
@@ -1185,14 +1185,14 @@ function addCSLayer(name, enabled, slug) {
            graphicWidth: 20,
            graphicHeight: 20,
            strokeWidth: 3,
-           strokeColor: "${stroke_color}",
+           strokeColor: "${feature_color}",
            fillOpacity: 0.6,
            graphicOpacity: 1,
-           fillColor: "${fill_color}",
+           fillColor: "${feature_color}",
         },
         "select": {
-           fillColor: "#53B431",
-           strokeColor: "#53B431",
+           fillColor: "${select_color}",
+           strokeColor: "${select_color}",
            fillOpacity: 0.85,
            graphicOpacity: 1,
         },
