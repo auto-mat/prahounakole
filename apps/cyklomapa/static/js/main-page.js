@@ -143,9 +143,9 @@ jQuery(document).ready(function($) {
 
   $(".change-layer").click(function(event) {
      ga('send', 'event', 'layer', 'change', event.currentTarget.dataset['name']);
-     base_layer = event.currentTarget.dataset['baselayer']
-     overlayers = event.currentTarget.dataset['overlayers']
-     activateLayers(base_layer, overlayers)
+     base_layer = event.currentTarget.dataset['baselayer'];
+     overlayers = JSON.parse(event.currentTarget.dataset['overlayers']);
+     activateLayers(base_layer, overlayers);
   });
 
  

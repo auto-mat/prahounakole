@@ -52,7 +52,7 @@ function configureLayers() {
            continue;
         }
 
-        var layer_visible = this.layers.indexOf(layer.slug) != -1;
+        var layer_visible = this.layers.indexOf(layer.slug) != -1 || mapconfig.center_feature_slug == layer.slug;
         if(layer.isBaseLayer) {
            if(layer_visible) {
               this.map.setBaseLayer(layer);

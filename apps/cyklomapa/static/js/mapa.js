@@ -794,13 +794,17 @@ function onMouseMove(e) {
     }
 }
 
-function selectFeatureById(poi_id) {
-   var feat = getPoi(poi_id);
+function selectFeatureById(layer_slug, poi_id) {
+   layer = map.getLayersBy("slug", layer_slug)[0];
+   layer.setVisibility(true);
+   feat = layer.getFeatureByFid(poi_id);
    if(feat) {
       map.zoomToExtent(feat.geometry.getBounds());
       selectControl.unselectAll();
       selectControl.select(feat);
    }
+   mapconfig.center_feature_slug = layer_slug
+   mapconfig.center_feature = poi_id
 }
 
 function parseHash() {
@@ -917,9 +921,9 @@ function onHashChange(e) {
     }
     if (args['misto']) {
         var poi_array = args['misto'].split("_");
-        var poi_id = parseInt(poi_array[poi_array.length-1]);
-        mapconfig.center_feature = poi_id;
+        mapconfig.center_feature = parseInt(poi_array[poi_array.length-1]);
         mapconfig.center_feature_slug = poi_array[poi_array.length-2];
+
         setupPnkMap();
         showPanel('mapa');
     }
@@ -934,19 +938,6 @@ function onHashChange(e) {
     }
 }
 
-function getPoi(id) {
-    var feat;
-    for(var layer_id in map.layers) {
-        layer = map.layers[layer_id]
-        if (layer.getFeatureByFid) {
-           feat = layer.getFeatureByFid(id);
-           if (feat) {
-               return feat;
-           }
-        }
-    }
-}
-        
 function onLoadEnd(evt) {
     if (mapconfig.center_feature) {
        var feature = this.getFeatureByFid(mapconfig.center_feature);
@@ -1245,6 +1236,7 @@ function addRekola(name, enabled, slug) {
 
 function activateLayers(base_layer_slug, overlay_layer_slugs){
    map.setBaseLayer(map.getLayersBy("slug", base_layer_slug)[0]);
+   overlay_layer_slugs.push(mapconfig.center_feature_slug);
 
    for(var layer_id in map.layers){
       layer = map.layers[layer_id]

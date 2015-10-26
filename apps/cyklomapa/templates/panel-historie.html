@@ -2,7 +2,7 @@
 <div>
    {% cache 3600 historie mesto.sektor.slug %}
    {% for poi in historie %}
-      <a href="{{ poi.get_absolute_url }}" onclick="selectFeatureById({{poi.id}});return false;" title="{{ poi.last_modification|naturalday }}">
+      <a href="{{ poi.get_absolute_url }}" onclick="selectFeatureById('{{ poi.marker.layer.slug }}', {{poi.id}});return false;" title="{{ poi.last_modification|naturalday }}">
       <img src="{{ poi.marker.default_icon.url }}" title="{{ poi.last_modification|naturalday }}" alt="{{ poi.marker.name }}">
          {{ poi.name|safe }}
       </a>

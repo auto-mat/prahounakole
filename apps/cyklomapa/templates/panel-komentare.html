@@ -2,7 +2,7 @@
 <div>
    {% cache 3600 komentar mesto.sektor.slug %}
    {% for komentar in komentare %}
-      <a href="{{ komentar.content_object.get_absolute_url }}" onclick="selectFeatureById({{komentar.content_object.id}});return false;" title="{{ komentar.submit_date|naturalday }}">
+      <a href="{{ komentar.content_object.get_absolute_url }}" onclick="selectFeatureById('{{ komentar.content_object.marker.layer.slug }}', {{komentar.content_object.id}});return false;" title="{{ komentar.submit_date|naturalday }}">
       <img src="{{ komentar.content_object.marker.default_icon.url }}" title="{{ komentar.submit_date|naturalday }}" alt="{{ komentar.content_object.marker.name }}">
          {{ komentar.content_object }}:
          <br/>
