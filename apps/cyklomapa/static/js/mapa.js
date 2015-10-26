@@ -972,7 +972,7 @@ function addPoiLayer(nazev, url, enabled, id) {
         protocol: new OpenLayers.Protocol.HTTP({
             url: url,
             format: new OpenLayers.Format.KML({
-                extractStyles: true,
+                extractStyles: false,
                 extractAttributes: true})
         })
     });
