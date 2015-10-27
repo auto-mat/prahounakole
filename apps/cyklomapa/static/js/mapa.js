@@ -258,7 +258,6 @@ function setupPnkMap() {
         destroyRouting();
     }
 
-    map.setBaseLayer(layerPNK);
     $('.olControlLayerSwitcher').show();
 
     kmlvrstvy = mapconfig.vrstvy;
@@ -326,7 +325,6 @@ function setupRouting() {
        destroyPnkMap();
     }
 
-    map.setBaseLayer(layerBW);
     CSApi.init(map, 'ad9beeeff0afb15e');
 
     if(isRoutingSet){
@@ -655,7 +653,7 @@ function addJourneyLayer() {
         "default": new OpenLayers.Style({
             strokeOpacity: 0.42,
             // strokeDashstyle: "dashdot",
-            strokeWidth: 9,
+            strokeWidth: 12,
             strokeColor: "yellow"
         }),
         "select": new OpenLayers.Style({
