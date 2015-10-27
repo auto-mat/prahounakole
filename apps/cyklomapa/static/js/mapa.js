@@ -1036,9 +1036,15 @@ function onFeatureSelect(feature) {
 }
 
 function onFeatureUnselect(feature) {
-    ga('send', 'event', 'poi', 'close', feature.fid);
-    $("#" + feature.geometry.id).removeAttr("class");
-    closePoiBox();
+    if(!$('#id_comment').length > 0 || $('#id_comment').val() == "" ||
+          confirm("Máte vyplněný komentář, přepnutím bodu ztratíte tento text.\nPřejete si opravdu bod přepnout?")){
+          ga('send', 'event', 'poi', 'close', feature.fid);
+          $("#" + feature.geometry.id).removeAttr("class");
+          closePoiBox();
+    }
+    return false;
+
+
 }
 
 function showPoiDetail(poi_id) {
