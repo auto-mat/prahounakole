@@ -227,6 +227,8 @@ function init(mapconfig) {
           $("#geolocate").removeClass("geobind_active");
           hidePanelOnMobile();
       });
+
+      hidePanelOnMobile();
 } // init
 
 function showPanel(slug) {
