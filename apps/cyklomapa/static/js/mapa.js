@@ -297,7 +297,6 @@ function setupPnkMap() {
            clickout: true,
            multiple: false,
            onUnselect: onFeatureUnselect,
-           onBeforeSelect: onBeforeFeatureSelect,
            onSelect: onFeatureSelect
        });
     };
@@ -983,14 +982,6 @@ function removePoiLayers() {
     }
 }
 
-function onBeforeFeatureSelect(feature) {
-    if(!$('#id_comment').length > 0 || $('#id_comment').val() == "" ||
-          confirm("Máte vyplněný komentář, přepnutím bodu ztratíte tento text.\nPřejete si opravdu bod přepnout?")){
-          return true;
-    }
-    return false;
-};
-
 function onFeatureSelect(feature) {
     setHashParameter('misto', feature.layer.slug + "_" + feature.fid, false);
     $("#" + feature.geometry.id).attr("class", "selected"); 
@@ -1034,15 +1025,9 @@ function onFeatureSelect(feature) {
 }
 
 function onFeatureUnselect(feature) {
-    if(!$('#id_comment').length > 0 || $('#id_comment').val() == "" ||
-          confirm("Máte vyplněný komentář, přepnutím bodu ztratíte tento text.\nPřejete si opravdu bod přepnout?")){
-          ga('send', 'event', 'poi', 'close', feature.fid);
-          $("#" + feature.geometry.id).removeAttr("class");
-          closePoiBox();
-    }
-    return false;
-
-
+    ga('send', 'event', 'poi', 'close', feature.fid);
+    $("#" + feature.geometry.id).removeAttr("class");
+    closePoiBox();
 }
 
 function showPoiDetail(poi_id) {
@@ -1064,7 +1049,7 @@ function showPoiDetail(poi_id) {
 function createPopup(response) {
     panel_action('maximize');
     $('#poi_text').html(response.responseText);
-    jQuery('.textinput,.emailinput,#id_url').persist();
+    jQuery('.textinput,.emailinput,#id_url,#id_comment').persist();
     $('#poi_box').slideDown(400).show(400);
     $('#panel-content').hide();
 };
