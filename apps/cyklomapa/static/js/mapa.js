@@ -249,6 +249,11 @@ function showPanel_closeBox(slug) {
    $(".print").show();
 }
 
+function updatePermalink(){
+    permalink = map.getControlsBy("displayClass", "olControlPermalink")[0]
+    permalink.updateLink()
+}
+
 function setupPnkMap() {
     if (appMode == 'pnkmap') {
         // uz jsme v rezimu pnkmap, neni co delat
@@ -307,6 +312,7 @@ function setupPnkMap() {
      $('#mapStreetSearch').autocomplete(search_options);
 
      appMode = 'pnkmap';
+     updatePermalink();
 } // setupPnkMap
 
 function destroyPnkMap() {
