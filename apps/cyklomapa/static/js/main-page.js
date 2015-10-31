@@ -107,7 +107,7 @@ jQuery(document).ready(function($) {
       // Prosim doplnit
       // map.zoom....()
     });
-  $('#feedback-btn, #print-btn, #layers-switch, #layers-switch, #city-switch, #zoom-reset, #geolocate, #zoom-in, #zoom-out').on('click', function (e) {
+  $('#feedback-btn, #print-btn, #layers-switch, #layers-switch, #city-switch, #zoom-reset, #geolocate, #zoom-in, #zoom-out, #advanced_switch').on('click', function (e) {
     ga('send', 'event', 'button', 'clicked', e.target.id);
   });
   $('.print').on('click', function (e) {

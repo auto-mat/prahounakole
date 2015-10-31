@@ -120,6 +120,10 @@ function init(mapconfig) {
         restrictedExtent: bounds.clone(),
         projection: EPSG4326,
         displayProjection : EPSG4326,
+        eventListeners: {
+            "changelayer": mapLayerChanged,
+            "changebaselayer": mapBaseLayerChanged,
+        } ,
 		// fallThrough : false,
         theme: null
     };
@@ -230,6 +234,14 @@ function init(mapconfig) {
 
       hidePanelOnMobile();
 } // init
+
+function mapLayerChanged(event) {
+    ga('send', 'event', event.type, event.layer.name, event.property);
+}
+
+function mapBaseLayerChanged(event) {
+    ga('send', 'event', event.type, event.layer.name);
+}
 
 function showPanel(slug) {
     // highlight active mode icon
