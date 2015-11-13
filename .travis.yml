@@ -2,6 +2,7 @@ sudo: false
 language: python
 python:
   - "2.7"
+  - "3.4"
 before_script:
   - npm install -g bower
   - npm install less
@@ -10,6 +11,9 @@ before_script:
 script: 
   - cd project && cp settings_local_sample.py settings_local.py && cd ..
   - ./update.sh reinstall
-  - python manage.py migrate
+  - python manage.py test
 addons:
   postgresql: "9.3"
+matrix:
+  allow_failures:
+    - python: "3.4"

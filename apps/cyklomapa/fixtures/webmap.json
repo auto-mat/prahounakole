@@ -1,0 +1,49 @@
+[
+    {
+        "fields": {
+            "geom": "SRID=4326;POLYGON ((14.2889207397750049 50.0973147881170817, 14.3287461792223780 49.9950160035695532, 14.6363633666796300 49.9950160035695532, 14.6562760864028672 50.1510223849299024, 14.3376725708229795 50.1655394957029586, 14.3376725708229795 50.1655394957029586, 14.2889207397750049 50.0973147881170817))",
+            "name": "Testing sector",
+            "slug": "testing-sector"
+        },
+        "model": "webmap.sector",
+        "pk": 1
+    },
+    {
+        "fields": {
+            "created_at": "2015-11-13 12:00",
+            "geom": "SRID=4326;POINT (14.4221343818742032 50.0874047551947399)",
+            "last_modification": "2015-11-13 12:00",
+            "marker": 1,
+            "name": "Testing poi",
+            "status": 1
+        },
+        "model": "webmap.poi",
+        "pk": 1
+    },
+    {
+        "fields": {
+            "created_at": "2015-11-13 12:00",
+            "last_modification": "2015-11-13 12:00",
+            "layer": 1,
+            "name": "Testing marker",
+            "status": 1
+        },
+        "model": "webmap.marker",
+        "pk": 1
+    },
+    {
+        "fields": {
+            "name": "Testing status"
+        },
+        "model": "webmap.status",
+        "pk": 1
+    },
+    {
+        "fields": {
+            "name": "Testing layer",
+            "status": 1
+        },
+        "model": "webmap.layer",
+        "pk": 1
+    }
+]

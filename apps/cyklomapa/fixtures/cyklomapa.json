@@ -1,0 +1,15 @@
+[
+    {
+        "fields": {
+            "aktivni": true,
+            "geom": "SRID=4326;POINT (14.4221343818742032 50.0874047551947399)",
+            "maxzoom": 18,
+            "sektor": 1,
+            "uvodni_zprava": "",
+            "vyhledavani": true,
+            "zoom": 13
+        },
+        "model": "cyklomapa.mesto",
+        "pk": 1
+    }
+]
