@@ -1,35 +1,21 @@
 # -*- coding: utf-8 -*-
-import datetime
+from __future__ import unicode_literals
 
-from django.db import models
-from south.db import db
-from south.v2 import SchemaMigration
+from django.db import migrations, models
 
 
-class Migration(SchemaMigration):
+class Migration(migrations.Migration):
 
-    def forwards(self, orm):
-        # Adding model 'EmailFilter'
-        db.create_table(u'comments_moderation_emailfilter', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('email', self.gf('django.db.models.fields.EmailField')(max_length=75, null=True)),
-            ('active', self.gf('django.db.models.fields.BooleanField')()),
-        ))
-        db.send_create_signal(u'comments_moderation', ['EmailFilter'])
+    dependencies = [
+    ]
 
-
-    def backwards(self, orm):
-        # Deleting model 'EmailFilter'
-        db.delete_table(u'comments_moderation_emailfilter')
-
-
-    models = {
-        u'comments_moderation.emailfilter': {
-            'Meta': {'object_name': 'EmailFilter'},
-            'active': ('django.db.models.fields.BooleanField', [], {}),
-            'email': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'null': 'True'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'})
-        }
-    }
-
-    complete_apps = ['comments_moderation']
+    operations = [
+        migrations.CreateModel(
+            name='EmailFilter',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('email', models.EmailField(max_length=254, null=True, verbose_name='Blokovan\xfd email')),
+                ('active', models.BooleanField(default=True, help_text='Pravidlo je aktivn\xed')),
+            ],
+        ),
+    ]
