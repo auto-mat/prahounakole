@@ -18,12 +18,6 @@ DEFAULT_FROM_EMAIL = 'Prahou na kole <redakce@prahounakole.cz>'
 sys.path.append(normpath(PROJECT_DIR, "project"))
 sys.path.append(normpath(PROJECT_DIR, "apps"))
 
-# http://docs.djangoproject.com/en/dev/topics/testing/#id1
-# Your user must be a postgrest superuser
-# Avoid specifying your password with: ~/.pgpass
-# http://www.postgresql.org/docs/8.3/interactive/libpq-pgpass.html
-TEST_RUNNER='django.contrib.gis.tests.run_gis_tests'
-
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 #COMPRESS = True
