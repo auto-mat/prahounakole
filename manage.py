@@ -7,13 +7,15 @@ from project.settings import PROJECT_DIR, normpath
 
 try:
     activate_path = normpath(PROJECT_DIR, 'env/bin/activate_this.py')
-    execfile(activate_path, dict(__file__=activate_path))
+    with open(activate_path) as f:
+        code = compile(f.read(), "somefile.py", 'exec')
+        exec(code, dict(__file__=activate_path))
 except IOError:
-    print "E: virtualenv must be installed to PROJECT_DIR/env"
+    print("E: virtualenv must be installed to PROJECT_DIR/env")
 # END activacte virtualenv
 
 if __name__ == "__main__":
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "project.settings")
 
     from django.core.management import execute_from_command_line
 

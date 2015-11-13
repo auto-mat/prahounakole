@@ -23,7 +23,7 @@ from django.views.generic import TemplateView
 from django_comments.models import Comment
 from django.core.cache import cache
 
-from models import Mesto
+from .models import Mesto
 from webmap.models import Legend, MapPreset, Marker, OverlayLayer, Poi
 
 
