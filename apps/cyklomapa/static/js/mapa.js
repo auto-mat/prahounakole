@@ -150,6 +150,23 @@ function init(mapconfig) {
         getURL: getTileURL,
         tileOptions : {crossOriginKeyword: null} 
     });
+    layerIPR = new OpenLayers.Layer.WMS(
+        "Ortofoto IPR mimovegetační",
+        "http://giswa1.mag.mepnet.cz/arcgis/services/MAP/mimovegetacni_snimkovani/MapServer/WmsServer",
+        {
+            layers: '0',
+            format: 'image/jpeg',
+            transparent: true,
+            srs: "EPSG:3857",
+        },
+        {
+            isBaseLayer: true,
+            slug:"I",
+            numZoomLevels: 22,
+            displayInLayerSwitcher: true,
+            attribution:"<a href='http://www.geoportalpraha.cz/cs/clanek/276/licencni-podminky-pro-otevrena-data' target='_new' title='link opens in new window'>IPR Praha CC BY-SA 4.0</a>",
+            projection : new OpenLayers.Projection("EPSG:3857")
+        });
     layerBW = new OpenLayers.Layer.OSM(
         "Černobílá",
         "http://tiles.prahounakole.cz/", {
@@ -163,7 +180,7 @@ function init(mapconfig) {
         tileOptions : {crossOriginKeyword: null}
     });
 
-     map.addLayers([layerPNK, layer_osm, layerCycle, layerBW]);
+     map.addLayers([layerPNK, layer_osm, layerCycle, layerBW, layerIPR]);
      if(google.maps.MapTypeId !== undefined){
         var layerGoogle = new OpenLayers.Layer.Google(
            "Satelitní mapa Google", {
