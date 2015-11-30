@@ -35,7 +35,7 @@ class UserMestoInline(admin.StackedInline):
 
 # Define a new User admin
 class UserAdmin(UserAdmin):
-    list_display = ('__unicode__', 'email', 'first_name', 'last_name', 'is_staff', 'is_superuser', 'is_active', 'last_login', 'get_groups', 'get_user_permissions', 'usermesto__mesta')
+    list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff', 'is_superuser', 'is_active', 'last_login', 'get_groups', 'get_user_permissions', 'usermesto__mesta')
     inlines = (UserMestoInline, )
 
     def get_groups(self, obj):

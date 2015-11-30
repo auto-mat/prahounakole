@@ -19,7 +19,6 @@ sys.path.append(normpath(PROJECT_DIR, "project"))
 sys.path.append(normpath(PROJECT_DIR, "apps"))
 
 DEBUG = True
-TEMPLATE_DEBUG = DEBUG
 #COMPRESS = True
 
 CACHES = {
@@ -53,13 +52,28 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'compressor.finders.CompressorFinder',
 )
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            os.path.join(PROJECT_DIR, 'templates'),
+            os.path.join(PROJECT_DIR, 'apps/cyklomapa/templates'),
+            os.path.join(PROJECT_DIR, 'olwidget/templates'),
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': (
+                 'django.contrib.auth.context_processors.auth',
+                 'django.core.context_processors.request',
+                 'django.core.context_processors.media',
+                 'constance.context_processors.config',
+                 'django.contrib.messages.context_processors.messages',
+            ) ,
+            'debug': DEBUG,
+        },
+    },
+]
 
-TEMPLATE_CONTEXT_PROCESSORS += (
-     'django.core.context_processors.request',
-     'django.core.context_processors.media',
-     'constance.context_processors.config',
-     'django.contrib.messages.context_processors.messages',
-) 
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
@@ -77,13 +91,6 @@ ROOT_URLCONF = 'urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
 #WSGI_APPLICATION = 'cyklomapa.wsgi.application'
-
-TEMPLATE_DIRS = [
-    os.path.join(PROJECT_DIR, 'templates'),
-    os.path.join(PROJECT_DIR, 'apps/cyklomapa/templates'),
-    os.path.join(PROJECT_DIR, 'olwidget/templates'),
-    # Don't forget to use absolute paths, not relative paths.
-]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -116,6 +123,7 @@ INSTALLED_APPS = [
     'compressor',
     'raven.contrib.django.raven_compat',
     'corsheaders',
+    'httpproxy',
 ]
 
 ENABLE_API_PROXY = DEBUG        # http-roxy pro requesty na /api

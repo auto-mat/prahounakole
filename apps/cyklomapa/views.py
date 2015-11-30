@@ -8,7 +8,7 @@ import urllib
 from django import forms, http
 from django.conf import settings
 from django.contrib.gis.shortcuts import render_to_kml
-from django.contrib.sites.models import get_current_site
+from django.contrib.sites.shortcuts import get_current_site
 import datetime
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
