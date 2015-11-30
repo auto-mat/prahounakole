@@ -13,7 +13,7 @@ django-fluent-comments
 django-constance
 
 -e git+https://github.com/lambdalisue/django-author.git#egg=django-author
--e git+https://github.com/auto-mat/django-webmap-corpus.git#egg=django-webmap-corpus
+django-webmap-corpus
 django-smart-selects
 django-import-export
 raven
