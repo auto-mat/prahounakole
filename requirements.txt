@@ -9,7 +9,7 @@ django-mass-edit
 -e git+https://github.com/PetrDlouhy/django-contrib-comments.git#egg=django-contrib-comments #remove after #a54aff6 is in pip
 
 -e git+https://github.com/allieus/python-akismet.git#egg=akismet
-django-fluent-comments
+-e git+https://github.com/PetrDlouhy/django-fluent-comments.git@django19#egg=django-fluent-comments
 
 django-picklefield
 django-constance
