@@ -11,6 +11,7 @@ django-mass-edit
 -e git+https://github.com/allieus/python-akismet.git#egg=akismet
 django-fluent-comments
 
+django-picklefield
 django-constance
 
 -e git+https://github.com/lambdalisue/django-author.git#egg=django-author
