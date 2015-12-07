@@ -23,23 +23,28 @@ if [ "$1" = "reinstall" ]; then
 fi
 
 git pull
-source env/bin/activate
-env/bin/python env/bin/pip install --process-dependency-links -r requirements.txt
+
+
+if [ "$1" != "no_virtualenv" ]; then
+   echo activate
+   source env/bin/activate
+fi
+pip install --process-dependency-links -r requirements.txt
 if [ "$1" = "migrate" ]; then
    echo "Backuping db..."
    mkdir -p db_backup
    sudo -u postgres pg_dump -C $db_name > db_backup/`date +"%y%m%d-%H:%M:%S"`-pnk.sql
    echo "Migrating..."
-   env/bin/python ./manage.py migrate
+   python ./manage.py migrate
 fi
 
 bower install
 #compile PNK version of OpenLayers:
 (cd apps/cyklomapa/static/bow/openlayers/build/ && python build.py -c closure_ws ../../../openstreetmap-pnk ../OpenLayers.PNK.js)
 
-env/bin/python ./manage.py collectstatic --noinput
-env/bin/python ./manage.py compress_create_manifest --force
-env/bin/python ./manage.py collectstatic --noinput
+python ./manage.py collectstatic --noinput
+python ./manage.py compress_create_manifest --force
+python ./manage.py collectstatic --noinput
 
 touch wsgi.py
 sudo whoami && sudo /etc/init.d/memcached restart

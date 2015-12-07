@@ -14,7 +14,7 @@ before_script:
   - pip install -q "$DJANGO_VERSION"
 script: 
   - cd project && cp settings_local_sample.py settings_local.py && cd ..
-  - ./update.sh reinstall
+  - ./update.sh no_virtualenv
   - python manage.py test
 addons:
   postgresql: "9.3"
