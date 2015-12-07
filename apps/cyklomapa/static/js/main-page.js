@@ -139,6 +139,7 @@ jQuery(document).ready(function($) {
   $('#advanced_switch').on('click', function (e) {
     e.preventDefault();
     $('#layer_switcher').toggle();
+    $('#modal-layer').animate({scrollTop: $("#baseLayers").offset().top},'slow');
   });
 
   $(".change-layer").click(function(event) {
