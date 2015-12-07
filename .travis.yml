@@ -18,3 +18,6 @@ script:
   - python manage.py test
 addons:
   postgresql: "9.3"
+matrix:
+  allow_failures:
+    - env: DJANGO_VERSION="Django>=1.9,<1.10"
