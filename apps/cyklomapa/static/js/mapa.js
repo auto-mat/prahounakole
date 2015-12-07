@@ -1183,11 +1183,11 @@ function addCSLayer(name, enabled, slug) {
                        feature = OpenLayers.Format.GeoJSON.prototype.parseFeature(data)
                        if($.inArray("vyresene", feature.attributes.tags) != -1){
                           feature.attributes.feature_color = "#2BBF2B";
-                          feature.attributes.select_color = "#1D811D";
+                          feature.attributes.select_color = "#135513";
                           feature.attributes.icon = '/static/img/cyklistesobe-done.png';
                        } else {
                           feature.attributes.feature_color = "#BF2B2B";
-                          feature.attributes.select_color = "#944747";
+                          feature.attributes.select_color = "#531313";
                           feature.attributes.icon = '/static/img/cyklistesobe.png';
                        }
                        return feature
