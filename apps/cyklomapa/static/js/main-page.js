@@ -142,6 +142,14 @@ jQuery(document).ready(function($) {
     $('#modal-layer').animate({scrollTop: $("#baseLayers").offset().top},'slow');
   });
 
+  $('#enable_none_layers').on('click', function (e) {
+     switchAllLayers(false)
+  });
+
+  $('#enable_all_layers').on('click', function (e) {
+     switchAllLayers(true)
+  });
+
   $(".change-layer").click(function(event) {
      ga('send', 'event', 'layer', 'change', event.currentTarget.dataset['name']);
      base_layer = event.currentTarget.dataset['baselayer'];

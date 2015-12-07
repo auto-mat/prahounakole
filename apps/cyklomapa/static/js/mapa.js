@@ -47,6 +47,7 @@ function polishLayersSwitcherScaffold(){
     $("#layer_switcher").prepend("<div id='baseLayers' class='col-md-6'></div>")
     $(".baseLbl").appendTo("#baseLayers");
     $(".baseLayersDiv").appendTo("#baseLayers");
+    $("#layer_toggles").appendTo('#dataLayers');
 }
 
 function init(mapconfig) {
@@ -1273,3 +1274,15 @@ function activateLayers(base_layer_slug, overlay_layer_slugs){
            map.layers[layer_id].setVisibility(false);
    }
 }
+
+function switchAllLayers(enable){
+   for(var layer_id in map.layers){
+      layer = map.layers[layer_id]
+      if(layer.displayInLayerSwitcher && !layer.isBaseLayer)
+        if(enable)
+           map.layers[layer_id].setVisibility(true);
+        else
+           map.layers[layer_id].setVisibility(false);
+   }
+}
+    

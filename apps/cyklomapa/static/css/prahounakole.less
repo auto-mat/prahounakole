@@ -519,17 +519,24 @@ i.point_B{
     display: none;
     padding:1em 0;
   }
-  #advanced_switch{
-  	display:block;
-  	margin-top: 1em;
-  	padding-top: 1em;
-  	border-top: 1px solid #000;
+  #advanced_switch,#enable_all_layers,#enable_none_layers{
+    display:block;
+    margin-top: 1em;
+    padding-top: 1em;
+    border-top: 1px solid #000;
     text-decoration: underline;
     color: #555;
     cursor:pointer;
     &:hover{
       color: #000;
     }
+  }
+  #enable_all_layers,#enable_none_layers{
+    border-top: none;
+    margin-top: 0;
+    padding-top: 0;
+    padding-right: 1em;
+    display:inline;
   }
   .dataLbl, .baseLbl{
     color: #555;
