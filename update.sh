@@ -19,7 +19,7 @@ set -e
 
 if [ "$1" = "reinstall" ]; then
    rm env -rf
-   virtualenv --no-site-packages env
+   virtualenv --no-site-packages env --python=python3
 fi
 
 git pull

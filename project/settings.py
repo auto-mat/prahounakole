@@ -8,8 +8,6 @@
 import os
 import sys
 
-from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
-
 normpath = lambda *args: os.path.normpath(os.path.abspath(os.path.join(*args)))
 PROJECT_DIR = normpath(__file__, "..", "..")
 
@@ -219,6 +217,8 @@ COMPRESS_PRECOMPILERS = (
     ('text/less', 'lessc {infile} {outfile}'),
 )
 COMPRESS_OFFLINE = True
+
+TEST_RUNNER="django.test.runner.DiscoverRunner"
 
 # import local settings
 try:
