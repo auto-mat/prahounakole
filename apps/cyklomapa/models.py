@@ -2,6 +2,7 @@
 
 from django.contrib.auth.models import User
 from django.contrib.gis.db import models
+from django.utils.encoding import python_2_unicode_compatible
 
 from webmap.models import Marker, Poi, Sector
 
@@ -11,6 +12,7 @@ class MarkerZnacka(models.Model):
     url = models.URLField(null=True, blank=True, help_text=u"ukáže se u všech míst s touto značkou, pokud nemají vlastní url")
 
 
+@python_2_unicode_compatible
 class Mesto(models.Model):
     "Mesto - vyber na zaklade subdomeny"
     aktivni       = models.BooleanField(default=True, verbose_name=u"Aktivní", help_text=u"Město je přístupné pro veřejnost")
@@ -29,7 +31,7 @@ class Mesto(models.Model):
         ]
         verbose_name_plural = "města"
 
-    def __unicode__(self):
+    def __str__(self):
         return self.sektor.name
 
 
@@ -45,6 +47,7 @@ UPRESNENI_CHOICE = (
 )
 
 
+@python_2_unicode_compatible
 class Upresneni(models.Model):
     """
     Tabulka pro uzivatelske doplnovani informaci do mapy.
@@ -65,5 +68,5 @@ class Upresneni(models.Model):
     class Meta:
         verbose_name_plural = u"upřesnění"
 
-    def __unicode__(self):
+    def __str__(self):
         return u"%s - %s" % (self.misto, self.email)
