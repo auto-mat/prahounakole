@@ -44,7 +44,7 @@ def get_query_string(params, new_params=None, remove=None):
     return '?%s' % urlencode(p)
 
 @gzip_page 
-#@cache_page(24 * 60 * 60) # cachujeme view v memcached s platnosti 24h
+@cache_page(24 * 60 * 60) # cachujeme view v memcached s platnosti 24h
 def mapa_view(request, poi_id=None):
 
     # hack pro kompatibilitu se starsimu url po pridani vrstvy rekola
