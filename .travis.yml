@@ -9,6 +9,7 @@ python:
 before_script:
   - npm install -g bower
   - npm install less
+  - npm install uglify-js -g
   - psql -c 'create database travis_ci_test;' -U postgres
   - psql --no-password travis_ci_test -U postgres -c "create extension postgis"
   - pip install -q "$DJANGO_VERSION"
