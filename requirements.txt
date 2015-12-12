@@ -24,4 +24,4 @@ gunicorn
 newrelic
 -e git+https://github.com/PetrDlouhy/django-feedback.git#egg=django-feedback
 
-django-compressor
+-e git+https://github.com/django-compressor/django-compressor.git#egg=django-compressor
