@@ -19,7 +19,7 @@ class UzavirkyFeed(Feed):
                 return item.last_modification
 
         def item_title(self, item):
-                return unicode(item)
+                return str(item)
 
         def item_description(self, item):
                 return item.desc 
@@ -39,7 +39,7 @@ class NovinkyFeed(Feed):
                 return item.last_modification
 
         def item_title(self, item):
-                return unicode(item)
+                return str(item)
 
         def item_description(self, item):
                 return item.desc
