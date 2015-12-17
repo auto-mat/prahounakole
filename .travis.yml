@@ -16,6 +16,6 @@ before_script:
 script: 
   - cd project && cp settings_local_sample.py settings_local.py && cd ..
   - ./update.sh no_virtualenv
-  - python manage.py test
+  - python -Wall manage.py test
 addons:
   postgresql: "9.3"
