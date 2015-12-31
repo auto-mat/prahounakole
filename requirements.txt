@@ -25,3 +25,4 @@ newrelic
 -e git+https://github.com/PetrDlouhy/django-feedback.git#egg=django-feedback
 
 -e git+https://github.com/django-compressor/django-compressor.git@develop#egg=django-compressor
+lxml
