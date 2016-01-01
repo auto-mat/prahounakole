@@ -29,7 +29,10 @@ if [ "$1" != "no_virtualenv" ]; then
    echo activate
    source env/bin/activate
 fi
-pip install --process-dependency-links -r requirements.txt
+pip install --process-dependency-links -r requirements.txt --upgrade
+if [ "$1" != "no_virtualenv" ]; then
+   pip install "Django<1.9"
+fi
 if [ "$1" = "migrate" ]; then
    echo "Backuping db..."
    mkdir -p db_backup
