@@ -12,10 +12,13 @@ before_script:
   - npm install uglify-js -g
   - psql -c 'create database travis_ci_test;' -U postgres
   - psql --no-password travis_ci_test -U postgres -c "create extension postgis"
+  - pip install coverage coveralls
   - pip install -q "$DJANGO_VERSION"
 script: 
   - cd project && cp settings_local_sample.py settings_local.py && cd ..
   - ./update.sh no_virtualenv
-  - python -Wall manage.py test
+  - coverage run manage.py test
+after_script:
+  - coveralls
 addons:
   postgresql: "9.3"
