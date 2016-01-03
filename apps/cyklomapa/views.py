@@ -200,9 +200,9 @@ class PanelInformaceView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(PanelInformaceView, self).get_context_data(**kwargs)
         if self.request.mesto:
-            context['historie'] = Poi.objects.filter(status__show=True, geom__intersects=self.request.mesto.sektor.geom).order_by('last_modification').reverse()[:10]
+            context['historie'] = Poi.objects.filter(status__show=True, geom__bboverlaps=self.request.mesto.sektor.geom).order_by('last_modification').reverse()[:10]
             context['mesto'] = self.request.mesto
-        context['uzavirky'] = Poi.objects.select_related('marker').filter(status__show=True, geom__intersects=self.request.mesto.sektor.geom, marker__slug='vyluka_akt')[:10]
+        context['uzavirky'] = Poi.objects.select_related('marker').filter(status__show=True, geom__bboverlaps=self.request.mesto.sektor.geom, marker__slug='vyluka_akt')[:10]
         # the lookup was "intersects", but it does not work for GeometryCollections
         pois_in_city = Poi.objects.select_related('marker').filter(geom__bboverlaps=self.request.mesto.sektor.geom)
 

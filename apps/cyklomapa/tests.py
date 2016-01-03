@@ -20,12 +20,12 @@
 from django.test import TestCase, RequestFactory, Client
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
-from django.test import TestCase, RequestFactory
 from django.test.utils import override_settings
 
 
 class AdminFilterTests(TestCase):
-    fixtures=["webmap","cyklomapa"]
+    fixtures = ["webmap", "cyklomapa"]
+
     def setUp(self):
                 # Every test needs access to the request factory.
         self.factory = RequestFactory()
@@ -62,21 +62,25 @@ class AdminFilterTests(TestCase):
         response = self.client.get(reverse("popup_view", args=(1,)))
         self.assertEqual(response.status_code, 200)
 
+    def verify_views(self, views, status_code_map={}):
+        for view in views:
+            status_code = status_code_map[view] if view in status_code_map else 200
+            address = reverse(view)
+            response = self.client.get(address, HTTP_HOST="testing-campaign.testserver")
+            self.assertEqual(response.status_code, status_code, "%s view failed with following content: \n%s" % (view, response.content.decode("utf-8")))
+
     def test_complementary_views(self):
         """
         test if other views load
         """
-        response = self.client.get(reverse("uzavirky_view"))
-        self.assertEqual(response.status_code, 200)
-        response = self.client.get(reverse("uzavirky_view"))
-        self.assertEqual(response.status_code, 200)
-        response = self.client.get(reverse("znacky_view"))
-        self.assertEqual(response.status_code, 200)
-        response = self.client.get(reverse("panel_mapa_view"))
-        self.assertEqual(response.status_code, 200)
-        response = self.client.get(reverse("panel_informace_view"))
-        self.assertEqual(response.status_code, 200)
-        response = self.client.get(reverse("panel_hledani_view"))
-        self.assertEqual(response.status_code, 200)
-        response = self.client.get(reverse("appcache_view"))
-        self.assertEqual(response.status_code, 200)
+        views = [
+            "uzavirky_view",
+            "uzavirky_view",
+            "znacky_view",
+            "panel_mapa_view",
+            "panel_informace_view",
+            "panel_hledani_view",
+            "appcache_view",
+        ]
+
+        self.verify_views(views)

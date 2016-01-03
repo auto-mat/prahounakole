@@ -26,6 +26,7 @@
             "last_modification": "2015-11-13 12:00",
             "layer": 1,
             "name": "Testing marker",
+            "slug": "vyluka_akt",
             "status": 1
         },
         "model": "webmap.marker",
