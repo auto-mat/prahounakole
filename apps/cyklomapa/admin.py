@@ -11,9 +11,7 @@ from django.conf import \
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
-# Grab the Admin Manager that automaticall initializes an OpenLayers map
-# for any geometry field using the in Google Mercator projection with OpenStreetMap basedata
-from django.contrib.gis.admin import OSMGeoAdmin
+from leaflet.admin import LeafletGeoAdmin
 from django.contrib.gis.db.models import Union
 from django.contrib.gis.geos import Point
 
@@ -60,12 +58,11 @@ class MestoPoiAdmin(PoiAdmin):
 
     def get_form(self, request, obj=None, **kwargs):
         form = super(MestoPoiAdmin, self).get_form(request, obj, **kwargs)
-
         mesto = Mesto.objects.get(sektor__slug=request.subdomain)
-        pnt = Point(mesto.geom.x, mesto.geom.y, srid=4326)
-        pnt.transform(3857)
-        self.default_lon, self.default_lat = pnt.coords
-
+        self.settings_overrides = {
+            'DEFAULT_CENTER': (mesto.geom.x, mesto.geom.y),
+            'DEFAULT_ZOOM': 12,
+        }
         return form
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
@@ -119,7 +116,7 @@ class MarkerZnackaAdmin(MarkerAdmin):
     inlines = MarkerAdmin.inlines + [MarkerZnackaInline, ]
 
 
-class MestoAdmin(OSMGeoAdmin):
+class MestoAdmin(LeafletGeoAdmin):
     list_display = ('sektor', 'zoom', 'aktivni', 'vyhledavani', 'uvodni_zprava', )
 
     def queryset(self, request):
@@ -133,20 +130,6 @@ class MestoAdmin(OSMGeoAdmin):
         if not request.user.has_perm(u"cyklomapa.can_edit_all_fields"):
             self.readonly_fields = ('vyhledavani', 'aktivni', 'sektor')
         return super(MestoAdmin, self).get_form(request, obj=None, **kwargs)
-
-    if USE_GOOGLE_TERRAIN_TILES:
-        map_template = 'gis/admin/google.html'
-        extra_js = ['http://openstreetmap.org/openlayers/OpenStreetMap.js', 'http://maps.google.com/maps?file=api&amp;v=2&amp;key=%s' % settings.GOOGLE_MAPS_API_KEY]
-    else:
-        pass  # defaults to OSMGeoAdmin presets of OpenStreetMap tiles
-
-    default_lon = 1605350
-    default_lat = 6461466
-    default_zoom = 12
-    scrollable = True
-    map_width = 700
-    map_height = 500
-    map_srid = 3857
 
 
 admin.site.unregister(User)

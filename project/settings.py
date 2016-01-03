@@ -7,6 +7,7 @@
 # see: http://rob.cogit8.org/blog/2008/Jun/20/django-and-relativity/
 import os
 import sys
+from django.utils.translation import ugettext_lazy as _
 
 normpath = lambda *args: os.path.normpath(os.path.abspath(os.path.join(*args)))
 PROJECT_DIR = normpath(__file__, "..", "..")
@@ -106,6 +107,7 @@ INSTALLED_APPS = [
     'import_export',
     'webmap',
     'rest_framework',
+    'leaflet',
 
     'feedback',
     'cyklomapa',
@@ -219,6 +221,24 @@ COMPRESS_PRECOMPILERS = (
 COMPRESS_OFFLINE = True
 
 TEST_RUNNER="django.test.runner.DiscoverRunner"
+
+LEAFLET_CONFIG = {
+    'DEFAULT_CENTER': (50.0866699218750000, 14.4387817382809995),
+    'TILES': [
+        (
+            _(u'cyklomapa'),
+            'http://tiles.prahounakole.cz/{z}/{x}/{y}.png',
+            {'attribution': u'&copy; přispěvatelé <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'}),
+        (
+            _(u'Všeobecná mapa'),
+            'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+            {'attribution': u'&copy; přispěvatelé <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'}),
+    ],
+    'DEFAULT_ZOOM': 8,
+    'MIN_ZOOM': 8,
+    'MAX_ZOOM': 18,
+    #'SPATIAL_EXTENT': [11.953, 48.517, 19.028, 51.097],
+}
 
 # import local settings
 try:

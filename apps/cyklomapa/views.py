@@ -113,7 +113,7 @@ def kml_view(request, nazev_vrstvy):
     v = get_object_or_404(OverlayLayer, slug=nazev_vrstvy, status__show=True)
 
     # vsechny body co jsou v teto vrstve a jsou zapnute
-    points = Poi.visible.filter(marker__layer=v).filter(geom__intersects = request.mesto.sektor.geom).kml()
+    points = Poi.visible.filter(marker__layer=v).filter(geom__bboverlaps = request.mesto.sektor.geom)  # the lookup was "intersects", but it does not work for GeometryCollections
     return render_to_kml("webmap/gis/kml/layer.kml", {
        'places' : points,
        'site': get_current_site(request).domain,
@@ -145,7 +145,7 @@ def search_view(request, query):
     # pak podle popisu, adresy a nazvu znacky, pokud uz nejsou vyse
     extra_qs = Poi.visible.filter(Q(desc__icontains=query)|Q(address__icontains=query)|Q(marker__name__icontains=query)).exclude(id__in=nazev_qs)
     # union qs nezachova poradi, tak je prevedeme na listy a spojime
-    points = list(nazev_qs.kml()) + list(extra_qs.kml())
+    points = list(nazev_qs) + list(extra_qs)
     return render_to_kml("gis/kml/vrstva.kml", {
         'places' : points,
         'ikona': ikona})
@@ -192,7 +192,7 @@ class PanelInformaceView(TemplateView):
             context['historie'] = Poi.objects.filter(status__show=True, geom__intersects=self.request.mesto.sektor.geom).order_by('last_modification').reverse()[:10]
             context['mesto'] = self.request.mesto
         context['uzavirky'] = Poi.objects.select_related('marker').filter(status__show=True, geom__intersects=self.request.mesto.sektor.geom, marker__slug='vyluka_akt')[:10]
-        pois_in_city = Poi.objects.select_related('marker').filter(geom__intersects=self.request.mesto.sektor.geom)
+        pois_in_city = Poi.objects.select_related('marker').filter(geom__bboverlaps=self.request.mesto.sektor.geom)  # the lookup was "intersects", but it does not work for GeometryCollections
 
         # TODO: This is workaround about following bug in Django: https://code.djangoproject.com/ticket/20271 Remove this code block once it is fixed for optimal query.
         pois_ids_in_city = cache.get('info-cache-pois-' + self.request.mesto.sektor.slug)

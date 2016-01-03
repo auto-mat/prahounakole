@@ -6,7 +6,7 @@ django-debug-toolbar
 django-colorful
 django-mass-edit
 
--e git+https://github.com/PetrDlouhy/django-contrib-comments.git#egg=django-contrib-comments #remove after #a54aff6 is in pip
+django-contrib-comments
 
 -e git+https://github.com/allieus/python-akismet.git#egg=akismet
 -e git+https://github.com/PetrDlouhy/django-fluent-comments.git#egg=django-fluent-comments
@@ -14,8 +14,9 @@ django-mass-edit
 django-picklefield
 django-constance
 
--e git+https://github.com/lambdalisue/django-author.git#egg=django-author
-django-webmap-corpus
+django-author
+django-webmap-corpus>=0.9
+-e git+https://github.com/makinacorpus/django-leaflet.git#egg=django-leaflet  # this line could be removed after settings_overrides for LeafletGeoAdmin are pulled
 django-smart-selects
 django-import-export
 raven
