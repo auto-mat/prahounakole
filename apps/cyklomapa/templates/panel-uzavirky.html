@@ -3,7 +3,9 @@
    {% cache 3600 uzavirky mesto.sektor.slug %}
    {% for u in uzavirky %}
       <a href="{{  u.get_absolute_url }}" onclick="selectFeatureById('{{ u.marker.layer.slug }}', {{ u.id }});return false;" target="_top" title="{{ u.desc|striptags }}">
-         <img src="{{ u.marker.default_icon.url }}" alt="{{ u.name|safe }}">
+         {% if u.marker.default_icon %}
+            <img src="{{ u.marker.default_icon.url }}" alt="{{ u.name|safe }}">
+         {% endif %}
          {{ u.name|safe }}
       </a>
       <br/>

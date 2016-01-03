@@ -34,14 +34,22 @@
     },
     {
         "fields": {
+            "show": true,
             "name": "Testing status"
         },
         "model": "webmap.status",
         "pk": 1
     },
     {
+        "fields": {},
+        "model": "webmap.overlaylayer",
+        "layer": 1,
+        "pk": 1
+    },
+    {
         "fields": {
             "name": "Testing layer",
+            "slug": "l",
             "status": 1
         },
         "model": "webmap.layer",

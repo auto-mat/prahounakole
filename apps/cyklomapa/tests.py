@@ -21,6 +21,7 @@ from django.test import TestCase, RequestFactory, Client
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.test.utils import override_settings
+from webmap import views as webmap_views
 
 
 class AdminFilterTests(TestCase):
@@ -65,7 +66,11 @@ class AdminFilterTests(TestCase):
     def verify_views(self, views, status_code_map={}):
         for view in views:
             status_code = status_code_map[view] if view in status_code_map else 200
-            address = reverse(view)
+            if len(view) > 1:
+                args = view[1]
+            else:
+                args = None
+            address = reverse(view[0], args=args)
             response = self.client.get(address, HTTP_HOST="testing-campaign.testserver")
             self.assertEqual(response.status_code, status_code, "%s view failed with following content: \n%s" % (view, response.content.decode("utf-8")))
 
@@ -74,13 +79,17 @@ class AdminFilterTests(TestCase):
         test if other views load
         """
         views = [
-            "uzavirky_view",
-            "uzavirky_view",
-            "znacky_view",
-            "panel_mapa_view",
-            "panel_informace_view",
-            "panel_hledani_view",
-            "appcache_view",
+            ("uzavirky_view",),
+            ("uzavirky_feed",),
+            ("novinky_feed",),
+            ("znacky_view",),
+            ("panel_mapa_view",),
+            ("panel_informace_view",),
+            ("panel_hledani_view",),
+            ("appcache_view",),
+            ("kml_view", ("l",)),
+            (webmap_views.search_view, ("asdf",)),
+            ("metro_view",),
         ]
 
         self.verify_views(views)
