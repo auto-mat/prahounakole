@@ -18,14 +18,14 @@ sys.path.append(normpath(PROJECT_DIR, "project"))
 sys.path.append(normpath(PROJECT_DIR, "apps"))
 
 DEBUG = True
-#COMPRESS = True
+# COMPRESS = True
 
 CACHES = {
-	'default': {
-		'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-		'LOCATION': '127.0.0.1:11211',
-		'KEY_PREFIX': 'pnk-map',
-	},
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
+        'KEY_PREFIX': 'pnk-map',
+    },
 }
 
 
@@ -44,7 +44,7 @@ STATIC_ROOT = os.path.join(PROJECT_DIR, 'static/')
 STATIC_URL = '/static/'
 LOGIN_URL = '/admin/'
 STATICFILES_DIRS = (
-        os.path.join(PROJECT_DIR, 'apps/cyklomapa/static'),
+    os.path.join(PROJECT_DIR, 'apps/cyklomapa/static'),
 )
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -62,12 +62,12 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': (
-                 'django.contrib.auth.context_processors.auth',
-                 'django.core.context_processors.request',
-                 'django.core.context_processors.media',
-                 'constance.context_processors.config',
-                 'django.contrib.messages.context_processors.messages',
-            ) ,
+                'django.contrib.auth.context_processors.auth',
+                'django.core.context_processors.request',
+                'django.core.context_processors.media',
+                'constance.context_processors.config',
+                'django.contrib.messages.context_processors.messages',
+            ),
             'debug': DEBUG,
         },
     },
@@ -89,7 +89,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-#WSGI_APPLICATION = 'cyklomapa.wsgi.application'
+# WSGI_APPLICATION = 'cyklomapa.wsgi.application'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -119,7 +119,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django_comments',
     'colorful',
-    #'massadmin',
+    'massadmin',
     'compressor',
     'raven.contrib.django.raven_compat',
     'corsheaders',
@@ -156,23 +156,23 @@ LOGGING = {
         },
     },
     'filters': {
-         'require_debug_false': {
-             '()': 'django.utils.log.RequireDebugFalse'
-         }
-     },
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
     'handlers': {
         'null': {
             'level': 'DEBUG',
             'class': 'logging.NullHandler',
         },
-        'console':{
+        'console': {
             'level': 'DEBUG',
             'class': 'logging.StreamHandler',
             'formatter': 'simple'
         },
         'logfile': {
-            'level':'DEBUG',
-            'class':'logging.handlers.RotatingFileHandler',
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
             'filename': "/var/log/django/pnk.log",
             'backupCount': 50,
             'maxBytes': 10000000,
@@ -209,18 +209,18 @@ THUMBNAIL_ALIASES = {
     },
 }
 
-REST_ENABLED=True
+REST_ENABLED = True
 
 FLUENT_COMMENTS_EXCLUDE_FIELDS = ('url',)
 COMMENTS_APP = 'fluent_comments'
 
-COMPRESS_CACHE_BACKEND='default'
+COMPRESS_CACHE_BACKEND = 'default'
 COMPRESS_PRECOMPILERS = (
     ('text/less', 'lessc {infile} {outfile}'),
 )
 COMPRESS_OFFLINE = True
 
-TEST_RUNNER="django.test.runner.DiscoverRunner"
+TEST_RUNNER = "django.test.runner.DiscoverRunner"
 
 LEAFLET_CONFIG = {
     'DEFAULT_CENTER': (50.0866699218750000, 14.4387817382809995),
@@ -242,6 +242,6 @@ LEAFLET_CONFIG = {
 
 # import local settings
 try:
-    from settings_local import *
+    from settings_local import *  # noqa
 except ImportError:
     pass
