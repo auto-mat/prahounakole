@@ -22,6 +22,7 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.test.utils import override_settings
 from webmap import views as webmap_views
+from django_admin_smoke_tests import tests
 
 
 class AdminFilterTests(TestCase):
@@ -82,3 +83,16 @@ class AdminFilterTests(TestCase):
         ]
 
         self.verify_views(views)
+
+
+@override_settings(
+    FORCE_SUBDOMAIN="testing-sector"
+)
+class AdminTest(tests.AdminSiteSmokeTest):
+    def get_request(self):
+        request = super().get_request()
+        request.subdomain = "testing-sector"
+        return request
+
+    fixtures = ["webmap", "cyklomapa"]
+    exclude_apps = ['constance', 'fluent_comments']
