@@ -10,7 +10,7 @@ from cyklomapa.views import (
 from django_comments.feeds import LatestCommentFeed
 from httpproxy.views import HttpProxy
 
-urlpatterns = (
+urlpatterns = [
     url(r'^$', mapa_view, name="mapa_view"),
     url(r'^misto/(\d+)/$', mapa_view),
     url(r'^kml/([-\w]+)/$', kml_view, name="kml_view"),
@@ -26,9 +26,9 @@ urlpatterns = (
     url(r'^comments/', include('fluent_comments.urls')),
     url(r'^pnk.appcache/', AppCacheView.as_view(), name="appcache_view"),
     url(r'^comments/feeds/latest/$', LatestCommentFeed(), name="latest_comments_feed"),
-)
+]
 
 if settings.ENABLE_API_PROXY:
-    urlpatterns += (
+    urlpatterns += [
         url(r'^(?P<url>api/.*)$', HttpProxy.as_view(base_url=settings.PROXY_BASE_URL)),
-    )
+    ]
