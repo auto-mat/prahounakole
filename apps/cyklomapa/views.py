@@ -1,12 +1,10 @@
 # views.py
 
-from django import http
 from django.conf import settings
 from django.contrib.gis.shortcuts import render_to_kml
 from django.contrib.sites.shortcuts import get_current_site
 from django.shortcuts import get_object_or_404, render, render_to_response
 from django.template import RequestContext
-from django.utils.http import urlencode
 from django.views.decorators.cache import cache_page, never_cache
 from django.views.decorators.gzip import gzip_page
 from django.views.generic import TemplateView
@@ -37,11 +35,6 @@ def mapa_view(request, poi_id=None):
     minimize_layerswitcher = request.GET.get('nols', 0)
     nomenu = request.GET.get('nomenu', 0)
 
-    # detekce mobilni verze podle url
-    if request.mobilni:
-        minimize_layerswitcher = 1
-        nomenu = 1
-
     context = RequestContext(request, {
         'root_url': ROOT_URL,
         'vrstvy': vrstvy,
@@ -49,7 +42,6 @@ def mapa_view(request, poi_id=None):
         'nomenu': nomenu,
         'mesto': request.mesto,
         'minimize_layerswitcher': minimize_layerswitcher,
-        'mobilni': request.mobilni,
         'presets': MapPreset.objects.filter(status__show=True),
         'mesta': Mesto.objects.filter(aktivni=True).order_by('sektor__name').all(),
     })
