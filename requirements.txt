@@ -9,14 +9,14 @@ django-mass-edit
 django-contrib-comments
 
 -e git+https://github.com/allieus/python-akismet.git#egg=akismet
--e git+https://github.com/PetrDlouhy/django-fluent-comments.git#egg=django-fluent-comments
+-e git+https://github.com/PetrDlouhy/django-fluent-comments.git#egg=django-fluent-comments  # Django 1.9 compatibility in PR #73
 
 django-picklefield
 django-constance
 
 django-author
 django-webmap-corpus>=0.9
--e git+https://github.com/PetrDlouhy/django-leaflet.git@g-m#egg=django-leaflet  # two pull requests with fixes
+-e git+https://github.com/PetrDlouhy/django-leaflet.git@g-m#egg=django-leaflet  # GeoAdminMixin in PR #116
 django-smart-selects
 django-import-export
 raven

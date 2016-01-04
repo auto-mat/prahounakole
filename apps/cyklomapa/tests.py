@@ -50,6 +50,19 @@ class AdminFilterTests(TestCase):
         response = self.client.get(reverse("admin:webmap_poi_changelist"))
         self.assertEqual(response.status_code, 200)
 
+    def test_comment_post(self):
+        post_data = {
+            "content_type": "webmap.poi",
+            "object_pk": 205,
+            "name": "Testing name",
+            "email": "test@email.com",
+            "comment": "Testing comment",
+            "timestamp": "1451927336",
+            "security_hash": "88b496a272609f9be0fcd0992e6f1dfecc0344d3",
+        }
+        response = self.client.post(reverse("comments-post-comment-ajax"), post_data, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertEqual(response.status_code, 200, response.content.decode("utf-8"))
+
     def verify_views(self, views, status_code_map={}):
         for view in views:
             status_code = status_code_map[view] if view in status_code_map else 200
@@ -95,4 +108,4 @@ class AdminTest(tests.AdminSiteSmokeTest):
         return request
 
     fixtures = ["webmap", "cyklomapa"]
-    exclude_apps = ['constance', 'fluent_comments']
+    exclude_apps = ['constance', ]

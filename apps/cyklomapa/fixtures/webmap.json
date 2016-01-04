@@ -23,6 +23,18 @@
     {
         "fields": {
             "created_at": "2015-11-13 12:00",
+            "geom": "SRID=4326;GEOMETRYCOLLECTION(POINT (14.4221343818742032 50.0874047551947399))",
+            "last_modification": "2015-11-13 12:00",
+            "marker": 1,
+            "name": "Testing poi 1",
+            "status": 1
+        },
+        "model": "webmap.poi",
+        "pk": 205
+    },
+    {
+        "fields": {
+            "created_at": "2015-11-13 12:00",
             "last_modification": "2015-11-13 12:00",
             "layer": 1,
             "name": "Testing marker",
