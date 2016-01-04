@@ -49,20 +49,6 @@ class AdminFilterTests(TestCase):
         response = self.client.get(reverse("admin:webmap_poi_changelist"))
         self.assertEqual(response.status_code, 200)
 
-    def test_mapa_view(self):
-        """
-        test if main page loads
-        """
-        response = self.client.get(reverse("mapa_view"))
-        self.assertEqual(response.status_code, 200)
-
-    def test_popup_view(self):
-        """
-        test if other views load
-        """
-        response = self.client.get(reverse("popup_view", args=(1,)))
-        self.assertEqual(response.status_code, 200)
-
     def verify_views(self, views, status_code_map={}):
         for view in views:
             status_code = status_code_map[view] if view in status_code_map else 200
@@ -79,6 +65,9 @@ class AdminFilterTests(TestCase):
         test if other views load
         """
         views = [
+            ("mapa_view",),
+            ("mapa_view", (1, )),
+            ("popup_view", (1, )),
             ("uzavirky_view",),
             ("uzavirky_feed",),
             ("novinky_feed",),

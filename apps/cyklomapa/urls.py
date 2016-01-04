@@ -12,7 +12,7 @@ from httpproxy.views import HttpProxy
 
 urlpatterns = [
     url(r'^$', mapa_view, name="mapa_view"),
-    url(r'^misto/(\d+)/$', mapa_view),
+    url(r'^misto/(\d+)/$', mapa_view, name="mapa_view"),
     url(r'^kml/([-\w]+)/$', kml_view, name="kml_view"),
     url(r'^popup/(\d+)/$', popup_view, name="popup_view"),
     url(r'^uzavirky/$', uzavirky_view, name="uzavirky_view"),
