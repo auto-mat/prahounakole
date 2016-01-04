@@ -11,13 +11,13 @@ from django.conf import \
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
-from leaflet.admin import LeafletGeoAdmin
+from leaflet.admin import LeafletGeoAdmin, LeafletGeoAdminMixin
 from django.contrib.gis.db.models import Union
 from django.contrib.gis.geos import Point
 
 from cyklomapa.models import MarkerZnacka, Mesto, Upresneni, UserMesto
-from webmap.admin import MarkerAdmin, PoiAdmin
-from webmap.models import Marker, Poi
+from webmap.admin import MarkerAdmin, PoiAdmin, SectorAdmin
+from webmap.models import Marker, Poi, Sector
 
 USE_GOOGLE_TERRAIN_TILES = False
 
@@ -95,15 +95,14 @@ class LegendaAdmin(admin.ModelAdmin):
     obrazek_img.short_description = u"obrázek"
 
 
-class MestoInline(admin.StackedInline):
+class MestoInline(LeafletGeoAdminMixin, admin.StackedInline):
     model = Mesto
     can_delete = False
     verbose_name_plural = 'Parametry města'
 
 
-#TODO: make Mesto map to display OSM
-#class MestoSectorAdmin(SectorAdmin):
-#    inlines = SectorAdmin.inlines + [MestoInline,]
+class MestoSectorAdmin(SectorAdmin):
+    inlines = SectorAdmin.inlines + [MestoInline,]
 
 
 class MarkerZnackaInline(admin.StackedInline):
@@ -135,8 +134,8 @@ class MestoAdmin(LeafletGeoAdmin):
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
 
-#admin.site.unregister(Sector)
-#admin.site.register(Sector, MestoSectorAdmin)
+admin.site.unregister(Sector)
+admin.site.register(Sector, MestoSectorAdmin)
 
 admin.site.register(Mesto, MestoAdmin)
 
