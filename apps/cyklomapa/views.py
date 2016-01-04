@@ -4,7 +4,6 @@ from django import http
 from django.conf import settings
 from django.contrib.gis.shortcuts import render_to_kml
 from django.contrib.sites.shortcuts import get_current_site
-from django.db.models import Q
 from django.shortcuts import get_object_or_404, render, render_to_response
 from django.template import RequestContext
 # kopie  django.contrib.admin.views.main.get_query_string

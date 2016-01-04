@@ -1,8 +1,4 @@
-import re
-
 from django.conf import settings
-from django.shortcuts import get_object_or_404
-
 from cyklomapa.models import Mesto
 
 
@@ -19,9 +15,9 @@ class SubdomainsMiddleware:
             request.domain = '.'.join(parts[1:])
 
             if 'm' == parts[0]:
-                   request.mobilni = True
-                   request.subdomain = parts[1]
-                   request.domain = '.'.join(parts[2:])
+                request.mobilni = True
+                request.subdomain = parts[1]
+                request.domain = '.'.join(parts[2:])
         else:
             # fallback na Prahu
             request.subdomain = 'mapa'
