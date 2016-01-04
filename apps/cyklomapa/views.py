@@ -6,7 +6,6 @@ from django.contrib.gis.shortcuts import render_to_kml
 from django.contrib.sites.shortcuts import get_current_site
 from django.shortcuts import get_object_or_404, render, render_to_response
 from django.template import RequestContext
-# kopie  django.contrib.admin.views.main.get_query_string
 from django.utils.http import urlencode
 from django.views.decorators.cache import cache_page, never_cache
 from django.views.decorators.gzip import gzip_page
@@ -18,37 +17,9 @@ from .models import Mesto
 from webmap.models import Legend, MapPreset, Marker, OverlayLayer, Poi
 
 
-def get_query_string(params, new_params=None, remove=None):
-    if new_params is None:
-        new_params = {}
-    if remove is None:
-        remove = []
-    p = params.copy()
-    for r in remove:
-        for k in p.keys():
-            if k.startswith(r):
-                del p[k]
-    for k, v in new_params.items():
-        if v is None:
-            if k in p:
-                del p[k]
-        else:
-            p[k] = v
-    return '?%s' % urlencode(p)
-
-
 @gzip_page
 @cache_page(24 * 60 * 60)  # cachujeme view v memcached s platnosti 24h
 def mapa_view(request, poi_id=None):
-
-    # hack pro kompatibilitu se starsimu url po pridani vrstvy rekola
-    layers = request.GET.get('layers', None)
-    if layers:
-        if len(layers) == 14:
-            newlayers = layers[0:13] + 'F' + layers[13]
-            params = get_query_string(dict(request.GET.items()), {'layers': newlayers})
-            return http.HttpResponseRedirect(request.path + params)
-
     vrstvy = OverlayLayer.objects.filter(status__show=True)
     # volitelne poi_id zadane mape jako bod, na ktery se ma zazoomovat
     center_poi = None
