@@ -134,25 +134,6 @@ def popup_view(request, poi_id):
         content_type="application/xml")
 
 
-# vyhledani poi podle nazvu nebo adresy
-# v PNK se nepouziva
-@gzip_page
-def search_view(request, query):
-    if len(query) < 3:
-        return http.HttpResponseBadRequest('Insufficient query lenght')
-    ikona = None
-
-    #  nejdriv podle nazvu
-    nazev_qs = Poi.visible.filter(Q(name__icontains=query))
-    # pak podle popisu, adresy a nazvu znacky, pokud uz nejsou vyse
-    extra_qs = Poi.visible.filter(Q(desc__icontains=query) | Q(address__icontains=query) | Q(marker__name__icontains=query)).exclude(id__in=nazev_qs)
-    # union qs nezachova poradi, tak je prevedeme na listy a spojime
-    points = list(nazev_qs) + list(extra_qs)
-    return render_to_kml("gis/kml/vrstva.kml", {
-        'places': points,
-        'ikona': ikona})
-
-
 # vypisy uzavirek a metra pouzite na hlavnim webu PNK
 @cache_page(24 * 60 * 60)  # cachujeme view v memcached s platnosti 24h
 def uzavirky_view(request):
