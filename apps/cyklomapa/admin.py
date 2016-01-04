@@ -60,7 +60,7 @@ class MestoPoiAdmin(PoiAdmin):
         form = super(MestoPoiAdmin, self).get_form(request, obj, **kwargs)
         mesto = Mesto.objects.get(sektor__slug=request.subdomain)
         self.settings_overrides = {
-            'DEFAULT_CENTER': (mesto.geom.x, mesto.geom.y),
+            'DEFAULT_CENTER': (mesto.geom.y, mesto.geom.x),
             'DEFAULT_ZOOM': 12,
         }
         return form
