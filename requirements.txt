@@ -16,7 +16,7 @@ django-constance
 
 django-author
 django-webmap-corpus>=0.9
--e git+https://github.com/makinacorpus/django-leaflet.git#egg=django-leaflet  # this line could be removed after settings_overrides for LeafletGeoAdmin are pulled
+-e git+https://github.com/PetrDlouhy/django-leaflet.git@g-m#egg=django-leaflet  # two pull requests with fixes
 django-smart-selects
 django-import-export
 raven
