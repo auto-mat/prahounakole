@@ -52,7 +52,7 @@ class AdminFilterTests(TestCase):
         self.assertEqual(response.status_code, 200)
 
 
-    @freeze_time("2016-01-04 18:00:00")
+    @freeze_time("2016-01-04 17:10:00")
     def test_comment_post(self):
         post_data = {
             "content_type": "webmap.poi",
@@ -61,7 +61,7 @@ class AdminFilterTests(TestCase):
             "email": "test@email.com",
             "comment": "Testing comment",
             "timestamp": "1451927336",
-            "security_hash": "88b496a272609f9be0fcd0992e6f1dfecc0344d3",
+            "security_hash": u"78244f03147158808b476bbc3e4c1e011b2b33d9",
         }
         response = self.client.post(reverse("comments-post-comment-ajax"), post_data, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertEqual(response.status_code, 200, response.content.decode("utf-8"))
