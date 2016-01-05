@@ -48,7 +48,13 @@ sys.path[:0] = new_sys_path
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "project.settings")
 
-application = get_wsgi_application()
+wsgi_application = get_wsgi_application()
+from wsgiunproxy import unproxy
+
+@unproxy(trusted_proxies=[ "b''", ])
+def application(environ, start_response):
+    return wsgi_application(environ, start_response)
+
 
 # Apply WSGI middleware here.
 # from helloworld.wsgi import HelloWorldApplication
