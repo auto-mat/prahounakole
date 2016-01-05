@@ -9,7 +9,7 @@ django-mass-edit
 django-contrib-comments
 
 -e git+https://github.com/allieus/python-akismet.git#egg=akismet
--e git+https://github.com/PetrDlouhy/django-fluent-comments.git#egg=django-fluent-comments  # Django 1.9 compatibility in PR #73
+-e git+https://github.com/PetrDlouhy/django-fluent-comments.git@dj19#egg=django-fluent-comments  # Django 1.9 compatibility in PR #73
 
 django-picklefield
 django-constance
