@@ -24,6 +24,7 @@ from django.test.utils import override_settings
 from webmap import views as webmap_views
 from django_admin_smoke_tests import tests
 from freezegun import freeze_time
+from fluent_comments import compat as comments_compat
 
 
 class AdminFilterTests(TestCase):
@@ -52,16 +53,20 @@ class AdminFilterTests(TestCase):
         self.assertEqual(response.status_code, 200)
 
 
-    @freeze_time("2016-01-04 18:00:00")
+    @freeze_time("2016-01-04 17:10:00")
     def test_comment_post(self):
+        content_type = "webmap.poi"
+        object_pk = "205"
+        timestamp = "1451927336"
+        security_hash = comments_compat.CommentForm.generate_security_hash(None, content_type, object_pk, timestamp)
         post_data = {
-            "content_type": "webmap.poi",
-            "object_pk": 205,
+            "content_type": content_type,
+            "object_pk": object_pk,
             "name": "Testing name",
             "email": "test@email.com",
             "comment": "Testing comment",
-            "timestamp": "1451927336",
-            "security_hash": "88b496a272609f9be0fcd0992e6f1dfecc0344d3",
+            "timestamp": timestamp,
+            "security_hash": security_hash,
         }
         response = self.client.post(reverse("comments-post-comment-ajax"), post_data, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertEqual(response.status_code, 200, response.content.decode("utf-8"))
