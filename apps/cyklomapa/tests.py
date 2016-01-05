@@ -23,6 +23,7 @@ from django.core.urlresolvers import reverse
 from django.test.utils import override_settings
 from webmap import views as webmap_views
 from django_admin_smoke_tests import tests
+from freezegun import freeze_time
 
 
 class AdminFilterTests(TestCase):
@@ -50,6 +51,8 @@ class AdminFilterTests(TestCase):
         response = self.client.get(reverse("admin:webmap_poi_changelist"))
         self.assertEqual(response.status_code, 200)
 
+
+    @freeze_time("2016-01-04 18:00:00")
     def test_comment_post(self):
         post_data = {
             "content_type": "webmap.poi",
@@ -108,4 +111,4 @@ class AdminTest(tests.AdminSiteSmokeTest):
         return request
 
     fixtures = ["webmap", "cyklomapa"]
-    exclude_apps = ['constance', ]
+    exclude_apps = ['constance', 'fluent_comments']

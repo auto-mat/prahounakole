@@ -28,3 +28,4 @@ newrelic
 -e git+https://github.com/django-compressor/django-compressor.git@develop#egg=django-compressor
 lxml
 -e git+https://github.com/PetrDlouhy/django-admin-smoke-tests.git#egg=django-admin-smoke-tests
+freezegun
