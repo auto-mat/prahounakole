@@ -1020,7 +1020,10 @@ function removePoiLayers() {
 
 function onFeatureSelect(feature) {
     setHashParameter('misto', feature.layer.slug + "_" + feature.fid, false);
-    $("#" + feature.geometry.id).attr("class", "selected"); 
+    var components = feature.geometry.components;
+    for(var i = 0; i < components.length; i++){
+        $("#" + components[i].id).attr("class", "selected");
+    }
 
     // Trochu hackovita podpora pro specialni vrstvu ReKola
     // obsah popup se netaha ze serveru, ale vyrabi se z KML
@@ -1062,7 +1065,10 @@ function onFeatureSelect(feature) {
 
 function onFeatureUnselect(feature) {
     ga('send', 'event', 'poi', 'close', feature.fid);
-    $("#" + feature.geometry.id).removeAttr("class");
+    var components = feature.geometry.components;
+    for(var i = 0; i < components.length; i++){
+        $("#" + components[i].id).removeAttr("class");
+    }
     closePoiBox();
 }
 
