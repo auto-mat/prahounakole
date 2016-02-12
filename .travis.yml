@@ -3,8 +3,8 @@ language: python
 env:
   - DJANGO_VERSION="Django>=1.8,<1.9"
   - DJANGO_VERSION="Django>=1.9,<1.10"
+  - DJANGO_VERSION='https://github.com/django/django/archive/master.tar.gz'
 python:
-  - "2.7"
   - "3.4"
 before_script:
   - npm install -g bower
@@ -12,10 +12,16 @@ before_script:
   - npm install uglify-js -g
   - psql -c 'create database travis_ci_test;' -U postgres
   - psql --no-password travis_ci_test -U postgres -c "create extension postgis"
-  - pip install -q "$DJANGO_VERSION"
-script: 
+  - pip install coverage coveralls
   - cd project && cp settings_local_sample.py settings_local.py && cd ..
   - ./update.sh no_virtualenv
-  - python manage.py test
+  - pip install -q "$DJANGO_VERSION"
+script:
+  - coverage run manage.py test
+after_script:
+  - coveralls
 addons:
   postgresql: "9.3"
+matrix:
+   allow_failures:
+      - env: DJANGO_VERSION='https://github.com/django/django/archive/master.tar.gz'

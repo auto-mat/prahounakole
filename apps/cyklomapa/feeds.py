@@ -1,4 +1,4 @@
-#coding=utf-8
+# -*- coding: utf-8 -*-
 from django.contrib.syndication.views import Feed
 
 from webmap.models import Poi
@@ -22,7 +22,8 @@ class UzavirkyFeed(Feed):
                 return str(item)
 
         def item_description(self, item):
-                return item.desc 
+                return item.desc
+
 
 class NovinkyFeed(Feed):
         title = u"Prahou Na Kole - novinky v mapě"

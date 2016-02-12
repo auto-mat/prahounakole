@@ -5,21 +5,16 @@
 # They appear in the admin app once they are registered at the bottom of
 # this code (same goes for the databrowse app)
 
-from django.conf import \
-    settings  # needed if we use the GOOGLE_MAPS_API_KEY from settings
 # Import the admin site reference from django.contrib.admin
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
-# Grab the Admin Manager that automaticall initializes an OpenLayers map
-# for any geometry field using the in Google Mercator projection with OpenStreetMap basedata
-from django.contrib.gis.admin import OSMGeoAdmin
+from leaflet.admin import LeafletGeoAdmin, LeafletGeoAdminMixin
 from django.contrib.gis.db.models import Union
-from django.contrib.gis.geos import Point
 
 from cyklomapa.models import MarkerZnacka, Mesto, Upresneni, UserMesto
-from webmap.admin import MarkerAdmin, PoiAdmin
-from webmap.models import Marker, Poi
+from webmap.admin import MarkerAdmin, PoiAdmin, SectorAdmin
+from webmap.models import Marker, Poi, Sector
 
 USE_GOOGLE_TERRAIN_TILES = False
 
@@ -60,12 +55,11 @@ class MestoPoiAdmin(PoiAdmin):
 
     def get_form(self, request, obj=None, **kwargs):
         form = super(MestoPoiAdmin, self).get_form(request, obj, **kwargs)
-
         mesto = Mesto.objects.get(sektor__slug=request.subdomain)
-        pnt = Point(mesto.geom.x, mesto.geom.y, srid=4326)
-        pnt.transform(3857)
-        self.default_lon, self.default_lat = pnt.coords
-
+        self.settings_overrides = {
+            'DEFAULT_CENTER': (mesto.geom.y, mesto.geom.x),
+            'DEFAULT_ZOOM': 12,
+        }
         return form
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
@@ -78,8 +72,8 @@ class MestoPoiAdmin(PoiAdmin):
         return super(MestoPoiAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
 
     def __init__(self, *args, **kwargs):
-       super(MestoPoiAdmin, self).__init__(*args, **kwargs)
-       self.list_filter += ("photos__license",)
+        super(MestoPoiAdmin, self).__init__(*args, **kwargs)
+        self.list_filter += ("photos__license",)
 
 
 class UpresneniAdmin(admin.ModelAdmin):
@@ -98,15 +92,14 @@ class LegendaAdmin(admin.ModelAdmin):
     obrazek_img.short_description = u"obrázek"
 
 
-class MestoInline(admin.StackedInline):
+class MestoInline(LeafletGeoAdminMixin, admin.StackedInline):
     model = Mesto
     can_delete = False
     verbose_name_plural = 'Parametry města'
 
 
-#TODO: make Mesto map to display OSM
-#class MestoSectorAdmin(SectorAdmin):
-#    inlines = SectorAdmin.inlines + [MestoInline,]
+class MestoSectorAdmin(SectorAdmin):
+    inlines = SectorAdmin.inlines + [MestoInline, ]
 
 
 class MarkerZnackaInline(admin.StackedInline):
@@ -119,7 +112,7 @@ class MarkerZnackaAdmin(MarkerAdmin):
     inlines = MarkerAdmin.inlines + [MarkerZnackaInline, ]
 
 
-class MestoAdmin(OSMGeoAdmin):
+class MestoAdmin(LeafletGeoAdmin):
     list_display = ('sektor', 'zoom', 'aktivni', 'vyhledavani', 'uvodni_zprava', )
 
     def queryset(self, request):
@@ -134,26 +127,12 @@ class MestoAdmin(OSMGeoAdmin):
             self.readonly_fields = ('vyhledavani', 'aktivni', 'sektor')
         return super(MestoAdmin, self).get_form(request, obj=None, **kwargs)
 
-    if USE_GOOGLE_TERRAIN_TILES:
-        map_template = 'gis/admin/google.html'
-        extra_js = ['http://openstreetmap.org/openlayers/OpenStreetMap.js', 'http://maps.google.com/maps?file=api&amp;v=2&amp;key=%s' % settings.GOOGLE_MAPS_API_KEY]
-    else:
-        pass  # defaults to OSMGeoAdmin presets of OpenStreetMap tiles
-
-    default_lon = 1605350
-    default_lat = 6461466
-    default_zoom = 12
-    scrollable = True
-    map_width = 700
-    map_height = 500
-    map_srid = 3857
-
 
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
 
-#admin.site.unregister(Sector)
-#admin.site.register(Sector, MestoSectorAdmin)
+admin.site.unregister(Sector)
+admin.site.register(Sector, MestoSectorAdmin)
 
 admin.site.register(Mesto, MestoAdmin)
 

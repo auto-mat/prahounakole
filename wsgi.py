@@ -27,16 +27,16 @@ from project.settings import PROJECT_DIR
 
 if getattr(project.settings, 'NEWRELIC_ENABLE', False):
     import newrelic.agent
-    newrelic.agent.initialize(os.path.join(PROJECT_DIR,'newrelic.ini'))
+    newrelic.agent.initialize(os.path.join(PROJECT_DIR, 'newrelic.ini'))
 
-ALLDIRS = [ os.path.join(PROJECT_DIR, 'env/lib/python2.6/site-packages'), ]
+ALLDIRS = [os.path.join(PROJECT_DIR, 'env/lib/python2.6/site-packages'), ]
 
 # Remember original sys.path.
 prev_sys_path = list(sys.path)
 
 # Add each new site-packages directory.
 for directory in ALLDIRS:
-  site.addsitedir(directory)
+    site.addsitedir(directory)
 
 # Reorder sys.path so new directories at the front.
 new_sys_path = []
@@ -48,7 +48,13 @@ sys.path[:0] = new_sys_path
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "project.settings")
 
-application = get_wsgi_application()
+wsgi_application = get_wsgi_application()
+from wsgiunproxy import unproxy
+
+@unproxy(trusted_proxies=[ "b''", ])
+def application(environ, start_response):
+    return wsgi_application(environ, start_response)
+
 
 # Apply WSGI middleware here.
 # from helloworld.wsgi import HelloWorldApplication

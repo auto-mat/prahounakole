@@ -6,16 +6,17 @@ django-debug-toolbar
 django-colorful
 django-mass-edit
 
--e git+https://github.com/PetrDlouhy/django-contrib-comments.git#egg=django-contrib-comments #remove after #a54aff6 is in pip
+django-contrib-comments
 
 -e git+https://github.com/allieus/python-akismet.git#egg=akismet
--e git+https://github.com/PetrDlouhy/django-fluent-comments.git#egg=django-fluent-comments
+-e git+https://github.com/PetrDlouhy/django-fluent-comments.git@dj19#egg=django-fluent-comments  # Django 1.9 compatibility in PR #73
 
 django-picklefield
 django-constance
 
--e git+https://github.com/lambdalisue/django-author.git#egg=django-author
-django-webmap-corpus
+django-author
+django-webmap-corpus>=0.9
+-e git+https://github.com/PetrDlouhy/django-leaflet.git@g-m#egg=django-leaflet  # GeoAdminMixin in PR #116
 django-smart-selects
 django-import-export
 raven
@@ -25,3 +26,7 @@ newrelic
 -e git+https://github.com/PetrDlouhy/django-feedback.git#egg=django-feedback
 
 -e git+https://github.com/django-compressor/django-compressor.git@develop#egg=django-compressor
+lxml
+-e git+https://github.com/PetrDlouhy/django-admin-smoke-tests.git#egg=django-admin-smoke-tests
+freezegun
+wsgiunproxy

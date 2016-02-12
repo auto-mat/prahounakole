@@ -18,16 +18,16 @@ except:
 
 
 setup(
-    name = 'prahounakole',
-    description = "Django aplikace cyklistická mapa Prahou na kole http://mapa.prahounakole.cz/",
-    url = "http://github.com/auto-mat/prahounakole",
-    long_description = long_description,
-    version = __versionstr__,
-    author = "Auto*Mat",
-    author_email = "redakce@prahounakole.cz",
-    license = "BSD",
-    packages = ['cyklomapa', 'pnk'],
-    classifiers = [
+    name='prahounakole',
+    description="Django aplikace cyklistická mapa Prahou na kole http://mapa.prahounakole.cz/",
+    url="http://github.com/auto-mat/prahounakole",
+    long_description=long_description,
+    version=__versionstr__,
+    author="Auto*Mat",
+    author_email="redakce@prahounakole.cz",
+    license="BSD",
+    packages=['cyklomapa', 'pnk'],
+    classifiers=[
         "Development Status :: 4 - Beta",
         "Programming Language :: Python",
         "Programming Language :: Python :: 2",

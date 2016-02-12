@@ -20,12 +20,16 @@
 from django.test import TestCase, RequestFactory, Client
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
-from django.test import TestCase, RequestFactory
 from django.test.utils import override_settings
+from webmap import views as webmap_views
+from django_admin_smoke_tests import tests
+from freezegun import freeze_time
+from fluent_comments import compat as comments_compat
 
 
 class AdminFilterTests(TestCase):
-    fixtures=["webmap","cyklomapa"]
+    fixtures = ["webmap", "cyklomapa"]
+
     def setUp(self):
                 # Every test needs access to the request factory.
         self.factory = RequestFactory()
@@ -48,35 +52,68 @@ class AdminFilterTests(TestCase):
         response = self.client.get(reverse("admin:webmap_poi_changelist"))
         self.assertEqual(response.status_code, 200)
 
-    def test_mapa_view(self):
-        """
-        test if main page loads
-        """
-        response = self.client.get(reverse("mapa_view"))
-        self.assertEqual(response.status_code, 200)
 
-    def test_popup_view(self):
-        """
-        test if other views load
-        """
-        response = self.client.get(reverse("popup_view", args=(1,)))
-        self.assertEqual(response.status_code, 200)
+    @freeze_time("2016-01-04 17:10:00")
+    def test_comment_post(self):
+        content_type = "webmap.poi"
+        object_pk = "205"
+        timestamp = "1451927336"
+        security_hash = comments_compat.CommentForm.generate_security_hash(None, content_type, object_pk, timestamp)
+        post_data = {
+            "content_type": content_type,
+            "object_pk": object_pk,
+            "name": "Testing name",
+            "email": "test@email.com",
+            "comment": "Testing comment",
+            "timestamp": timestamp,
+            "security_hash": security_hash,
+        }
+        response = self.client.post(reverse("comments-post-comment-ajax"), post_data, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertEqual(response.status_code, 200, response.content.decode("utf-8"))
+
+    def verify_views(self, views, status_code_map={}):
+        for view in views:
+            status_code = status_code_map[view] if view in status_code_map else 200
+            if len(view) > 1:
+                args = view[1]
+            else:
+                args = None
+            address = reverse(view[0], args=args)
+            response = self.client.get(address, HTTP_HOST="testing-campaign.testserver")
+            self.assertEqual(response.status_code, status_code, "%s view failed with following content: \n%s" % (view, response.content.decode("utf-8")))
 
     def test_complementary_views(self):
         """
         test if other views load
         """
-        response = self.client.get(reverse("uzavirky_view"))
-        self.assertEqual(response.status_code, 200)
-        response = self.client.get(reverse("uzavirky_view"))
-        self.assertEqual(response.status_code, 200)
-        response = self.client.get(reverse("znacky_view"))
-        self.assertEqual(response.status_code, 200)
-        response = self.client.get(reverse("panel_mapa_view"))
-        self.assertEqual(response.status_code, 200)
-        response = self.client.get(reverse("panel_informace_view"))
-        self.assertEqual(response.status_code, 200)
-        response = self.client.get(reverse("panel_hledani_view"))
-        self.assertEqual(response.status_code, 200)
-        response = self.client.get(reverse("appcache_view"))
-        self.assertEqual(response.status_code, 200)
+        views = [
+            ("mapa_view",),
+            ("mapa_view", (1, )),
+            ("popup_view", (1, )),
+            ("uzavirky_view",),
+            ("uzavirky_feed",),
+            ("novinky_feed",),
+            ("znacky_view",),
+            ("panel_mapa_view",),
+            ("panel_informace_view",),
+            ("panel_hledani_view",),
+            ("appcache_view",),
+            ("kml_view", ("l",)),
+            (webmap_views.search_view, ("asdf",)),
+            ("metro_view",),
+        ]
+
+        self.verify_views(views)
+
+
+@override_settings(
+    FORCE_SUBDOMAIN="testing-sector"
+)
+class AdminTest(tests.AdminSiteSmokeTest):
+    def get_request(self):
+        request = super().get_request()
+        request.subdomain = "testing-sector"
+        return request
+
+    fixtures = ["webmap", "cyklomapa"]
+    exclude_apps = ['constance', 'fluent_comments']

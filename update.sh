@@ -31,7 +31,7 @@ if [ "$1" != "no_virtualenv" ]; then
 fi
 pip install --process-dependency-links -r requirements.txt --upgrade
 if [ "$1" != "no_virtualenv" ]; then
-   pip install "Django<1.9"
+   pip install "Django<1.10"
 fi
 if [ "$1" = "migrate" ]; then
    echo "Backuping db..."
