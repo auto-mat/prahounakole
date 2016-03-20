@@ -10,6 +10,7 @@ from django.views.decorators.gzip import gzip_page
 from django.views.generic import TemplateView
 from django_comments.models import Comment
 from django.core.cache import cache
+from django.views.decorators.csrf import csrf_protect
 
 from .models import Mesto
 from webmap.models import Legend, MapPreset, Marker, OverlayLayer, Poi
@@ -17,6 +18,7 @@ from webmap.models import Legend, MapPreset, Marker, OverlayLayer, Poi
 
 @gzip_page
 @cache_page(24 * 60 * 60)  # cachujeme view v memcached s platnosti 24h
+@csrf_protect
 def mapa_view(request, poi_id=None):
     vrstvy = OverlayLayer.objects.filter(status__show=True)
     # volitelne poi_id zadane mape jako bod, na ktery se ma zazoomovat
