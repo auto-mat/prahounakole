@@ -9,7 +9,7 @@ django-mass-edit
 django-contrib-comments
 
 -e git+https://github.com/allieus/python-akismet.git#egg=akismet
--e git+https://github.com/PetrDlouhy/django-fluent-comments.git@dj19#egg=django-fluent-comments  # Django 1.9 compatibility in PR #73
+django-fluent-comments
 
 django-picklefield
 django-constance
@@ -25,9 +25,9 @@ gunicorn
 newrelic
 -e git+https://github.com/jaredly/django-feedback.git#egg=django-feedback
 
--e git+https://github.com/django-compressor/django-compressor.git@develop#egg=django-compressor
+django-compressor
 lxml
--e git+https://github.com/PetrDlouhy/django-admin-smoke-tests.git#egg=django-admin-smoke-tests
+django-admin-smoke-tests
 freezegun
 wsgiunproxy
 django-js-error-hook
