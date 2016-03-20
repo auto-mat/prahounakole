@@ -202,7 +202,7 @@ LOGGING = {
             'level': 'INFO',
         },
         'javascript_error': {
-            'handlers': ['mail_admins', 'console'],
+            'handlers': ['mail_admins', 'console', 'logfile'],
             'level': 'ERROR',
             'propagate': True,
         },
