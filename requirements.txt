@@ -27,7 +27,7 @@ newrelic
 
 django-compressor
 lxml
-django-admin-smoke-tests
+-e git+https://github.com/PetrDlouhy/django-admin-smoke-tests.git#egg=django-admin-smoke-tests
 freezegun
 wsgiunproxy
 django-js-error-hook

@@ -47,8 +47,8 @@ class UserAdmin(UserAdmin):
 
 
 class MestoPoiAdmin(PoiAdmin):
-    def queryset(self, request):
-        queryset = super(MestoPoiAdmin, self).queryset(request)
+    def get_queryset(self, request):
+        queryset = super(MestoPoiAdmin, self).get_queryset(request)
         if request.user.is_superuser:
             return queryset
         return queryset.filter(geom__intersects=request.user.usermesto.mesta.aggregate(Union('sektor__geom'))['sektor__geom__union'])
@@ -115,8 +115,8 @@ class MarkerZnackaAdmin(MarkerAdmin):
 class MestoAdmin(LeafletGeoAdmin):
     list_display = ('sektor', 'zoom', 'aktivni', 'vyhledavani', 'uvodni_zprava', )
 
-    def queryset(self, request):
-        queryset = super(MestoAdmin, self).queryset(request)
+    def get_queryset(self, request):
+        queryset = super().get_queryset(request)
         if request.user.is_superuser:
             return queryset
 
