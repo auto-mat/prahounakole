@@ -124,6 +124,7 @@ INSTALLED_APPS = [
     'raven.contrib.django.raven_compat',
     'corsheaders',
     'httpproxy',
+    'django_js_error_hook',
 ]
 
 ENABLE_API_PROXY = DEBUG        # http-roxy pro requesty na /api
@@ -199,7 +200,12 @@ LOGGING = {
         'cyklomapa': {
             'handlers': ['console', 'mail_admins', 'logfile'],
             'level': 'INFO',
-        }
+        },
+        'javascript_error': {
+            'handlers': ['mail_admins', 'console'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
     }
 }
 

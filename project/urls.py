@@ -16,6 +16,7 @@ urlpatterns = [
     url(r'^admin/', include("massadmin.urls")),
     url(r'^chaining/', include('smart_selects.urls')),
     url(r'^webmap/', include('webmap.urls')),
+    url(r'^js_error_hook/', include('django_js_error_hook.urls')),
     url(r'^feedback/', include('feedback.urls')),
     url(r'^', include("cyklomapa.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
