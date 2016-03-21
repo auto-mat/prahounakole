@@ -25,9 +25,8 @@ from django.core.wsgi import get_wsgi_application
 import project.settings
 from project.settings import PROJECT_DIR
 
-if getattr(project.settings, 'NEWRELIC_ENABLE', False):
-    import newrelic.agent
-    newrelic.agent.initialize(os.path.join(PROJECT_DIR, 'newrelic.ini'))
+import newrelic.agent
+newrelic.agent.initialize(os.path.join(PROJECT_DIR, 'newrelic.ini'))
 
 ALLDIRS = [os.path.join(PROJECT_DIR, 'env/lib/python2.6/site-packages'), ]
 
