@@ -75,6 +75,7 @@ TEMPLATES = [
 
 
 MIDDLEWARE_CLASSES = (
+    'raven.contrib.django.raven_compat.middleware.Sentry404CatchMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -148,6 +149,10 @@ CORS_ORIGIN_WHITELIST = (
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,
+    'root': {
+        'level': 'WARNING',
+        'handlers': ['sentry'],
+    },
     'formatters': {
         'verbose': {
             'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
@@ -179,6 +184,11 @@ LOGGING = {
             'maxBytes': 10000000,
             'formatter': 'verbose',
         },
+        'sentry': {
+            'level': 'ERROR',
+            'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
+            'tags': {'custom-tag': 'x'},
+        },
         'mail_admins': {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
@@ -200,6 +210,11 @@ LOGGING = {
         'cyklomapa': {
             'handlers': ['console', 'mail_admins', 'logfile'],
             'level': 'INFO',
+        },
+        'raven': {
+            'level': 'DEBUG',
+            'handlers': ['console'],
+            'propagate': False,
         },
         'javascript_error': {
             'handlers': ['mail_admins', 'console', 'logfile'],
