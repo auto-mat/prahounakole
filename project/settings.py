@@ -125,7 +125,6 @@ INSTALLED_APPS = [
     'raven.contrib.django.raven_compat',
     'corsheaders',
     'httpproxy',
-    'django_js_error_hook',
 ]
 
 ENABLE_API_PROXY = DEBUG        # http-roxy pro requesty na /api
@@ -215,11 +214,6 @@ LOGGING = {
             'level': 'DEBUG',
             'handlers': ['console'],
             'propagate': False,
-        },
-        'javascript_error': {
-            'handlers': ['mail_admins', 'console', 'logfile'],
-            'level': 'ERROR',
-            'propagate': True,
         },
     }
 }
