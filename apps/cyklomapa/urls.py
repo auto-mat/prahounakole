@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.conf.urls import include, url
+from django.http import HttpResponse
 
 from cyklomapa.feeds import NovinkyFeed, UzavirkyFeed
 from cyklomapa.views import (
@@ -26,6 +27,7 @@ urlpatterns = [
     url(r'^comments/', include('fluent_comments.urls')),
     url(r'^pnk.appcache/', AppCacheView.as_view(), name="appcache_view"),
     url(r'^comments/feeds/latest/$', LatestCommentFeed(), name="latest_comments_feed"),
+    url(r'^robots.txt$', lambda r: HttpResponse("User-agent: *\nAllow:", content_type="text/plain"))
 ]
 
 if settings.ENABLE_API_PROXY:
