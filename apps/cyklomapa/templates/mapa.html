@@ -2,7 +2,7 @@
 {% load static %}
 {% load raven %}
 <!DOCTYPE html>
-<html manifest="pnk.appcache/">
+<html manifest="{% url "appcache_view" %}">
   <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
