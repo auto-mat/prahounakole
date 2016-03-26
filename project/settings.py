@@ -229,6 +229,8 @@ REST_ENABLED = True
 FLUENT_COMMENTS_EXCLUDE_FIELDS = ('url',)
 COMMENTS_APP = 'fluent_comments'
 
+COMPRESS_JS_COMPRESSOR = 'utils.uglify.UglifyJSCompressor'
+UGLIFY_JS_BINARY = "uglifyjs"
 COMPRESS_CACHE_BACKEND = 'default'
 COMPRESS_PRECOMPILERS = (
     ('text/less', 'lessc {infile} {outfile}'),
