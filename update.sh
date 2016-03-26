@@ -43,7 +43,7 @@ fi
 
 bower install
 #compile PNK version of OpenLayers:
-(cd apps/cyklomapa/static/bow/openlayers/build/ && python build.py -c closure_ws ../../../openstreetmap-pnk ../OpenLayers.PNK.js)
+(cd apps/cyklomapa/static/bow/openlayers/build/ && python build.py -c none ../../../openstreetmap-pnk ../OpenLayers.PNK.js)
 
 python ./manage.py collectstatic --noinput
 python ./manage.py compress_create_manifest --force
