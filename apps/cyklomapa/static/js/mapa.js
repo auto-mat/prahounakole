@@ -1020,7 +1020,12 @@ function removePoiLayers() {
 
 function onFeatureSelect(feature) {
     setHashParameter('misto', feature.layer.slug + "_" + feature.fid, false);
-    var components = feature.geometry.components;
+    var components = "";
+    if(feature.geometry.id){
+        components = [feature.geometry];
+    } else {
+        components = feature.geometry.components;
+    }
     for(var i = 0; i < components.length; i++){
         $("#" + components[i].id).attr("class", "selected");
     }
@@ -1065,7 +1070,12 @@ function onFeatureSelect(feature) {
 
 function onFeatureUnselect(feature) {
     ga('send', 'event', 'poi', 'close', feature.fid);
-    var components = feature.geometry.components;
+    var components = "";
+    if(feature.geometry.id){
+        components = [feature.geometry];
+    } else {
+        components = feature.geometry.components;
+    }
     for(var i = 0; i < components.length; i++){
         $("#" + components[i].id).removeAttr("class");
     }
