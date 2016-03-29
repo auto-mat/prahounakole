@@ -518,7 +518,7 @@ function onDragComplete(feature) {
     }
     setWaypoint(feature);
     // po umisteni cile nebo pretazeni prvku uz nalezene trasy muzeme rovnou vyhledat
-    if (waypoints.length >= 2)
+    if (waypoints.length >= 2 && waypoints[0] && waypoints[1])
        planJourney();
 }
 
@@ -562,24 +562,34 @@ function onMapClick(e) {
 }
 
 function toggleButtons() {
-    switch (waypoints.length) {
-        case 0:
-            // IE nepodporuje hotspot pres souradnice, ale jen zakodovany v .cur
-            $('.olMap').css("cursor", "url('/static/img/route-start.cur'), crosshair"); 
-            $('.olMap').css("cursor", "url('/static/img/route-start.cur') 17 41, crosshair"); 
-            routingState = 'start';
-            break;
-        case 1:
-            $('.olMap').css("cursor", "url('/static/img/route-stop.cur'), crosshair"); 
-            $('.olMap').css("cursor", "url('/static/img/route-stop.cur') 17 41, crosshair"); 
-            routingState = 'stop';
-            break;
-        default:
-            $('.olMap').css("cursor", "auto");
-            // odebereme focus, jinak po chvili vybehne autocomplete
-            $('#jpFinishStreetSearch').blur();
-            $('#jpPlanButton').show();
-            routingState = 'go';
+    if(!waypoints[0]){
+         $('#jpStartStreetSearch').removeClass('wp_set');
+    } else {
+         $('#jpStartStreetSearch').addClass('wp_set');
+    }
+    if(!waypoints[1]){
+         $('#jpFinishStreetSearch').removeClass('wp_set');
+    } else {
+         $('#jpFinishStreetSearch').addClass('wp_set');
+    }
+
+    if(!waypoints[0]){
+         // IE nepodporuje hotspot pres souradnice, ale jen zakodovany v .cur
+         $('.olMap').css("cursor", "url('/static/img/route-start.cur'), crosshair");
+         $('.olMap').css("cursor", "url('/static/img/route-start.cur') 17 41, crosshair");
+         $('#jpPlanButton').hide();
+         routingState = 'start';
+    } else if(!waypoints[1]) {
+         $('.olMap').css("cursor", "url('/static/img/route-stop.cur'), crosshair");
+         $('.olMap').css("cursor", "url('/static/img/route-stop.cur') 17 41, crosshair");
+         $('#jpPlanButton').hide();
+         routingState = 'stop';
+    } else {
+         $('.olMap').css("cursor", "auto");
+         // odebereme focus, jinak po chvili vybehne autocomplete
+         $('#jpFinishStreetSearch').blur();
+         $('#jpPlanButton').show();
+         routingState = 'go';
     }
 }
 
@@ -637,7 +647,7 @@ function clearWaypoints() {
 }
 
 function onPlanButtonClick() {
-    if(waypoints.length >= 2){
+    if(waypoints.length >= 2 && waypoints[0] && waypoints[1]){
         clearWaypoints();
         planJourney();
     } else {
