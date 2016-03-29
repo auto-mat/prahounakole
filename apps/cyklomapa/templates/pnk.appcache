@@ -12,7 +12,7 @@ CACHE:
 /panel-mapa/
 /panel-hledani/
 http://www.google-analytics.com/analytics.js
-http://maps.google.com/maps/api/js?v=3.8&sensor=false 
+http://maps.google.com/maps/api/js?v=3.22
 http://maps.gstatic.com/maps-api-v3/api/js/20/15/main.js
 http://maps.gstatic.com/maps-api-v3/api/js/20/15/common.js
 http://maps.gstatic.com/maps-api-v3/api/js/20/15/map.js
