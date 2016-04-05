@@ -51,7 +51,7 @@ class MestoPoiAdmin(PoiAdmin):
         queryset = super(MestoPoiAdmin, self).get_queryset(request)
         if request.user.is_superuser:
             return queryset
-        return queryset.filter(geom__intersects=request.user.usermesto.mesta.aggregate(Union('sektor__geom'))['sektor__geom__union'])
+        return queryset.filter(geom__bboverlaps=request.user.usermesto.mesta.aggregate(Union('sektor__geom'))['sektor__geom__union'])
 
     def get_form(self, request, obj=None, **kwargs):
         form = super(MestoPoiAdmin, self).get_form(request, obj, **kwargs)

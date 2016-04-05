@@ -22,6 +22,12 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.test.utils import override_settings
 from webmap import views as webmap_views
+import webmap
+import comments_moderation
+import feedback
+import cyklomapa
+import httpproxy
+from django.contrib import sites, auth
 from django_admin_smoke_tests import tests
 from freezegun import freeze_time
 from fluent_comments import compat as comments_compat
@@ -117,3 +123,31 @@ class AdminTest(tests.AdminSiteSmokeTest):
 
     fixtures = ["webmap", "cyklomapa"]
     exclude_apps = ['constance', 'fluent_comments']
+
+
+class MestoAdminTest(AdminTest):
+    exclude_modeladmins = [
+        auth.admin.UserAdmin,
+        auth.admin.GroupAdmin,
+        comments_moderation.admin.BlacklistAdmin,
+        cyklomapa.admin.MarkerZnackaAdmin,
+        cyklomapa.admin.MestoAdmin,
+        cyklomapa.admin.MestoPoiAdmin,
+        cyklomapa.admin.MestoSectorAdmin,
+        cyklomapa.admin.UserAdmin,
+        feedback.admin.FeedbackAdmin,
+        httpproxy.admin.RequestAdmin,
+        httpproxy.admin.ResponseAdmin,
+        sites.admin.SiteAdmin,
+        webmap.admin.BaseLayerAdmin,
+        webmap.admin.LegendAdmin,
+        webmap.admin.LicenseAdmin,
+        webmap.admin.MapPresetAdmin,
+        webmap.admin.OverlayLayerAdmin,
+        webmap.admin.PhotoAdmin,
+        webmap.admin.PropertyAdmin,
+        webmap.admin.StatusAdmin,
+    ]
+    def setUp(self):
+        super().setUp()
+        self.superuser = User.objects.get(pk=1)
