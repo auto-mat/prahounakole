@@ -153,7 +153,7 @@ function init(mapconfig) {
     });
     layerIPR = new OpenLayers.Layer.WMS(
         "Ortofoto IPR mimovegetační",
-        "http://giswa1.mag.mepnet.cz/arcgis/services/MAP/mimovegetacni_snimkovani/MapServer/WmsServer",
+        "http://mpp.praha.eu/arcgis/services/MAP/mimovegetacni_snimkovani_cache/MapServer/WmsServer",
         {
             layers: '0',
             format: 'image/jpeg',
