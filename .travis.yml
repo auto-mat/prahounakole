@@ -17,7 +17,7 @@ before_script:
   - ./update.sh no_virtualenv
   - pip install -q "$DJANGO_VERSION"
 script:
-  - coverage run manage.py test
+  - python -Wall $VIRTUAL_ENV/bin/coverage run manage.py test
 after_script:
   - coveralls
 addons:
