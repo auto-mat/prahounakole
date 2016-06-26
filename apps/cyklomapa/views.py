@@ -91,7 +91,7 @@ def popup_view(request, poi_id):
         context_instance=RequestContext(
             request, {
                 'poi': poi,
-                'fotky': poi.photos.all(),
+                'fotky': poi.photos.filter(status__show=True),
                 'settings': settings,
                 'can_change': request.user.has_perm('webmap.change_poi')  # and poi.has_change_permission(request.user),
             }),
