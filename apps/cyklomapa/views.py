@@ -37,7 +37,7 @@ def mapa_view(request, poi_id=None):
     minimize_layerswitcher = request.GET.get('nols', 0)
     nomenu = request.GET.get('nomenu', 0)
 
-    context = RequestContext(request, {
+    context = {
         'root_url': ROOT_URL,
         'vrstvy': vrstvy,
         'center_poi': center_poi,
@@ -46,11 +46,11 @@ def mapa_view(request, poi_id=None):
         'minimize_layerswitcher': minimize_layerswitcher,
         'presets': MapPreset.objects.filter(status__show=True),
         'mesta': Mesto.objects.filter(aktivni=True).order_by('sektor__name').all(),
-    })
+    }
     if not (request.mesto and request.mesto.aktivni) and not request.user.is_authenticated():
-        return render_to_response('neaktivni.html', context_instance=context)
+        return render(request, 'neaktivni.html', context=context)
 
-    return render_to_response('mapa.html', context_instance=context)
+    return render(request, 'mapa.html', context=context)
 
 
 def cache_page_mesto(expiration):
@@ -88,13 +88,12 @@ def popup_view(request, poi_id):
     return render(
         request,
         "gis/popup.html",
-        context_instance=RequestContext(
-            request, {
+        context={
                 'poi': poi,
                 'fotky': poi.photos.filter(status__show=True),
                 'settings': settings,
                 'can_change': request.user.has_perm('webmap.change_poi')  # and poi.has_change_permission(request.user),
-            }),
+            },
         content_type="application/xml")
 
 
@@ -102,17 +101,19 @@ def popup_view(request, poi_id):
 @cache_page(24 * 60 * 60)  # cachujeme view v memcached s platnosti 24h
 def uzavirky_view(request):
     poi = Poi.objects.select_related('marker').filter(status__show=True, marker__slug='vyluka_akt')
-    return render_to_response(
+    return render(
+        request,
         'uzavirky.html',
-        context_instance=RequestContext(request, {'uzavirky': poi}))
+        context={'uzavirky': poi})
 
 
 @cache_page(24 * 60 * 60)  # cachujeme view v memcached s platnosti 24h
 def metro_view(request):
     poi = Poi.objects.select_related('marker').filter(status__show=True, marker__slug__in=['metro_a', 'metro_b', 'metro_c']).order_by('marker__slug', 'id')
-    return render_to_response(
+    return render(
+        request,
         'metro.html',
-        context_instance=RequestContext(request, {'poi': poi}))
+        context={'poi': poi})
 
 
 # View pro podrobny vypis vrstev
@@ -121,9 +122,10 @@ def znacky_view(request):
     vrstvy = OverlayLayer.objects.filter(status__show=True)
     znacky = Marker.objects.select_related('layer').filter(status__show=True)
     legenda = Legend.objects.all()
-    return render_to_response(
+    return render(
+        request,
         'znacky.html',
-        context_instance=RequestContext(request, {'vrstvy': vrstvy, 'znacky': znacky, 'legenda': legenda}))
+        context={'vrstvy': vrstvy, 'znacky': znacky, 'legenda': legenda})
 
 
 class PanelMapaView(TemplateView):
