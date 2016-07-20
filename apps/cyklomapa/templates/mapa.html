@@ -83,10 +83,6 @@
             mapconfig['lon'] = mapconfig['baselon'];
             mapconfig['lat'] = mapconfig['baselat'];
         {% endif %}
-        
-        {% if minimize_layerswitcher %}
-            mapconfig['minimize_layerswitcher'] = true
-        {% endif %}
     </script>
 
   </head>
@@ -183,7 +179,7 @@
           <div class="map_holder">
           <!-- map width is defined dynamicaly in man_page.js -->
           <!-- <div class="map_holder"> -->
-            <div id="map" {% if nomenu %}class="fullscreen"{% endif %}></div>
+            <div id="map"></div>
           </div>
         </div>
       </div>

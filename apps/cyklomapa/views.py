@@ -3,8 +3,7 @@
 from django.conf import settings
 from django.contrib.gis.shortcuts import render_to_kml
 from django.contrib.sites.shortcuts import get_current_site
-from django.shortcuts import get_object_or_404, render, render_to_response
-from django.template import RequestContext
+from django.shortcuts import get_object_or_404, render
 from django.views.decorators.cache import cache_page, never_cache
 from django.views.decorators.gzip import gzip_page
 from django.views.generic import TemplateView
@@ -34,16 +33,11 @@ def mapa_view(request, poi_id=None):
     else:
         ROOT_URL = ''
 
-    minimize_layerswitcher = request.GET.get('nols', 0)
-    nomenu = request.GET.get('nomenu', 0)
-
     context = {
         'root_url': ROOT_URL,
         'vrstvy': vrstvy,
         'center_poi': center_poi,
-        'nomenu': nomenu,
         'mesto': request.mesto,
-        'minimize_layerswitcher': minimize_layerswitcher,
         'presets': MapPreset.objects.filter(status__show=True),
         'mesta': Mesto.objects.filter(aktivni=True).order_by('sektor__name').all(),
     }
@@ -89,11 +83,11 @@ def popup_view(request, poi_id):
         request,
         "gis/popup.html",
         context={
-                'poi': poi,
-                'fotky': poi.photos.filter(status__show=True),
-                'settings': settings,
-                'can_change': request.user.has_perm('webmap.change_poi')  # and poi.has_change_permission(request.user),
-            },
+            'poi': poi,
+            'fotky': poi.photos.filter(status__show=True),
+            'settings': settings,
+            'can_change': request.user.has_perm('webmap.change_poi')  # and poi.has_change_permission(request.user),
+        },
         content_type="application/xml")
 
 
