@@ -33,16 +33,16 @@ SECRET_KEY = 'change_me'
 # Don't forget to use absolute paths, not relative paths.
 # TEMPLATE_DIRS.append(os.path.join(PROJECT_DIR, 'env/lib/python2.6/site-packages/debug_toolbar/templates'))
 
-INSTALLED_APPS.append('debug_toolbar')
+#INSTALLED_APPS.append('debug_toolbar')
 
 
-def custom_show_toolbar(request):
-    return True  # Always show toolbar, for example purposes only.
-
-DEBUG_TOOLBAR_CONFIG = {
-    'SHOW_TOOLBAR_CALLBACK': custom_show_toolbar,
-    'HIDE_DJANGO_SQL': False,
-}
+# def custom_show_toolbar(request):
+#     return True  # Always show toolbar, for example purposes only.
+#
+# DEBUG_TOOLBAR_CONFIG = {
+#     'SHOW_TOOLBAR_CALLBACK': custom_show_toolbar,
+#     'HIDE_DJANGO_SQL': False,
+# }
 
 THUMBNAIL_DEBUG = True
 

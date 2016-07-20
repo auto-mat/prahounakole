@@ -2,7 +2,6 @@ easy-thumbnails
 -e git+https://github.com/yvandermeer/django-http-proxy.git#egg=django-http-proxy
 -e git+https://github.com/linsomniac/python-memcached.git#egg=python-memcached
 psycopg2
-django-debug-toolbar
 django-colorful
 django-mass-edit
 
