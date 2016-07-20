@@ -85,6 +85,7 @@ MIDDLEWARE_CLASSES = (
     'author.middlewares.AuthorDefaultBackendMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.contrib.auth.middleware.SessionAuthenticationMiddleware'
 )
 
 ROOT_URLCONF = 'urls'
