@@ -83,20 +83,23 @@ var CSApi = {
       success: function (data) {
         var features = CSApi.formatGML.read(data);
         var route = CSApi.getFeature(features, 'route');
+        Raven.setExtraContext({
+           journey_url: url,
+           journey_data: data,
+           journey_route: route,
+        });
         if(route.attributes){
-        var plan = route.attributes.plan;
+           var plan = route.attributes.plan;
            CSApi.routeFeatures[plan] = features;
            CSApi.segments[plan] = CSApi.getSegments(features);
+           Raven.setExtraContext({
+              journey_segments: CSApi.segments,
+           });
            CSApi.waypoints[plan] = CSApi.getWaypoints(features);
            CSApi.route[plan] = route;
            CSApi.itinerary = route.attributes.itinerary;
            callback(route.attributes.itinerary, plan, features, options);
         } else {
-           Raven.setUserContext({
-              journey_url: url,
-              journey_data: data,
-              journey_route: route,
-           });
            Raven.captureMessage('CS API returned empty route');
         };
       }
