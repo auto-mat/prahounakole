@@ -107,7 +107,6 @@ var CSApi = {
     var route = this.getFeature(features, 'route');
     var km = Math.round(route.attributes.length / 100) / 10.0;
     var timeStr = CSApi.secondsToTime(route.attributes.time);
-    map.zoomToExtent(journeyLayer.getDataExtent());
     var html =  km + ' km<br>' + timeStr;
     switch (route.attributes.plan) {
       case 'balanced':
