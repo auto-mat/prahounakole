@@ -92,9 +92,6 @@ var CSApi = {
            var plan = route.attributes.plan;
            CSApi.routeFeatures[plan] = features;
            CSApi.segments[plan] = CSApi.getSegments(features);
-           Raven.setExtraContext({
-              journey_segments: CSApi.segments,
-           });
            CSApi.waypoints[plan] = CSApi.getWaypoints(features);
            CSApi.route[plan] = route;
            CSApi.itinerary = route.attributes.itinerary;
