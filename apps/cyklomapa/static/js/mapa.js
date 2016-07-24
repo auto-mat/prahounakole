@@ -684,7 +684,10 @@ function addPlannedJourney(itinerary, plan, route, options) {
     }
     if (options && options.select && options.select == plan) {
         selectedItinerary = itinerary;
-        $('#' + plan).click();
+        selectPlan(plan);
+        if (options['zoomToPlan']){
+            map.zoomToExtent(journeyLayer.getDataExtent());
+        }
         updateMarkersAndLabels(route);
     }
     $('#jpPlanTypeSelector').show();
@@ -736,6 +739,7 @@ function addJourneyLayer() {
 
 function onPlanSelect() {
     selectPlan($(this).data('plan'));
+    map.zoomToExtent(journeyLayer.getDataExtent());
 }
 
 function selectPlan(plan) {
@@ -749,7 +753,6 @@ function selectPlan(plan) {
     }
     journeyLayer.removeAllFeatures();
     journeyLayer.addFeatures(CSApi.routeFeatures[plan]);
-    map.zoomToExtent(journeyLayer.getDataExtent());
     $('.selected').removeClass('selected');
     $('#' + plan).addClass('selected');
     $('#needle').attr('class', plan);
@@ -961,7 +964,7 @@ function onHashChange(e) {
            // odebereme focus nastaveny v setupRouting, jinak po chvili vybehne autocomplete
            $('.ui-autocomplete-input').blur();
            selectedPlan = null;
-           CSApi.journey(args['trasa'], null, 'balanced', addPlannedJourney, { select: plan });
+           CSApi.journey(args['trasa'], null, 'balanced', addPlannedJourney, { select: plan, zoomToPlan: true });
         });
     }
     if (args['misto']) {
