@@ -86,7 +86,6 @@ var CSApi = {
         Raven.setExtraContext({
            journey_url: url,
            journey_data: data,
-           journey_route: route,
         });
         if(route.attributes){
            var plan = route.attributes.plan;
