@@ -22,6 +22,7 @@ var selectedPlan;
 var dragInAction = false;
 var ignoreHashChange = false;
 var touchMoved = false;
+var lastActions = "";
 
 var EPSG4326 = new OpenLayers.Projection("EPSG:4326");
 var EPSG900913 = new OpenLayers.Projection("EPSG:900913"); 
@@ -254,11 +255,11 @@ function init(mapconfig) {
 } // init
 
 function mapLayerChanged(event) {
-    ga('send', 'event', event.type, event.layer.name, event.property);
+    reportAction('send', 'event', event.type, event.layer.name, event.property);
 }
 
 function mapBaseLayerChanged(event) {
-    ga('send', 'event', event.type, event.layer.name);
+    reportAction('send', 'event', event.type, event.layer.name);
 }
 
 function showPanel(slug) {
@@ -502,6 +503,7 @@ function onDragStart(feature, pixel) {
     if (! feature.attributes.sequenceId) {
         // jde o novy waypoint, nikoliv posun stavajiciho
         // dohledame posledni wp v poradi pred menenym segmentem
+        reportAction('send', 'event', 'drag', 'start', feature.attributes.newWpSequenceId);
         var segment = findNearestSegment(feature.geometry);
         var wp = CSApi.getWaypointBySegment(selectedPlan, segment);
         // a jeho pozici si docasne ulozime na feature dragovaci ikony
@@ -663,7 +665,7 @@ function planJourney() {
         reqPlan = selectedPlan;
     else
         reqPlan = 'balanced';
-    ga('send', 'event', 'plan', 'selected', selectedPlan);
+    reportAction('send', 'event', 'plan', 'selected', selectedPlan);
     selectedPlan = null;
     CSApi.journey(null, waypoints, 'balanced', addPlannedJourney, { select: reqPlan });
 }
@@ -677,6 +679,7 @@ function routeHash(){
 
 // callback to process route returned by server
 function addPlannedJourney(itinerary, plan, route, options) {
+    reportAction('send', 'event', 'route', 'planned', plan, itinerary);
     CSApi.routeInfo(route);
     if (plan == 'balanced') {
         CSApi.journey(itinerary, null, 'fastest', addPlannedJourney, options);
@@ -932,14 +935,14 @@ function onHashChange(e) {
     hash = hash.replace(/^#/, '');
     var args = parseHash();
     if (hash === '') {
-        ga('send', 'event', 'left-panel-tab', 'switch', 'mapa');
+        reportAction('send', 'event', 'left-panel-tab', 'switch', 'mapa');
         loadPanelContent('mapa', function(){
            setupPnkMap();
            showPanel_closeBox('mapa');
         });
     }
     if (hash == 'hledani') {
-        ga('send', 'event', 'left-panel-tab', 'switch', 'hledani');
+        reportAction('send', 'event', 'left-panel-tab', 'switch', 'hledani');
         loadPanelContent('hledani', function(){
            setupRouting();
            initRoutingPanel();
@@ -947,7 +950,7 @@ function onHashChange(e) {
         });
     }
     if (args['trasa']) {
-        ga('send', 'event', 'left-panel-tab', 'switch', 'trasa');
+        reportAction('send', 'event', 'left-panel-tab', 'switch', 'trasa');
         loadPanelContent('hledani', function(){
            setupRouting();
            showPanel_closeBox('hledani');
@@ -976,7 +979,7 @@ function onHashChange(e) {
         showPanel('mapa');
     }
     if (hash == 'informace') {
-        ga('send', 'event', 'left-panel-tab', 'switch', 'informace');
+        reportAction('send', 'event', 'left-panel-tab', 'switch', 'informace');
         loadPanelContent('informace', function(){
            setupPnkMap();
            showPanel_closeBox('informace');
@@ -1081,8 +1084,21 @@ function onFeatureSelect(feature) {
     showPoiDetail(feature.fid);
 }
 
+function reportAction(a, b, c, d, e, f){
+   b = typeof b  === 'undefined' ? '' : b;
+   c = typeof c  === 'undefined' ? '' : c;
+   d = typeof d  === 'undefined' ? '' : d;
+   e = typeof e  === 'undefined' ? '' : e;
+   f = typeof f  === 'undefined' ? '' : f;
+   ga(a, b, c, d, e, f);
+   lastActions += a + " " + b + " " + c + " " + d + " " + e + " " + f + "\n";
+   Raven.setExtraContext({
+      last_actions: lastActions,
+   });
+}
+
 function onFeatureUnselect(feature) {
-    ga('send', 'event', 'poi', 'close', feature.fid);
+    reportAction('send', 'event', 'poi', 'close', feature.fid);
     var components = "";
     if(feature.geometry.components){
         components = feature.geometry.components;
@@ -1096,7 +1112,7 @@ function onFeatureUnselect(feature) {
 }
 
 function showPoiDetail(poi_id) {
-    ga('send', 'event', 'poi', 'show', poi_id);
+    reportAction('send', 'event', 'poi', 'show', poi_id);
     var url = mapconfig.root_url + "/popup/" + poi_id + "/";
 
     var requestFailed = function(response) {
