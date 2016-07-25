@@ -1084,7 +1084,12 @@ function onFeatureSelect(feature) {
     showPoiDetail(feature.fid);
 }
 
-function reportAction(a, b="", c="", d="", e="", f=""){
+function reportAction(a, b, c, d, e, f){
+   b = typeof b  === 'undefined' ? '' : b;
+   c = typeof c  === 'undefined' ? '' : c;
+   d = typeof d  === 'undefined' ? '' : d;
+   e = typeof e  === 'undefined' ? '' : e;
+   f = typeof f  === 'undefined' ? '' : f;
    ga(a, b, c, d, e, f);
    lastActions += a + " " + b + " " + c + " " + d + " " + e + " " + f + "\n";
    Raven.setExtraContext({
