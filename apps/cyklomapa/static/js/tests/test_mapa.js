@@ -33,7 +33,7 @@ describe('testMap', function() {
     init(mapconfig);
 
     it('Test map', function() {
-        expect(map.layers.length).toBe(13);
+        expect(map.layers.length).toBe(12);
         expect(map.zoom).toBe(13);
         expect(map.layers[0].slug).toBe("P");
         expect(map.layers[5].slug).toBe("z");
