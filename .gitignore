@@ -20,3 +20,6 @@ update_local.sh
 /logs/
 *~
 /db_backup/
+.coverage
+/node_modules/
+/coverage/

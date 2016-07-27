@@ -183,7 +183,7 @@ function init(mapconfig) {
     });
 
      map.addLayers([layerPNK, layer_osm, layerCycle, layerBW, layerIPR]);
-     if(google.maps.MapTypeId !== undefined){
+     if((typeof google !== 'undefined') && (google.maps.MapTypeId !== undefined)){
         var layerGoogle = new OpenLayers.Layer.Google(
            "Satelitní mapa Google", {
            slug:"G",
