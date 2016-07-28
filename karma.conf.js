@@ -55,6 +55,13 @@ module.exports = function(config) {
       dir : 'coverage/'
     },
 
+
+    coverallsReporter: {
+      repoToken: "nyQ5MkiPqrO3zxy5PTR3WZRIV0TwEonLF",
+      dir : 'coverage/'
+    },
+
+
     // web server port
     port: 9876,
 
