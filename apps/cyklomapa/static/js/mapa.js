@@ -504,10 +504,12 @@ function onDragStart(feature, pixel) {
         // jde o novy waypoint, nikoliv posun stavajiciho
         // dohledame posledni wp v poradi pred menenym segmentem
         reportAction('send', 'event', 'drag', 'start', feature.attributes.newWpSequenceId);
-        var segment = findNearestSegment(feature.geometry);
-        var wp = CSApi.getWaypointBySegment(selectedPlan, segment);
-        // a jeho pozici si docasne ulozime na feature dragovaci ikony
-        feature.attributes.newWpSequenceId = wp.attributes.sequenceId;
+        if(selectedPlan){
+            var segment = findNearestSegment(feature.geometry);
+            var wp = CSApi.getWaypointBySegment(selectedPlan, segment);
+            // a jeho pozici si docasne ulozime na feature dragovaci ikony
+            feature.attributes.newWpSequenceId = wp.attributes.sequenceId;
+        }
     }
 }
 
