@@ -183,7 +183,7 @@ function init(mapconfig) {
     });
 
      map.addLayers([layerPNK, layer_osm, layerCycle, layerBW, layerIPR]);
-     if(google.maps.MapTypeId !== undefined){
+     if((typeof google !== 'undefined') && (google.maps.MapTypeId !== undefined)){
         var layerGoogle = new OpenLayers.Layer.Google(
            "Satelitní mapa Google", {
            slug:"G",
@@ -504,10 +504,12 @@ function onDragStart(feature, pixel) {
         // jde o novy waypoint, nikoliv posun stavajiciho
         // dohledame posledni wp v poradi pred menenym segmentem
         reportAction('send', 'event', 'drag', 'start', feature.attributes.newWpSequenceId);
-        var segment = findNearestSegment(feature.geometry);
-        var wp = CSApi.getWaypointBySegment(selectedPlan, segment);
-        // a jeho pozici si docasne ulozime na feature dragovaci ikony
-        feature.attributes.newWpSequenceId = wp.attributes.sequenceId;
+        if(selectedPlan){
+            var segment = findNearestSegment(feature.geometry);
+            var wp = CSApi.getWaypointBySegment(selectedPlan, segment);
+            // a jeho pozici si docasne ulozime na feature dragovaci ikony
+            feature.attributes.newWpSequenceId = wp.attributes.sequenceId;
+        }
     }
 }
 

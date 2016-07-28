@@ -1,0 +1,4977 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.1">
+<Document>
+
+
+
+  <Placemark id="5635">
+    <name>První &quot;kodaňské&quot; pásy v Praze</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.508782029151915,50.11988674830632,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2773">
+    <name>Stezka lesoparkem</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.533456784818126,50.13674662753925,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5944">
+    <name>Výjezd ze stezky do Menclovy</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.465115666389464,50.10564822905607,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="375">
+    <name>Poděkování - LB</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.361959999999998,50.0808,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="362">
+    <name>Poděkování - Jenyq</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.51561599999999,50.086560000000006,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="433">
+    <name>Poděkování - Jenyq</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.527790542327876,50.07711357353673,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5370">
+    <name>Tunýlek a schody</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.483606198883392,50.06721551370026,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="617">
+    <name>Poděkování - VV</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.374704999999999,50.03264299999999,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="659">
+    <name>Poděkování - TF</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.563432999999998,50.01475999999998,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="3103">
+    <name>Pikťáky Plzeňská</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.32553730642073,50.065700653001535,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2719">
+    <name>Příjezd ke křižovatce Milady Horákové x Na Špejcharu</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.410815459828994,50.0972200731887,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="559">
+    <name>Přívoz P3</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.412589999999991,50.04966,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5372">
+    <name>Zkratka Liboc - Střešovice</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.342221597311395,50.091805760515385,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5382">
+    <name>Zarostlá pěšinka Kyje-Malešice</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.528345445249975,50.08937873104419,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="403">
+    <name>Poděkování - JP</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.348735202377668,50.07760604895746,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="455">
+    <name>Poděkování - PT</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.479312,50.07446099999997,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="497">
+    <name>Poděkování - Pogo</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.352969999999997,50.06128599999999,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="640">
+    <name>Poděkování - IK</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.446197,50.028329000000014,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2720">
+    <name>Jízda po ulici Milady Horákové</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.411416274651506,50.09829371669287,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="670">
+    <name>Stezka na Osnice a Zdiměřice</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.53901199999997,49.986745999999975,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="3302">
+    <name>Zkrácený cyklopruh kvůli parkování</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.471256357768853,50.07826418228446,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="3309">
+    <name>Prodloužené pruhy na Rohanském nábřeží</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.44847367439799,50.09421638165702,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5479">
+    <name>Zamčená branka</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.514129737468469,50.105170396389084,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2436">
+    <name>Cyklojízdy z Jiřáku</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.449863999999982,50.077848999999986,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2850">
+    <name>Přívoz P6: Lahovičky – Nádraží Modřany</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.402071458446473,50.002494877556266,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2849">
+    <name>Přívoz P5: Kotevní - Císařská louka - Výtoň</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.413508397683513,50.06494861695375,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2891">
+    <name>Nemůžete najít průjezd centrem?</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.414205772031423,50.0781795525584,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2890">
+    <name>Nemůžete najít průjezd centrem?</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.414710027322188,50.09006871838673,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2848">
+    <name>Přívoz P1: Sedlec - Zámky</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.39286611710604,50.135233035997466,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="3834">
+    <name>Chybějící rampy na vítkovskou stezku</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.450979808431766,50.08756832751144,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5315">
+    <name>Horní Jirčany - Kocanda</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.53840909347338,49.9609599753776,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4033">
+    <name>Park Donovalská průjezdný 8-22</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.498202780340721,50.03568258874837,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5411">
+    <name>Nájezd na cestu</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.43045554505595,50.17564113295244,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5412">
+    <name>Začátek rozbité asfaltky</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.42712960587799,50.17728330617787,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4413">
+    <name>Lávka Kralupy</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.312631467462412,50.24486699612103,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2717">
+    <name>Odbočovací pruh pro cyklisty Na Petynce</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.380592328657434,50.08901554133476,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="3886">
+    <name>Cyklopruh Patočkova x Střešovická</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.387320259681571,50.092534727282846,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4466">
+    <name>Přívoz Libčice - Dol</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.364151338212197,50.2035997592149,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4475">
+    <name>Kopec, cyklostezka do Zelenče</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.642586091592987,50.12552149875557,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4479">
+    <name>Začátek dvou stezek, Zeleneč</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.659644940925352,50.138347885664935,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4473">
+    <name>Snížený obrubník, U Úlů</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.636234620642458,50.122983323638515,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4612">
+    <name>Stoupání Proseckou</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.486513713463228,50.114572722229354,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4625">
+    <name>Panelová cesta, Tupolevova</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.506689289667298,50.14810055853434,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4613">
+    <name>Stoupání Proseckými skalami</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.48774752960377,50.11659537430574,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4729">
+    <name>Odbočka na stezku, Sobín</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.269093850738123,50.06542493400183,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4580">
+    <name>Začátek stezky, Dobřichovice</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.288652518875091,49.92722172700909,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4581">
+    <name>Začátek stezky, Všenory</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.298673251748111,49.92978408057073,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4582">
+    <name>Začátek stezky, Všenory</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.298673251748111,49.92978408057073,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4583">
+    <name>Cyklopruhy, Letovský most</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.248204806934318,49.919046839680476,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4584">
+    <name>Pěší zóna Karlštejn</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.184550622603217,49.93682467142938,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4723">
+    <name>Začátek stezky do Králova Dvora</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>13.991292098687113,49.915765443090656,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4649">
+    <name>Začátek stezky na Jinočany</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.3077283893751,50.046013516132206,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4961">
+    <name>Konec stezky podél Mezichuchelské</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.389696696868041,50.01602680745862,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2429">
+    <name>Přívoz P2</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.396567865081705,50.12258103120785,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5088">
+    <name>Konec stezky Na Baních</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.383066276184833,49.958803064136276,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5095">
+    <name>Začátek stezky do Hostivic</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.29194627154218,50.069887485250206,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5383">
+    <name>Cyklopruh Rohanské nábřeží</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.43851290093413,50.09402144956424,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5510">
+    <name>Dopravní hřiště, V Olšinách</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.49464617118781,50.07206690625176,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5179">
+    <name>Úzký cyklochodník Koloděje</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>ipr-znacky</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.64768228872393,50.06773201465244,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="107">
+    <name>Nová cyklostezka do Klecan</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.400332320419352,50.150431826308896,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5203">
+    <name>Kbely, varianta A44</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.554706195439232,50.127388287081644,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4415">
+    <name>Přívoz v Klecanech</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.403794387448256,50.166333917365776,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5516">
+    <name>Skatepark pod Vysočanskou estakádou</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.495330134487117,50.11310891746874,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5381">
+    <name>Pod Altánem, průjezd možný</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.475967267610525,50.06586225482875,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="3524">
+    <name>Realizace stezky Zbraslav - Jarov</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.394775849933415,49.95768296770111,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5506">
+    <name>Nájezd na chodník, Jahodnice</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.561324546184009,50.08285691902041,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5505">
+    <name>Stezka Pacov-Radošovice</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.669021943640342,50.00544325439183,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5509">
+    <name>Chodník z zastávce Kyje</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.54284010276052,50.09646824621752,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5511">
+    <name>Dopravní hřiště Platanová</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.509433189485954,50.055644380782745,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5518">
+    <name>Směr Kralupy: pouze pěšinka</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.357617477054381,50.17824522243703,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5517">
+    <name>Směr Řež: pouze pěšinka</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.364913085574637,50.2040310978731,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5578">
+    <name>Most pro pěší a cyklisty, U Trati</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.659162143302783,49.99950234336471,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5631">
+    <name>Přívoz Vrané nad Vltavou - Strnady</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.38894567834464,49.94163060464512,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4601">
+    <name>Mostek přes Říčanku</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.643819907740752,50.004064118198784,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5630">
+    <name>Přívoz P7: Pražská tržnice - Štvanice - Karlín</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.448844770057004,50.097452435792576,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5676">
+    <name>Galasovy cyklojízdy</name>
+    <markerId>32</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>32</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2.png</ikona>
+       <styleUrl>#icon_32</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.431253892522937,50.06712762601207,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="32">
+    <name>Piktokoridor na Kapitána Jaroše</name>
+    <markerId>28</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>28</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2_e.png</ikona>
+       <styleUrl>#icon_28</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.428683169312109,50.09569588743229,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2414">
+    <name>Cyklopruh v Chotkově ulici</name>
+    <markerId>28</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>28</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2_e.png</ikona>
+       <styleUrl>#icon_28</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.407724965606056,50.09317560707424,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2395">
+    <name>Cyklopruh Vinohradská</name>
+    <markerId>28</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>28</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2_e.png</ikona>
+       <styleUrl>#icon_28</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.46751161971337,50.078253519021345,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2410">
+    <name>Cyklopruh na Černém Mostě</name>
+    <markerId>28</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>28</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2_e.png</ikona>
+       <styleUrl>#icon_28</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.583811202377499,50.11076925056108,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2405">
+    <name>Stezka Lahovice - Malá Chuchle</name>
+    <markerId>28</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>28</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2_e.png</ikona>
+       <styleUrl>#icon_28</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.394989474868863,50.01689506318069,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2407">
+    <name>Stezka Zličín - Sobín</name>
+    <markerId>28</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>28</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2_e.png</ikona>
+       <styleUrl>#icon_28</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.27873916140687,50.06298324274677,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2411">
+    <name>Jan Bouchal</name>
+    <markerId>28</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>28</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2_e.png</ikona>
+       <styleUrl>#icon_28</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.431936861100668,50.09611101218134,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2377">
+    <name>Cyklotrasa za závorou</name>
+    <markerId>28</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>28</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2_e.png</ikona>
+       <styleUrl>#icon_28</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.498868875007053,50.04126615857415,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2420">
+    <name>Kbelský okruh</name>
+    <markerId>28</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>28</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2_e.png</ikona>
+       <styleUrl>#icon_28</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.568952,50.150557999999975,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2415">
+    <name>2007 - Nový povrch na trase A2 v Podhoří</name>
+    <markerId>28</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>28</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2_e.png</ikona>
+       <styleUrl>#icon_28</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.401927424605823,50.12803246430971,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2409">
+    <name>Cyklopruhy v Beladově - popis</name>
+    <markerId>28</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>28</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2_e.png</ikona>
+       <styleUrl>#icon_28</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.51706317196655,50.12266101601039,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2448">
+    <name>Cyklostezka mezi Kamýkem a Libuší</name>
+    <markerId>28</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>28</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2_e.png</ikona>
+       <styleUrl>#icon_28</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.446676999999992,50.009845,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2435">
+    <name>Evropská &quot;cyklostezka&quot;</name>
+    <markerId>28</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>28</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2_e.png</ikona>
+       <styleUrl>#icon_28</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.361696,50.098653999999975,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2438">
+    <name>Cyklostezka ve Svépravicích</name>
+    <markerId>28</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>28</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2_e.png</ikona>
+       <styleUrl>#icon_28</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.601802999999999,50.100925,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2434">
+    <name>Odkaz na článek</name>
+    <markerId>28</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>28</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2_e.png</ikona>
+       <styleUrl>#icon_28</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.458405000000003,50.09651099999999,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2441">
+    <name>Stezka Černý Most - Dolní Počernice</name>
+    <markerId>28</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>28</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2_e.png</ikona>
+       <styleUrl>#icon_28</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.58005655819774,50.100457472238936,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2433">
+    <name>Komise pro cyklistickou dopravu</name>
+    <markerId>28</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>28</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2_e.png</ikona>
+       <styleUrl>#icon_28</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.418308915344811,50.0871947030272,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="34">
+    <name>Cyklopruh Jugoslávských Partyzánů</name>
+    <markerId>28</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>28</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2_e.png</ikona>
+       <styleUrl>#icon_28</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.394606101852782,50.105081762557305,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2417">
+    <name>Cyklostezka Toužimská</name>
+    <markerId>28</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>28</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2_e.png</ikona>
+       <styleUrl>#icon_28</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.53816472883606,50.135195599725215,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="36">
+    <name>Stezka podél Rokytky v Libni</name>
+    <markerId>28</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>28</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2_e.png</ikona>
+       <styleUrl>#icon_28</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.474969984131224,50.11047242796305,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2432">
+    <name>Cyklostezka A143 v Řepích</name>
+    <markerId>28</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>28</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2_e.png</ikona>
+       <styleUrl>#icon_28</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.321794820763278,50.07295759154547,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="33">
+    <name>Napojení ministerstva na A2</name>
+    <markerId>28</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>28</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2_e.png</ikona>
+       <styleUrl>#icon_28</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.434295457671935,50.09362219046321,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="377">
+    <name>Petřínská lanovka</name>
+    <markerId>28</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>28</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2_e.png</ikona>
+       <styleUrl>#icon_28</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.401116460326733,50.08253268882169,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2422">
+    <name>Stezka podél Jinočanské spojky</name>
+    <markerId>28</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>28</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2_e.png</ikona>
+       <styleUrl>#icon_28</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.290024482139641,50.03654585111682,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2393">
+    <name>Nový povrch na A2 u ZOO</name>
+    <markerId>28</markerId>
+    <minZoom>15</minZoom>
+    <tag>None</tag>
+    <markerId>28</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/info2_e.png</ikona>
+       <styleUrl>#icon_28</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.39992460978776,50.1175500597757,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2502">
+    <name>Sčítač Nuselský most</name>
+    <markerId>27</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>27</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/counter2.png</ikona>
+       <styleUrl>#icon_27</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.430513602835047,50.06800223262863,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="21">
+    <name>Sčítač Kapitána Jaroše</name>
+    <markerId>27</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>27</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/counter2.png</ikona>
+       <styleUrl>#icon_27</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.433463728835955,50.09669264985815,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="1213">
+    <name>Sčítač Dukelských Hrdinů</name>
+    <markerId>27</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>27</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/counter2.png</ikona>
+       <styleUrl>#icon_27</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.433061424606183,50.097418944502024,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2495">
+    <name>Sčítač Barrandovský most (cca 800/den)</name>
+    <markerId>27</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>27</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/counter2.png</ikona>
+       <styleUrl>#icon_27</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.40675995980308,50.041171410878185,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2505">
+    <name>Sčítač Povltavská (~1750/den)</name>
+    <markerId>27</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>27</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/counter2.png</ikona>
+       <styleUrl>#icon_27</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.413722974404337,50.11458124022743,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2506">
+    <name>Sčítač Radotín</name>
+    <markerId>27</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>27</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/counter2.png</ikona>
+       <styleUrl>#icon_27</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.363383275619649,49.980345323928894,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2503">
+    <name>Sčítač Roztocká</name>
+    <markerId>27</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>27</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/counter2.png</ikona>
+       <styleUrl>#icon_27</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.391836148847226,50.117498234506414,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2494">
+    <name>Sčítač Chodov</name>
+    <markerId>27</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>27</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/counter2.png</ikona>
+       <styleUrl>#icon_27</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.492762309641156,50.03109650826092,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2500">
+    <name>Sčítač Letňany</name>
+    <markerId>27</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>27</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/counter2.png</ikona>
+       <styleUrl>#icon_27</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.507428628533438,50.12699099486283,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2510">
+    <name>Sčítač Šeberov</name>
+    <markerId>27</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>27</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/counter2.png</ikona>
+       <styleUrl>#icon_27</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.500626546471208,50.01165741390932,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2499">
+    <name>Sčítač Košíře</name>
+    <markerId>27</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>27</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/counter2.png</ikona>
+       <styleUrl>#icon_27</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.385656339278421,50.07045380080892,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2498">
+    <name>Sčítač Hlubočepská (1000/den v obou směrech)</name>
+    <markerId>27</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>27</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/counter2.png</ikona>
+       <styleUrl>#icon_27</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.403541308986886,50.04005514414174,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="23">
+    <name>Sčítač Krč, Sulická</name>
+    <markerId>27</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>27</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/counter2.png</ikona>
+       <styleUrl>#icon_27</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.44353847486924,50.03495432886094,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2501">
+    <name>Sčítač Modřany (3200 cyklistů/den)</name>
+    <markerId>27</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>27</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/counter2.png</ikona>
+       <styleUrl>#icon_27</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.40284393463958,50.003162404445554,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2508">
+    <name>Sčítač Rokytka</name>
+    <markerId>27</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>27</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/counter2.png</ikona>
+       <styleUrl>#icon_27</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.503458959190265,50.10489334275584,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2504">
+    <name>Sčítač Jeremenkova</name>
+    <markerId>27</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>27</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/counter2.png</ikona>
+       <styleUrl>#icon_27</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.417011362655296,50.046163286176885,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2507">
+    <name>Sčítač Na Petřinách (~100/den)</name>
+    <markerId>27</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>27</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/counter2.png</ikona>
+       <styleUrl>#icon_27</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.371167046181966,50.09276350722607,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2496">
+    <name>Sčítač Divoká Šárka (~400/den)</name>
+    <markerId>27</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>27</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/counter2.png</ikona>
+       <styleUrl>#icon_27</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.32057521975052,50.093634204815956,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2509">
+    <name>Sčítač Vítkov</name>
+    <markerId>27</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>27</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/counter2.png</ikona>
+       <styleUrl>#icon_27</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.4606509033215,50.08946985584295,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5515">
+    <name>Sčítač Pelléova</name>
+    <markerId>27</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>27</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/counter2.png</ikona>
+       <styleUrl>#icon_27</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.407404640782897,50.09825245131093,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="16">
+    <name>Sčítač Rohanské nábřeží</name>
+    <markerId>27</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>27</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/counter2.png</ikona>
+       <styleUrl>#icon_27</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.43797966137674,50.09408164857887,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="20">
+    <name>Sčítač Vršovická</name>
+    <markerId>27</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>27</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/counter2.png</ikona>
+       <styleUrl>#icon_27</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.444628829360974,50.06640237916821,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="15">
+    <name>Sčítač Podolská</name>
+    <markerId>27</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>27</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/counter2.png</ikona>
+       <styleUrl>#icon_27</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.417202119048637,50.062241285749835,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="17">
+    <name>Sčítač v Šáreckém údolí</name>
+    <markerId>27</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>27</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/counter2.png</ikona>
+       <styleUrl>#icon_27</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.383961822090138,50.11903996585253,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="18">
+    <name>Sčítač Kolčavka</name>
+    <markerId>27</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>27</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/counter2.png</ikona>
+       <styleUrl>#icon_27</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.481903763228628,50.10819978276828,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="19">
+    <name>Sčítač Dubeč</name>
+    <markerId>27</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>27</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/counter2.png</ikona>
+       <styleUrl>#icon_27</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.594446169311539,50.059701980474145,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="22">
+    <name>Sčítač Lahovičky</name>
+    <markerId>27</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>27</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/counter2.png</ikona>
+       <styleUrl>#icon_27</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.398241050263124,49.9947628231193,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="24">
+    <name>Sčítač Troja</name>
+    <markerId>27</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>27</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/counter2.png</ikona>
+       <styleUrl>#icon_27</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.417633626983655,50.11125035882977,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5900">
+    <name>Rozcestí, odbočka na Hloubětín</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.539831280708313,50.116787590604304,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5909">
+    <name>Rozcestí, východ letiště Kbely</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.560285806655884,50.12570271690447,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5078">
+    <name>Rozcestí, odbočka směr Rajská zahrada</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.552475214004517,50.11894085573991,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="120">
+    <name>Rozcestí, Toužimská - Polaneckého</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.534772634506227,50.13522135811122,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5904">
+    <name>Rozcestí A27 a Kb-Ča</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.530164599418642,50.1402790852396,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2914">
+    <name>Rozcestí u PVA</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.515518170926098,50.12767192486886,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="789">
+    <name>Odbočka z A2 na stezku Lannova</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.431925761902393,50.093632702482196,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5476">
+    <name>Podjezd Trojského mostu</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.437077919110543,50.11380555189379,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="1071">
+    <name>Křížení A25 a A44</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.576323355838113,50.08683563348257,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4714">
+    <name>Odbočky ke stezkám, Rozkoš</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.532830098716685,49.99954027373875,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="922">
+    <name>Rozcestí Hlubočepská</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky,ipr-fotky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.404021507934237,50.04084514749283,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4588">
+    <name>Začátek stezek, Průhonice</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.54904673442743,50.00094917195243,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5357">
+    <name>Rozcestí Litochlebská x Průhonická</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.488005021669146,50.060343457126926,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5358">
+    <name>Začátek značené trasy na Slatiny</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.489700177765846,50.05791892436382,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="748">
+    <name>Odbočka pod předmostí</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.43540750926162,50.09707782777595,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="792">
+    <name>Napojení A2 a A26</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky,ipr-fotky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.467151559523785,50.10781475990742,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="896">
+    <name>Výtoň</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.41502103439308,50.066944574792515,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="1074">
+    <name>Rozvětvení A258 a A259</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.582326746032699,50.08865381285103,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2838">
+    <name>Odbočka do Klukovic</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky,ipr-fotky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.36008952295165,50.03875969094637,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="1081">
+    <name>Rozcestí A21 a A213</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.500937991401972,50.01192210282208,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="791">
+    <name>Jižní předpolí Hlávkova mostu</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.436373407409661,50.09400204572589,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="3049">
+    <name>Křižovatka u lávky v Radotíně</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky,ipr-fotky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.36218164598184,49.98148781638266,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="3013">
+    <name>Poslední šipka na A23</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.513608438105852,50.04944200229868,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="3052">
+    <name>Zbraslavské náměstí</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.39342401658396,49.9760428031892,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="1046">
+    <name>Na hrázi Hostivařské přehrady</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.530504999999994,50.04325899999993,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="1093">
+    <name>Křížení tras A21 a A216 u Milíčovského vrchu</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky,ipr-fotky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.525619474868634,50.02338353805275,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="923">
+    <name>Křižovatka pod Barrandovským mostem</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky,ipr-fotky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.40761303439245,50.0423307091119,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="3286">
+    <name>Odbočka na Ctěnice</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.549421292866413,50.133688391615266,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2971">
+    <name>Rozcestí Novodvorská</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.456069690321824,50.0088753257426,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="926">
+    <name>Pobřežní cesta</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky,ipr-fotky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.407157373016009,50.03407696164642,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2877">
+    <name>Odbočka K Jezu</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky,ipr-fotky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.399603826151877,50.00991302553747,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="3347">
+    <name>Rozcestí u lesa</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky,ipr-fotky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.681927782603173,50.07679074184637,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2983">
+    <name>Rozcestí Divišovská</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.503625256149306,50.043193716906146,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2710">
+    <name>Rozcestí Satalice</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.576221925340898,50.12135403556613,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2837">
+    <name>Odbočka do Řeporyj</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky,ipr-fotky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.358233434311412,50.0377811871715,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5235">
+    <name>Lávka u nádraží Praha-Holyně</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky,ipr-fotky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.34924898492547,50.033602054089194,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="1075">
+    <name>Odbočení A258 z ulice Národních Hrdinů</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.584499999999988,50.089769,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="3048">
+    <name>Odbočení do Lahovic</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky,ipr-fotky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.385570508588458,49.98945414260533,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5273">
+    <name>Libeň, odbočka na Dolní Břežany</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.463682750325592,49.94205869613146,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="783">
+    <name>Stoliňská x Šplechnerova</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.591850034393557,50.11013123889688,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="1061">
+    <name>Křížení A44 a budoucí A236</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.554133271163852,50.058209096305305,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2909">
+    <name>Křížení u PVA</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.514316541291672,50.12823592016501,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2829">
+    <name>Rozcestí Modřany</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky,ipr-fotky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.402790290493117,50.00340376065603,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2842">
+    <name>Rozcestí u Labutě</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky,ipr-fotky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.456611496545243,50.03480076230552,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2839">
+    <name>Odbočka do Jinonic</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky,ipr-fotky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.389550906765317,50.041908683929165,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2870">
+    <name>Rozcestí pod trubkou metra</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.338047129268263,50.047530879838405,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2876">
+    <name>Rozcestí Hodkovičky</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.398654324163076,50.0235871948314,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="931">
+    <name>Začátek náplavky</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.415423873680023,50.06495696642304,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4007">
+    <name>Křížení A21 a stezky od Opatova</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky,ipr-fotky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.525062421412935,50.02429483737684,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="1076">
+    <name>Křížení ÚJ-BR (Ke Kateřinkám) a A21</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky,ipr-fotky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.522051321425764,50.019357344891105,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2774">
+    <name>Rozcestí, Mladoboleslavská - Polaneckého</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.541462063789368,50.12838174559255,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4312">
+    <name>Rozcestí na stezce podél obory Hvězda</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.335333684561064,50.078593063993246,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4422">
+    <name>Podjezd Drnovské ulice a rozcestí</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.297890046719232,50.09320990968378,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4446">
+    <name>Rozcestí, Cholupice</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.448608735660798,49.986818774630024,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4526">
+    <name>Odbočka na Centrální park Kbely</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.555623510924372,50.133194405178656,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4711">
+    <name>Křižovatka stezek u Zdiměřic</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.542700627892394,49.97946747714659,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4687">
+    <name>Křižovatka Čistovická X U Boroviček</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.324460009221673,50.0746580777828,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4708">
+    <name>Rozcestí Dobřejovice</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.576711038198988,49.986393883451925,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4704">
+    <name>Křižovatka Nupaky</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.59889827116062,49.994284907767636,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="1471">
+    <name>Lávka nad Hořejším rybníkem</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.521907915343958,50.0996348206538,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5002">
+    <name>Rozcestí Slivenec</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.357842782606205,50.019914902040135,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4959">
+    <name>Rozcestí A211 x A214 na Lhotce</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky,ipr-fotky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.432483295066252,50.0221897050901,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4972">
+    <name>Rozcestí mezi Královicemi a Hájkem</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.627436975081741,50.0413420313581,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4713">
+    <name>Křížení s 8100 u Zdiměřic</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.538398364631153,49.9913121301599,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4971">
+    <name>Lipanská x Rooseveltova</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.650546887944888,49.990418881494826,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5429">
+    <name>Křížení tras Fantův mlýn</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.562141278832105,50.02850688995064,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4997">
+    <name>Rozcestí Písnice</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.46379003868019,49.99302960413905,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2886">
+    <name>Křižovatka Hodkovice</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.482677203749997,49.973618151368676,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5005">
+    <name>Odbočka z Jinočan do Stodůlek</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.27762327540523,50.03100527251426,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5027">
+    <name>Rozcestí Nebušice</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky,ipr-fotky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.33132109987606,50.11084366349096,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5037">
+    <name>Odbočka na Kbely</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.578486660556678,50.14815212172368,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5071">
+    <name>A27 Miškovice</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.542775729745092,50.15722019082551,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5074">
+    <name>Vlevo Veleň.</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.558665135946967,50.169183204516344,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5363">
+    <name>Rozcestí Eurovelo 7 v Klecanech</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.4117980991406,50.175498878757544,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2841">
+    <name>Rozcestí za větrem</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky,ipr-fotky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.469384175878993,50.03554847008932,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4977">
+    <name>Podjezd ze Starochodovské pod Türkovu</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky,ipr-fotky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.499039629550014,50.033092098855185,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4018">
+    <name>Křížení cyklotras v Kunraticích</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky,ipr-fotky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.481170753096066,50.01329392442585,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="3062">
+    <name>A42 a A21 v Libuši</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky,ipr-fotky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.462217313386974,50.002442467637394,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4970">
+    <name>Rozcestí Dobřejovice, Špejchar</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.57638917311459,49.983786249923604,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5193">
+    <name>Rozcestí Dubeč</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky,ipr-fotky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.59634480817426,50.06185046155447,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2973">
+    <name>Konec stezky Kamýk</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky,ipr-fotky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.44582996712351,50.011186931039624,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2836">
+    <name>Rozcestí pod Butovicemi</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky,ipr-fotky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.35374341642202,50.04440292563701,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4629">
+    <name>Polabská x Ouhrabkova</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky,ipr-fotky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.529337862582363,50.15208451051787,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="3009">
+    <name>Kruhový objezd, rozcestí</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky,ipr-fotky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.383848530394582,50.131526906505485,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5194">
+    <name>Rozcestí Bulovka</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky,ipr-fotky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.469047168347478,50.11617915526511,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="925">
+    <name>Na Mlejnku</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky,ipr-fotky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.409711661377177,50.03469934832275,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5202">
+    <name>Na padesátníku, Šárka</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.299499372129574,50.10068704232911,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="3042">
+    <name>Odbočení do Malé Chuchle</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky,ipr-fotky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.39579508935046,50.02491338719038,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="3044">
+    <name>Odbočení z A1 do Velké Chuchle</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky,ipr-fotky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.395934564220395,50.012308269716215,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="3059">
+    <name>Odbočení z A2 na Komořany</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky,ipr-fotky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.403723699198643,49.99133170796436,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5217">
+    <name>Rozcestí v Klecánkách</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.402539113630022,50.170846879542935,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5236">
+    <name>Odbočka na Velkou Ohradu</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.349737146976963,50.03430498619429,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5239">
+    <name>Odbočka na lávku přes Vltavu</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.399277547469293,49.98242578778031,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5247">
+    <name>Rozcestí Běchovice</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky,ipr-fotky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.616482833456503,50.08309365277991,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="1073">
+    <name>Rozcestí A44 a A25/14</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky,ipr-fotky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.576974576722117,50.08854785899009,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5108">
+    <name>Pilská x Novozámecká</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky,ipr-fotky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.563224891267279,50.090363066243015,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5154">
+    <name>Rozcestí A212 a A213</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.480360725976297,50.018608564934055,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="1013">
+    <name>Odbočení na A223</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky,ipr-fotky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.46769960978673,50.04585533843867,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="1031">
+    <name>Rozcestí A22 a A225 Chodov</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>ipr-znacky</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.492213084655814,50.03090189402258,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5355">
+    <name>Slatiny, odbočení od A42 na Zahradní město</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.481782296754005,50.06107354810088,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2801">
+    <name>Rozcestí tras A21, A22 a A41 na Hájích</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.523967129318702,50.030707114257964,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5781">
+    <name>Křižovatka A26 u podjezdu Průmyslové</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.5316231046625,50.103598001491854,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5788">
+    <name>Rozcestí Tálinská - Oborská</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.541879871933572,50.09962721658415,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5789">
+    <name>Rozcestí Hloubětínská - V Chaloupkách</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.533489922137319,50.09996443641039,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5794">
+    <name>Odbočení A41 a A222</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.498122314071168,50.04723987779401,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5787">
+    <name>Křižovatka Za Rokytkou - Hodějovská</name>
+    <markerId>41</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>41</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/rozcestnik.png</ikona>
+       <styleUrl>#icon_41</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.548628309814905,50.09560104144381,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2905">
+    <name>Park nad Mrázovkou</name>
+    <markerId>20</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>20</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/zkratka2.png</ikona>
+       <styleUrl>#icon_20</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.398563129053178,50.070832543143325,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="233">
+    <name>Alternativa k trase 201 u fakulty Stavební</name>
+    <markerId>20</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>20</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/zkratka2.png</ikona>
+       <styleUrl>#icon_20</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.38870899999999,50.10488999999999,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="49">
+    <name>Mírnější stoupání</name>
+    <markerId>20</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>20</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/zkratka2.png</ikona>
+       <styleUrl>#icon_20</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.398903068786352,50.083362618529705,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="55">
+    <name>Dolní cesta směr Motol</name>
+    <markerId>20</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>20</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/zkratka2.png</ikona>
+       <styleUrl>#icon_20</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.365246678573795,50.07519172260244,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="203">
+    <name>Objezd trasy 0035 po Náchodské</name>
+    <markerId>20</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>20</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/zkratka2.png</ikona>
+       <styleUrl>#icon_20</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.59311471031198,50.11195782223293,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="272">
+    <name>Objetí schodů na trase 1 u Hořejšího rybníka</name>
+    <markerId>20</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>20</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/zkratka2.png</ikona>
+       <styleUrl>#icon_20</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.52779,50.09873699999999,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="268">
+    <name>Zkratka na trase 1, pěšina</name>
+    <markerId>20</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>20</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/zkratka2.png</ikona>
+       <styleUrl>#icon_20</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.509930000000002,50.09831499999999,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="275">
+    <name>Objetí ulice V Chaloupkách</name>
+    <markerId>20</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>20</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/zkratka2.png</ikona>
+       <styleUrl>#icon_20</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.542552611113999,50.10144882742516,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="308">
+    <name>Zkratka Kyjemi</name>
+    <markerId>20</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>20</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/zkratka2.png</ikona>
+       <styleUrl>#icon_20</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.545439999999997,50.09623,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="407">
+    <name>Stoupání Kinského zahradou</name>
+    <markerId>20</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>20</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/zkratka2.png</ikona>
+       <styleUrl>#icon_20</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.398402694443073,50.07806754759229,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="408">
+    <name>Stoupání k Nebozízku</name>
+    <markerId>20</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>20</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/zkratka2.png</ikona>
+       <styleUrl>#icon_20</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.402577883606156,50.07991496428148,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="417">
+    <name>Průjezd Čelakovského sady</name>
+    <markerId>20</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>20</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/zkratka2.png</ikona>
+       <styleUrl>#icon_20</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.430705262565592,50.07783262237353,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="590">
+    <name>Podchod Modřanské</name>
+    <markerId>20</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>20</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/zkratka2.png</ikona>
+       <styleUrl>#icon_20</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.409764119048859,50.039480202381455,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="498">
+    <name>Vyhnutí se Jinonické přes Šmukýřku</name>
+    <markerId>20</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>20</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/zkratka2.png</ikona>
+       <styleUrl>#icon_20</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.371229999999997,50.06445999999999,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="503">
+    <name>Petrohradská ulice</name>
+    <markerId>20</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>20</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/zkratka2.png</ikona>
+       <styleUrl>#icon_20</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.452834611114813,50.06388123738619,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2451">
+    <name>Řásnovka</name>
+    <markerId>20</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>20</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/zkratka2.png</ikona>
+       <styleUrl>#icon_20</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.424912906745096,50.091901430007795,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2731">
+    <name>Průjezd Kozí</name>
+    <markerId>20</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>20</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/zkratka2.png</ikona>
+       <styleUrl>#icon_20</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.422300678833267,50.09090160672367,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="1392">
+    <name>Křížení praktických tras</name>
+    <markerId>20</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>20</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/zkratka2.png</ikona>
+       <styleUrl>#icon_20</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.400441186508408,50.080437660130606,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2713">
+    <name>Zkratka podél letecké navigace</name>
+    <markerId>20</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>20</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/zkratka2.png</ikona>
+       <styleUrl>#icon_20</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.564463121016782,50.128339089317066,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2970">
+    <name>Nová cyklostezka Radotín</name>
+    <markerId>20</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>20</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/zkratka2.png</ikona>
+       <styleUrl>#icon_20</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.39684115086767,49.99424516685084,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="3116">
+    <name>Zkratka u Hiltonu</name>
+    <markerId>20</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>20</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/zkratka2.png</ikona>
+       <styleUrl>#icon_20</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.439659935574628,50.09251428283189,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="439">
+    <name>Průjezd přes parkoviště</name>
+    <markerId>20</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>20</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/zkratka2.png</ikona>
+       <styleUrl>#icon_20</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.39742225927739,50.071400307013725,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="163">
+    <name>Sjezd ulicí K Bohnicím</name>
+    <markerId>20</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>20</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/zkratka2.png</ikona>
+       <styleUrl>#icon_20</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.410488235443243,50.12261416845173,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="206">
+    <name>Průjezd Císařským mlýnem</name>
+    <markerId>20</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>20</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/zkratka2.png</ikona>
+       <styleUrl>#icon_20</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.404967,50.10928399999998,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="1396">
+    <name>Objetí schodů do Čuprovy</name>
+    <markerId>20</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>20</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/zkratka2.png</ikona>
+       <styleUrl>#icon_20</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.481064179237228,50.107217976034,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="671">
+    <name>Vyhnutí se Gymnazijní</name>
+    <markerId>20</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>20</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/zkratka2.png</ikona>
+       <styleUrl>#icon_20</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.38586203306514,50.09800876392117,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2690">
+    <name>Zkratka A23 přes občasný brod</name>
+    <markerId>20</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>20</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/zkratka2.png</ikona>
+       <styleUrl>#icon_20</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.528843385304349,50.04327295374247,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="3311">
+    <name>Průjezd zastávkou</name>
+    <markerId>20</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>20</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/zkratka2.png</ikona>
+       <styleUrl>#icon_20</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.423534494981,50.09997152318566,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2796">
+    <name>Sešup do Prokopáku</name>
+    <markerId>20</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>20</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/zkratka2.png</ikona>
+       <styleUrl>#icon_20</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.349199754350877,50.04596003845036,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2791">
+    <name>Zkratka z Bělohorské</name>
+    <markerId>20</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>20</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/zkratka2.png</ikona>
+       <styleUrl>#icon_20</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.374439341174998,50.08467868608643,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2820">
+    <name>Smíchovské nádraží zadem</name>
+    <markerId>20</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>20</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/zkratka2.png</ikona>
+       <styleUrl>#icon_20</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.406706315623087,50.05961361609826,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="3734">
+    <name>Na Obci</name>
+    <markerId>20</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>20</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/zkratka2.png</ikona>
+       <styleUrl>#icon_20</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.654344895912626,49.98886341661499,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="401">
+    <name>Alternativní křížení Bělohorské</name>
+    <markerId>20</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>20</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/zkratka2.png</ikona>
+       <styleUrl>#icon_20</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.322707386230174,50.07546257950245,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4213">
+    <name>Nový Zlíchov</name>
+    <markerId>20</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>20</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/zkratka2.png</ikona>
+       <styleUrl>#icon_20</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.406262019740614,50.05051436394783,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4554">
+    <name>Zkratka do Ankarské</name>
+    <markerId>20</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>20</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/zkratka2.png</ikona>
+       <styleUrl>#icon_20</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.35359416353663,50.08844804675308,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4736">
+    <name>Pod Bohdalcem</name>
+    <markerId>20</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>20</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/zkratka2.png</ikona>
+       <styleUrl>#icon_20</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.469465592959118,50.06411122580881,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="4839">
+    <name>Strahovská zahrada, odbočka</name>
+    <markerId>20</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>20</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/zkratka2.png</ikona>
+       <styleUrl>#icon_20</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.3908768688376,50.08724134619895,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2678">
+    <name>A204: zkratka</name>
+    <markerId>20</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>20</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/zkratka2.png</ikona>
+       <styleUrl>#icon_20</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.451450926401547,49.980003813211724,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5782">
+    <name>Sjezd do Modrého</name>
+    <markerId>20</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>20</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/zkratka2.png</ikona>
+       <styleUrl>#icon_20</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.52244190320518,50.10584553513485,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="2676">
+    <name>Sjezd ze stezky Rokytka</name>
+    <markerId>20</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>20</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/zkratka2.png</ikona>
+       <styleUrl>#icon_20</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.52812063429619,50.10547544471003,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+  <Placemark id="5790">
+    <name>Zkratka Lánskou</name>
+    <markerId>20</markerId>
+    <minZoom>14</minZoom>
+    <tag>None</tag>
+    <markerId>20</markerId>
+    
+       <ikona>http://mapa.prahounakole.cz/media/ikony/zkratka2.png</ikona>
+       <styleUrl>#icon_20</styleUrl>
+       <height>20</height>
+       <width>20</width>
+    
+    
+    <line_width>2</line_width>
+    <line_color>#ffc90e</line_color>
+    <MultiGeometry><Point><coordinates>14.538291076274758,50.09866027718785,0</coordinates></Point></MultiGeometry>
+  </Placemark>
+
+
+</Document>
+</kml>

@@ -7,7 +7,11 @@ env:
   - DJANGO_VERSION='https://github.com/django/django/archive/master.tar.gz'
 python:
   - "3.4"
+before_install:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
 before_script:
+  - npm install
   - npm install -g bower
   - npm install less
   - npm install uglify-js -g
@@ -19,6 +23,7 @@ before_script:
   - pip install -q "$DJANGO_VERSION"
 script:
   - python -Wall $VIRTUAL_ENV/bin/coverage run manage.py test
+  - node_modules/karma/bin/karma start karma.conf.js --single-run
 after_script:
   - coveralls
 addons:
