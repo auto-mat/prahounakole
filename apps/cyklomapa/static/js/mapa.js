@@ -1196,7 +1196,7 @@ function onLocationUpdate(evt) {
 
 function addDPNK1(name, enabled, slug) {
   var dpnk_gpxfile = new OpenLayers.Layer.WMS(name,
-     "http://www.auto-mat.cz:8080/geoserver/dpnk/wms?tiled=true",
+     "http://mapa.prahounakole.cz:8080/geoserver/dpnk/wms?tiled=true",
      {
         layers: 'dpnk:the_gpx_geom_anonymous',
         format: 'image/png',
@@ -1209,7 +1209,7 @@ function addDPNK1(name, enabled, slug) {
 
 function addDPNK2(name, enabled, slug) {
   var dpnk_tracks = new OpenLayers.Layer.WMS(name,
-     "http://www.auto-mat.cz:8080/geoserver/dpnk/wms?tiled=true",
+     "http://mapa.prahounakole.cz:8080/geoserver/dpnk/wms?tiled=true",
      {
         layers: 'dpnk:tracks_anonymous',
         format: 'image/png',
