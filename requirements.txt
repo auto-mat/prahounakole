@@ -22,7 +22,7 @@ raven
 django-cors-headers
 gunicorn
 newrelic
--e git+https://github.com/jaredly/django-feedback.git#egg=django-feedback
+django-feedback
 
 django-compressor
 lxml
