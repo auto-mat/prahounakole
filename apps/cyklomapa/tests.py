@@ -116,8 +116,8 @@ class AdminFilterTests(TestCase):
     FORCE_SUBDOMAIN="testing-sector"
 )
 class AdminTest(tests.AdminSiteSmokeTest):
-    def get_request(self):
-        request = super().get_request()
+    def get_request(self, params={}):
+        request = super().get_request(params)
         request.subdomain = "testing-sector"
         return request
 
