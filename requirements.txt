@@ -1,6 +1,6 @@
 easy-thumbnails
--e git+https://github.com/yvandermeer/django-http-proxy.git#egg=django-http-proxy
--e git+https://github.com/linsomniac/python-memcached.git#egg=python-memcached
+django-http-proxy
+python-memcached
 psycopg2
 django-colorful
 django-mass-edit
@@ -22,7 +22,7 @@ raven
 django-cors-headers
 gunicorn
 newrelic
--e git+https://github.com/jaredly/django-feedback.git#egg=django-feedback
+django-feedback
 
 django-compressor
 lxml
