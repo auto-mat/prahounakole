@@ -1094,9 +1094,11 @@ function reportAction(a, b, c, d, e, f){
    f = typeof f  === 'undefined' ? '' : f;
    ga(a, b, c, d, e, f);
    lastActions += a + " " + b + " " + c + " " + d + " " + e + " " + f + "\n";
-   Raven.setExtraContext({
-      last_actions: lastActions,
-   });
+   if(typeof Raven !== 'undefined'){
+       Raven.setExtraContext({
+          last_actions: lastActions,
+       });
+   };
 }
 
 function onFeatureUnselect(feature) {
