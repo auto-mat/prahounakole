@@ -1,0 +1,4 @@
+coverage
+coveralls
+django_coverage_plugin
+-e git+https://github.com/PetrDlouhy/django-admin-smoke-tests.git#egg=django-admin-smoke-tests

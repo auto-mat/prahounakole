@@ -17,7 +17,7 @@ before_script:
   - npm install uglify-js -g
   - psql -c 'create database travis_ci_test;' -U postgres
   - psql --no-password travis_ci_test -U postgres -c "create extension postgis"
-  - pip install coverage coveralls
+  - pip install -r test_requirements.txt
   - cd project && cp settings_local_sample.py settings_local.py && cd ..
   - pip install -q "$DJANGO_VERSION"
   - python manage.py collectmedia --noinput

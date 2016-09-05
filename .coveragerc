@@ -1,2 +1,6 @@
 [run]
 include = apps*
+omit = apps/cyklomapa/migrations*
+plugins =
+    django_coverage_plugin
+branch = True
