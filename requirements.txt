@@ -15,7 +15,7 @@ django-constance
 
 django-author
 django-webmap-corpus>=0.9
--e git+https://github.com/PetrDlouhy/django-leaflet.git@g-m#egg=django-leaflet  # GeoAdminMixin in PR #116
+django-leaflet
 django-smart-selects
 django-import-export
 raven
