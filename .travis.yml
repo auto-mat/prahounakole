@@ -20,6 +20,7 @@ before_script:
   - pip install coverage coveralls
   - cd project && cp settings_local_sample.py settings_local.py && cd ..
   - pip install -q "$DJANGO_VERSION"
+  - python manage.py collectmedia --noinput
   - ./update.sh no_virtualenv
 script:
   - python -Wall $VIRTUAL_ENV/bin/coverage run manage.py test

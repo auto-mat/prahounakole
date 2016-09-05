@@ -95,7 +95,6 @@ class AdminFilterTests(TestCase):
         views = [
             ("mapa_view",),
             ("mapa_view", (1, )),
-            ("popup_view", (1, )),
             ("uzavirky_view",),
             ("uzavirky_feed",),
             ("novinky_feed",),
@@ -110,6 +109,48 @@ class AdminFilterTests(TestCase):
         ]
 
         self.verify_views(views)
+
+
+class ViewTest(TestCase):
+    fixtures = ["webmap", "cyklomapa"]
+
+    def setUp(self):
+                # Every test needs access to the request factory.
+        self.factory = RequestFactory()
+        self.client = Client(HTTP_HOST='testserver')
+        self.user = User.objects.create_superuser(
+            username='admin',
+            email='test_user@test_user.com',
+            password='admin',
+        )
+        self.user.save()
+        self.client.force_login(user=self.user)
+
+    def test_popup(self):
+        address = reverse("popup_view", args=(1, ))
+        response = self.client.get(address)
+        self.assertContains(
+            response,
+            '<a href="http://maps.google.com/?q=Testing%20poi@50.08740475519474,14.422134381874203&amp;z=18&amp;t=h"'
+            ' target="pnk_gmap" title="Zobrazit v Google Maps" class="sprite btn gmap"></a>',
+            html=True,
+        )
+        self.assertContains(
+            response,
+            '<p>Description</p>',
+            html=True,
+        )
+        self.assertContains(
+            response,
+            '<a href="/admin/webmap/poi/1/change/" class="btn edit" title="Upravit">&#9874;</a>',
+            html=True,
+        )
+        self.assertContains(
+            response,
+            '<a href="http://localhost:8000/media/DSC00002.JPG" title="Testing photo" data-lightbox="poi-image" data-title="Testing photo">'
+            '<img src="http://localhost:8000/media/DSC00002.JPG.300x0_q85.jpg" title="Testing photo" width="300" height="225" class="foto_thumb"/></a>',
+            html=True,
+        )
 
 
 @override_settings(

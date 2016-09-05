@@ -126,6 +126,7 @@ INSTALLED_APPS = [
     'raven.contrib.django.raven_compat',
     'corsheaders',
     'httpproxy',
+    'django_media_fixtures',
 ]
 
 ENABLE_API_PROXY = DEBUG        # http-roxy pro requesty na /api

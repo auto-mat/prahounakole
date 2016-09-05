@@ -15,9 +15,31 @@
             "last_modification": "2015-11-13 12:00",
             "marker": 1,
             "name": "Testing poi",
+            "desc": "Description",
+            "desc_extra": "Extra description",
+            "address": "Test address",
+            "url": "http://www.test.cz",
             "status": 1
         },
         "model": "webmap.poi",
+        "pk": 1
+    },
+    {
+        "fields": {
+        },
+        "model": "webmap.license",
+        "pk": 1
+    },
+    {
+        "fields": {
+            "name": "Testing photo",
+            "desc": "Photo description",
+            "photo": "DSC00002.JPG",
+            "license": 1,
+            "status": 1,
+            "poi": 1
+        },
+        "model": "webmap.photo",
         "pk": 1
     },
     {
