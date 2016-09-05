@@ -17,20 +17,28 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-from django.test import TestCase, RequestFactory, Client
+import comments_moderation
+
+import cyklomapa
+
+from django.contrib import auth, sites
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
+from django.test import Client, RequestFactory, TestCase
 from django.test.utils import override_settings
-from webmap import views as webmap_views
-import webmap
-import comments_moderation
-import feedback
-import cyklomapa
-import httpproxy
-from django.contrib import sites, auth
+
 from django_admin_smoke_tests import tests
-from freezegun import freeze_time
+
+import feedback
+
 from fluent_comments import compat as comments_compat
+
+from freezegun import freeze_time
+
+import httpproxy
+
+import webmap
+from webmap import views as webmap_views
 
 
 class AdminFilterTests(TestCase):
@@ -41,7 +49,10 @@ class AdminFilterTests(TestCase):
         self.factory = RequestFactory()
         self.client = Client(HTTP_HOST='testserver')
         self.user = User.objects.create_superuser(
-            username='admin', email='test_user@test_user.com', password='admin')
+            username='admin',
+            email='test_user@test_user.com',
+            password='admin',
+        )
         self.user.save()
 
     @override_settings(
@@ -57,7 +68,6 @@ class AdminFilterTests(TestCase):
         self.assertTrue(self.client.login(username='admin', password='admin'))
         response = self.client.get(reverse("admin:webmap_poi_changelist"))
         self.assertEqual(response.status_code, 200)
-
 
     @freeze_time("2016-01-04 17:10:00")
     def test_comment_post(self):
@@ -189,6 +199,7 @@ class MestoAdminTest(AdminTest):
         webmap.admin.PropertyAdmin,
         webmap.admin.StatusAdmin,
     ]
+
     def setUp(self):
         super().setUp()
         self.superuser = User.objects.get(pk=1)

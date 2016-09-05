@@ -7,6 +7,7 @@
 # see: http://rob.cogit8.org/blog/2008/Jun/20/django-and-relativity/
 import os
 import sys
+
 from django.utils.translation import ugettext_lazy as _
 
 normpath = lambda *args: os.path.normpath(os.path.abspath(os.path.join(*args)))
