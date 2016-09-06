@@ -37,6 +37,8 @@ from freezegun import freeze_time
 
 import httpproxy
 
+from project import settings
+
 import webmap
 from webmap import views as webmap_views
 
@@ -157,8 +159,9 @@ class ViewTest(TestCase):
         )
         self.assertContains(
             response,
-            '<a href="http://localhost:8000/media/DSC00002.JPG" title="Testing photo" data-lightbox="poi-image" data-title="Testing photo">'
-            '<img src="http://localhost:8000/media/DSC00002.JPG.300x0_q85.jpg" title="Testing photo" width="300" height="225" class="foto_thumb"/></a>',
+            '<a href="%(host)s/media/DSC00002.JPG" title="Testing photo" data-lightbox="poi-image" data-title="Testing photo">'
+            '<img src="%(host)s/media/DSC00002.JPG.300x0_q85.jpg" title="Testing photo" width="300" height="225" class="foto_thumb"/></a>' %
+            {'host': settings.SITE_URL},
             html=True,
         )
 
