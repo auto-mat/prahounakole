@@ -22,6 +22,6 @@
     "openlayers": "https://github.com/PetrDlouhy/openlayers.git",
     "bootstrap": "~3.3.5",
     "jquery.tools": "http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js",
-    "jquery.persist": "https://jquery-persist.googlecode.com/files/jquery-persist-1.1.tgz"
+    "jquery-persist": "https://github.com/commonpike/jquery-persist/blob/master/jquery-persist-1.1.tgz?raw=true"
   }
 }
