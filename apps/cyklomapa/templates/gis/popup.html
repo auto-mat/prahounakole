@@ -29,8 +29,8 @@
   {% for fotka in fotky %}
     {% thumbnail fotka.photo "300x0" as foto_thumb %}
     {{ fotka }}
-    <a href="{{ settings.SITE_URL}}{{ fotka.photo.url }}" title="{{ fotka }}" data-lightbox="poi-image" data-title="{{ fotka }}">
-    <img src="{{ settings.SITE_URL}}{{ foto_thumb.url }}" title="{{ fotka }}" width="{{ foto_thumb.width }}" height="{{ foto_thumb.height }}" class="foto_thumb"/></a>
+    <a href="{{ fotka.photo.url }}" title="{{ fotka }}" data-lightbox="poi-image" data-title="{{ fotka }}">
+    <img src="{{ foto_thumb.url }}" title="{{ fotka }}" width="{{ foto_thumb.width }}" height="{{ foto_thumb.height }}" class="foto_thumb"/></a>
   {% endfor %}
 {% endif %}
 
