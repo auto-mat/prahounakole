@@ -27,6 +27,20 @@
     },
     {
         "fields": {
+           "comment": "Testing comment",
+           "content_type": ["webmap", "poi"],
+           "submit_date": "2015-11-12T18:53:35.982",
+           "user_name": "Testing user",
+           "is_public": true,
+           "is_removed": false,
+           "object_pk": "1",
+           "site": "1"
+        },
+        "model": "django_comments.comment",
+        "pk": 1
+    },
+    {
+        "fields": {
             "aktivni": true,
             "geom": "SRID=4326;POINT (14.4221343818742032 50.0874047551947399)",
             "maxzoom": 18,

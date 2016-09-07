@@ -161,6 +161,11 @@ class ViewTest(TestCase):
             '<img src="/media/DSC00002.JPG.300x0_q85.jpg" title="Testing photo" width="300" height="225" class="foto_thumb"/></a>',
             html=True,
         )
+        self.assertContains(
+            response,
+            '<h4>Testing user<span class="comment-date">poslal Lis. 12, 2015, 6:53 odp.</span></h4>',
+            html=True,
+        )
 
 
 @override_settings(

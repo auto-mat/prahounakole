@@ -61,6 +61,7 @@
             "layer": 1,
             "name": "Testing marker",
             "slug": "vyluka_akt",
+            "default_icon": "DSC00002.JPG",
             "status": 1
         },
         "model": "webmap.marker",
