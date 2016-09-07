@@ -47,12 +47,25 @@
             "created_at": "2015-11-13 12:00",
             "geom": "SRID=4326;GEOMETRYCOLLECTION(POINT (14.4221343818742032 50.0874047551947399))",
             "last_modification": "2015-11-13 12:00",
-            "marker": 1,
+            "marker": 2,
             "name": "Testing poi 1",
             "status": 1
         },
         "model": "webmap.poi",
         "pk": 205
+    },
+    {
+        "fields": {
+            "created_at": "2015-11-13 12:00",
+            "last_modification": "2015-11-13 12:00",
+            "layer": 1,
+            "name": "Metro A",
+            "slug": "metro_a",
+            "default_icon": "DSC00002.JPG",
+            "status": 1
+        },
+        "model": "webmap.marker",
+        "pk": 2
     },
     {
         "fields": {
@@ -69,11 +82,37 @@
     },
     {
         "fields": {
+            "base_layer": 2,
+            "desc": "Preset description",
+            "icon": "DSC00002.JPG",
+            "name": "Preset name",
+            "status": 1
+        },
+        "model": "webmap.mappreset",
+        "pk": 1
+    },
+    {
+        "fields": {
             "show": true,
             "name": "Testing status"
         },
         "model": "webmap.status",
         "pk": 1
+    },
+    {
+        "fields": {},
+        "model": "webmap.baselayer",
+        "layer": 2,
+        "pk": 2
+    },
+    {
+        "fields": {
+            "name": "Testing base layer",
+            "slug": "m",
+            "status": 1
+        },
+        "model": "webmap.layer",
+        "pk": 2
     },
     {
         "fields": {},

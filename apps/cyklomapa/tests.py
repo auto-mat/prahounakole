@@ -47,7 +47,7 @@ class AdminFilterTests(TestCase):
     def setUp(self):
                 # Every test needs access to the request factory.
         self.factory = RequestFactory()
-        self.client = Client(HTTP_HOST='testserver')
+        self.client = Client(HTTP_HOST='testing-sector.testserver')
         self.user = User.objects.create_superuser(
             username='admin',
             email='test_user@test_user.com',
@@ -86,6 +86,8 @@ class AdminFilterTests(TestCase):
         }
         response = self.client.post(reverse("comments-post-comment-ajax"), post_data, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertEqual(response.status_code, 200, response.content.decode("utf-8"))
+        self.assertContains(response, '<div class=\\"comment-text\\"><p>Testing comment</p></div>')
+        self.assertContains(response, 'Testing name\\n              <span class=\\"comment-date\\">poslal Led. 4, 2016, 5:10 odp.</span>')
 
     def verify_views(self, views, status_code_map={}):
         for view in views:
@@ -95,7 +97,7 @@ class AdminFilterTests(TestCase):
             else:
                 args = None
             address = reverse(view[0], args=args)
-            response = self.client.get(address, HTTP_HOST="testing-campaign.testserver")
+            response = self.client.get(address, HTTP_HOST="testing-sector.testserver")
             self.assertEqual(response.status_code, status_code, "%s view failed with following content: \n%s" % (view, response.content.decode("utf-8")))
 
     def test_complementary_views(self):
@@ -103,8 +105,6 @@ class AdminFilterTests(TestCase):
         test if other views load
         """
         views = [
-            ("mapa_view",),
-            ("mapa_view", (1, )),
             ("uzavirky_view",),
             ("uzavirky_feed",),
             ("novinky_feed",),
@@ -115,7 +115,6 @@ class AdminFilterTests(TestCase):
             ("appcache_view",),
             ("kml_view", ("l",)),
             (webmap_views.search_view, ("asdf",)),
-            ("metro_view",),
         ]
 
         self.verify_views(views)
@@ -127,7 +126,7 @@ class ViewTest(TestCase):
     def setUp(self):
                 # Every test needs access to the request factory.
         self.factory = RequestFactory()
-        self.client = Client(HTTP_HOST='testserver')
+        self.client = Client(HTTP_HOST="testing-sector.testserver")
         self.user = User.objects.create_superuser(
             username='admin',
             email='test_user@test_user.com',
@@ -135,6 +134,25 @@ class ViewTest(TestCase):
         )
         self.user.save()
         self.client.force_login(user=self.user)
+
+    def test_metro_view(self):
+        address = reverse("metro_view")
+        response = self.client.get(address)
+        self.assertContains(response, '<b>Testing poi 1</b>', html=True)
+
+    def test_mapa_view(self):
+        address = reverse("mapa_view")
+        response = self.client.get(address)
+        self.assertContains(response, 'mapconfig[\'address_search_area\'] = "14.288920739775005,49.99501600356955,14.656276086402867,50.16553949570296";')
+        self.assertContains(response, 'mapconfig[\'vrstvy\'].push(["Testing layer", "/kml/l/", enabled, "l"]);')
+        self.assertContains(response, '<a href="javascript:void(0)" data-dismiss="modal"><img src="/static/media/DSC00002.JPG" class=""/>Preset name</a>', html=True)
+
+    def test_mapa_view_misto(self):
+        address = reverse("mapa_view", args=(1, ))
+        response = self.client.get(address)
+        self.assertContains(response, 'mapconfig[\'address_search_area\'] = "14.288920739775005,49.99501600356955,14.656276086402867,50.16553949570296";')
+        self.assertContains(response, 'mapconfig[\'center_feature\'] = 1;')
+        self.assertContains(response, '<a href="javascript:void(0)" data-dismiss="modal"><img src="/static/media/DSC00002.JPG" class=""/>Preset name</a>', html=True)
 
     def test_popup(self):
         address = reverse("popup_view", args=(1, ))
