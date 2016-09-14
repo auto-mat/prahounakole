@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/auto-mat/prahounakole.svg?branch=master)](https://travis-ci.org/auto-mat/prahounakole)
+[![Coverage Status](https://coveralls.io/repos/github/auto-mat/prahounakole/badge.svg?branch=master)](https://coveralls.io/github/auto-mat/prahounakole?branch=master)
+
 Sorry, no english info at moment. Please contact redakce@prahounakole.cz with any questions.
 
 Mapa Prahou na kole
