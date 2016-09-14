@@ -23,6 +23,7 @@ import cyklomapa
 
 from django.contrib import auth, sites
 from django.contrib.auth.models import User
+from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.core.urlresolvers import reverse
 from django.test import Client, RequestFactory, TestCase
 from django.test.utils import override_settings
@@ -145,14 +146,14 @@ class ViewTest(TestCase):
         response = self.client.get(address)
         self.assertContains(response, 'mapconfig[\'address_search_area\'] = "14.288920739775005,49.99501600356955,14.656276086402867,50.16553949570296";')
         self.assertContains(response, 'mapconfig[\'vrstvy\'].push(["Testing layer", "/kml/l/", enabled, "l"]);')
-        self.assertContains(response, '<a href="javascript:void(0)" data-dismiss="modal"><img src="/static/media/DSC00002.JPG" class=""/>Preset name</a>', html=True)
+        self.assertContains(response, '<a href="javascript:void(0)" data-dismiss="modal"><img src="%s" class=""/>Preset name</a>' % static('/media/DSC00002.JPG'), html=True)
 
     def test_mapa_view_misto(self):
         address = reverse("mapa_view", args=(1, ))
         response = self.client.get(address)
         self.assertContains(response, 'mapconfig[\'address_search_area\'] = "14.288920739775005,49.99501600356955,14.656276086402867,50.16553949570296";')
         self.assertContains(response, 'mapconfig[\'center_feature\'] = 1;')
-        self.assertContains(response, '<a href="javascript:void(0)" data-dismiss="modal"><img src="/static/media/DSC00002.JPG" class=""/>Preset name</a>', html=True)
+        self.assertContains(response, '<a href="javascript:void(0)" data-dismiss="modal"><img src="%s" class=""/>Preset name</a>' % static('/media/DSC00002.JPG'), html=True)
 
     def test_popup(self):
         address = reverse("popup_view", args=(1, ))
