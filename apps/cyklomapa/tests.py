@@ -134,7 +134,10 @@ class ViewTest(TestCase):
             password='admin',
         )
         self.user.save()
-        self.client.force_login(user=self.user)
+        try:
+            self.client.force_login(user=self.user)
+        except AttributeError:  # Django<=1.8
+            self.client.login(username='admin', password='admin')
 
     def test_metro_view(self):
         address = reverse("metro_view")
@@ -171,7 +174,7 @@ class ViewTest(TestCase):
         )
         self.assertContains(
             response,
-            '<a href="/admin/webmap/poi/1/change/" class="btn edit" title="Upravit">&#9874;</a>',
+            '<a href="%s" class="btn edit" title="Upravit">&#9874;</a>' % reverse("admin:webmap_poi_change", args=(1,)),
             html=True,
         )
         self.assertContains(
