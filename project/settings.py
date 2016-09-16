@@ -6,6 +6,7 @@
 # e.g., for the MEDIA_ROOT, and TEMPLATE_DIRS settings.
 # see: http://rob.cogit8.org/blog/2008/Jun/20/django-and-relativity/
 import os
+import re
 import sys
 
 from django.utils.translation import ugettext_lazy as _
@@ -259,6 +260,19 @@ LEAFLET_CONFIG = {
     'MAX_ZOOM': 18,
     'SPATIAL_EXTENT': [11.953, 48.517, 19.028, 51.097],
 }
+
+IGNORABLE_404_URLS = [
+    re.compile(r'^/apple-touch-icon.*\.png$'),
+    re.compile(r'^/favicon\.ico$'),
+    re.compile(r'^/robots\.txt$'),
+    re.compile(r'^/wordpress$'),
+    re.compile(r'^/wp$'),
+    re.compile(r'^/blog$'),
+    re.compile(r'^/sitenews$'),
+    re.compile(r'^/site$'),
+    re.compile(r'^/blog/robots.txt$'),
+    re.compile(r'^xmlrpc.php$'),
+]
 
 # import local settings
 try:
