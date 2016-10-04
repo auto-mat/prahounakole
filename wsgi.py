@@ -22,10 +22,12 @@ import sys
 # setting points here.
 from django.core.wsgi import get_wsgi_application
 
-import project.settings
+import newrelic.agent
+
 from project.settings import PROJECT_DIR
 
-import newrelic.agent
+from wsgiunproxy import unproxy
+
 newrelic.agent.initialize(os.path.join(PROJECT_DIR, 'newrelic.ini'))
 
 ALLDIRS = [os.path.join(PROJECT_DIR, 'env/lib/python2.6/site-packages'), ]
@@ -48,9 +50,9 @@ sys.path[:0] = new_sys_path
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "project.settings")
 
 wsgi_application = get_wsgi_application()
-from wsgiunproxy import unproxy
 
-@unproxy(trusted_proxies=[ "b''", ])
+
+@unproxy(trusted_proxies=["b''", ])
 def application(environ, start_response):
     return wsgi_application(environ, start_response)
 

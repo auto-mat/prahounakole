@@ -22,13 +22,12 @@ before_script:
   - pip install -q "$DJANGO_VERSION"
   - python manage.py collectmedia --noinput
   - ./update.sh no_virtualenv
+  - flake8
 script:
   - python -Wall $VIRTUAL_ENV/bin/coverage run manage.py test
   - node_modules/karma/bin/karma start karma.conf.js --single-run
 after_script:
   - coveralls
-before_script:
-  - flake8
 addons:
   postgresql: "9.3"
 matrix:
