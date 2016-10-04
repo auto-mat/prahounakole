@@ -8,7 +8,7 @@ from django.dispatch import receiver
 
 
 def normpath(*args):
-    os.path.normpath(os.path.abspath(os.path.join(*args)))
+    return os.path.normpath(os.path.abspath(os.path.join(*args)))
 file_name = normpath(__file__, "..", "..", "..", "templates", 'compress_cache_manifest.txt')
 
 

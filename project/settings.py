@@ -13,7 +13,7 @@ from django.utils.translation import ugettext_lazy as _
 
 
 def normpath(*args):
-    os.path.normpath(os.path.abspath(os.path.join(*args)))
+    return os.path.normpath(os.path.abspath(os.path.join(*args)))
 
 PROJECT_DIR = normpath(__file__, "..", "..")
 

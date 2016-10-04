@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from settings import LOGGING, PROJECT_DIR, normpath
 from settings import *  # noqa
 
 # Tento soubor překopírujte s názvem settings_local.py a doplňte vaše lokální nastavení
@@ -33,7 +34,7 @@ SECRET_KEY = 'change_me'
 # Don't forget to use absolute paths, not relative paths.
 # TEMPLATE_DIRS.append(os.path.join(PROJECT_DIR, 'env/lib/python2.6/site-packages/debug_toolbar/templates'))
 
-#INSTALLED_APPS.append('debug_toolbar')
+# INSTALLED_APPS.append('debug_toolbar')
 
 
 # def custom_show_toolbar(request):
