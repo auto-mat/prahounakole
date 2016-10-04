@@ -23,7 +23,6 @@ import cyklomapa
 
 from django.contrib import auth, sites
 from django.contrib.auth.models import User
-from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.core.urlresolvers import reverse
 from django.test import Client, RequestFactory, TestCase
 from django.test.utils import override_settings

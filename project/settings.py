@@ -11,7 +11,10 @@ import sys
 
 from django.utils.translation import ugettext_lazy as _
 
-normpath = lambda *args: os.path.normpath(os.path.abspath(os.path.join(*args)))
+
+def normpath(*args):
+    os.path.normpath(os.path.abspath(os.path.join(*args)))
+
 PROJECT_DIR = normpath(__file__, "..", "..")
 
 DEFAULT_FROM_EMAIL = 'Prahou na kole <redakce@prahounakole.cz>'
@@ -158,16 +161,16 @@ LOGGING = {
     },
     'formatters': {
         'verbose': {
-            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s',
         },
         'simple': {
-            'format': '%(levelname)s %(message)s'
+            'format': '%(levelname)s %(message)s',
         },
     },
     'filters': {
         'require_debug_false': {
-            '()': 'django.utils.log.RequireDebugFalse'
-        }
+            '()': 'django.utils.log.RequireDebugFalse',
+        },
     },
     'handlers': {
         'null': {
@@ -177,7 +180,7 @@ LOGGING = {
         'console': {
             'level': 'DEBUG',
             'class': 'logging.StreamHandler',
-            'formatter': 'simple'
+            'formatter': 'simple',
         },
         'logfile': {
             'level': 'DEBUG',
@@ -197,7 +200,7 @@ LOGGING = {
             'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler',
             'include_html': True,
-        }
+        },
     },
     'loggers': {
         'django': {
@@ -219,7 +222,7 @@ LOGGING = {
             'handlers': ['console'],
             'propagate': False,
         },
-    }
+    },
 }
 
 THUMBNAIL_ALIASES = {
