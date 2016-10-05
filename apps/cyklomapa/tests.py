@@ -198,6 +198,11 @@ class AdminTest(tests.AdminSiteSmokeTest):
         request.subdomain = "testing-sector"
         return request
 
+    def post_request(self, params={}):
+        request = super().post_request(params)
+        request.subdomain = "testing-sector"
+        return request
+
     fixtures = ["webmap", "cyklomapa"]
     exclude_apps = ['constance', 'fluent_comments']
 
