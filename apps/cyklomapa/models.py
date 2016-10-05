@@ -7,6 +7,14 @@ from django.utils.encoding import python_2_unicode_compatible
 from webmap.models import Marker, Poi, Sector
 
 
+class Poi(Poi):
+    class Meta:
+        proxy = True
+
+    def get_absolute_url(self):
+        return "#misto=%s_%i/" % (self.marker.layer.slug, self.id)
+
+
 class MarkerZnacka(models.Model):
     marker = models.OneToOneField(Marker, null=True)
     url = models.URLField(null=True, blank=True, help_text=u"ukáže se u všech míst s touto značkou, pokud nemají vlastní url")

@@ -12,9 +12,9 @@ from django.views.generic import TemplateView
 
 from django_comments.models import Comment
 
-from webmap.models import Legend, MapPreset, Marker, OverlayLayer, Poi
+from webmap.models import Legend, MapPreset, Marker, OverlayLayer
 
-from .models import Mesto
+from .models import Mesto, Poi
 
 
 @gzip_page

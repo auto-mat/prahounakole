@@ -16,7 +16,9 @@ from django.contrib.gis.db.models import Union
 from leaflet.admin import LeafletGeoAdmin, LeafletGeoAdminMixin
 
 from webmap.admin import MarkerAdmin, PoiAdmin, SectorAdmin
-from webmap.models import Marker, Poi, Sector
+from webmap.models import Marker, Sector, Poi as WebmapPoi
+
+from .models import Poi
 
 USE_GOOGLE_TERRAIN_TILES = False
 
@@ -141,5 +143,5 @@ admin.site.register(Mesto, MestoAdmin)
 admin.site.unregister(Marker)
 admin.site.register(Marker, MarkerZnackaAdmin)
 
-admin.site.unregister(Poi)
+admin.site.unregister(WebmapPoi)
 admin.site.register(Poi, MestoPoiAdmin)
