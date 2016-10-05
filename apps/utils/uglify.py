@@ -3,13 +3,15 @@ import shutil
 import subprocess
 import tempfile
 import uuid
+from os import path
+
 from compressor import base
 from compressor.conf import settings as compressor_settings
 from compressor.js import JsCompressor
+
 from django.conf import settings
 from django.core.files import File
 from django.utils.safestring import mark_safe
-from os import path
 
 
 class UglifyJSCompressor(JsCompressor):
@@ -53,7 +55,7 @@ class UglifyJSCompressor(JsCompressor):
                 '-o', new_filepath,
                 '--source-map', new_map_filepath,
                 '--source-map-root', settings.STATIC_URL,
-                '--source-map-url', settings.STATIC_URL + new_map_filepath
+                '--source-map-url', settings.STATIC_URL + new_map_filepath,
             ]
             assure_dir_exists(path.join(tmp_dir, new_filepath))
             subprocess.Popen(command, cwd=tmp_dir).wait()

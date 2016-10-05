@@ -6,13 +6,15 @@
 # this code (same goes for the databrowse app)
 
 # Import the admin site reference from django.contrib.admin
+from cyklomapa.models import MarkerZnacka, Mesto, Upresneni, UserMesto
+
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
-from leaflet.admin import LeafletGeoAdmin, LeafletGeoAdminMixin
 from django.contrib.gis.db.models import Union
 
-from cyklomapa.models import MarkerZnacka, Mesto, Upresneni, UserMesto
+from leaflet.admin import LeafletGeoAdmin, LeafletGeoAdminMixin
+
 from webmap.admin import MarkerAdmin, PoiAdmin, SectorAdmin
 from webmap.models import Marker, Poi, Sector
 

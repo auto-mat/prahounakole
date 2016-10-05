@@ -3,16 +3,18 @@
 from django.conf import settings
 from django.contrib.gis.shortcuts import render_to_kml
 from django.contrib.sites.shortcuts import get_current_site
+from django.core.cache import cache
 from django.shortcuts import get_object_or_404, render
 from django.views.decorators.cache import cache_page, never_cache
+from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.gzip import gzip_page
 from django.views.generic import TemplateView
+
 from django_comments.models import Comment
-from django.core.cache import cache
-from django.views.decorators.csrf import csrf_protect
+
+from webmap.models import Legend, MapPreset, Marker, OverlayLayer, Poi
 
 from .models import Mesto
-from webmap.models import Legend, MapPreset, Marker, OverlayLayer, Poi
 
 
 @gzip_page
@@ -69,10 +71,12 @@ def kml_view(request, nazev_vrstvy):
 
     # vsechny body co jsou v teto vrstve a jsou zapnute
     points = Poi.visible.filter(marker__layer=v).filter(geom__bboverlaps=request.mesto.sektor.geom)  # the lookup was "intersects", but it does not work for GeometryCollections
-    return render_to_kml("webmap/gis/kml/layer.kml", {
-        'places': points,
-        'site': get_current_site(request).domain,
-    })
+    return render_to_kml(
+        "webmap/gis/kml/layer.kml", {
+            'places': points,
+            'site': get_current_site(request).domain,
+        },
+    )
 
 
 @gzip_page
@@ -86,9 +90,10 @@ def popup_view(request, poi_id):
             'poi': poi,
             'fotky': poi.photos.filter(status__show=True),
             'settings': settings,
-            'can_change': request.user.has_perm('webmap.change_poi')  # and poi.has_change_permission(request.user),
+            'can_change': request.user.has_perm('webmap.change_poi'),  # and poi.has_change_permission(request.user),
         },
-        content_type="application/xml")
+        content_type="application/xml",
+    )
 
 
 # vypisy uzavirek a metra pouzite na hlavnim webu PNK
@@ -98,7 +103,8 @@ def uzavirky_view(request):
     return render(
         request,
         'uzavirky.html',
-        context={'uzavirky': poi})
+        context={'uzavirky': poi},
+    )
 
 
 @cache_page(24 * 60 * 60)  # cachujeme view v memcached s platnosti 24h
@@ -107,7 +113,8 @@ def metro_view(request):
     return render(
         request,
         'metro.html',
-        context={'poi': poi})
+        context={'poi': poi},
+    )
 
 
 # View pro podrobny vypis vrstev
@@ -119,7 +126,8 @@ def znacky_view(request):
     return render(
         request,
         'znacky.html',
-        context={'vrstvy': vrstvy, 'znacky': znacky, 'legenda': legenda})
+        context={'vrstvy': vrstvy, 'znacky': znacky, 'legenda': legenda},
+    )
 
 
 class PanelMapaView(TemplateView):

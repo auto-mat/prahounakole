@@ -1,5 +1,6 @@
-from django.conf import settings
 from cyklomapa.models import Mesto
+
+from django.conf import settings
 
 
 class SubdomainsMiddleware:

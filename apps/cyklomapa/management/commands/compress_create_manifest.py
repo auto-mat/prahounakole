@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-
-from compressor.management.commands.compress import Command as OldCommand
 import os
 
+from compressor.management.commands.compress import Command as OldCommand
 from compressor.signals import post_compress
+
 from django.dispatch import receiver
 
 
