@@ -121,6 +121,7 @@ INSTALLED_APPS = [
     'easy_thumbnails',
     'django.contrib.humanize',
     'django.contrib.sites',
+    'django.contrib.sitemaps',
     'fluent_comments',
     'comments_moderation',
     'crispy_forms',
