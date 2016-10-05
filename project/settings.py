@@ -277,6 +277,8 @@ IGNORABLE_404_URLS = [
     re.compile(r'^xmlrpc.php$'),
 ]
 
+ALLOWED_HOSTS = ["localhost", "localhost:8000", "testing-sector.testserver"]
+
 # import local settings
 try:
     from settings_local import *  # noqa
