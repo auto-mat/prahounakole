@@ -44,7 +44,7 @@ urlpatterns = [
 
     # Redirect from most frequent error links
     url(r'^jak-na-to$', RedirectView.as_view(url='http://prahounakole.cz/jak-na-to', permanent=True)),
-    url(r'^media/scitace$', RedirectView.as_view(url='http://scitace.prahounakole.cz/', permanent=True)),
+    url(r'^media/scitace/$', RedirectView.as_view(url='http://scitace.prahounakole.cz/', permanent=True)),
 ]
 
 if settings.ENABLE_API_PROXY:
