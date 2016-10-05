@@ -10,6 +10,7 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.contrib.sitemaps.views import sitemap
 from django.http import HttpResponse
+from django.views.generic.base import RedirectView
 
 from django_comments.feeds import LatestCommentFeed
 
@@ -40,6 +41,10 @@ urlpatterns = [
     url(r'^comments/feeds/latest/$', LatestCommentFeed(), name="latest_comments_feed"),
     url(r'^robots.txt$', lambda r: HttpResponse("User-agent: *\nAllow:", content_type="text/plain")),
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+
+    # Redirect from most frequent error links
+    url(r'^jak-na-to$', RedirectView.as_view(url='http://prahounakole.cz/jak-na-to', permanent=True)),
+    url(r'^media/scitace$', RedirectView.as_view(url='http://scitace.prahounakole.cz/', permanent=True)),
 ]
 
 if settings.ENABLE_API_PROXY:
