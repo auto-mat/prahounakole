@@ -3,3 +3,10 @@ coveralls
 django_coverage_plugin
 -e git+https://github.com/PetrDlouhy/django-admin-smoke-tests.git#egg=django-admin-smoke-tests
 flake8
+flake8-blind-except
+flake8-comprehensions
+flake8-import-order
+flake8-tidy-imports
+flake8-class
+flake8-builtins
+flake8-strict

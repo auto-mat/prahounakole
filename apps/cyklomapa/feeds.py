@@ -6,7 +6,7 @@ from webmap.models import Poi
 
 class UzavirkyFeed(Feed):
         title = u"Prahou Na Kole - aktuální uzavírky"
-        link = "/sitenews/"
+        link = "/"
         description = u"Aktuální uzavírky cyklostezek a cyklotras"
 
         def get_object(self, request):
@@ -27,7 +27,7 @@ class UzavirkyFeed(Feed):
 
 class NovinkyFeed(Feed):
         title = u"Prahou Na Kole - novinky v mapě"
-        link = "/sitenews/"
+        link = "/"
         description = u"Novinky v mapě"
 
         def get_object(self, request):

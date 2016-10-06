@@ -41,6 +41,11 @@ import webmap
 from webmap import views as webmap_views
 
 
+def print_response(response):
+    with open("response.html", "w") as f:  # pragma: no cover
+        f.write(response.content.decode())  # pragma: no cover
+
+
 class AdminFilterTests(TestCase):
     fixtures = ["webmap", "cyklomapa"]
 
@@ -195,6 +200,11 @@ class ViewTest(TestCase):
 class AdminTest(tests.AdminSiteSmokeTest):
     def get_request(self, params={}):
         request = super().get_request(params)
+        request.subdomain = "testing-sector"
+        return request
+
+    def post_request(self, params={}):
+        request = super().post_request(params)
         request.subdomain = "testing-sector"
         return request
 

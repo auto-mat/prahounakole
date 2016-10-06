@@ -1,7 +1,9 @@
+from comments_moderation.models import EmailFilter
+
+from cyklomapa.models import Poi
+
 from django.contrib import admin
 
-from comments_moderation.models import EmailFilter
-from cyklomapa.models import Poi
 from django_comments.moderation import CommentModerator, moderator
 
 

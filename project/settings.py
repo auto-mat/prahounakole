@@ -121,6 +121,7 @@ INSTALLED_APPS = [
     'easy_thumbnails',
     'django.contrib.humanize',
     'django.contrib.sites',
+    'django.contrib.sitemaps',
     'fluent_comments',
     'comments_moderation',
     'crispy_forms',
@@ -271,11 +272,12 @@ IGNORABLE_404_URLS = [
     re.compile(r'^/wordpress$'),
     re.compile(r'^/wp$'),
     re.compile(r'^/blog$'),
-    re.compile(r'^/sitenews$'),
     re.compile(r'^/site$'),
     re.compile(r'^/blog/robots.txt$'),
     re.compile(r'^xmlrpc.php$'),
 ]
+
+ALLOWED_HOSTS = ["localhost", "localhost:8000", "testing-sector.testserver"]
 
 # import local settings
 try:
