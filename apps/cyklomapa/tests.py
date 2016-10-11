@@ -201,6 +201,8 @@ class ViewTest(TestCase):
             '<dt><a name="tli1"></a><img src="/media/DSC00002.JPG" alt="Testing legend item 1"> <b>Testing legend item 1</b></dt>',
             html=True,
         )
+        self.assertContains(response, '<dt><a name="vyluka_akt"></a><img src="/media/DSC00002.JPG" alt="Testing marker"/> <b>Testing marker</b></dt>', html=True)
+        self.assertContains(response, '<dd>Marker description</dd>', html=True)
 
     def test_mapa_view(self):
         address = reverse("mapa_view")
