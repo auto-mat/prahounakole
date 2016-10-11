@@ -94,6 +94,28 @@ class AdminFilterTests(TestCase):
         self.assertContains(response, '<div class=\\"comment-text\\"><p>Testing comment</p></div>')
         self.assertContains(response, 'Testing name\\n              <span class=\\"comment-date\\">poslal Led. 4, 2016, 5:10 odp.</span>')
 
+    @freeze_time("2016-01-04 17:10:00")
+    def test_comment_post_blocked(self):
+        comments_moderation.admin.EmailFilter.objects.create(email="test@email.com", active=True)
+        content_type = "webmap.poi"
+        object_pk = "205"
+        timestamp = "1451927336"
+        security_hash = comments_compat.CommentForm.generate_security_hash(None, content_type, object_pk, timestamp)
+        post_data = {
+            "content_type": content_type,
+            "object_pk": object_pk,
+            "name": "Testing name",
+            "email": "test@email.com",
+            "comment": "Testing comment",
+            "timestamp": timestamp,
+            "security_hash": security_hash,
+        }
+        response = self.client.post(reverse("comments-post-comment-ajax"), post_data, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertEqual(response.status_code, 200, response.content.decode("utf-8"))
+        self.assertContains(response, '<div class=\\"comment-text\\"><p>Testing comment</p></div>')
+        self.assertContains(response, 'Testing name\\n              <span class=\\"comment-date\\">poslal Led. 4, 2016, 5:10 odp.</span>')
+        self.assertContains(response, '<span class=\\"comment-moderated-flag\\">(moderov\\u00e1n)</span>')
+
     def verify_views(self, views, status_code_map={}):
         for view in views:
             status_code = status_code_map[view] if view in status_code_map else 200

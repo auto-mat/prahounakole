@@ -1,6 +1,6 @@
 from comments_moderation.models import EmailFilter
 
-from cyklomapa.models import Poi
+from webmap.models import Poi
 
 from django.contrib import admin
 
