@@ -1,10 +1,10 @@
 from comments_moderation.models import EmailFilter
 
-from webmap.models import Poi
-
 from django.contrib import admin
 
 from django_comments.moderation import CommentModerator, moderator
+
+from webmap.models import Poi
 
 
 class PoiModerator(CommentModerator):
