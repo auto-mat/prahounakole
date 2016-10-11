@@ -88,15 +88,6 @@ class UpresneniAdmin(admin.ModelAdmin):
     list_display = ('misto', 'email', 'status', 'desc',)
 
 
-class LegendaAdmin(admin.ModelAdmin):
-    list_display = ('nazev', 'obrazek_img', 'popis',)
-
-    def obrazek_img(self, obj):
-        return u'<img src=%s>' % obj.obrazek.url
-    obrazek_img.allow_tags = True
-    obrazek_img.short_description = u"obrázek"
-
-
 class MestoInline(LeafletGeoAdminMixin, admin.StackedInline):
     model = Mesto
     can_delete = False
