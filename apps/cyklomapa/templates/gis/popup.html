@@ -48,10 +48,6 @@
 
 {% if poi.url %}
     <p><a target="_blank" href="{{ poi.url|escape }}" title="{{ poi.url|escape }}">{{ poi.url|escape|truncatewords:4 }}</a></p>
-{% else %}
-  {% if poi.znacka.url %}
-    <p><a target="_blank" href="{{ poi.znacka.url|escape }}" title="{{ poi.znacka.url|escape }}">{{ poi.znacka.url|escape|truncatewords:4 }}</a></p>
-  {% endif %}
 {% endif %}
 
    <hr/>
