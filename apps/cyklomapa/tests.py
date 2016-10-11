@@ -71,7 +71,7 @@ class AdminFilterTests(TestCase):
         test if the admin pages load
         """
         self.assertTrue(self.client.login(username='admin', password='admin'))
-        response = self.client.get(reverse("admin:webmap_poi_changelist"))
+        response = self.client.get(reverse("admin:cyklomapa_poi_changelist"))
         self.assertEqual(response.status_code, 200)
 
     @freeze_time("2016-01-04 17:10:00")
@@ -178,7 +178,7 @@ class ViewTest(TestCase):
         )
         self.assertContains(
             response,
-            '<a href="%s" class="btn edit" title="Upravit">&#9874;</a>' % reverse("admin:webmap_poi_change", args=(1,)),
+            '<a href="%s" class="btn edit" title="Upravit">&#9874;</a>' % reverse("admin:cyklomapa_poi_change", args=(1,)),
             html=True,
         )
         self.assertContains(
