@@ -16,7 +16,7 @@ from django.contrib.gis.db.models import Union
 from leaflet.admin import LeafletGeoAdmin, LeafletGeoAdminMixin
 
 from webmap.admin import MarkerAdmin, PoiAdmin, SectorAdmin
-from webmap.models import Marker, Sector, Poi as WebmapPoi
+from webmap.models import Marker, Poi as WebmapPoi, Sector
 
 from .models import Poi
 
