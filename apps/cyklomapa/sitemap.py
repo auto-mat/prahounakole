@@ -18,7 +18,7 @@ class PoiSitemap(sitemaps.Sitemap):
         return obj.last_modification
 
     def location(self, obj):
-        return reverse("mapa_view", kwargs={"poi_id": obj.pk})
+        return "%s#misto=%s_%s" % (reverse("mapa_view", kwargs={"poi_id": obj.pk}), obj.marker.layer.slug, obj.pk)
 
 
 class NamesSitemap(sitemaps.Sitemap):
