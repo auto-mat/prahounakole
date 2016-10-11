@@ -249,6 +249,15 @@ class ViewTest(TestCase):
             html=True,
         )
 
+    def test_popup_poi_without_desc(self):
+        address = reverse("popup_view", args=(205, ))
+        response = self.client.get(address)
+        self.assertContains(
+            response,
+            '<p>Metro A</p>',
+            html=True,
+        )
+
 
 @override_settings(
     FORCE_SUBDOMAIN="testing-sector"
