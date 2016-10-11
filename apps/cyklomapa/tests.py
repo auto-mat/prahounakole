@@ -135,9 +135,7 @@ class AdminFilterTests(TestCase):
             ("uzavirky_view",),
             ("uzavirky_feed",),
             ("novinky_feed",),
-            ("znacky_view",),
             ("panel_mapa_view",),
-            ("panel_informace_view",),
             ("panel_hledani_view",),
             ("appcache_view",),
             ("kml_view", ("l",)),
@@ -182,6 +180,27 @@ class ViewTest(TestCase):
         address = reverse("metro_view")
         response = self.client.get(address)
         self.assertContains(response, '<b>Testing poi 1</b>', html=True)
+
+    def test_panel_informace_view(self):
+        address = reverse("panel_informace_view")
+        response = self.client.get(address)
+        self.assertContains(
+            response,
+            '<p class="desc_vlastnosti">'
+            '<img src="/media/DSC00002.JPG" alt="Testing legend item 1"> &nbsp; Testing legend item 1<br/>'
+            '</p>',
+            html=True,
+        )
+
+    def test_znacky_view(self):
+        address = reverse("znacky_view")
+        response = self.client.get(address)
+        self.assertContains(response, '<dt><a name="tli"></a> <b>Testing legend item</b></dt>', html=True)
+        self.assertContains(
+            response,
+            '<dt><a name="tli1"></a><img src="/media/DSC00002.JPG" alt="Testing legend item 1"> <b>Testing legend item 1</b></dt>',
+            html=True,
+        )
 
     def test_mapa_view(self):
         address = reverse("mapa_view")

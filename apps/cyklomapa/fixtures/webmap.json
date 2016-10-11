@@ -122,6 +122,23 @@
     },
     {
         "fields": {
+            "name": "Testing legend item 1",
+            "image": "DSC00002.JPG",
+            "slug": "tli1"
+        },
+        "model": "webmap.legend",
+        "pk": 2
+    },
+    {
+        "fields": {
+            "name": "Testing legend item",
+            "slug": "tli"
+        },
+        "model": "webmap.legend",
+        "pk": 1
+    },
+    {
+        "fields": {
             "name": "Testing layer",
             "slug": "l",
             "status": 1

@@ -5,7 +5,9 @@
   <p class="desc_vlastnosti">
     {% cache 3600 legenda %}
     {% for l in legenda %}
+    {% if l.image %}
     <img src="{{ l.image.url }}" alt="{{ l.name }}"> &nbsp; {{ l.name }}<br/>
+    {% endif %}
     {% endfor %}
     {% endcache %}
   </p>
