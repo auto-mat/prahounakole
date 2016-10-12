@@ -171,6 +171,25 @@ class SitemapTest(TestCase):
         self.assertContains(response, '<loc>http://example.com/misto/1/#misto=l_1</loc>', html=True)
 
 
+class UnloggedViewTest(TestCase):
+    fixtures = ["webmap", "cyklomapa"]
+
+    def setUp(self):
+        self.factory = RequestFactory()
+        self.client = Client(HTTP_HOST="testing-sector.testserver")
+
+    def test_popup(self):
+        address = reverse("popup_view", args=(1, ))
+        response = self.client.get(address)
+        self.assertContains(
+            response,
+            '<div class="col-md-2 col-md-offset-6 col-sm-3 col-sm-offset-0 centred">'
+            '  <a href="#misto=l_1" class="sprite btn link" title="Odkaz na místo"></a>'
+            '</div>',
+            html=True,
+        )
+
+
 class ViewTest(TestCase):
     fixtures = ["webmap", "cyklomapa"]
 
