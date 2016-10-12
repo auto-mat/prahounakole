@@ -108,7 +108,7 @@ class MarkerZnackaAdmin(MarkerAdmin):
     inlines = MarkerAdmin.inlines + [MarkerZnackaInline, ]
 
     def poi_count(self, obj):
-        url = reverse('admin:cyklomapa_poi_changelist')
+        url = reverse('admin:webmap_poi_changelist')
         return '<a href="{0}?marker__id__exact={1}&amp;statuses=all">{2}</a>'.format(url, obj.id, obj.pois.count())
 
 
@@ -140,4 +140,4 @@ admin.site.unregister(Marker)
 admin.site.register(Marker, MarkerZnackaAdmin)
 
 admin.site.unregister(WebmapPoi)
-admin.site.register(Poi, MestoPoiAdmin)
+admin.site.register(WebmapPoi, MestoPoiAdmin)
