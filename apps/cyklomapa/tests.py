@@ -21,10 +21,12 @@ import comments_moderation
 
 import cyklomapa
 
+from django.conf import settings
 from django.contrib import auth, sites
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.test import Client, RequestFactory, TestCase
+from django.test.runner import DiscoverRunner
 from django.test.utils import override_settings
 
 from django_admin_smoke_tests import tests
@@ -44,6 +46,17 @@ from webmap import views as webmap_views
 def print_response(response):
     with open("response.html", "w") as f:  # pragma: no cover
         f.write(response.content.decode())  # pragma: no cover
+
+
+class CyklomapaTestSuiteRunner(DiscoverRunner):
+    class InvalidStringError(str):
+        def __mod__(self, other):
+            raise Exception("empty string")  # pragma: no cover
+            return "!!!!!empty string!!!!!"  # pragma: no cover
+
+    def __init__(self, *args, **kwargs):
+        settings.TEMPLATES[0]['OPTIONS']['string_if_invalid'] = self.InvalidStringError("%s")
+        super().__init__(*args, **kwargs)
 
 
 class AdminFilterTests(TestCase):
@@ -196,6 +209,7 @@ class ViewTest(TestCase):
         address = reverse("znacky_view")
         response = self.client.get(address)
         self.assertContains(response, '<dt><a name="tli"></a> <b>Testing legend item</b></dt>', html=True)
+        self.assertContains(response, '<dd>Legend item description</dd>', html=True)
         self.assertContains(
             response,
             '<dt><a name="tli1"></a><img src="/media/DSC00002.JPG" alt="Testing legend item 1"> <b>Testing legend item 1</b></dt>',

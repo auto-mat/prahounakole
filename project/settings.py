@@ -245,7 +245,7 @@ COMPRESS_PRECOMPILERS = (
 )
 COMPRESS_OFFLINE = True
 
-TEST_RUNNER = "django.test.runner.DiscoverRunner"
+TEST_RUNNER = 'cyklomapa.tests.CyklomapaTestSuiteRunner'
 
 LEAFLET_CONFIG = {
     'DEFAULT_CENTER': (50.0866699218750000, 14.4387817382809995),

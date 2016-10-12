@@ -6,20 +6,18 @@
   </head>
   <body style="background-color:#F9F9F9; margin:5px;">
        <h2>Prahou na kole - legenda</h2>
-       
-       <!--<div style="width:100%; text-align:center;"><img src="http://prahounakole.cz/wp-content/pnk/uploads/2011/10/legenda.png"></div>-->
 
        <h4>&nbsp;<br>Podklad mapy:</h4>
 
         <dl class="desc_vlastnosti">
           {% for l in legenda %}
              <dt><a name="{{ l.slug }}"></a>{% if l.image %}<img src="{{ l.image.url }}" alt="{{ l.name }}">{% endif %} <b>{{ l.name }}</b></dt>
-             <dd>{{z.desc|safe}}</dd>
+             {% if l.desc %}
+                <dd>{{l.desc|safe}}</dd>
+             {% endif %}
           {% endfor %}
 
        </dl>
-
-       {{ static_znacky.content|safe }}
        
        {% for v in vrstvy reversed %}
         <h4>&nbsp;<br>{{ v }}:</h4>
@@ -32,7 +30,9 @@
             <img src="{{z.default_icon.url}}" alt="{{ z.name }}"/>
         {% endif %}
         <b>{{z.name}}</b></dt>
-	     <dd>{{z.desc|safe}}</dd>
+        {% if z.desc %}
+           <dd>{{z.desc|safe}}</dd>
+        {% endif %}
 	     {% endif %}
 	  {% endfor %}
        
