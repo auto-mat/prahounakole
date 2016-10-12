@@ -4,7 +4,7 @@
             "date_joined": "2015-11-12T18:18:10",
             "email": "test@test.cz",
             "first_name": "Testing",
-            "groups": [],
+            "groups": [1],
             "is_active": true,
             "is_staff": true,
             "is_superuser": false,
@@ -19,8 +19,52 @@
     },
     {
         "fields": {
+            "name": "Administr\u00e1tor m\u011bsta",
+            "permissions": [
+                [
+                    "change_mesto",
+                    "cyklomapa",
+                    "mesto"
+                ],
+                [
+                    "can_only_view",
+                    "webmap",
+                    "marker"
+                ],
+                [
+                    "add_photo",
+                    "webmap",
+                    "photo"
+                ],
+                [
+                    "change_photo",
+                    "webmap",
+                    "photo"
+                ],
+                [
+                    "delete_photo",
+                    "webmap",
+                    "photo"
+                ],
+                [
+                    "add_poi",
+                    "webmap",
+                    "poi"
+                ],
+                [
+                    "change_poi",
+                    "webmap",
+                    "poi"
+                ]
+            ]
+        },
+        "model": "auth.group",
+        "pk": 1
+    },
+    {
+        "fields": {
            "user": "1",
-           "mesta": "1"
+           "mesta": ["1"]
         },
         "model": "cyklomapa.usermesto",
         "pk": 1

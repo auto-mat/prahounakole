@@ -337,8 +337,6 @@ class MestoAdminTest(AdminTest):
         auth.admin.GroupAdmin,
         comments_moderation.admin.BlacklistAdmin,
         cyklomapa.admin.MarkerZnackaAdmin,
-        cyklomapa.admin.MestoAdmin,
-        cyklomapa.admin.MestoPoiAdmin,
         cyklomapa.admin.MestoSectorAdmin,
         cyklomapa.admin.UserAdmin,
         feedback.admin.FeedbackAdmin,
