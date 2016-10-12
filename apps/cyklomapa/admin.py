@@ -67,15 +67,6 @@ class MestoPoiAdmin(PoiAdmin):
         }
         return form
 
-    def formfield_for_foreignkey(self, db_field, request, **kwargs):
-        if db_field.name == "mesto":
-            if request.user.is_superuser:
-                kwargs["queryset"] = Mesto.objects
-            else:
-                kwargs["queryset"] = request.user.usermesto.mesta.all()
-
-        return super(MestoPoiAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
-
     def __init__(self, *args, **kwargs):
         super(MestoPoiAdmin, self).__init__(*args, **kwargs)
         self.list_filter += ("photos__license",)
