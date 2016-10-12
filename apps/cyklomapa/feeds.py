@@ -34,7 +34,7 @@ class NovinkyFeed(Feed):
                 return request.mesto
 
         def items(self, obj):
-                return Poi.objects.filter(status__name="active", geom__contained=obj.sektor.geom).order_by('last_modification').reverse()[:10]
+                return Poi.objects.filter(status__show=True, geom__contained=obj.sektor.geom).order_by('last_modification').reverse()[:10]
 
         def item_pubdate(self, item):
                 return item.last_modification

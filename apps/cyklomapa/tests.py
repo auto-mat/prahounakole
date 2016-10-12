@@ -129,34 +129,6 @@ class AdminFilterTests(TestCase):
         self.assertContains(response, 'Testing name\\n              <span class=\\"comment-date\\">poslal Led. 4, 2016, 5:10 odp.</span>')
         self.assertContains(response, '<span class=\\"comment-moderated-flag\\">(moderov\\u00e1n)</span>')
 
-    def verify_views(self, views, status_code_map={}):
-        for view in views:
-            status_code = status_code_map[view] if view in status_code_map else 200
-            if len(view) > 1:
-                args = view[1]
-            else:
-                args = None
-            address = reverse(view[0], args=args)
-            response = self.client.get(address, HTTP_HOST="testing-sector.testserver")
-            self.assertEqual(response.status_code, status_code, "%s view failed with following content: \n%s" % (view, response.content.decode("utf-8")))
-
-    def test_complementary_views(self):
-        """
-        test if other views load
-        """
-        views = [
-            ("uzavirky_view",),
-            ("uzavirky_feed",),
-            ("novinky_feed",),
-            ("panel_mapa_view",),
-            ("panel_hledani_view",),
-            ("appcache_view",),
-            ("kml_view", ("l",)),
-            (webmap_views.search_view, ("asdf",)),
-        ]
-
-        self.verify_views(views)
-
 
 class SitemapTest(TestCase):
     fixtures = ["webmap", "cyklomapa"]
@@ -207,6 +179,46 @@ class ViewTest(TestCase):
             self.client.force_login(user=self.user)
         except AttributeError:  # Django<=1.8
             self.client.login(username='admin', password='admin')
+
+    def test_uzavirky_view(self):
+        address = reverse("uzavirky_view")
+        response = self.client.get(address)
+        self.assertContains(response, '<a href="http://mapa.prahounakole.cz/misto/1" target="_top" title="Description">Testing poi</a>', html=True)
+
+    def test_uzavirky_feed(self):
+        address = reverse("uzavirky_feed")
+        response = self.client.get(address)
+        self.assertContains(response, '<title>Testing poi</title><link>http://example.com#misto=l_1/</link>')
+
+    def test_novinky_feed(self):
+        address = reverse("novinky_feed")
+        response = self.client.get(address)
+        self.assertContains(response, '<title>Testing poi</title><link>http://example.com#misto=l_1/</link>')
+
+    def test_panel_mapa_view(self):
+        address = reverse("panel_mapa_view")
+        response = self.client.get(address)
+        self.assertContains(response, '<div> Lorem ipsum </div>', html=True)
+
+    def test_panel_hledani_view(self):
+        address = reverse("panel_hledani_view")
+        response = self.client.get(address)
+        self.assertContains(response, '<div id="jpPlanMessage">Čekání na server</div>', html=True)
+
+    def test_appcache_view(self):
+        address = reverse("appcache_view")
+        response = self.client.get(address)
+        self.assertContains(response, '/kml/l/')
+
+    def test_kml_view(self):
+        address = reverse("kml_view", args=("l",))
+        response = self.client.get(address)
+        self.assertContains(response, '<ikona>http://example.com/media/DSC00002.JPG</ikona>', html=True)
+
+    def test_search_view(self):
+        address = reverse(webmap_views.search_view, args=("poi",))
+        response = self.client.get(address)
+        self.assertContains(response, '<name>Testing poi</name>', html=True)
 
     def test_metro_view(self):
         address = reverse("metro_view")
