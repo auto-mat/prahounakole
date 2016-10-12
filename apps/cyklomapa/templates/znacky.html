@@ -27,7 +27,11 @@
         <dl class="desc_vlastnosti">
           {% for z in znacky %}
 	     {% if z.layer.pk == v.pk  %}
-	     <dt><a name="{{z.slug}}"></a><img src="{{z.default_icon.url}}" alt="{{ z.name }}"/> <b>{{z.name}}</b></dt>
+        <dt><a name="{{z.slug}}"></a>
+        {% if z.default_icon %}
+            <img src="{{z.default_icon.url}}" alt="{{ z.name }}"/>
+        {% endif %}
+        <b>{{z.name}}</b></dt>
 	     <dd>{{z.desc|safe}}</dd>
 	     {% endif %}
 	  {% endfor %}
