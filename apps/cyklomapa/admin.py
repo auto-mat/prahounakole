@@ -19,8 +19,6 @@ from leaflet.admin import LeafletGeoAdmin, LeafletGeoAdminMixin
 from webmap.admin import MarkerAdmin, PoiAdmin, SectorAdmin
 from webmap.models import Marker, Poi as WebmapPoi, Sector
 
-from .models import Poi
-
 USE_GOOGLE_TERRAIN_TILES = False
 
 
