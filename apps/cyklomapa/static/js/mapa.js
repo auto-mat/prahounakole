@@ -300,7 +300,7 @@ function setupPnkMap() {
     if(vectors.length == 0){
        for (var i in kmlvrstvy) {
            name = kmlvrstvy[i][0];
-           url = mapconfig.root_url + kmlvrstvy[i][1];
+           url = kmlvrstvy[i][1];
            slug = kmlvrstvy[i][3];
            enabled = kmlvrstvy[i][2] == 'True' || mapconfig.center_feature_slug == slug;
            switch(slug) {
@@ -1117,7 +1117,7 @@ function onFeatureUnselect(feature) {
 
 function showPoiDetail(poi_id) {
     reportAction('send', 'event', 'poi', 'show', poi_id);
-    var url = mapconfig.root_url + "/popup/" + poi_id + "/";
+    var url = "/popup/" + poi_id + "/";
 
     var requestFailed = function(response) {
         alert(response.responseText);

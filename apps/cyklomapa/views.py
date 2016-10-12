@@ -30,13 +30,7 @@ def mapa_view(request, poi_id=None):
         except Poi.DoesNotExist:
             pass
 
-    if hasattr(settings, 'ROOT_URL'):
-        ROOT_URL = settings.ROOT_URL
-    else:
-        ROOT_URL = ''
-
     context = {
-        'root_url': ROOT_URL,
         'vrstvy': vrstvy,
         'center_poi': center_poi,
         'mesto': request.mesto,
