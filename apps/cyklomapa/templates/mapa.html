@@ -61,7 +61,7 @@
         mapconfig['root_url'] = "{{ root_url }}";
         mapconfig['vrstvy'] = [];
         {% for v in vrstvy %}
-            {% if center_poi.znacka.vrstva == v %}
+            {% if center_poi.marker.layer.pk == v.pk %}
                 enabled = "True";
             {% else %}
                 enabled = "{{v.enabled}}";

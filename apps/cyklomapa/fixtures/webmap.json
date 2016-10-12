@@ -26,6 +26,18 @@
     },
     {
         "fields": {
+            "created_at": "2016-10-11 10:00",
+            "geom": "SRID=4326;GEOMETRYCOLLECTION(POINT (14.4221343818742032 50.0874047551947399))",
+            "last_modification": "2016-11-13 13:00",
+            "marker": 3,
+            "name": "Disabled poi",
+            "status": 1
+        },
+        "model": "webmap.poi",
+        "pk": 2
+    },
+    {
+        "fields": {
         },
         "model": "webmap.license",
         "pk": 1
@@ -66,6 +78,18 @@
         },
         "model": "webmap.marker",
         "pk": 2
+    },
+    {
+        "fields": {
+            "created_at": "2015-11-13 12:00",
+            "last_modification": "2015-11-13 12:00",
+            "layer": 3,
+            "name": "Marker 3",
+            "slug": "marker_3",
+            "status": 1
+        },
+        "model": "webmap.marker",
+        "pk": 3
     },
     {
         "fields": {
@@ -120,6 +144,22 @@
         "model": "webmap.overlaylayer",
         "layer": 1,
         "pk": 1
+    },
+    {
+        "fields": {
+            "name": "Disabled layer",
+            "slug": "d",
+            "enabled": false,
+            "status": 1
+        },
+        "model": "webmap.layer",
+        "pk": 3
+    },
+    {
+        "fields": {},
+        "model": "webmap.overlaylayer",
+        "layer": 3,
+        "pk": 3
     },
     {
         "fields": {
