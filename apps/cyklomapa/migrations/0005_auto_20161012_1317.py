@@ -9,7 +9,6 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('webmap', '0015_auto_20161012_1302'),
         ('cyklomapa', '0004_auto_20160102_2311'),
     ]
 
