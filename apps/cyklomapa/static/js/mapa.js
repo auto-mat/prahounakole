@@ -169,6 +169,23 @@ function init(mapconfig) {
             attribution:"<a href='http://www.geoportalpraha.cz/cs/clanek/276/licencni-podminky-pro-otevrena-data' target='_new' title='link opens in new window'>IPR Praha CC BY-SA 4.0</a>",
             projection : new OpenLayers.Projection("EPSG:3857")
         });
+    layerIPR2 = new OpenLayers.Layer.WMS(
+        "Ortofoto IPR",
+        "http://mpp.praha.eu/arcgis/services/MAP/Ortofotomapa_archiv/MapServer/WmsServer",
+        {
+            layers: '0',
+            format: 'image/jpeg',
+            transparent: true,
+            srs: "EPSG:3857",
+        },
+        {
+            isBaseLayer: true,
+            slug:"J",
+            numZoomLevels: 22,
+            displayInLayerSwitcher: true,
+            attribution:"<a href='http://www.geoportalpraha.cz/cs/clanek/276/licencni-podminky-pro-otevrena-data' target='_new' title='link opens in new window'>IPR Praha CC BY-SA 4.0</a>",
+            projection : new OpenLayers.Projection("EPSG:3857")
+        });
     layerBW = new OpenLayers.Layer.OSM(
         "Černobílá",
         "http://tiles.prahounakole.cz/", {
@@ -182,7 +199,7 @@ function init(mapconfig) {
         tileOptions : {crossOriginKeyword: null}
     });
 
-     map.addLayers([layerPNK, layer_osm, layerCycle, layerBW, layerIPR]);
+     map.addLayers([layerPNK, layer_osm, layerCycle, layerBW, layerIPR, layerIPR2]);
      if((typeof google !== 'undefined') && (google.maps.MapTypeId !== undefined)){
         var layerGoogle = new OpenLayers.Layer.Google(
            "Satelitní mapa Google", {
