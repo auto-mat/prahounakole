@@ -45,7 +45,7 @@ urlpatterns = [
     url(r'^sitemap\.xml$', cache_page(24 * 60 * 60)(sitemap), {'sitemaps': sitemaps}, name='sitemap'),
 
     # Redirect from most frequent error links
-    url(r'^jak-na-to$', RedirectView.as_view(url='http://prahounakole.cz/jak-na-to', permanent=True)),
+    url(r'^jak-na-to$', RedirectView.as_view(url='http://prahounakole.cz/jak-do-mesta/deset-zasad-jak-zacit/', permanent=True)),
 ]
 
 if settings.ENABLE_API_PROXY:
