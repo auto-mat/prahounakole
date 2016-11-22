@@ -2,7 +2,7 @@ from cyklomapa.feeds import NovinkyFeed, UzavirkyFeed
 from cyklomapa.views import (
     AppCacheView,
     PanelHledaniView, PanelInformaceView,
-    PanelMapaView, kml_view, mapa_view, metro_view,
+    PanelMapaView, PopupListView, kml_view, mapa_view, metro_view,
     popup_view, uzavirky_view, znacky_view,
     )
 
@@ -36,10 +36,11 @@ urlpatterns = [
     url(r'^panel-mapa/$', PanelMapaView.as_view(), name="panel_mapa_view"),
     url(r'^panel-informace/$', PanelInformaceView.as_view(), name="panel_informace_view"),
     url(r'^panel-hledani/$', PanelHledaniView.as_view(), name="panel_hledani_view"),
+    url(r'^popup-list/$', PopupListView.as_view(), name="popup-list"),
     url(r'^comments/', include('fluent_comments.urls')),
     url(r'^pnk.appcache/', AppCacheView.as_view(), name="appcache_view"),
     url(r'^comments/feeds/latest/$', LatestCommentFeed(), name="latest_comments_feed"),
-    url(r'^robots.txt$', lambda r: HttpResponse("User-agent: *\nAllow:", content_type="text/plain")),
+    url(r'^robots.txt$', lambda r: HttpResponse("User-agent: *\nDisallow: /popup-list\nDisallow: /popup/*", content_type="text/plain")),
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 
     # Redirect from most frequent error links

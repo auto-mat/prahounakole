@@ -1,0 +1,6 @@
+{% load cache %}
+{% cache 3600 popuplist %}
+{% for popup in popups %}
+<a href="http://localhost:8000/popup/{{ popup.id }}">http://localhost:8000/popup/{{ popup.id }}</a><br/>
+{% endfor %}
+{% endcache %}

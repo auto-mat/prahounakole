@@ -137,6 +137,15 @@ class PanelHledaniView(TemplateView):
     template_name = "panel-hledani.html"
 
 
+class PopupListView(TemplateView):
+    template_name = "popup-list.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['popups'] = Poi.objects.filter(status__show=True).order_by('last_modification').reverse()
+        return context
+
+
 class PanelInformaceView(TemplateView):
     template_name = "panel-informace.html"
 

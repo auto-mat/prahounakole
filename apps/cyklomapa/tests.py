@@ -225,6 +225,11 @@ class ViewTest(TestCase):
         response = self.client.get(address)
         self.assertContains(response, '<b>Testing poi 1</b>', html=True)
 
+    def test_popup_list_view(self):
+        address = reverse("popup-list")
+        response = self.client.get(address)
+        self.assertContains(response, '<a href="http://localhost:8000/popup/1">http://localhost:8000/popup/1</a>', html=True)
+
     def test_panel_informace_view(self):
         address = reverse("panel_informace_view")
         response = self.client.get(address)
