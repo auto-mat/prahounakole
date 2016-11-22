@@ -1,6 +1,8 @@
 {% load cache %}
 {% cache 3600 popuplist %}
 {% for popup in popups %}
-<a href="http://localhost:8000/popup/{{ popup.id }}">http://localhost:8000/popup/{{ popup.id }}</a><br/>
+   {% if popup.url %}
+   <a href="{{ popup.url }}">Místo {{ popup.id }}</a><br/>
+   {% endif %}
 {% endfor %}
 {% endcache %}
