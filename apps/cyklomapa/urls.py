@@ -4,7 +4,7 @@ from cyklomapa.views import (
     PanelHledaniView, PanelInformaceView,
     PanelMapaView, PopupListView, kml_view, mapa_view, metro_view,
     popup_view, uzavirky_view, znacky_view,
-    )
+)
 
 from django.conf import settings
 from django.conf.urls import include, url
