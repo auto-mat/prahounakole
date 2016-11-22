@@ -19,5 +19,6 @@ class PoiModerator(CommentModerator):
 class BlacklistAdmin(admin.ModelAdmin):
     list_display = ('email', 'active')
 
+
 admin.site.register(EmailFilter, BlacklistAdmin)
 moderator.register(Poi, PoiModerator)
