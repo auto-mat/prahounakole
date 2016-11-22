@@ -33,10 +33,10 @@ describe('testMap', function() {
     init(mapconfig);
 
     it('Test map', function() {
-        expect(map.layers.length).toBe(12);
+        expect(map.layers.length).toBe(13);
         expect(map.zoom).toBe(13);
         expect(map.layers[0].slug).toBe("P");
-        expect(map.layers[5].slug).toBe("z");
+        expect(map.layers[6].slug).toBe("z");
     });
 
     location.hash = "#hledani";
