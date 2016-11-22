@@ -47,6 +47,7 @@ class UserMesto(models.Model):
     user = models.OneToOneField(User)
     mesta = models.ManyToManyField(Mesto)
 
+
 UPRESNENI_CHOICE = (
     ('novy', u'Nový'),
     ('reseno', u'V řešení'),

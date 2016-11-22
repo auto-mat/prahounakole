@@ -15,6 +15,7 @@ from django.utils.translation import ugettext_lazy as _
 def normpath(*args):
     return os.path.normpath(os.path.abspath(os.path.join(*args)))
 
+
 PROJECT_DIR = normpath(__file__, "..", "..")
 
 DEFAULT_FROM_EMAIL = 'Prahou na kole <redakce@prahounakole.cz>'

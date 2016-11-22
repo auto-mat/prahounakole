@@ -2,14 +2,15 @@ from cyklomapa.feeds import NovinkyFeed, UzavirkyFeed
 from cyklomapa.views import (
     AppCacheView,
     PanelHledaniView, PanelInformaceView,
-    PanelMapaView, kml_view, mapa_view, metro_view,
+    PanelMapaView, PopupListView, kml_view, mapa_view, metro_view,
     popup_view, uzavirky_view, znacky_view,
-    )
+)
 
 from django.conf import settings
 from django.conf.urls import include, url
 from django.contrib.sitemaps.views import sitemap
 from django.http import HttpResponse
+from django.views.decorators.cache import cache_page
 from django.views.generic.base import RedirectView
 
 from django_comments.feeds import LatestCommentFeed
@@ -36,11 +37,12 @@ urlpatterns = [
     url(r'^panel-mapa/$', PanelMapaView.as_view(), name="panel_mapa_view"),
     url(r'^panel-informace/$', PanelInformaceView.as_view(), name="panel_informace_view"),
     url(r'^panel-hledani/$', PanelHledaniView.as_view(), name="panel_hledani_view"),
+    url(r'^popup-list/$', PopupListView.as_view(), name="popup-list"),
     url(r'^comments/', include('fluent_comments.urls')),
     url(r'^pnk.appcache/', AppCacheView.as_view(), name="appcache_view"),
     url(r'^comments/feeds/latest/$', LatestCommentFeed(), name="latest_comments_feed"),
-    url(r'^robots.txt$', lambda r: HttpResponse("User-agent: *\nAllow:", content_type="text/plain")),
-    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+    url(r'^robots.txt$', lambda r: HttpResponse("User-agent: *\nDisallow: /popup-list\nDisallow: /popup/*\nUser-agent: LinkChecker\nAllow:", content_type="text/plain")),
+    url(r'^sitemap\.xml$', cache_page(24 * 60 * 60)(sitemap), {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 
     # Redirect from most frequent error links
     url(r'^jak-na-to$', RedirectView.as_view(url='http://prahounakole.cz/jak-na-to', permanent=True)),
