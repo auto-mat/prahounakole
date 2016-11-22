@@ -138,7 +138,7 @@ class SitemapTest(TestCase):
         self.client = Client(HTTP_HOST="testing-sector.testserver")
 
     def test_sitemap(self):
-        address = reverse("django.contrib.sitemaps.views.sitemap")
+        address = reverse("sitemap")
         response = self.client.get(address)
         self.assertContains(response, '<loc>http://example.com/misto/1/#misto=l_1</loc>', html=True)
 
