@@ -47,6 +47,9 @@ search_options = {
             curpos = marker.geometry;
             marker.geometry.move(lonlat.lon - curpos.x, lonlat.lat - curpos.y);
             setWaypoint(marker);
+            if (e.target.id == "jpFinishStreetSearch" && waypoints[0] != undefined) {
+                planJourney();
+            };
             return false;
         },
         open: function (e) {
