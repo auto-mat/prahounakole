@@ -28,6 +28,7 @@ search_options = {
         delay: 200,
         select: function (e, ui) {
             ga('send', 'event', 'search', 'select', e.target.id);
+            $(e.target).val(ui.item.label);
             lonlat = new OpenLayers.LonLat( ui.item.lon, ui.item.lat).transform(
                   new OpenLayers.Projection("EPSG:4326"),
                   map.getProjectionObject()
