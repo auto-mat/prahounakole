@@ -34,7 +34,11 @@ search_options = {
                   map.getProjectionObject()
             );
             map_move_by_code = true;
-            map.setCenter(lonlat, 16);
+            if (e.target.id == "mapStreetSearch")
+               zoom_to_level = 18;
+            else
+               zoom_to_level = 16;
+            map.setCenter(lonlat, zoom_to_level);
             map_move_by_code = false;
             if (appMode != 'routing') {
                 return false;
