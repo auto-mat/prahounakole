@@ -1,25 +1,26 @@
-var geoCodeURL = "http://nominatim.openstreetmap.org/search";
+var geoCodeURL = "https://search.mapzen.com/v1/autocomplete";
 search_options = {
        source: function ( request, response ) {
            $.ajax({
                   url: geoCodeURL,
-                  dataType: "jsonp",
-                  jsonp: 'json_callback',
                   data: {
                       format: "json",
-                      viewbox: mapconfig.address_search_area,
-                      bounded: 1,
-                      q: request.term
+                      "focus.point.lat": map.getCenter().transform(EPSG900913, EPSG4326).lat,
+                      "focus.point.lon": map.getCenter().transform(EPSG900913, EPSG4326).lon,
+                      api_key: "mapzen-dsCsXWh",
+                      "boundary.country": "CZE",
+                      text: request.term
                   },
                   success: function ( data ) {
-                      response ( $.map( data, function( item ) {
+                      item_map = $.map( data.features, function( item ) {
                           return {
-                              label: item.display_name,
-                              value: item.display_name,
-                              lat: item.lat,
-                              lon: item.lon
-                          }}));
-
+                              label: item.properties.label,
+                              value: item.properties.label,
+                              lat: String(item.geometry.coordinates[1]),
+                              lon: String(item.geometry.coordinates[0])
+                          }}
+                      )
+                      response(item_map);
                       }
                   })
         },
