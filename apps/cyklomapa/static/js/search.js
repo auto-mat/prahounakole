@@ -5,8 +5,9 @@ search_options = {
                   url: geoCodeURL,
                   data: {
                       format: "json",
-                      "focus.point.lat": map.getCenter().transform(EPSG900913, EPSG4326).lat,
-                      "focus.point.lon": map.getCenter().transform(EPSG900913, EPSG4326).lon,
+                      // Focus pointy nefungují dobře, protože se tam pak nenabízejí ulice a města, ale spousta adresních bodů.
+                      //"focus.point.lat": map.getCenter().transform(EPSG900913, EPSG4326).lat,
+                      //"focus.point.lon": map.getCenter().transform(EPSG900913, EPSG4326).lon,
                       api_key: "mapzen-dsCsXWh",
                       "boundary.country": "CZE",
                       text: request.term
