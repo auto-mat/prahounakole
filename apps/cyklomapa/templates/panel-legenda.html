@@ -4,11 +4,23 @@
   <h3 class="margin_t_2">Základní značky v cyklomapě</h3>
   <p class="desc_vlastnosti">
     {% cache 3600 legenda %}
+    <table id="legenda_table">
     {% for l in legenda %}
-    {% if l.image %}
-    <img src="{{ l.image.url }}" alt="{{ l.name }}"> &nbsp; {{ l.name }}<br/>
-    {% endif %}
+    <tr>
+    <td>
+       {% if l.image %}
+       <img src="{{ l.image.url }}" alt="{{ l.name }}">
+       {% endif %}
+    </td>
+    <td>
+       {{ l.name }}
+       {% if l.en_name %}
+       <br/>({{l.en_name}})
+       {% endif %}
+    </td>
+    </tr>
     {% endfor %}
+    </table>
     {% endcache %}
   </p>
   </div>
