@@ -235,9 +235,16 @@ class ViewTest(TestCase):
         response = self.client.get(address)
         self.assertContains(
             response,
-            '<p class="desc_vlastnosti">'
-            '<img src="/media/DSC00002.JPG" alt="Testing legend item 1"> &nbsp; Testing legend item 1<br/>'
-            '</p>',
+            '<table id="legenda_table">'
+            '<tr>'
+            '<td> <img src="/media/DSC00002.JPG" alt="Testing legend item 1"> </td>'
+            '<td> Testing legend item 1 </td>'
+            '</tr> '
+            '<tr>'
+            '<td> </td>'
+            '<td> Testing legend item </td>'
+            '</tr>'
+            '</table>',
             html=True,
         )
 
