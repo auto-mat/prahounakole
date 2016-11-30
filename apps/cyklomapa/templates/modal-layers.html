@@ -1,4 +1,6 @@
 <!-- TADY SE BUDE GENEROVAT OBSAH VRSTEV APOD. -->
+{% load cache %}
+{% cache 3600 modal_layers %}
   <div id="modal-layer" class="modal fade">
      <a type="button" class="close-me" data-dismiss="modal">X</a>
     <div class="modal-dialog">
@@ -52,3 +54,4 @@
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
+{% endcache %}
