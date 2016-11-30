@@ -36,7 +36,7 @@ search_options = {
             );
             map_move_by_code = true;
             if (e.target.id == "mapStreetSearch")
-               zoom_to_level = 18;
+               zoom_to_level = 16; // Můžeme zvýšit na 18, pokud bude vše vyrenderováno
             else
                zoom_to_level = 16;
             map.setCenter(lonlat, zoom_to_level);
