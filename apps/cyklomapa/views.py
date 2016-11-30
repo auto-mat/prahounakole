@@ -64,7 +64,7 @@ def kml_view(request, nazev_vrstvy):
     v = get_object_or_404(OverlayLayer, slug=nazev_vrstvy, status__show=True)
 
     # vsechny body co jsou v teto vrstve a jsou zapnute
-    points = Poi.visible.filter(marker__layer=v).filter(geom__bboverlaps=request.mesto.sektor.geom)  # the lookup was "intersects", but it does not work for GeometryCollections
+    points = Poi.visible.filter(marker__layer=v)
     return render_to_kml(
         "webmap/gis/kml/layer.kml", {
             'places': points,
