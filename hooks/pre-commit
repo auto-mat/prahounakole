@@ -1,9 +1,11 @@
-#!/usr/bin/python
-import sys
-from flake8.run import git_hook
+#!/usr/bin/python3
 
-COMPLEXITY = 10
-STRICT = False
+import sys
+
+from flake8.main import git
+
+STRICT = True
+
 
 if __name__ == '__main__':
-    sys.exit(git_hook(complexity=COMPLEXITY, strict=STRICT, ignore='E501'))
+    sys.exit(git.hook(strict=STRICT))
