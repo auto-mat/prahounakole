@@ -997,13 +997,15 @@ function onHashChange(e) {
         setupPnkMap();
         showPanel('mapa');
     }
-    if (hash == 'informace') {
+    if (hash == 'informace' || hash == 'uzavirky' || hash == 'zmeny' || hash == 'komentare' || hash == 'legenda' || hash == 'omape') {
         reportAction('send', 'event', 'left-panel-tab', 'switch', 'informace');
         loadPanelContent('informace', function(){
            setupPnkMap();
            showPanel_closeBox('informace');
+           $("#" + hash).click()
         }, function(){
            $('.harmonika .txt').not('.active').hide();
+           $("#" + hash).click()
         });
     }
 }

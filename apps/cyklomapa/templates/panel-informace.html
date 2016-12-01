@@ -4,7 +4,7 @@
 
   <div class="col-md-12 harmonika">
     <h4>
-       <a href="#" class="open_txt">Uzavírky</a>
+       <a href="#uzavirky" class="open_txt">Uzavírky</a>
     </h4>
     <div class="txt active">
      {% include "panel-uzavirky.html" %}
@@ -13,7 +13,7 @@
 
   <div class="col-md-12 harmonika">
     <h4>
-       <a href="#" class="open_txt">Poslední změny</a>
+       <a href="#zmeny" id="zmeny" class="open_txt">Poslední změny</a>
     </h4>
     <div class="txt">
       {% include "panel-historie.html" %}
@@ -22,7 +22,7 @@
 
   <div class="col-md-12 harmonika">
     <h4>
-       <a href="#" class="open_txt">Poslední komentáře</a>
+       <a href="#komentare" id="komentare" class="open_txt">Poslední komentáře</a>
     </h4>
     <div class="txt">
       {% include "panel-komentare.html" %}
@@ -31,7 +31,7 @@
 
   <div class="col-md-12 harmonika">
     <h4>
-       <a href="#" class="open_txt">Legenda</a>
+       <a href="#legenda" id="legenda" class="open_txt">Legenda</a>
     </h4>
     <div class="txt">
       {% include "panel-legenda.html" %}
@@ -40,7 +40,7 @@
 
   <div class="col-md-12 harmonika">
     <h4>
-       <a href="#" class="open_txt">O mapě</a>
+       <a href="#omape" id="omape" class="open_txt">O mapě</a>
     </h4>
     <div class="txt">
       {{ config.ABOUT_MAP|safe }}
