@@ -2,7 +2,7 @@
 {% load cache %}
 {% cache 3600 modal_layers %}
   <div id="modal-layer" class="modal fade">
-     <a type="button" class="close-me" data-dismiss="modal">X</a>
+     <a class="close-me" data-dismiss="modal">X</a>
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-body">
@@ -11,7 +11,7 @@
               {% for preset in presets %}
               <div class="col-md-3 col-sm-6 each-view change-layer" data-name='{{preset.name}}' data-baselayer='{{preset.base_layer.slug}}' data-overlayers='["{{preset.overlay_layers_slugs|join:"\", \""}}"]' title="{{ preset.desc }}">
                  <a href="javascript:void(0)" data-dismiss="modal">
-                   <img src="{{ preset.icon.url }}" class=""/>
+                   <img src="{{ preset.icon.url }}" alt="{{preset.name}}" class=""/>
                    {{ preset.name }}
                  </a>
               </div>
@@ -34,7 +34,7 @@
 
 
   <div id="modal-city" class="modal fade">
-     <a type="button" class="close-me" data-dismiss="modal">X</a>
+     <a class="close-me" data-dismiss="modal">X</a>
     <div class="modal-dialog">
       <div class="modal-content">
         <!-- <div class="modal-header">
