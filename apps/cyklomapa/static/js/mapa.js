@@ -154,7 +154,7 @@ function init(mapconfig) {
     });
     layerIPR = new OpenLayers.Layer.WMS(
         "Ortofoto IPR mimovegetační",
-        "http://mpp.praha.eu/arcgis/services/MAP/mimovegetacni_snimkovani_cache/MapServer/WmsServer",
+        "https://mpp.praha.eu/arcgis/services/MAP/mimovegetacni_snimkovani_cache/MapServer/WmsServer",
         {
             layers: '0',
             format: 'image/jpeg',
@@ -171,7 +171,7 @@ function init(mapconfig) {
         });
     layerIPR2 = new OpenLayers.Layer.WMS(
         "Ortofoto IPR",
-        "http://mpp.praha.eu/arcgis/services/MAP/Ortofotomapa_archiv/MapServer/WmsServer",
+        "https://mpp.praha.eu/arcgis/services/MAP/Ortofotomapa_archiv/MapServer/WmsServer",
         {
             layers: '0',
             format: 'image/jpeg',
@@ -1246,7 +1246,7 @@ function addCSLayer(name, enabled, slug) {
          slug: slug,
          strategies: [new OpenLayers.Strategy.Fixed()],
          protocol: new OpenLayers.Protocol.HTTP({
-            url: "http://prahounakole.cz/wp-content/pnk/cs_tracks/list.json",
+            url: "https://mapa.prahounakole.cz/static/list.json",
             format: new OpenLayers.Format.GeoJSON({
                    parseFeature: function(data) {
                        feature = OpenLayers.Format.GeoJSON.prototype.parseFeature(data)
