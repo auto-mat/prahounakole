@@ -108,7 +108,7 @@ class AdminFilterTests(TestCase):
         response = self.client.post(reverse("comments-post-comment-ajax"), post_data, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertEqual(response.status_code, 200, response.content.decode("utf-8"))
         self.assertContains(response, '<div class=\\"comment-text\\"><p>Testing comment</p></div>')
-        self.assertContains(response, 'Testing name\\n              <span class=\\"comment-date\\">on Jan. 4, 2016, 5:10 p.m.</span>')
+        self.assertContains(response, 'Testing name\\n                  <span class=\\"comment-date\\">on Jan. 4, 2016, 5:10 p.m.</span>')
 
     @freeze_time("2016-01-04 17:10:00")
     def test_comment_post_blocked(self):
@@ -129,7 +129,7 @@ class AdminFilterTests(TestCase):
         response = self.client.post(reverse("comments-post-comment-ajax"), post_data, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertEqual(response.status_code, 200, response.content.decode("utf-8"))
         self.assertContains(response, '<div class=\\"comment-text\\"><p>Testing comment</p></div>')
-        self.assertContains(response, 'Testing name\\n              <span class=\\"comment-date\\">on Jan. 4, 2016, 5:10 p.m.</span>')
+        self.assertContains(response, 'Testing name\\n                  <span class=\\"comment-date\\">on Jan. 4, 2016, 5:10 p.m.</span>')
         self.assertContains(response, '<span class=\\"comment-moderated-flag\\">(moderated)</span>')
 
 
