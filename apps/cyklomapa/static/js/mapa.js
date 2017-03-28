@@ -1246,7 +1246,7 @@ function addCSLayer(name, enabled, slug) {
          slug: slug,
          strategies: [new OpenLayers.Strategy.Fixed()],
          protocol: new OpenLayers.Protocol.HTTP({
-            url: "https://mapa.prahounakole.cz/static/list.json",
+            url: "/static/list.json",
             format: new OpenLayers.Format.GeoJSON({
                    parseFeature: function(data) {
                        feature = OpenLayers.Format.GeoJSON.prototype.parseFeature(data)
