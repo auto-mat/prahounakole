@@ -141,8 +141,10 @@ INSTALLED_APPS = [
 CSRF_COOKIE_SECURE = True
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
-if not DEBUG:
-    SECURE_SSL_REDIRECT = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'https')
+SECURE_HSTS_SECONDS = 60
+SECURE_SSL_REDIRECT = True
+SECURE_REDIRECT_EXEMPT = [r"pnk.appcache"]
 SESSION_COOKIE_SECURE = True
 X_FRAME_OPTIONS = 'DENY'
 
@@ -163,6 +165,7 @@ CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
 CORS_ORIGIN_WHITELIST = (
     'cyklomapa.plzne.cz',
 )
+CORS_ORIGIN_REGEX_WHITELIST = (r'^(https?://)?(\w+\.)?prahounakole\.cz$', )
 
 LOGGING = {
     'version': 1,
