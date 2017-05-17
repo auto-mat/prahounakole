@@ -81,6 +81,8 @@ TEMPLATES = [
 
 
 MIDDLEWARE_CLASSES = (
+    'django.middleware.security.SecurityMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'raven.contrib.django.raven_compat.middleware.Sentry404CatchMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -135,6 +137,14 @@ INSTALLED_APPS = [
     'httpproxy',
     'django_media_fixtures',
 ]
+
+CSRF_COOKIE_SECURE = True
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+if not DEBUG:
+    SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+X_FRAME_OPTIONS = 'DENY'
 
 ENABLE_API_PROXY = DEBUG        # http-roxy pro requesty na /api
 PROXY_BASE_URL = 'http://www.cyclestreets.net'
