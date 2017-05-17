@@ -12,7 +12,7 @@ CACHE:
 /panel-mapa/
 /panel-hledani/
 https://www.google-analytics.com/analytics.js
-https://maps.google.com/maps/api/js?v=3.26&key=AIzaSyAMynmNOoU_M2mf0xca6cUJQAmwkx6cT_8
+https://maps.google.com/maps/api/js?v=3.28&key=AIzaSyAMynmNOoU_M2mf0xca6cUJQAmwkx6cT_8
 /static/css/prazak.png
 /static/img/circle.png
 /static/img/cs_logo.png
