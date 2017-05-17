@@ -145,7 +145,7 @@ function init(mapconfig) {
     });
     layerPNK = new OpenLayers.Layer.OSM(
         "Prahou na kole",
-        "http://tiles.prahounakole.cz/", {
+        "https://tiles.prahounakole.cz/", {
         slug:"P",
         type: 'png',
         numZoomLevels: mapconfig.maxzoom + 1,
@@ -166,7 +166,7 @@ function init(mapconfig) {
             slug:"I",
             numZoomLevels: 22,
             displayInLayerSwitcher: true,
-            attribution:"<a href='http://www.geoportalpraha.cz/cs/clanek/276/licencni-podminky-pro-otevrena-data' target='_new' title='link opens in new window'>IPR Praha CC BY-SA 4.0</a>",
+            attribution:"<a href='https://www.geoportalpraha.cz/cs/clanek/276/licencni-podminky-pro-otevrena-data' target='_new' title='link opens in new window'>IPR Praha CC BY-SA 4.0</a>",
             projection : new OpenLayers.Projection("EPSG:3857")
         });
     layerIPR2 = new OpenLayers.Layer.WMS(
@@ -183,12 +183,12 @@ function init(mapconfig) {
             slug:"J",
             numZoomLevels: 22,
             displayInLayerSwitcher: true,
-            attribution:"<a href='http://www.geoportalpraha.cz/cs/clanek/276/licencni-podminky-pro-otevrena-data' target='_new' title='link opens in new window'>IPR Praha CC BY-SA 4.0</a>",
+            attribution:"<a href='https://www.geoportalpraha.cz/cs/clanek/276/licencni-podminky-pro-otevrena-data' target='_new' title='link opens in new window'>IPR Praha CC BY-SA 4.0</a>",
             projection : new OpenLayers.Projection("EPSG:3857")
         });
     layerBW = new OpenLayers.Layer.OSM(
         "Černobílá",
-        "http://tiles.prahounakole.cz/", {
+        "https://tiles.prahounakole.cz/", {
         slug:"W",
         type: 'png',
         numZoomLevels: mapconfig.maxzoom + 1,
@@ -1076,7 +1076,7 @@ function onFeatureSelect(feature) {
             feature.attributes.name +
             '</h4> <div class="row controls"> <div class="col-md-2 col-md-offset-10 centred"> <a class="sprite btn close close_poi" title="Zavřít popis místa"></a> </div> </div> </div> <div class="rc"><p>' +
             feature.attributes.description +
-            '<p><a href="http://www.rekola.cz/" target="_blank">ReKola - komunitní bikesharing (zatím) v Praze</a>' +
+            '<p><a href="https://www.rekola.cz/" target="_blank">ReKola - komunitní bikesharing (zatím) v Praze</a>' +
             '</div></div>';
         feature.attributes.width = 32;
         feature.attributes.height = 20;
@@ -1087,7 +1087,7 @@ function onFeatureSelect(feature) {
         var response = {};
         var photo = ""
         if(feature.attributes.photo_thumb_url){
-            photo = "<img src='http://www.cyklistesobe.cz/" + feature.attributes.photo_thumb_url + "'>";
+            photo = "<img src='https://www.cyklistesobe.cz/" + feature.attributes.photo_thumb_url + "'>";
         }
         response.responseText =
             '<div> <div class="trc"> <h4>' +
