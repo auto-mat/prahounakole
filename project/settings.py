@@ -149,7 +149,7 @@ SESSION_COOKIE_SECURE = True
 X_FRAME_OPTIONS = 'DENY'
 
 ENABLE_API_PROXY = DEBUG        # http-roxy pro requesty na /api
-PROXY_BASE_URL = 'http://www.cyclestreets.net'
+PROXY_BASE_URL = 'https://www.cyclestreets.net'
 
 CONSTANCE_APP_NAME = "webmap"
 CONSTANCE_CONFIG = {
