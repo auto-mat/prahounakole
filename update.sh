@@ -29,7 +29,7 @@ if [ "$1" != "no_virtualenv" ]; then
    echo activate
    source env/bin/activate
 fi
-pip install --process-dependency-links -r requirements.txt
+pip install --process-dependency-links -r requirements.freeze.txt
 if [ "$1" != "no_virtualenv" ]; then
    pip install "Django<1.12"
 fi
