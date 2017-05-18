@@ -1,6 +1,5 @@
 Pillow==4.1.1
 WsgiUnproxy==1.0
--e git+https://github.com/allieus/python-akismet.git@082a3d50122e43771022d6fe3fbb31c8da0c1a5a#egg=akismet-origin/HEAD
 contextlib2==0.5.5
 diff-match-patch==20110725.1
 django-admin-sortable2==0.6.11
@@ -44,5 +43,4 @@ rcssmin==1.0.6
 requests==2.14.2
 rjsmin==1.0.12
 setuptools-git==1.2
-six==1.10.0
 tablib==0.11.4

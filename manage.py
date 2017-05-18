@@ -9,7 +9,7 @@ try:
     activate_path = normpath(PROJECT_DIR, 'env/bin/activate_this.py')
     with open(activate_path) as f:
         code = compile(f.read(), "somefile.py", 'exec')
-        exec(code, dict(__file__=activate_path))
+        exec(code, dict(__file__=activate_path))  # noqa
 except IOError:
     print("E: virtualenv must be installed to PROJECT_DIR/env")
 # END activacte virtualenv

@@ -7,7 +7,6 @@ django-mass-edit
 
 django-contrib-comments
 
--e git+https://github.com/allieus/python-akismet.git#egg=akismet
 django-fluent-comments
 
 django-picklefield

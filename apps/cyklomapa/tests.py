@@ -87,7 +87,7 @@ class AdminFilterTests(TestCase):
         test if the admin pages load
         """
         self.assertTrue(self.client.login(username='admin', password='admin'))
-        response = self.client.get(reverse("admin:webmap_poi_changelist"))
+        response = self.client.get(reverse("admin:webmap_poi_changelist"), secure=True)
         self.assertEqual(response.status_code, 200)
 
     @freeze_time("2016-01-04 17:10:00")
@@ -105,7 +105,7 @@ class AdminFilterTests(TestCase):
             "timestamp": timestamp,
             "security_hash": security_hash,
         }
-        response = self.client.post(reverse("comments-post-comment-ajax"), post_data, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        response = self.client.post(reverse("comments-post-comment-ajax"), post_data, HTTP_X_REQUESTED_WITH='XMLHttpRequest', secure=True)
         self.assertEqual(response.status_code, 200, response.content.decode("utf-8"))
         self.assertContains(response, '<div class=\\"comment-text\\"><p>Testing comment</p></div>')
         self.assertContains(response, 'Testing name\\n                  <span class=\\"comment-date\\">on Jan. 4, 2016, 5:10 p.m.</span>')
@@ -126,7 +126,7 @@ class AdminFilterTests(TestCase):
             "timestamp": timestamp,
             "security_hash": security_hash,
         }
-        response = self.client.post(reverse("comments-post-comment-ajax"), post_data, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        response = self.client.post(reverse("comments-post-comment-ajax"), post_data, HTTP_X_REQUESTED_WITH='XMLHttpRequest', secure=True)
         self.assertEqual(response.status_code, 200, response.content.decode("utf-8"))
         self.assertContains(response, '<div class=\\"comment-text\\"><p>Testing comment</p></div>')
         self.assertContains(response, 'Testing name\\n                  <span class=\\"comment-date\\">on Jan. 4, 2016, 5:10 p.m.</span>')
@@ -142,8 +142,8 @@ class SitemapTest(TestCase):
 
     def test_sitemap(self):
         address = reverse("sitemap")
-        response = self.client.get(address)
-        self.assertContains(response, '<loc>http://example.com/misto/1/#misto=l_1</loc>', html=True)
+        response = self.client.get(address, secure=True)
+        self.assertContains(response, '<loc>https://example.com/misto/1/#misto=l_1</loc>', html=True)
 
 
 class UnloggedViewTest(TestCase):
@@ -155,7 +155,7 @@ class UnloggedViewTest(TestCase):
 
     def test_popup(self):
         address = reverse("popup_view", args=(1, ))
-        response = self.client.get(address)
+        response = self.client.get(address, secure=True)
         self.assertContains(
             response,
             '<div class="col-md-2 col-md-offset-6 col-sm-3 col-sm-offset-0 centred">'
@@ -185,57 +185,57 @@ class ViewTest(TestCase):
 
     def test_uzavirky_view(self):
         address = reverse("uzavirky_view")
-        response = self.client.get(address)
-        self.assertContains(response, '<a href="http://mapa.prahounakole.cz/misto/1" target="_top" title="Description">Testing poi</a>', html=True)
+        response = self.client.get(address, secure=True)
+        self.assertContains(response, '<a href="https://mapa.prahounakole.cz/misto/1" target="_top" title="Description">Testing poi</a>', html=True)
 
     def test_uzavirky_feed(self):
         address = reverse("uzavirky_feed")
-        response = self.client.get(address)
-        self.assertContains(response, '<title>Testing poi</title><link>http://example.com#misto=l_1/</link>')
+        response = self.client.get(address, secure=True)
+        self.assertContains(response, '<title>Testing poi</title><link>https://example.com#misto=l_1/</link>')
 
     def test_novinky_feed(self):
         address = reverse("novinky_feed")
-        response = self.client.get(address)
-        self.assertContains(response, '<title>Testing poi</title><link>http://example.com#misto=l_1/</link>')
+        response = self.client.get(address, secure=True)
+        self.assertContains(response, '<title>Testing poi</title><link>https://example.com#misto=l_1/</link>')
 
     def test_panel_mapa_view(self):
         address = reverse("panel_mapa_view")
-        response = self.client.get(address)
+        response = self.client.get(address, secure=True)
         self.assertContains(response, '<div> Lorem ipsum </div>', html=True)
 
     def test_panel_hledani_view(self):
         address = reverse("panel_hledani_view")
-        response = self.client.get(address)
+        response = self.client.get(address, secure=True)
         self.assertContains(response, '<div id="jpPlanMessage">Čekání na server</div>', html=True)
 
     def test_appcache_view(self):
         address = reverse("appcache_view")
-        response = self.client.get(address)
+        response = self.client.get(address, secure=True)
         self.assertContains(response, '/kml/l/')
 
     def test_kml_view(self):
         address = reverse("kml_view", args=("l",))
-        response = self.client.get(address)
-        self.assertContains(response, '<ikona>http://example.com/media/DSC00002.JPG</ikona>', html=True)
+        response = self.client.get(address, secure=True)
+        self.assertContains(response, '<ikona>/media/DSC00002.JPG</ikona>', html=True)
 
     def test_search_view(self):
         address = reverse(webmap_views.search_view, args=("poi",))
-        response = self.client.get(address)
+        response = self.client.get(address, secure=True)
         self.assertContains(response, '<name>Testing poi</name>', html=True)
 
     def test_metro_view(self):
         address = reverse("metro_view")
-        response = self.client.get(address)
+        response = self.client.get(address, secure=True)
         self.assertContains(response, '<b>Testing poi 1</b>', html=True)
 
     def test_popup_list_view(self):
         address = reverse("popup-list")
-        response = self.client.get(address)
+        response = self.client.get(address, secure=True)
         self.assertContains(response, '<a href="http://www.test.cz">Místo 1</a>', html=True)
 
     def test_panel_informace_view(self):
         address = reverse("panel_informace_view")
-        response = self.client.get(address)
+        response = self.client.get(address, secure=True)
         self.assertContains(
             response,
             '<table id="legenda_table">'
@@ -253,7 +253,7 @@ class ViewTest(TestCase):
 
     def test_znacky_view(self):
         address = reverse("znacky_view")
-        response = self.client.get(address)
+        response = self.client.get(address, secure=True)
         self.assertContains(response, '<dt><a name="tli"></a> <b>Testing legend item</b></dt>', html=True)
         self.assertContains(response, '<dd>Legend item description</dd>', html=True)
         self.assertContains(
@@ -266,20 +266,20 @@ class ViewTest(TestCase):
 
     def test_mapa_view(self):
         address = reverse("mapa_view")
-        response = self.client.get(address)
+        response = self.client.get(address, secure=True)
         self.assertContains(response, 'mapconfig[\'address_search_area\'] = "14.288920739775005,49.99501600356955,14.656276086402867,50.16553949570296";')
         self.assertContains(response, 'mapconfig[\'vrstvy\'].push(["Testing layer", "/kml/l/", enabled, "l"]);')
         self.assertContains(response, '<a href="javascript:void(0)" data-dismiss="modal"><img src="/media/DSC00002.JPG" alt="Preset name" class=""/>Preset name</a>', html=True)
 
     def test_mapa_view_nonexistent_misto(self):
         address = reverse("mapa_view", args=(123, ))
-        response = self.client.get(address)
+        response = self.client.get(address, secure=True)
         self.assertContains(response, 'mapconfig[\'address_search_area\'] = "14.288920739775005,49.99501600356955,14.656276086402867,50.16553949570296";')
         self.assertNotContains(response, 'mapconfig[\'center_feature\']')
 
     def test_mapa_view_misto(self):
         address = reverse("mapa_view", args=(1, ))
-        response = self.client.get(address)
+        response = self.client.get(address, secure=True)
         self.assertContains(response, 'mapconfig[\'address_search_area\'] = "14.288920739775005,49.99501600356955,14.656276086402867,50.16553949570296";')
         self.assertContains(response, 'mapconfig[\'center_feature\'] = 1;')
         self.assertContains(response, 'enabled = "False";\n            \n            mapconfig[\'vrstvy\'].push(["Disabled layer", "/kml/d/", enabled, "d"]);')
@@ -287,7 +287,7 @@ class ViewTest(TestCase):
 
     def test_mapa_view_misto_enabled_layer(self):
         address = reverse("mapa_view", args=(2, ))
-        response = self.client.get(address)
+        response = self.client.get(address, secure=True)
         self.assertContains(response, 'mapconfig[\'address_search_area\'] = "14.288920739775005,49.99501600356955,14.656276086402867,50.16553949570296";')
         self.assertContains(response, 'mapconfig[\'center_feature\'] = 2;')
         self.assertContains(response, 'enabled = "True";\n            \n            mapconfig[\'vrstvy\'].push(["Disabled layer", "/kml/d/", enabled, "d"]);')
@@ -295,10 +295,10 @@ class ViewTest(TestCase):
 
     def test_popup(self):
         address = reverse("popup_view", args=(1, ))
-        response = self.client.get(address)
+        response = self.client.get(address, secure=True)
         self.assertContains(
             response,
-            '<a href="http://maps.google.com/?q=Testing%20poi@50.08740475519474,14.422134381874203&amp;z=18&amp;t=h"'
+            '<a href="https://maps.google.com/?q=Testing%20poi@50.08740475519474,14.422134381874203&amp;z=18&amp;t=h"'
             ' target="pnk_gmap" title="Zobrazit v Google Maps" class="sprite btn gmap"></a>',
             html=True,
         )
@@ -326,7 +326,7 @@ class ViewTest(TestCase):
 
     def test_popup_poi_without_desc(self):
         address = reverse("popup_view", args=(205, ))
-        response = self.client.get(address)
+        response = self.client.get(address, secure=True)
         self.assertContains(
             response,
             '<p>Metro A</p>',
