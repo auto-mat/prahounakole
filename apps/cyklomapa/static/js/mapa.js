@@ -1217,9 +1217,9 @@ function onLocationUpdate(evt) {
 
 function addDPNK1(name, enabled, slug) {
   var dpnk_gpxfile = new OpenLayers.Layer.WMS(name,
-     "http://mapa.prahounakole.cz:8080/geoserver/dpnk/wms?tiled=true",
+     "https://geoserver.prahounakole.cz/geoserver/dpnk/wms?tiled=true",
      {
-        layers: 'dpnk:the_gpx_geom_anonymous',
+        layers: 'dpnk:dpnk_gpxfile_anonymized',
         format: 'image/png',
         transparent: true,
   });
@@ -1230,9 +1230,9 @@ function addDPNK1(name, enabled, slug) {
 
 function addDPNK2(name, enabled, slug) {
   var dpnk_tracks = new OpenLayers.Layer.WMS(name,
-     "http://mapa.prahounakole.cz:8080/geoserver/dpnk/wms?tiled=true",
+     "https://geoserver.prahounakole.cz/geoserver/dpnk/wms?tiled=true",
      {
-        layers: 'dpnk:tracks_anonymous',
+        layers: 'dpnk:dpnk_track_anonymized',
         format: 'image/png',
         transparent: true,
   });
