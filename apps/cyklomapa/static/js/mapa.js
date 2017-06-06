@@ -1227,7 +1227,7 @@ function onLocationUpdate(evt) {
     ]);
 }
 
-function addDPNK_track_2015(name, enabled, slug) {
+function addDPNK_GPX_2015(name, enabled, slug) {
   var dpnk_gpxfile = new OpenLayers.Layer.WMS(name,
      "https://geoserver.prahounakole.cz/geoserver/dpnk/wms?tiled=true",
      {
@@ -1240,7 +1240,7 @@ function addDPNK_track_2015(name, enabled, slug) {
   map.addLayers([dpnk_gpxfile]);
 }
 
-function addDPNK_GPX_2015(name, enabled, slug) {
+function addDPNK_track_2015(name, enabled, slug) {
   var dpnk_tracks = new OpenLayers.Layer.WMS(name,
      "https://geoserver.prahounakole.cz/geoserver/dpnk/wms?tiled=true",
      {
@@ -1253,7 +1253,7 @@ function addDPNK_GPX_2015(name, enabled, slug) {
   map.addLayers([dpnk_tracks]);
 }
 
-function addDPNK_track_2016(name, enabled, slug) {
+function addDPNK_GPX_2016(name, enabled, slug) {
   var dpnk_gpxfile = new OpenLayers.Layer.WMS(name,
      "https://geoserver.prahounakole.cz/geoserver/dpnk/wms?tiled=true",
      {
@@ -1266,7 +1266,7 @@ function addDPNK_track_2016(name, enabled, slug) {
   map.addLayers([dpnk_gpxfile]);
 }
 
-function addDPNK_GPX_2016(name, enabled, slug) {
+function addDPNK_track_2016(name, enabled, slug) {
   var dpnk_tracks = new OpenLayers.Layer.WMS(name,
      "https://geoserver.prahounakole.cz/geoserver/dpnk/wms?tiled=true",
      {
@@ -1279,7 +1279,7 @@ function addDPNK_GPX_2016(name, enabled, slug) {
   map.addLayers([dpnk_tracks]);
 }
 
-function addDPNK_track_2017(name, enabled, slug) {
+function addDPNK_GPX_2017(name, enabled, slug) {
   var dpnk_gpxfile = new OpenLayers.Layer.WMS(name,
      "https://geoserver.prahounakole.cz/geoserver/dpnk/wms?tiled=true",
      {
@@ -1292,7 +1292,7 @@ function addDPNK_track_2017(name, enabled, slug) {
   map.addLayers([dpnk_gpxfile]);
 }
 
-function addDPNK_GPX_2017(name, enabled, slug) {
+function addDPNK_track_2017(name, enabled, slug) {
   var dpnk_tracks = new OpenLayers.Layer.WMS(name,
      "https://geoserver.prahounakole.cz/geoserver/dpnk/wms?tiled=true",
      {
