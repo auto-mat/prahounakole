@@ -30,7 +30,8 @@ function panel_action(action){
     $('body').addClass('panel_minimized');
     $('#panel').addClass('minimized');
     $('.dildo').removeClass('hide');
-    full_screen();
+    // full_screen action doesn't work in Chrome due to restrictions (must be triggered by button action) so it is disabled
+    // full_screen();
     // console.log('maximaze')
   }
 
