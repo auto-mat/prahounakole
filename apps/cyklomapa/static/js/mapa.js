@@ -107,7 +107,7 @@ function init(mapconfig) {
     var controls;
     layerSwitcher = new OpenLayers.Control.LayerSwitcher({'div':OpenLayers.Util.getElement('layer_switcher')});
     controls = [
-        //new OpenLayers.Control.TouchNavigation(), // Tohle je zvláštní, pinchZoom mi funguje i bez toho a když to zapnu, tak to blokuje parametr xy pro touchend akci
+        new OpenLayers.Control.TouchNavigation(),
         new OpenLayers.Control.ArgParser({configureLayers: configureLayers}),
         new OpenLayers.Control.Attribution(),
         layerSwitcher,
