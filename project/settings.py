@@ -145,9 +145,9 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'https')
 SECURE_HSTS_SECONDS = 60
 SECURE_SSL_REDIRECT = True
 SECURE_REDIRECT_EXEMPT = [
-   r"pnk.appcache",
-   r"uzavirky/feed",
-   r"novinky/feed",
+    r"pnk.appcache",
+    r"uzavirky/feed",
+    r"novinky/feed",
 ]
 SESSION_COOKIE_SECURE = True
 X_FRAME_OPTIONS = 'DENY'
