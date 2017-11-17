@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 
-from settings import LOGGING, PROJECT_DIR, normpath
+import raven
 from settings import *  # noqa
+from settings import LOGGING, PROJECT_DIR, TEMPLATES, normpath
 
 # Tento soubor překopírujte s názvem settings_local.py a doplňte vaše lokální nastavení
 
 DEBUG = True
-TEMPLATE_DEBUG = DEBUG
+TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
 
 SERVER_EMAIL = 'pnk-technik@auto-mat.cz'
 ADMINS = (
@@ -51,3 +52,32 @@ ENABLE_API_PROXY = True
 
 # Make log in execution directory when testing
 LOGGING['handlers']['logfile']['filename'] = normpath(PROJECT_DIR, "pnk.log")
+
+MEDIA_ROOT = 'media/'
+STATIC_ROOT = 'static/'
+
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = '/tmp/pnk-emails'
+
+UGLIFY_JS_BINARY = "/usr/lib/node_modules/bower/node_modules/handlebars/node_modules/uglify-js/bin/uglifyjs"
+# FORCE_SUBDOMAIN = "ostrava"
+
+ALLOWED_HOSTS = [
+    'mapa.prahounakole.cz',
+    'localhost',
+    "mapa.localhost",
+]
+
+# COMPRESS_ROOT = normpath(PROJECT_DIR, "apps/cyklomapa/static")
+# COMPRESS_ENABLED = False
+
+RAVEN_CONFIG = {
+    'dsn': '',
+    'release': raven.fetch_git_sha(PROJECT_DIR),
+}
+
+CSRF_COOKIE_SECURE = False
+SECURE_BROWSER_XSS_FILTER = False
+SECURE_CONTENT_TYPE_NOSNIFF = False
+SECURE_SSL_REDIRECT = False
+SESSION_COOKIE_SECURE = False
