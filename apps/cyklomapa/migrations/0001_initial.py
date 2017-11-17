@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('url', models.URLField(help_text='uk\xe1\u017ee se u v\u0161ech m\xedst s touto zna\u010dkou, pokud nemaj\xed vlastn\xed url', null=True, blank=True)),
-                ('marker', models.OneToOneField(null=True, to='webmap.Marker')),
+                ('marker', models.OneToOneField(null=True, to='webmap.Marker', on_delete=models.CASCADE)),
             ],
             options={
             },
@@ -34,7 +34,7 @@ class Migration(migrations.Migration):
                 ('zoom', models.PositiveIntegerField(default=13, help_text='Zoomlevel, ve kter\xe9m se zobraz\xed mapa po na\u010dten\xed')),
                 ('uvodni_zprava', models.TextField(help_text='Zpr\xe1va, kter\xe1 se zobraz\xed v lev\xe9m panelu', null=True, verbose_name='\xdavodn\xed zpr\xe1va', blank=True)),
                 ('geom', django.contrib.gis.db.models.fields.PointField(srid=4326, verbose_name='Poloha st\u0159edu')),
-                ('sektor', models.OneToOneField(null=True, to='webmap.Sector')),
+                ('sektor', models.OneToOneField(null=True, to='webmap.Sector', on_delete=models.CASCADE)),
             ],
             options={
                 'verbose_name_plural': 'm\u011bsta',
@@ -51,7 +51,7 @@ class Migration(migrations.Migration):
                 ('desc', models.TextField(null=True, verbose_name='Popis (dopln\u011bn\xed nebo oprava nebo popis nov\xe9ho m\xedsta, povinn\xe9 pole)')),
                 ('url', models.URLField(null=True, verbose_name='Odkaz, webov\xe9 str\xe1nky m\xedsta (voliteln\xe9 pole)', blank=True)),
                 ('address', models.CharField(max_length=255, null=True, verbose_name='Adresa m\xedsta, popis lokace (voliteln\xe9 pole)', blank=True)),
-                ('misto', models.ForeignKey(blank=True, to='webmap.Poi', null=True)),
+                ('misto', models.ForeignKey(blank=True, to='webmap.Poi', null=True, on_delete=models.CASCADE)),
             ],
             options={
                 'verbose_name_plural': 'up\u0159esn\u011bn\xed',
@@ -63,7 +63,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('mesta', models.ManyToManyField(to='cyklomapa.Mesto')),
-                ('user', models.OneToOneField(to=settings.AUTH_USER_MODEL)),
+                ('user', models.OneToOneField(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)),
             ],
             options={
             },

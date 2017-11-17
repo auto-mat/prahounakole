@@ -80,7 +80,7 @@ TEMPLATES = [
 ]
 
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = (
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'raven.contrib.django.raven_compat.middleware.Sentry404CatchMiddleware',
@@ -93,8 +93,8 @@ MIDDLEWARE_CLASSES = (
     'author.middlewares.AuthorDefaultBackendMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware'
 )
+MIDDLEWARE_CLASSES = MIDDLEWARE
 
 ROOT_URLCONF = 'urls'
 

@@ -2,7 +2,7 @@ Pillow==4.1.1
 WsgiUnproxy==1.0
 contextlib2==0.5.5
 diff-match-patch==20110725.1
-django-admin-sortable2==0.6.11
+-e git+https://github.com/PetrDlouhy/django-admin-sortable2@2b0fcc80e1ae654b11298261566d2e3573c001b1#egg=django-admin-sortable2
 django-appconf==1.0.2
 django-author==1.0.1
 django-colorful==1.2
@@ -11,20 +11,20 @@ django-constance==2.0.0
 django-contrib-comments==1.8.0
 django-cors-headers==2.1.0
 django-crispy-forms==1.7.0
-django-feedback==1.1.1
+-e git+https://github.com/PetrDlouhy/django-feedback@master#egg=django-feedback
 django-filter==1.1.0
 django-finegrained-permissions==0.0.1
-django-fluent-comments==1.4.3
+-e git+https://github.com/PetrDlouhy/django-fluent-comments@feature/django20#egg=django-fluent-comments  # for Django 2.0 fix
 django-gpxpy==0.0.2
-django-http-proxy==0.4.3
-django-import-export==0.5.1
+-e git+https://github.com/PetrDlouhy/django-http-proxy@develop#egg=django-http-proxy  # for Django 2.0 fix
+-e git+https://github.com/PetrDlouhy/django-import-export@4d107c222f42d1b83bcd98ac162983eb553c65e7#egg=django_import_export
 django-leaflet==0.22.0
-django-mass-edit==3.0
+-e git+https://github.com/PetrDlouhy/django-mass-edit@a590ced5b0c7def2905a359682e991bd3beadd22#egg=django_mass_edit
 django-media-fixtures==0.0.3
 django-picklefield==1.0.0
 django-smart-selects==1.5.2
 django-tag-parser==3.1
-django-webmap-corpus==0.11.1
+-e git+https://github.com/auto-mat/django-webmap-corpus@216127087124e8ba34e9113557dfdedea062487d#egg=django_webmap_corpus
 djangorestframework==3.7.3
 easy-thumbnails==2.5
 freezegun==0.3.9

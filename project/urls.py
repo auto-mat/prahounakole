@@ -12,7 +12,7 @@ urlpatterns = [
     url(r'^admin/passresetdone/$', auth_views.password_reset_done, name='password_reset_done'),
     url(r'^admin/passresetconfirm/(?P<uidb64>[-\w]+)/(?P<token>[-\w]+)/$', auth_views.password_reset_confirm, name='password_reset_confirm'),
     url(r'^admin/passresetcomplete/$', auth_views.password_reset_complete, name='password_reset_complete'),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin.site.urls),
     url(r'^admin/', include("massadmin.urls")),
     url(r'^chaining/', include('smart_selects.urls')),
     url(r'^webmap/', include('webmap.urls')),

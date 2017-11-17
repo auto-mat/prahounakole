@@ -24,16 +24,19 @@ import cyklomapa
 from django.conf import settings
 from django.contrib import auth, sites
 from django.contrib.auth.models import User
-from django.core.urlresolvers import reverse
+try:
+    from django.urls import reverse
+except ImportError:  # Django<2.0
+    from django.core.urlresolvers import reverse
 from django.test import Client, RequestFactory, TestCase
 from django.test.runner import DiscoverRunner
 from django.test.utils import override_settings
 
 from django_admin_smoke_tests import tests
 
-import feedback
+from django_comments.forms import CommentForm
 
-from fluent_comments import compat as comments_compat
+import feedback
 
 from freezegun import freeze_time
 
@@ -95,7 +98,7 @@ class AdminFilterTests(TestCase):
         content_type = "webmap.poi"
         object_pk = "205"
         timestamp = "1451927336"
-        security_hash = comments_compat.CommentForm.generate_security_hash(None, content_type, object_pk, timestamp)
+        security_hash = CommentForm.generate_security_hash(None, content_type, object_pk, timestamp)
         post_data = {
             "content_type": content_type,
             "object_pk": object_pk,
@@ -116,7 +119,7 @@ class AdminFilterTests(TestCase):
         content_type = "webmap.poi"
         object_pk = "205"
         timestamp = "1451927336"
-        security_hash = comments_compat.CommentForm.generate_security_hash(None, content_type, object_pk, timestamp)
+        security_hash = CommentForm.generate_security_hash(None, content_type, object_pk, timestamp)
         post_data = {
             "content_type": content_type,
             "object_pk": object_pk,
@@ -335,7 +338,7 @@ class ViewTest(TestCase):
 
 
 @override_settings(
-    FORCE_SUBDOMAIN="testing-sector"
+    FORCE_SUBDOMAIN="testing-sector",
 )
 class AdminTest(tests.AdminSiteSmokeTest):
     def get_request(self, params={}):

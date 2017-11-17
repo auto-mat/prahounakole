@@ -1,5 +1,6 @@
 from cyklomapa.models import Mesto
 
+import django
 from django.conf import settings
 
 
@@ -25,3 +26,13 @@ class SubdomainsMiddleware:
             request.mesto = Mesto.objects.get(sektor__slug=request.subdomain)
         except Mesto.DoesNotExist:
             request.mesto = None
+
+
+if django.VERSION >= (1, 10):
+    from django.utils import deprecation
+
+    class SubdomainsMiddleware(
+            deprecation.MiddlewareMixin,
+            SubdomainsMiddleware,
+    ):
+        pass

@@ -16,7 +16,7 @@ class Poi(Poi):
 
 
 class MarkerZnacka(models.Model):
-    marker = models.OneToOneField(Marker, null=True)
+    marker = models.OneToOneField(Marker, null=True, on_delete=models.CASCADE)
     url = models.URLField(null=True, blank=True, help_text=u"ukáže se u všech míst s touto značkou, pokud nemají vlastní url")
 
 
@@ -30,8 +30,7 @@ class Mesto(models.Model):
     uvodni_zprava = models.TextField(null=True, blank=True, verbose_name=u"Úvodní zpráva", help_text=u"Zpráva, která se zobrazí v levém panelu")
 
     geom = models.PointField(verbose_name=u"Poloha středu", srid=4326)
-    sektor = models.OneToOneField(Sector, null=True)
-    objects = models.GeoManager()
+    sektor = models.OneToOneField(Sector, null=True, on_delete=models.CASCADE)
 
     class Meta:
         permissions = [
@@ -44,7 +43,7 @@ class Mesto(models.Model):
 
 
 class UserMesto(models.Model):
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     mesta = models.ManyToManyField(Mesto)
 
 
@@ -67,7 +66,7 @@ class Upresneni(models.Model):
     Pouziva se pouze v Zelene mape, v PNK zatim neaktivni
     """
 
-    misto = models.ForeignKey(Poi, blank=True, null=True)  # Odkaz na objekt, ktery chce opravit, muze byt prazdne.
+    misto = models.ForeignKey(Poi, blank=True, null=True, on_delete=models.CASCADE)  # Odkaz na objekt, ktery chce opravit, muze byt prazdne.
     email = models.EmailField(verbose_name=u"Váš e-mail (pro další komunikaci)", null=True)    # Prispevatel musi vyplnit email.
     status = models.CharField(max_length=10, choices=UPRESNENI_CHOICE)
     desc = models.TextField(verbose_name=u"Popis (doplnění nebo oprava nebo popis nového místa, povinné pole)", null=True)
