@@ -15,7 +15,6 @@ django-constance
 django-author
 -e git+https://github.com/auto-mat/django-webmap-corpus@feature/django20#egg=django-webmap-corpus  # for Django 2.0 support
 django-leaflet
-django-smart-selects
 -e git+https://github.com/PetrDlouhy/django-import-export#egg=django-import-export  # for Django 2.0 support
 raven
 django-cors-headers

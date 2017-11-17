@@ -22,7 +22,6 @@ django-leaflet==0.22.0
 -e git+https://github.com/PetrDlouhy/django-mass-edit@a590ced5b0c7def2905a359682e991bd3beadd22#egg=django_mass_edit
 django-media-fixtures==0.0.3
 django-picklefield==1.0.0
-django-smart-selects==1.5.2
 django-tag-parser==3.1
 -e git+https://github.com/auto-mat/django-webmap-corpus@216127087124e8ba34e9113557dfdedea062487d#egg=django_webmap_corpus
 djangorestframework==3.7.3

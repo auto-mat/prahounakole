@@ -14,7 +14,6 @@ urlpatterns = [
     url(r'^admin/passresetcomplete/$', auth_views.password_reset_complete, name='password_reset_complete'),
     url(r'^admin/', admin.site.urls),
     url(r'^admin/', include("massadmin.urls")),
-    url(r'^chaining/', include('smart_selects.urls')),
     url(r'^webmap/', include('webmap.urls')),
     url(r'^feedback/', include('feedback.urls')),
     url(r'^', include("cyklomapa.urls")),
