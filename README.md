@@ -15,18 +15,43 @@ Instalace
 
 Ke zprovoznění je zapotřebí následující
 
-* Virtualenv
-* Postgres 8.4 + postgis 1.5
+* `virtualenv`
+* `postgres` a `postgis` novější verze
 
-Vzorová lokální konfigurace je v project/settings_local_sample.py, stačí přejmenovat na settings_local.py a doplnit přístup k DB a SECRET_KEY.
+Může být potřeba vykonat následující příkazy:
+```
+# nainstalovat závislosti od balíků z requirements
+sudo apt install libxml2-dev libxslt1-dev libjpeg-dev postgresql-server-dev
+
+# nainstalovat Bower
+sudo apt npm
+npm install bower nodejs
+npm install -g bower
+ln -s /usr/bin/nodejs /usr/bin/node  # pokud Bower říká, že mu chybí node
+
+# nainstalovat Lessc
+sudo npm install -g less
+```
+
+Nastavení přistupu k databázi:
+```
+sudo su postgres  # přístup k administraci PostgreSQL
+createuser prahounakole  # vytvoření uživatele
+createdb prahounakole -O prahounakole  # vytvoření uživatele
+psql -c "grant all privileges on database prahounakole to prahounakole;"
+psql -c "ALTER USER prahounakole WITH SUPERUSER;"
+```
+
+Vzorová lokální konfigurace je v `project/settings_local_sample.py`, stačí přejmenovat na `settings_local.py` a doplnit přístup k databázi (proměnná `DATABASES`) a nastavit proměnnou `SECRET_KEY` na náhodnou hodnotu.
 
 Instalace probíhá pomocí následujícíh příkazu:
 
-* ./update.sh reinstall
+* `./update.sh reinstall` (volba `reinstall` zruší `env` a znovu ho nainstaluje, podruhé tedy stačí `./update.sh`)
 
 Spuštění
 ============
 
 Pro testovací účely spustíte projekt pomocí následujícího příkazu:
-
-* env/bin/python manage.py runserver 0.0.0.0:8000
+```
+env/bin/python manage.py runserver 0.0.0.0:8000
+```
