@@ -65,6 +65,7 @@ ALLOWED_HOSTS = [
     'mapa.prahounakole.cz',
     'localhost',
     "mapa.localhost",
+    "testing-sector.testserver",
 ]
 
 # COMPRESS_ROOT = normpath(PROJECT_DIR, "apps/cyklomapa/static")
