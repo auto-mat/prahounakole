@@ -14,13 +14,13 @@
     "tests"
   ],
   "dependencies": {
-    "lightbox": "~2.7.4",
+    "lightbox": "~2.10.0",
     "css-browser-selector": "*",
-    "jqueryui": "~1.11.4",
-    "jquery": "~2.1.4",
+    "jqueryui": "~1.12.1",
+    "jquery": "~3.3.1",
     "jquery-hashchange": "*",
     "openlayers": "https://github.com/PetrDlouhy/openlayers.git",
-    "bootstrap": "~3.3.5",
+    "bootstrap": "~3.3.7",
     "jquery-persist": "https://github.com/commonpike/jquery-persist/blob/master/jquery-persist-1.1.tgz?raw=true"
   }
 }
