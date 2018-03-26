@@ -14,7 +14,7 @@ django-picklefield
 django-constance
 
 django-author
--e git+https://github.com/auto-mat/django-webmap-corpus@feature/django20#egg=django-webmap-corpus  # for Django 2.0 support
+django-webmap-corpus
 django-leaflet
 django-import-export
 raven
