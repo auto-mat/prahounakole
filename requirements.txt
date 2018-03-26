@@ -3,7 +3,8 @@ django-http-proxy
 python-memcached
 psycopg2
 django-colorful
--e git+https://github.com/PetrDlouhy/django-mass-edit@feature/django20#egg=django-mass-edit  # for Django 2.0 support
+django-mass-edit
+django-admin-sortable2
 
 django-contrib-comments
 
@@ -15,7 +16,7 @@ django-constance
 django-author
 -e git+https://github.com/auto-mat/django-webmap-corpus@feature/django20#egg=django-webmap-corpus  # for Django 2.0 support
 django-leaflet
--e git+https://github.com/PetrDlouhy/django-import-export#egg=django-import-export  # for Django 2.0 support
+django-import-export
 raven
 django-cors-headers
 gunicorn
