@@ -36,7 +36,7 @@ function createParams(center, zoom, layers) {
             var layer = layers[i];
 
             if (layer.getVisibility() && layer.slug) {
-               params.layers += layer.slug
+               params.layers += layer.slug;
             }
         }
     }
@@ -45,6 +45,7 @@ function createParams(center, zoom, layers) {
 } 
 
 function configureLayers() {
+    var layer;
     for(var i=0, len=this.map.layers.length; i<len; i++) {
         layer = this.map.layers[i];
 
@@ -64,10 +65,10 @@ function configureLayers() {
 
     if (this.layers.length == this.map.layers.length && this.layers.charAt(0) != "_") {
         this.map.events.unregister('addlayer', this, this.configureLayers);
-        for(var i=0, len=this.layers.length; i<len; i++) {
+        for(var j=0, len1=this.layers.length; j<len1; j++) {
             
-            var layer = this.map.layers[i];
-            var c = this.layers.charAt(i);
+            layer = this.map.layers[j];
+            var c = this.layers.charAt(j);
             
             if (c == "B") {
                 this.map.setBaseLayer(layer);

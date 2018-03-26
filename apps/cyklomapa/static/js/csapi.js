@@ -88,7 +88,7 @@ var CSApi = {
               journey_url: url,
               journey_data: data,
            });
-        };
+        }
         if(route.attributes){
            var plan = route.attributes.plan;
            CSApi.routeFeatures[plan] = features;
@@ -100,8 +100,8 @@ var CSApi = {
         } else {
            if(typeof Raven !== 'undefined'){
               Raven.captureMessage('CS API returned empty route');
-           };
-        };
+           }
+        }
       }
     });
   },
@@ -162,7 +162,7 @@ var CSApi = {
           item.append('<td class="turn"><i class="' + feature.attributes.turn.replace(' ','_') + '"></i></td>');
         } else {
           item.append('<td class="turn"></td>');
-        };
+        }
         item.append('<td>'+ this.localize(feature.attributes.name) + '</td>');
         if (feature.attributes.provisionName && feature.attributes.provisionName == 'Steps') {
           item.append('<td><i class="stairs"></i></td>');
@@ -188,8 +188,8 @@ var CSApi = {
 
   getStartAndFinish: function (features) {
     var route = this.getFeature(features, 'route');
-    var start = new OpenLayers.LonLat(route.attributes.start_longitude, route.attributes.start_latitude)
-    var finish = new OpenLayers.LonLat(route.attributes.finish_longitude, route.attributes.finish_latitude)
+    var start = new OpenLayers.LonLat(route.attributes.start_longitude, route.attributes.start_latitude);
+    var finish = new OpenLayers.LonLat(route.attributes.finish_longitude, route.attributes.finish_latitude);
     return {
         'start': start,
         'finish': finish,

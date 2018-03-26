@@ -19,7 +19,7 @@ function panel_action(action){
      maximize = (action == 'maximize');
   } else {
      var Body = $('body');
-     maximize = Body.is('.panel_minimized')
+     maximize = Body.is('.panel_minimized');
   }
   if (maximize) {
     $('body').removeClass('panel_minimized');
@@ -37,7 +37,7 @@ function panel_action(action){
 
   // change the map container size dinamicaly
   map_width_fix();
-  panel_position()
+  panel_position();
   // update map size
   map.updateSize();
 }
@@ -45,19 +45,19 @@ function panel_action(action){
 
 
 function panel_position(){
-  var holder = $('.panel_switch_holder')
-  var switch_ = $('.panel_switch')
-  var panel_w = $('#panel').width()
-  var window_height = $('body').height()
+  var holder = $('.panel_switch_holder');
+  var switch_ = $('.panel_switch');
+  var panel_w = $('#panel').width();
+  var window_height = $('body').height();
 
   $(holder).css({
     'top' : 0, 
     'left' : (panel_w) + 'px'
-  })
+  });
   $(switch_).css({
     'top' : (window_height / 2) + 'px',
     'left' : (panel_w) + 'px'
-  })
+  });
 
 }
 // corect the map width on large screens
@@ -96,11 +96,11 @@ jQuery(document).ready(function($) {
 
   $('#zoom-in').click( function(event){
       event.preventDefault();
-      map.zoomIn()
+      map.zoomIn();
     });
   $('#zoom-out').click( function(event){
       event.preventDefault();
-      map.zoomOut()
+      map.zoomOut();
     });
   $('#zoom-reset').click( function(event){
       event.preventDefault();
@@ -113,7 +113,7 @@ jQuery(document).ready(function($) {
   });
   $('.print').on('click', function (e) {
     e.preventDefault();
-    window.print()
+    window.print();
   });
 
   // --------  PANEL SWITCH ---------
@@ -126,14 +126,14 @@ jQuery(document).ready(function($) {
 
 
   map_width_fix();
-  panel_position()
+  panel_position();
 
 
  $(window).on({
     resize:function(){
       /* Act on the event */
-      map_width_fix()
-      panel_position()
+      map_width_fix();
+      panel_position();
       }
   });
   // advanced menu in layers layer
@@ -144,17 +144,17 @@ jQuery(document).ready(function($) {
   });
 
   $('#enable_none_layers').on('click', function (e) {
-     switchAllLayers(false)
+     switchAllLayers(false);
   });
 
   $('#enable_all_layers').on('click', function (e) {
-     switchAllLayers(true)
+     switchAllLayers(true);
   });
 
   $(".change-layer").click(function(event) {
-     ga('send', 'event', 'layer', 'change', event.currentTarget.dataset['name']);
-     base_layer = event.currentTarget.dataset['baselayer'];
-     overlayers = JSON.parse(event.currentTarget.dataset['overlayers']);
+     ga('send', 'event', 'layer', 'change', event.currentTarget.dataset.name);
+     base_layer = event.currentTarget.dataset.baselayer;
+     overlayers = JSON.parse(event.currentTarget.dataset.overlayers);
      activateLayers(base_layer, overlayers);
   });
 
@@ -162,7 +162,7 @@ jQuery(document).ready(function($) {
 
   // akordeon (panel-informace )
   $(document).on("click", '.open_txt', function(event) {
-    event.preventDefault()
+    event.preventDefault();
     /* Act on the event */
     $('.harmonika .txt').slideUp();
     var closest_txt  = $(this).closest('.harmonika').find('.txt');

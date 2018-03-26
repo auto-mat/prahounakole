@@ -16,8 +16,8 @@ install:
 before_script:
   - pip install flake8 && flake8
   - npm install
-  - npm install -g bower
-  - npm install -g less
+  - npm install -g bower less jshint
+  - jshint apps/cyklomapa/static/js/*
   - npm install uglify-js@2.8.21 -g  # higher version fails for compress
   - psql -c 'create database travis_ci_test;' -U postgres
   - psql --no-password travis_ci_test -U postgres -c "create extension postgis"

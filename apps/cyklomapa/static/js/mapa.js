@@ -42,10 +42,10 @@ function getTileURL(bounds) {
 
 //Hack, který vylepší scaffold přepínače vrstev
 function polishLayersSwitcherScaffold(){
-    $("#layer_switcher").prepend("<div id='dataLayers' class='col-md-6'></div>")
+    $("#layer_switcher").prepend("<div id='dataLayers' class='col-md-6'></div>");
     $(".dataLbl").appendTo("#dataLayers");
     $(".dataLayersDiv").appendTo("#dataLayers");
-    $("#layer_switcher").prepend("<div id='baseLayers' class='col-md-6'></div>")
+    $("#layer_switcher").prepend("<div id='baseLayers' class='col-md-6'></div>");
     $(".baseLbl").appendTo("#baseLayers");
     $(".baseLayersDiv").appendTo("#baseLayers");
     $("#layer_toggles").appendTo('#dataLayers');
@@ -286,7 +286,7 @@ function showPanel(slug) {
 
     $('.panel').hide();
     $('#' + slug + '.panel').show();
-};
+}
 
 function showPanel_closeBox(slug) {
    showPanel(slug);
@@ -298,8 +298,8 @@ function showPanel_closeBox(slug) {
 }
 
 function updatePermalink(){
-    permalink = map.getControlsBy("displayClass", "olControlPermalink")[0]
-    permalink.updateLink()
+    permalink = map.getControlsBy("displayClass", "olControlPermalink")[0];
+    permalink.updateLink();
 }
 
 function setupPnkMap() {
@@ -350,10 +350,10 @@ function setupPnkMap() {
            }
        }
     } else {
-       for (var i=0; i < vectors.length; i++) {
-          vectors[i].setVisibility(vectors[i].was_visible);
-       };
-    };
+       for (var j=0; j < vectors.length; j++) {
+          vectors[j].setVisibility(vectors[j].was_visible);
+       }
+    }
 
     if(!selectControl){
        selectControl = new OpenLayers.Control.SelectFeature(
@@ -364,7 +364,7 @@ function setupPnkMap() {
            onUnselect: onFeatureUnselect,
            onSelect: onFeatureSelect
        });
-    };
+    }
 
     map.addControl(selectControl);
     selectControl.activate();
@@ -569,7 +569,7 @@ function onTouchMove(e){
 function onTouchEnd(e){
     if(!touchMoved){
         onMapClick(e);
-    };
+    }
     touchMoved = false;
 }
 function onMapClick(e) {
@@ -719,7 +719,7 @@ function addPlannedJourney(itinerary, plan, route, options) {
     if (options && options.select && options.select == plan) {
         selectedItinerary = itinerary;
         selectPlan(plan);
-        if (options['zoomToPlan']){
+        if (options.zoomToPlan){
             map.zoomToExtent(journeyLayer.getDataExtent());
         }
         updateMarkersAndLabels(route);
@@ -885,8 +885,8 @@ function selectFeatureById(layer_slug, poi_id) {
       selectControl.unselectAll();
       selectControl.select(feat);
    }
-   mapconfig.center_feature_slug = layer_slug
-   mapconfig.center_feature = poi_id
+   mapconfig.center_feature_slug = layer_slug;
+   mapconfig.center_feature = poi_id;
 }
 
 function parseHash() {
@@ -980,16 +980,16 @@ function onHashChange(e) {
            showPanel_closeBox('hledani');
         });
     }
-    if (args['trasa']) {
+    if (args.trasa) {
         reportAction('send', 'event', 'left-panel-tab', 'switch', 'trasa');
         loadPanelContent('hledani', function(){
            setupRouting();
            showPanel_closeBox('hledani');
-           var plan = args['plan'];
+           var plan = args.plan;
            if ($.inArray(plan, ['balanced', 'quietest', 'fastest']) < 0) {
                plan = 'balanced';
            }
-           if (selectedItinerary == args['trasa']) {
+           if (selectedItinerary == args.trasa) {
                if (selectedPlan != plan) {
                    selectPlan(plan);
                }
@@ -998,11 +998,11 @@ function onHashChange(e) {
            // odebereme focus nastaveny v setupRouting, jinak po chvili vybehne autocomplete
            $('.ui-autocomplete-input').blur();
            selectedPlan = null;
-           CSApi.journey(args['trasa'], null, 'balanced', addPlannedJourney, { select: plan, zoomToPlan: true });
+           CSApi.journey(args.trasa, null, 'balanced', addPlannedJourney, { select: plan, zoomToPlan: true });
         });
     }
-    if (args['misto']) {
-        var poi_array = args['misto'].split("_");
+    if (args.misto) {
+        var poi_array = args.misto.split("_");
         mapconfig.center_feature = parseInt(poi_array[poi_array.length-1]);
         mapconfig.center_feature_slug = poi_array[poi_array.length-2];
 
@@ -1014,10 +1014,10 @@ function onHashChange(e) {
         loadPanelContent('informace', function(){
            setupPnkMap();
            showPanel_closeBox('informace');
-           $("#" + hash).click()
+           $("#" + hash).click();
         }, function(){
            $('.harmonika .txt').not('.active').hide();
-           $("#" + hash).click()
+           $("#" + hash).click();
         });
     }
 }
@@ -1096,12 +1096,12 @@ function onFeatureSelect(feature) {
         return;
     }
     if (feature.layer.slug == "a") {
-        var response = {};
-        var photo = ""
+        var cs_response = {};
+        var photo = "";
         if(feature.attributes.photo_thumb_url){
             photo = "<img src='https://www.cyklistesobe.cz/" + feature.attributes.photo_thumb_url + "'>";
         }
-        response.responseText =
+        cs_response.responseText =
             '<div> <div class="trc"> <h4>' +
             feature.attributes.title +
             '</h4> <div class="row controls"> <div class="col-md-2 col-md-offset-10 centred"> <a class="sprite btn close close_poi" title="Zavřít popis místa"></a> </div> </div> </div> <div class="rc"><p>' +
@@ -1111,7 +1111,7 @@ function onFeatureSelect(feature) {
             feature.attributes.cyclescape_url +
             '" target="_blank">Stránka podnětu Cyklisté sobě</a>' +
             '</div></div>';
-        createPopup.call(feature, response);
+        createPopup.call(feature, cs_response);
         return;
     }
     showPoiDetail(feature.fid);
@@ -1129,7 +1129,7 @@ function reportAction(a, b, c, d, e, f){
        Raven.setExtraContext({
           last_actions: lastActions,
        });
-   };
+   }
 }
 
 function onFeatureUnselect(feature) {
@@ -1168,10 +1168,10 @@ function createPopup(response) {
     jQuery('.textinput,.emailinput,#id_url,#id_comment').persist();
     $('#poi_box').slideDown(400).show(400);
     $('#panel-content').hide();
-};
+}
 
 function closePoiBox() {
-    $('#poi_box').slideUp(400).hide(400)
+    $('#poi_box').slideUp(400).hide(400);
     $('#panel-content').show(400);
     removeHashParameter('misto', false);    
 }
@@ -1235,7 +1235,7 @@ function addDPNK_GPX_2015(name, enabled, slug) {
         format: 'image/png',
         transparent: true,
   });
-  dpnk_gpxfile.slug = slug
+  dpnk_gpxfile.slug = slug;
   dpnk_gpxfile.setVisibility(enabled);
   map.addLayers([dpnk_gpxfile]);
 }
@@ -1248,7 +1248,7 @@ function addDPNK_track_2015(name, enabled, slug) {
         format: 'image/png',
         transparent: true,
   });
-  dpnk_tracks.slug = slug
+  dpnk_tracks.slug = slug;
   dpnk_tracks.setVisibility(enabled);
   map.addLayers([dpnk_tracks]);
 }
@@ -1261,7 +1261,7 @@ function addDPNK_GPX_2016(name, enabled, slug) {
         format: 'image/png',
         transparent: true,
   });
-  dpnk_gpxfile.slug = slug
+  dpnk_gpxfile.slug = slug;
   dpnk_gpxfile.setVisibility(enabled);
   map.addLayers([dpnk_gpxfile]);
 }
@@ -1274,7 +1274,7 @@ function addDPNK_track_2016(name, enabled, slug) {
         format: 'image/png',
         transparent: true,
   });
-  dpnk_tracks.slug = slug
+  dpnk_tracks.slug = slug;
   dpnk_tracks.setVisibility(enabled);
   map.addLayers([dpnk_tracks]);
 }
@@ -1287,7 +1287,7 @@ function addDPNK_GPX_2017(name, enabled, slug) {
         format: 'image/png',
         transparent: true,
   });
-  dpnk_gpxfile.slug = slug
+  dpnk_gpxfile.slug = slug;
   dpnk_gpxfile.setVisibility(enabled);
   map.addLayers([dpnk_gpxfile]);
 }
@@ -1300,7 +1300,7 @@ function addDPNK_track_2017(name, enabled, slug) {
         format: 'image/png',
         transparent: true,
   });
-  dpnk_tracks.slug = slug
+  dpnk_tracks.slug = slug;
   dpnk_tracks.setVisibility(enabled);
   map.addLayers([dpnk_tracks]);
 }
@@ -1313,7 +1313,7 @@ function addCSLayer(name, enabled, slug) {
             url: "/static/list.json",
             format: new OpenLayers.Format.GeoJSON({
                    parseFeature: function(data) {
-                       feature = OpenLayers.Format.GeoJSON.prototype.parseFeature(data)
+                       feature = OpenLayers.Format.GeoJSON.prototype.parseFeature(data);
                        if($.inArray("vyresene", feature.attributes.tags) != -1){
                           feature.attributes.feature_color = "#2BBF2B";
                           feature.attributes.select_color = "#135513";
@@ -1323,7 +1323,7 @@ function addCSLayer(name, enabled, slug) {
                           feature.attributes.select_color = "#531313";
                           feature.attributes.icon = '/static/img/cyklistesobe.png';
                        }
-                       return feature
+                       return feature;
                    }
             }),
         }),
@@ -1398,7 +1398,7 @@ function activateLayers(base_layer_slug, overlay_layer_slugs){
    overlay_layer_slugs.push(mapconfig.center_feature_slug);
 
    for(var layer_id in map.layers){
-      layer = map.layers[layer_id]
+      layer = map.layers[layer_id];
       if(layer.displayInLayerSwitcher && !layer.isBaseLayer)
         if($.inArray(layer.slug, overlay_layer_slugs) >= 0)
            map.layers[layer_id].setVisibility(true);
@@ -1409,7 +1409,7 @@ function activateLayers(base_layer_slug, overlay_layer_slugs){
 
 function switchAllLayers(enable){
    for(var layer_id in map.layers){
-      layer = map.layers[layer_id]
+      layer = map.layers[layer_id];
       if(layer.displayInLayerSwitcher && !layer.isBaseLayer)
         if(enable)
            map.layers[layer_id].setVisibility(true);

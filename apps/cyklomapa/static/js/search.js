@@ -19,11 +19,11 @@ search_options = {
                               value: item.place_name,
                               lat: String(item.center[1]),
                               lon: String(item.center[0])
-                          }}
-                      )
+                          };
+                      });
                       response(item_map);
                       }
-                  })
+                  });
         },
         minLength: 2,
         delay: 200,
@@ -48,13 +48,13 @@ search_options = {
                 marker = startMarker;
             } else {
                 marker = endMarker;
-            };
+            }
             curpos = marker.geometry;
             marker.geometry.move(lonlat.lon - curpos.x, lonlat.lat - curpos.y);
             setWaypoint(marker);
             if (e.target.id == "jpFinishStreetSearch" && waypoints[0] != undefined) {
                 planJourney();
-            };
+            }
             return false;
         },
         open: function (e) {
