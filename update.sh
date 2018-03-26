@@ -31,7 +31,7 @@ if [ "$1" != "no_virtualenv" ]; then
 fi
 pip install --process-dependency-links -r requirements.freeze.txt
 if [ "$1" != "no_virtualenv" ]; then
-   pip install "Django<1.12"
+   pip install "Django<2.1" --upgrade
 fi
 if [ "$1" = "migrate" ]; then
    echo "Backuping db..."
