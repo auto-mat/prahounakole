@@ -226,13 +226,13 @@ function init(mapconfig) {
      // pokud byl zoomlevel nastaven z url, musime aktualizovat filter
      zoomFilter.value = map.getZoom();
 
-     $(window).hashchange(onHashChange);
-     $(window).hashchange();
+     $(window).bind("hashchange", onHashChange);
+     onHashChange();
      if (!map.getCenter()) {
          map.setCenter(new OpenLayers.LonLat(mapconfig.lon, mapconfig.lat).transform(EPSG4326, map.getProjectionObject()), mapconfig.zoom);
      }
 
-     $('.close_poi').live("click",function(){
+     $('.close_poi').on("click", function(){
         if(selectControl){
            selectControl.unselectAll();
         }
