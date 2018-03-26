@@ -59,7 +59,6 @@ STATIC_ROOT = 'static/'
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = '/tmp/pnk-emails'
 
-UGLIFY_JS_BINARY = "/usr/lib/node_modules/bower/node_modules/handlebars/node_modules/uglify-js/bin/uglifyjs"
 # FORCE_SUBDOMAIN = "ostrava"
 
 ALLOWED_HOSTS = [
