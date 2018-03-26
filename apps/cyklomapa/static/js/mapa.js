@@ -232,12 +232,6 @@ function init(mapconfig) {
          map.setCenter(new OpenLayers.LonLat(mapconfig.lon, mapconfig.lat).transform(EPSG4326, map.getProjectionObject()), mapconfig.zoom);
      }
 
-     $('.close_poi').on("click", function(){
-        if(selectControl){
-           selectControl.unselectAll();
-        }
-     });
-
      position_layer = new OpenLayers.Layer.Vector("Poloha", {});
      map.addLayer(position_layer);
 
@@ -1168,6 +1162,12 @@ function createPopup(response) {
     jQuery('.textinput,.emailinput,#id_url,#id_comment').persist();
     $('#poi_box').slideDown(400).show(400);
     $('#panel-content').hide();
+
+    $('.close_poi').click(function(){
+       if(selectControl){
+          selectControl.unselectAll();
+       }
+    });
 }
 
 function closePoiBox() {
