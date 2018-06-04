@@ -339,6 +339,12 @@ function setupPnkMap() {
                case 't2017':
                    addDPNK_track_2017(name, enabled, slug);
                    break;
+               case 'g2018':
+                   addDPNK_GPX_2018(name, enabled, slug);
+                   break;
+               case 't2018':
+                   addDPNK_track_2018(name, enabled, slug);
+                   break;
                default:
                    addPoiLayer(name, url, enabled, slug);
            }
@@ -1301,6 +1307,32 @@ function addDPNK_track_2017(name, enabled, slug) {
         transparent: true,
   });
   dpnk_tracks.slug = slug;
+  dpnk_tracks.setVisibility(enabled);
+  map.addLayers([dpnk_tracks]);
+}
+
+function addDPNK_GPX_2018(name, enabled, slug) {
+  var dpnk_gpxfile = new OpenLayers.Layer.WMS(name,
+     "https://geoserver.prahounakole.cz/geoserver/dpnk/wms?tiled=true",
+     {
+        layers: 'dpnk:dpnk_gpxfile_anonymized_2018',
+        format: 'image/png',
+        transparent: true,
+  });
+  dpnk_gpxfile.slug = slug
+  dpnk_gpxfile.setVisibility(enabled);
+  map.addLayers([dpnk_gpxfile]);
+}
+
+function addDPNK_track_2018(name, enabled, slug) {
+  var dpnk_tracks = new OpenLayers.Layer.WMS(name,
+     "https://geoserver.prahounakole.cz/geoserver/dpnk/wms?tiled=true",
+     {
+        layers: 'dpnk:dpnk_track_anonymized_2018',
+        format: 'image/png',
+        transparent: true,
+  });
+  dpnk_tracks.slug = slug
   dpnk_tracks.setVisibility(enabled);
   map.addLayers([dpnk_tracks]);
 }
