@@ -1319,7 +1319,7 @@ function addDPNK_GPX_2018(name, enabled, slug) {
         format: 'image/png',
         transparent: true,
   });
-  dpnk_gpxfile.slug = slug
+  dpnk_gpxfile.slug = slug;
   dpnk_gpxfile.setVisibility(enabled);
   map.addLayers([dpnk_gpxfile]);
 }
@@ -1332,7 +1332,7 @@ function addDPNK_track_2018(name, enabled, slug) {
         format: 'image/png',
         transparent: true,
   });
-  dpnk_tracks.slug = slug
+  dpnk_tracks.slug = slug;
   dpnk_tracks.setVisibility(enabled);
   map.addLayers([dpnk_tracks]);
 }
