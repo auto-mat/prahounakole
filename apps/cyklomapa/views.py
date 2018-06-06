@@ -169,20 +169,3 @@ class PanelInformaceView(TemplateView):
         context['legenda'] = Legend.objects.all()
 
         return context
-
-
-class AppCacheView(TemplateView):
-    template_name = "pnk.appcache"
-
-    def get_context_data(self, **kwargs):
-        context = super(AppCacheView, self).get_context_data(**kwargs)
-        context['vrstvy'] = OverlayLayer.objects.filter(status__show=True)
-        context['presets'] = MapPreset.objects.filter(status__show=True)
-        context['znacky'] = Marker.objects.all()
-        context['legenda'] = Legend.objects.all()
-        context['mesto'] = self.request.mesto
-        return context
-
-    def get(self, request, *args, **kwargs):
-        context = self.get_context_data()
-        return self.render_to_response(context, content_type="text/cache-manifest; charset=utf-8")

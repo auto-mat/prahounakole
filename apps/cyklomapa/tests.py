@@ -211,11 +211,6 @@ class ViewTest(TestCase):
         response = self.client.get(address, secure=True)
         self.assertContains(response, '<div id="jpPlanMessage">Čekání na server</div>', html=True)
 
-    def test_appcache_view(self):
-        address = reverse("appcache_view")
-        response = self.client.get(address, secure=True)
-        self.assertContains(response, '/kml/l/')
-
     def test_kml_view(self):
         address = reverse("kml_view", args=("l",))
         response = self.client.get(address, secure=True)

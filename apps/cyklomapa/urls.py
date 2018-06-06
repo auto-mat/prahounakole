@@ -1,6 +1,5 @@
 from cyklomapa.feeds import NovinkyFeed, UzavirkyFeed
 from cyklomapa.views import (
-    AppCacheView,
     PanelHledaniView, PanelInformaceView,
     PanelMapaView, PopupListView, kml_view, mapa_view, metro_view,
     popup_view, uzavirky_view, znacky_view,
@@ -39,7 +38,6 @@ urlpatterns = [
     url(r'^panel-hledani/$', PanelHledaniView.as_view(), name="panel_hledani_view"),
     url(r'^popup-list/$', PopupListView.as_view(), name="popup-list"),
     url(r'^comments/', include('fluent_comments.urls')),
-    url(r'^pnk-ssl.appcache/', AppCacheView.as_view(), name="appcache_view"),
     url(r'^comments/feeds/latest/$', LatestCommentFeed(), name="latest_comments_feed"),
     url(r'^robots.txt$', lambda r: HttpResponse("User-agent: *\nDisallow: /popup-list\nDisallow: /popup/*\nUser-agent: LinkChecker\nAllow:", content_type="text/plain")),
     url(r'^sitemap\.xml$', cache_page(24 * 60 * 60)(sitemap), {'sitemaps': sitemaps}, name='sitemap'),
