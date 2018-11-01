@@ -1,0 +1,47 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+easy-thumbnails = "*"
+django-http-proxy = "*"
+python-memcached = "*"
+"psycopg2" = "*"
+django-colorful = "*"
+django-mass-edit = "*"
+"django-admin-sortable2" = "*"
+django-contrib-comments = "*"
+django-fluent-comments = "*"
+django-picklefield = "*"
+django-constance = "*"
+django-author = "*"
+django-webmap-corpus = "*"
+django-leaflet = "*"
+django-import-export = "*"
+raven = "*"
+django-cors-headers = "*"
+gunicorn = "*"
+newrelic = "*"
+django-feedback = "*"
+lxml = "*"
+freezegun = "*"
+django-media-fixtures = "*"
+django_compressor = "*"
+WsgiUnproxy = "*"
+
+[dev-packages]
+coverage = "*"
+coveralls = "*"
+django-admin-smoke-tests = "*"
+"flake8" = "*"
+"flake8-blind-except" = "*"
+"flake8-comprehensions" = "*"
+"flake8-import-order" = "*"
+"flake8-tidy-imports" = "*"
+"flake8-builtins" = "*"
+django_coverage_plugin = "*"
+"flake8_strict" = "*"
+
+[requires]
+python_version = "3.6"
