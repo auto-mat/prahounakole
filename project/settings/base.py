@@ -11,6 +11,8 @@ import sys
 
 from django.utils.translation import ugettext_lazy as _
 
+import raven
+
 
 def normpath(*args):
     return os.path.normpath(os.path.abspath(os.path.join(*args)))
@@ -34,6 +36,7 @@ CACHES = {
     },
 }
 
+SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
 LANGUAGE_CODE = 'cs-cz'
 
@@ -166,9 +169,9 @@ CONSTANCE_CONFIG = {
 }
 CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
 
-CORS_ORIGIN_WHITELIST = (
+CORS_ORIGIN_WHITELIST = [
     'cyklomapa.plzne.cz',
-)
+] + os.environ.get('AKLUB_CORS_ORIGIN_WHITELIST', '').split(',')
 CORS_ORIGIN_REGEX_WHITELIST = (r'^(https?://)?(\w+\.)?prahounakole\.cz$', )
 
 LOGGING = {
@@ -298,10 +301,24 @@ IGNORABLE_404_URLS = [
     re.compile(r'^xmlrpc.php$'),
 ]
 
-ALLOWED_HOSTS = ["localhost", "localhost:8000", "testing-sector.testserver"]
+ALLOWED_HOSTS = os.environ.get('AKLUB_ALLOWED_HOSTS', '').split(':')
 
-# import local settings
 try:
-    from settings_local import *  # noqa
-except ImportError:
-    pass
+    RELEASE = raven.fetch_git_sha(PROJECT_DIR)
+except raven.exceptions.InvalidGitRepository:
+    RELEASE = os.getenv('HEROKU_SLUG_COMMIT')
+
+RAVEN_CONFIG = {
+    'dsn': os.environ.get('RAVEN_DNS', ''),
+    'release': RELEASE,
+}
+
+CSRF_COOKIE_SECURE = True
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'https')
+SECURE_SSL_REDIRECT = True
+SECURE_HSTS_SECONDS = 60
+SECURE_HSTS_PRELOAD = True
+SESSION_COOKIE_SECURE = True
+X_FRAME_OPTIONS = 'DENY'
