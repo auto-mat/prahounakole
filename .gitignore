@@ -16,7 +16,6 @@
 update_local.sh
 .htaccess
 !.gitkeep
-/bin/
 /logs/
 *~
 /db_backup/
