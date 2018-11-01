@@ -49,6 +49,7 @@ CACHES = {
     },
 }
 
+SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
 LANGUAGE_CODE = 'cs-cz'
 
@@ -202,7 +203,7 @@ CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
 CORS_ORIGIN_WHITELIST = (
     'http://cyklomapa.plzne.cz',
     'https://cyklomapa.plzne.cz',
-)
+] + os.environ.get('AKLUB_CORS_ORIGIN_WHITELIST', '').split(',')
 CORS_ORIGIN_REGEX_WHITELIST = (r'^(https?://)?(\w+\.)?prahounakole\.cz$', )
 
 LOGGING = {
@@ -332,13 +333,7 @@ IGNORABLE_404_URLS = [
     re.compile(r'^xmlrpc.php$'),
 ]
 
-ALLOWED_HOSTS = ["localhost", "localhost:8000", "testing-sector.testserver"]
-
-# import local settings
-try:
-    from settings_local import *  # noqa
-except ImportError:
-    pass
+ALLOWED_HOSTS = os.environ.get('AKLUB_ALLOWED_HOSTS', '').split(':')
 
 FEEDBACK_CAPTCHAS = [
     (_("Nejste robot? Napište, kolik kol má obvykle jízdní kolo"), ["2", "dvě", "dve", "dva", "two"]),
