@@ -1,0 +1,2 @@
+pipenv run manage.py bower install
+pipenv run manage.py collectstatic --noinput

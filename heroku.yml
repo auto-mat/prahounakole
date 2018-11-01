@@ -1,0 +1,27 @@
+setup:
+  addons:
+    - plan: 'heroku-postgresql:hobby-dev'
+      as: DATABASE
+    - plan: 'scheduler:standard'
+      as: SCHEDULER
+    - plan: 'sendgrid:starter'
+      as: SENDGRID
+  config:
+    AKLUB_DEFAULT_FROM_EMAIL: info@auto-mat.cz
+    DJANGO_SETTINGS_MODULE: project.settings.heroku
+    GUNICORN_WORKERS: '2'
+build:
+  languages:
+    - nodejs
+    - python
+  packages:
+    - gdal-bin
+  config:
+    SECRET_KEY: "build_secret_key"
+    DISABLE_COLLECTSTATIC: '1'
+    DJANGO_SETTINGS_MODULE: project.settings.heroku
+run:
+  web: gunicorn wsgi --timeout ${GUNICORN_TIMEOUT:-"60"} --workers ${GUNICORN_WORKERS:-"6"}
+release:
+  command:
+    - python manage.py migrate
