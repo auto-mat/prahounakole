@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "d802a81f466d253de389fb885f369e118d38675064c4cbe674f97f9cb77f940f"
+            "sha256": "abaf0d4ec936d5e4fadbd0fa3810c11f67bf0265246595c06191a3a3b70f42b1"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -45,10 +45,11 @@
         },
         "django": {
             "hashes": [
-                "sha256:1ffab268ada3d5684c05ba7ce776eaeedef360712358d6a6b340ae9f16486916",
-                "sha256:dd46d87af4c1bf54f4c926c3cfa41dc2b5c15782f15e4329752ce65f5dad1c37"
+                "sha256:25df265e1fdb74f7e7305a1de620a84681bcc9c05e84a3ed97e4a1a63024f18d",
+                "sha256:d6d94554abc82ca37e447c3d28958f5ac39bd7d4adaa285543ae97fb1129fd69"
             ],
-            "version": "==2.1.3"
+            "index": "pypi",
+            "version": "==2.0.9"
         },
         "django-admin-sortable2": {
             "hashes": [
@@ -630,10 +631,11 @@
         },
         "django": {
             "hashes": [
-                "sha256:1ffab268ada3d5684c05ba7ce776eaeedef360712358d6a6b340ae9f16486916",
-                "sha256:dd46d87af4c1bf54f4c926c3cfa41dc2b5c15782f15e4329752ce65f5dad1c37"
+                "sha256:25df265e1fdb74f7e7305a1de620a84681bcc9c05e84a3ed97e4a1a63024f18d",
+                "sha256:d6d94554abc82ca37e447c3d28958f5ac39bd7d4adaa285543ae97fb1129fd69"
             ],
-            "version": "==2.1.3"
+            "index": "pypi",
+            "version": "==2.0.9"
         },
         "django-admin-smoke-tests": {
             "hashes": [
@@ -648,6 +650,14 @@
             ],
             "index": "pypi",
             "version": "==1.6.0"
+        },
+        "django-debug-toolbar": {
+            "hashes": [
+                "sha256:08e0e43f6c1fd9820af4cbdcd54b5fb80bf83a2e08b2cc952547a671174999b8",
+                "sha256:1dcae28d430522debafde2602b3450eb784410b78e16c29a00448032df2a4c90"
+            ],
+            "index": "pypi",
+            "version": "==1.10.1"
         },
         "docopt": {
             "hashes": [
@@ -764,6 +774,13 @@
                 "sha256:832dc0e10feb1aa2c68dcc57dbb658f1c7e65b9b61af69048abc87a2db00a0eb"
             ],
             "version": "==1.11.0"
+        },
+        "sqlparse": {
+            "hashes": [
+                "sha256:ce028444cfab83be538752a2ffdb56bc417b7784ff35bb9a3062413717807dec",
+                "sha256:d9cf190f51cbb26da0412247dfe4fb5f4098edb73db84e02f9fc21fdca31fed4"
+            ],
+            "version": "==0.2.4"
         },
         "toml": {
             "hashes": [

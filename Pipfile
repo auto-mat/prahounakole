@@ -31,6 +31,7 @@ django_compressor = "*"
 WsgiUnproxy = "*"
 django-heroku = "*"
 django-bower = "*"
+django = "<2.1"
 
 [dev-packages]
 coverage = "*"
@@ -44,6 +45,7 @@ django-admin-smoke-tests = "*"
 "flake8-builtins" = "*"
 django_coverage_plugin = "*"
 "flake8_strict" = "*"
+django-debug-toolbar = "*"
 
 [requires]
 python_version = "3.6"
