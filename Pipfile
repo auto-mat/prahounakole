@@ -34,6 +34,7 @@ django = "<3.0"
 django-simple-captcha = "*"
 asgiref = "*"
 django-dotenv = "*"
+django-heroku = "*"
 
 [dev-packages]
 pudb = "*"
