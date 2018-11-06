@@ -29,6 +29,7 @@ freezegun = "*"
 django-media-fixtures = "*"
 django_compressor = "*"
 WsgiUnproxy = "*"
+django-heroku = "*"
 
 [dev-packages]
 coverage = "*"
