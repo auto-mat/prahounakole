@@ -60,6 +60,7 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'compressor.finders.CompressorFinder',
+    'djangobower.finders.BowerFinder',
 )
 TEMPLATES = [
     {
@@ -141,6 +142,16 @@ INSTALLED_APPS = [
     'httpproxy',
     'django_media_fixtures',
 ]
+
+BOWER_INSTALLED_APPS = (
+    "lightbox#2.7.4",
+    "css-browser-selector",
+    "jqueryui#1.12.1",
+    "jquery#3.3.1",
+    "openlayers#https://github.com/PetrDlouhy/openlayers.git",
+    "bootstrap#3.3.7",
+    "jquery-persist#https://github.com/commonpike/jquery-persist.git",
+)
 
 CSRF_COOKIE_SECURE = True
 SECURE_BROWSER_XSS_FILTER = True

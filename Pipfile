@@ -30,6 +30,7 @@ django-media-fixtures = "*"
 django_compressor = "*"
 WsgiUnproxy = "*"
 django-heroku = "*"
+django-bower = "*"
 
 [dev-packages]
 coverage = "*"
