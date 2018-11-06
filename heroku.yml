@@ -8,17 +8,18 @@ setup:
       as: SENDGRID
   config:
     AKLUB_DEFAULT_FROM_EMAIL: info@auto-mat.cz
-    DISABLE_COLLECTSTATIC: '1'
     DJANGO_SETTINGS_MODULE: project.settings.heroku
     GUNICORN_WORKERS: '2'
 build:
   languages:
     - nodejs
     - python
+  config:
+    SECRET_KEY: "build_secret_key"
+    DISABLE_COLLECTSTATIC: '1'
+    DJANGO_SETTINGS_MODULE: project.settings.heroku
 run:
-  web:
-    - gunicorn wsgi --timeout ${GUNICORN_TIMEOUT:-"60"} --workers ${GUNICORN_WORKERS:-"6"}
+  web: gunicorn wsgi --timeout ${GUNICORN_TIMEOUT:-"60"} --workers ${GUNICORN_WORKERS:-"6"}
 release:
-  image: web
   command:
     - python manage.py migrate
