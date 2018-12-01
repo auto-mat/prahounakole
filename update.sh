@@ -34,9 +34,9 @@ if [ "$1" = "migrate" ]; then
    pipenv run python ./manage.py migrate
 fi
 
-bower install
+pipenv run python ./manage.py bower install
 #compile PNK version of OpenLayers:
-(cd apps/cyklomapa/static/bow/openlayers/build/ && pipenv run python build.py -c none ../../../openstreetmap-pnk ../OpenLayers.PNK.js)
+(cd bower_components/ol2/build/ && pipenv run python build.py -c none ../../../apps/cyklomapa/static/openstreetmap-pnk ../../../apps/cyklomapa/static/js/OpenLayers.PNK.js)
 
 pipenv run python ./manage.py collectstatic --noinput
 pipenv run python ./manage.py compress_create_manifest --force
