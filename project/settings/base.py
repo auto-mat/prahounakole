@@ -71,6 +71,7 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'compressor.finders.CompressorFinder',
+    'djangobower.finders.BowerFinder',
 )
 TEMPLATES = [
     {
@@ -151,6 +152,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'httpproxy',
     'django_media_fixtures',
+    'djangobower',
 ]
 
 FLUENT_COMMENTS_FORM_CLASS = 'fluent_comments.forms.captcha.DefaultCommentForm'  # default
@@ -158,6 +160,16 @@ FLUENT_COMMENTS_FORM_CLASS = 'fluent_comments.forms.captcha.DefaultCommentForm' 
 CAPTCHA_NOISE_FUNCTIONS = ()
 CAPTCHA_FONT_SIZE = 30
 CAPTCHA_LETTER_ROTATION = (-10, 10)
+
+BOWER_INSTALLED_APPS = (
+    "lightbox#2.11.1",
+    "css-browser-selector",
+    "jqueryui#1.12.1",
+    "jquery#3.4.1",
+    "https://github.com/openlayers/ol2.git",
+    "bootstrap#3.4.1",
+    "https://github.com/commonpike/jquery-persist.git",
+)
 
 CSRF_COOKIE_SECURE = True
 SECURE_BROWSER_XSS_FILTER = True
