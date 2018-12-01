@@ -6,8 +6,9 @@ from django.contrib.auth import views as auth_views
 
 admin.autodiscover()
 
+urlpatterns = static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
-urlpatterns = [
+urlpatterns += [
     url(r'^admin/passreset/$', auth_views.password_reset, name='password_reset'),
     url(r'^admin/passresetdone/$', auth_views.password_reset_done, name='password_reset_done'),
     url(r'^admin/passresetconfirm/(?P<uidb64>[-\w]+)/(?P<token>[-\w]+)/$', auth_views.password_reset_confirm, name='password_reset_confirm'),
@@ -18,4 +19,4 @@ urlpatterns = [
     url(r'^feedback/', include('feedback.urls')),
     url(r'^', include("cyklomapa.urls")),
     url(r'^captcha/', include('captcha.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]

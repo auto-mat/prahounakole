@@ -23,3 +23,9 @@ update_local.sh
 .coverage
 /node_modules/
 /coverage/
+/pipenv/
+/src/
+/share/
+/lib/
+/include/
+*.swo
