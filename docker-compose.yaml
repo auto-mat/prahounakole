@@ -1,0 +1,30 @@
+version: '2'
+services:
+ web:
+  build: .
+  entrypoint: /bin/bash
+  ports:
+   - "8033:8000"
+  links:
+   - postgres
+  tty: true
+  stdin_open: true
+  working_dir: /app-v/
+  user: test
+  environment:
+   DB_USER: postgres
+   DB_PASSWORD: foobar
+   DB_NAME: postgres
+   DJANGO_SETTINGS_MODULE=project.settings.dockerdev
+  env_file: .env
+  volumes:
+   - ./:/app-v/
+   - ./pipenv:/home/test
+ postgres:
+  image: mdillon/postgis:9.6-alpine
+  volumes:
+   - ./db:/var/lib/postgresql/data
+  environment:
+   POSTGRES_PASSWORD: foobar
+   POSTGRES_USER: postgres
+   PGDATA: /var/lib/postgresql/data
