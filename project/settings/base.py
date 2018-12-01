@@ -9,10 +9,11 @@ import os
 import re
 import sys
 
+
+
 from django.utils.translation import ugettext_lazy as _
 
 import raven
-
 
 def normpath(*args):
     return os.path.normpath(os.path.abspath(os.path.join(*args)))
@@ -26,8 +27,19 @@ DEFAULT_FROM_EMAIL = 'Prahou na kole <redakce@prahounakole.cz>'
 sys.path.append(normpath(PROJECT_DIR, "project"))
 sys.path.append(normpath(PROJECT_DIR, "apps"))
 
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", False)
 # COMPRESS = True
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': os.environ.get("DB_NAME", 'pnk'),
+        'USER': os.environ.get("DB_USER", 'pnk'),
+        'PASSWORD': os.environ.get("DB_PASSWORD", 'foobar'),
+        'HOST': os.environ.get("DB_HOST", 'postgres'),
+        'PORT': '',
+    },
+}
 
 CACHES = {
     'default': {
@@ -83,7 +95,6 @@ TEMPLATES = [
         },
     },
 ]
-
 
 MIDDLEWARE = (
     'django.middleware.security.SecurityMiddleware',
@@ -141,6 +152,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'httpproxy',
     'django_media_fixtures',
+    'djangobower',
 ]
 
 BOWER_INSTALLED_APPS = (
@@ -334,3 +346,7 @@ SECURE_HSTS_SECONDS = 60
 SECURE_HSTS_PRELOAD = True
 SESSION_COOKIE_SECURE = True
 X_FRAME_OPTIONS = 'DENY'
+
+FEEDBACK_CAPTCHAS = [
+    (_("Kolik kol má jízdní kolo?"), ["2", "dvě", "dve", "dva", "two"]),
+]

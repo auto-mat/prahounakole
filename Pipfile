@@ -5,7 +5,7 @@ name = "pypi"
 
 [packages]
 easy-thumbnails = "*"
-django-http-proxy = "*"
+django-http-proxy = {editable = true, ref = "develop", git = "https://github.com/PetrDlouhy/django-http-proxy.git"}
 python-memcached = "*"
 "psycopg2" = "*"
 django-colorful = "*"
@@ -23,7 +23,7 @@ raven = "*"
 django-cors-headers = "*"
 gunicorn = "*"
 newrelic = "*"
-django-feedback = "*"
+django-feedback = {editable = true, ref = "captcha", git = "https://github.com/auto-mat/django-feedback.git"}
 lxml = "*"
 freezegun = "*"
 django-media-fixtures = "*"

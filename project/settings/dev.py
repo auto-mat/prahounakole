@@ -21,7 +21,9 @@ def custom_show_toolbar(request):
 SHOW_TOOLBAR_CALLBACK = custom_show_toolbar
 
 ALLOWED_HOSTS += [
+    'praha.localhost',
     'localhost',
+    '0.0.0.0',
 ]
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
