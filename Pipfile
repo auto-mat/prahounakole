@@ -34,6 +34,7 @@ django-bower = "*"
 django = "<2.1"
 
 [dev-packages]
+pudb = "*"
 coverage = "*"
 coveralls = "*"
 django-admin-smoke-tests = "*"
