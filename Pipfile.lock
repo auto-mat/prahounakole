@@ -140,7 +140,7 @@
         "django-feedback": {
             "editable": true,
             "git": "https://github.com/auto-mat/django-feedback.git",
-            "ref": "6519c843d8fe332c7b184e03d676108a90e6d1ea"
+            "ref": "98471f78076fba60ce79d95561237b4864bf6069"
         },
         "django-filter": {
             "hashes": [
