@@ -12,3 +12,4 @@ if 'SENDGRID_USERNAME' in os.environ:
     EMAIL_HOST_PASSWORD = os.environ['SENDGRID_PASSWORD']
 
 django_heroku.settings(locals())
+DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis' # https://stackoverflow.com/a/52857672/2126889
