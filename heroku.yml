@@ -14,6 +14,8 @@ build:
   languages:
     - nodejs
     - python
+  packages:
+    - gdal-bin
   config:
     SECRET_KEY: "build_secret_key"
     DISABLE_COLLECTSTATIC: '1'
