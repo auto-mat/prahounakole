@@ -11,7 +11,7 @@ django-constance==2.0.0
 django-contrib-comments==1.8.0
 django-cors-headers==2.1.0
 django-crispy-forms==1.7.0
--e git+https://github.com/PetrDlouhy/django-feedback@master#egg=django-feedback
+-e git+https://github.com/auto-mat/django-feedback@captcha#egg=django-feedback
 django-filter==1.1.0
 django-finegrained-permissions==0.0.1
 django-fluent-comments==2.0

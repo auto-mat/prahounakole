@@ -305,3 +305,7 @@ try:
     from settings_local import *  # noqa
 except ImportError:
     pass
+
+FEEDBACK_CAPTCHAS = [
+    (_("Kolik kol má jízdní kolo?"), ["2", "dvě", "dve", "dva", "two"]),
+]
