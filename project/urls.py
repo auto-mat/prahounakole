@@ -17,4 +17,5 @@ urlpatterns = [
     url(r'^webmap/', include('webmap.urls')),
     url(r'^feedback/', include('feedback.urls')),
     url(r'^', include("cyklomapa.urls")),
+    url(r'^captcha/', include('captcha.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
