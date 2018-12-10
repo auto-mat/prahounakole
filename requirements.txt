@@ -22,6 +22,8 @@ django-cors-headers
 gunicorn
 newrelic
 django-feedback
+django-simple-captcha
+django-askimet
 
 django-compressor
 lxml

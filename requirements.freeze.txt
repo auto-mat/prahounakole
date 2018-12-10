@@ -12,9 +12,10 @@ django-contrib-comments==1.8.0
 django-cors-headers==2.1.0
 django-crispy-forms==1.7.0
 -e git+https://github.com/auto-mat/django-feedback@captcha#egg=django-feedback
+django-simple-captcha==0.5.8
 django-filter==1.1.0
 django-finegrained-permissions==0.0.1
-django-fluent-comments==2.0
+django-fluent-comments==2.1
 django-gpxpy==0.0.2
 -e git+https://github.com/PetrDlouhy/django-http-proxy@develop#egg=django-http-proxy  # for Django 2.0 fix
 django_import_export==1.0.0
@@ -33,7 +34,7 @@ lxml==4.1.1
 newrelic==2.96.0.80
 olefile==0.44
 psycopg2==2.7.3.2
-python-akismet==0.3.0
+python-akismet==0.4.1
 python-dateutil==2.6.1
 python-memcached==1.58
 pytz==2017.3

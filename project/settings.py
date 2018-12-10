@@ -125,6 +125,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'django.contrib.sites',
     'django.contrib.sitemaps',
+    'captcha',
     'fluent_comments',
     'comments_moderation',
     'crispy_forms',
@@ -137,6 +138,12 @@ INSTALLED_APPS = [
     'httpproxy',
     'django_media_fixtures',
 ]
+
+FLUENT_COMMENTS_FORM_CLASS = 'fluent_comments.forms.captcha.DefaultCommentForm'  # default
+
+CAPTCHA_NOISE_FUNCTIONS = ()
+CAPTCHA_FONT_SIZE = 30
+CAPTCHA_LETTER_ROTATION = (-10,10)
 
 CSRF_COOKIE_SECURE = True
 SECURE_BROWSER_XSS_FILTER = True
@@ -307,5 +314,5 @@ except ImportError:
     pass
 
 FEEDBACK_CAPTCHAS = [
-    (_("Kolik kol má jízdní kolo?"), ["2", "dvě", "dve", "dva", "two"]),
+    (_("Nejste robot? Napište, kolik kol má obvykle jízdní kolo"), ["2", "dvě", "dve", "dva", "two"]),
 ]
