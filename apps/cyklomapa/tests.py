@@ -42,6 +42,8 @@ from freezegun import freeze_time
 
 import httpproxy
 
+from model_mommy import mommy
+
 import webmap
 from webmap import views as webmap_views
 
@@ -166,6 +168,15 @@ class UnloggedViewTest(TestCase):
             '</div>',
             html=True,
         )
+
+    @override_settings(
+        FORCE_SUBDOMAIN="neaktivni",
+    )
+    def test_mapa_inactive(self):
+        address = reverse("mapa_view")
+        mommy.make('Mesto', aktivni=False, sektor__slug='neaktivni', sektor__name="Neaktivní město")
+        response = self.client.get(address, secure=True)
+        self.assertContains(response, '<h2>Město Neaktivní město není aktivní.</h2>', html=True)
 
 
 class ViewTest(TestCase):
