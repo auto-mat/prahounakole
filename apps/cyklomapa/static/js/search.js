@@ -44,7 +44,7 @@ search_options = {
                       locationid: ui.item.locationid
                   },
                   success: function ( data ) {
-                      lonlatdict = data.Response.View[0].Result[0].Location.DisplayPosition
+                      lonlatdict = data.Response.View[0].Result[0].Location.DisplayPosition;
                       lonlat = new OpenLayers.LonLat(lonlatdict.Longitude , lonlatdict.Latitude).transform(
                             new OpenLayers.Projection("EPSG:4326"),
                             map.getProjectionObject()
