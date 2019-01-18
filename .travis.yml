@@ -4,6 +4,7 @@ env:
   - DJANGO_VERSION="Django>=1.10,<1.11"
   - DJANGO_VERSION="Django>=1.11,<1.12"
   - DJANGO_VERSION="Django>=2.0,<2.1"
+  - DJANGO_VERSION="Django>=2.1,<2.2"
   - DJANGO_VERSION='https://github.com/django/django/archive/master.tar.gz'
 python:
   - "3.5"
