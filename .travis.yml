@@ -40,4 +40,5 @@ addons:
         - postgresql-9.6-postgis-2.3
 matrix:
    allow_failures:
+      - env: DJANGO_VERSION="Django>=2.1,<2.2"
       - env: DJANGO_VERSION='https://github.com/django/django/archive/master.tar.gz'
