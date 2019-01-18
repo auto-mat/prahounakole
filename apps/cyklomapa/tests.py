@@ -97,6 +97,7 @@ class AdminFilterTests(TestCase):
 
     @freeze_time("2016-01-04 17:10:00")
     def test_comment_post(self):
+        mommy.make('CaptchaStore', hashkey='foocaptcha', response='XAGS', expiration='2018-01-01')
         content_type = "webmap.poi"
         object_pk = "205"
         timestamp = "1451927336"
@@ -107,6 +108,8 @@ class AdminFilterTests(TestCase):
             "name": "Testing name",
             "email": "test@email.com",
             "comment": "Testing comment",
+            "captcha_0": 'foocaptcha',
+            "captcha_1": 'XAGS',
             "timestamp": timestamp,
             "security_hash": security_hash,
         }
@@ -117,6 +120,7 @@ class AdminFilterTests(TestCase):
 
     @freeze_time("2016-01-04 17:10:00")
     def test_comment_post_blocked(self):
+        mommy.make('CaptchaStore', hashkey='foocaptcha', response='XAGS', expiration='2018-01-01')
         comments_moderation.admin.EmailFilter.objects.create(email="test@email.com", active=True)
         content_type = "webmap.poi"
         object_pk = "205"
@@ -128,6 +132,8 @@ class AdminFilterTests(TestCase):
             "name": "Testing name",
             "email": "test@email.com",
             "comment": "Testing comment",
+            "captcha_0": 'foocaptcha',
+            "captcha_1": 'XAGS',
             "timestamp": timestamp,
             "security_hash": security_hash,
         }
