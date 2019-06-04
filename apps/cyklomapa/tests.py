@@ -71,7 +71,7 @@ class AdminFilterTests(TestCase):
     fixtures = ["webmap", "cyklomapa"]
 
     def setUp(self):
-                # Every test needs access to the request factory.
+        # Every test needs access to the request factory.
         self.factory = RequestFactory()
         self.client = Client(HTTP_HOST='testing-sector.testserver')
         self.user = User.objects.create_superuser(
@@ -189,7 +189,7 @@ class ViewTest(TestCase):
     fixtures = ["webmap", "cyklomapa"]
 
     def setUp(self):
-                # Every test needs access to the request factory.
+        # Every test needs access to the request factory.
         self.factory = RequestFactory()
         self.client = Client(HTTP_HOST="testing-sector.testserver")
         self.user = User.objects.create_superuser(
