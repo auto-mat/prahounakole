@@ -1238,7 +1238,7 @@ function onLocationUpdate(evt) {
 
 function addDPNK_GPX_2015(name, enabled, slug) {
   var dpnk_gpxfile = new OpenLayers.Layer.WMS(name,
-     "https://geoserver.prahounakole.cz/geoserver/dpnk/wms?tiled=true",
+     "http://dawsqhm5i1mvd.cloudfront.net/geoserver/dpnk/wms?tiled=true",
      {
         layers: 'dpnk:dpnk_gpxfile_anonymized_2015',
         format: 'image/png',
@@ -1251,7 +1251,7 @@ function addDPNK_GPX_2015(name, enabled, slug) {
 
 function addDPNK_track_2015(name, enabled, slug) {
   var dpnk_tracks = new OpenLayers.Layer.WMS(name,
-     "https://geoserver.prahounakole.cz/geoserver/dpnk/wms?tiled=true",
+     "http://dawsqhm5i1mvd.cloudfront.net/geoserver/dpnk/wms?tiled=true",
      {
         layers: 'dpnk:dpnk_track_anonymized_2015',
         format: 'image/png',
@@ -1264,7 +1264,7 @@ function addDPNK_track_2015(name, enabled, slug) {
 
 function addDPNK_GPX_2016(name, enabled, slug) {
   var dpnk_gpxfile = new OpenLayers.Layer.WMS(name,
-     "https://geoserver.prahounakole.cz/geoserver/dpnk/wms?tiled=true",
+     "http://dawsqhm5i1mvd.cloudfront.net/geoserver/dpnk/wms?tiled=true",
      {
         layers: 'dpnk:dpnk_gpxfile_anonymized_2016',
         format: 'image/png',
@@ -1277,7 +1277,7 @@ function addDPNK_GPX_2016(name, enabled, slug) {
 
 function addDPNK_track_2016(name, enabled, slug) {
   var dpnk_tracks = new OpenLayers.Layer.WMS(name,
-     "https://geoserver.prahounakole.cz/geoserver/dpnk/wms?tiled=true",
+     "http://dawsqhm5i1mvd.cloudfront.net/geoserver/dpnk/wms?tiled=true",
      {
         layers: 'dpnk:dpnk_track_anonymized_2016',
         format: 'image/png',
@@ -1290,7 +1290,7 @@ function addDPNK_track_2016(name, enabled, slug) {
 
 function addDPNK_GPX_2017(name, enabled, slug) {
   var dpnk_gpxfile = new OpenLayers.Layer.WMS(name,
-     "https://geoserver.prahounakole.cz/geoserver/dpnk/wms?tiled=true",
+     "http://dawsqhm5i1mvd.cloudfront.net/geoserver/dpnk/wms?tiled=true",
      {
         layers: 'dpnk:dpnk_gpxfile_anonymized_2017',
         format: 'image/png',
@@ -1303,7 +1303,7 @@ function addDPNK_GPX_2017(name, enabled, slug) {
 
 function addDPNK_track_2017(name, enabled, slug) {
   var dpnk_tracks = new OpenLayers.Layer.WMS(name,
-     "https://geoserver.prahounakole.cz/geoserver/dpnk/wms?tiled=true",
+     "http://dawsqhm5i1mvd.cloudfront.net/geoserver/dpnk/wms?tiled=true",
      {
         layers: 'dpnk:dpnk_track_anonymized_2017',
         format: 'image/png',
@@ -1316,7 +1316,7 @@ function addDPNK_track_2017(name, enabled, slug) {
 
 function addDPNK_GPX_2018(name, enabled, slug) {
   var dpnk_gpxfile = new OpenLayers.Layer.WMS(name,
-     "https://geoserver.prahounakole.cz/geoserver/dpnk/wms?tiled=true",
+     "http://dawsqhm5i1mvd.cloudfront.net/geoserver/dpnk/wms?tiled=true",
      {
         layers: 'dpnk:dpnk_gpxfile_anonymized_2018',
         format: 'image/png',
@@ -1329,7 +1329,7 @@ function addDPNK_GPX_2018(name, enabled, slug) {
 
 function addDPNK_track_2018(name, enabled, slug) {
   var dpnk_tracks = new OpenLayers.Layer.WMS(name,
-     "https://geoserver.prahounakole.cz/geoserver/dpnk/wms?tiled=true",
+     "http://dawsqhm5i1mvd.cloudfront.net/geoserver/dpnk/wms?tiled=true",
      {
         layers: 'dpnk:dpnk_track_anonymized_2018',
         format: 'image/png',
@@ -1342,7 +1342,7 @@ function addDPNK_track_2018(name, enabled, slug) {
 
 function addDPNK_GPX_2019(name, enabled, slug) {
   var dpnk_gpxfile = new OpenLayers.Layer.WMS(name,
-     "https://geoserver.prahounakole.cz/geoserver/dpnk/wms?tiled=true",
+     "http://dawsqhm5i1mvd.cloudfront.net/geoserver/dpnk/wms?tiled=true",
      {
         layers: 'dpnk:dpnk_gpxfile_anonymized_2019',
         format: 'image/png',
