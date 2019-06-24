@@ -154,10 +154,10 @@ function init(mapconfig) {
     });
     layerIPR = new OpenLayers.Layer.WMS(
         "Ortofoto IPR mimovegetační",
-        "https://mpp.praha.eu/arcgis/services/MAP/mimovegetacni_snimkovani_cache/MapServer/WmsServer",
+        "https://mpp.praha.eu/arcgis/services/MAP/Ortofotomapa_archiv/MapServer/WmsServer",
         {
-            layers: '0',
-            format: 'image/jpeg',
+            layers: '3',
+            format: 'image/png',
             transparent: true,
             srs: "EPSG:3857",
         },
@@ -173,7 +173,7 @@ function init(mapconfig) {
         "Ortofoto IPR",
         "https://mpp.praha.eu/arcgis/services/MAP/Ortofotomapa_archiv/MapServer/WmsServer",
         {
-            layers: '0',
+            layers: '1',
             format: 'image/jpeg',
             transparent: true,
             srs: "EPSG:3857",
