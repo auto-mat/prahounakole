@@ -29,7 +29,7 @@ freezegun = "*"
 django-media-fixtures = "*"
 django_compressor = "*"
 WsgiUnproxy = "*"
-django = "<2.1"
+django = "<3.0"
 
 [dev-packages]
 pudb = "*"
