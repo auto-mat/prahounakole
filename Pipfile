@@ -30,6 +30,7 @@ django-media-fixtures = "*"
 django_compressor = "*"
 WsgiUnproxy = "*"
 django = "<3.0"
+django-simple-captcha = "*"
 
 [dev-packages]
 pudb = "*"
