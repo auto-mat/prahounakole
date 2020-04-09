@@ -10,10 +10,13 @@ env:
     - DJANGO_VERSION="Django>=1.11,<1.12"
     - DJANGO_VERSION="Django>=2.0,<2.1"
     - DJANGO_VERSION="Django>=2.1,<2.2"
+    - DJANGO_VERSION="Django>=2.2,<3.0"
+    - DJANGO_VERSION="Django>=3.0,<3.1"
     - DJANGO_VERSION='https://github.com/django/django/archive/master.tar.gz'
 python:
   - "3.5"
   - "3.6"
+  - "3.7"
 before_install:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
@@ -44,5 +47,5 @@ addons:
         - postgresql-9.6-postgis-2.3
 matrix:
    allow_failures:
-      - env: DJANGO_VERSION="Django>=2.1,<2.2"
+      - env: DJANGO_VERSION="Django>=3.0,<3.1"
       - env: DJANGO_VERSION='https://github.com/django/django/archive/master.tar.gz'
