@@ -12,10 +12,6 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 from django.contrib.gis.db.models import Union
-try:
-    from django.urls import reverse
-except ImportError:  # Django<2.0
-    from django.core.urlresolvers import reverse
 
 from leaflet.admin import LeafletGeoAdmin, LeafletGeoAdminMixin
 
@@ -98,10 +94,6 @@ class MarkerZnackaInline(admin.StackedInline):
 
 class MarkerZnackaAdmin(MarkerAdmin):
     inlines = MarkerAdmin.inlines + [MarkerZnackaInline, ]
-
-    def poi_count(self, obj):
-        url = reverse('admin:webmap_poi_changelist')
-        return '<a href="{0}?marker__id__exact={1}&amp;statuses=all">{2}</a>'.format(url, obj.id, obj.pois.count())
 
 
 class MestoAdmin(LeafletGeoAdmin):
