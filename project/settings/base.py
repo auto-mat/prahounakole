@@ -10,10 +10,10 @@ import re
 import sys
 
 
-
 from django.utils.translation import ugettext_lazy as _
 
 import raven
+
 
 def normpath(*args):
     return os.path.normpath(os.path.abspath(os.path.join(*args)))
@@ -188,7 +188,8 @@ CONSTANCE_CONFIG = {
 CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
 
 CORS_ORIGIN_WHITELIST = (
-    'cyklomapa.plzne.cz',
+    'http://cyklomapa.plzne.cz',
+    'https://cyklomapa.plzne.cz',
 )
 CORS_ORIGIN_REGEX_WHITELIST = (r'^(https?://)?(\w+\.)?prahounakole\.cz$', )
 

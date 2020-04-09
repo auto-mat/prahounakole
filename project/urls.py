@@ -9,10 +9,10 @@ admin.autodiscover()
 urlpatterns = static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 urlpatterns += [
-    url(r'^admin/passreset/$', auth_views.password_reset, name='password_reset'),
-    url(r'^admin/passresetdone/$', auth_views.password_reset_done, name='password_reset_done'),
-    url(r'^admin/passresetconfirm/(?P<uidb64>[-\w]+)/(?P<token>[-\w]+)/$', auth_views.password_reset_confirm, name='password_reset_confirm'),
-    url(r'^admin/passresetcomplete/$', auth_views.password_reset_complete, name='password_reset_complete'),
+    url(r'^admin/passreset/$', auth_views.PasswordResetView.as_view(), name='password_reset'),
+    url(r'^admin/passresetdone/$', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
+    url(r'^admin/passresetconfirm/(?P<uidb64>[-\w]+)/(?P<token>[-\w]+)/$', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    url(r'^admin/passresetcomplete/$', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
     url(r'^admin/', admin.site.urls),
     url(r'^admin/', include("massadmin.urls")),
     url(r'^webmap/', include('webmap.urls')),
