@@ -24,6 +24,7 @@ before_install:
 install:
   - pip install pipenv
   - pipenv install --dev
+  - pipenv run pip install flake8_strict
 before_script:
   - npm install
   - npm install -g bower less jshint
