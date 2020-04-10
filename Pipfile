@@ -48,6 +48,7 @@ django-admin-smoke-tests = "*"
 django_coverage_plugin = "*"
 # "flake8_strict" = "*"  removed, because is not installable with Black dependency
 django-debug-toolbar = "*"
+model-mommy = "*"
 
 [requires]
 python_version = "3.6"
