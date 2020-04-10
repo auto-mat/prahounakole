@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "a94c47b3e0104d3a725a64629a565be78b118da90a2f66c3d5ef37e0dd8ded0c"
+            "sha256": "808622b6634e1a7f0f3f0ced2e40aed8141edef3bc1f9438f605100195a11304"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -80,14 +80,6 @@
             "index": "pypi",
             "version": "==1.0.2"
         },
-        "django-bower": {
-            "hashes": [
-                "sha256:3ab5699b782d63d1aa8e5d61f9bdcdb8d29137e7ba6f19d094d566241afee0f2",
-                "sha256:f1cf649842c0cb28f8aa28617e99fc7fb7773bac4e8886ee4e36962a38c99a6e"
-            ],
-            "index": "pypi",
-            "version": "==5.2.0"
-        },
         "django-colorful": {
             "hashes": [
                 "sha256:49d3feefdabdf6a22931c12ce1ed0cbb4596e7754e66bd55c0f362c0a369e5cb",
@@ -136,6 +128,14 @@
                 "sha256:67e73ac863d3159500029fbbcdcb788f287a3fd357becebc1a0b51f73896dce3"
             ],
             "version": "==1.9.0"
+        },
+        "django-dotenv": {
+            "hashes": [
+                "sha256:3812bb0f4876cf31f902aad140f0645e120e51ee30eb7c40c22050f58a0e4adb",
+                "sha256:a9b1b40a70bd321acd231926acedb9bd2c5e873e33a1873b34a7276d196a765e"
+            ],
+            "index": "pypi",
+            "version": "==1.4.2"
         },
         "django-feedback": {
             "editable": true,
@@ -240,10 +240,10 @@
         },
         "django-webmap-corpus": {
             "hashes": [
-                "sha256:6af197c9d80d5ce62deeeefdf94820008ec467f23d27e6c9429577838e844c21"
+                "sha256:468f3f73fdfdc0082a6741d67b380cee914301d2f842941721842117d675f8ed"
             ],
             "index": "pypi",
-            "version": "==0.12.0"
+            "version": "==1.0.0"
         },
         "djangorestframework": {
             "hashes": [
@@ -731,6 +731,14 @@
                 "sha256:dd8d182285a0fe56bace7f45b5e7d1a6ebcbf524e8f3bd87eb0f125271b8831f"
             ],
             "version": "==0.6.1"
+        },
+        "model-mommy": {
+            "hashes": [
+                "sha256:3d332afce941c57f1990f45b083ba13252ba74fcd1ae43fd047e5af7a70fb312",
+                "sha256:40d6e740aad7509e696a324b94cf2b0a104da93c3d4a7924cea1be3d0eb95b4f"
+            ],
+            "index": "pypi",
+            "version": "==2.0.0"
         },
         "pudb": {
             "hashes": [
