@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 #version 0.3
 
 app_name=pnk
@@ -22,11 +22,6 @@ if [ "$1" = "reinstall" ]; then
 fi
 
 pipenv install --python=python3
-
-if [ "$1" != "no_virtualenv" ]; then
-   echo activate
-   pipenv shell
-fi
 
 if [ "$1" != "no_virtualenv" ]; then
    pipenv install "Django<3.0" --upgrade
