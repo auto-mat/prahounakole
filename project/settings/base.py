@@ -19,7 +19,7 @@ def normpath(*args):
     return os.path.normpath(os.path.abspath(os.path.join(*args)))
 
 
-PROJECT_DIR = normpath(__file__, "..", "..")
+PROJECT_DIR = normpath(__file__, "..", "..", "..")
 BASE_DIR = PROJECT_DIR
 
 DEFAULT_FROM_EMAIL = 'Prahou na kole <redakce@prahounakole.cz>'
