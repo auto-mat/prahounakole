@@ -178,7 +178,7 @@
         "django-http-proxy": {
             "editable": true,
             "git": "https://github.com/PetrDlouhy/django-http-proxy.git",
-            "ref": "13630d51c10193cb3943ee089974deb2b25d8a13"
+            "ref": "d5562aa21e8b72c379cac7df3b7ab92f60bf540e"
         },
         "django-import-export": {
             "hashes": [
