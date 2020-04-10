@@ -39,7 +39,7 @@ before_script:
 script:
   - django-admin --version
   - pipenv run python -Wall $VIRTUAL_ENV/bin/coverage run manage.py test
-  - node_modulepythons/karma/bin/karma start karma.conf.js --single-run
+  - ./node_modules/.bin/karma start karma.conf.js --single-run
 after_script:
   - coveralls
 addons:
