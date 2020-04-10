@@ -18,36 +18,34 @@ source update_local.sh
 set -e
 
 if [ "$1" = "reinstall" ]; then
-   rm env -rf
-   virtualenv --no-site-packages env --python=python3
+   pipenv --rm
 fi
 
-git pull
-
+pipenv install --python=python3
 
 if [ "$1" != "no_virtualenv" ]; then
    echo activate
-   source env/bin/activate
+   pipenv shell
 fi
-pip install --process-dependency-links -r requirements.freeze.txt
+
 if [ "$1" != "no_virtualenv" ]; then
-   pip install "Django<2.1" --upgrade
+   pipenv install "Django<3.0" --upgrade
 fi
 if [ "$1" = "migrate" ]; then
    echo "Backuping db..."
    mkdir -p db_backup
    sudo -u postgres pg_dump -C $db_name > db_backup/`date +"%y%m%d-%H:%M:%S"`-pnk.sql
    echo "Migrating..."
-   python ./manage.py migrate
+   pipenv run python ./manage.py migrate
 fi
 
 bower install
 #compile PNK version of OpenLayers:
-(cd apps/cyklomapa/static/bow/openlayers/build/ && python build.py -c none ../../../openstreetmap-pnk ../OpenLayers.PNK.js)
+(cd apps/cyklomapa/static/bow/openlayers/build/ && pipenv run python build.py -c none ../../../openstreetmap-pnk ../OpenLayers.PNK.js)
 
-python ./manage.py collectstatic --noinput
-python ./manage.py compress_create_manifest --force
-python ./manage.py collectstatic --noinput
+pipenv run python ./manage.py collectstatic --noinput
+pipenv run python ./manage.py compress_create_manifest --force
+pipenv run python ./manage.py collectstatic --noinput
 
 touch wsgi.py
 sudo whoami && sudo /etc/init.d/memcached restart
