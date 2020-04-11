@@ -200,7 +200,7 @@ CONSTANCE_CONFIG = {
 }
 CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
 
-CORS_ORIGIN_WHITELIST = (
+CORS_ORIGIN_WHITELIST = [
     'http://cyklomapa.plzne.cz',
     'https://cyklomapa.plzne.cz',
 ] + os.environ.get('AKLUB_CORS_ORIGIN_WHITELIST', '').split(',')
