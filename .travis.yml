@@ -29,7 +29,6 @@ before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
   - psql --no-password travis_ci_test -U postgres -c "create extension postgis"
   - python manage.py collectmedia --noinput
-  - ./update.sh no_virtualenv
 script:
   - django-admin --version
   - pipenv run python -Wall $VIRTUAL_ENV/bin/coverage run manage.py test
