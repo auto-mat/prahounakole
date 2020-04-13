@@ -24,7 +24,7 @@ fi
 pipenv install --python=python3
 
 if [ "$1" != "no_virtualenv" ]; then
-   pipenv install "Django<3.0" --upgrade
+   pipenv run pip install "Django<3.0" --upgrade
 fi
 if [ "$1" = "migrate" ]; then
    echo "Backuping db..."
