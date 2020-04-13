@@ -203,7 +203,10 @@ CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
 CORS_ORIGIN_WHITELIST = [
     'http://cyklomapa.plzne.cz',
     'https://cyklomapa.plzne.cz',
-] + os.environ.get('AKLUB_CORS_ORIGIN_WHITELIST', '').split(',')
+]
+AKLUB_CORS_ORIGIN_WHITELIST = os.environ.get('AKLUB_CORS_ORIGIN_WHITELIST', None)
+if AKLUB_CORS_ORIGIN_WHITELIST:
+    CORS_ORIGIN_WHITELIST += AKLUB_CORS_ORIGIN_WHITELIST.split(',')
 CORS_ORIGIN_REGEX_WHITELIST = (r'^(https?://)?(\w+\.)?prahounakole\.cz$', )
 
 LOGGING = {
