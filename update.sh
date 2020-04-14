@@ -3,6 +3,7 @@
 
 app_name=pnk
 db_name=pnk
+export PIPENV_VENV_IN_PROJECT=true
 
 error() {
    printf '\E[31m'; echo "$@"; printf '\E[0m'
