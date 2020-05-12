@@ -39,11 +39,15 @@ textarea{
       float: left;
       display:inline-block;
     }
-    // &.gold{
-    // 	margin-left: -6px;
-    // 	padding-left: 6px;
-    // 	background-color: #fff;
-    // }
+    .row-container{
+       direction: rtl;
+       overflow-y: auto;
+       height: 100vh;
+    }
+    &.gold{
+       direction: ltr;
+       overflow: none;
+    }
     .col-md-1{
       width:8.333%;
     }
@@ -116,7 +120,7 @@ textarea{
   }
 }
 #panel{
-position:relative;
+position:fixed;
 z-index:999;
   max-width:400px;
   min-width: 257px;
