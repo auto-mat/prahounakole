@@ -1353,6 +1353,19 @@ function addDPNK_GPX_2019(name, enabled, slug) {
   map.addLayers([dpnk_gpxfile]);
 }
 
+function addDPNK_GPX_2020(name, enabled, slug) {
+    var dpnk_gpxfile = new OpenLayers.Layer.WMS(name,
+                                                "https://geoserver1.prahounakole.cz/geoserver/dpnk/wms?tiled=true",
+                                                {
+                                                    layers: 'dpnk:dpnk_gpxfile_anonymized_2020',
+                                                    format: 'image/png',
+                                                    transparent: true,
+                                                });
+    dpnk_gpxfile.slug = slug;
+    dpnk_gpxfile.setVisibility(enabled);
+    map.addLayers([dpnk_gpxfile]);
+}
+
 function addCSLayer(name, enabled, slug) {
      var cs_layer = new OpenLayers.Layer.Vector(name, {
          slug: slug,
