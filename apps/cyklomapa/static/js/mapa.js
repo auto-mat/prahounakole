@@ -1358,7 +1358,7 @@ function addDPNK_GPX_2019(name, enabled, slug) {
 
 function addDPNK_GPX_2020(name, enabled, slug) {
     var dpnk_gpxfile = new OpenLayers.Layer.WMS(name,
-                                                "https://geoserver1.prahounakole.cz/geoserver/dpnk/wms?tiled=true",
+                                                "https://d227lg7og0ei00.cloudfront.net/geoserver/dpnk/wms?tiled=true",
                                                 {
                                                     layers: 'dpnk:dpnk_gpxfile_anonymized_2020',
                                                     format: 'image/png',
