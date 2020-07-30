@@ -348,6 +348,9 @@ function setupPnkMap() {
                case 'g2019':
                    addDPNK_GPX_2019(name, enabled, slug);
                    break;
+               case 'g2020':
+                   addDPNK_GPX_2020(name, enabled, slug);
+                   break;
                default:
                    addPoiLayer(name, url, enabled, slug);
            }
