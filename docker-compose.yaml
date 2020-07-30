@@ -15,7 +15,7 @@ services:
    DB_USER: postgres
    DB_PASSWORD: foobar
    DB_NAME: postgres
-   DJANGO_SETTINGS_MODULE=project.settings.dockerdev
+   DJANGO_SETTINGS_MODULE: project.settings.dockerdev
   env_file: .env
   volumes:
    - ./:/app-v/
