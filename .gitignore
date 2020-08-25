@@ -2,6 +2,7 @@
 /media/
 /static/
 /env/
+.env
 *.swp
 *.diff
 *.rej

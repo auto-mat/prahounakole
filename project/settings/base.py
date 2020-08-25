@@ -37,7 +37,7 @@ DATABASES = {
         'USER': os.environ.get("DB_USER", 'pnk'),
         'PASSWORD': os.environ.get("DB_PASSWORD", 'foobar'),
         'HOST': os.environ.get("DB_HOST", 'postgres'),
-        'PORT': '',
+        'PORT': os.environ.get("DB_PORT", ''),
     },
 }
 
@@ -98,6 +98,7 @@ TEMPLATES = [
 
 MIDDLEWARE = (
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'raven.contrib.django.raven_compat.middleware.Sentry404CatchMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -355,8 +356,7 @@ RAVEN_CONFIG = {
 CSRF_COOKIE_SECURE = True
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'https')
-SECURE_SSL_REDIRECT = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_HSTS_SECONDS = 60
 SECURE_HSTS_PRELOAD = True
 SESSION_COOKIE_SECURE = True

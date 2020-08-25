@@ -9,13 +9,13 @@
 
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
   {% compress css file main_css %}
-  <link rel="stylesheet" href="{% static "jquery-ui/themes/base/jquery-ui.css" %}" type="text/css" />
+  <link rel="stylesheet" href="{% static "bow/jqueryui/themes/base/jquery-ui.css" %}" type="text/css" />
 
   <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.min.css" %}" type="text/css" />
   <link rel="stylesheet" href="{% static "css/openlayers.css" %}" type="text/css" /> 
   <link rel="stylesheet" href="{% static "css/google.css" %}" type="text/css" />
   <link rel="stylesheet" href="{% static "css/layerswitcher.css" %}" type="text/css" />
-  <link rel="stylesheet" href="{% static "lightbox2/dist/css/lightbox.css" %}" type="text/css" />
+  <link rel="stylesheet" href="{% static "bow/lightbox/dist/css/lightbox.css" %}" type="text/css" />
   <link rel="stylesheet" type="text/css" href="{% static "fluent_comments/css/ajaxcomments.css" %}" />
   <link rel="stylesheet" href="{% static "feedback/main.css" %}" type="text/css" />
   <link rel="stylesheet" href="{% static "css/prahounakole.less" %}" type="text/less" />
@@ -26,22 +26,22 @@
   {% endcompress %}
 
   {% compress js file main_js %}
-  <script type="text/javascript" src="{% static "jquery/dist/jquery.min.js" %}"></script>
-  <script type="text/javascript" src="{% static "bootstrap/dist/js/bootstrap.min.js" %}"></script> <!-- Bootstrap musi byt hned za Jquery, resp, pret tools apod. -->
+  <script type="text/javascript" src="{% static "bow/jquery/dist/jquery.min.js" %}"></script>
+  <script type="text/javascript" src="{% static "bow/bootstrap/dist/js/bootstrap.min.js" %}"></script> <!-- Bootstrap musi byt hned za Jquery, resp, pret tools apod. -->
   <script type="text/javascript" src="{% static "js/char_parameters.js" %}"></script>
-  <script type="text/javascript" src="{% static "js/OpenLayers.PNK.js" %}"></script>
+  <script type="text/javascript" src="{% static "bow/openlayers/OpenLayers.PNK.js" %}"></script>
   <script type="text/javascript" src="{% static "js/OpenStreetMap.js" %}"></script>
   <script type="text/javascript" src="{% static "js/cs-CZ.js" %}"></script>
   <script type="text/javascript" src="{% static "js/search.js" %}"></script>
   <script type="text/javascript" src="{% static "js/csapi.js" %}"></script>
   <script type="text/javascript" src="{% static "js/mapa.js" %}"></script>
-  <script type="text/javascript" src="{% static "jquery-ui/jquery-ui.min.js" %}"></script>
+  <script type="text/javascript" src="{% static "bow/jqueryui/jquery-ui.min.js" %}"></script>
   <script type="text/javascript" src="{% static "js/main-page.js" %}"></script>
-  <script type="text/javascript" src="{% static "lightbox2/dist/js/lightbox.min.js" %}"></script>
-  <script type="text/javascript" src="{% static "jquery-persist/jquery-persist.js" %}"></script>
+  <script type="text/javascript" src="{% static "bow/lightbox/dist/js/lightbox.min.js" %}"></script>
+  <script type="text/javascript" src="{% static "bow/jquery-persist/jquery-persist.js" %}"></script>
   <script type="text/javascript" src="{% static "feedback/jquery.form.js" %}"></script>
   <script type="text/javascript" src="{% static "feedback/main.js" %}"></script>
-  <script type="text/javascript" src="{% static "css-browser-selector/css_browser_selector.js" %}"></script>
+  <script type="text/javascript" src="{% static "bow/css-browser-selector/css_browser_selector.js" %}"></script>
   {% endcompress %}
   <script type="text/javascript"  src="https://cdn.ravenjs.com/2.2.0/raven.min.js"></script>
   <script>if(typeof Raven !== 'undefined'){Raven.config('{% sentry_public_dsn %}').install()}</script>

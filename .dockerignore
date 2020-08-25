@@ -8,12 +8,9 @@
 .git
 env*
 db_backup
+lib
 media
 static
-scripts
-!scripts/batch_generation/download_dispatched_subsidiary_boxes.sh
-!scripts/batch_generation/split_csv.sh
-!scripts/batch_generation/generate_delivery_batch_pdf.sh
 htmlcov
 htmlcov-max
 sql
@@ -21,9 +18,8 @@ db
 run
 dpnk.log*
 project/settings/local.py
-amazon_script.sh
-make_graph.sh
-fabfile.py
-cookies.txt
 docker.env
 third_party/
+Dockerfile
+.env
+pipenv

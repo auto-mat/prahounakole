@@ -2,7 +2,6 @@ version: '2'
 services:
  web:
   build: .
-  entrypoint: /bin/bash
   ports:
    - "8033:8000"
   links:
