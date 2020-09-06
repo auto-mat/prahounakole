@@ -365,3 +365,14 @@ X_FRAME_OPTIONS = 'DENY'
 FEEDBACK_CAPTCHAS = [
     (_("Kolik kol má jízdní kolo?"), ["2", "dvě", "dve", "dva", "two"]),
 ]
+
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_S3_REGION_NAME = os.environ.get('AWS_S3_REGION_NAME', 'eu-west-1')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME', 'cyklomapa-media')
+
+if AWS_ACCESS_KEY_ID:
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    AWS_SES_REGION_NAME = 'eu-west-1'
+    AWS_SES_REGION_ENDPOINT = 'email.eu-west-1.amazonaws.com'
+    EMAIL_BACKEND = 'django_ses.SESBackend'

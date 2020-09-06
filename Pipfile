@@ -35,6 +35,8 @@ django-simple-captcha = "*"
 asgiref = "*"
 django-dotenv = "*"
 whitenoise = "*"
+boto3 = "*"
+django-ses = "*"
 
 [dev-packages]
 pudb = "*"
