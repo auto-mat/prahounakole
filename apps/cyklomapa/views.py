@@ -36,6 +36,7 @@ def mapa_view(request, poi_id=None):
         'mesto': request.mesto,
         'presets': MapPreset.objects.filter(status__show=True),
         'mesta': Mesto.objects.filter(aktivni=True).order_by('sektor__name').all(),
+        'cyclestreetsapikey'. settings.CYCLESTREETS_API_KEY,
     }
     if not (request.mesto and request.mesto.aktivni) and not request.user.is_authenticated:
         return render(request, 'neaktivni.html', context=context)

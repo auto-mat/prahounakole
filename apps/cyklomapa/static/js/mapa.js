@@ -25,7 +25,7 @@ var touchMoved = false;
 var lastActions = "";
 
 var EPSG4326 = new OpenLayers.Projection("EPSG:4326");
-var EPSG900913 = new OpenLayers.Projection("EPSG:900913"); 
+var EPSG900913 = new OpenLayers.Projection("EPSG:900913");
 
 var bounds = new OpenLayers.Bounds(12,48.5,19,51.1);
 var extent = new OpenLayers.Bounds(-180.0,-90.0,180.0,90.0);
@@ -57,7 +57,7 @@ function init(mapconfig) {
     mainFilter = new OpenLayers.Filter.Logical({
         type: OpenLayers.Filter.Logical.AND
     });
-            
+
     filter_rule = new OpenLayers.Rule({
         filter: mainFilter,
         symbolizer: {
@@ -396,7 +396,7 @@ function setupRouting() {
        destroyPnkMap();
     }
 
-    CSApi.init(map, 'ad9beeeff0afb15e');
+    CSApi.init(map, window.csapikey);
 
     if(isRoutingSet){
        markerLayer.setVisibility(true);
