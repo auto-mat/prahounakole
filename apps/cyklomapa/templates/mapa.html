@@ -25,7 +25,7 @@
   <link rel="stylesheet" href="{% static "css/print.css" %}" type="text/css" media="print" />
   {% endcompress %}
   <script>
-   window.csapikey = {{ cyclestreetsapikey }}
+   window.csapikey = "{{ cyclestreetsapikey }}"
   </script>
 
   {% compress js file main_js %}

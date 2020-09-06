@@ -378,4 +378,4 @@ if AWS_ACCESS_KEY_ID:
     EMAIL_BACKEND = 'django_ses.SESBackend'
 
 
-CYCLESTREETS_API_KEY = os.environ.get('CYCLESTREETS_API_KEY', '')
+CYCLESTREETS_API_KEY = os.environ.get('CYCLESTREETS_API_KEY', 'csapi-key-not-set')
