@@ -59,8 +59,8 @@ SITE_ID = 1
 
 USE_I18N = True
 
-MEDIA_ROOT = os.path.join(PROJECT_DIR, 'media/')
-MEDIA_URL = '/media/'
+MEDIA_ROOT = os.environ.get('S3_MEDIA_ROOT', normpath(PROJECT_DIR, 'media/'))
+MEDIA_URL = os.environ.get('S3_MEDIA_URL', '/media/')
 
 STATIC_ROOT = os.path.join(PROJECT_DIR, 'static/')
 STATIC_URL = '/static/'
@@ -135,6 +135,7 @@ INSTALLED_APPS = [
     'webmap',
     'rest_framework',
     'leaflet',
+    'storages',
 
     'feedback',
     'cyklomapa',
@@ -376,6 +377,7 @@ if AWS_ACCESS_KEY_ID:
     AWS_SES_REGION_NAME = 'eu-west-1'
     AWS_SES_REGION_ENDPOINT = 'email.eu-west-1.amazonaws.com'
     EMAIL_BACKEND = 'django_ses.SESBackend'
+    MEDIA_ROOT = ""
 
 
 CYCLESTREETS_API_KEY = os.environ.get('CYCLESTREETS_API_KEY', 'csapi-key-not-set')

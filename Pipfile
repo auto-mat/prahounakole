@@ -37,6 +37,7 @@ django-dotenv = "*"
 whitenoise = "*"
 boto3 = "*"
 django-ses = "*"
+django-storages = "*"
 
 [dev-packages]
 pudb = "*"
