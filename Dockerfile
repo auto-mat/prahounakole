@@ -13,6 +13,7 @@ RUN su test ; cd /home/test ; pipenv install --python python3
 copy . .
 RUN chown -R test /home/test ; chgrp -R test /home/test
 run mkdir -p /var/log/django
+run su test ; cd /home/test ; SECRET_KEY=foo pipenv run python3 manage.py bower install
 run su test ; cd /home/test ; SECRET_KEY=foo pipenv run python3 manage.py collectstatic --noinput
 run su test ; cd /home/test ; SECRET_KEY=foo pipenv run python manage.py collectmedia --noinput
 run su test ; cd /home/test ; SECRET_KEY=foo pipenv run python3 manage.py compress
