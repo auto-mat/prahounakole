@@ -27,7 +27,7 @@ DEFAULT_FROM_EMAIL = 'Prahou na kole <redakce@prahounakole.cz>'
 sys.path.append(normpath(PROJECT_DIR, "project"))
 sys.path.append(normpath(PROJECT_DIR, "apps"))
 
-DEBUG = os.environ.get("DEBUG", False)
+DEBUG = os.environ.get("DEBUG", False) in (True, "True")
 # COMPRESS = True
 
 DATABASES = {
