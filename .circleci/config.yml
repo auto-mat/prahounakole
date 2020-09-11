@@ -30,8 +30,8 @@ jobs:
                  docker tag built-image:latest auto0mat/cyklomapa-devel:latest
               fi
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker push auto0mat/cyklomapa-test:$TAG
+              docker push auto0mat/cyklomapa:$TAG
               if [ "$CIRCLE_BRANCH" == "devel" ] ; then
-                 docker push auto0mat/cyklomapa-test:latest
+                 docker push auto0mat/cyklomapa-devel:latest
               fi
             fi
