@@ -244,7 +244,7 @@ LOGGING = {
         'logfile': {
             'level': 'DEBUG',
             'class': 'logging.handlers.RotatingFileHandler',
-            'filename': "/var/log/django/pnk.log",
+            'filename': os.environ.get('PNK_LOG_FILE', "/var/log/django/pnk.log"),
             'backupCount': 50,
             'maxBytes': 10000000,
             'formatter': 'verbose',

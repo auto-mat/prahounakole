@@ -9,15 +9,17 @@ RUN mkdir /home/test ; chown test /home/test ; chgrp test /home/test
 WORKDIR "/home/test"
 copy Pipfile.lock Pipfile.lock
 copy Pipfile Pipfile
-RUN su test ; cd /home/test ; pipenv install --python python3
+RUN su test -c 'cd /home/test ; pipenv install --python python3'
 copy . .
+copy ./docker/build-env ./.env
 RUN chown -R test /home/test ; chgrp -R test /home/test
 run mkdir -p /var/log/django
-run su test ; cd /home/test ; SECRET_KEY=foo npm install
-run su test ; cd /home/test ; SECRET_KEY=foo npm install -g bower less jshint
-run su test ; cd /home/test ; SECRET_KEY=foo npm install uglify-js@2.8.21 -g
-run su test ; cd /home/test ; SECRET_KEY=foo pipenv run python3 manage.py bower install
-run su test ; cd /home/test ; SECRET_KEY=foo pipenv run python3 manage.py collectstatic --noinput
-run su test ; cd /home/test ; SECRET_KEY=foo pipenv run python manage.py collectmedia --noinput
-run su test ; cd /home/test ; SECRET_KEY=foo pipenv run python3 manage.py compress
+run su test -c 'cd /home/test ; npm install'
+run su test -c 'cd /home/test ; npm install bower less jshint'
+run su test -c 'cd /home/test ; npm install uglify-js@2.8.21'
+run su test -c 'cd /home/test ; pipenv run python3 manage.py bower install'
+run su test -c 'cd /home/test ; pipenv run python3 manage.py collectstatic --noinput'
+run su test -c 'cd /home/test ; pipenv run python manage.py collectmedia --noinput'
+run su test -c 'cd bower_components/ol2/build/ && pipenv run python build.py -c none ../../../apps/cyklomapa/static/openstreetmap-pnk ../../../apps/cyklomapa/static/js/OpenLayers.PNK.js'
+run su test -c 'cd /home/test ; pipenv run python3 manage.py compress'
 ENTRYPOINT ["./docker-entrypoint.sh"]
