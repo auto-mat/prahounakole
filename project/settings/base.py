@@ -189,7 +189,7 @@ SECURE_REDIRECT_EXEMPT = [
 SESSION_COOKIE_SECURE = True
 X_FRAME_OPTIONS = 'DENY'
 
-ENABLE_API_PROXY = DEBUG        # http-roxy pro requesty na /api
+ENABLE_API_PROXY = os.environ.get('CYCLESTREETS_ENABLE_API_PROXY', True) in ("True", True)
 PROXY_BASE_URL = 'https://www.cyclestreets.net'
 
 CONSTANCE_APP_NAME = "webmap"
