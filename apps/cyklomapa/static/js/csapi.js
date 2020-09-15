@@ -2,7 +2,7 @@ var CSApi = {
   //apiKey: 'ad9beeeff0afb15e',
   apiKey: '',
   v2baseUrl: 'https://api.cyclestreets.net',
-  baseUrl: 'https://api.cyclestreets.net',
+  baseUrl: 'https://cyclestreets.net',
 
   // dict of GML returned from CS server indexed by plan name
   routeFeatures: {},
