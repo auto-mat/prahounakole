@@ -17,12 +17,14 @@ copy . .
 copy ./docker/build-env ./.env
 RUN chown -R test /home/test ; chgrp -R test /home/test
 run mkdir -p /var/log/django
-run su test -c 'cd /home/test ; npm install'
-run su test -c 'cd /home/test ; npm install bower less jshint'
-run su test -c 'cd /home/test ; npm install uglify-js@2.8.21'
-run su test -c 'cd /home/test ; pipenv run python3 manage.py bower install'
-run su test -c 'cd /home/test ; pipenv run python3 manage.py collectstatic --noinput'
-run su test -c 'cd /home/test ; pipenv run python manage.py collectmedia --noinput'
-run su test -c 'cd bower_components/ol2/build/ && pipenv run python build.py -c none ../../../apps/cyklomapa/static/openstreetmap-pnk ../../../apps/cyklomapa/static/js/OpenLayers.PNK.js'
-run su test -c 'cd /home/test ; pipenv run python3 manage.py compress'
+run chown -R test /var/log/django
+user test
+run cd /home/test ; npm install
+run cd /home/test ; npm install bower less jshint
+run cd /home/test ; npm install uglify-js@2.8.21
+run cd /home/test ; pipenv run python3 manage.py bower install
+run cd /home/test ; pipenv run python3 manage.py collectstatic --noinput
+run cd /home/test ; pipenv run python manage.py collectmedia --noinput
+run cd bower_components/ol2/build/ && pipenv run python build.py -c none ../../../apps/cyklomapa/static/openstreetmap-pnk ../../../apps/cyklomapa/static/js/OpenLayers.PNK.js
+run cd /home/test ; pipenv run python3 manage.py compress
 ENTRYPOINT ["./docker-entrypoint.sh"]
