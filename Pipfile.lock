@@ -291,7 +291,7 @@
         "django-webmap-corpus": {
             "editable": true,
             "git": "https://github.com/auto-mat/django-webmap-corpus.git",
-            "ref": "dc3016513b2d181b84e8c6f8d52c4d62fb1ececa"
+            "ref": "7d3417e5b2c4f9626875fbccbe0533a2e2859af2"
         },
         "djangorestframework": {
             "hashes": [
