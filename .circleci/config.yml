@@ -7,6 +7,7 @@ jobs:
 
     steps:
       - checkout
+      - run: echo "$(date +%Y).${CIRCLE_BUILD_NUM} $(git rev-parse --short HEAD)" > apps/cyklomapa/static/version.txt
       - setup_remote_docker:
           reusable: true
       - run:

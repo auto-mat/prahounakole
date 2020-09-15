@@ -16,6 +16,7 @@ services:
    DB_NAME: postgres
    DJANGO_SETTINGS_MODULE: project.settings.dockerdev
   env_file: .env
+  #entrypoint: bash
   volumes:
    - ./:/app-v/
    - ./pipenv:/home/test

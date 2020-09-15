@@ -136,6 +136,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'leaflet',
     'storages',
+    'inline_static',
 
     'feedback',
     'cyklomapa',

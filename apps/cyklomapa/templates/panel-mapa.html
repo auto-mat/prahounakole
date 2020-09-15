@@ -1,3 +1,4 @@
+{% load inline_static_tags %}
   <div class="col-md-12">
     <form id="jpForm" class="search-form">
       <div class="row">
@@ -15,6 +16,9 @@
           <div>
             {{ mesto.uvodni_zprava|safe }}
           </div>
+					<div class="version">
+						  {% inline_staticfile "version.txt" %}
+					</div>
         </div>
       </div>
     </form>

@@ -20,6 +20,7 @@ django-webmap-corpus = {editable = true, ref = "master", git = "https://github.c
 django-leaflet = "*"
 django-import-export = "*"
 raven = "*"
+django-inline-static = "*"
 django-cors-headers = "*"
 gunicorn = "*"
 newrelic = "*"
