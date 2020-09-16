@@ -60,7 +60,6 @@ SITE_ID = 1
 USE_I18N = True
 
 MEDIA_ROOT = os.environ.get('S3_MEDIA_ROOT', normpath(PROJECT_DIR, 'media/'))
-MEDIA_URL = os.environ.get('S3_MEDIA_URL', '/media/')
 
 STATIC_ROOT = os.path.join(PROJECT_DIR, 'static/')
 STATIC_URL = '/static/'

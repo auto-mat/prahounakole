@@ -14,6 +14,9 @@ INTERNAL_IPS = [
 ]
 
 
+MEDIA_URL = os.environ.get('S3_MEDIA_URL', '/media/')
+
+
 def custom_show_toolbar(request):
     return True
 
