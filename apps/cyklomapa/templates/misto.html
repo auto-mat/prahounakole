@@ -9,8 +9,8 @@
        <div class="content" style="max-width:500px; text-align:left;">
        <h2>{{ poi }}</h2>
        {% if poi.foto_thumb %}
-            <a href="{{ MEDIA_URL }}{{ poi.foto_thumb }}"><img src="{{ MEDIA_URL }}{{ poi.foto_thumb }}" title="{{ poi }}" class="foto_thumb_misto"/></a>
-       {% else %}	    
+            <a href="{{ poi.foto_thumb.url }}"><img src="{{ poi.foto_thumb.url }}" title="{{ poi }}" class="foto_thumb_misto"/></a>
+       {% else %}
             <div class="foto_thumb_misto"></div>
        {% endif %}
 
