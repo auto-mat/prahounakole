@@ -23,6 +23,7 @@ var dragInAction = false;
 var ignoreHashChange = false;
 var touchMoved = false;
 var lastActions = "";
+var heatmap_tile_server = "https://geoserver1.prahounakole.cz/geoserver/dpnk/wms?tiled=true";
 
 var EPSG4326 = new OpenLayers.Projection("EPSG:4326");
 var EPSG900913 = new OpenLayers.Projection("EPSG:900913");
@@ -321,35 +322,23 @@ function setupPnkMap() {
                case 'r':
                    addRekola(name, enabled, slug);
                    break;
-               case 'g2015':
-                   addDPNK_GPX_2015(name, enabled, slug);
+               case 't2015':
+                   addDPNK_track_2015(name, enabled, slug);
                    break;
                case 't2015':
                    addDPNK_track_2015(name, enabled, slug);
                    break;
-               case 'g2016':
-                   addDPNK_GPX_2016(name, enabled, slug);
-                   break;
                case 't2016':
                    addDPNK_track_2016(name, enabled, slug);
-                   break;
-               case 'g2017':
-                   addDPNK_GPX_2017(name, enabled, slug);
                    break;
                case 't2017':
                    addDPNK_track_2017(name, enabled, slug);
                    break;
-               case 'g2018':
-                   addDPNK_GPX_2018(name, enabled, slug);
-                   break;
                case 't2018':
                    addDPNK_track_2018(name, enabled, slug);
                    break;
-               case 'g2019':
-                   addDPNK_GPX_2019(name, enabled, slug);
-                   break;
-               case 'g2020':
-                   addDPNK_GPX_2020(name, enabled, slug);
+               case 't2020':
+                   addDPNK_track_2020(name, enabled, slug);
                    break;
                default:
                    addPoiLayer(name, url, enabled, slug);
@@ -1239,11 +1228,11 @@ function onLocationUpdate(evt) {
     ]);
 }
 
-function addDPNK_GPX_2015(name, enabled, slug) {
+function addDPNK_track_2015(name, enabled, slug) {
   var dpnk_gpxfile = new OpenLayers.Layer.WMS(name,
-     "https://dawsqhm5i1mvd.cloudfront.net/geoserver/dpnk/wms?tiled=true",
+     heatmap_tile_server,
      {
-        layers: 'dpnk:dpnk_gpxfile_anonymized_2015',
+        layers: 'dpnk:dpnk-2015',
         format: 'image/png',
         transparent: true,
   });
@@ -1254,7 +1243,7 @@ function addDPNK_GPX_2015(name, enabled, slug) {
 
 function addDPNK_track_2015(name, enabled, slug) {
   var dpnk_tracks = new OpenLayers.Layer.WMS(name,
-     "https://dawsqhm5i1mvd.cloudfront.net/geoserver/dpnk/wms?tiled=true",
+     heatmap_tile_server,
      {
         layers: 'dpnk:dpnk_track_anonymized_2015',
         format: 'image/png',
@@ -1265,69 +1254,30 @@ function addDPNK_track_2015(name, enabled, slug) {
   map.addLayers([dpnk_tracks]);
 }
 
-function addDPNK_GPX_2016(name, enabled, slug) {
-  var dpnk_gpxfile = new OpenLayers.Layer.WMS(name,
-     "https://dawsqhm5i1mvd.cloudfront.net/geoserver/dpnk/wms?tiled=true",
-     {
-        layers: 'dpnk:dpnk_gpxfile_anonymized_2016',
-        format: 'image/png',
-        transparent: true,
-  });
-  dpnk_gpxfile.slug = slug;
-  dpnk_gpxfile.setVisibility(enabled);
-  map.addLayers([dpnk_gpxfile]);
-}
-
 function addDPNK_track_2016(name, enabled, slug) {
   var dpnk_tracks = new OpenLayers.Layer.WMS(name,
-     "https://dawsqhm5i1mvd.cloudfront.net/geoserver/dpnk/wms?tiled=true",
+     heatmap_tile_server,
      {
-        layers: 'dpnk:dpnk_track_anonymized_2016',
+        layers: 'dpnk:dpnk-2016',
         format: 'image/png',
         transparent: true,
   });
   dpnk_tracks.slug = slug;
   dpnk_tracks.setVisibility(enabled);
   map.addLayers([dpnk_tracks]);
-}
-
-function addDPNK_GPX_2017(name, enabled, slug) {
-  var dpnk_gpxfile = new OpenLayers.Layer.WMS(name,
-     "https://dawsqhm5i1mvd.cloudfront.net/geoserver/dpnk/wms?tiled=true",
-     {
-        layers: 'dpnk:dpnk_gpxfile_anonymized_2017',
-        format: 'image/png',
-        transparent: true,
-  });
-  dpnk_gpxfile.slug = slug;
-  dpnk_gpxfile.setVisibility(enabled);
-  map.addLayers([dpnk_gpxfile]);
 }
 
 function addDPNK_track_2017(name, enabled, slug) {
   var dpnk_tracks = new OpenLayers.Layer.WMS(name,
-     "https://dawsqhm5i1mvd.cloudfront.net/geoserver/dpnk/wms?tiled=true",
+     heatmap_tile_server,
      {
-        layers: 'dpnk:dpnk_track_anonymized_2017',
+        layers: 'dpnk:dpnk-2017',
         format: 'image/png',
         transparent: true,
   });
   dpnk_tracks.slug = slug;
   dpnk_tracks.setVisibility(enabled);
   map.addLayers([dpnk_tracks]);
-}
-
-function addDPNK_GPX_2018(name, enabled, slug) {
-  var dpnk_gpxfile = new OpenLayers.Layer.WMS(name,
-     "https://dawsqhm5i1mvd.cloudfront.net/geoserver/dpnk/wms?tiled=true",
-     {
-        layers: 'dpnk:dpnk_gpxfile_anonymized_2018',
-        format: 'image/png',
-        transparent: true,
-  });
-  dpnk_gpxfile.slug = slug;
-  dpnk_gpxfile.setVisibility(enabled);
-  map.addLayers([dpnk_gpxfile]);
 }
 
 function addDPNK_track_2018(name, enabled, slug) {
@@ -1343,11 +1293,11 @@ function addDPNK_track_2018(name, enabled, slug) {
   map.addLayers([dpnk_tracks]);
 }
 
-function addDPNK_GPX_2019(name, enabled, slug) {
+function addDPNK_track_2019(name, enabled, slug) {
   var dpnk_gpxfile = new OpenLayers.Layer.WMS(name,
-     "https://dawsqhm5i1mvd.cloudfront.net/geoserver/dpnk/wms?tiled=true",
+     heatmap_tile_server,
      {
-        layers: 'dpnk:dpnk_gpxfile_anonymized_2019',
+        layers: 'dpnk:dpnk-2019',
         format: 'image/png',
         transparent: true,
   });
@@ -1356,9 +1306,9 @@ function addDPNK_GPX_2019(name, enabled, slug) {
   map.addLayers([dpnk_gpxfile]);
 }
 
-function addDPNK_GPX_2020(name, enabled, slug) {
+function addDPNK_track_2020(name, enabled, slug) {
     var dpnk_gpxfile = new OpenLayers.Layer.WMS(name,
-                                                "https://geoserver1.prahounakole.cz/geoserver/dpnk/wms?tiled=true",
+                                                heatmap_tile_server,
                                                 {
                                                     layers: 'dpnk:dpnk_gpxfile_anonymized_2020',
                                                     format: 'image/png',
