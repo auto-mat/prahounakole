@@ -5,6 +5,8 @@ INSTALLED_APPS += (
     'debug_toolbar',
 )
 
+MEDIA_URL = '/media/'
+
 MIDDLEWARE += (
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
@@ -12,10 +14,6 @@ MIDDLEWARE += (
 INTERNAL_IPS = [
     '127.0.0.1',
 ]
-
-
-MEDIA_URL = os.environ.get('S3_MEDIA_URL', '/media/')
-
 
 def custom_show_toolbar(request):
     return True
