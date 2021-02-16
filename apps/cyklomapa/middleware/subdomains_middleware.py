@@ -1,7 +1,10 @@
-from cyklomapa.models import Mesto
+import os
 
 import django
+
 from django.conf import settings
+
+from ..models import Mesto
 
 
 class SubdomainsMiddleware:
@@ -21,7 +24,11 @@ class SubdomainsMiddleware:
         # umoznime nastavit subdomenu pomoci settings
         request.subdomain = getattr(settings, 'FORCE_SUBDOMAIN', request.subdomain)
 
+        if (os.getenv('DJANGO_SETTINGS_MODULE') in settings.DEV_SETTINGS):
+            request.subdomain = 'testing-sector'
+
         # najdeme mesto podle slugu. pokud neexistuje, vyhodime 404
+
         try:
             request.mesto = Mesto.objects.get(sektor__slug=request.subdomain)
         except Mesto.DoesNotExist:
