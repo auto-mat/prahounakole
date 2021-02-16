@@ -64,6 +64,6 @@ Installation (Docker compose)
     # default container user 'test' ID=1000, GID=1000
     $ docker-compose build --build-arg USER_ID=$(id -u ${USER}) --build-arg GROUP_ID=$(id -g ${USER})
     $ docker-compose up
-    $ docker exec -it --user test prahounakole_web_1 sh -c "/app-v/post_build.sh && pipenv run python manage.py migrate"
+    $ docker exec -it --user test prahounakole_web_1 sh -c "/app-v/post_build.sh"
 
     Check prahounakole web app on the host web browser with URL http://localhost:8033/
