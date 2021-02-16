@@ -5,12 +5,12 @@ ARG GROUP_ID
 ENV USER='test'
 ENV DEF_USER_ID=1000
 ENV DEF_GROUP_ID=1000
-ENV LC_ALL en_US.UTF-8
-ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US.UTF-8
 
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
 RUN apt-get -qq update; apt-get -y install nodejs gettext libgettextpo-dev libgraphviz-dev libz-dev libjpeg-dev libfreetype6-dev python3-dev gdal-bin python-numpy locales locales-all
+ENV LC_ALL en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US.UTF-8
 RUN npm install -g less bower
 RUN pip3 install pipenv
 
