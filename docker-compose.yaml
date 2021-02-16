@@ -18,8 +18,8 @@ services:
   env_file: .env
   #entrypoint: bash
   volumes:
-   - ./:/app-v/
-   - ./pipenv:/home/test
+  - ./:/app-v/
+  # - ./pipenv:/home/test
  postgres:
   image: mdillon/postgis:9.6-alpine
   volumes:
