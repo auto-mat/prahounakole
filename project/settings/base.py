@@ -386,3 +386,5 @@ if AWS_ACCESS_KEY_ID:
 
 
 CYCLESTREETS_API_KEY = os.environ.get('CYCLESTREETS_API_KEY', 'csapi-key-not-set')
+
+DEV_SETTINGS = ('project.settings.dockerdev', 'project.settings.dev')

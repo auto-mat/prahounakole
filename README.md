@@ -55,3 +55,15 @@ Pro testovací účely spustíte projekt pomocí následujícího příkazu:
 ```
 env/bin/python manage.py runserver 0.0.0.0:8000
 ```
+
+Installation (Docker compose)
+==========================
+
+    $ docker-compose build
+    # Or if you want map container user with host user via (ID, GID),
+    # default container user 'test' ID=1000, GID=1000
+    $ docker-compose build --build-arg USER_ID=$(id -u ${USER}) --build-arg GROUP_ID=$(id -g ${USER})
+    $ docker-compose up
+    $ docker exec -it --user test prahounakole_web_1 sh -c "/app-v/post_build.sh"
+
+    Check prahounakole web app on the host web browser with URL http://localhost:8033/
