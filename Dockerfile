@@ -42,4 +42,5 @@ RUN npm install
 RUN npm install bower less jshint
 RUN npm install uglify-js@2.8.21
 
+WORKDIR "/app-v"
 ENTRYPOINT ["./docker-entrypoint.sh"]
