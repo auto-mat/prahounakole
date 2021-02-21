@@ -32,7 +32,6 @@ COPY . .
 
 USER root
 RUN chown -R $USER_ID:$GROUP_ID .
-RUN rm -rf /app-v
 RUN mkdir -p /var/log/django
 RUN chown -R ${USER} /var/log/django
 
