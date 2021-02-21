@@ -1,4 +1,4 @@
-{% load thumbnail static %}
+{% load thumbnail static filters %}
 {% load comments %}
 <div>
 <div class="trc" id="poi_id_{{ poi.id }}">
@@ -27,10 +27,12 @@
 <div class="rc txt">
 {% if fotky %}
   {% for fotka in fotky %}
-    {% thumbnail fotka.photo "300x0" as foto_thumb %}
-    {{ fotka }}
-    <a href="{{ fotka.photo.url }}" title="{{ fotka }}" data-lightbox="poi-image" data-title="{{ fotka }}">
-    <img src="{{ foto_thumb.url }}" title="{{ fotka }}" width="{{ foto_thumb.width }}" height="{{ foto_thumb.height }}" class="foto_thumb"/></a>
+    {% with fotka.photo.url|get_file_path as photo %}
+      {% thumbnail photo "300x0" as foto_thumb %}
+        {{ fotka }}
+        <a href="{{ fotka.photo.url }}" title="{{ fotka }}" data-lightbox="poi-image" data-title="{{ fotka }}">
+        <img src="{{ foto_thumb.url }}" title="{{ fotka }}" width="{{ foto_thumb.width }}" height="{{ foto_thumb.height }}" class="foto_thumb"/></a>
+    {% endwith %}
   {% endfor %}
 {% endif %}
 

@@ -1,11 +1,14 @@
+import os
+
 from settings import *  # noqa
-from settings import ALLOWED_HOSTS, INSTALLED_APPS, LOGGING, MIDDLEWARE, TEMPLATES
+from settings import (
+    AWS_ACCESS_KEY_ID, ALLOWED_HOSTS, INSTALLED_APPS, LOGGING,
+    MIDDLEWARE, TEMPLATES,
+)
 
 INSTALLED_APPS += (
     'debug_toolbar',
 )
-
-MEDIA_URL = '/media/'
 
 MIDDLEWARE += (
     'debug_toolbar.middleware.DebugToolbarMiddleware',
@@ -49,3 +52,8 @@ class InvalidStringError(str):
 
 
 TEMPLATES[0]['OPTIONS']['string_if_invalid'] = InvalidStringError("%s")
+
+if AWS_ACCESS_KEY_ID:
+    THUMBNAIL_DEBUG = True
+else:
+    MEDIA_URL = '/media/'
