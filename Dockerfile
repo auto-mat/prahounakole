@@ -22,8 +22,8 @@ RUN if getent group ${USER}; then groupdel "${USER}"; fi && \
       --shell /bin/bash \
       ${USER}
 
-WORKDIR "/app-v"
-RUN chown -R $USER_ID:$GROUP_ID /app-v
+WORKDIR "/home/${USER}"
+RUN mkdir /app-v; chown -R $USER_ID:$GROUP_ID /app-v
 USER ${USER}
 COPY Pipfile.lock Pipfile.lock
 COPY Pipfile Pipfile
@@ -35,11 +35,14 @@ RUN chown -R $USER_ID:$GROUP_ID .
 RUN mkdir -p /var/log/django
 RUN chown -R ${USER} /var/log/django
 
-WORKDIR "/home/${USER}"
 USER ${USER}
 RUN npm install
 RUN npm install bower less jshint
 RUN npm install uglify-js@2.8.21
+RUN SECRET_KEY=foo pipenv run python3 manage.py bower install
+RUN SECRET_KEY=foo pipenv run python3 manage.py collectstatic --noinput
+RUN SECRET_KEY=foo pipenv run python manage.py collectmedia --noinput
+RUN cd bower_components/ol2/build/ && pipenv run python build.py -c none ../../../apps/cyklomapa/static/openstreetmap-pnk ../../../apps/cyklomapa/static/js/OpenLayers.PNK.js
+RUN SECRET_KEY=foo pipenv run python3 manage.py compress
 
-WORKDIR "/app-v"
 ENTRYPOINT ["./docker-entrypoint.sh"]
