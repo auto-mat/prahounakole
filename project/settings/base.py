@@ -139,6 +139,7 @@ INSTALLED_APPS = [
 
     'feedback',
     'cyklomapa',
+    'api',
     'easy_thumbnails',
     'django.contrib.humanize',
     'django.contrib.sites',
