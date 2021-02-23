@@ -18,6 +18,7 @@ urlpatterns = [
     url(r'^feedback/', include('feedback.urls')),
     url(r'^', include("cyklomapa.urls")),
     url(r'^captcha/', include('captcha.urls')),
+    url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
 ]
 
 if settings.DEBUG:

@@ -156,6 +156,7 @@ INSTALLED_APPS = [
     'httpproxy',
     'django_media_fixtures',
     'djangobower',
+    'oauth2_provider',
 ]
 
 FLUENT_COMMENTS_FORM_CLASS = 'fluent_comments.forms.captcha.DefaultCommentForm'  # default
