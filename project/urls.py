@@ -4,6 +4,8 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 
+from api.views import router
+
 admin.autodiscover()
 
 
@@ -19,6 +21,7 @@ urlpatterns = [
     url(r'^', include("cyklomapa.urls")),
     url(r'^captcha/', include('captcha.urls')),
     url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+    url(r'^', include(router.urls)),
 ]
 
 if settings.DEBUG:
