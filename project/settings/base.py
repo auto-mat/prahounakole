@@ -5,6 +5,7 @@
 # This allows us to construct the needed absolute paths dynamically,
 # e.g., for the MEDIA_ROOT, and TEMPLATE_DIRS settings.
 # see: http://rob.cogit8.org/blog/2008/Jun/20/django-and-relativity/
+import importlib
 import os
 import re
 import sys
@@ -403,3 +404,41 @@ if AWS_ACCESS_KEY_ID:
 CYCLESTREETS_API_KEY = os.environ.get('CYCLESTREETS_API_KEY', 'csapi-key-not-set')
 
 DEV_SETTINGS = ('project.settings.dockerdev', 'project.settings.dev')
+
+oau2_scopes = importlib.import_module('oauth2_provider.scopes')
+oau2_settings = importlib.import_module('oauth2_provider.settings')
+
+
+class CustomSettingsScopes(oau2_scopes.SettingsScopes):
+    def __init__(self):
+        self.api_models = importlib.import_module('api.models')
+        self.auth_models = importlib.import_module(
+            'django.contrib.auth.models',
+        )
+
+    def _get_scopes(self, request):
+        groups = request.user.groups.filter(
+            name__in=self.auth_models.Group.objects.all().values_list(
+                'name', flat=True,
+            ),
+        )
+        if groups.exists():
+            return list(set(
+                self.api_models.Scopes.objects.filter(group__in=groups).
+                values_list('scopes__scope', flat=True)
+            ))
+        return []
+
+    def get_available_scopes(
+            self, application=None, request=None, *args, **kwargs,
+    ):
+        return self._get_scopes(request=request)
+
+
+    def get_default_scopes(
+            self, application=None, request=None, *args, **kwargs,
+    ):
+        return self._get_scopes(request=request)
+
+
+oau2_settings.oauth2_settings.SCOPES_BACKEND_CLASS = CustomSettingsScopes
