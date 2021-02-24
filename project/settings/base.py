@@ -9,7 +9,6 @@ import os
 import re
 import sys
 
-
 from django.utils.translation import ugettext_lazy as _
 
 import raven
@@ -102,6 +101,7 @@ MIDDLEWARE = (
     'raven.contrib.django.raven_compat.middleware.Sentry404CatchMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'oauth2_provider.middleware.OAuth2TokenMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -293,6 +293,15 @@ THUMBNAIL_ALIASES = {
 }
 
 REST_ENABLED = True
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+}
 
 FLUENT_COMMENTS_EXCLUDE_FIELDS = ('url',)
 COMMENTS_APP = 'fluent_comments'
