@@ -4,9 +4,10 @@ from django.db.models import (
 )
 
 from oauth2_provider.contrib.rest_framework import (
-    OAuth2Authentication, TokenHasScope,
+    IsAuthenticatedOrTokenHasScope, OAuth2Authentication,
 )
 from rest_framework import routers, viewsets
+from rest_framework.authentication import SessionAuthentication
 
 from cyklomapa.models import Poi
 
@@ -16,8 +17,8 @@ from .serializers import PoiSerializer
 
 
 class PoiViewSet(viewsets.ReadOnlyModelViewSet):
-    authentication_classes = [OAuth2Authentication]
-    permission_classes = [TokenHasScope]
+    authentication_classes = [SessionAuthentication, OAuth2Authentication]
+    permission_classes = [IsAuthenticatedOrTokenHasScope]
     required_scopes = ['can_read_poi_closures']
 
     queryset = Poi.objects.filter(
