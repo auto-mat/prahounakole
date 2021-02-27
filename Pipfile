@@ -39,6 +39,7 @@ whitenoise = "*"
 boto3 = "*"
 django-ses = "*"
 django-storages = "*"
+django-oauth-toolkit = "*"
 
 [dev-packages]
 pudb = "*"
