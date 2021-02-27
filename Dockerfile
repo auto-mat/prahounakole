@@ -29,6 +29,7 @@ COPY Pipfile.lock Pipfile.lock
 COPY Pipfile Pipfile
 RUN  pipenv install --dev --python python3
 COPY . .
+COPY ./docker/build-env ./.env
 
 USER root
 RUN chown -R $USER_ID:$GROUP_ID .
@@ -39,10 +40,10 @@ USER ${USER}
 RUN npm install
 RUN npm install bower less jshint
 RUN npm install uglify-js@2.8.21
-RUN SECRET_KEY=foo pipenv run python3 manage.py bower install
-RUN SECRET_KEY=foo pipenv run python3 manage.py collectstatic --noinput
-RUN SECRET_KEY=foo pipenv run python manage.py collectmedia --noinput
+RUN pipenv run python3 manage.py bower install
+RUN pipenv run python3 manage.py collectstatic --noinput
+RUN pipenv run python manage.py collectmedia --noinput
 RUN cd bower_components/ol2/build/ && pipenv run python build.py -c none ../../../apps/cyklomapa/static/openstreetmap-pnk ../../../apps/cyklomapa/static/js/OpenLayers.PNK.js
-RUN SECRET_KEY=foo pipenv run python3 manage.py compress
+RUN pipenv run python3 manage.py compress
 
 ENTRYPOINT ["./docker-entrypoint.sh"]
