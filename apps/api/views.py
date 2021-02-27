@@ -27,15 +27,19 @@ class PoiViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = PoiSerializer
 
     def get_queryset(self):
-        q = """
-        SELECT
-          webmap_sector.name as town, webmap_poi.id
-        FROM webmap_sector INNER JOIN webmap_poi ON ST_Intersects(
-          webmap_sector.geom,
-          webmap_poi.geom
-        ) WHERE webmap_poi.id IN (%s)
-        """ % ', '.join([str(i) for i in self.queryset.values_list('id', flat=True)])
-        return self.queryset.raw(q)
+        return self.queryset.raw(
+            """
+            SELECT
+                webmap_sector.name as town, webmap_poi.id
+            FROM webmap_sector INNER JOIN webmap_poi ON ST_Intersects(
+                webmap_sector.geom,
+                webmap_poi.geom
+            ) WHERE webmap_poi.id IN (%s)
+            """, [', '.join([str(i) for i in self.queryset.values_list(
+                'id', flat=True)]),
+            ],
+        )
+
 
 
 router = routers.DefaultRouter()
