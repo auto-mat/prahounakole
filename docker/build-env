@@ -1,0 +1,2 @@
+PNK_LOG_FILE=/home/test/pnk-build.logs
+SECRET_KEY=foo
