@@ -5,7 +5,7 @@ ARG GROUP_ID=1000
 ENV USER='test'
 
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
-RUN apt-get -qq update; apt-get -y install nodejs gettext libgettextpo-dev libgraphviz-dev libz-dev libjpeg-dev libfreetype6-dev python3-dev gdal-bin python-numpy locales locales-all
+RUN apt-get -qq update; apt-get -y install nodejs gettext libgettextpo-dev libgraphviz-dev libz-dev libjpeg-dev libfreetype6-dev python3-dev gdal-bin libgdal-dev python-numpy locales locales-all
 ENV LC_ALL en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US.UTF-8
@@ -27,7 +27,7 @@ RUN mkdir /app-v; chown -R $USER_ID:$GROUP_ID /app-v
 USER ${USER}
 COPY Pipfile.lock Pipfile.lock
 COPY Pipfile Pipfile
-RUN  pipenv install --dev --python python3
+RUN CPLUS_INCLUDE_PATH=/usr/include/gdal C_INCLUDE_PATH=/usr/include/gdal pipenv install --dev --python python3
 COPY . .
 COPY ./docker/build-env ./.env
 

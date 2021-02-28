@@ -75,3 +75,39 @@ class Upresneni(models.Model):
 
     def __str__(self):
         return u"%s - %s" % (self.misto, self.email)
+
+
+class CzechiaRegions(models.Model):
+    """Czechia regions obtained from RUIAN DB.
+
+    Load/update with 'loadgeodata' commnad.
+    """
+    gml_id = models.CharField(max_length=80)
+    kod = models.IntegerField()
+    nazev = models.CharField(max_length=80)
+    nespravny = models.CharField(max_length=80)
+    regionsoudrznostikod = models.IntegerField()
+    platiod = models.CharField(max_length=80)
+    platido = models.CharField(max_length=80)
+    idtransakce = models.BigIntegerField()
+    globalniidnavrhuzmeny = models.BigIntegerField()
+    nutslau = models.CharField(max_length=80)
+    datumvzniku = models.CharField(max_length=80)
+    geom = models.MultiPolygonField(srid=4326)
+
+
+# Auto-generated `LayerMapping` dictionary for CzechiaRegions model
+czechiaregions_mapping = {
+    'gml_id': 'gml_id',
+    'kod': 'kod',
+    'nazev': 'nazev',
+    'nespravny': 'nespravny',
+    'regionsoudrznostikod': 'regionsoudrznostikod',
+    'platiod': 'platiod',
+    'platido': 'platido',
+    'idtransakce': 'idtransakce',
+    'globalniidnavrhuzmeny': 'globalniidnavrhuzmeny',
+    'nutslau': 'nutslau',
+    'datumvzniku': 'datumvzniku',
+    'geom': 'MULTIPOLYGON',
+}

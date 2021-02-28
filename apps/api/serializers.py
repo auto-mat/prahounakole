@@ -12,7 +12,7 @@ class PhotoItemSerializer(serializers.ModelSerializer):
 
 class PoiSerializer(serializers.ModelSerializer):
     photos = PhotoItemSerializer(many=True, read_only=True)
-    town = serializers.CharField(read_only=True)
+    region = serializers.CharField(read_only=True)
     url = serializers.SerializerMethodField()
 
     def __init__(self, *args, **kwargs):
@@ -30,6 +30,6 @@ class PoiSerializer(serializers.ModelSerializer):
     class Meta:
         model = Poi
         fields = (
-            'name', 'desc', 'url', 'last_modification', 'town',
+            'name', 'desc', 'url', 'last_modification', 'region',
             'photos',
         )
