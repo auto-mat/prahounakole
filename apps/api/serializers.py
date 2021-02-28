@@ -25,7 +25,7 @@ class PoiSerializer(serializers.ModelSerializer):
     def get_url(self, obj):
         scheme = self.request.scheme
         host = self.request.get_host()
-        return f"{scheme}//:{host}#misto={obj.marker.layer.slug}_{obj.id}/"
+        return f"{scheme}://{host}#misto={obj.marker.layer.slug}_{obj.id}/"
 
     class Meta:
         model = Poi
