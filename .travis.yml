@@ -17,7 +17,7 @@ before_install:
   - export DISPLAY=:99.0
 install:
   - pip install pipenv
-  - pipenv install --dev
+  - CPLUS_INCLUDE_PATH=/usr/include/gdal C_INCLUDE_PATH=/usr/include/gdal pipenv install --dev
   - pipenv run pip install flake8_strict
 before_script:
   - cp .env.travis .env
