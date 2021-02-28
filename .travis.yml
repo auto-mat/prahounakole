@@ -15,6 +15,7 @@ python:
   - "3.7"
 before_install:
   - export DISPLAY=:99.0
+  - sudo apt-get install -y gdal-bin libgdal-dev
 install:
   - pip install pipenv
   - CPLUS_INCLUDE_PATH=/usr/include/gdal C_INCLUDE_PATH=/usr/include/gdal pipenv install --dev
