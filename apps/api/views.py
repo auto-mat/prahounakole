@@ -34,12 +34,9 @@ class PoiViewSet(viewsets.ReadOnlyModelViewSet):
             FROM cyklomapa_czechiaregions INNER JOIN webmap_poi ON ST_Intersects(
                 cyklomapa_czechiaregions.geom,
                 webmap_poi.geom
-            ) WHERE webmap_poi.id IN (%s)
-            """, [', '.join([str(i) for i in self.queryset.values_list(
-                'id', flat=True)]),
-            ],
+            ) WHERE webmap_poi.id IN %s
+            """, [tuple(self.queryset.values_list('id', flat=True))]
         )
-
 
 
 router = routers.DefaultRouter()
