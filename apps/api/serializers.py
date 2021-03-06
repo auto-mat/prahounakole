@@ -5,22 +5,22 @@ from webmap.models import Photo, Poi
 
 
 class PhotoItemSerializer(serializers.ModelSerializer):
-    img_thumb_80x80 = serializers.SerializerMethodField()
-    img_thumb_200x200 = serializers.SerializerMethodField()
+    photo_thumb_80x80 = serializers.SerializerMethodField()
+    photo_thumb_200x200 = serializers.SerializerMethodField()
 
-    def get_img_thumb_80x80(self, obj):
+    def get_photo_thumb_80x80(self, obj):
         options = {"size": (80, 80)}
         thumb_url = get_thumbnailer(obj.photo).get_thumbnail(options).url
         return thumb_url
 
-    def get_img_thumb_200x200(self, obj):
+    def get_photo_thumb_200x200(self, obj):
         options = {"size": (200, 200)}
         thumb_url = get_thumbnailer(obj.photo).get_thumbnail(options).url
         return thumb_url
 
     class Meta:
         model = Photo
-        fields = ("img_thumb_80x80", "img_thumb_200x200")
+        fields = ("photo_thumb_80x80", "photo_thumb_200x200")
 
 
 class PoiSerializer(serializers.ModelSerializer):
