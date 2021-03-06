@@ -50,6 +50,6 @@ class PoiSerializer(serializers.ModelSerializer):
     class Meta:
         model = Poi
         fields = (
-            'name', 'desc', 'url', 'last_modification', 'region',
+            'name', 'url', 'last_modification', 'region',
             'region_url', 'photos',
         )
