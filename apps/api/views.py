@@ -17,9 +17,10 @@ from .serializers import PoiSerializer
 
 
 class PoiViewSet(viewsets.ReadOnlyModelViewSet):
-    authentication_classes = [SessionAuthentication, OAuth2Authentication]
-    permission_classes = [IsAuthenticatedOrTokenHasScope]
-    required_scopes = ['can_read_poi_closures']
+    permission_classes = ()
+    # authentication_classes = [SessionAuthentication, OAuth2Authentication]
+    # permission_classes = [IsAuthenticatedOrTokenHasScope]
+    # required_scopes = ['can_read_poi_closures']
 
     queryset = Poi.objects.filter(
         status__show=True, marker__slug='vyluka_akt',
@@ -34,7 +35,7 @@ class PoiViewSet(viewsets.ReadOnlyModelViewSet):
             FROM cyklomapa_czechiaregions INNER JOIN webmap_poi ON ST_Intersects(
                 cyklomapa_czechiaregions.geom,
                 webmap_poi.geom
-            ) WHERE webmap_poi.id IN %s
+            ) WHERE webmap_poi.id IN %s ORDER BY region
             """, [tuple(self.queryset.values_list('id', flat=True))]
         )
 
