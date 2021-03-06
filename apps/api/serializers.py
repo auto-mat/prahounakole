@@ -20,7 +20,7 @@ class PhotoItemSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Photo
-        fields = ("photo_thumb_80x80", "photo_thumb_200x200")
+        fields = ("photo", "photo_thumb_80x80", "photo_thumb_200x200")
 
 
 class PoiSerializer(serializers.ModelSerializer):
