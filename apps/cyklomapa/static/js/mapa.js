@@ -325,9 +325,6 @@ function setupPnkMap() {
                case 't2015':
                    addDPNK_track_2015(name, enabled, slug);
                    break;
-               case 't2015':
-                   addDPNK_track_2015(name, enabled, slug);
-                   break;
                case 't2016':
                    addDPNK_track_2016(name, enabled, slug);
                    break;
@@ -336,6 +333,9 @@ function setupPnkMap() {
                    break;
                case 't2018':
                    addDPNK_track_2018(name, enabled, slug);
+                   break;
+               case 't2019':
+                   addDPNK_track_2019(name, enabled, slug);
                    break;
                case 't2020':
                    addDPNK_track_2020(name, enabled, slug);
@@ -1229,23 +1229,10 @@ function onLocationUpdate(evt) {
 }
 
 function addDPNK_track_2015(name, enabled, slug) {
-  var dpnk_gpxfile = new OpenLayers.Layer.WMS(name,
-     heatmap_tile_server,
-     {
-        layers: 'dpnk:dpnk-2015',
-        format: 'image/png',
-        transparent: true,
-  });
-  dpnk_gpxfile.slug = slug;
-  dpnk_gpxfile.setVisibility(enabled);
-  map.addLayers([dpnk_gpxfile]);
-}
-
-function addDPNK_track_2015(name, enabled, slug) {
   var dpnk_tracks = new OpenLayers.Layer.WMS(name,
      heatmap_tile_server,
      {
-        layers: 'dpnk:dpnk_track_anonymized_2015',
+        layers: 'dpnk:dpnk-2015',
         format: 'image/png',
         transparent: true,
   });
@@ -1281,10 +1268,11 @@ function addDPNK_track_2017(name, enabled, slug) {
 }
 
 function addDPNK_track_2018(name, enabled, slug) {
-  var dpnk_tracks = new OpenLayers.Layer.WMS(name,
-     "https://dawsqhm5i1mvd.cloudfront.net/geoserver/dpnk/wms?tiled=true",
+    var dpnk_tracks = new OpenLayers.Layer.WMS(
+        name,
+        heatmap_tile_server,
      {
-        layers: 'dpnk:dpnk_track_anonymized_2018',
+        layers: 'dpnk:dpnk-2018',
         format: 'image/png',
         transparent: true,
   });
