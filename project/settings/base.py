@@ -410,3 +410,11 @@ OAUTH2_PROVIDER = {
     "SCOPES_BACKEND_CLASS":
         "project.settings.oauth2_scopes.CustomSettingsScopes",
 }
+
+CRONJOBS = [
+    (
+        '*/5 * * * *',
+        'cyklomapa.cronjobs.download_cyklistesobe_tracks',
+        [STATIC_ROOT],
+    ),
+]
