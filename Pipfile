@@ -41,6 +41,7 @@ django-ses = "*"
 django-storages = "*"
 django-oauth-toolkit = "*"
 gdal = "==2.1"
+django-crontab = "*"
 
 [dev-packages]
 pudb = "*"
