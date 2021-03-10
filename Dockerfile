@@ -45,5 +45,6 @@ RUN pipenv run python3 manage.py collectstatic --noinput
 RUN pipenv run python manage.py collectmedia --noinput
 RUN cd bower_components/ol2/build/ && pipenv run python build.py -c none ../../../apps/cyklomapa/static/openstreetmap-pnk ../../../apps/cyklomapa/static/js/OpenLayers.PNK.js
 RUN pipenv run python3 manage.py compress
+RUN pipenv run python3 manage.py crontab add
 
 ENTRYPOINT ["./docker-entrypoint.sh"]
