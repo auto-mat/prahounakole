@@ -47,4 +47,8 @@ RUN cd bower_components/ol2/build/ && pipenv run python build.py -c none ../../.
 RUN pipenv run python3 manage.py compress
 RUN pipenv run python3 manage.py crontab add
 
+USER root
+RUN mkdir -p /var/log/supervisor
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
 ENTRYPOINT ["./docker-entrypoint.sh"]
