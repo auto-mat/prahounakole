@@ -9,7 +9,7 @@ services:
   tty: true
   stdin_open: true
   working_dir: /app-v/
-  user: test
+  user: root
   environment:
    DB_USER: postgres
    DB_PASSWORD: foobar
