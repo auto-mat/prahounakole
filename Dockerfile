@@ -35,6 +35,7 @@ USER root
 RUN chown -R $USER_ID:$GROUP_ID .
 RUN mkdir -p /var/log/django
 RUN chown -R ${USER} /var/log/django
+RUN service cron start
 
 USER ${USER}
 RUN npm install
@@ -46,6 +47,7 @@ RUN pipenv run python manage.py collectmedia --noinput
 RUN cd bower_components/ol2/build/ && pipenv run python build.py -c none ../../../apps/cyklomapa/static/openstreetmap-pnk ../../../apps/cyklomapa/static/js/OpenLayers.PNK.js
 RUN pipenv run python3 manage.py compress
 RUN pipenv run python3 manage.py crontab add
+RUN $(crontab -l | cut -f 6- -d ' ' | sed 's/# django-cronjobs for project//g')
 
 USER root
 RUN mkdir -p /var/log/supervisor
