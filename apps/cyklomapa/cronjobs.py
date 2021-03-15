@@ -21,7 +21,6 @@ def download_cyklistesobe_tracks(output_dir):
         )
     os.chdir(cyklistesobe_dir)
     with tempfile.TemporaryDirectory() as temp_dir:
-        temp_dir = tempfile.mkdtemp()
         down_track = os.path.join(cyklistesobe_dir, "down_tracks.sh")
         subprocess.call(["chmod", "+x", down_track])
         os.chdir(temp_dir)
