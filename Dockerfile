@@ -40,7 +40,7 @@ COPY ./docker/build-env ./.env
 
 USER root
 RUN chown -R $USER_ID:$GROUP_ID .
-RUN mkdir -p /var/log/django
+RUN mkdir -p /var/log/django/cron
 RUN chown -R ${USER} /var/log/django
 RUN service cron start
 
