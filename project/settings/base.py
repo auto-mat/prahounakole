@@ -418,4 +418,11 @@ CRONJOBS = [
         'cyklomapa.cronjobs.download_cyklistesobe_tracks',
         [STATIC_ROOT],
     ),
+    (
+        '* * 27 * *',
+        'django.core.management.call_command',
+        ['loadgeodata'],
+        {'geodata': 'cz_accidents_new'},
+        '>> /var/log/django/cron/load_cz_accidents_new_geodata.log',
+    ),
 ]
