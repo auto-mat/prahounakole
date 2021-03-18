@@ -267,12 +267,6 @@ class Command(BaseCommand):
                     """
                 )
 
-            # for i in CzechiaAccidents.objects.filter().values(*fields).distinct():
-            #     CzechiaAccidents.objects.filter(
-            #         pk__in=CzechiaAccidents.objects.filter(
-            #             **i,
-            #         ).values_list('id', flat=True)[1:]).delete()
-
         self.stdout.write(
             _("%(count)d '%(model)s' model(s) has been"
               " created.") % {
