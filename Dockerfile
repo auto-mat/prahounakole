@@ -4,8 +4,15 @@ ARG USER_ID=1000
 ARG GROUP_ID=1000
 ENV USER='test'
 
+RUN DISTRIBUTION_CODENAME=$(cat /etc/os-release | grep VERSION_CODENAME | cut -d "=" -f 2); NON_FREE_REPOSITORY="deb http://deb.debian.org/debian ${DISTRIBUTION_CODENAME} non-free\n\
+deb-src http://deb.debian.org/debian ${DISTRIBUTION_CODENAME} non-free\n\
+deb http://deb.debian.org/debian-security/ ${DISTRIBUTION_CODENAME}/updates non-free\n\
+deb-src http://deb.debian.org/debian-security/ ${DISTRIBUTION_CODENAME}/updates non-free\n\
+deb http://deb.debian.org/debian ${DISTRIBUTION_CODENAME}-updates non-free\n\
+deb-src http://deb.debian.org/debian ${DISTRIBUTION_CODENAME}-updates non-free"; printf "$NON_FREE_REPOSITORY" > /etc/apt/sources.list.d/${DISTRIBUTION_CODENAME}.non-free.list
+
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
-RUN apt-get -qq update; apt-get -y install nodejs gettext libgettextpo-dev libgraphviz-dev libz-dev libjpeg-dev libfreetype6-dev python3-dev gdal-bin libgdal-dev python-numpy locales locales-all cron jq supervisor
+RUN apt-get -qq update; apt-get -y install nodejs gettext libgettextpo-dev libgraphviz-dev libz-dev libjpeg-dev libfreetype6-dev python3-dev gdal-bin libgdal-dev python-numpy locales locales-all cron jq supervisor unrar
 ENV LC_ALL en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US.UTF-8
@@ -33,7 +40,7 @@ COPY ./docker/build-env ./.env
 
 USER root
 RUN chown -R $USER_ID:$GROUP_ID .
-RUN mkdir -p /var/log/django
+RUN mkdir -p /var/log/django/cron
 RUN chown -R ${USER} /var/log/django
 RUN service cron start
 
@@ -47,7 +54,7 @@ RUN pipenv run python manage.py collectmedia --noinput
 RUN cd bower_components/ol2/build/ && pipenv run python build.py -c none ../../../apps/cyklomapa/static/openstreetmap-pnk ../../../apps/cyklomapa/static/js/OpenLayers.PNK.js
 RUN pipenv run python3 manage.py compress
 RUN pipenv run python3 manage.py crontab add
-RUN $(crontab -l | cut -f 6- -d ' ' | sed 's/# django-cronjobs for project//g')
+RUN DOWNLOAD_CYKLISTESOBE_TRACKS_JOB_ID=$(pipenv run python3 manage.py crontab show | sed -n '2,$p' | awk -F ", " '{if(match($2, "download_cyklistesobe_tracks") > 0) print $1}' | awk -F " -> " '{print $1}'); $(crontab -l | sed -n "/${DOWNLOAD_CYKLISTESOBE_TRACKS_JOB_ID}/p" | cut -f 6- -d ' ' | sed 's/# django-cronjobs for project//g')
 
 USER root
 RUN mkdir -p /var/log/supervisor
