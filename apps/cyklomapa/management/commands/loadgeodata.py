@@ -163,7 +163,7 @@ class Command(BaseCommand):
                   vozidlo="jízdní kolo"), **query):
             desc = (f"dátum: {a.datum}<br/>"
                     f"den: {a.den}<br/>"
-                    f"cas: {a.cas}<br/>"
+                    f"cas: {a.cas if a.cas else 'neznámý'}<br/>"
                     f"následky: {a.nasledky}<br/>"
                     f"zavinění: {a.zavineni}<br/>"
                     f"vozidlo: {a.vozidlo}<br/>")
