@@ -111,3 +111,24 @@ czechiaregions_mapping = {
     'datumvzniku': 'datumvzniku',
     'geom': 'MULTIPOLYGON',
 }
+
+
+class CzechiaAccidents(models.Model):
+    datum = models.DateField(null=True)
+    den = models.CharField(max_length=2, null=True)
+    cas = models.TimeField(null=True)
+    nasledky = models.CharField(max_length=20, null=True)
+    zavineni = models.CharField(max_length=50, null=True)
+    vozidlo = models.CharField(max_length=100, null=True)
+    geom = models.PointField(srid=4326)
+
+
+czechiaaccidents_mapping = {
+    'datum': 'datum',
+    'den': 'den',
+    'cas': 'cas',
+    'nasledky': 'nasledky',
+    'zavineni': 'zavineni',
+    'vozidlo': 'vozidlo',
+    'geom': 'POINT',
+}
