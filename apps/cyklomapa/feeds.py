@@ -5,7 +5,7 @@ from .models import Poi
 
 
 class UzavirkyFeed(Feed):
-    title = u"Prahou Na Kole - aktuální uzavírky"
+    title = "Městem na kole - aktuální uzavírky"
     link = "/"
     description = u"Aktuální uzavírky cyklostezek a cyklotras"
 
@@ -26,7 +26,7 @@ class UzavirkyFeed(Feed):
 
 
 class NovinkyFeed(Feed):
-    title = u"Prahou Na Kole - novinky v mapě"
+    title = "Městem na kole - novinky v mapě"
     link = "/"
     description = u"Novinky v mapě"
 
