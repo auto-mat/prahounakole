@@ -3,10 +3,10 @@
 
 Sorry, no english info at moment. Please contact redakce@prahounakole.cz with any questions.
 
-Mapa Prahou na kole
+Mapa Městem na kole
 ============
 
-Django aplikace cyklistická mapa Prahou na kole http://mapa.prahounakole.cz
+Django aplikace cyklistická mapa Městem na kole http://mapa.prahounakole.cz
 
 Přináší vám nejkvalitnější výběr praktických tras pro jízdu na kole po Praze. Trasy v cyklomapě rozšiřují stávající síť značených cyklotras o vhodné trasy v celé Praze včetně centra. Trasy tvoří výběr vedlejších uliček, parkových cest, nepoužívaných chodníků a vtipných zkratek.
 

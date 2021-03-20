@@ -22,7 +22,7 @@ def normpath(*args):
 PROJECT_DIR = normpath(__file__, "..", "..", "..")
 BASE_DIR = PROJECT_DIR
 
-DEFAULT_FROM_EMAIL = 'Prahou na kole <redakce@prahounakole.cz>'
+DEFAULT_FROM_EMAIL = 'Městem na kole <redakce@mestemnakole.cz>'
 
 sys.path.append(normpath(PROJECT_DIR, "project"))
 sys.path.append(normpath(PROJECT_DIR, "apps"))

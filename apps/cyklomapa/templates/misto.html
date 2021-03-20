@@ -1,7 +1,7 @@
 <html>
   <head>
    <link rel="stylesheet" href="{{ STATIC_URL }}css/prahounakole.css" type="text/css" />
-   
+
    <title>{{ poi }}</title>
   </head>
   <body>
@@ -20,11 +20,11 @@
        {% if poi.url %}
        <p><span class="titulek">Webové stránky:</span><br><a href="{{ poi.url|safe }}" title="{{ poi.url|safe }}" target="_blank">{{ poi.url|safe }}</a></p>
        {% endif %}
-   
+
        {% if poi.desc %}
        <p><span class="titulek">Popis:</span><br>{{ poi.desc|safe }}</p>
        {% endif %}
-    
+
        {% if poi.desc_extra %}
        {{ poi.desc_extra|safe }}
        {% endif %}
@@ -39,13 +39,13 @@
        <a href="{% url 'cyklomapa.views.mapa_view' poi.id %}" target="_top" title="Ukázat v mapě">zobrazit v mapě</a></p>
 
        <hr>
-       
+
        <!--
-       <h4>HTML pro zobrazení odkazu na mapu Prahou na kole</h4>
-       
+       <h4>HTML pro zobrazení odkazu na mapu Městem na kole</h4>
+
        <p>Permalink na místo: <a href="http://zelenamapa.cz{% url cyklomapa.views.mapa_view poi.id %}" target="_top">http://zelenamapa.cz{% url cyklomapa.views.mapa_view poi.id %}</a></p>
        -->
-       
+
 
      </div>
 </div>

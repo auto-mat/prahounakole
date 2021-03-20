@@ -145,7 +145,7 @@ function init(mapconfig) {
         slug: "C",
     });
     layerPNK = new OpenLayers.Layer.OSM(
-        "Prahou na kole",
+        "Městem na kole",
         "https://tiles.prahounakole.cz/", {
         slug:"P",
         type: 'png',

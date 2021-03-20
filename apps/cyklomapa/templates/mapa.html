@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="{% static "jquery-ui/themes/base/jquery-ui.css" %}" type="text/css" />
 
   <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.min.css" %}" type="text/css" />
-  <link rel="stylesheet" href="{% static "css/openlayers.css" %}" type="text/css" /> 
+  <link rel="stylesheet" href="{% static "css/openlayers.css" %}" type="text/css" />
   <link rel="stylesheet" href="{% static "css/google.css" %}" type="text/css" />
   <link rel="stylesheet" href="{% static "css/layerswitcher.css" %}" type="text/css" />
   <link rel="stylesheet" href="{% static "lightbox2/dist/css/lightbox.css" %}" type="text/css" />
@@ -54,7 +54,7 @@
    <link rel="alternate" type="application/rss+xml" title="Uzavírky" href="{% url 'uzavirky_feed' %}" />
    <link rel="alternate" type="application/rss+xml" title="Nejnovější komentáře" href="{% url 'latest_comments_feed' %}" />
 
-  <title>Mapa Prahou na kole - cyklomapa města {{ mesto.sektor }} </title>
+  <title>Mapa Městem na kole - cyklomapa města {{ mesto.sektor }} </title>
 
     <script type="text/javascript">
         var mapconfig = {};
@@ -66,7 +66,7 @@
                 enabled = "{{v.enabled}}";
             {% endif %}
             mapconfig['vrstvy'].push(["{{v.name}}", "{% url 'kml_view' v.slug %}", enabled, "{{v.slug}}"]);
-        {% endfor %} 
+        {% endfor %}
         mapconfig['basezoom'] = {{ mesto.zoom }};
         mapconfig['address_search_area'] = "{{ mesto.sektor.geom.extent|join:"," }}";
         mapconfig['maxzoom'] = {{ mesto.maxzoom }};
@@ -134,17 +134,17 @@
               <nav class="col-md-10 col-md-offset-1">
                 <div class="row centred">
                   <div class="col-md-12 logo">
-                    <a href="https://mapa.prahounakole.cz">Prahou na kole <img src="{% static "css/prazak.png" %}" alt="mapa.prahounakole.cz">
+                    <a href="https://mapa.prahounakole.cz">Městem na kole <img src="{% static "css/prazak.png" %}" alt="mapa.prahounakole.cz">
                     </a>
                   </div>
                   <div class="row tabs">
-                    <div class="col-md-3">  
+                    <div class="col-md-3">
                       <a href="#" class="tab_switch active">
                         <span class="sprite mapa btn mode-btn"></span>
                         <label>Vyhledat místo</label>
                       </a>
                     </div>
-                    <div class="col-md-3 ">  
+                    <div class="col-md-3 ">
                       <a href="#hledani" class="tab_switch">
                         <span class="sprite btn mode-btn hledani"></span>
                         <label>Vyhledat trasu</label>
@@ -156,7 +156,7 @@
                       <label>Informace</label>
                       </a>
                     </div>
-                    <div class="col-md-3">  
+                    <div class="col-md-3">
                       <a id="feedback-btn" class="tab_switch feedback_button">
                       <span class="sprite  btn mode-btn feedback"></span>
                       <label>Napište nám</label>
