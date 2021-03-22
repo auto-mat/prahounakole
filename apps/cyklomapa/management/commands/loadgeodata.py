@@ -147,10 +147,12 @@ class Command(BaseCommand):
 
         :param dict query: CzechiaAccidents model query
         """
+        order = max(OverlayLayer.objects.all().values_list(
+            "order", flat=True)) + 1
         overlay, created = OverlayLayer.objects.get_or_create(
             name="Nehody (srážka s jízdním kolem)",
             desc="CZ Nehody (srážka s jízdním kolem)",
-            slug="nehoda",
+            slug="nehoda", enabled=False, order=order,
         )
         marker, created = Marker.objects.get_or_create(
             name="Nehody (srážka s jízdním kolem)",
