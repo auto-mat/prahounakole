@@ -108,8 +108,10 @@ class Command(BaseCommand):
             "order", flat=True)) + 1
         overlay, created = OverlayLayer.objects.get_or_create(
             name=name, desc=desc, slug="kraje", enabled=False,
-            order=order,
         )
+        if created:
+            overlay.order = order
+            overlay.save()
         marker, created = Marker.objects.get_or_create(
             name=name, desc=desc, line_width=5.0,
             line_color="#ff0000", layer=overlay, slug="kraj",
@@ -158,8 +160,10 @@ class Command(BaseCommand):
             "order", flat=True)) + 1
         overlay, created = OverlayLayer.objects.get_or_create(
             name=name, desc=desc, slug="nehody", enabled=False,
-            order=order,
         )
+        if created:
+            overlay.order = order
+            overlay.save()
         marker, created = Marker.objects.get_or_create(
             name=name, desc=desc, default_icon="ikony/accident.png",
             layer=overlay, slug="nehoda",
