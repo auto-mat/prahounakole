@@ -160,17 +160,18 @@ class Command(BaseCommand):
         )
 
         objs = []
+        null = "neznámý"
         for a in CzechiaAccidents.objects.filter(
                 Q(zavineni="řidičem motorového vozidla",
                   vozidlo="jízdní kolo") |
                 Q(zavineni="řidičem nemotorového vozidla",
                   vozidlo="jízdní kolo"), **query):
-            desc = (f"dátum: {a.datum}<br/>"
-                    f"den: {a.den}<br/>"
-                    f"cas: {a.cas if a.cas else 'neznámý'}<br/>"
-                    f"následky: {a.nasledky}<br/>"
-                    f"zavinění: {a.zavineni}<br/>"
-                    f"vozidlo: {a.vozidlo}<br/>")
+            desc = (f"dátum: {a.datum if a.datum else null}<br/>"
+                    f"den: {a.den if a.den else null}<br/>"
+                    f"čas: {a.cas if a.cas else null}<br/>"
+                    f"následky: {a.nasledky if a.nasledky else null}<br/>"
+                    f"zavinění: {a.zavineni if a.zavineni else null}<br/>"
+                    f"vozidlo: {a.vozidlo if a.vozidlo else null}<br/>")
 
             objs.append(
                 Poi(
