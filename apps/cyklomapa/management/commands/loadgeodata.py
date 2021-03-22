@@ -150,11 +150,13 @@ class Command(BaseCommand):
         overlay, created = OverlayLayer.objects.get_or_create(
             name="Nehody (srážka s jízdním kolem)",
             desc="CZ Nehody (srážka s jízdním kolem)",
+            slug="nehoda",
         )
         marker, created = Marker.objects.get_or_create(
             name="Nehody (srážka s jízdním kolem)",
             desc="CZ Nehody (srážka s jízdním kolem)",
             default_icon="ikony/accident.png", layer=overlay,
+            slug="nehoda",
         )
 
         objs = []
