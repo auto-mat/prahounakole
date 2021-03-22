@@ -148,10 +148,12 @@ class Command(BaseCommand):
         :param dict query: CzechiaAccidents model query
         """
         overlay, created = OverlayLayer.objects.get_or_create(
-            name="Nehody", desc="CZ Nehody (srážka s jízdním kolem)",
+            name="Nehody (srážka s jízdním kolem)",
+            desc="CZ Nehody (srážka s jízdním kolem)",
         )
         marker, created = Marker.objects.get_or_create(
-            name="Nehody", desc="CZ Nehody (srážka s jízdním kolem)",
+            name="Nehody (srážka s jízdním kolem)",
+            desc="CZ Nehody (srážka s jízdním kolem)",
             default_icon="ikony/accident.png", layer=overlay,
         )
 
