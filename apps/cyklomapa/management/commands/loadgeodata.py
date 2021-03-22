@@ -102,14 +102,16 @@ class Command(BaseCommand):
         )
 
         # Create Poi regions (line geom type representation)
+        name = "Kraj"
+        desc = "CZ Kraje"
         order = max(OverlayLayer.objects.all().values_list(
             "order", flat=True)) + 1
         overlay, created = OverlayLayer.objects.get_or_create(
-            name="Kraj", desc="CZ Kraje", slug="kraje", enabled=False,
+            name=name, desc=desc, slug="kraje", enabled=False,
             order=order,
         )
         marker, created = Marker.objects.get_or_create(
-            name="Kraj", desc="CZ Kraje", line_width=5.0,
+            name=name, desc=desc, line_width=5.0,
             line_color="#ff0000", layer=overlay, slug="kraj",
         )
 
