@@ -111,6 +111,8 @@ class Command(BaseCommand):
         )
         if created:
             overlay.order = order
+            overlay.minzoom = 14
+            overlay.maxzoom = 10
             overlay.save()
         marker, created = Marker.objects.get_or_create(
             name=name, desc=desc, line_width=5.0,
