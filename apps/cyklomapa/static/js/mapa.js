@@ -43,10 +43,10 @@ function getTileURL(bounds) {
 
 //Hack, který vylepší scaffold přepínače vrstev
 function polishLayersSwitcherScaffold(){
-    $("#layer_switcher").prepend("<div id='dataLayers' class='col-md-6'></div>");
+    $("#layer_switcher").prepend("<div id='dataLayers' class='col-md-6 col-sm-12'></div>");
     $(".dataLbl").appendTo("#dataLayers");
     $(".dataLayersDiv").appendTo("#dataLayers");
-    $("#layer_switcher").prepend("<div id='baseLayers' class='col-md-6'></div>");
+    $("#layer_switcher").prepend("<div id='baseLayers' class='col-md-6 col-sm-12'></div>");
     $(".baseLbl").appendTo("#baseLayers");
     $(".baseLayersDiv").appendTo("#baseLayers");
     $("#layer_toggles").appendTo('#dataLayers');

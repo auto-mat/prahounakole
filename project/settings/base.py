@@ -173,7 +173,7 @@ BOWER_INSTALLED_APPS = (
     "css-browser-selector",
     "jqueryui#1.12.1",
     "jquery#3.4.1",
-    "https://github.com/PetrDlouhy/ol2.git",
+    "https://github.com/tmszi/ol2.git",
     "bootstrap#3.4.1",
     "https://github.com/commonpike/jquery-persist.git",
 )

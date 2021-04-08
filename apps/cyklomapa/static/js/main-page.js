@@ -143,12 +143,12 @@ jQuery(document).ready(function($) {
     $('#modal-layer').animate({scrollTop: $("#baseLayers").offset().top},'slow');
   });
 
-  $('#enable_none_layers').on('click', function (e) {
-     switchAllLayers(false);
-  });
-
-  $('#enable_all_layers').on('click', function (e) {
-     switchAllLayers(true);
+  $("#layer_toggles input").on('click', function(e){
+    if ($(e.target).prop("checked") == true) {
+      switchAllLayers(true);
+    } else {
+      switchAllLayers(false);
+    }
   });
 
   $(".change-layer").click(function(event) {
