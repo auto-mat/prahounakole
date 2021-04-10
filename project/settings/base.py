@@ -160,6 +160,7 @@ INSTALLED_APPS = [
     'djangobower',
     'oauth2_provider',
     'django_crontab',
+    'django_q',
 ]
 
 FLUENT_COMMENTS_FORM_CLASS = 'fluent_comments.forms.captcha.DefaultCommentForm'  # default
@@ -426,3 +427,11 @@ CRONJOBS = [
         '>> /var/log/django/cron/load_cz_accidents_new_geodata.log',
     ),
 ]
+
+Q_CLUSTER = {
+    "name": "mapamestemnakole",
+    "orm": "default",
+    "timeout": 60,
+    "workers": 1,
+    "scheduler": False,
+}
