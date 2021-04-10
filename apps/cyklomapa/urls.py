@@ -2,7 +2,7 @@ from cyklomapa.feeds import NovinkyFeed, UzavirkyFeed
 from cyklomapa.views import (
     PanelHledaniView, PanelInformaceView,
     PanelMapaView, PopupListView, kml_view, mapa_view, metro_view,
-    popup_view, uzavirky_view, znacky_view,
+    popup_view, uzavirky_view, znacky_view, get_cyklisty_sobe_layer
 )
 
 from django.conf import settings
@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^$', mapa_view, name="mapa_view"),
     url(r'^misto/(?P<poi_id>\d+)/$', mapa_view, name="mapa_view"),
     url(r'^kml/([-\w]+)/$', kml_view, name="kml_view"),
+    url(r'^cs-layer/$', get_cyklisty_sobe_layer, name="get_cyklisty_sobe_layer"),
     url(r'^popup/(\d+)/$', popup_view, name="popup_view"),
     url(r'^uzavirky/$', uzavirky_view, name="uzavirky_view"),
     url(r'^uzavirky/feed/$', UzavirkyFeed(), name="uzavirky_feed"),
