@@ -1,16 +1,26 @@
 # views.py
 
+import json
+import pathlib
+import requests
+import threading
+
 from django.conf import settings
 from django.contrib.gis.shortcuts import render_to_kml
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.cache import cache
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.views.decorators.cache import cache_page, never_cache
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.gzip import gzip_page
 from django.views.generic import TemplateView
+from django.core.cache import cache
+from django.utils import timezone
 
 from django_comments.models import Comment
+from django_q.models import Success
+from django_q.tasks import async_task
 
 from webmap.models import Legend, MapPreset, Marker, OverlayLayer
 
@@ -170,3 +180,127 @@ class PanelInformaceView(TemplateView):
         context['legenda'] = Legend.objects.all()
 
         return context
+
+
+def parse_cykliste_sobe_features(cache_key=None, cache_time=None):
+    """Parse downloaded cykliste sobe features layer JSON
+
+    :param cache_key str: cache key name for result cykleste sobe features
+    layer dict
+    :param cache_time float: number of seconds for caching result
+    cykleste sobe features layer dict
+
+    :return result dict: cykleste sobe features layer dict
+    """
+
+    def download_json_file(page, lock, result):
+        """Download cykleste sobe layer features (JSON file)
+
+        :param lock obj: thread lock
+        :param result list: append loaded cykliste sobe JSON features
+        layer into list
+
+        :return str: number of cykliste sobe layer REST API pages
+        """
+        r = requests.get(f"http://www.cyklistesobe.cz/api/issues/?page={page}")
+        with lock:
+            result.append(json.loads(r.content))
+        if "X-Total-Pages" in r.headers.keys():
+            return r.headers["X-Total-Pages"]
+
+    def download_features(pages, features, lock):
+        """Download cykliste sobe features layer JSON files using threads
+
+        :param pages int: number of cykliste sobe REST API pages
+        :param lock obj: thread lock
+        :param features list: append loaded cykliste sobe JSON features
+        layer into list
+
+        :return files list: cykliste sobe features layer JSON files list
+        """
+        threads = []
+        for p in range(2, pages + 1):
+            t = threading.Thread(
+                target=download_json_file,
+                args=(p, lock, features),
+                daemon=True,
+            )
+            t.start()
+            threads.append(t)
+        for t in threads:
+            t.join()
+        return features
+
+    def parse_and_merge_jsons(jsons, result):
+        """Parse and merge cyklsite sobe features layer JSONs
+
+        :param jsons list: list of cykliste sobe layers JSONs
+        :param result dict:
+        """
+        for j in jsons:
+            result["features"].extend(j["features"])
+
+    result = {
+        "type": "FeatureCollection",
+        "features": [],
+    }
+    features = []
+    lock = threading.Lock()
+    pages = int(download_json_file(page=1, lock=lock,
+                                   result=features))
+    parse_and_merge_jsons(download_features(pages, features, lock),
+                          result)
+    if cache_key:
+        cache.set(cache_key, result, cache_time)
+    return result
+
+
+def get_cyklisty_sobe_layer(request):
+    """Get cykliste sobe features layer JSON"""
+
+    features_file = "list.json"
+    features_file_path = pathlib.Path(settings.STATIC_ROOT) / features_file
+    cache_key = "cs_features_layer"
+    long_cache_time = 60 * 60 * 168
+    short_cache_time = 60 * 3
+    get_cs_features_layer_func = "cyklomapa.views.parse_cykliste_sobe_features"
+
+    all_job_db_result = Success.objects.filter(
+        func=get_cs_features_layer_func)
+    job_db_result = all_job_db_result.first()
+    if job_db_result:
+        time_delta = timezone.now() - job_db_result.stopped
+
+    if cache.get(cache_key):
+        if job_db_result:
+            if time_delta.total_seconds() >= short_cache_time:
+                all_job_db_result.exclude(id=job_db_result.id).delete()
+                async_task(get_cs_features_layer_func, cache_key=cache_key,
+                           cache_time=long_cache_time, save=True)
+        else:
+            async_task(get_cs_features_layer_func, cache_key=cache_key,
+                       cache_time=long_cache_time, save=True)
+        return JsonResponse(cache.get(cache_key))
+    else:
+        if job_db_result:
+            if time_delta.total_seconds() <= short_cache_time:
+                cache.set(cache_key, job_db_result.result, long_cache_time)
+                return JsonResponse(job_db_result.result)
+
+        if not features_file_path.is_file():
+            return JsonResponse(
+                async_task(get_cs_features_layer_func, cache_key=cache_key,
+                           cache_time=long_cache_time, save=True, sync=True)
+            )
+        else:
+            try:
+                features = json.loads(
+                    open(pathlib.Path(settings.STATIC_ROOT) / features_file).read())
+                cache.set(cache_key, features, long_cache_time)
+                return JsonResponse(features)
+            except json.JSONDecodeError:
+                return JsonResponse(
+                    async_task(get_cs_features_layer_func,
+                               cache_key=cache_key, cache_time=long_cache_time,
+                               save=True, sync=True)
+                )
