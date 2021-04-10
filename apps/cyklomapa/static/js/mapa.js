@@ -1312,7 +1312,7 @@ function addCSLayer(name, enabled, slug) {
          slug: slug,
          strategies: [new OpenLayers.Strategy.Fixed()],
          protocol: new OpenLayers.Protocol.HTTP({
-            url: "/static/list.json",
+            url: "/cs-layer",
             format: new OpenLayers.Format.GeoJSON({
                    parseFeature: function(data) {
                        feature = OpenLayers.Format.GeoJSON.prototype.parseFeature(data);
