@@ -43,6 +43,7 @@ django-oauth-toolkit = "*"
 gdal = "==2.1"
 django-crontab = "*"
 beautifulsoup4 = "*"
+django-q = "*"
 
 [dev-packages]
 pudb = "*"
@@ -61,4 +62,4 @@ django-debug-toolbar = "*"
 model-mommy = "*"
 
 [requires]
-python_version = "3.6"
+python_version = "3.7"
