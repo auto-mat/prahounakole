@@ -41,13 +41,13 @@ DATABASES = {
     },
 }
 
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        'LOCATION': '127.0.0.1:11211',
-        'KEY_PREFIX': 'pnk-map',
-    },
-}
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+#         'LOCATION': '127.0.0.1:11211',
+#         'KEY_PREFIX': 'pnk-map',
+#     },
+# }
 
 SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
