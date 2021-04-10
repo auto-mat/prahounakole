@@ -54,7 +54,8 @@ RUN pipenv run python manage.py collectmedia --noinput
 RUN cd bower_components/ol2/build/ && pipenv run python build.py -c none ../../../apps/cyklomapa/static/openstreetmap-pnk ../../../apps/cyklomapa/static/js/OpenLayers.PNK.js
 RUN pipenv run python3 manage.py compress
 RUN pipenv run python3 manage.py crontab add
-RUN DOWNLOAD_CYKLISTESOBE_TRACKS_JOB_ID=$(pipenv run python3 manage.py crontab show | sed -n '2,$p' | awk -F ", " '{if(match($2, "download_cyklistesobe_tracks") > 0) print $1}' | awk -F " -> " '{print $1}'); $(crontab -l | sed -n "/${DOWNLOAD_CYKLISTESOBE_TRACKS_JOB_ID}/p" | cut -f 6- -d ' ' | sed 's/# django-cronjobs for project//g')
+# RUN DOWNLOAD_CYKLISTESOBE_TRACKS_JOB_ID=$(pipenv run python3 manage.py crontab show | sed -n '2,$p' | awk -F ", " '{if(match($2, "download_cyklistesobe_tracks") > 0) print $1}' | awk -F " -> " '{print $1}'); $(crontab -l | sed -n
+"/${DOWNLOAD_CYKLISTESOBE_TRACKS_JOB_ID}/p" | cut -f 6- -d ' ' | sed 's/# django-cronjobs for project//g')
 
 USER root
 RUN mkdir -p /var/log/supervisor
