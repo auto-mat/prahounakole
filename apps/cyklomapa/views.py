@@ -187,7 +187,7 @@ def get_cyklisty_sobe_layer(request):
     features_file_path = pathlib.Path(settings.STATIC_ROOT) / features_file
     cache_key = "cs_features_layer"
     long_cache_time = 60 * 60 * 168
-    short_cache_time = 60 * 3
+    short_cache_time = 60 * 5
     get_cs_features_layer_func = "cyklomapa.utils.parse_cykliste_sobe_features"
 
     all_job_db_result = Success.objects.filter(
