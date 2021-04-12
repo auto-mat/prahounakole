@@ -18,7 +18,7 @@ from django.utils import timezone
 
 from django_comments.models import Comment
 from django_q.models import Success
-from django_q.tasks import async_task
+from django_q.tasks import async_task, result
 
 from webmap.models import Legend, MapPreset, Marker, OverlayLayer
 
@@ -210,10 +210,12 @@ def get_cyklisty_sobe_layer(request):
                 return JsonResponse(job_db_result.result)
 
         if not features_file_path.is_file():
-            return JsonResponse(
-                async_task(get_cs_features_layer_func, cache_key=cache_key,
-                           cache_time=long_cache_time, save=True, sync=True)
-            )
+            task_id = async_task(get_cs_features_layer_func,
+                                 cache_key=cache_key,
+                                 cache_time=long_cache_time,
+                                 save_to_file=features_file_path,
+                                 save=True, sync=True)
+            return JsonResponse(result(task_id))
         else:
             try:
                 features = json.loads(
@@ -221,11 +223,12 @@ def get_cyklisty_sobe_layer(request):
                 cache.set(cache_key, features, long_cache_time)
                 return JsonResponse(features)
             except json.JSONDecodeError:
-                return JsonResponse(
-                    async_task(get_cs_features_layer_func,
-                               cache_key=cache_key, cache_time=long_cache_time,
-                               save=True, sync=True)
-                )
+                task_id = async_task(get_cs_features_layer_func,
+                                     cache_key=cache_key,
+                                     cache_time=long_cache_time,
+                                     save_to_file=features_file_path,
+                                     save=True, sync=True)
+                return JsonResponse(result(task_id))
 
 
 get_cyklisty_sobe_layer.features_file = "list.json"
