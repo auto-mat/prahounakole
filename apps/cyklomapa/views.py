@@ -23,7 +23,7 @@ from django_q.tasks import async_task
 from webmap.models import Legend, MapPreset, Marker, OverlayLayer
 
 from .models import Mesto, Poi
-
+from. utils import check_download_cykliste_sobe_layer_job
 
 @gzip_page
 @cache_page(24 * 60 * 60)  # cachujeme view v memcached s platnosti 24h
@@ -190,11 +190,8 @@ def get_cyklisty_sobe_layer(request):
     short_cache_time = get_cyklisty_sobe_layer.short_cache_time
     get_cs_features_layer_func = get_cyklisty_sobe_layer.get_cs_features_layer_func
 
-    all_job_db_result = Success.objects.filter(
-        func=get_cs_features_layer_func)
-    job_db_result = all_job_db_result.first()
-    if job_db_result:
-        time_delta = timezone.now() - job_db_result.stopped
+    all_job_db_result, job_db_result, time_delta = \
+        check_download_cykliste_sobe_layer_job()
 
     if cache.get(cache_key):
         if job_db_result:
