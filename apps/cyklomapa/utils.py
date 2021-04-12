@@ -2,12 +2,16 @@
 
 import json
 import os
+import pathlib
 import requests
 import threading
 
 from django.core.cache import cache
 from django.core.files.storage import FileSystemStorage
 from django.template.defaultfilters import slugify
+from django.utils import timezone
+
+from django_q.models import Success
 
 
 class SlugifyFileSystemStorage(FileSystemStorage):
@@ -96,3 +100,17 @@ def parse_cykliste_sobe_features(cache_key=None, cache_time=None,
             json.dump(result, f)
 
     return result
+
+
+def check_download_cykliste_sobe_layer_job():
+    """Check successfull downloaded cyliste sobe features layer
+    saved job"""
+    from .views import get_cyklisty_sobe_layer
+    time_delta = None
+    all_job_db_result = Success.objects.filter(
+        func=get_cyklisty_sobe_layer.get_cs_features_layer_func)
+    job_db_result = all_job_db_result.first()
+    if job_db_result:
+        time_delta = timezone.now() - job_db_result.stopped
+
+    return all_job_db_result, job_db_result, time_delta
