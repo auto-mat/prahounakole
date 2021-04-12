@@ -17,13 +17,16 @@ class SlugifyFileSystemStorage(FileSystemStorage):
         return slugify(name) + ext
 
 
-def parse_cykliste_sobe_features(cache_key=None, cache_time=None):
+def parse_cykliste_sobe_features(cache_key=None, cache_time=None,
+                                 save_to_file=None):
     """Parse downloaded cykliste sobe features layer JSON
 
     :param cache_key str: cache key name for result cykleste sobe features
     layer dict
     :param cache_time float: number of seconds for caching result
     cykleste sobe features layer dict
+    :param save_to_file str: file path where cykliste sobe features
+    layer JSON will be saved
 
     :return result dict: cykleste sobe features layer dict
     """
@@ -87,4 +90,9 @@ def parse_cykliste_sobe_features(cache_key=None, cache_time=None):
                           result)
     if cache_key:
         cache.set(cache_key, result, cache_time)
+
+    if save_to_file and pathlib.Path(save_to_file).is_file:
+        with open(save_to_file, "w") as f:
+            json.dump(result, f)
+
     return result
