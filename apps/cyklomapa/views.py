@@ -183,12 +183,12 @@ class PanelInformaceView(TemplateView):
 def get_cyklisty_sobe_layer(request):
     """Get cykliste sobe features layer JSON"""
 
-    features_file = "list.json"
-    features_file_path = pathlib.Path(settings.STATIC_ROOT) / features_file
-    cache_key = "cs_features_layer"
-    long_cache_time = 60 * 60 * 168
-    short_cache_time = 60 * 5
-    get_cs_features_layer_func = "cyklomapa.utils.parse_cykliste_sobe_features"
+    features_file = get_cyklisty_sobe_layer.features_file
+    features_file_path = get_cyklisty_sobe_layer.features_file_path
+    cache_key = get_cyklisty_sobe_layer.cache_key
+    long_cache_time = get_cyklisty_sobe_layer.long_cache_time
+    short_cache_time = get_cyklisty_sobe_layer.short_cache_time
+    get_cs_features_layer_func = get_cyklisty_sobe_layer.get_cs_features_layer_func
 
     all_job_db_result = Success.objects.filter(
         func=get_cs_features_layer_func)
@@ -229,3 +229,11 @@ def get_cyklisty_sobe_layer(request):
                                cache_key=cache_key, cache_time=long_cache_time,
                                save=True, sync=True)
                 )
+
+
+get_cyklisty_sobe_layer.features_file = "list.json"
+get_cyklisty_sobe_layer.features_file_path = pathlib.Path(settings.STATIC_ROOT) / get_cyklisty_sobe_layer.features_file
+get_cyklisty_sobe_layer.cache_key = "cs_features_layer"
+get_cyklisty_sobe_layer.long_cache_time = 60 * 60 * 168
+get_cyklisty_sobe_layer.short_cache_time = 60 * 5
+get_cyklisty_sobe_layer.get_cs_features_layer_func = "cyklomapa.utils.parse_cykliste_sobe_features"
