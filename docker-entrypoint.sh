@@ -7,4 +7,5 @@ su test -c "crontab -l >> "$CRONTAB_FILE""
 su test -c "crontab "$CRONTAB_FILE""
 # Django migrate
 su test -c "cd /home/test; pipenv run python3 manage.py migrate"
+# Run supervisord
 exec /usr/bin/supervisord --configuration /etc/supervisor/supervisord.conf
