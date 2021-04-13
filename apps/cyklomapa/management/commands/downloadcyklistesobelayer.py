@@ -10,7 +10,7 @@ from django_q.tasks import async_task
 from cyklomapa.utils import (
     check_download_cykliste_sobe_layer_job, parse_cykliste_sobe_features,
 )
-from cyklomapa.views import get_cyklisty_sobe_layer
+from cyklomapa.views import get_cykliste_sobe_layer
 
 
 class Command(BaseCommand):
@@ -29,28 +29,28 @@ class Command(BaseCommand):
         task = options.get("task")
         if task == "download_only":
             import importlib # noqa
-            module, func = get_cyklisty_sobe_layer.get_cs_features_layer_func.rsplit(".", 1)
+            module, func = get_cykliste_sobe_layer.get_cs_features_layer_func.rsplit(".", 1)
             module = importlib.import_module(module)
             getattr(module, func)(
-                cache_key=get_cyklisty_sobe_layer.cache_key,
-                cache_time=get_cyklisty_sobe_layer.long_cache_time,
-                save_to_file=get_cyklisty_sobe_layer.features_file_path,
+                cache_key=get_cykliste_sobe_layer.cache_key,
+                cache_time=get_cykliste_sobe_layer.long_cache_time,
+                save_to_file=get_cykliste_sobe_layer.features_file_path,
             )
         else:
             def download():
-                async_task(func=get_cyklisty_sobe_layer.get_cs_features_layer_func,
-                           cache_key=get_cyklisty_sobe_layer.cache_key,
-                           cache_time=get_cyklisty_sobe_layer.long_cache_time,
-                           save_to_file=get_cyklisty_sobe_layer.features_file_path,
+                async_task(func=get_cykliste_sobe_layer.get_cs_features_layer_func,
+                           cache_key=get_cykliste_sobe_layer.cache_key,
+                           cache_time=get_cykliste_sobe_layer.long_cache_time,
+                           save_to_file=get_cykliste_sobe_layer.features_file_path,
                            save=True)
 
             all_job_db_result, job_db_result, time_delta = \
                 check_download_cykliste_sobe_layer_job()
 
             if job_db_result:
-                if (time_delta.total_seconds() >= get_cyklisty_sobe_layer.short_cache_time):
+                if (time_delta.total_seconds() >= get_cykliste_sobe_layer.short_cache_time):
                     download()
-                elif not get_cyklisty_sobe_layer.features_file_path.is_file():
+                elif not get_cykliste_sobe_layer.features_file_path.is_file():
                     download()
             else:
                 download()

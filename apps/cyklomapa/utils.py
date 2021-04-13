@@ -105,10 +105,10 @@ def parse_cykliste_sobe_features(cache_key=None, cache_time=None,
 def check_download_cykliste_sobe_layer_job():
     """Check successfull downloaded cyliste sobe features layer
     saved job"""
-    from .views import get_cyklisty_sobe_layer
+    from .views import get_cykliste_sobe_layer
     time_delta = None
     all_job_db_result = Success.objects.filter(
-        func=get_cyklisty_sobe_layer.get_cs_features_layer_func)
+        func=get_cykliste_sobe_layer.get_cs_features_layer_func)
     job_db_result = all_job_db_result.first()
     if job_db_result:
         time_delta = timezone.now() - job_db_result.stopped
