@@ -414,11 +414,11 @@ OAUTH2_PROVIDER = {
 }
 
 CRONJOBS = [
-    # (
-    #     '*/5 * * * *',
-    #     'cyklomapa.cronjobs.download_cyklistesobe_tracks',
-    #     [STATIC_ROOT],
-    # ),
+    (
+        '*/5 * * * *',
+        'django.core.management.call_command',
+        ['downloadcyklistesobelayer'],
+    ),
     (
         '* * 27 * *',
         'django.core.management.call_command',
