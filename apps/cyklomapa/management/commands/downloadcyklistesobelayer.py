@@ -49,6 +49,7 @@ class Command(BaseCommand):
 
             if job_db_result:
                 if (time_delta.total_seconds() >= get_cykliste_sobe_layer.short_cache_time):
+                    all_job_db_result.exclude(id=job_db_result.id).delete()
                     download()
                 elif not get_cykliste_sobe_layer.features_file_path.is_file():
                     download()
