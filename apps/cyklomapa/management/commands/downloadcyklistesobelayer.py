@@ -42,7 +42,7 @@ class Command(BaseCommand):
                            cache_key=get_cykliste_sobe_layer.cache_key,
                            cache_time=get_cykliste_sobe_layer.long_cache_time,
                            save_to_file=get_cykliste_sobe_layer.features_file_path,
-                           save=True)
+                           save=True, sync=True)
 
             all_job_db_result, job_db_result, time_delta = \
                 check_download_cykliste_sobe_layer_job()
