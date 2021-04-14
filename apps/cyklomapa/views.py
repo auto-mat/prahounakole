@@ -235,5 +235,5 @@ get_cykliste_sobe_layer.features_file = "list.json"
 get_cykliste_sobe_layer.features_file_path = pathlib.Path(settings.STATIC_ROOT) / get_cykliste_sobe_layer.features_file
 get_cykliste_sobe_layer.cache_key = "cs_features_layer"
 get_cykliste_sobe_layer.long_cache_time = 60 * 60 * 168
-get_cykliste_sobe_layer.short_cache_time = 60 * 5
+get_cykliste_sobe_layer.short_cache_time = 60 * 4
 get_cykliste_sobe_layer.get_cs_features_layer_func = "cyklomapa.utils.parse_cykliste_sobe_features"
