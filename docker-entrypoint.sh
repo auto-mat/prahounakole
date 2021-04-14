@@ -11,8 +11,8 @@ else
 fi;
 crontab -l >> '$CRONTAB_FILE'
 crontab '$CRONTAB_FILE'
-rm '$CRONTAB_FILE''
+rm '$CRONTAB_FILE'
 # Django migrate
-su test -c "cd /home/test; pipenv run python3 manage.py migrate"
-# Run supervisord
+cd /home/test; pipenv run python3 manage.py migrate'
+ Run supervisord
 exec /usr/bin/supervisord --configuration /etc/supervisor/supervisord.conf
