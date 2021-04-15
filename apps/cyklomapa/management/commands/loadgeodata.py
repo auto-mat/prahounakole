@@ -57,6 +57,7 @@ class Command(BaseCommand):
                    "data" / output_filename)
 
         import_geodata = (pathlib.Path(__file__).parent.absolute() /
+                          "import_geodata" /
                           "import_geodata_from_ruian_db.sh")
         p = subprocess.Popen(
             [import_geodata, layer, output_filename, temp_dir],
