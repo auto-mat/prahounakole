@@ -7,9 +7,7 @@ from django.utils.translation import gettext as _
 
 from django_q.tasks import async_task
 
-from cyklomapa.utils import (
-    check_download_cykliste_sobe_layer_job, parse_cykliste_sobe_features,
-)
+from cyklomapa.utils import check_download_cykliste_sobe_layer_job
 from cyklomapa.views import get_cykliste_sobe_layer
 
 
