@@ -53,12 +53,16 @@
         <div class="modal-body">
           <div class="container">
             <div class="row centred">
-            <span class="globe"></span>
-            <br><br>
+              <span class="globe"></span>
+              <br><br>
               <div class="links-group">
-              {% for mesto in mesta %}
-                <a href="https://{{ mesto.sektor.slug}}.dopracenakole.net/">{{ mesto.sektor.name }}</a>
-              {% endfor %}
+                {% for mesto in mesta %}
+                  {% if mesto.sektor.slug == "mapa" %}
+                    <a href="{{ request.scheme }}://{{ request.get_host }}">{{ mesto.sektor.name }}</a>
+                  {% else %}
+                    <a href="https://{{ mesto.sektor.slug}}.dopracenakole.net/">{{ mesto.sektor.name }}</a>
+                  {% endif %}
+                {% endfor %}
               </div>
             </div>
           </div>
