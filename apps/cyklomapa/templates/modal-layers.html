@@ -55,9 +55,11 @@
             <div class="row centred">
             <span class="globe"></span>
             <br><br>
+              <div class="links-group">
               {% for mesto in mesta %}
-                <a href="https://{{ mesto.sektor.slug}}.dopracenakole.net/">{{ mesto.sektor.name }}</a><br>
+                <a href="https://{{ mesto.sektor.slug}}.dopracenakole.net/">{{ mesto.sektor.name }}</a>
               {% endfor %}
+              </div>
             </div>
           </div>
         </div>
