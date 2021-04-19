@@ -44,6 +44,7 @@ gdal = "==2.1"
 django-crontab = "*"
 beautifulsoup4 = "*"
 django-q = "*"
+django-debug-toolbar = "*"
 
 [dev-packages]
 pudb = "*"
