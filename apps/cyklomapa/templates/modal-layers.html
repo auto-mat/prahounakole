@@ -48,7 +48,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <!-- <div class="modal-header">
-          
+
         </div> -->
         <div class="modal-body">
           <div class="container">
@@ -58,9 +58,9 @@
               <div class="links-group">
                 {% for mesto in mesta %}
                   {% if mesto.sektor.slug == "mapa" %}
-                    <a href="{{ request.scheme }}://{{ request.get_host }}">{{ mesto.sektor.name }}</a>
+                    <a href="https://{{ mesto.sektor.slug }}.prahounakole.cz/">{{ mesto.sektor.name }}</a>
                   {% else %}
-                    <a href="https://{{ mesto.sektor.slug}}.dopracenakole.net/">{{ mesto.sektor.name }}</a>
+                    <a href="https://{{ mesto.sektor.slug }}.dopracenakole.net/">{{ mesto.sektor.name }}</a>
                   {% endif %}
                 {% endfor %}
               </div>
