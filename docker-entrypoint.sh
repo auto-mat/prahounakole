@@ -14,5 +14,5 @@ crontab '$CRONTAB_FILE'
 rm '$CRONTAB_FILE'
 # Django migrate
 cd /home/test; pipenv run python3 manage.py migrate'
- Run supervisord
+# Run supervisord
 exec /usr/bin/supervisord --configuration /etc/supervisor/supervisord.conf
