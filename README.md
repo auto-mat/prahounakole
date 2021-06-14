@@ -61,9 +61,9 @@ Docker dev installation (Docker compose)
 
     $ docker-compose build
     $ docker-compose up
-    $ docker exec -it prahounakole_web_1 sh -c "supervisorctl -c /etc/supervisor/supervisord.conf stop gunicorn" # stop gunicorn process (required for production deploy)
-    $ docker exec -it prahounakole_web_1 sh -c "export CPLUS_INCLUDE_PATH=/usr/include/gdal; export C_INCLUDE_PATH=/usr/include/gdal; cd /app-v; pipenv install --dev"
-    $ docker exec -it prahounakole_web_1 sh -c "pipenv run python manage.py migrate; pipenv run python manage.py loaddata apps/cyklomapa/fixtures/*"
+    $ docker exec prahounakole_web_1 sh -c "supervisorctl -c /etc/supervisor/supervisord.conf stop gunicorn" # stop gunicorn process (required for production deploy)
+    $ docker exec -e CPLUS_INCLUDE_PATH=/usr/include/gdal -e C_INCLUDE_PATH=/usr/include/gdal prahounakole_web_1 sh -c "pipenv install --dev"
+    $ docker exec prahounakole_web_1 sh -c "pipenv run python manage.py migrate; pipenv run python manage.py loaddata apps/cyklomapa/fixtures/*"
 
     $ docker exec -it prahounakole_web_1 sh -c "pipenv run python manage.py runserver 0.0.0.0:8000"
 
