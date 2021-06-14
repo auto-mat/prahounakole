@@ -169,7 +169,7 @@ class Command(BaseCommand):
             overlay.save()
         marker, created = Marker.objects.get_or_create(
             name=name, desc=desc, default_icon="ikony/accident.png",
-            layer=overlay, slug="nehoda",
+            layer=overlay, slug="nehoda", minzoom=14, maxzoom=18,
         )
 
         objs = []
