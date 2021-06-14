@@ -162,14 +162,14 @@ class Command(BaseCommand):
         order = max(OverlayLayer.objects.all().values_list(
             "order", flat=True)) + 1
         overlay, created = OverlayLayer.objects.get_or_create(
-            name=name, desc=desc, slug="nehody", enabled=False,
+            name=name, desc=desc, slug="accidents", enabled=False,
         )
         if created:
             overlay.order = order
             overlay.save()
         marker, created = Marker.objects.get_or_create(
             name=name, desc=desc, default_icon="icons/accident.png",
-            layer=overlay, slug="nehoda", minzoom=14, maxzoom=18,
+            layer=overlay, slug="accident", minzoom=14, maxzoom=18,
         )
 
         objs = []
