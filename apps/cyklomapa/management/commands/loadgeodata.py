@@ -168,7 +168,7 @@ class Command(BaseCommand):
             overlay.order = order
             overlay.save()
         marker, created = Marker.objects.get_or_create(
-            name=name, desc=desc, default_icon="ikony/accident.png",
+            name=name, desc=desc, default_icon="icons/accident.png",
             layer=overlay, slug="nehoda", minzoom=14, maxzoom=18,
         )
 
