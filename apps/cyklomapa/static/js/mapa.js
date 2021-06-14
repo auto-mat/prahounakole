@@ -341,7 +341,10 @@ function setupPnkMap() {
                    addDPNK_track_2020(name, enabled, slug);
                    break;
                default:
-                   addPoiLayer(name, url, enabled, slug);
+                   // Filter poi
+                   if ($.inArray(name, ["Nehody (srážka s jízdním kolem)"]) == -1) {
+                       addPoiLayer(name, url, enabled, slug);
+               }
            }
        }
     } else {
