@@ -56,14 +56,21 @@ Pro testovací účely spustíte projekt pomocí následujícího příkazu:
 env/bin/python manage.py runserver 0.0.0.0:8000
 ```
 
-Installation (Docker compose)
+Docker dev installation (Docker compose)
 ==========================
 
     $ docker-compose build
-    # Or if you want map container user with host user via (ID, GID),
-    # default container user 'test' ID=1000, GID=1000
-    $ docker-compose build --build-arg USER_ID=$(id -u ${USER}) --build-arg GROUP_ID=$(id -g ${USER})
     $ docker-compose up
-    $ docker exec -it --user test prahounakole_web_1 sh -c "/app-v/post_build.sh"
+    $ docker exec -it prahounakole_web_1 sh -c "supervisorctl -c /etc/supervisor/supervisord.conf stop gunicorn" # stop gunicorn process (required for production deploy)
+    $ docker exec -it prahounakole_web_1 sh -c "export CPLUS_INCLUDE_PATH=/usr/include/gdal; export C_INCLUDE_PATH=/usr/include/gdal; cd /app-v; pipenv install --dev"
+    $ docker exec -it prahounakole_web_1 sh -c "pipenv run python manage.py migrate; pipenv run python manage.py loaddata apps/cyklomapa/fixtures/*"
 
-    Check prahounakole web app on the host web browser with URL http://localhost:8033/
+    $ docker exec -it prahounakole_web_1 sh -c "pipenv run python manage.py runserver 0.0.0.0:8000"
+
+    OR
+
+    $ docker exec -it prahounakole_web_1 /bin/bash
+    $ pipenv shell
+    $ python manage.py runserver 0.0.0.0:8000"
+
+    Check prahounakole web app on the host web browser with URL: firefox http://localhost:8033/
