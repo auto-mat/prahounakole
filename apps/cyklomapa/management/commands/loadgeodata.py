@@ -175,10 +175,7 @@ class Command(BaseCommand):
         objs = []
         null = "neznámý"
         for a in CzechiaAccidents.objects.filter(
-                Q(zavineni="řidičem motorového vozidla",
-                  vozidlo="jízdní kolo") |
-                Q(zavineni="řidičem nemotorového vozidla",
-                  vozidlo="jízdní kolo"), **query):
+                vozidlo="jízdní kolo", **query):
             desc = (f"dátum: {a.datum if a.datum else null}<br/>"
                     f"den: {a.den if a.den else null}<br/>"
                     f"čas: {a.cas if a.cas else null}<br/>"
