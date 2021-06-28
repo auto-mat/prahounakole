@@ -78,6 +78,140 @@ for file do
         else if ($11 == 7)
           $11="technickou závadou vozidla"
 
+        # hlavní příčiny nehody
+        if ($13 == 100)
+          $13="nezaviněná řidičem"
+        else if ($13 == 201)
+          $13="nepřizpůsobení rychlosti - intenzitě (hustotě) provozu"
+        else if ($13 == 202)
+          $13="nepřizpůsobení rychlosti - viditelnosti (mlha, soumrak, jízda v noci na tlumená světla apod.)"
+        else if ($13 == 203)
+          $13="nepřizpůsobení rychlosti - vlastnostem vozidla a nákladu"
+        else if ($13 == 204)
+          $13="nepřizpůsobení rychlosti - stavu vozovky (náledí, výtluky, bláto, mokrý povrch apod.)"
+        else if ($13 == 205)
+          $13="nepřizpůsobení rychlosti - dopravně technickému stavu vozovky (zatáčka, klesání, stoupání, šířka vozovky apod.)"
+        else if ($13 == 206)
+          $13="překročení předepsané rychlosti stanovené pravidly"
+        else if ($13 == 207)
+          $13="překročení rychlosti stanovené dopravní značkou"
+        else if ($13 == 208)
+          $13="nepřizpůsobení rychlosti - bočnímu, nárazovému větru (i při míjení, předjíždění vozidel)"
+        else if ($13 == 209)
+          $13="jiný druh nepřiměřené rychlosti"
+        else if ($13 == 301)
+          $13="předjíždění - vpravo"
+        else if ($13 == 302)
+          $13="předjíždění - bez dostatečného bočního odstupu"
+        else if ($13 == 303)
+          $13="předjíždění - bez dostatečného rozhledu (v nepřehledné zatáčce nebo její blízkosti, před vrcholem stoupání apod.)"
+        else if ($13 == 304)
+          $13="předjíždění - došlo k ohrožení protijedoucího řidiče vozidla (špatný odhad vzdálenosti potřebné k předjetí apod.)"
+        else if ($13 == 305)
+          $13="předjíždění - došlo k ohrožení předjížděného řidiče vozidla (vynucené zařazení, předjížděný řidič musel prudce brzdit, měnit směr jízdy apod.)"
+        else if ($13 == 306)
+          $13="předjíždění - vlevo vozidla odbočujícího vlevo"
+        else if ($13 == 307)
+          $13="předjíždění - v místech, kde je to zakázáno dopravní značkou"
+        else if ($13 == 308)
+          $13="předjíždění - byla přejeta podélná čára souvislá"
+        else if ($13 == 309)
+          $13="bránění v předjíždění"
+        else if ($13 == 310)
+          $13="přehlédnutí již předjíždějícícho souběžně jedoucího vozidla"
+        else if ($13 == 311)
+          $13="jiný druh nesprávného předjíždění"
+        else if ($13 == 401)
+          $13="jízda na "červenou" 3-barevného semaforu"
+        else if ($13 == 402)
+          $13="proti příkazu dopravní značky - stůj dej přednost"
+        else if ($13 == 403)
+          $13="proti příkazu dopravní značky - dej přednost"
+        else if ($13 == 404)
+          $13="vozidlu přijíždějícímu zprava"
+        else if ($13 == 405)
+          $13="při odbočování vlevo"
+        else if ($13 == 406)
+          $13="tramvají, která odbočuje"
+        else if ($13 == 407)
+          $13="protijedoucímu vozidlu při objíždění překážky"
+        else if ($13 == 408)
+          $13="při zařazování do proudu jedoucích vozidel ze stanice, místa zastavení nebo stání"
+        else if ($13 == 409)
+          $13="při vjíždění na silnici"
+        else if ($13 == 410)
+          $13="při otáčení nebo couvání"
+        else if ($13 == 411)
+          $13="při přejíždění z jednoho jízdního pruhu do druhého"
+        else if ($13 == 412)
+          $13="chodci na vyznačeném přechodu"
+        else if ($13 == 413)
+          $13="při odbočování vlevo - souběžně jedoucímu vozidlu"
+        else if ($13 == 414)
+          $13="jiné nedání přednosti"
+        else if ($13 == 501)
+          $13="jízda po nesprávné straně vozovky, vjetí do protisměru"
+        else if ($13 == 502)
+          $13="vyhýbání bez dostatečného bočního odstupu (vůle)"
+        else if ($13 == 503)
+          $13="nedodržení bezpečné vzdálenosti za vozidlem"
+        else if ($13 == 504)
+          $13="nesprávné otáčení nebo couvání"
+        else if ($13 == 505)
+          $13="chyby při udání směru jízdy"
+        else if ($13 == 506)
+          $13="bezohledná, agresivní, neohleduplná jízda"
+        else if ($13 == 507)
+          $13="náhlé bezdůvodné snížení rychlosti jízdy, zabrzdění nebo zastavení"
+        else if ($13 == 508)
+          $13="řidič se plně nevěnoval řízení vozidla"
+        else if ($13 == 509)
+          $13="samovolné rozjetí nezajištěného vozidla"
+        else if ($13 == 510)
+          $13="vjetí na nezpevněnou komunikaci"
+        else if ($13 == 511)
+          $13="nezvládnutí řízení vozidla"
+        else if ($13 == 512)
+          $13="jízda (vjetí) jednosměrnou ulicí, silnicí (v protisměru)"
+        else if ($13 == 513)
+          $13="nehoda v důsledku  použití (policií) prostředků k násilnému zastavení vozidla (zastavovací pásy, zábrana, vozidlo atp.)"
+        else if ($13 == 514)
+          $13="nehoda v důsledku použití služební zbraně (policií)"
+        else if ($13 == 515)
+          $13="nehoda při provádění služebního zákroku (pronásledování pachatele atd.)"
+        else if ($13 == 516)
+          $13="jiný druh nesprávného způsobu jízdy"
+        else if ($13 == 601)
+          $13="závada řízení"
+        else if ($13 == 602)
+          $13="závada provozní brzdy"
+        else if ($13 == 603)
+          $13="neúčinná nebo nefungující parkovací brzda"
+        else if ($13 == 604)
+          $13="opotřebení běhounu pláště pod stanovenou mez"
+        else if ($13 == 605)
+          $13="defekt pneumatiky způsobený průrazem nebo náhlým únikem vzduchu"
+        else if ($13 == 606)
+          $13="závada osvětlovací soustavy vozidla (neúčinná, chybějící, znečištěná apod.)"
+        else if ($13 == 607)
+          $13="nepřipojená nebo poškozená spojovací hadice pro bzrdění přípojného vozidla"
+        else if ($13 == 608)
+          $13="nesprávné uložení nákladu"
+        else if ($13 == 609)
+          $13="upadnutí, ztráta kola vozidla (i rezervního)"
+        else if ($13 == 610)
+          $13="zablokování kol v důsledku mechanické závady vozidla (zadřený motor, převodovka, rozvodovka, spadlý řetěz apod.)"
+        else if ($13 == 611)
+          $13="lom závěsu kola, pružiny"
+        else if ($13 == 612)
+          $13="nezajištěná nebo poškozená bočnice (i u přívěsu)"
+        else if ($13 == 613)
+          $13="závada závěsu pro přívěs"
+        else if ($13 == 614)
+          $13="utržená spojovací hřídel"
+        else if ($13 == 615)
+          $13="jiná technická závada (vztahuje se i na přípojná vozidla)"
+
         # "vozidlo" column
         if ($33 == 0 || $33 == 00)
            $33="moped"
@@ -126,7 +260,7 @@ for file do
         if (length($49) == 2)
           next
 
-        print $4,$5,$6,$16,$11,$33,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
+        print $4,$5,$6,$16,$11,$13,$33,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
     fi
 done' sh {} +
 
@@ -151,6 +285,7 @@ if [ -f $ACCIDENTS_CSV_FILE ]; then
             <Field name=\"cas\" type=\"Time\" nullable=\"true\" />
             <Field name=\"nasledky\" type=\"String\" nullable=\"true\" />
             <Field name=\"zavineni\" type=\"String\" nullable=\"true\" />
+            <Field name=\"priciny_nehody\" type=\"String\" nullable=\"true\" />
             <Field name=\"vozidlo\" type=\"String\" nullable=\"true\" />
             <Field name=\"x\" type=\"Real\" nullable=\"true\" />
             <Field name=\"y\" type=\"Real\" nullable=\"true\" />
