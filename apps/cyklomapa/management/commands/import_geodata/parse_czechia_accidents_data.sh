@@ -22,7 +22,7 @@ find "$TEMP_DIR" -type f -name '*.csv' ! -name "$(basename ${ACCIDENTS_CSV_FILE}
 FILTER=(08.csv,09.csv,10.csv,11.csv,12.csv,13.csv,CHODCI.csv)
 for file do
     if [[ ! "${FILTER}" =~ "$(basename "${file}")" ]]; then
-       awk -F ";" '"'"'
+       gawk -F ";" '"'"'
        BEGIN {OFS=";"}
       {
 
