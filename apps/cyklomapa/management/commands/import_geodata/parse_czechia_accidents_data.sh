@@ -122,7 +122,7 @@ for file do
         else if ($13 == 311)
           $13="jiný druh nesprávného předjíždění"
         else if ($13 == 401)
-          $13="jízda na "červenou" 3-barevného semaforu"
+          $13="jízda na červenou 3-barevného semaforu"
         else if ($13 == 402)
           $13="proti příkazu dopravní značky - stůj dej přednost"
         else if ($13 == 403)
