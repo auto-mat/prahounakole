@@ -78,7 +78,7 @@ for file do
         else if ($11 == 7)
           $11="technickou závadou vozidla"
 
-        # hlavní příčiny nehody
+        # "priciny_nehody" column
         if ($13 == 100)
           $13="nezaviněná řidičem"
         else if ($13 == 201)
