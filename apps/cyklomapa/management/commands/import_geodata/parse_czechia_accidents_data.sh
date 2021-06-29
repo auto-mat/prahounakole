@@ -10,7 +10,7 @@ TEMP_DIR=$1
 export ACCIDENTS_CSV_FILE=$2
 ACCIDENTS_SPATIALLITE=$3
 
-COLS="datum;den;cas;nasledky;zavineni;vozidlo;x;y"
+COLS="datum;den;cas;nasledky;zavineni;priciny_nehody;vozidlo;x;y"
 echo $COLS > $ACCIDENTS_CSV_FILE
 ACCIDENTS_CSV_FILE_BASENAME=$(basename $ACCIDENTS_CSV_FILE .csv)
 ACCIDENTS_VRT_FILE="$(dirname ${ACCIDENTS_CSV_FILE})/${ACCIDENTS_CSV_FILE_BASENAME}.vrt"
