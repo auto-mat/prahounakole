@@ -28,31 +28,31 @@ for file do
 
         # "cas" column
         if ($6 == "\"2560\"")
-           $6=""
+          $6=""
         else if (length($6) == 6)
-           $6=substr($6, 2, 2)":"substr($6, 4, 2)
+          $6=substr($6, 2, 2)":"substr($6, 4, 2)
         else
-           $6=substr($6, 2, 1)":"substr($6, 3, 2)
+          $6=substr($6, 2, 1)":"substr($6, 3, 2)
 
         # "den" column
         if ($5 ==  0)
-           $5="Po"
+          $5="Po"
         else if ($5 == 1)
-           $5="Ut"
+          $5="Ut"
         else if ($5 == 2)
-           $5="St"
+          $5="St"
         else if ($5 == 3)
-           $5="Čt"
+          $5="Čt"
         else if ($5 == 4)
-           $5="Pa"
+          $5="Pa"
         else if ($5 == 5)
-           $5="So"
+          $5="So"
         else if ($5 == 6)
-           $5="Ne"
+          $5="Ne"
 
         # "nasledky" column
         if ($14 > 0)
-           $16="usmrceno osob"
+          $16="usmrceno osob"
         else if ($15 > 0)
           $16="těžce zraněno osob"
         else if ($16 > 0)
@@ -64,7 +64,7 @@ for file do
         if ($11 == 0)
           $11="jiné zavinění"
         else if ($11 == 1)
-           $11="řidičem motorového vozidla"
+          $11="řidičem motorového vozidla"
         else if ($11 == 2)
           $11="řidičem nemotorového vozidla"
         else if ($11 == 3)
@@ -214,7 +214,7 @@ for file do
 
         # "vozidlo" column
         if ($33 == 0 || $33 == 00)
-           $33="moped"
+          $33="moped"
         else if ($33 == 1)
           $33="malý motocykl (do 50 ccm)"
         else if ($33 == 2)
