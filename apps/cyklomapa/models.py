@@ -117,6 +117,7 @@ class CzechiaAccidents(models.Model):
     datum = models.DateField(null=True)
     den = models.CharField(max_length=2, null=True)
     cas = models.TimeField(null=True)
+    lokalita = models.CharField(max_length=20, null=True)
     nasledky = models.CharField(max_length=20, null=True)
     zavineni = models.CharField(max_length=50, null=True)
     priciny_nehody = models.CharField(max_length=500, null=True)
@@ -128,6 +129,7 @@ czechiaaccidents_mapping = {
     'datum': 'datum',
     'den': 'den',
     'cas': 'cas',
+    'lokalita': 'lokalita',
     'nasledky': 'nasledky',
     'zavineni': 'zavineni',
     'priciny_nehody': 'priciny_nehody',
