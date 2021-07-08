@@ -288,7 +288,7 @@ for file do
         if (length($49) == 2)
           next
 
-        print $4,$5,$6,$64,$16,$11,$13,$33,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
+        print $4,$5,$6,$64,$16,$11,$13,$25,$33,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
     fi
 done' sh {} +
 
