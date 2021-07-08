@@ -182,7 +182,7 @@ class Command(BaseCommand):
                     f"lokalita: {a.lokalita if a.lokalita else null}<br/>"
                     f"následky: {a.nasledky if a.nasledky else null}<br/>"
                     f"zavinění: {a.zavineni if a.zavineni else null}<br/>"
-                    f"příčiny nehody: {a.priciny_nehody if a.priciny_nehody else null}<br/>"
+                    f"příčiny nehody: {a.priciny if a.priciny else null}<br/>"
                     f"situovani: {a.situovani if a.situovani else null}<br/>"
                     f"vozidlo: {a.vozidlo if a.vozidlo else null}<br/>")
 
