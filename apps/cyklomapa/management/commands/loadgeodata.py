@@ -162,7 +162,7 @@ class Command(BaseCommand):
         order = max(OverlayLayer.objects.all().values_list(
             "order", flat=True)) + 1
         overlay, created = OverlayLayer.objects.get_or_create(
-            name=name, desc=desc, slug="accidents", enabled=False,
+            name=name, desc=desc, slug="accidents", enabled=True,
         )
         if created:
             overlay.order = order
