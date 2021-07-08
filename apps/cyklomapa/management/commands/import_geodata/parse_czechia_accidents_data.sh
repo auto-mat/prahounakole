@@ -10,7 +10,7 @@ TEMP_DIR=$1
 export ACCIDENTS_CSV_FILE=$2
 ACCIDENTS_SPATIALLITE=$3
 
-COLS="datum;den;cas;nasledky;zavineni;priciny_nehody;vozidlo;x;y"
+COLS="datum;den;cas;lokalita;nasledky;zavineni;priciny_nehody;vozidlo;x;y"
 echo $COLS > $ACCIDENTS_CSV_FILE
 ACCIDENTS_CSV_FILE_BASENAME=$(basename $ACCIDENTS_CSV_FILE .csv)
 ACCIDENTS_VRT_FILE="$(dirname ${ACCIDENTS_CSV_FILE})/${ACCIDENTS_CSV_FILE_BASENAME}.vrt"
@@ -49,6 +49,12 @@ for file do
           $5="So"
         else if ($5 == 6)
           $5="Ne"
+
+        # "lokalita" column
+        if ($64 == 1)
+          $64="v obci"
+        else if ($64 == 2)
+          $64="mimo obec"
 
         # "nasledky" column
         if ($14 > 0)
@@ -260,7 +266,7 @@ for file do
         if (length($49) == 2)
           next
 
-        print $4,$5,$6,$16,$11,$13,$33,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
+        print $4,$5,$6,$64,$16,$11,$13,$33,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
     fi
 done' sh {} +
 
@@ -283,6 +289,7 @@ if [ -f $ACCIDENTS_CSV_FILE ]; then
             <Field name=\"datum\" type=\"Date\" nullable=\"true\" />
             <Field name=\"den\" type=\"String\" nullable=\"true\" />
             <Field name=\"cas\" type=\"Time\" nullable=\"true\" />
+            <Field name=\"lokalita\" type=\"String\" nullable=\"true\" />
             <Field name=\"nasledky\" type=\"String\" nullable=\"true\" />
             <Field name=\"zavineni\" type=\"String\" nullable=\"true\" />
             <Field name=\"priciny_nehody\" type=\"String\" nullable=\"true\" />
