@@ -7,7 +7,7 @@ name = "pypi"
 easy-thumbnails = "*"
 django-http-proxy = {editable = true, ref = "develop", git = "https://github.com/PetrDlouhy/django-http-proxy.git"}
 python-memcached = "*"
-"psycopg2" = "*"
+psycopg2 = "==2.8.6"
 django-colorful = "*"
 django-mass-edit = "*"
 "django-admin-sortable2" = "*"
