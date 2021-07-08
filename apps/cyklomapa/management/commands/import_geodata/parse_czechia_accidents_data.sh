@@ -10,7 +10,7 @@ TEMP_DIR=$1
 export ACCIDENTS_CSV_FILE=$2
 ACCIDENTS_SPATIALLITE=$3
 
-COLS="datum;den;cas;lokalita;nasledky;zavineni;priciny_nehody;vozidlo;x;y"
+COLS="datum;den;cas;lokalita;nasledky;zavineni;priciny_nehody;situovani;vozidlo;x;y"
 echo $COLS > $ACCIDENTS_CSV_FILE
 ACCIDENTS_CSV_FILE_BASENAME=$(basename $ACCIDENTS_CSV_FILE .csv)
 ACCIDENTS_VRT_FILE="$(dirname ${ACCIDENTS_CSV_FILE})/${ACCIDENTS_CSV_FILE_BASENAME}.vrt"
@@ -218,6 +218,28 @@ for file do
         else if ($13 == 615)
           $13="jiná technická závada (vztahuje se i na přípojná vozidla)"
 
+        # "situovani" column
+        if ($25 == 0)
+          $25="žádné z uvedených"
+        else if ($25 == 1)
+          $25="na jízdním pruhu"
+        else if ($25 == 2)
+          $25="na odstavném pruhu"
+        else if ($25 == 3)
+          $25="na krajnici"
+        else if ($25 == 4)
+          $25="na odbočovacím, připojovacím pruhu"
+        else if ($25 == 5)
+          $25="na pruhu pro pomalá vozidla"
+        else if ($25 == 6)
+          $25="na chodníku nebo ostrůvku"
+        else if ($25 == 7)
+          $25="na kolejích tramvaje"
+        else if ($25 == 8)
+          $25="mimo komunikaci"
+        else if ($25 == 9)
+          $25="na stezce pro cyklisty"
+
         # "vozidlo" column
         if ($33 == 0 || $33 == 00)
           $33="moped"
@@ -293,6 +315,7 @@ if [ -f $ACCIDENTS_CSV_FILE ]; then
             <Field name=\"nasledky\" type=\"String\" nullable=\"true\" />
             <Field name=\"zavineni\" type=\"String\" nullable=\"true\" />
             <Field name=\"priciny_nehody\" type=\"String\" nullable=\"true\" />
+            <Field name=\"situovani\" type=\"String\" nullable=\"true\" />
             <Field name=\"vozidlo\" type=\"String\" nullable=\"true\" />
             <Field name=\"x\" type=\"Real\" nullable=\"true\" />
             <Field name=\"y\" type=\"Real\" nullable=\"true\" />
