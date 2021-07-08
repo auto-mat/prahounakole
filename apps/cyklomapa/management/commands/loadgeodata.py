@@ -179,6 +179,7 @@ class Command(BaseCommand):
             desc = (f"dátum: {a.datum if a.datum else null}<br/>"
                     f"den: {a.den if a.den else null}<br/>"
                     f"čas: {a.cas if a.cas else null}<br/>"
+                    f"lokalita: {a.lokalita if a.lokalita else null}<br/>"
                     f"následky: {a.nasledky if a.nasledky else null}<br/>"
                     f"zavinění: {a.zavineni if a.zavineni else null}<br/>"
                     f"příčiny nehody: {a.priciny_nehody if a.priciny_nehody else null}<br/>"
