@@ -10,7 +10,7 @@ TEMP_DIR=$1
 export ACCIDENTS_CSV_FILE=$2
 ACCIDENTS_SPATIALLITE=$3
 
-COLS="datum;den;cas;lokalita;nasledky;zavineni;priciny_nehody;situovani;vozidlo;x;y"
+COLS="datum;den;cas;lokalita;nasledky;zavineni;priciny;situovani;vozidlo;x;y"
 echo $COLS > $ACCIDENTS_CSV_FILE
 ACCIDENTS_CSV_FILE_BASENAME=$(basename $ACCIDENTS_CSV_FILE .csv)
 ACCIDENTS_VRT_FILE="$(dirname ${ACCIDENTS_CSV_FILE})/${ACCIDENTS_CSV_FILE_BASENAME}.vrt"
@@ -84,7 +84,7 @@ for file do
         else if ($11 == 7)
           $11="technickou závadou vozidla"
 
-        # "priciny_nehody" column
+        # "priciny" column
         if ($13 == 100)
           $13="nezaviněná řidičem"
         else if ($13 == 201)
@@ -314,7 +314,7 @@ if [ -f $ACCIDENTS_CSV_FILE ]; then
             <Field name=\"lokalita\" type=\"String\" nullable=\"true\" />
             <Field name=\"nasledky\" type=\"String\" nullable=\"true\" />
             <Field name=\"zavineni\" type=\"String\" nullable=\"true\" />
-            <Field name=\"priciny_nehody\" type=\"String\" nullable=\"true\" />
+            <Field name=\"priciny\" type=\"String\" nullable=\"true\" />
             <Field name=\"situovani\" type=\"String\" nullable=\"true\" />
             <Field name=\"vozidlo\" type=\"String\" nullable=\"true\" />
             <Field name=\"x\" type=\"Real\" nullable=\"true\" />
