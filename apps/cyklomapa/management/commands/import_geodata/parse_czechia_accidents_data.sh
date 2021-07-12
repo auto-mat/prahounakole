@@ -51,10 +51,12 @@ for file do
           $5="Ne"
 
         # "lokalita" column
-        if ($64 == 1)
+        if (substr($64, 2, 1) == 1)
           $64="v obci"
-        else if ($64 == 2)
+        else if (substr($64, 2, 1) == 2)
           $64="mimo obec"
+        else
+          $64=""
 
         # "nasledky" column
         if ($14 > 0)
