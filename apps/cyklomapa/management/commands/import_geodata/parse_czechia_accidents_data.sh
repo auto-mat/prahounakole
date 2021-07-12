@@ -49,6 +49,8 @@ for file do
           $5="So"
         else if ($5 == 6)
           $5="Ne"
+        else
+          $5=""
 
         # "lokalita" column
         if (substr($64, 2, 1) == 1)
@@ -67,6 +69,8 @@ for file do
           $16="lehce zraněno osob"
         else if ($16 == 0)
           $16="bez zranění osob"
+        else
+          $16=""
 
         # "zavineni" column
         if ($11 == 0)
@@ -85,6 +89,8 @@ for file do
           $11="závadou komunikace"
         else if ($11 == 7)
           $11="technickou závadou vozidla"
+        else
+          $11=""
 
         # "priciny" column
         if ($13 == 100)
@@ -219,6 +225,8 @@ for file do
           $13="utržená spojovací hřídel"
         else if ($13 == 615)
           $13="jiná technická závada (vztahuje se i na přípojná vozidla)"
+        else
+          $13=""
 
         # "situovani" column
         if ($25 == 0)
@@ -241,6 +249,8 @@ for file do
           $25="mimo komunikaci"
         else if ($25 == 9)
           $25="na stezce pro cyklisty"
+        else
+          $25=""
 
         # "vozidlo" column
         if ($33 == 0 || $33 == 00)
@@ -281,6 +291,8 @@ for file do
           $33="nezjištěno, řidič ujel"
         else if ($33 == 18)
           $33="jiný druh vozidla"
+        else
+          $33=""
 
         # "x" coordinate column, empty value -> empty quotes "" (length 2)
         if (length($48) == 2)
