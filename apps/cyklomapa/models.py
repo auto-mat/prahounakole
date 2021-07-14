@@ -119,6 +119,7 @@ class CzechiaAccidents(models.Model):
     den = models.CharField(max_length=2, null=True)
     cas = models.TimeField(null=True)
     druh = models.CharField(max_length=50, null=True)
+    druh_srazky_jedoucich_vozidel = models.CharField(max_length=20, null=True)
     lokalita = models.CharField(max_length=20, null=True)
     nasledky = models.CharField(max_length=20, null=True)
     zavineni = models.CharField(max_length=50, null=True)
@@ -134,6 +135,7 @@ czechiaaccidents_mapping = {
     'den': 'den',
     'cas': 'cas',
     'druh': 'druh',
+    'druh_srazky_jedoucich_vozidel': 'druh_srazky_jedoucich_vozidel',
     'lokalita': 'lokalita',
     'nasledky': 'nasledky',
     'zavineni': 'zavineni',
