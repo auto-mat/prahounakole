@@ -127,6 +127,7 @@ class CzechiaAccidents(models.Model):
     priciny = models.CharField(max_length=500, null=True)
     druh_povrchu_vozovky = models.CharField(max_length=30, null=True)
     stav_povrchu_vozovky_v_dobe_nehody = models.CharField(max_length=80, null=True)
+    stav_komunikace = models.CharField(max_length=80, null=True)
     situovani = models.CharField(max_length=50, null=True)
     vozidlo = models.CharField(max_length=100, null=True)
     geom = models.PointField(srid=4326)
@@ -146,6 +147,7 @@ czechiaaccidents_mapping = {
     'priciny': 'priciny',
     'druh_povrchu_vozovky': 'druh_povrchu_vozovky',
     'stav_povrchu_vozovky_v_dobe_nehody': 'stav_povrchu_vozovky_v_dobe_nehody',
+    'stav_komunikace': 'stav_komunikace',
     'situovani': 'situovani',
     'vozidlo': 'vozidlo',
     'geom': 'POINT',
