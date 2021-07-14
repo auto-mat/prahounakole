@@ -10,7 +10,7 @@ TEMP_DIR=$1
 export ACCIDENTS_CSV_FILE=$2
 ACCIDENTS_SPATIALLITE=$3
 
-COLS="identifikacni_cislo;datum;den;cas;druh;druh_srazky_jedoucich_vozidel;lokalita;nasledky;zavineni;priciny;situovani;vozidlo;x;y"
+COLS="identifikacni_cislo;datum;den;cas;druh;druh_srazky_jedoucich_vozidel;lokalita;nasledky;zavineni;alkohol_u_vinika_nehody_pritomen;priciny;situovani;vozidlo;x;y"
 echo $COLS > $ACCIDENTS_CSV_FILE
 ACCIDENTS_CSV_FILE_BASENAME=$(basename $ACCIDENTS_CSV_FILE .csv)
 ACCIDENTS_VRT_FILE="$(dirname ${ACCIDENTS_CSV_FILE})/${ACCIDENTS_CSV_FILE_BASENAME}.vrt"
@@ -128,6 +128,30 @@ for file do
           $11="technickou závadou vozidla"
         else
           $11=""
+
+        # "alkohol_u_vinika_nehody_pritomen" column
+        if ($12 == 0)
+          $12="nezjišťováno"
+        else if ($12 == 1)
+          $12="ano (obsah alkoholu v krvi do 0,24 ‰)"
+        else if ($12 == 2)
+          $12="ne"
+        else if ($12 == 3)
+          $12="ano (obsah alkoholu v krvi od 0,24 ‰ do 0,5 ‰)"
+        else if ($12 == 4)
+          $12="pod vlivem drog"
+        else if ($12 == 5)
+          $12="pod vlivem alkoholu a drog"
+        else if ($12 == 6)
+          $12="ano (obsah alkoholu v krvi od 0,5 ‰ do 0,8 ‰)"
+        else if ($12 == 7)
+          $12="ano (obsah alkoholu v krvi od 0,8 ‰ do 1,0 ‰)"
+        else if ($12 == 8)
+          $12="ano (obsah alkoholu v krvi od 1,0 ‰ do 1,5 ‰)"
+        else if ($12 == 9)
+          $12="ano (obsah alkoholu v krvi 1,5 ‰ a více)"
+        else
+          $12=""
 
         # "priciny" column
         if ($13 == 100)
@@ -339,7 +363,7 @@ for file do
         if (length($49) == 2)
           next
 
-        print $1,$4,$5,$6,$7,$8,$64,$16,$11,$13,$25,$33,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
+        print $1,$4,$5,$6,$7,$8,$64,$16,$11,$12,$13,$25,$33,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
     fi
 done' sh {} +
 
@@ -368,6 +392,7 @@ if [ -f $ACCIDENTS_CSV_FILE ]; then
             <Field name=\"lokalita\" type=\"String\" nullable=\"true\" />
             <Field name=\"nasledky\" type=\"String\" nullable=\"true\" />
             <Field name=\"zavineni\" type=\"String\" nullable=\"true\" />
+            <Field name=\"alkohol_u_vinika_nehody_pritomen\" type=\"String\" nullable=\"true\" />
             <Field name=\"priciny\" type=\"String\" nullable=\"true\" />
             <Field name=\"situovani\" type=\"String\" nullable=\"true\" />
             <Field name=\"vozidlo\" type=\"String\" nullable=\"true\" />
