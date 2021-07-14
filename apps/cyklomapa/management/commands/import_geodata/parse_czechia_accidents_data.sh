@@ -23,6 +23,7 @@ COLS="identifikacni_cislo;\
   priciny;\
   druh_povrchu_vozovky;\
   stav_povrchu_vozovky_v_dobe_nehody;\
+  stav_komunikace;\
   situovani;vozidlo;\
   x;\
   y"
@@ -344,6 +345,34 @@ for file do
         else
           $19=""
 
+        # "stav_komunikace" column
+        if ($20 == 1)
+          $20="dobrý, bez závad"
+        else if ($20 == 2)
+          $20="podélný sklon vyšší než 8 %"
+        else if ($20 == 3)
+          $20="nesprávně umístěná, znečištěná, chybějící dopravní značka"
+        else if ($20 == 4)
+          $20="zvlněný povrch v podélném směru"
+        else if ($20 == 5)
+          $20="souvislé výtluky"
+        else if ($20 == 6)
+          $20="nesouvislé výtluky"
+        else if ($20 == 7)
+          $20="trvalé zúžení vozovky"
+        else if ($20 == 8)
+          $20="příčná stružka, hrbol, vystouplé, propadlé kolejnice"
+        else if ($20 == 9)
+          $20="neoznačená nebo nedostatečně označená překážka na komunikaci"
+        else if ($20 == 10)
+          $20="přechodná uzavírka jednoho jízdního pruhu"
+        else if ($20 == 11)
+          $20="přechodná uzavírka komunikace nebo jízdního pásu"
+        else if ($20 == 12)
+          $20="jiný (neuvedený) stav nebo závada komunikace"
+        else
+          $20=""
+
         # "situovani" column
         if ($25 == 0)
           $25="žádné z uvedených"
@@ -418,7 +447,7 @@ for file do
         if (length($49) == 2)
           next
 
-        print $1,$4,$5,$6,$7,$8,$64,$16,$11,$12,$13,$18,$19,$25,$33,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
+        print $1,$4,$5,$6,$7,$8,$64,$16,$11,$12,$13,$18,$19,$20,$25,$33,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
     fi
 done' sh {} +
 
@@ -451,6 +480,7 @@ if [ -f $ACCIDENTS_CSV_FILE ]; then
             <Field name=\"priciny\" type=\"String\" nullable=\"true\" />
             <Field name=\"druh_povrchu_vozovky\" type=\"String\" nullable=\"true\" />
             <Field name=\"stav_povrchu_vozovky_v_dobe_nehody\" type=\"String\" nullable=\"true\" />
+            <Field name=\"stav_komunikace\" type=\"String\" nullable=\"true\" />
             <Field name=\"situovani\" type=\"String\" nullable=\"true\" />
             <Field name=\"vozidlo\" type=\"String\" nullable=\"true\" />
             <Field name=\"x\" type=\"Real\" nullable=\"true\" />
