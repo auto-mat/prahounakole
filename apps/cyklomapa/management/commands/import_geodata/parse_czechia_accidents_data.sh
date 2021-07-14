@@ -10,7 +10,7 @@ TEMP_DIR=$1
 export ACCIDENTS_CSV_FILE=$2
 ACCIDENTS_SPATIALLITE=$3
 
-COLS="identifikacni_cislo;datum;den;cas;druh;druh_srazky_jedoucich_vozidel;lokalita;nasledky;zavineni;alkohol_u_vinika_nehody_pritomen;priciny;situovani;vozidlo;x;y"
+COLS="identifikacni_cislo;datum;den;cas;druh;druh_srazky_jedoucich_vozidel;lokalita;nasledky;zavineni;alkohol_u_vinika_nehody_pritomen;priciny;druh_povrchu_vozovky;situovani;vozidlo;x;y"
 echo $COLS > $ACCIDENTS_CSV_FILE
 ACCIDENTS_CSV_FILE_BASENAME=$(basename $ACCIDENTS_CSV_FILE .csv)
 ACCIDENTS_VRT_FILE="$(dirname ${ACCIDENTS_CSV_FILE})/${ACCIDENTS_CSV_FILE_BASENAME}.vrt"
@@ -289,6 +289,22 @@ for file do
         else
           $13=""
 
+        # "druh_povrchu_vozovky" column
+        if ($18 == 1)
+          $18="dlažba"
+        else if ($18 == 2)
+          $18="živice"
+        else if ($18 == 3)
+          $18="beton"
+        else if ($18 == 4)
+          $18="panely"
+        else if ($18 == 5)
+          $18="štěrk"
+        else if ($18 == 6)
+          $18="jiný nezpevněný povrch"
+        else
+          $18=""
+
         # "situovani" column
         if ($25 == 0)
           $25="žádné z uvedených"
@@ -363,7 +379,7 @@ for file do
         if (length($49) == 2)
           next
 
-        print $1,$4,$5,$6,$7,$8,$64,$16,$11,$12,$13,$25,$33,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
+        print $1,$4,$5,$6,$7,$8,$64,$16,$11,$12,$13,$18,$25,$33,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
     fi
 done' sh {} +
 
@@ -394,6 +410,7 @@ if [ -f $ACCIDENTS_CSV_FILE ]; then
             <Field name=\"zavineni\" type=\"String\" nullable=\"true\" />
             <Field name=\"alkohol_u_vinika_nehody_pritomen\" type=\"String\" nullable=\"true\" />
             <Field name=\"priciny\" type=\"String\" nullable=\"true\" />
+            <Field name=\"druh_povrchu_vozovky\" type=\"String\" nullable=\"true\" />
             <Field name=\"situovani\" type=\"String\" nullable=\"true\" />
             <Field name=\"vozidlo\" type=\"String\" nullable=\"true\" />
             <Field name=\"x\" type=\"Real\" nullable=\"true\" />
