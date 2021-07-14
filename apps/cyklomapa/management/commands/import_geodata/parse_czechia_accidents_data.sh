@@ -10,7 +10,22 @@ TEMP_DIR=$1
 export ACCIDENTS_CSV_FILE=$2
 ACCIDENTS_SPATIALLITE=$3
 
-COLS="identifikacni_cislo;datum;den;cas;druh;druh_srazky_jedoucich_vozidel;lokalita;nasledky;zavineni;alkohol_u_vinika_nehody_pritomen;priciny;druh_povrchu_vozovky;situovani;vozidlo;x;y"
+COLS="identifikacni_cislo;\
+  datum;\
+  den;\
+  cas;\
+  druh;\
+  druh_srazky_jedoucich_vozidel;\
+  lokalita;\
+  nasledky;\
+  zavineni;\
+  alkohol_u_vinika_nehody_pritomen;\
+  priciny;\
+  druh_povrchu_vozovky;\
+  stav_povrchu_vozovky_v_dobe_nehody;\
+  situovani;vozidlo;\
+  x;\
+  y"
 echo $COLS > $ACCIDENTS_CSV_FILE
 ACCIDENTS_CSV_FILE_BASENAME=$(basename $ACCIDENTS_CSV_FILE .csv)
 ACCIDENTS_VRT_FILE="$(dirname ${ACCIDENTS_CSV_FILE})/${ACCIDENTS_CSV_FILE_BASENAME}.vrt"
@@ -305,6 +320,30 @@ for file do
         else
           $18=""
 
+        # "stav_povrchu_vozovky_v_dobe_nehody" column
+        if ($19 == 0)
+          $19="jiný stav povrchu vozovky v době nehody"
+        else if ($19 == 1)
+          $19="povrch suchý - neznečištěný"
+        else if ($19 == 2)
+          $19="povrch suchý - znečištěný (písek, prach, listí, štěrk atd.)"
+        else if ($19 == 3)
+          $19="povrch mokrý"
+        else if ($19 == 4)
+          $19="na vozovce je bláto"
+        else if ($19 == 5)
+          $19="na vozovce je náledí, ujetý sníh - posypané"
+        else if ($19 == 6)
+          $19="na vozovce je náledí, ujetý sníh - neposypané"
+        else if ($19 == 7)
+          $19="na vozovce je rozlitý olej, nafta apod."
+        else if ($19 == 8)
+          $19="souvislá sněhová vrstva, rozbředlý sníh"
+        else if ($19 == 9)
+          $19="náhlá změna stavu vozovky (námraza na mostu, místní náledí)"
+        else
+          $19=""
+
         # "situovani" column
         if ($25 == 0)
           $25="žádné z uvedených"
@@ -379,7 +418,7 @@ for file do
         if (length($49) == 2)
           next
 
-        print $1,$4,$5,$6,$7,$8,$64,$16,$11,$12,$13,$18,$25,$33,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
+        print $1,$4,$5,$6,$7,$8,$64,$16,$11,$12,$13,$18,$19,$25,$33,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
     fi
 done' sh {} +
 
@@ -411,6 +450,7 @@ if [ -f $ACCIDENTS_CSV_FILE ]; then
             <Field name=\"alkohol_u_vinika_nehody_pritomen\" type=\"String\" nullable=\"true\" />
             <Field name=\"priciny\" type=\"String\" nullable=\"true\" />
             <Field name=\"druh_povrchu_vozovky\" type=\"String\" nullable=\"true\" />
+            <Field name=\"stav_povrchu_vozovky_v_dobe_nehody\" type=\"String\" nullable=\"true\" />
             <Field name=\"situovani\" type=\"String\" nullable=\"true\" />
             <Field name=\"vozidlo\" type=\"String\" nullable=\"true\" />
             <Field name=\"x\" type=\"Real\" nullable=\"true\" />
