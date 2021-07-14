@@ -125,6 +125,7 @@ class CzechiaAccidents(models.Model):
     zavineni = models.CharField(max_length=50, null=True)
     alkohol_u_vinika_nehody_pritomen = models.CharField(max_length=50, null=True)
     priciny = models.CharField(max_length=500, null=True)
+    druh_povrchu_vozovky = models.CharField(max_length=30, null=True)
     situovani = models.CharField(max_length=50, null=True)
     vozidlo = models.CharField(max_length=100, null=True)
     geom = models.PointField(srid=4326)
@@ -142,6 +143,7 @@ czechiaaccidents_mapping = {
     'zavineni': 'zavineni',
     'alkohol_u_vinika_nehody_pritomen': 'alkohol_u_vinika_nehody_pritomen',
     'priciny': 'priciny',
+    'druh_povrchu_vozovky': 'druh_povrchu_vozovky',
     'situovani': 'situovani',
     'vozidlo': 'vozidlo',
     'geom': 'POINT',
