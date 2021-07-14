@@ -10,7 +10,7 @@ TEMP_DIR=$1
 export ACCIDENTS_CSV_FILE=$2
 ACCIDENTS_SPATIALLITE=$3
 
-COLS="datum;den;cas;lokalita;nasledky;zavineni;priciny;situovani;vozidlo;x;y"
+COLS="identifikacni_cislo;datum;den;cas;lokalita;nasledky;zavineni;priciny;situovani;vozidlo;x;y"
 echo $COLS > $ACCIDENTS_CSV_FILE
 ACCIDENTS_CSV_FILE_BASENAME=$(basename $ACCIDENTS_CSV_FILE .csv)
 ACCIDENTS_VRT_FILE="$(dirname ${ACCIDENTS_CSV_FILE})/${ACCIDENTS_CSV_FILE_BASENAME}.vrt"
@@ -25,7 +25,6 @@ for file do
        gawk -F ";" '"'"'
        BEGIN {OFS=";"}
       {
-
         # "cas" column
         if ($6 == "\"2560\"")
           $6=""
@@ -302,7 +301,7 @@ for file do
         if (length($49) == 2)
           next
 
-        print $4,$5,$6,$64,$16,$11,$13,$25,$33,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
+        print $1,$4,$5,$6,$64,$16,$11,$13,$25,$33,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
     fi
 done' sh {} +
 
@@ -322,6 +321,7 @@ if [ -f $ACCIDENTS_CSV_FILE ]; then
             <OpenOptions>
                 <OOI key=\"EMPTY_STRING_AS_NULL\">YES</OOI>
             </OpenOptions>
+            <Field name=\"identifikacni_cislo\" type=\"String\" nullable=\"true\" />
             <Field name=\"datum\" type=\"Date\" nullable=\"true\" />
             <Field name=\"den\" type=\"String\" nullable=\"true\" />
             <Field name=\"cas\" type=\"Time\" nullable=\"true\" />
