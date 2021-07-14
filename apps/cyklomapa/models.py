@@ -114,6 +114,7 @@ czechiaregions_mapping = {
 
 
 class CzechiaAccidents(models.Model):
+    identifikacni_cislo = models.CharField(max_length=20, null=True)
     datum = models.DateField(null=True)
     den = models.CharField(max_length=2, null=True)
     cas = models.TimeField(null=True)
@@ -127,6 +128,7 @@ class CzechiaAccidents(models.Model):
 
 
 czechiaaccidents_mapping = {
+    'identifikacni_cislo': 'identifikacni_cislo',
     'datum': 'datum',
     'den': 'den',
     'cas': 'cas',
