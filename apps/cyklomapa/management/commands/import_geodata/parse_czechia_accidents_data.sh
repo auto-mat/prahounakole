@@ -24,7 +24,8 @@ COLS="identifikacni_cislo;\
   druh_povrchu_vozovky;\
   stav_povrchu_vozovky_v_dobe_nehody;\
   stav_komunikace;\
-  situovani;vozidlo;\
+  situovani;\
+  vozidlo;\
   x;\
   y"
 echo $COLS > $ACCIDENTS_CSV_FILE
