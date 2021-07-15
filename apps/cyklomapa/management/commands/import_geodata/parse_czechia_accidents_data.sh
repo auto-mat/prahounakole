@@ -30,6 +30,7 @@ COLS="identifikacni_cislo;\
   rizeni_provozu_v_dobe_nehody;\
   mistni_uprava_prednosti_v_jizde;\
   specificka_mista_a_objekty_v_miste_nehody;\
+  smerove_pomery;\
   vozidlo;\
   x;\
   y"
@@ -493,6 +494,24 @@ for file do
         else
           $28=""
 
+        # "smerove_pomery" column
+        if ($29 == 1)
+          $29="přímý úsek"
+        else if ($29 == 2)
+          $29="přímý úsek po projetí zatáčkou (do vzdálenosti cca 100 m od optického konce zatáčky)"
+        else if ($29 == 3)
+          $29="zatáčka"
+        else if ($29 == 4)
+          $29="křižovatka průsečná - čtyřramenná"
+        else if ($29 == 5)
+          $29="křižovatka styková - tříramenná"
+        else if ($29 == 6)
+          $29="křižovatka pěti a víceramenná"
+        else if ($29 == 7)
+          $29="kruhový objezd"
+        else
+          $29=""
+
         # "vozidlo" column
         if ($33 == 0 || $33 == 00)
           $33="moped"
@@ -543,7 +562,7 @@ for file do
         if (length($49) == 2)
           next
 
-        print $1,$4,$5,$6,$7,$8,$64,$16,$11,$12,$13,$18,$19,$20,$22,$24,$25,$26,$27,$28,$33,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
+        print $1,$4,$5,$6,$7,$8,$64,$16,$11,$12,$13,$18,$19,$20,$22,$24,$25,$26,$27,$28,$29,$33,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
     fi
 done' sh {} +
 
@@ -583,6 +602,7 @@ if [ -f $ACCIDENTS_CSV_FILE ]; then
             <Field name=\"rizeni_provozu_v_dobe_nehody\" type=\"String\" nullable=\"true\" />
             <Field name=\"mistni_uprava_prednosti_v_jizde\" type=\"String\" nullable=\"true\" />
             <Field name=\"specificka_mista_a_objekty_v_miste_nehody\" type=\"String\" nullable=\"true\" />
+            <Field name=\"smerove_pomery\" type=\"String\" nullable=\"true\" />
             <Field name=\"vozidlo\" type=\"String\" nullable=\"true\" />
             <Field name=\"x\" type=\"Real\" nullable=\"true\" />
             <Field name=\"y\" type=\"Real\" nullable=\"true\" />
