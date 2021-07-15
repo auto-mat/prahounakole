@@ -29,6 +29,7 @@ COLS="identifikacni_cislo;\
   situovani;\
   rizeni_provozu_v_dobe_nehody;\
   mistni_uprava_prednosti_v_jizde;\
+  specificka_mista_a_objekty_v_miste_nehody;\
   vozidlo;\
   x;\
   y"
@@ -466,6 +467,32 @@ for file do
         else
           $27=""
 
+        # "specificka_mista_a_objekty_v_miste_nehody" column
+        if ($28 == 0)
+          $28="žádné nebo žádné z uvedených"
+        else if ($28 == 1)
+          $28="přechod pro chodce"
+        else if ($28 == 2)
+          $28="v blízkosti přechodu pro chodce (do vzdálenosti 20 m)"
+        else if ($28 == 3)
+          $28="železniční přejezd nezabezpečený závorami ani světelným výstražným zařízením"
+        else if ($28 == 4)
+          $28="železniční přejezd zabezpečený"
+        else if ($28 == 5)
+          $28="most, nadjezd, podjezd, tunel"
+        else if ($28 == 6)
+          $28="zastávka autobusu, trolejbusu, tramvaje s nástup. ostrůvkem"
+        else if ($28 == 7)
+          $28="zastávka tramvaje, autobusu, trolejbusu bez nástup. ostrůvku"
+        else if ($28 == 8)
+          $28="výjezd z parkoviště, lesní cesty apod. (pol. 36 = 7,8)"
+        else if ($28 == 9)
+          $28="čerpadlo pohonných hmot"
+        else if ($28 == 10)
+          $28="parkoviště přiléhající ke komunikaci"
+        else
+          $28=""
+
         # "vozidlo" column
         if ($33 == 0 || $33 == 00)
           $33="moped"
@@ -516,7 +543,7 @@ for file do
         if (length($49) == 2)
           next
 
-        print $1,$4,$5,$6,$7,$8,$64,$16,$11,$12,$13,$18,$19,$20,$22,$24,$25,$26,$27,$33,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
+        print $1,$4,$5,$6,$7,$8,$64,$16,$11,$12,$13,$18,$19,$20,$22,$24,$25,$26,$27,$28,$33,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
     fi
 done' sh {} +
 
@@ -555,6 +582,7 @@ if [ -f $ACCIDENTS_CSV_FILE ]; then
             <Field name=\"situovani\" type=\"String\" nullable=\"true\" />
             <Field name=\"rizeni_provozu_v_dobe_nehody\" type=\"String\" nullable=\"true\" />
             <Field name=\"mistni_uprava_prednosti_v_jizde\" type=\"String\" nullable=\"true\" />
+            <Field name=\"specificka_mista_a_objekty_v_miste_nehody\" type=\"String\" nullable=\"true\" />
             <Field name=\"vozidlo\" type=\"String\" nullable=\"true\" />
             <Field name=\"x\" type=\"Real\" nullable=\"true\" />
             <Field name=\"y\" type=\"Real\" nullable=\"true\" />
