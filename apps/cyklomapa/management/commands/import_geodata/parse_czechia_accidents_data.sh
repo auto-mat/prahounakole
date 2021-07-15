@@ -25,6 +25,7 @@ COLS="identifikacni_cislo;\
   stav_povrchu_vozovky_v_dobe_nehody;\
   stav_komunikace;\
   viditelnost;\
+  deleni_komunikace;\
   situovani;\
   vozidlo;\
   x;\
@@ -393,6 +394,24 @@ for file do
         else
           $22=""
 
+        # "deleni_komunikace" column
+        if ($24 == 0)
+          $24="žádná z uvedených"
+        else if ($24 == 1)
+          $24="dvoupruhová"
+        else if ($24 == 2)
+          $24="třípruhová"
+        else if ($24 == 3)
+          $24="čtyřpruhová s dělícím pásem"
+        else if ($24 == 4)
+          $24="čtyřpruhová s dělící čarou"
+        else if ($24 == 5)
+          $24="vícepruhová"
+        else if ($24 == 6)
+          $24="rychlostní komunikace"
+        else
+          $24=""
+
         # "situovani" column
         if ($25 == 0)
           $25="žádné z uvedených"
@@ -467,7 +486,7 @@ for file do
         if (length($49) == 2)
           next
 
-        print $1,$4,$5,$6,$7,$8,$64,$16,$11,$12,$13,$18,$19,$20,$22,$25,$33,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
+        print $1,$4,$5,$6,$7,$8,$64,$16,$11,$12,$13,$18,$19,$20,$22,$24,$25,$33,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
     fi
 done' sh {} +
 
@@ -502,6 +521,7 @@ if [ -f $ACCIDENTS_CSV_FILE ]; then
             <Field name=\"stav_povrchu_vozovky_v_dobe_nehody\" type=\"String\" nullable=\"true\" />
             <Field name=\"stav_komunikace\" type=\"String\" nullable=\"true\" />
             <Field name=\"viditelnost\" type=\"String\" nullable=\"true\" />
+            <Field name=\"deleni_komunikace\" type=\"String\" nullable=\"true\" />
             <Field name=\"situovani\" type=\"String\" nullable=\"true\" />
             <Field name=\"vozidlo\" type=\"String\" nullable=\"true\" />
             <Field name=\"x\" type=\"Real\" nullable=\"true\" />
