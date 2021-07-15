@@ -24,6 +24,7 @@ COLS="identifikacni_cislo;\
   druh_povrchu_vozovky;\
   stav_povrchu_vozovky_v_dobe_nehody;\
   stav_komunikace;\
+  viditelnost;\
   situovani;\
   vozidlo;\
   x;\
@@ -374,6 +375,24 @@ for file do
         else
           $20=""
 
+        # "viditelnost" column
+        if ($22 == 1)
+          $22="ve dne - viditelnost nezhoršená vlivem povětrnostních podmínek"
+        else if ($22 == 2)
+          $22="ve dne - zhoršená viditelnost (svítání, soumrak)"
+        else if ($22 == 3)
+          $22="ve dne - zhoršená viditelnost vlivem povětrnostních podmínek (mlha, sněžení, déšť apod.)"
+        else if ($22 == 4)
+          $22="v noci - s veřejným osvětlením, viditelnost nezhoršená vlivem povětrnostních podmínek"
+        else if ($22 == 5)
+          $22="v noci - s veřejným osvětlením, zhoršená viditelnost vlivem povětrnostních podmínek (mlha, déšť, sněžení apod.)"
+        else if ($22 == 6)
+          $22="v noci - bez veřejného osvětlení, viditelnost nezhoršená vlivem povětrnostních podmínek"
+        else if ($22 == 7)
+          $22="v noci - bez veřejného osvětlení, viditelnost zhoršená vlivem povětrnostních podmínek (mlha, déšť, sněžení apod.)"
+        else
+          $22=""
+
         # "situovani" column
         if ($25 == 0)
           $25="žádné z uvedených"
@@ -448,7 +467,7 @@ for file do
         if (length($49) == 2)
           next
 
-        print $1,$4,$5,$6,$7,$8,$64,$16,$11,$12,$13,$18,$19,$20,$25,$33,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
+        print $1,$4,$5,$6,$7,$8,$64,$16,$11,$12,$13,$18,$19,$20,$22,25,$33,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
     fi
 done' sh {} +
 
@@ -482,6 +501,7 @@ if [ -f $ACCIDENTS_CSV_FILE ]; then
             <Field name=\"druh_povrchu_vozovky\" type=\"String\" nullable=\"true\" />
             <Field name=\"stav_povrchu_vozovky_v_dobe_nehody\" type=\"String\" nullable=\"true\" />
             <Field name=\"stav_komunikace\" type=\"String\" nullable=\"true\" />
+            <Field name=\"viditelnost\" type=\"String\" nullable=\"true\" />
             <Field name=\"situovani\" type=\"String\" nullable=\"true\" />
             <Field name=\"vozidlo\" type=\"String\" nullable=\"true\" />
             <Field name=\"x\" type=\"Real\" nullable=\"true\" />
