@@ -132,6 +132,7 @@ class CzechiaAccidents(models.Model):
     deleni_komunikace = models.CharField(max_length=50, null=True)
     situovani = models.CharField(max_length=50, null=True)
     rizeni_provozu_v_dobe_nehody = models.CharField(max_length=80, null=True)
+    mistni_uprava_prednosti_v_jizde = models.CharField(max_length=100, null=True)
     vozidlo = models.CharField(max_length=100, null=True)
     geom = models.PointField(srid=4326)
 
@@ -155,6 +156,7 @@ czechiaaccidents_mapping = {
     'deleni_komunikace': 'deleni_komunikace',
     'situovani': 'situovani',
     'rizeni_provozu_v_dobe_nehody': 'rizeni_provozu_v_dobe_nehody',
+    'mistni_uprava_prednosti_v_jizde': 'mistni_uprava_prednosti_v_jizde',
     'vozidlo': 'vozidlo',
     'geom': 'POINT',
 }
