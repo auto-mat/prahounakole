@@ -11,30 +11,30 @@ export ACCIDENTS_CSV_FILE=$2
 ACCIDENTS_SPATIALLITE=$3
 
 COLS="identifikacni_cislo;\
-  datum;\
-  den;\
-  cas;\
-  druh;\
-  druh_srazky_jedoucich_vozidel;\
-  lokalita;\
-  nasledky;\
-  zavineni;\
-  alkohol_u_vinika_nehody_pritomen;\
-  priciny;\
-  druh_povrchu_vozovky;\
-  stav_povrchu_vozovky_v_dobe_nehody;\
-  stav_komunikace;\
-  viditelnost;\
-  deleni_komunikace;\
-  situovani;\
-  rizeni_provozu_v_dobe_nehody;\
-  mistni_uprava_prednosti_v_jizde;\
-  specificka_mista_a_objekty_v_miste_nehody;\
-  smerove_pomery;\
-  vozidlo;\
-  x;\
-  y;\
-  kategorie_chodce"
+datum;\
+den;\
+cas;\
+druh;\
+druh_srazky_jedoucich_vozidel;\
+lokalita;\
+nasledky;\
+zavineni;\
+alkohol_u_vinika_nehody_pritomen;\
+priciny;\
+druh_povrchu_vozovky;\
+stav_povrchu_vozovky_v_dobe_nehody;\
+stav_komunikace;\
+viditelnost;\
+deleni_komunikace;\
+situovani;\
+rizeni_provozu_v_dobe_nehody;\
+mistni_uprava_prednosti_v_jizde;\
+specificka_mista_a_objekty_v_miste_nehody;\
+smerove_pomery;\
+vozidlo;\
+x;\
+y;\
+kategorie_chodce"
 
 ACCIDENTS_CSV_FILE_BASENAME=$(basename $ACCIDENTS_CSV_FILE .csv)
 ACCIDENTS_JOIN_CSV_FILE="$(dirname ${ACCIDENTS_CSV_FILE})/${ACCIDENTS_CSV_FILE_BASENAME}_join.csv"
