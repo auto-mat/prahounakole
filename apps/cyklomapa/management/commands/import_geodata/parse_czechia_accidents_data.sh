@@ -33,10 +33,13 @@ COLS="identifikacni_cislo;\
   smerove_pomery;\
   vozidlo;\
   x;\
-  y"
-echo $COLS > $ACCIDENTS_CSV_FILE
+  y;\
+  kategorie_chodce"
+
 ACCIDENTS_CSV_FILE_BASENAME=$(basename $ACCIDENTS_CSV_FILE .csv)
+ACCIDENTS_JOIN_CSV_FILE="$(dirname ${ACCIDENTS_CSV_FILE})/${ACCIDENTS_CSV_FILE_BASENAME}_join.csv"
 ACCIDENTS_VRT_FILE="$(dirname ${ACCIDENTS_CSV_FILE})/${ACCIDENTS_CSV_FILE_BASENAME}.vrt"
+export ACCIDENTS_CHODCI_CSV_FILE="$(dirname ${ACCIDENTS_CSV_FILE})/${ACCIDENTS_CSV_FILE_BASENAME}_chodci.csv"
 # LAYER_COLS=$(echo $COLS | cut -d ";" -f1-6 | sed "s/;/, /g")
 # SQL="SELECT ${LAYER_COLS}, MakePoint(CAST(x AS float),CAST(y AS float)) FROM $(basename ${ACCIDENTS_CSV_FILE} )"
 
@@ -562,9 +565,36 @@ for file do
         if (length($49) == 2)
           next
 
-        print $1,$4,$5,$6,$7,$8,$64,$16,$11,$12,$13,$18,$19,$20,$22,$24,$25,$26,$27,$28,$29,$33,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
+        print $1,$4,$5,$6,$7,$8,$64,$16,$11,$12,$13,$18,$19,$20,$22,$24,$25,$26,$27,$28,$30,$33,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
     fi
 done' sh {} +
+
+find "$TEMP_DIR" -type f -name 'CHODCI.csv' -exec bash -c '
+for file do
+    gawk -F ";" '"'"'
+       BEGIN {OFS=";"}
+      {
+        # "kategorie_chodce" column
+        if ($2 == 1)
+          $2="muž"
+        else if ($2 == 2)
+          $2="žena"
+        else if ($2 == 3)
+          $2="dítě (do 15 let)"
+        else if ($2 == 4)
+          $2="skupina dětí"
+        else if ($2 == 5)
+          $2="jiná skupina"
+        else
+          $2=""
+
+      print $1,$2}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CHODCI_CSV_FILE
+done' sh {} +
+
+join -a 1 -t ';' --nocheck-order $ACCIDENTS_CSV_FILE $ACCIDENTS_CHODCI_CSV_FILE > $ACCIDENTS_JOIN_CSV_FILE
+gawk -v ncols="$(echo $COLS | awk -F ";" '{print NF-1}')" -i inplace -F ";" 'BEGIN{OFS=";"}{print( gsub(/;/, ";") == ncols  ? $0 : $0, "")}' $ACCIDENTS_JOIN_CSV_FILE
+gawk -v cols="$COLS" -i inplace 'BEGINFILE{print cols}{print}' $ACCIDENTS_JOIN_CSV_FILE
+mv $ACCIDENTS_JOIN_CSV_FILE $ACCIDENTS_CSV_FILE
 
 if [ -f $ACCIDENTS_CSV_FILE ]; then
     # Clean duplicates
@@ -602,6 +632,7 @@ if [ -f $ACCIDENTS_CSV_FILE ]; then
             <Field name=\"rizeni_provozu_v_dobe_nehody\" type=\"String\" nullable=\"true\" />
             <Field name=\"mistni_uprava_prednosti_v_jizde\" type=\"String\" nullable=\"true\" />
             <Field name=\"specificka_mista_a_objekty_v_miste_nehody\" type=\"String\" nullable=\"true\" />
+            <Field name=\"kategorie_chodce\" type=\"String\" nullable=\"true\" />
             <Field name=\"smerove_pomery\" type=\"String\" nullable=\"true\" />
             <Field name=\"vozidlo\" type=\"String\" nullable=\"true\" />
             <Field name=\"x\" type=\"Real\" nullable=\"true\" />
