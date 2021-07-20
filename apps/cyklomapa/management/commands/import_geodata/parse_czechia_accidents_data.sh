@@ -34,7 +34,8 @@ smerove_pomery;\
 vozidlo;\
 x;\
 y;\
-kategorie_chodce"
+kategorie_chodce;\
+chovani_chodce"
 
 ACCIDENTS_CSV_FILE_BASENAME=$(basename $ACCIDENTS_CSV_FILE .csv)
 ACCIDENTS_JOIN_CSV_FILE="$(dirname ${ACCIDENTS_CSV_FILE})/${ACCIDENTS_CSV_FILE_BASENAME}_join.csv"
@@ -588,11 +589,31 @@ for file do
         else
           $2=""
 
-      print $1,$2}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CHODCI_CSV_FILE
+        # "chovani_chodce" column
+        if ($4 == 1)
+          $4="správné, přiměřené"
+        else if ($4 == 2)
+          $4="špatný odhad vzdálenosti a rychlosti vozidla"
+        else if ($4 == 3)
+          $4="náhlé vstoupení do vozovky - z chodníku, krajnice"
+        else if ($4 == 4)
+          $4="náhlé vstoupení do vozovky - z nástupního nebo dělícího ostrůvku"
+        else if ($4 == 5)
+          $4="zmatené, zbrklé, nerozhodné jednání"
+        else if ($4 == 6)
+          $4="náhlá změna směru chůze"
+        else if ($4 == 7)
+          $4="náraz do vozidla z boku"
+        else if ($4 == 8)
+          $4="hra dětí na vozovce"
+        else
+          $4=""
+
+      print $1,$2,$4}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CHODCI_CSV_FILE
 done' sh {} +
 
 join -a 1 -t ';' --nocheck-order $ACCIDENTS_CSV_FILE $ACCIDENTS_CHODCI_CSV_FILE > $ACCIDENTS_JOIN_CSV_FILE
-gawk -v ncols="$(echo $COLS | awk -F ";" '{print NF-1}')" -i inplace -F ";" 'BEGIN{OFS=";"}{print( gsub(/;/, ";") == ncols  ? $0 : $0, "")}' $ACCIDENTS_JOIN_CSV_FILE
+gawk -v ncols="$(echo $COLS | awk -F ";" '{print NF-1}')" -i inplace -F ";" 'BEGIN{OFS=";"}{print(gsub(/;/, ";") == ncols  ? $0 : $0, "", "", "")}' $ACCIDENTS_JOIN_CSV_FILE
 gawk -v cols="$COLS" -i inplace 'BEGINFILE{print cols}{print}' $ACCIDENTS_JOIN_CSV_FILE
 mv $ACCIDENTS_JOIN_CSV_FILE $ACCIDENTS_CSV_FILE
 
@@ -632,8 +653,9 @@ if [ -f $ACCIDENTS_CSV_FILE ]; then
             <Field name=\"rizeni_provozu_v_dobe_nehody\" type=\"String\" nullable=\"true\" />
             <Field name=\"mistni_uprava_prednosti_v_jizde\" type=\"String\" nullable=\"true\" />
             <Field name=\"specificka_mista_a_objekty_v_miste_nehody\" type=\"String\" nullable=\"true\" />
-            <Field name=\"kategorie_chodce\" type=\"String\" nullable=\"true\" />
             <Field name=\"smerove_pomery\" type=\"String\" nullable=\"true\" />
+            <Field name=\"kategorie_chodce\" type=\"String\" nullable=\"true\" />
+            <Field name=\"chovani_chodce\" type=\"String\" nullable=\"true\" />
             <Field name=\"vozidlo\" type=\"String\" nullable=\"true\" />
             <Field name=\"x\" type=\"Real\" nullable=\"true\" />
             <Field name=\"y\" type=\"Real\" nullable=\"true\" />
