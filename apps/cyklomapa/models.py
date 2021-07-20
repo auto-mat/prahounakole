@@ -134,8 +134,9 @@ class CzechiaAccidents(models.Model):
     rizeni_provozu_v_dobe_nehody = models.CharField(max_length=80, null=True)
     mistni_uprava_prednosti_v_jizde = models.CharField(max_length=100, null=True)
     specificka_mista_a_objekty_v_miste_nehody = models.CharField(max_length=100, null=True)
-    kategorie_chodce = models.CharField(max_length=20, null=True)
     smerove_pomery = models.CharField(max_length=100, null=True)
+    kategorie_chodce = models.CharField(max_length=20, null=True)
+    chovani_chodce = models.CharField(max_length=80, null=True)
     vozidlo = models.CharField(max_length=100, null=True)
     geom = models.PointField(srid=4326)
 
@@ -163,6 +164,7 @@ czechiaaccidents_mapping = {
     'specificka_mista_a_objekty_v_miste_nehody': 'specificka_mista_a_objekty_v_miste_nehody',
     'smerove_pomery': 'smerove_pomery',
     'kategorie_chodce': 'kategorie_chodce',
+    'chovani_chodce': 'chovani_chodce',
     'vozidlo': 'vozidlo',
     'geom': 'POINT',
 }
