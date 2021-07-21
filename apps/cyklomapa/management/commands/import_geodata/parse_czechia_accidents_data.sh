@@ -31,6 +31,7 @@ rizeni_provozu_v_dobe_nehody;\
 mistni_uprava_prednosti_v_jizde;\
 specificka_mista_a_objekty_v_miste_nehody;\
 smerove_pomery;\
+pocet_zucastnenych_vozidel;\
 vozidlo;\
 x;\
 y;\
@@ -567,7 +568,7 @@ for file do
         if (length($49) == 2)
           next
 
-        print $1,$4,$5,$6,$7,$8,$64,$16,$11,$12,$13,$18,$19,$20,$22,$24,$25,$26,$27,$28,$29,$33,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
+        print $1,$4,$5,$6,$7,$8,$64,$16,$11,$12,$13,$18,$19,$20,$22,$24,$25,$26,$27,$28,$29,$30,$33,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
     fi
 done' sh {} +
 
@@ -681,6 +682,7 @@ if [ -f $ACCIDENTS_CSV_FILE ]; then
             <Field name=\"mistni_uprava_prednosti_v_jizde\" type=\"String\" nullable=\"true\" />
             <Field name=\"specificka_mista_a_objekty_v_miste_nehody\" type=\"String\" nullable=\"true\" />
             <Field name=\"smerove_pomery\" type=\"String\" nullable=\"true\" />
+            <Field name=\"pocet_zucastnenych_vozidel\" type=\"Integer\" nullable=\"true\" />
             <Field name=\"kategorie_chodce\" type=\"String\" nullable=\"true\" />
             <Field name=\"chovani_chodce\" type=\"String\" nullable=\"true\" />
             <Field name=\"situace_v_miste_nehody\" type=\"String\" nullable=\"true\" />
