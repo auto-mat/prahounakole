@@ -135,6 +135,7 @@ class CzechiaAccidents(models.Model):
     mistni_uprava_prednosti_v_jizde = models.CharField(max_length=100, null=True)
     specificka_mista_a_objekty_v_miste_nehody = models.CharField(max_length=100, null=True)
     smerove_pomery = models.CharField(max_length=100, null=True)
+    pocet_zucastnenych_vozidel = models.IntegerField(null=True)
     kategorie_chodce = models.CharField(max_length=20, null=True)
     chovani_chodce = models.CharField(max_length=80, null=True)
     situace_v_miste_nehody = models.CharField(max_length=80, null=True)
@@ -164,6 +165,7 @@ czechiaaccidents_mapping = {
     'mistni_uprava_prednosti_v_jizde': 'mistni_uprava_prednosti_v_jizde',
     'specificka_mista_a_objekty_v_miste_nehody': 'specificka_mista_a_objekty_v_miste_nehody',
     'smerove_pomery': 'smerove_pomery',
+    'pocet_zucastnenych_vozidel': 'pocet_zucastnenych_vozidel',
     'kategorie_chodce': 'kategorie_chodce',
     'chovani_chodce': 'chovani_chodce',
     'situace_v_miste_nehody': 'situace_v_miste_nehody',
