@@ -137,6 +137,7 @@ class CzechiaAccidents(models.Model):
     smerove_pomery = models.CharField(max_length=100, null=True)
     pocet_zucastnenych_vozidel = models.IntegerField(null=True)
     misto_dopravni_nehody = models.CharField(max_length=220, null=True)
+    druh_pozemni_komunikace = models.CharField(max_length=80, null=True)
     kategorie_chodce = models.CharField(max_length=20, null=True)
     chovani_chodce = models.CharField(max_length=80, null=True)
     situace_v_miste_nehody = models.CharField(max_length=80, null=True)
@@ -168,6 +169,7 @@ czechiaaccidents_mapping = {
     'smerove_pomery': 'smerove_pomery',
     'pocet_zucastnenych_vozidel': 'pocet_zucastnenych_vozidel',
     'misto_dopravni_nehody': 'misto_dopravni_nehody',
+    'druh_pozemni_komunikace': 'druh_pozemni_komunikace',
     'kategorie_chodce': 'kategorie_chodce',
     'chovani_chodce': 'chovani_chodce',
     'situace_v_miste_nehody': 'situace_v_miste_nehody',
