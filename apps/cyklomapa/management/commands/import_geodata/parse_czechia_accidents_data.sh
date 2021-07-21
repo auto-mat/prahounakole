@@ -32,6 +32,7 @@ mistni_uprava_prednosti_v_jizde;\
 specificka_mista_a_objekty_v_miste_nehody;\
 smerove_pomery;\
 pocet_zucastnenych_vozidel;\
+misto_dopravni_nehody;\
 vozidlo;\
 x;\
 y;\
@@ -518,6 +519,22 @@ for file do
         else
           $29=""
 
+        # "misto_dopravni_nehody" column
+        if ($31 == 00)
+          $31="mimo křižovatku"
+        else if ($31 == 10)
+          $31="na kžižovatce - jedná-li se o křížení místních komunikací, účelových komunikací nebo jde o mezilehlou křižovatku (na sledovaném úseku ve sledovaných městech)"
+        else if ($31 == 11 || $31 == 12 || $31 == 13 || $31 == 14 || $31 == 15 || $31 == 16 || $31 == 17 || $31 == 18)
+          $31="uvnitř zóny 1-8 předmětné křižovatky"
+        else if ($31 == 19)
+          $31="na křižovatce - uvnitř hranic křižovatky definovaných pro systém evidence nehod (zóna 9)"
+        else if ($31 == 22 || $31 == 23 || $31 == 24 || $31 == 25 || $31 == 26 || $31 == 27 || $31 == 28)
+          $31="na vjezdové nebo výjezdové části větve při mimoúrovňovém křížení"
+        else if ($31 == 29)
+          $31="mimo zónu - uvnitř zóny 1-8 předmětné křižovatky, na křižovatce - uvnitř hranic křižovatky definovaných pro systém evidence nehod (zóna 9) a na vjezdové nebo výjezdové části větve při mimoúrovňovém křížení"
+        else
+          $31=""
+
         # "vozidlo" column
         if ($33 == 0 || $33 == 00)
           $33="moped"
@@ -568,7 +585,7 @@ for file do
         if (length($49) == 2)
           next
 
-        print $1,$4,$5,$6,$7,$8,$64,$16,$11,$12,$13,$18,$19,$20,$22,$24,$25,$26,$27,$28,$29,$30,$33,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
+        print $1,$4,$5,$6,$7,$8,$64,$16,$11,$12,$13,$18,$19,$20,$22,$24,$25,$26,$27,$28,$29,$30,$31,$33,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
     fi
 done' sh {} +
 
@@ -683,6 +700,7 @@ if [ -f $ACCIDENTS_CSV_FILE ]; then
             <Field name=\"specificka_mista_a_objekty_v_miste_nehody\" type=\"String\" nullable=\"true\" />
             <Field name=\"smerove_pomery\" type=\"String\" nullable=\"true\" />
             <Field name=\"pocet_zucastnenych_vozidel\" type=\"Integer\" nullable=\"true\" />
+            <Field name=\"misto_dopravni_nehody\" type=\"String\" nullable=\"true\" />
             <Field name=\"kategorie_chodce\" type=\"String\" nullable=\"true\" />
             <Field name=\"chovani_chodce\" type=\"String\" nullable=\"true\" />
             <Field name=\"situace_v_miste_nehody\" type=\"String\" nullable=\"true\" />
