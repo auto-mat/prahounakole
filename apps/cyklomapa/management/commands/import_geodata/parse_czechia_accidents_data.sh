@@ -35,7 +35,8 @@ vozidlo;\
 x;\
 y;\
 kategorie_chodce;\
-chovani_chodce"
+chovani_chodce;\
+situace_v_miste_nehody"
 
 ACCIDENTS_CSV_FILE_BASENAME=$(basename $ACCIDENTS_CSV_FILE .csv)
 ACCIDENTS_JOIN_CSV_FILE="$(dirname ${ACCIDENTS_CSV_FILE})/${ACCIDENTS_CSV_FILE_BASENAME}_join.csv"
@@ -609,11 +610,37 @@ for file do
         else
           $4=""
 
-      print $1,$2,$4}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CHODCI_CSV_FILE
+        # "situace_v_miste_nehody" column
+        if ($5 == 0)
+          $5="jiná situace"
+        else if ($5 == 1)
+          $5="vstup chodce - na signál VOLNO"
+        else if ($5 == 2)
+          $5="vstup chodce - na signál STŮJ"
+        else if ($5 == 3)
+          $5="vstup chodce - do vozovky v blízkosti přechodu (cca do 20 m)"
+        else if ($5 == 4)
+          $5="přecházení - po vyznačeném přechodu"
+        else if ($5 == 5)
+          $5="přecházení - těsně před nebo za vozidlem stojícím v zastávce"
+        else if ($5 == 6)
+          $5="přecházení - těsně před nebo za vozidlem parkujícím"
+        else if ($5 == 7)
+          $5="chůze - stání na chodníku"
+        else if ($5 == 8)
+          $5="chůze - po správné straně"
+        else if ($5 == 9)
+          $5="chůze - po nesprávné straně"
+        else if ($5 == 10)
+          $5="přecházení - mimo přechod (20 a více metrů od přechodu)"
+        else
+          $5=""
+
+      print $1,$2,$4,$5}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CHODCI_CSV_FILE
 done' sh {} +
 
 join -a 1 -t ';' --nocheck-order $ACCIDENTS_CSV_FILE $ACCIDENTS_CHODCI_CSV_FILE > $ACCIDENTS_JOIN_CSV_FILE
-gawk -v ncols="$(echo $COLS | awk -F ";" '{print NF-1}')" -i inplace -F ";" 'BEGIN{OFS=";"}{print(gsub(/;/, ";") == ncols  ? $0 : $0, "", "", "")}' $ACCIDENTS_JOIN_CSV_FILE
+gawk -v ncols="$(echo $COLS | awk -F ";" '{print NF-1}')" -i inplace -F ";" 'BEGIN{OFS=";"}{print(gsub(/;/, ";") == ncols  ? $0 : $0, "", "", "", "")}' $ACCIDENTS_JOIN_CSV_FILE
 gawk -v cols="$COLS" -i inplace 'BEGINFILE{print cols}{print}' $ACCIDENTS_JOIN_CSV_FILE
 mv $ACCIDENTS_JOIN_CSV_FILE $ACCIDENTS_CSV_FILE
 
@@ -656,6 +683,7 @@ if [ -f $ACCIDENTS_CSV_FILE ]; then
             <Field name=\"smerove_pomery\" type=\"String\" nullable=\"true\" />
             <Field name=\"kategorie_chodce\" type=\"String\" nullable=\"true\" />
             <Field name=\"chovani_chodce\" type=\"String\" nullable=\"true\" />
+            <Field name=\"situace_v_miste_nehody\" type=\"String\" nullable=\"true\" />
             <Field name=\"vozidlo\" type=\"String\" nullable=\"true\" />
             <Field name=\"x\" type=\"Real\" nullable=\"true\" />
             <Field name=\"y\" type=\"Real\" nullable=\"true\" />
