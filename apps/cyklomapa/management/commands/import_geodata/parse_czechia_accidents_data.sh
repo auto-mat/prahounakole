@@ -33,6 +33,7 @@ specificka_mista_a_objekty_v_miste_nehody;\
 smerove_pomery;\
 pocet_zucastnenych_vozidel;\
 misto_dopravni_nehody;\
+druh_pozemni_komunikace;\
 vozidlo;\
 x;\
 y;\
@@ -55,6 +56,28 @@ for file do
        gawk -F ";" '"'"'
        BEGIN {OFS=";"}
       {
+        # "druh_pozemni_komunikace" column
+        if ($2 == 0)
+          $2="dálnice"
+        else if ($2 == 1)
+          $2="silnice 1. třídy"
+        else if ($2 == 2)
+          $2="silnice 2. třídy"
+        else if ($2 == 3)
+          $2="silnice 3. třídy"
+        else if ($2 == 4)
+          $2="uzel - tj. křižovatka sledovaná ve vybraných městech"
+        else if ($2 == 5)
+          $2="komunikace sledovaná - (ve vybraných městech)"
+        else if ($2 == 6)
+          $2="komunikace místní"
+        else if ($2 == 7)
+          $2="komunikace účelová - polní a lesní cesty atd."
+        else if ($2 == 8)
+          $2="komunikace účelová - ostatní (parkoviště, odpočívky apod.)"
+        else
+          $2=""
+
         # "cas" column
         if ($6 == "\"2560\"")
           $6=""
@@ -585,7 +608,7 @@ for file do
         if (length($49) == 2)
           next
 
-        print $1,$4,$5,$6,$7,$8,$64,$16,$11,$12,$13,$18,$19,$20,$22,$24,$25,$26,$27,$28,$29,$30,$31,$33,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
+        print $1,$4,$5,$6,$7,$8,$64,$16,$11,$12,$13,$18,$19,$20,$22,$24,$25,$26,$27,$28,$29,$30,$31,$2,$33,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
     fi
 done' sh {} +
 
@@ -701,6 +724,7 @@ if [ -f $ACCIDENTS_CSV_FILE ]; then
             <Field name=\"smerove_pomery\" type=\"String\" nullable=\"true\" />
             <Field name=\"pocet_zucastnenych_vozidel\" type=\"Integer\" nullable=\"true\" />
             <Field name=\"misto_dopravni_nehody\" type=\"String\" nullable=\"true\" />
+            <Field name=\"druh_pozemni_komunikace\" type=\"String\" nullable=\"true\" />
             <Field name=\"kategorie_chodce\" type=\"String\" nullable=\"true\" />
             <Field name=\"chovani_chodce\" type=\"String\" nullable=\"true\" />
             <Field name=\"situace_v_miste_nehody\" type=\"String\" nullable=\"true\" />
