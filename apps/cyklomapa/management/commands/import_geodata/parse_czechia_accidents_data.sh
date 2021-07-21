@@ -87,7 +87,7 @@ for file do
           $6=substr($6, 2, 1)":"substr($6, 3, 2)
 
         # "den" column
-        if ($5 ==  0)
+        if ($5 == 0)
           $5="Po"
         else if ($5 == 1)
           $5="Ut"
