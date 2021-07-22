@@ -309,7 +309,7 @@ for file do
         else if ($13 == 512)
           $13="jízda (vjetí) jednosměrnou ulicí, silnicí (v protisměru)"
         else if ($13 == 513)
-          $13="nehoda v důsledku  použití (policií) prostředků k násilnému zastavení vozidla (zastavovací pásy, zábrana, vozidlo atp.)"
+          $13="nehoda v důsledku použití (policií) prostředků k násilnému zastavení vozidla (zastavovací pásy, zábrana, vozidlo atp.)"
         else if ($13 == 514)
           $13="nehoda v důsledku použití služební zbraně (policií)"
         else if ($13 == 515)
