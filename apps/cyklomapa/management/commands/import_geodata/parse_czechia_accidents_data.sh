@@ -39,6 +39,7 @@ druh_vozidla;\
 charakteristika_vozidla;\
 smyk;\
 vozidlo_po_nehode;\
+smer_jizdy_nebo_postaveni_vozidla;\
 x;\
 y;\
 kategorie_chodce;\
@@ -684,6 +685,24 @@ for file do
         else
           $38=""
 
+        # "smer_jizdy_nebo_postaveni_vozidla" column
+        if ($42 == 1)
+          $42="vozidlo jedoucí - ve měru staničení (na komunikaci)"
+        else if ($42 == 2)
+          $42="vozidlo odstavené, parkující - ve směru staničení (na komunikaci)"
+        else if ($42 == 3)
+          $42="vozidlo jedoucí - proti směru staničení (na komunikaci)"
+        else if ($42 == 4)
+          $42="vozidlo odstavené, parkující - proti směru staničení (na komunikaci)"
+        else if ($42 == 5)
+          $42="vozidlo jedoucí - na komunikaci bez staničení"
+        else if ($42 == 6)
+          $42="vozidlo odstavené, parkující - na komunikaci bez staničení"
+        else if ($42 == 10 || $42 == 11 || $42 == 12 || $42 == 13 || $42 == 14 || $42 == 15 || $42 == 16 || $42 == 17 || $42 == 18 || $42 == 19 || $42 == 20 || $42 == 21 || $42 == 22 || $42 == 23 || $42 == 24 || $42 == 25 || $42 == 26 || $42 == 27 || $42 == 28 || $42 == 29 || $42 == 30 || $42 == 31 || $42 == 32 || $42 == 33 || $42 == 34 || $42 == 35 || $42 == 36 || $42 == 37 || $42 == 38 || $42 == 39 || $42 == 40 || $42 == 41 || $42 == 42 || $42 == 43 || $42 == 44 || $42 == 45 || $42 == 46 || $42 == 47 || $42 == 48 || $42 == 49 || $42 == 50 || $42 == 51 || $42 == 52 || $42 == 53 || $42 == 54 || $42 == 55 || $42 == 56 || $42 == 57 || $42 == 58 || $42 == 59 || $42 == 60 || $42 == 61 || $42 == 62 || $42 == 63 || $42 == 64 || $42 == 65 || $42 == 66 || $42 == 67 || $42 == 68 || $42 == 69 || $42 == 70 || $42 == 71 || $42 == 72 || $42 == 73 || $42 == 74 || $42 == 75 || $42 == 76 || $42 == 77 || $42 == 78 || $42 == 79 || $42 == 80 || $42 == 81 || $42 == 82 || $42 == 83 || $42 == 84 || $42 == 85 || $42 == 86 || $42 == 87 || $42 == 88 || $42 == 89 || $42 == 90 || $42 == 91 || $42 == 92 || $42 == 93 || $42 == 94 || $42 == 95 || $42 == 96 || $42 == 97 || $42 == 98 || $42 == 99)
+          $42="zachycuje postavení vozidla při nehodě na křižovatce"
+        else
+          $42=""
+
         # "x" coordinate column, empty value -> empty quotes "" (length 2)
         if (length($48) == 2)
           next
@@ -692,7 +711,7 @@ for file do
         if (length($49) == 2)
           next
 
-        print $1,$4,$5,$6,$7,$8,$64,$16,$11,$12,$13,$18,$19,$20,$22,$24,$25,$26,$27,$28,$29,$30,$31,$2,$32,$33,$36,$37,$38,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
+        print $1,$4,$5,$6,$7,$8,$64,$16,$11,$12,$13,$18,$19,$20,$22,$24,$25,$26,$27,$28,$29,$30,$31,$2,$32,$33,$36,$37,$38,$42,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
     fi
 done' sh {} +
 
@@ -817,6 +836,7 @@ if [ -f $ACCIDENTS_CSV_FILE ]; then
             <Field name=\"charakteristika_vozidla\" type=\"String\" nullable=\"true\" />
             <Field name=\"smyk\" type=\"String\" nullable=\"true\" />
             <Field name=\"vozidlo_po_nehode\" type=\"String\" nullable=\"true\" />
+            <Field name=\"smer_jizdy_nebo_postaveni_vozidla\" type=\"String\" nullable=\"true\" />
             <Field name=\"x\" type=\"Real\" nullable=\"true\" />
             <Field name=\"y\" type=\"Real\" nullable=\"true\" />
         </OGRVRTLayer>
