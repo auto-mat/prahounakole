@@ -36,6 +36,7 @@ misto_dopravni_nehody;\
 druh_pozemni_komunikace;\
 druh_krizujici_komunikace;\
 druh_vozidla;\
+charakteristika_vozidla;\
 x;\
 y;\
 kategorie_chodce;\
@@ -617,6 +618,48 @@ for file do
         else
           $33=""
 
+        # "charakteristika_vozidla" column
+        if ($36 == 00)
+          $36="nezjištěno"
+        else if ($36 == 1)
+          $36="soukromé - nevyužívané k výdělečné činnost"
+        else if ($36 == 2)
+          $36="soukromé - využívané k výdělečné činnosti"
+        else if ($36 == 3)
+          $36="soukromá organizace - (podnikatel, s.r.o., v.o.s., a.s., atd.)"
+        else if ($36 == 4)
+          $36="veřejná hromadná doprava"
+        else if ($36 == 5)
+          $36="městská hromadná doprava"
+        else if ($36 == 6)
+          $36="mezinárodní kamionová doprava"
+        else if ($36 == 7)
+          $36="TAXI"
+        else if ($36 == 8)
+          $36="státní podnik, státní organizace"
+        else if ($36 == 9)
+          $36="registrované mimo území ČR"
+        else if ($36 == 10)
+          $36="zastupitelský úřad"
+        else if ($36 == 11)
+          $36="ministerstvo vnitra"
+        else if ($36 == 12)
+          $36="policie ČR"
+        else if ($36 == 13)
+          $36="městská, obecní policie"
+        else if ($36 == 14)
+          $36="soukromé bezpečnostní agentury"
+        else if ($36 == 15)
+          $36="ministerstvo obrany"
+        else if ($36 == 16)
+          $36="jiné"
+        else if ($36 == 17)
+          $36="odcizené"
+        else if ($36 == 18)
+          $36="vozidlo AUTOŠKOLY provádějící výcvik"
+        else
+          $36=""
+
         # "x" coordinate column, empty value -> empty quotes "" (length 2)
         if (length($48) == 2)
           next
@@ -625,7 +668,7 @@ for file do
         if (length($49) == 2)
           next
 
-        print $1,$4,$5,$6,$7,$8,$64,$16,$11,$12,$13,$18,$19,$20,$22,$24,$25,$26,$27,$28,$29,$30,$31,$2,$32,$33,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
+        print $1,$4,$5,$6,$7,$8,$64,$16,$11,$12,$13,$18,$19,$20,$22,$24,$25,$26,$27,$28,$29,$30,$31,$2,$32,$33,$36,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
     fi
 done' sh {} +
 
@@ -747,6 +790,7 @@ if [ -f $ACCIDENTS_CSV_FILE ]; then
             <Field name=\"chovani_chodce\" type=\"String\" nullable=\"true\" />
             <Field name=\"situace_v_miste_nehody\" type=\"String\" nullable=\"true\" />
             <Field name=\"druh_vozidla\" type=\"String\" nullable=\"true\" />
+            <Field name=\"charakteristika_vozidla\" type=\"String\" nullable=\"true\" />
             <Field name=\"x\" type=\"Real\" nullable=\"true\" />
             <Field name=\"y\" type=\"Real\" nullable=\"true\" />
         </OGRVRTLayer>
