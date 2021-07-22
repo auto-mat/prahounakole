@@ -40,6 +40,7 @@ charakteristika_vozidla;\
 smyk;\
 vozidlo_po_nehode;\
 smer_jizdy_nebo_postaveni_vozidla;\
+stav_ridice;\
 x;\
 y;\
 kategorie_chodce;\
@@ -703,6 +704,30 @@ for file do
         else
           $42=""
 
+        # "stav_ridice" column
+        if ($45 == 0)
+          $45="jiný nepříznivý stav"
+        else if ($45 == 1)
+          $45="dobrý - žádné nepříznivé okolnosti nebyly zjištěny"
+        else if ($45 == 2)
+          $45="unaven, usnul, náhlá fyzická indispozice"
+        else if ($45 == 3)
+          $45="pod vlivem - léků, narkotik"
+        else if ($45 == 4)
+          $45="pod vlivem - alkoholu, obsah alkoholu v krvi do 0,99 ‰"
+        else if ($45 == 5)
+          $45="pod vlivem - alkoholu, obsah alkoholu v krvi 1 ‰ a více"
+        else if ($45 == 6)
+          $45="nemoc, úraz apod."
+        else if ($45 == 7)
+          $45="invalida"
+        else if ($45 == 8)
+          $45="řidič při jízdě zemřel (infarkt apod.)"
+        else if ($45 == 9)
+          $45="pokus o sebevraždu, sebevražda"
+        else
+          $45=""
+
         # "x" coordinate column, empty value -> empty quotes "" (length 2)
         if (length($48) == 2)
           next
@@ -711,7 +736,7 @@ for file do
         if (length($49) == 2)
           next
 
-        print $1,$4,$5,$6,$7,$8,$64,$16,$11,$12,$13,$18,$19,$20,$22,$24,$25,$26,$27,$28,$29,$30,$31,$2,$32,$33,$36,$37,$38,$42,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
+        print $1,$4,$5,$6,$7,$8,$64,$16,$11,$12,$13,$18,$19,$20,$22,$24,$25,$26,$27,$28,$29,$30,$31,$2,$32,$33,$36,$37,$38,$42,$45,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
     fi
 done' sh {} +
 
@@ -837,6 +862,7 @@ if [ -f $ACCIDENTS_CSV_FILE ]; then
             <Field name=\"smyk\" type=\"String\" nullable=\"true\" />
             <Field name=\"vozidlo_po_nehode\" type=\"String\" nullable=\"true\" />
             <Field name=\"smer_jizdy_nebo_postaveni_vozidla\" type=\"String\" nullable=\"true\" />
+            <Field name=\"stav_ridice\" type=\"String\" nullable=\"true\" />
             <Field name=\"x\" type=\"Real\" nullable=\"true\" />
             <Field name=\"y\" type=\"Real\" nullable=\"true\" />
         </OGRVRTLayer>
