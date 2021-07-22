@@ -706,28 +706,28 @@ for file do
           $42=""
 
         # "stav_ridice" column
-        if ($45 == 0)
-          $45="jiný nepříznivý stav"
-        else if ($45 == 1)
-          $45="dobrý - žádné nepříznivé okolnosti nebyly zjištěny"
-        else if ($45 == 2)
-          $45="unaven, usnul, náhlá fyzická indispozice"
-        else if ($45 == 3)
-          $45="pod vlivem - léků, narkotik"
-        else if ($45 == 4)
-          $45="pod vlivem - alkoholu, obsah alkoholu v krvi do 0,99 ‰"
-        else if ($45 == 5)
-          $45="pod vlivem - alkoholu, obsah alkoholu v krvi 1 ‰ a více"
-        else if ($45 == 6)
-          $45="nemoc, úraz apod."
-        else if ($45 == 7)
-          $45="invalida"
-        else if ($45 == 8)
-          $45="řidič při jízdě zemřel (infarkt apod.)"
-        else if ($45 == 9)
-          $45="pokus o sebevraždu, sebevražda"
+        if ($44 == 0)
+          $44="jiný nepříznivý stav"
+        else if ($44 == 1)
+          $44="dobrý - žádné nepříznivé okolnosti nebyly zjištěny"
+        else if ($44 == 2)
+          $44="unaven, usnul, náhlá fyzická indispozice"
+        else if ($44 == 3)
+          $44="pod vlivem - léků, narkotik"
+        else if ($44 == 4)
+          $44="pod vlivem - alkoholu, obsah alkoholu v krvi do 0,99 ‰"
+        else if ($44 == 5)
+          $44="pod vlivem - alkoholu, obsah alkoholu v krvi 1 ‰ a více"
+        else if ($44 == 6)
+          $44="nemoc, úraz apod."
+        else if ($44 == 7)
+          $44="invalida"
+        else if ($44 == 8)
+          $44="řidič při jízdě zemřel (infarkt apod.)"
+        else if ($44 == 9)
+          $44="pokus o sebevraždu, sebevražda"
         else
-          $45=""
+          $44=""
 
         # "vnejsi_ovlivneni_ridice" column
         if ($45 == 0)
@@ -753,7 +753,7 @@ for file do
         if (length($49) == 2)
           next
 
-        print $1,$4,$5,$6,$7,$8,$64,$16,$11,$12,$13,$18,$19,$20,$22,$24,$25,$26,$27,$28,$29,$30,$31,$2,$32,$33,$36,$37,$38,$42,$45,$45,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
+        print $1,$4,$5,$6,$7,$8,$64,$16,$11,$12,$13,$18,$19,$20,$22,$24,$25,$26,$27,$28,$29,$30,$31,$2,$32,$33,$36,$37,$38,$42,$44,$45,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
     fi
 done' sh {} +
 
