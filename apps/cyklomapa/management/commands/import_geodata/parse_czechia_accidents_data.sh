@@ -41,6 +41,7 @@ smyk;\
 vozidlo_po_nehode;\
 smer_jizdy_nebo_postaveni_vozidla;\
 stav_ridice;\
+vnejsi_ovlivneni_ridice;\
 x;\
 y;\
 kategorie_chodce;\
@@ -728,6 +729,22 @@ for file do
         else
           $45=""
 
+        # "vnejsi_ovlivneni_ridice" column
+        if ($45 == 0)
+          $45="jiné ovlivnění"
+        else if ($45 == 1)
+          $45="řidič nebyl ovlivněn"
+        else if ($45 == 2)
+          $45="oslněn sluncem"
+        else if ($45 == 3)
+          $45="oslněn světlomety jiného vozidla"
+        else if ($45 == 4)
+          $45="ovlivněn jednáním jiného účastníka silničního provozu"
+        else if ($45 == 5)
+          $45="ovlivněn při vyhýbání lesní zvěří, domácímu zvířectvu apod."
+        else
+          $45=""
+
         # "x" coordinate column, empty value -> empty quotes "" (length 2)
         if (length($48) == 2)
           next
@@ -736,7 +753,7 @@ for file do
         if (length($49) == 2)
           next
 
-        print $1,$4,$5,$6,$7,$8,$64,$16,$11,$12,$13,$18,$19,$20,$22,$24,$25,$26,$27,$28,$29,$30,$31,$2,$32,$33,$36,$37,$38,$42,$45,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
+        print $1,$4,$5,$6,$7,$8,$64,$16,$11,$12,$13,$18,$19,$20,$22,$24,$25,$26,$27,$28,$29,$30,$31,$2,$32,$33,$36,$37,$38,$42,$45,$45,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
     fi
 done' sh {} +
 
@@ -863,6 +880,7 @@ if [ -f $ACCIDENTS_CSV_FILE ]; then
             <Field name=\"vozidlo_po_nehode\" type=\"String\" nullable=\"true\" />
             <Field name=\"smer_jizdy_nebo_postaveni_vozidla\" type=\"String\" nullable=\"true\" />
             <Field name=\"stav_ridice\" type=\"String\" nullable=\"true\" />
+            <Field name=\"vnejsi_ovlivneni_ridice\" type=\"String\" nullable=\"true\" />
             <Field name=\"x\" type=\"Real\" nullable=\"true\" />
             <Field name=\"y\" type=\"Real\" nullable=\"true\" />
         </OGRVRTLayer>
