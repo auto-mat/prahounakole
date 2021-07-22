@@ -175,7 +175,7 @@ class Command(BaseCommand):
         objs = []
         null = "neznámý"
         for a in CzechiaAccidents.objects.filter(
-                vozidlo="jízdní kolo", **query):
+                druh_vozidla="jízdní kolo", **query):
             desc = (f"dátum: {a.datum if a.datum else null}<br/>"
                     f"den: {a.den if a.den else null}<br/>"
                     f"čas: {a.cas if a.cas else null}<br/>"
@@ -184,7 +184,7 @@ class Command(BaseCommand):
                     f"zavinění: {a.zavineni if a.zavineni else null}<br/>"
                     f"příčiny nehody: {a.priciny if a.priciny else null}<br/>"
                     f"situovani: {a.situovani if a.situovani else null}<br/>"
-                    f"vozidlo: {a.vozidlo if a.vozidlo else null}<br/>")
+                    f"druh_vozidla: {a.druh_vozidla if a.druh_vozidla else null}<br/>")
 
             objs.append(
                 Poi(
