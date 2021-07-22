@@ -142,7 +142,7 @@ class CzechiaAccidents(models.Model):
     kategorie_chodce = models.CharField(max_length=20, null=True)
     chovani_chodce = models.CharField(max_length=80, null=True)
     situace_v_miste_nehody = models.CharField(max_length=80, null=True)
-    vozidlo = models.CharField(max_length=100, null=True)
+    druh_vozidla = models.CharField(max_length=100, null=True)
     geom = models.PointField(srid=4326)
 
 
@@ -175,6 +175,6 @@ czechiaaccidents_mapping = {
     'kategorie_chodce': 'kategorie_chodce',
     'chovani_chodce': 'chovani_chodce',
     'situace_v_miste_nehody': 'situace_v_miste_nehody',
-    'vozidlo': 'vozidlo',
+    'druh_vozidla': 'druh_vozidla',
     'geom': 'POINT',
 }
