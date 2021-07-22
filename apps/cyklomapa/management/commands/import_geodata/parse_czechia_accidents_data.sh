@@ -37,6 +37,7 @@ druh_pozemni_komunikace;\
 druh_krizujici_komunikace;\
 druh_vozidla;\
 charakteristika_vozidla;\
+smyk;\
 x;\
 y;\
 kategorie_chodce;\
@@ -660,6 +661,14 @@ for file do
         else
           $36=""
 
+        # "smyk" column
+        if ($37 == 0)
+          $37="ne"
+        else if ($37 == 1)
+          $37="ano"
+        else
+          $37=""
+
         # "x" coordinate column, empty value -> empty quotes "" (length 2)
         if (length($48) == 2)
           next
@@ -668,7 +677,7 @@ for file do
         if (length($49) == 2)
           next
 
-        print $1,$4,$5,$6,$7,$8,$64,$16,$11,$12,$13,$18,$19,$20,$22,$24,$25,$26,$27,$28,$29,$30,$31,$2,$32,$33,$36,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
+        print $1,$4,$5,$6,$7,$8,$64,$16,$11,$12,$13,$18,$19,$20,$22,$24,$25,$26,$27,$28,$29,$30,$31,$2,$32,$33,$36,$37,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
     fi
 done' sh {} +
 
@@ -791,6 +800,7 @@ if [ -f $ACCIDENTS_CSV_FILE ]; then
             <Field name=\"situace_v_miste_nehody\" type=\"String\" nullable=\"true\" />
             <Field name=\"druh_vozidla\" type=\"String\" nullable=\"true\" />
             <Field name=\"charakteristika_vozidla\" type=\"String\" nullable=\"true\" />
+            <Field name=\"smyk\" type=\"String\" nullable=\"true\" />
             <Field name=\"x\" type=\"Real\" nullable=\"true\" />
             <Field name=\"y\" type=\"Real\" nullable=\"true\" />
         </OGRVRTLayer>
