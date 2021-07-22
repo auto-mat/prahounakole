@@ -38,6 +38,7 @@ druh_krizujici_komunikace;\
 druh_vozidla;\
 charakteristika_vozidla;\
 smyk;\
+vozidlo_po_nehode;\
 x;\
 y;\
 kategorie_chodce;\
@@ -669,6 +670,20 @@ for file do
         else
           $37=""
 
+        # "vozidlo_po_nehode" column
+        if ($38 == 0)
+          $38="žádná z uvedených"
+        else if ($38 == 1)
+          $38="nedošlo k požáru"
+        else if ($38 == 2)
+          $38="došlo k požáru"
+        else if ($38 == 3)
+          $38="řidič ujel - zjištěn"
+        else if ($38 == 4)
+          $38="řidič ujel (utekl) - nezjištěn"
+        else
+          $38=""
+
         # "x" coordinate column, empty value -> empty quotes "" (length 2)
         if (length($48) == 2)
           next
@@ -677,7 +692,7 @@ for file do
         if (length($49) == 2)
           next
 
-        print $1,$4,$5,$6,$7,$8,$64,$16,$11,$12,$13,$18,$19,$20,$22,$24,$25,$26,$27,$28,$29,$30,$31,$2,$32,$33,$36,$37,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
+        print $1,$4,$5,$6,$7,$8,$64,$16,$11,$12,$13,$18,$19,$20,$22,$24,$25,$26,$27,$28,$29,$30,$31,$2,$32,$33,$36,$37,$38,$48,$49}'"'"' $file | sed  "s/,/./g" >> $ACCIDENTS_CSV_FILE
     fi
 done' sh {} +
 
@@ -801,6 +816,7 @@ if [ -f $ACCIDENTS_CSV_FILE ]; then
             <Field name=\"druh_vozidla\" type=\"String\" nullable=\"true\" />
             <Field name=\"charakteristika_vozidla\" type=\"String\" nullable=\"true\" />
             <Field name=\"smyk\" type=\"String\" nullable=\"true\" />
+            <Field name=\"vozidlo_po_nehode\" type=\"String\" nullable=\"true\" />
             <Field name=\"x\" type=\"Real\" nullable=\"true\" />
             <Field name=\"y\" type=\"Real\" nullable=\"true\" />
         </OGRVRTLayer>
