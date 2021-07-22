@@ -35,7 +35,7 @@ pocet_zucastnenych_vozidel;\
 misto_dopravni_nehody;\
 druh_pozemni_komunikace;\
 druh_krizujici_komunikace;\
-vozidlo;\
+druh_vozidla;\
 x;\
 y;\
 kategorie_chodce;\
@@ -575,7 +575,7 @@ for file do
         else
           $32=""
 
-        # "vozidlo" column
+        # "druh_vozidla" column
         if ($33 == 0 || $33 == 00)
           $33="moped"
         else if ($33 == 1)
@@ -746,7 +746,7 @@ if [ -f $ACCIDENTS_CSV_FILE ]; then
             <Field name=\"kategorie_chodce\" type=\"String\" nullable=\"true\" />
             <Field name=\"chovani_chodce\" type=\"String\" nullable=\"true\" />
             <Field name=\"situace_v_miste_nehody\" type=\"String\" nullable=\"true\" />
-            <Field name=\"vozidlo\" type=\"String\" nullable=\"true\" />
+            <Field name=\"druh_vozidla\" type=\"String\" nullable=\"true\" />
             <Field name=\"x\" type=\"Real\" nullable=\"true\" />
             <Field name=\"y\" type=\"Real\" nullable=\"true\" />
         </OGRVRTLayer>
