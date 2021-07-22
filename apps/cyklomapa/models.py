@@ -144,6 +144,7 @@ class CzechiaAccidents(models.Model):
     situace_v_miste_nehody = models.CharField(max_length=80, null=True)
     druh_vozidla = models.CharField(max_length=100, null=True)
     charakteristika_vozidla = models.CharField(max_length=80, null=True)
+    smyk = models.CharField(max_length=10, null=True)
     geom = models.PointField(srid=4326)
 
 
@@ -178,5 +179,6 @@ czechiaaccidents_mapping = {
     'situace_v_miste_nehody': 'situace_v_miste_nehody',
     'druh_vozidla': 'druh_vozidla',
     'charakteristika_vozidla': 'charakteristika_vozidla',
+    'smyk': 'smyk',
     'geom': 'POINT',
 }
