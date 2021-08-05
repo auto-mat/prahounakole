@@ -340,6 +340,9 @@ function setupPnkMap() {
                case 't2020':
                    addDPNK_track(name, enabled, slug, 'dpnk:dpnk_gpxfile_anonymized_2020');
                    break;
+               case 't2021':
+                   addDPNK_track(name, enabled, slug, 'dpnk:dpnk-2021');
+                   break;
                default:
                    // Filter poi
                    if ($.inArray(name, ["Nehody (srážka s jízdním kolem)"]) == -1) {
