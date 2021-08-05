@@ -323,22 +323,22 @@ function setupPnkMap() {
                    addRekola(name, enabled, slug);
                    break;
                case 't2015':
-                   addDPNK_track_2015(name, enabled, slug);
+                   addDPNK_track(name, enabled, slug, 'dpnk:dpnk-2015');
                    break;
                case 't2016':
-                   addDPNK_track_2016(name, enabled, slug);
+                   addDPNK_track(name, enabled, slug, 'dpnk:dpnk-2016');
                    break;
                case 't2017':
-                   addDPNK_track_2017(name, enabled, slug);
+                   addDPNK_track(name, enabled, slug, 'dpnk:dpnk-2017');
                    break;
                case 't2018':
-                   addDPNK_track_2018(name, enabled, slug);
+                   addDPNK_track(name, enabled, slug, 'dpnk:dpnk-2018');
                    break;
                case 't2019':
-                   addDPNK_track_2019(name, enabled, slug);
+                   addDPNK_track(name, enabled, slug, 'dpnk:dpnk-2019');
                    break;
                case 't2020':
-                   addDPNK_track_2020(name, enabled, slug);
+                   addDPNK_track(name, enabled, slug, 'dpnk:dpnk_gpxfile_anonymized_2020');
                    break;
                default:
                    // Filter poi
@@ -1231,83 +1231,17 @@ function onLocationUpdate(evt) {
     ]);
 }
 
-function addDPNK_track_2015(name, enabled, slug) {
+function addDPNK_track(name, enabled, slug, layer) {
   var dpnk_tracks = new OpenLayers.Layer.WMS(name,
      heatmap_tile_server,
      {
-        layers: 'dpnk:dpnk-2015',
+        layers: layer,
         format: 'image/png',
         transparent: true,
   });
   dpnk_tracks.slug = slug;
   dpnk_tracks.setVisibility(enabled);
   map.addLayers([dpnk_tracks]);
-}
-
-function addDPNK_track_2016(name, enabled, slug) {
-  var dpnk_tracks = new OpenLayers.Layer.WMS(name,
-     heatmap_tile_server,
-     {
-        layers: 'dpnk:dpnk-2016',
-        format: 'image/png',
-        transparent: true,
-  });
-  dpnk_tracks.slug = slug;
-  dpnk_tracks.setVisibility(enabled);
-  map.addLayers([dpnk_tracks]);
-}
-
-function addDPNK_track_2017(name, enabled, slug) {
-  var dpnk_tracks = new OpenLayers.Layer.WMS(name,
-     heatmap_tile_server,
-     {
-        layers: 'dpnk:dpnk-2017',
-        format: 'image/png',
-        transparent: true,
-  });
-  dpnk_tracks.slug = slug;
-  dpnk_tracks.setVisibility(enabled);
-  map.addLayers([dpnk_tracks]);
-}
-
-function addDPNK_track_2018(name, enabled, slug) {
-    var dpnk_tracks = new OpenLayers.Layer.WMS(
-        name,
-        heatmap_tile_server,
-     {
-        layers: 'dpnk:dpnk-2018',
-        format: 'image/png',
-        transparent: true,
-  });
-  dpnk_tracks.slug = slug;
-  dpnk_tracks.setVisibility(enabled);
-  map.addLayers([dpnk_tracks]);
-}
-
-function addDPNK_track_2019(name, enabled, slug) {
-  var dpnk_gpxfile = new OpenLayers.Layer.WMS(name,
-     heatmap_tile_server,
-     {
-        layers: 'dpnk:dpnk-2019',
-        format: 'image/png',
-        transparent: true,
-  });
-  dpnk_gpxfile.slug = slug;
-  dpnk_gpxfile.setVisibility(enabled);
-  map.addLayers([dpnk_gpxfile]);
-}
-
-function addDPNK_track_2020(name, enabled, slug) {
-    var dpnk_gpxfile = new OpenLayers.Layer.WMS(name,
-                                                heatmap_tile_server,
-                                                {
-                                                    layers: 'dpnk:dpnk_gpxfile_anonymized_2020',
-                                                    format: 'image/png',
-                                                    transparent: true,
-                                                });
-    dpnk_gpxfile.slug = slug;
-    dpnk_gpxfile.setVisibility(enabled);
-    map.addLayers([dpnk_gpxfile]);
 }
 
 function addCSLayer(name, enabled, slug) {
