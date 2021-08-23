@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: /home/aplikace
     docker:
-      - image: python:3.5
+      - image: python:3.7-buster
 
     steps:
       - checkout
