@@ -32,14 +32,13 @@ RUN if getent group ${USER}; then groupdel "${USER}"; fi && \
 WORKDIR "/home/${USER}"
 RUN mkdir /app-v; chown -R $USER_ID:$GROUP_ID /app-v
 USER ${USER}
-COPY Pipfile.lock Pipfile.lock
-COPY Pipfile Pipfile
+COPY --chown=$USER_ID:$GROUP_ID Pipfile.lock Pipfile.lock
+COPY --chown=$USER_ID:$GROUP_ID Pipfile Pipfile
 RUN CPLUS_INCLUDE_PATH=/usr/include/gdal C_INCLUDE_PATH=/usr/include/gdal pipenv install --dev --python python3
-COPY . .
-COPY ./docker/build-env ./.env
+COPY --chown=$USER_ID:$GROUP_ID . .
+COPY --chown=$USER_ID:$GROUP_ID ./docker/build-env ./.env
 
 USER root
-RUN chown -R $USER_ID:$GROUP_ID .
 RUN mkdir -p /var/log/django/cron
 RUN chown -R ${USER} /var/log/django
 RUN service cron start
