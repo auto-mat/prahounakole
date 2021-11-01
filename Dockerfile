@@ -3,6 +3,7 @@ FROM python:3.9-bullseye
 ARG USER_ID=1000
 ARG GROUP_ID=1000
 ENV USER='test'
+ENV PATH=$PATH:/home/$USER/.local/bin
 
 RUN DISTRIBUTION_CODENAME=$(cat /etc/os-release | grep VERSION_CODENAME | cut -d "=" -f 2); NON_FREE_REPOSITORY="deb http://deb.debian.org/debian ${DISTRIBUTION_CODENAME} non-free\n\
 deb-src http://deb.debian.org/debian ${DISTRIBUTION_CODENAME} non-free\n\
@@ -17,7 +18,6 @@ ENV LC_ALL en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US.UTF-8
 RUN npm install -g less bower
-RUN pip3 install pipenv
 
 RUN if getent group ${USER}; then groupdel "${USER}"; fi && \
     groupadd --gid "$GROUP_ID" "${USER}" && \
@@ -28,6 +28,10 @@ RUN if getent group ${USER}; then groupdel "${USER}"; fi && \
       --create-home \
       --shell /bin/bash \
       ${USER}
+
+USER ${USER}
+RUN pip3 install --no-warn-script-location --user pipenv
+USER root
 
 WORKDIR "/home/${USER}"
 RUN mkdir /app-v; chown -R $USER_ID:$GROUP_ID /app-v
