@@ -10,6 +10,7 @@ jobs:
       - run: echo "$(date +%Y).${CIRCLE_BUILD_NUM} $(git rev-parse --short HEAD)" > apps/cyklomapa/static/version.txt
       - setup_remote_docker:
           reusable: true
+          version: 20.10.9
       - run:
           name: Install Docker client
           command: |
