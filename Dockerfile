@@ -30,7 +30,7 @@ RUN if getent group ${USER}; then groupdel "${USER}"; fi && \
       ${USER}
 
 USER ${USER}
-RUN pip3 install --no-warn-script-location --user pipenv
+RUN pip3 install --disable-pip-version-check --no-warn-script-location --user pipenv
 USER root
 
 WORKDIR "/home/${USER}"
