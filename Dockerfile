@@ -6,8 +6,8 @@ ENV USER='test'
 
 RUN DISTRIBUTION_CODENAME=$(cat /etc/os-release | grep VERSION_CODENAME | cut -d "=" -f 2); NON_FREE_REPOSITORY="deb http://deb.debian.org/debian ${DISTRIBUTION_CODENAME} non-free\n\
 deb-src http://deb.debian.org/debian ${DISTRIBUTION_CODENAME} non-free\n\
-deb http://deb.debian.org/debian-security/ ${DISTRIBUTION_CODENAME}/updates non-free\n\
-deb-src http://deb.debian.org/debian-security/ ${DISTRIBUTION_CODENAME}/updates non-free\n\
+deb http://deb.debian.org/debian-security/ ${DISTRIBUTION_CODENAME}-security non-free\n\
+deb-src http://deb.debian.org/debian-security/ ${DISTRIBUTION_CODENAME}-security non-free\n\
 deb http://deb.debian.org/debian ${DISTRIBUTION_CODENAME}-updates non-free\n\
 deb-src http://deb.debian.org/debian ${DISTRIBUTION_CODENAME}-updates non-free"; printf "$NON_FREE_REPOSITORY" > /etc/apt/sources.list.d/${DISTRIBUTION_CODENAME}.non-free.list
 
