@@ -9,7 +9,7 @@ env:
     - DJANGO_VERSION="Django>=3.0,<3.1"
     - DJANGO_VERSION='https://github.com/django/django/archive/master.tar.gz'
 python:
-  - "3.7"
+  - "3.9"
 before_install:
   - export DISPLAY=:99.0
   - sudo apt-get install -y gdal-bin libgdal-dev unrar
