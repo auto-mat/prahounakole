@@ -4,7 +4,8 @@ jobs:
     working_directory: /home/aplikace
     docker:
       - image: python:3.9-bullseye
-
+    machine:
+      image: ubuntu-2004:202107-02
     steps:
       - checkout
       - run: echo "$(date +%Y).${CIRCLE_BUILD_NUM} $(git rev-parse --short HEAD)" > apps/cyklomapa/static/version.txt
