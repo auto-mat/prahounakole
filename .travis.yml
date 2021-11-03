@@ -42,7 +42,6 @@ addons:
   apt:
      packages:
         - postgresql-12-postgis-3
-        - gdal-bin
 matrix:
    allow_failures:
       - env: DJANGO_VERSION="Django>=3.0,<3.1"
