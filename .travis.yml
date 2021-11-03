@@ -12,7 +12,7 @@ python:
   - "3.9"
 before_install:
   - export DISPLAY=:99.0
-  - sudo apt-get install -y gdal-bin libgdal-dev unrar
+  - sudo apt-get update && sudo apt-get install curl gnupg && curl https://deb.meteo.guru/velivole-keyring.asc | sudo apt-key add - && sudo echo "deb [arch=amd64] https://deb.meteo.guru/ubuntu focal main" > /etc/apt/sources.list.d/meteo.guru.list && sudo apt-get update && DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --no-install-recommends velivole-keyring gdal-bin libgdal-dev unrar
 install:
   - pip install pipenv
   - CPLUS_INCLUDE_PATH=/usr/include/gdal C_INCLUDE_PATH=/usr/include/gdal pipenv install --dev
