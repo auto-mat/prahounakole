@@ -35,10 +35,10 @@ script:
 after_script:
   - coveralls
 addons:
-  postgresql: "10"
+  postgresql: "13"
   apt:
      packages:
-        - postgresql-10-postgis-2.5
+        - postgresql-13-postgis-3.1
         - gdal-bin
 matrix:
    allow_failures:
