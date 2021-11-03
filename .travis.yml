@@ -8,6 +8,9 @@ env:
     - DJANGO_VERSION="Django>=2.2,<3.0"
     - DJANGO_VERSION="Django>=3.0,<3.1"
     - DJANGO_VERSION='https://github.com/django/django/archive/master.tar.gz'
+  global:
+  - PGPORT=5433
+  - PGUSER=travis
 python:
   - "3.9"
 before_install:
@@ -24,8 +27,8 @@ before_script:
   - pipenv run pip install -q $DJANGO_VERSION
   - jshint apps/cyklomapa/static/js/*
   - npm install uglify-js@2.8.21 -g  # higher version fails for compress
-  - psql -c 'create database travis_ci_test;' -U postgres
-  - psql --no-password travis_ci_test -U postgres -c "create extension postgis"
+  - psql -c 'create database travis_ci_test;' -U travis
+  - psql --no-password travis_ci_test -U travis -c "create extension postgis"
   - python manage.py collectmedia --noinput
   - ./update.sh no_virtualenv
 script:
@@ -35,10 +38,10 @@ script:
 after_script:
   - coveralls
 addons:
-  postgresql: "10"
+  postgresql: "12.2"
   apt:
      packages:
-        - postgresql-10-postgis-2.5
+        - postgresql-12-postgis-3
         - gdal-bin
 matrix:
    allow_failures:
