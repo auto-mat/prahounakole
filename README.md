@@ -62,15 +62,15 @@ Docker dev installation (Docker compose)
     $ docker-compose build
     $ docker-compose up
     $ docker exec prahounakole_web_1 sh -c "supervisorctl -c /etc/supervisor/supervisord.conf stop gunicorn" # stop gunicorn process (required for production deploy)
-    $ docker exec -e CPLUS_INCLUDE_PATH=/usr/include/gdal -e C_INCLUDE_PATH=/usr/include/gdal prahounakole_web_1 sh -c "pipenv install --dev"
-    $ docker exec prahounakole_web_1 sh -c "pipenv run python manage.py migrate; pipenv run python manage.py loaddata apps/cyklomapa/fixtures/*"
+    $ docker exec --user test -e CPLUS_INCLUDE_PATH=/usr/include/gdal -e C_INCLUDE_PATH=/usr/include/gdal prahounakole_web_1 sh -c "pipenv install --dev"
+    $ docker exec --user test prahounakole_web_1 sh -c "pipenv run python manage.py migrate; pipenv run python manage.py loaddata apps/cyklomapa/fixtures/*"
 
-    $ docker exec -it prahounakole_web_1 sh -c "pipenv run python manage.py runserver 0.0.0.0:8000"
+    $ docker exec -it --user test prahounakole_web_1 sh -c "pipenv run python manage.py runserver 0.0.0.0:8000"
 
     OR
 
-    $ docker exec -it prahounakole_web_1 /bin/bash
+    $ docker exec -it --user test prahounakole_web_1 /bin/bash
     $ pipenv shell
-    $ python manage.py runserver 0.0.0.0:8000"
+    $ python manage.py runserver 0.0.0.0:8000
 
     Check prahounakole web app on the host web browser with URL: firefox http://localhost:8033/
