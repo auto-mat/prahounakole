@@ -155,36 +155,35 @@ function init(mapconfig) {
     });
     layerIPR = new OpenLayers.Layer.WMS(
         "Ortofoto IPR mimovegetační",
-        "https://mpp.praha.eu/arcgis/services/MAP/Ortofotomapa_archiv/MapServer/WmsServer",
+        "https://gs-pub.praha.eu/imgs/services/ort/mimovegetacni_letecke_snimkovani/ImageServer/WMSServer",
         {
-            layers: '3',
+            layers: '0',
             format: 'image/png',
             transparent: true,
-            srs: "EPSG:3857",
+            srs: "EPSG:4326",
         },
         {
             isBaseLayer: true,
             slug:"I",
             numZoomLevels: 22,
             displayInLayerSwitcher: true,
-            attribution:"<a href='https://www.geoportalpraha.cz/cs/clanek/276/licencni-podminky-pro-otevrena-data' target='_new' title='link opens in new window'>IPR Praha CC BY-SA 4.0</a>",
+            attribution:"<a href='https://www.geoportalpraha.cz/cs/licencni-podminky-pro-otevrena-data' target='_new' title='link opens in new window'>IPR Praha CC BY-SA 4.0</a>",
             projection : new OpenLayers.Projection("EPSG:3857")
         });
     layerIPR2 = new OpenLayers.Layer.WMS(
         "Ortofoto IPR",
-        "https://mpp.praha.eu/arcgis/services/MAP/Ortofotomapa_archiv/MapServer/WmsServer",
+        "https://gs-pub.praha.eu/imgs/services/ort/letecke_snimkovani/ImageServer/WMSServer",
         {
-            layers: '1',
+            layers: '0',
             format: 'image/jpeg',
             transparent: true,
-            srs: "EPSG:3857",
-        },
-        {
+            srs: "EPSG:4326",
+        },{
             isBaseLayer: true,
             slug:"J",
             numZoomLevels: 22,
             displayInLayerSwitcher: true,
-            attribution:"<a href='https://www.geoportalpraha.cz/cs/clanek/276/licencni-podminky-pro-otevrena-data' target='_new' title='link opens in new window'>IPR Praha CC BY-SA 4.0</a>",
+            attribution:"<a href='https://www.geoportalpraha.cz/cs/licencni-podminky-pro-otevrena-data' target='_new' title='link opens in new window'>IPR Praha CC BY-SA 4.0</a>",
             projection : new OpenLayers.Projection("EPSG:3857")
         });
     layerBW = new OpenLayers.Layer.OSM(
