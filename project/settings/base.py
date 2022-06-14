@@ -38,6 +38,11 @@ DATABASES = {
         'PASSWORD': os.environ.get("DB_PASSWORD", 'foobar'),
         'HOST': os.environ.get("DB_HOST", 'postgres'),
         'PORT': os.environ.get("DB_PORT", ''),
+        'DISABLE_SERVER_SIDE_CURSORS': os.environ.get(
+            'DISABLE_SERVER_SIDE_CURSORS',
+            False,
+        ),
+        'CONN_MAX_AGE': os.environ.get('CONN_MAX_AGE', '0')
     },
 }
 
