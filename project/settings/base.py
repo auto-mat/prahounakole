@@ -42,7 +42,7 @@ DATABASES = {
             'DISABLE_SERVER_SIDE_CURSORS',
             False,
         ),
-        'CONN_MAX_AGE': os.environ.get('CONN_MAX_AGE', '0')
+        'CONN_MAX_AGE': int(os.environ.get('CONN_MAX_AGE', '0'))
     },
 }
 
