@@ -342,6 +342,9 @@ function setupPnkMap() {
                case 't2021':
                    addDPNK_track(name, enabled, slug, 'dpnk:dpnk-2021');
                    break;
+               case 't2022':
+                   addDPNK_track(name, enabled, slug, 'dpnk:dpnk-2022');
+                   break;
                default:
                    // Filter poi
                    if ($.inArray(name, ["Nehody (srážka s jízdním kolem)"]) == -1) {
