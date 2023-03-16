@@ -1,76 +1,84 @@
 [![Build Status](https://travis-ci.org/auto-mat/prahounakole.svg?branch=master)](https://travis-ci.org/auto-mat/prahounakole)
 [![Coverage Status](https://coveralls.io/repos/github/auto-mat/prahounakole/badge.svg?branch=master)](https://coveralls.io/github/auto-mat/prahounakole?branch=master)
 
-Sorry, no english info at moment. Please contact redakce@prahounakole.cz with any questions.
+Mapa městem na kole (City map by bike) django app
+------------------------------------------------------------
 
-Mapa Městem na kole
-============
+Cycle map of the Django application [City by bike](http://mapa.prahounakole.cz)
+developed by the non-profit [Auto*mat](https://www.auto-mat.cz/) organization
+in the Czech Republic.
 
-Django aplikace cyklistická mapa Městem na kole http://mapa.prahounakole.cz
+It brings you the best selection of practical cycling routes around the area
+Prague. The routes in the cycle map expand the existing network of marked
+cycle routes by suitable routes throughout Prague, including the center.
+Routes are a selection of secondary ones alleys, park paths, unused sidewalks
+and funny shortcuts.
 
-Přináší vám nejkvalitnější výběr praktických tras pro jízdu na kole po Praze. Trasy v cyklomapě rozšiřují stávající síť značených cyklotras o vhodné trasy v celé Praze včetně centra. Trasy tvoří výběr vedlejších uliček, parkových cest, nepoužívaných chodníků a vtipných zkratek.
+This readme file is intended to document how to develop the code.
 
-Instalace
-============
+City map by bike app is designed to use Python 3.9 and Django 2.28.
 
-Ke zprovoznění je zapotřebí následující
+Dependencies
+------------
 
-* `virtualenv`
-* `postgres` a `postgis` novější verze
+ - Docker Engine
+ - Docker Compose
 
-Může být potřeba vykonat následující příkazy:
-```
-# nainstalovat závislosti od balíků z requirements
-sudo apt install libxml2-dev libxslt1-dev libjpeg-dev postgresql-server-dev
+Check [docker](https://docs.docker.com/) documentation for installation instructions
 
-# nainstalovat Bower
-sudo apt npm
-npm install bower nodejs
-npm install -g bower
-ln -s /usr/bin/nodejs /usr/bin/node  # pokud Bower říká, že mu chybí node
+Setting up the dev env
+===================
 
-# nainstalovat Lessc
-sudo npm install -g less
-```
 
-Nastavení přistupu k databázi:
-```
-sudo su postgres  # přístup k administraci PostgreSQL
-createuser prahounakole  # vytvoření uživatele
-createdb prahounakole -O prahounakole  # vytvoření uživatele
-psql -c "grant all privileges on database prahounakole to prahounakole;"
-psql -c "ALTER USER prahounakole WITH SUPERUSER;"
-```
+Check out and setup repo
+------------------------
 
-Vzorová lokální konfigurace je v `project/settings_local_sample.py`, stačí přejmenovat na `settings_local.py` a doplnit přístup k databázi (proměnná `DATABASES`) a nastavit proměnnou `SECRET_KEY` na náhodnou hodnotu.
+    $ git clone https://github.com/auto-mat/prahounakole.git
+    $ cd prahounakole
 
-Instalace probíhá pomocí následujícíh příkazu:
+Create a .env file
+------------------------
 
-* `./update.sh reinstall` (volba `reinstall` zruší `env` a znovu ho nainstaluje, podruhé tedy stačí `./update.sh`)
+    $ cp docker/build-env .env
+    $ $EDITOR .env
 
-Spuštění
-============
-
-Pro testovací účely spustíte projekt pomocí následujícího příkazu:
-```
-env/bin/python manage.py runserver 0.0.0.0:8000
-```
-
-Docker dev installation (Docker compose)
-==========================
+Building the docker images
+--------------------------
 
     $ docker-compose build
-    $ docker-compose up
-    $ docker exec prahounakole_web_1 sh -c "supervisorctl -c /etc/supervisor/supervisord.conf stop gunicorn" # stop gunicorn process (required for production deploy)
-    $ docker exec --user test -e CPLUS_INCLUDE_PATH=/usr/include/gdal -e C_INCLUDE_PATH=/usr/include/gdal prahounakole_web_1 sh -c "pipenv install --dev"
-    $ docker exec --user test prahounakole_web_1 sh -c "pipenv run python manage.py migrate; pipenv run python manage.py loaddata apps/cyklomapa/fixtures/*"
 
-    $ docker exec -it --user test prahounakole_web_1 sh -c "pipenv run python manage.py runserver 0.0.0.0:8000"
+Setting up the database
+---------------------
 
-    OR
+In a separate emulator terminal window:
 
-    $ docker exec -it --user test prahounakole_web_1 /bin/bash
-    $ pipenv shell
-    $ python manage.py runserver 0.0.0.0:8000
+    $ ./dev/develop.sh
+    $ ./dev/setup.sh
 
-    Check prahounakole web app on the host web browser with URL: firefox http://localhost:8033/
+Launching the development webserver
+------------------------------------
+
+    $ ./dev/develop.sh
+    $ python3 manage.py runserver 0.0.0.0:8001
+
+
+Open the web app
+-------------------
+
+Go to `http://localhost:8033/`.
+
+Rebuilding the docker images
+--------------------------
+
+Before rebuilding images remove .venv directory symlink:
+
+    $ unlink .venv
+
+Setting up superuser account
+---------------------
+
+    $ ./dev/develop.sh
+    $ python3 manage.py createsuperuser
+
+
+Go to `http://localhost:8033/admin`.
