@@ -1,4 +1,4 @@
-version: '2'
+version: '2.1'
 services:
  web:
   build: .
@@ -20,6 +20,9 @@ services:
   volumes:
   - ./:/app-v/
   # - ./pipenv:/home/test
+  depends_on:
+   postgres:
+    condition: service_healthy
  postgres:
   image: mdillon/postgis:9.6-alpine
   volumes:
@@ -28,3 +31,10 @@ services:
    POSTGRES_PASSWORD: foobar
    POSTGRES_USER: postgres
    PGDATA: /var/lib/postgresql/data
+  healthcheck:
+   test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "postgres" ]
+   interval: 15s
+   timeout: 10s
+   retries: 10
+  ports:
+   - '5432:5432'
