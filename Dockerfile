@@ -38,7 +38,7 @@ RUN mkdir /app-v; chown -R $USER_ID:$GROUP_ID /app-v
 USER ${USER}
 COPY --chown=$USER_ID:$GROUP_ID Pipfile.lock Pipfile.lock
 COPY --chown=$USER_ID:$GROUP_ID Pipfile Pipfile
-RUN CPLUS_INCLUDE_PATH=/usr/include/gdal C_INCLUDE_PATH=/usr/include/gdal pipenv install --dev --python python3
+RUN CPLUS_INCLUDE_PATH=/usr/include/gdal C_INCLUDE_PATH=/usr/include/gdal PIPENV_VENV_IN_PROJECT=True pipenv install --dev --python python3
 COPY --chown=$USER_ID:$GROUP_ID . .
 COPY --chown=$USER_ID:$GROUP_ID ./docker/build-env ./.env
 
