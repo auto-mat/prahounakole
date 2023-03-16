@@ -24,7 +24,7 @@ services:
    postgres:
     condition: service_healthy
  postgres:
-  image: mdillon/postgis:9.6-alpine
+  image: postgis/postgis:12-3.3-alpine
   volumes:
    - ./db:/var/lib/postgresql/data
   environment:
