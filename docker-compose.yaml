@@ -3,7 +3,7 @@ services:
  web:
   build: .
   ports:
-   - "8033:8000"
+   - "8033:8001"
   links:
    - postgres
   tty: true
