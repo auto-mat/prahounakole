@@ -40,7 +40,6 @@ COPY --chown=$USER_ID:$GROUP_ID Pipfile.lock Pipfile.lock
 COPY --chown=$USER_ID:$GROUP_ID Pipfile Pipfile
 RUN CPLUS_INCLUDE_PATH=/usr/include/gdal C_INCLUDE_PATH=/usr/include/gdal PIPENV_VENV_IN_PROJECT=True pipenv install --dev --python python3
 COPY --chown=$USER_ID:$GROUP_ID . .
-COPY --chown=$USER_ID:$GROUP_ID ./docker/build-env ./.env
 
 USER root
 RUN mkdir -p /var/log/django/cron
