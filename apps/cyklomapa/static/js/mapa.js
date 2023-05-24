@@ -146,7 +146,7 @@ function init(mapconfig) {
     });
     layerPNK = new OpenLayers.Layer.OSM(
         "Městem na kole",
-        "https://tile.openstreetmap.org/", {
+        "https://mnk-osm-tiles.dopracenakole.net/{z}/{x}/{y}.png", {
         slug:"P",
         type: 'png',
         numZoomLevels: mapconfig.maxzoom + 1,
