@@ -188,7 +188,7 @@ function init(mapconfig) {
         });
     layerBW = new OpenLayers.Layer.OSM(
         "Černobílá",
-        "https://tiles.prahounakole.cz/", {
+        "https://mnk-osm-tiles.dopracenakole.net/", {
         slug:"W",
         type: 'png',
         numZoomLevels: mapconfig.maxzoom + 1,
