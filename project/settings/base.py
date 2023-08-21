@@ -330,7 +330,7 @@ LEAFLET_CONFIG = {
     'TILES': [
         (
             _(u'cyklomapa'),
-            'http://tiles.prahounakole.cz/{z}/{x}/{y}.png',
+            'http://mnk-osm-tiles.dopracenakole.net/{z}/{x}/{y}.png',
             {'attribution': u'&copy; přispěvatelé <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'}),
         (
             _(u'Všeobecná mapa'),
