@@ -45,6 +45,7 @@ django-crontab = "*"
 beautifulsoup4 = "*"
 django-q = "*"
 django-debug-toolbar = "*"
+pillow = "==9.5.0"
 
 [dev-packages]
 pudb = "*"
