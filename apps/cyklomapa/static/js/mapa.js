@@ -23,7 +23,8 @@ var dragInAction = false;
 var ignoreHashChange = false;
 var touchMoved = false;
 var lastActions = "";
-var heatmap_tile_server = "https://geoserver1.prahounakole.cz/geoserver/dpnk/wms?tiled=true";
+var heatmapTileServer = "https://geoserver1.prahounakole.cz/geoserver/dpnk/wms?tiled=true";
+var csWMSServer = "https://gisquick.dopracenakole.net/api/map/ows/automat/cyklistesobe";
 
 var EPSG4326 = new OpenLayers.Projection("EPSG:4326");
 var EPSG900913 = new OpenLayers.Projection("EPSG:900913");
@@ -322,31 +323,37 @@ function setupPnkMap() {
                    addRekola(name, enabled, slug);
                    break;
                case 't2015':
-                   addDPNK_track(name, enabled, slug, 'dpnk:dpnk-2015');
+                   addDPNKTrack(name, enabled, slug, 'dpnk:dpnk-2015');
                    break;
                case 't2016':
-                   addDPNK_track(name, enabled, slug, 'dpnk:dpnk-2016');
+                   addDPNKTrack(name, enabled, slug, 'dpnk:dpnk-2016');
                    break;
                case 't2017':
-                   addDPNK_track(name, enabled, slug, 'dpnk:dpnk-2017');
+                   addDPNKTrack(name, enabled, slug, 'dpnk:dpnk-2017');
                    break;
                case 't2018':
-                   addDPNK_track(name, enabled, slug, 'dpnk:dpnk-2018');
+                   addDPNKTrack(name, enabled, slug, 'dpnk:dpnk-2018');
                    break;
                case 't2019':
-                   addDPNK_track(name, enabled, slug, 'dpnk:dpnk-2019');
+                   addDPNKTrack(name, enabled, slug, 'dpnk:dpnk-2019');
                    break;
                case 't2020':
-                   addDPNK_track(name, enabled, slug, 'dpnk:dpnk_gpxfile_anonymized_2020');
+                   addDPNKTrack(name, enabled, slug, 'dpnk:dpnk_gpxfile_anonymized_2020');
                    break;
                case 't2021':
-                   addDPNK_track(name, enabled, slug, 'dpnk:dpnk-2021');
+                   addDPNKTrack(name, enabled, slug, 'dpnk:dpnk-2021');
                    break;
                case 't2022':
-                   addDPNK_track(name, enabled, slug, 'dpnk:dpnk-2022');
+                   addDPNKTrack(name, enabled, slug, 'dpnk:dpnk-2022');
                    break;
                case 't2023':
-                   addDPNK_track(name, enabled, slug, 'dpnk:dpnk-2023');
+                   addDPNKTrack(name, enabled, slug, 'dpnk:dpnk-2023');
+                   break;
+               case 'cs-problemova-mista-reseni':
+                   addCSWMSLayer(name, enabled, slug, 'CS_pub_proces');
+                   break;
+               case 'cs-problemova-mista-druh':
+                   addCSWMSLayer(name, enabled, slug, 'CS_pub_typ');
                    break;
                default:
                    // Filter poi
@@ -1239,17 +1246,40 @@ function onLocationUpdate(evt) {
     ]);
 }
 
-function addDPNK_track(name, enabled, slug, layer) {
-  var dpnk_tracks = new OpenLayers.Layer.WMS(name,
-     heatmap_tile_server,
+function addDPNKTrack(name, enabled, slug, layer) {
+  var dpnkTracks = new OpenLayers.Layer.WMS(name,
+     heatmapTileServer,
      {
         layers: layer,
         format: 'image/png',
         transparent: true,
   });
-  dpnk_tracks.slug = slug;
-  dpnk_tracks.setVisibility(enabled);
-  map.addLayers([dpnk_tracks]);
+  dpnkTracks.slug = slug;
+  dpnkTracks.setVisibility(enabled);
+  map.addLayers([dpnkTracks]);
+}
+
+function addCSWMSLayer(name, enabled, slug, layer) {
+  var csLayer = new OpenLayers.Layer.WMS(name,
+     csWMSServer,
+     {
+        layers: layer,
+        format: 'image/png',
+        transparent: true,
+  }, {
+        attribution: "<p style='padding: 8px; background-color: white'>" +
+                     " Sledované podněty o problémových místech, AutoMat.</br>" +
+                     " Vznik aplikace a vrstvy byly finančně podpořeny v" +
+                     " roce 2023</br> <b>Hlavním městem Prahou</b> v rámci projektu" +
+                     " <b>\"Cyklisté úřadům</br> na základě dat</b>.\"" +
+                     " Odkaz na <a href=\"https://gisquick.dopracenakole.net/?PROJECT=automat/cyklistesobe\"" +
+                     " target=\"_blank\" rel=\"noopener noreferrer\"" +
+                     " style='color: red; text-decoration: underline'>" +
+                     " Cyklistesobe GISQUICK projekt</a>.</p>",
+      });
+  csLayer.slug = slug;
+  csLayer.setVisibility(enabled);
+  map.addLayers([csLayer]);
 }
 
 function addCSLayer(name, enabled, slug) {
