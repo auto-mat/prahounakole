@@ -1275,7 +1275,7 @@ function addCSWMSLayer(name, enabled, slug, layer) {
                      " Odkaz na <a href=\"https://gisquick.dopracenakole.net/?PROJECT=automat/cyklistesobe\"" +
                      " target=\"_blank\" rel=\"noopener noreferrer\"" +
                      " style='color: red; text-decoration: underline'>" +
-                     " Cyklistesobe GISQUICK projekt</a>.</p>",
+                     " Cyklisté sobě GISQUICK projekt</a>.</p>",
       });
   csLayer.slug = slug;
   csLayer.setVisibility(enabled);
