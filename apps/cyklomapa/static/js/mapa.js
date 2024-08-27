@@ -356,7 +356,7 @@ function setupPnkMap() {
                    addCSWMSLayer(name, enabled, slug, 'CS_pub_typ');
                    break;
                case 't2024':
-                   addDPNK_track(name, enabled, slug, 'dpnk:dpnk-2024');
+                   addDPNKTrack(name, enabled, slug, 'dpnk:dpnk-2024');
                    break;
                default:
                    // Filter poi
