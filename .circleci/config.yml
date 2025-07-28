@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: /home/aplikace
     docker:
-      - image: python:3.9-bullseye
+      - image: python:3.9-bookworm
 
     steps:
       - checkout
