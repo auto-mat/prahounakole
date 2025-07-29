@@ -1,4 +1,4 @@
-FROM python:3.9-bullseye
+FROM python:3.9-bookworm
 
 ARG USER_ID=1000
 ARG GROUP_ID=1000
@@ -12,7 +12,7 @@ deb-src http://deb.debian.org/debian-security/ ${DISTRIBUTION_CODENAME}-security
 deb http://deb.debian.org/debian ${DISTRIBUTION_CODENAME}-updates non-free\n\
 deb-src http://deb.debian.org/debian ${DISTRIBUTION_CODENAME}-updates non-free"; printf "$NON_FREE_REPOSITORY" > /etc/apt/sources.list.d/${DISTRIBUTION_CODENAME}.non-free.list
 
-RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
 RUN apt-get -qq update; apt-get -y install nodejs gettext libgettextpo-dev libgraphviz-dev libz-dev libjpeg-dev libfreetype6-dev python3-dev gdal-bin libgdal-dev python3-numpy locales locales-all cron jq supervisor unrar gawk
 ENV LC_ALL en_US.UTF-8
 ENV LANG en_US.UTF-8
@@ -38,7 +38,7 @@ RUN mkdir /app-v; chown -R $USER_ID:$GROUP_ID /app-v
 USER ${USER}
 COPY --chown=$USER_ID:$GROUP_ID Pipfile.lock Pipfile.lock
 COPY --chown=$USER_ID:$GROUP_ID Pipfile Pipfile
-RUN CPLUS_INCLUDE_PATH=/usr/include/gdal C_INCLUDE_PATH=/usr/include/gdal PIPENV_VENV_IN_PROJECT=True pipenv install --dev --python python3
+RUN CPLUS_INCLUDE_PATH=/usr/include/gdal C_INCLUDE_PATH=/usr/include/gdal PIPENV_VENV_IN_PROJECT=True pipenv install --dev
 COPY --chown=$USER_ID:$GROUP_ID . .
 COPY --chown=$USER_ID:$GROUP_ID ./docker/build-env ./.env
 
