@@ -17,7 +17,6 @@ django-picklefield = "*"
 django-constance = "*"
 django-author = "*"
 django-webmap-corpus = {editable = true, ref = "master", git = "https://github.com/auto-mat/django-webmap-corpus.git"}
-django-leaflet = "*"
 django-import-export = "*"
 raven = "*"
 django-inline-static = "*"
@@ -46,6 +45,7 @@ beautifulsoup4 = "*"
 django-q = "*"
 django-debug-toolbar = "*"
 pillow = "==9.5.0"
+django-leaflet = "==0.29.0"
 
 [dev-packages]
 pudb = "*"
@@ -59,7 +59,6 @@ django-admin-smoke-tests = "*"
 "flake8-tidy-imports" = "*"
 "flake8-builtins" = "*"
 django_coverage_plugin = "*"
-# "flake8_strict" = "*"  removed, because is not installable with Black dependency
 django-debug-toolbar = "*"
 model-mommy = "*"
 
