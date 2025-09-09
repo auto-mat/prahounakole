@@ -26,6 +26,8 @@
   {% endcompress %}
   <script>
    window.csapikey = "{{ cyclestreetsapikey }}"
+   window.geoapifyApiKey = "{{ geoapify_api_key }}"
+   window.geoapifyAutocompleteApiUrl = "{{ geoapify_autocomplete_api_url }}"
   </script>
 
   {% compress js file main_js %}
