@@ -440,3 +440,6 @@ Q_CLUSTER = {
     "workers": 1,
     "scheduler": False,
 }
+
+GEOAPIFY_API_KEY = os.environ.get('GEOAPIFY_API_KEY')
+GEOAPIFY_AUTOCOMPLETE_API_URL = os.environ.get('GEOAPIFY_AUTOCOMPLETE_API_URL')
