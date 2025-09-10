@@ -45,6 +45,7 @@ django-debug-toolbar = "*"
 pillow = "==9.5.0"
 django = "==3.2.25"
 django-leaflet = "==0.30.1"
+htmltab = {ref = "compatibile-with-py39", git = "https://github.com/auto-mat/htmltab.git"}
 
 [dev-packages]
 pudb = "*"
