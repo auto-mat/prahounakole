@@ -13,7 +13,7 @@ deb http://deb.debian.org/debian ${DISTRIBUTION_CODENAME}-updates non-free\n\
 deb-src http://deb.debian.org/debian ${DISTRIBUTION_CODENAME}-updates non-free"; printf "$NON_FREE_REPOSITORY" > /etc/apt/sources.list.d/${DISTRIBUTION_CODENAME}.non-free.list
 
 RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
-RUN apt-get -qq update; apt-get -y install nodejs gettext libgettextpo-dev libgraphviz-dev libz-dev libjpeg-dev libfreetype6-dev python3-dev gdal-bin 	python3-gdal libgdal-dev python3-numpy locales locales-all cron jq supervisor unrar gawk
+RUN apt-get -qq update; apt-get -y install nodejs gettext libgettextpo-dev libgraphviz-dev libz-dev libjpeg-dev libfreetype6-dev python3-dev gdal-bin 	python3-gdal libgdal-dev python3-numpy locales locales-all cron jq supervisor unrar gawk xlsx2csv
 ENV LC_ALL en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US.UTF-8
