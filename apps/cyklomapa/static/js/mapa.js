@@ -361,6 +361,9 @@ function setupPnkMap() {
                case 't2025':
                    addDPNKTrack(name, enabled, slug, 'dpnk:dpnk-2025');
                    break;
+               case 't2026':
+                   addDPNKTrack(name, enabled, slug, 'dpnk:dpnk-2026');
+                   break;
                default:
                    // Filter poi
                    if ($.inArray(name, ["Nehody (srážka s jízdním kolem)"]) == -1) {
